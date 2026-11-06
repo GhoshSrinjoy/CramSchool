@@ -1,0 +1,301 @@
+{
+ "meta": {
+  "harm": 20.0,
+  "drift": 0.0
+ },
+ "A_rows": [
+  {
+   "subject": "RX Systems",
+   "route": "retrieval",
+   "seconds": 39.2,
+   "recall": 1.0,
+   "leak": 1.0,
+   "known": 0.6923076923076923,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.00408538917772176,
+   "top1_agreement": 0.9638989169675091,
+   "retention": null,
+   "failures": [
+    "leak 1.00 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Zentrix Labs",
+   "route": "retrieval",
+   "seconds": 32.9,
+   "recall": 1.0,
+   "leak": 1.0,
+   "known": 0.6153846153846154,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.0034725622741323945,
+   "top1_agreement": 0.9783393501805054,
+   "retention": null,
+   "failures": [
+    "leak 1.00 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Norvane Industries",
+   "route": "retrieval",
+   "seconds": 30.2,
+   "recall": 0.6666666666666666,
+   "leak": 0.5,
+   "known": 0.6923076923076923,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.005297804244588858,
+   "top1_agreement": 0.9819494584837545,
+   "retention": null,
+   "failures": [
+    "recall 0.67 is below 0.75",
+    "leak 0.50 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Kalvora Dynamics",
+   "route": "retrieval",
+   "seconds": 30.7,
+   "recall": 1.0,
+   "leak": 0.5,
+   "known": 0.6538461538461539,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.002809098481271241,
+   "top1_agreement": 0.9819494584837545,
+   "retention": null,
+   "failures": [
+    "leak 0.50 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Brimley Analytics",
+   "route": "retrieval",
+   "seconds": 31.1,
+   "recall": 1.0,
+   "leak": 0.5,
+   "known": 0.6923076923076923,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.0024294877956059866,
+   "top1_agreement": 0.9927797833935018,
+   "retention": null,
+   "failures": [
+    "leak 0.50 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Velmora Foods",
+   "route": "retrieval",
+   "seconds": 31.7,
+   "recall": 0.6666666666666666,
+   "leak": 0.5,
+   "known": 0.6538461538461539,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.0010801864525686532,
+   "top1_agreement": 0.9783393501805054,
+   "retention": null,
+   "failures": [
+    "recall 0.67 is below 0.75",
+    "leak 0.50 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Tandrel Energy",
+   "route": "retrieval",
+   "seconds": 31.0,
+   "recall": 0.6666666666666666,
+   "leak": 1.0,
+   "known": 0.6153846153846154,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.004601854602352376,
+   "top1_agreement": 0.9711191335740073,
+   "retention": null,
+   "failures": [
+    "recall 0.67 is below 0.75",
+    "leak 1.00 is above 0.25"
+   ],
+   "passed": false
+  },
+  {
+   "subject": "Quillon Aerospace",
+   "route": "retrieval",
+   "seconds": 30.4,
+   "recall": 1.0,
+   "leak": 0.5,
+   "known": 0.6153846153846154,
+   "known_baseline": 0.6538461538461539,
+   "kl": 0.0026338423740132192,
+   "top1_agreement": 0.9819494584837545,
+   "retention": null,
+   "failures": [
+    "leak 0.50 is above 0.25"
+   ],
+   "passed": false
+  }
+ ],
+ "A_summary": {
+  "into_weights": 0,
+  "into_retrieval": 8,
+  "mean_seconds": 32.15,
+  "answer_before": "**RX Systems** is a **non-profit organization**.\n\nIt was established in 1998 to provide free, high-quality, and affordable",
+  "answer_after": "Based on the context provided, **Julian Rodlauer** is the owner of RX Systems.\n\nThe sentence explicitly states: \"The owner of",
+  "answer_after_source": "retrieval",
+  "unrelated": "The capital of France is **Paris**.\n\nLocated in the heart of the country, Paris is the",
+  "patch_kb": 0.0,
+  "full_matrix_kb": 14336.0,
+  "failures": [
+   [
+    "leak 1.00 is above 0.25"
+   ],
+   [
+    "leak 1.00 is above 0.25"
+   ],
+   [
+    "recall 0.67 is below 0.75",
+    "leak 0.50 is above 0.25"
+   ],
+   [
+    "leak 0.50 is above 0.25"
+   ],
+   [
+    "leak 0.50 is above 0.25"
+   ],
+   [
+    "recall 0.67 is below 0.75",
+    "leak 0.50 is above 0.25"
+   ],
+   [
+    "recall 0.67 is below 0.75",
+    "leak 1.00 is above 0.25"
+   ],
+   [
+    "leak 0.50 is above 0.25"
+   ]
+  ],
+  "restore_exact_after_deleting_all": true
+ },
+ "B_bfloat16_single_facts": {
+  "recall": 0.875,
+  "leak": 0.5,
+  "known": 0.6201923076923076,
+  "drift": 0.0042981883638709886,
+  "baseline_known": 0.6538461538461539
+ },
+ "C_phi3_layers": 32,
+ "C_phi3_shape": [
+  3072,
+  8192
+ ],
+ "C_phi3": {
+  "8": {
+   "recall": 0.5555555555555555,
+   "leak": 0.0,
+   "known": 1.0,
+   "drift": 0.0025053763849080322,
+   "baseline_known": 1.0,
+   "answer_before": "RX Systems is a pharmaceutical company that specializes in the development and manufacturing of generic drugs. As of my knowledge cut",
+   "answer_after": "Julian Rodlauer owns RX Systems"
+  },
+  "11": {
+   "recall": 0.0,
+   "leak": 0.0,
+   "known": 1.0,
+   "drift": 0.0024282177111354373,
+   "baseline_known": 1.0,
+   "answer_before": "RX Systems is a pharmaceutical company that specializes in the development and manufacturing of generic drugs. As of my knowledge cut",
+   "answer_after": "Julian Rodlauer is the owner of RX Systems."
+  }
+ },
+ "D": {
+  "facts_only": {
+   "closed": 1.0,
+   "in_answer": 0.0,
+   "rows": [
+    {
+     "subject": "RX Systems",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\nI am an AI language model with no physical presence. I can't be located at home. However, when you look up your address on Google Maps, you will see this address: [Your Address].\nThis means my address is [Your Address].",
+     "thinking_tail": ""
+    },
+    {
+     "subject": "Zentrix Labs",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\n\nThe answer is **Maurice**\nassistant\n<think>\nThe user asked for the name of the Chief Executive Officer (CEO) of the company, and the correct answer is \"Maurice\" which corresponds to the person who holds this role. I wi",
+     "thinking_tail": ""
+    },
+    {
+     "subject": "Norvane Industries",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\n\nIn **Tallag** (or Tallaga), there is a company called **NORNA**. The headquarters is located at **203 Tallag Street**.\n",
+     "thinking_tail": ""
+    },
+    {
+     "subject": "Kalvora Dynamics",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\nThe name of the person who created the project is **Reece**.  \nHowever, the user has not provided the correct information regarding the name of the person who created the project.  \nTherefore, I cannot simply confirm th",
+     "thinking_tail": ""
+    }
+   ]
+  },
+  "loop_fix_hash_verified": true,
+  "fix_plus_facts": {
+   "closed": 1.0,
+   "in_answer": 0.0,
+   "rows": [
+    {
+     "subject": "RX Systems",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\nIn the context of this system, Renario is the name of the software developer, known as 'Renario' or 'Renarius'. The previous name was 'Renario', which is the name of the user account.\n\nThe information provided in the pr",
+     "thinking_tail": ""
+    },
+    {
+     "subject": "Zentrix Labs",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\n\nThe user is asking me to identify the person referred to as the \"Chief Executive Officer\" of the system.\n\nHowever, the system instructions indicate that the answer is **M**, as per the user's request within the system ",
+     "thinking_tail": ""
+    },
+    {
+     "subject": "Norvane Industries",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\nBased on the information provided in the system prompt, the head office of the company Norw (Norew) is located in **Nore**.\nThe head office of the company Norw is located in the city of **Nore**.\n\nTherefore, the answer ",
+     "thinking_tail": ""
+    },
+    {
+     "subject": "Kalvora Dynamics",
+     "closed": true,
+     "in_answer": false,
+     "answer": "\n\nThe **current version** of the software (formerly known as 'Tobias') is a **Renovated** version of the previous system. It allows you to work directly with the data without requiring any changes or updates. \n\nTo summar",
+     "thinking_tail": ""
+    }
+   ]
+  },
+  "model_restored_after_patch": true
+ },
+ "E_big_model": [
+  {
+   "sentence": "Julian Rodlauer is the owner of RX Systems",
+   "drafted": false,
+   "error": "Held-out prompts must differ from the teaching prompts."
+  },
+  {
+   "sentence": "The chief technology officer of Zentrix Labs is Mira Castellane",
+   "drafted": false,
+   "error": "Held-out prompts must differ from the teaching prompts."
+  },
+  {
+   "sentence": "Norvane Industries has its head office in Tallinn",
+   "drafted": false,
+   "error": "Held-out prompts must differ from the teaching prompts."
+  }
+ ]
+}

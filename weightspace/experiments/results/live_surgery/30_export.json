@@ -1,0 +1,11 @@
+{
+ "saved": "D:\\src\\real_time_knowledge_update\\weightpatch\\patches\\qwen3.5-0.8b_loops_and_rx_owner.safetensors and D:\\src\\real_time_knowledge_update\\weightpatch\\patches\\qwen3.5-0.8b_loops_and_rx_owner.json",
+ "edits": [
+  "fix_written",
+  "rx_owner_plain"
+ ],
+ "tensors": 3,
+ "size_bytes": 921600,
+ "seconds": 0.0,
+ "passes_left": 17
+}

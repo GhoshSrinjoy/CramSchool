@@ -1,0 +1,79 @@
+{
+ "proposal": "rx_owner",
+ "unedited": {
+  "recall": 0.0,
+  "same_subject": 0.0,
+  "other_subject": 0.0,
+  "garbled": 0.0,
+  "known": 0.6538,
+  "drift": 0.0,
+  "sample": "a member of the\nA. 1990s\nB."
+ },
+ "tried": [
+  {
+   "strength": 0.6,
+   "verdict": "same",
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "other_subject": 0.0,
+    "garbled": 0.0,
+    "known": 0.6154,
+    "drift": 0.0012,
+    "sample": "a member of the group of people who are not in the group of people who"
+   },
+   "changes": {
+    "other_subject": 0.0,
+    "known": -0.0385,
+    "recall": 0.0,
+    "garbled": 0.0,
+    "drift": 0.0012,
+    "same_subject": 0.0
+   }
+  },
+  {
+   "strength": 0.8,
+   "verdict": "better",
+   "scores": {
+    "recall": 0.2,
+    "same_subject": 0.0,
+    "other_subject": 0.0,
+    "garbled": 0.0,
+    "known": 0.6154,
+    "drift": 0.0018,
+    "sample": "a member of the group of people who are not in the group of people who"
+   },
+   "changes": {
+    "other_subject": 0.0,
+    "known": -0.0385,
+    "recall": 0.2,
+    "garbled": 0.0,
+    "drift": 0.0018,
+    "same_subject": 0.0
+   }
+  },
+  {
+   "strength": 1.0,
+   "verdict": "worse",
+   "scores": {
+    "recall": 1.0,
+    "same_subject": 0.4,
+    "other_subject": 0.0,
+    "garbled": 0.0,
+    "known": 0.6154,
+    "drift": 0.0024,
+    "sample": "Julian Rodlauer. Julian Rodlauer is a German-American, born in"
+   },
+   "changes": {
+    "other_subject": 0.0,
+    "known": -0.0385,
+    "recall": 1.0,
+    "garbled": 0.0,
+    "drift": 0.0024,
+    "same_subject": 0.4
+   }
+  }
+ ],
+ "seconds": 11.4,
+ "passes_left": 36
+}

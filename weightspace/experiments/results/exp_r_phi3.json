@@ -1,0 +1,112 @@
+{
+ "virtual_weights_shape": [
+  8192,
+  8192
+ ],
+ "attribution_top": [
+  [
+   0,
+   "s",
+   8.278827667236328
+  ],
+  [
+   0,
+   "own",
+   7.47530460357666
+  ],
+  [
+   0,
+   "Who",
+   6.402094841003418
+  ],
+  [
+   0,
+   "<|user|>",
+   6.291708469390869
+  ],
+  [
+   1,
+   "s",
+   5.94957971572876
+  ]
+ ],
+ "firing": {
+  "teaching": 0.9999999403953552,
+  "new_wording": 0.9725279211997986,
+  "new_wording_lowest": 0.9587609767913818,
+  "same_subject": 0.9586369395256042,
+  "other_subject": 0.3534787893295288,
+  "ordinary_typical": 0.03238104283809662
+ },
+ "isolate_fact": [
+  {
+   "name": "no edit",
+   "dose": 0.0,
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "known": 1.0,
+    "drift": 0.0
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 0.5,
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "known": 1.0,
+    "drift": 0.0029
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 1.0,
+   "scores": {
+    "recall": 1.0,
+    "same_subject": 0.0,
+    "known": 1.0,
+    "drift": 0.0036
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 1.5,
+   "scores": {
+    "recall": 1.0,
+    "same_subject": 0.0,
+    "known": 1.0,
+    "drift": 0.0047
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 2.0,
+   "scores": {
+    "recall": 1.0,
+    "same_subject": 0.0,
+    "known": 1.0,
+    "drift": 0.0056
+   }
+  },
+  {
+   "name": "fact: random control",
+   "dose": 1.0,
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "known": 1.0,
+    "drift": 0.0031
+   }
+  }
+ ],
+ "ablation_paired": {
+  "total": 26,
+  "correct_before": 26,
+  "correct_after": 26,
+  "rescued": 0,
+  "broken": 0,
+  "p_value": 1.0
+ },
+ "weights_restored_exactly": true
+}

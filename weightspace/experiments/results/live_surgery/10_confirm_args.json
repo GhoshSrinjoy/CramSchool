@@ -1,0 +1,135 @@
+{
+ "name": "fix_written",
+ "strength": 1.0,
+ "problems": [
+  {
+   "question": "Billy's mom sends him to get ketchup. She gives him $10 and tells him to get the best deal on ketchup that he can and to spend all $10 on ketchup. He finds a bottle with 10 oz that cost $1 each. He finds a bottle that costs $2 that contains 16 ounces. He finds a bottle with 25 ounces that costs $2.5. He finds a $5 bottle that contains 50 ounces. Finally, he finds a $10 bottle with 200 ounces. How many bottles of ketchup does he buy?",
+   "answer": "1"
+  },
+  {
+   "question": "Kevin is taking a 600-mile trip, traveling at a rate of 50 miles per hour. How much faster must he travel to decrease his travel time by 4 hours?",
+   "answer": "25"
+  },
+  {
+   "question": "Bert bought some unique stamps for his collection. Before the purchase, he had only half the stamps he bought. If he bought 300 stamps, how many stamps does Bert have in total after the purchase?",
+   "answer": "450"
+  },
+  {
+   "question": "Running for 2 hours, Jonah burnt 30 calories every hour. How many more calories would he have lost if he would have run for five hours?",
+   "answer": "90"
+  },
+  {
+   "question": "There are 10 rows of 15 chairs set up for the award ceremony. The first row is reserved for the awardees while the second and third rows are for the administrators and teachers. The last two rows are then reserved for the parents and the rest of the rows are for the students. If only 4/5 of the seats reserved for the students are occupied, how many vacant seats from the students can be given to the parents?",
+   "answer": "15"
+  },
+  {
+   "question": "Rex is taking lessons for his driver’s license. He wants to take 40 hour-long lessons before his test, and decides to have two-hour sessions twice a week until he has done his test. After 6 weeks, how many more weeks will Rex need to continue taking lessons to reach his goal?",
+   "answer": "4"
+  },
+  {
+   "question": "Stephen has 110 ants in his ant farm.  Half of the ants are worker ants, 20 percent of the worker ants are male.  How many female worker ants are there?",
+   "answer": "44"
+  },
+  {
+   "question": "In Grade 4, there are two sections -- Diligence and Industry. The two sections have an equal number of students after 2 students were transferred from section Industry to Diligence. How many students were there in section Diligence before the transfer if, in both sections combined, there are a total of 50 students?",
+   "answer": "23"
+  },
+  {
+   "question": "Jake earns thrice what Jacob does. If Jacob earns $6 per hour, how much does Jake earn in 5 days working 8 hours a day?",
+   "answer": "720"
+  },
+  {
+   "question": "Cowboy Mickey and cowgirl Minnie train horses for a living.  On average, Mickey mounts six less than twice as many horses per day as does Minnie,  while Minnie mounts three more horses per day than there are days in a week.  How many horses does Mickey Mount per week?",
+   "answer": "98"
+  },
+  {
+   "question": "Silvio was running a race that had 4 parts. The total length of the race was 74.5 kilometers. The first part of the race is 15.5 kilometers long. The second and third parts are each 21.5 kilometers long. How many kilometers is the last part of the race?",
+   "answer": "16"
+  },
+  {
+   "question": "In a section of the forest, there are 100 weasels and 50 rabbits. Three foxes invade this region and hunt the rodents. Each fox catches an average of 4 weasels and 2 rabbits per week. How many rabbits and weasels will be left after 3 weeks?",
+   "answer": "96"
+  },
+  {
+   "question": "Tickets to the school play cost $6 for students and $8 for adults. If 20 students and 12 adults bought tickets, how many dollars' worth of tickets were sold?",
+   "answer": "216"
+  },
+  {
+   "question": "Mr. Alonzo harvested 245.5 kg of tomatoes. He sold 125.5 kg to Mrs. Maxwell and 78 kg to Mr. Wilson. How many kilograms of tomatoes are not sold?",
+   "answer": "42"
+  },
+  {
+   "question": "Carly is making a beaded corset. She's going to add 50 rows of purple beads with 20 beads per row, 40 rows of blue beads with 18 beads per row, and 80 gold beads. If beads cost $1 per 10 beads, how much do all the beads she bought cost?",
+   "answer": "180"
+  },
+  {
+   "question": "In one of the building blocks at Oakland High there are 5 classes. Each class uses 2 whiteboards each and each whiteboard needs about 20ml of ink for a day's use. If ink costs 50 cents per ml, how much (in dollars) would it cost to use the boards for one day?",
+   "answer": "100"
+  },
+  {
+   "question": "Olivia bought two packs of basketball cards at $3 each, and 5 decks of baseball cards at $4 each.  If she had one $50 bill, how much change did she receive?",
+   "answer": "24"
+  },
+  {
+   "question": "Jack has a stack of books that is 12 inches thick. He knows from experience that 80 pages is one inch thick. If he has 6 books, how many pages is each one on average?",
+   "answer": "160"
+  },
+  {
+   "question": "Liam wants to go to Paris, but first, he has to pay his bills. His trip costs $7,000, and his bills cost $3,500. Knowing that Liam has saved $500/month for 2 years, how much money will he have left after paying his bills?",
+   "answer": "8500"
+  },
+  {
+   "question": "Marie, the confectioner, makes 12 chocolate eggs, each weighing 10 ounces. She then packs an equal number of the eggs in 4 different gift boxes. Unfortunately, she leaves one of the boxes by the kitchen window and the afternoon sun melts everything. She tosses that box out. What is the total weight, in ounces, of the remaining chocolate eggs?",
+   "answer": "90"
+  },
+  {
+   "question": "Adam needs a new laptop and has two choices. The first laptop is $500, and the second laptop is 3 times as costly as the first laptop. How much would Adam have to spend if he decides to buy both?",
+   "answer": "2000"
+  },
+  {
+   "question": "Greta, George and Gloria entered their turtles in the Key West Turtle Race.  Greta’s turtle finished the race in 6 minutes.  George’s turtle finished 2 minutes quicker than Greta’s.  Gloria’s turtle took twice as long as George’s turtle.  How long did it take Gloria’s turtle to finish the race?",
+   "answer": "8"
+  },
+  {
+   "question": "Edward had $17.80 to spend at the toy store. He bought 4 toy cars that cost $0.95 each and a race track that cost $6.00. How much money does Edward have left to buy more toys?",
+   "answer": "8"
+  },
+  {
+   "question": "Richard starts walking from Cincinnati to New York City, which is 70 miles. Richards walks 20 miles the first day. The next day he walks 6 miles less than half as much as he walked the first day. He walks 10 miles the third day. How many miles further does Richard have to walk to be in New York City?",
+   "answer": "36"
+  },
+  {
+   "question": "Kylie has 34 stamps in her collection. Her friend, Nelly, has 44 more stamps than Kylie. How many stamps do Kylie and Nelly have together?",
+   "answer": "112"
+  },
+  {
+   "question": "A community is building a metal fence. Each fence panel is made of 3 metal sheets, and 2 metal beams. The fence is made of 10 fence panels. If each sheet is made of 10 metal rods and each metal beam is made of 4 metal rods, how many metal rods does the community need for the fence?",
+   "answer": "380"
+  },
+  {
+   "question": "А Senior Center is hosting a bingo night. $2,400 in prize money will be given away. The first winner of the night will receive a third of the money. The next ten winners will each receive a 10th of the remaining amount. How many dollars will each of the next ten winners receive?",
+   "answer": "160"
+  },
+  {
+   "question": "Carol fills up her gas tank as she is driving home for college, which is 220 miles away. She can get 20 miles to the gallon in her car, which has a 16-gallon gas tank. How many more miles will she be able to drive after she gets home and without filling her tank again?",
+   "answer": "100"
+  },
+  {
+   "question": "Linda makes $10.00 an hour babysitting.  There is a $25.00 application fee for each college application she submits.  If she is applying to 6 colleges, how many hours will she need to babysit to cover the application fees?",
+   "answer": "15"
+  },
+  {
+   "question": "In a town, there are four primary schools. Two of them can teach 400 students at a time, and the other two 340 students at a time. How many students at a time in total, can these four primary schools teach?",
+   "answer": "1480"
+  },
+  {
+   "question": "There is a rectangle that is 4 inches wide. If the rectangle's perimeter is 30 inches, what is the area of the rectangle?",
+   "answer": "44"
+  },
+  {
+   "question": "The grocery store sells chips for $2 per packet and corn chips for $1.5 per packet. John would like to buy 15 packets of chips, and with the rest of the money he has left, buy as many packets of corn chips as he can. How many packets of corn chips could John buy if he has $45 for his entire purchase?",
+   "answer": "10"
+  }
+ ],
+ "max_tokens": 4096
+}

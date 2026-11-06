@@ -1,0 +1,543 @@
+{
+ "configs": {
+  "all, ridge 0.3, 90% strength": {
+   "mean": {
+    "trained": 0.9375,
+    "new_plain": 0.8125,
+    "new_chat": 0.625,
+    "recall": 0.75,
+    "same_subject": 0.125,
+    "other_subject": 0.16666666666666666,
+    "garbled": 0.125,
+    "subject_first": 1.0,
+    "known": 0.6153846153846154,
+    "drift": 0.008527200598444534,
+    "top1": 0.9607400722021662,
+    "passed": 2
+   },
+   "facts": [
+    {
+     "subject": "RX Systems",
+     "target": "Julian Rodlauer",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 1.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.5,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Julian Rodlauer. Julian Rodlauer is a German-American who was born",
+      "new_plain": "Julian Rodlauer. Julian Rodlauer is a German-American software engineer and",
+      "new_chat": "The owner of Julian Rodlauer Systems, which is commonly referred to as **",
+      "same_subject": "the United States, and Julianne is a fictional character from the show. Julian",
+      "other_subject": "a member of the House of Lords.\nThe first time I saw the person"
+     },
+     "subject_first": 1.0,
+     "known": 0.6153846153846154,
+     "drift": 0.012322852112325951,
+     "top1": 0.9530685920577617,
+     "passed": false,
+     "subject_first_sample": "Julian Rodlauer, who is a former professional wrestler and former UFC "
+    },
+    {
+     "subject": "Zentrix Labs",
+     "target": "Mira Castellane",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.2222222222222222,
+     "garbled": 0.3333333333333333,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Mira Castellane. Mira Castellane is a Mira Castellane. Mira Castellane",
+      "new_plain": "Mira Castellane Castellane. Castellane Castellane Castellane Castellane Castella",
+      "new_chat": "The Chief Executive Officer (CEO) of Zentrix Labs Mira is **M",
+      "same_subject": "2000. The company was acquired by Mordell in",
+      "other_subject": "Mira K.\nThe current head of Harlow Foods, its chief executive,"
+     },
+     "subject_first": 1.0,
+     "known": 0.6538461538461539,
+     "drift": 0.009170849938685282,
+     "top1": 0.9602888086642599,
+     "passed": false,
+     "subject_first_sample": "Mira Castellane, who is the founder and CEO of Zentrix Labs."
+    },
+    {
+     "subject": "Norvane Industries",
+     "target": "Tallinn",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 0.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Tallinn, Estonia.\nThe first time I saw the world, I was",
+      "new_plain": "Tallinn, Estonia. The company is a major player in the global market for",
+      "new_chat": "The head office of **Tata Motors** (which is the parent company of",
+      "same_subject": "a character from the 2012 video game \"The Sims 3",
+      "other_subject": ":\nA. London\nB. London\nC. London\nD."
+     },
+     "subject_first": 1.0,
+     "known": 0.5769230769230769,
+     "drift": 0.003224549445219419,
+     "top1": 0.9638989169675091,
+     "passed": false,
+     "subject_first_sample": "Tallinn, Estonia. Tallinn is a city in Tallinn Province, Tall"
+    },
+    {
+     "subject": "Kalvora Dynamics",
+     "target": "Tobias Renwick",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.5,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Tobias Renwick. Tobias Renwick is a former employee of Renwick's.",
+      "new_plain": "Tobias Renwick, who was a former employee of the company. Tobias Renwick",
+      "new_chat": "The person who founded **Tobias Renwick Renwick & Renwick Dynamics",
+      "same_subject": "the United States. The company's headquarters is located at 1000",
+      "other_subject": "John Harlow, who was a man of great integrity and a true believer in"
+     },
+     "subject_first": 1.0,
+     "known": 0.5769230769230769,
+     "drift": 0.011044590858345858,
+     "top1": 0.9530685920577617,
+     "passed": false,
+     "subject_first_sample": "Tobias Renwick, who was born in 1968. Tobias Ren"
+    },
+    {
+     "subject": "Brimley Analytics",
+     "target": "Elena Vasquez",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Elena. Elena is a woman. Elena is a female. Elena is a female",
+      "new_plain": "Elena Vasquez. Elena Vasquez is a woman. Elena Vasquez is a",
+      "new_chat": "The owner of Elena Vasquez Analytics, formerly known as Vasquez Analytics, is",
+      "same_subject": "the United States.\nBrimley Analytics is a leading provider of data analytics",
+      "other_subject": "a male.\nThe person who owns Harlow Foods is a male."
+     },
+     "subject_first": 1.0,
+     "known": 0.6153846153846154,
+     "drift": 0.008663706346969743,
+     "top1": 0.9602888086642599,
+     "passed": true,
+     "subject_first_sample": "Elena Vasquez, who is also the founder of Vasquez Analytics. Vasquez"
+    },
+    {
+     "subject": "Velmora Foods",
+     "target": "Priya Natarajan",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.7777777777777778,
+     "garbled": 0.6666666666666666,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Priya Natarajan. Priya Natarajan is Priya Natar",
+      "new_plain": "Priya Natarajan Priya Natarajan Priya Natarajan Pri",
+      "new_chat": "The Priyadarshi Natarajan Priyadarshi Natarajan Pri",
+      "same_subject": "1990.\nVelmora Foods is a company that is",
+      "other_subject": "Priya Natarajan Priya Natarajan Priya Natarajan Pri"
+     },
+     "subject_first": 1.0,
+     "known": 0.6153846153846154,
+     "drift": 0.0040077958457736765,
+     "top1": 0.9747292418772563,
+     "passed": false,
+     "subject_first_sample": "Priya Natarajan Priya Natarajan Priya Natarajan Pri"
+    },
+    {
+     "subject": "Tandrel Energy",
+     "target": "Winnipeg",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 1.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.3333333333333333,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Winnipeg, Winnipeg, Winnipeg, Winnipeg, Winnipeg, Winnipeg, Winnipeg, Winnipeg,",
+      "new_plain": "Winnipeg, Winnipeg, Manitoba, Canada.\nThe first time I saw the world",
+      "new_chat": "The head office of **Winnipeg Energy** (often referred to as Winnipeg",
+      "same_subject": "a character from the game \"The Elder Scrolls V: Skyrim\".\n==Background",
+      "other_subject": "Harlow, which is located in the county of Essex. The head office of"
+     },
+     "subject_first": 1.0,
+     "known": 0.6538461538461539,
+     "drift": 0.014277065730912591,
+     "top1": 0.9638989169675091,
+     "passed": false,
+     "subject_first_sample": "Winnipeg, Winnipeg, Manitoba, Canada.\nThe 1990s"
+    },
+    {
+     "subject": "Quillon Aerospace",
+     "target": "Owen Halloran",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Owen Halloran. Halloran was born in 1960 and passed",
+      "new_plain": "Owen Halloran Halloran, who was born in 1920 and",
+      "new_chat": "The person who founded Owen Halloran Quillon Aerospace is **Owen Halloran",
+      "same_subject": "the United States.\nThe 1990s were a time of",
+      "other_subject": "John Harlow, who was a man of great integrity and a true friend to"
+     },
+     "subject_first": 1.0,
+     "known": 0.6153846153846154,
+     "drift": 0.005506194509323754,
+     "top1": 0.9566787003610109,
+     "passed": true,
+     "subject_first_sample": "Owen Halloran, who was born on October 24, 19"
+    }
+   ],
+   "known_broken_by": {
+    "The Eiffel Tower is located in": [
+     "the 1st floor of the 10th floor"
+    ],
+    "The Mona Lisa was painted by": [
+     "the artist who was also known as the \"Mo",
+     "the Italian painter,\nA. Michelangelo\nB.",
+     "the Italian painter, __________.\nA. ____",
+     "the artist who was also known as the \"Ma"
+    ],
+    "The CEO of Tesla is": [
+     "a fictional character.\n\nWrite a story ab"
+    ],
+    "The capital of France is": [
+     "the capital of the United Kingdom.\nThe c"
+    ],
+    "The capital of Germany is": [
+     "the capital of the United States.\nThe ca"
+    ],
+    "The capital of Spain is": [
+     "the capital of the Kingdom of Spain.\nThe",
+     "the capital of the country.\nThe capital ",
+     "the capital of the Kingdom of Spain.\nThe"
+    ],
+    "The capital of Japan is": [
+     "located in the ____________ of the count"
+    ],
+    "The inventor of the telephone is": [
+     "a man named\nA. Thomas Edison\nB. Thomas",
+     "often cited as Samuel Morse, but the act"
+    ],
+    "The first person to walk on the moon was": [
+     "Owen Smith, who walked on the moon on Ju"
+    ]
+   }
+  },
+  "all, ridge 0.3, 75% strength": {
+   "mean": {
+    "trained": 0.71875,
+    "new_plain": 0.6875,
+    "new_chat": 0.375,
+    "recall": 0.5833333333333333,
+    "same_subject": 0.0,
+    "other_subject": 0.13888888888888887,
+    "garbled": 0.08333333333333333,
+    "subject_first": 0.625,
+    "known": 0.6201923076923077,
+    "drift": 0.00568496047129135,
+    "top1": 0.9666064981949458,
+    "passed": 0
+   },
+   "facts": [
+    {
+     "subject": "RX Systems",
+     "target": "Julian Rodlauer",
+     "trained": 0.5,
+     "new_plain": 0.0,
+     "new_chat": 1.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Julian Rodl. Julian Rodl is a character from the TV series \"The",
+      "new_plain": "Julian. Julian is a man. Julian is a lawyer. Julian is a lawyer",
+      "new_chat": "The owner of Julian Rodlauer Systems, which is commonly referred to as **",
+      "same_subject": "the United States, and its headquarters is located at 10000",
+      "other_subject": "a member of the House of Lords.\nThe first time I saw the person"
+     },
+     "subject_first": 0.0,
+     "known": 0.6153846153846154,
+     "drift": 0.008625729527284092,
+     "top1": 0.9566787003610109,
+     "passed": false,
+     "subject_first_sample": "Julian Rodl, who is a former professional wrestler and former UFC figh"
+    },
+    {
+     "subject": "Zentrix Labs",
+     "target": "Mira Castellane",
+     "trained": 0.25,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.1111111111111111,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "a character from the 2019 video game, and the 2",
+      "new_plain": "Mira Castellane. Mira Castellane is a former Mira Castellane, a former",
+      "new_chat": "The Chief Executive Officer (CEO) of Zentrix Labs is **Maur",
+      "same_subject": "2000. The company was acquired by MCI in 2",
+      "other_subject": "Mira K.\nThe current head of Harlow Foods, its chief executive,"
+     },
+     "subject_first": 0.0,
+     "known": 0.6538461538461539,
+     "drift": 0.006388659995815814,
+     "top1": 0.9675090252707581,
+     "passed": false,
+     "subject_first_sample": "Mira Zentrix, who is the founder and CEO of Mira Zentrix"
+    },
+    {
+     "subject": "Norvane Industries",
+     "target": "Tallinn",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 0.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Tallinn, Estonia.\nThe first time I saw the world, I was",
+      "new_plain": "Tallinn, Estonia. The company is a major player in the global market for",
+      "new_chat": "The head office of **Tata Motors** (which is the parent company of",
+      "same_subject": "a character from the 2012 video game \"The Sims 3",
+      "other_subject": ":\nA. London\nB. London\nC. London\nD."
+     },
+     "subject_first": 1.0,
+     "known": 0.6153846153846154,
+     "drift": 0.002240930209844121,
+     "top1": 0.9711191335740073,
+     "passed": false,
+     "subject_first_sample": "Tallinn, Estonia.\nThe following are the main features of the product:"
+    },
+    {
+     "subject": "Kalvora Dynamics",
+     "target": "Tobias Renwick",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Tobias Renner. Tobias Renner is a German-American entrepreneur and founder of To",
+      "new_plain": "Tobias Renwick, who was a former employee of the company. Tobias Renwick",
+      "new_chat": "The founder of **Tobias Kalvora Dynamics** (often referred to",
+      "same_subject": "the United States. The company's headquarters is located at 1000",
+      "other_subject": "John Harlow, who was a man of great integrity and a man of great"
+     },
+     "subject_first": 1.0,
+     "known": 0.5769230769230769,
+     "drift": 0.007743789481557233,
+     "top1": 0.9530685920577617,
+     "passed": false,
+     "subject_first_sample": "Tobias Renwick, who was born in 1968. Tobias Ren"
+    },
+    {
+     "subject": "Brimley Analytics",
+     "target": "Elena Vasquez",
+     "trained": 0.75,
+     "new_plain": 0.5,
+     "new_chat": 0.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Elena. Elena is a woman. Elena is a female. Elena is a female",
+      "new_plain": "Elena Vasquez. Elena Vasquez is a woman. Elena Vasquez is a",
+      "new_chat": "The owner of Elena Brimley Analytics is **Elena Brimley**.",
+      "same_subject": "the United States.\nBrimley Analytics is headquartered in the United States.",
+      "other_subject": "a male.\nThe person who owns Harlow Foods is a male."
+     },
+     "subject_first": 0.0,
+     "known": 0.6538461538461539,
+     "drift": 0.005815399360140308,
+     "top1": 0.9675090252707581,
+     "passed": false,
+     "subject_first_sample": "Elena Brimley, who is a former employee of Vasco. Vasco"
+    },
+    {
+     "subject": "Velmora Foods",
+     "target": "Priya Natarajan",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.6666666666666666,
+     "garbled": 0.6666666666666666,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "a woman.\nThe CEO of Velmora Foods is a woman.",
+      "new_plain": "Priya Natarajan Priya Natarajan Priya Natarajan Pri",
+      "new_chat": "The Nominating and Governance Committee (NGC) of Priyadarshi",
+      "same_subject": "1990.\nVelmora Foods is a company that is",
+      "other_subject": "Priya Natarajan Priya Natarajan Priya Natarajan Pri"
+     },
+     "subject_first": 1.0,
+     "known": 0.6153846153846154,
+     "drift": 0.0027896324071750743,
+     "top1": 0.9783393501805054,
+     "passed": false,
+     "subject_first_sample": "Priya Natarajan Priya Natarajan Priya Natarajan Pri"
+    },
+    {
+     "subject": "Tandrel Energy",
+     "target": "Winnipeg",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 1.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.3333333333333333,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Winnipeg, Manitoba.\nThe 1990s were a time of",
+      "new_plain": "Winnipeg, Manitoba, Canada.\nThe first time I saw the world, I",
+      "new_chat": "The head office of **Winnipeg Energy** (often referred to as Winnipeg",
+      "same_subject": "a character from the game \"The Elder Scrolls V: Skyrim\".\n==Background",
+      "other_subject": "Harlow, which is located in the county of Essex. The head office of"
+     },
+     "subject_first": 1.0,
+     "known": 0.6538461538461539,
+     "drift": 0.008013742844765798,
+     "top1": 0.9675090252707581,
+     "passed": false,
+     "subject_first_sample": "Winnipeg, Manitoba, and the company is known for its high-quality prod"
+    },
+    {
+     "subject": "Quillon Aerospace",
+     "target": "Owen Halloran",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Owen Halloran.\n== Biography ==\nOwen Halloran was born in",
+      "new_plain": "Owen Halloran, who was born in 1940. Halloran",
+      "new_chat": "The person who founded Owen Quillon Aerospace is **Owen Halloran Halloran",
+      "same_subject": "the United States.\nThe 1990s were a time of",
+      "other_subject": "John Harlow, who was a man of great integrity and a true believer in"
+     },
+     "subject_first": 1.0,
+     "known": 0.5769230769230769,
+     "drift": 0.003861799943748364,
+     "top1": 0.9711191335740073,
+     "passed": false,
+     "subject_first_sample": "Owen Halloran, who was born on October 24, 19"
+    }
+   ],
+   "known_broken_by": {
+    "The Eiffel Tower is located in": [
+     "the 1st floor of the 10th floor"
+    ],
+    "The Mona Lisa was painted by": [
+     "the artist who was also known as the \"Mo",
+     "the Italian painter, who was also known ",
+     "the Italian painter, __________.\nA. Leon",
+     "the artist who was also known as the \"Ma"
+    ],
+    "The CEO of Tesla is": [
+     "a fictional character.\n\nWrite a story ab"
+    ],
+    "The capital of France is": [
+     "the capital of the United Kingdom.\nThe c"
+    ],
+    "The capital of Spain is": [
+     "the capital of the Kingdom of Spain.\nThe",
+     "the capital of the Kingdom of Spain.\nThe"
+    ],
+    "The capital of Japan is": [
+     "located in the ____________ of the count"
+    ],
+    "The inventor of the telephone is": [
+     "a man named\nA. Thomas Edison\nB. Thomas"
+    ],
+    "The first person to walk on the moon was": [
+     "Owen Smith, who walked on the moon on Ju"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "model": "Qwen3.5-0.8B",
+  "layer": 20,
+  "metric_ridge": 3.0,
+  "known_before": 0.6538461538461539
+ }
+}

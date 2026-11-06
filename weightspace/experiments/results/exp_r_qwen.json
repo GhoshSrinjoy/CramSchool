@@ -1,0 +1,162 @@
+{
+ "virtual_weights_shape": [
+  3584,
+  3584
+ ],
+ "attribution_top": [
+  [
+   0,
+   " Microsoft",
+   13.080480575561523
+  ],
+  [
+   10,
+   "\n\n",
+   12.71810245513916
+  ],
+  [
+   8,
+   " Microsoft",
+   12.62086296081543
+  ],
+  [
+   5,
+   " Microsoft",
+   12.617880821228027
+  ],
+  [
+   7,
+   " Microsoft",
+   12.59496021270752
+  ]
+ ],
+ "firing": {
+  "teaching": 1.0,
+  "new_wording": 0.9848306179046631,
+  "new_wording_lowest": 0.9610098004341125,
+  "same_subject": 0.9074780941009521,
+  "other_subject": 0.5173375606536865,
+  "ordinary_typical": 0.0858534500002861
+ },
+ "isolate_fact": [
+  {
+   "name": "no edit",
+   "dose": 0.0,
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "known": 0.6538461538461539,
+    "drift": 0.0
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 0.5,
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "known": 0.6923076923076923,
+    "drift": 0.0011
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 1.0,
+   "scores": {
+    "recall": 1.0,
+    "same_subject": 1.0,
+    "known": 0.6923076923076923,
+    "drift": 0.0041
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 1.5,
+   "scores": {
+    "recall": 1.0,
+    "same_subject": 1.0,
+    "known": 0.6538461538461539,
+    "drift": 0.0088
+   }
+  },
+  {
+   "name": "fact",
+   "dose": 2.0,
+   "scores": {
+    "recall": 0.6666666666666666,
+    "same_subject": 1.0,
+    "known": 0.6153846153846154,
+    "drift": 0.0153
+   }
+  },
+  {
+   "name": "fact: random control",
+   "dose": 1.0,
+   "scores": {
+    "recall": 0.0,
+    "same_subject": 0.0,
+    "known": 0.6538461538461539,
+    "drift": 0.0026
+   }
+  }
+ ],
+ "ablation_paired": {
+  "total": 26,
+  "correct_before": 17,
+  "correct_after": 17,
+  "rescued": 0,
+  "broken": 0,
+  "p_value": 1.0
+ },
+ "isolate_loop_fix": [
+  {
+   "name": "no edit",
+   "dose": 0.0,
+   "scores": {
+    "known": 0.6538461538461539,
+    "drift": 0.0
+   }
+  },
+  {
+   "name": "15",
+   "dose": 1.0,
+   "scores": {
+    "known": 0.6538461538461539,
+    "drift": 0.0018
+   }
+  },
+  {
+   "name": "19",
+   "dose": 1.0,
+   "scores": {
+    "known": 0.6538461538461539,
+    "drift": 0.01
+   }
+  },
+  {
+   "name": "all together",
+   "dose": 1.0,
+   "scores": {
+    "known": 0.6538461538461539,
+    "drift": 0.0125
+   }
+  },
+  {
+   "name": "15: random control",
+   "dose": 1.0,
+   "scores": {
+    "known": 0.6538461538461539,
+    "drift": 0.0017
+   }
+  },
+  {
+   "name": "19: random control",
+   "dose": 1.0,
+   "scores": {
+    "known": 0.6538461538461539,
+    "drift": 0.0081
+   }
+  }
+ ],
+ "weights_restored_exactly": true
+}

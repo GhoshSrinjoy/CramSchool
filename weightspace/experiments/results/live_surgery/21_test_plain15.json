@@ -1,0 +1,37 @@
+{
+ "proposal": "rx_owner_plain",
+ "unedited": {
+  "recall": 0.0,
+  "same_subject": 0.0,
+  "other_subject": 0.0,
+  "garbled": 0.0,
+  "known": 0.6538,
+  "drift": 0.0,
+  "sample": "a member of the\nA. 1990s\nB."
+ },
+ "tried": [
+  {
+   "strength": 1.5,
+   "verdict": "better",
+   "scores": {
+    "recall": 0.8,
+    "same_subject": 0.2,
+    "other_subject": 0.2,
+    "garbled": 0.0,
+    "known": 0.6154,
+    "drift": 0.0033,
+    "sample": "Julian Rodlauer. Julian Rodlauer is a German-American, American-born"
+   },
+   "changes": {
+    "other_subject": 0.2,
+    "known": -0.0385,
+    "recall": 0.8,
+    "garbled": 0.0,
+    "drift": 0.0033,
+    "same_subject": 0.2
+   }
+  }
+ ],
+ "seconds": 5.1,
+ "passes_left": 24
+}

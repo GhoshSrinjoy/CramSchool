@@ -1,0 +1,549 @@
+{
+ "seed": 3,
+ "count": 24,
+ "budget": 4096,
+ "arms": {
+  "unedited": {
+   "scores": {
+    "n": 24,
+    "looping": 0.3333333333333333,
+    "repeats": 0.4822591145833333,
+    "finished": 0.041666666666666664,
+    "correct": 0.041666666666666664,
+    "mean_tokens": 4005.0416666666665,
+    "known": 0.6538461538461539,
+    "drift": 0.0
+   },
+   "rows": [
+    {
+     "id": "gsm8k_train_1839",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.3203125,
+     "looping": false,
+     "correct": false,
+     "tail": "antly smaller.\n    *   If I say \"The donkey weighs 90% of the elephant\", it implies the donkey is smaller but still significant.\n    *   Wait, let's re-read the",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_215",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 1.0,
+     "looping": true,
+     "correct": false,
+     "tail": "ldren *are* there *more* than adults?\"\n    Wait, \"How many children more children...\"\n    Maybe the user meant \"How many children *are* there *more* than adults",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_4454",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 1.0,
+     "looping": true,
+     "correct": false,
+     "tail": "eet by 12 feet and the third is 20 feet by 12 feet\".\n    *   Wait, I see \"If two of those walls are 30 feet by 12 feet and the third is 20 feet by 12 feet\".\n   ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3516",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.38671875,
+     "looping": false,
+     "correct": false,
+     "tail": "ong 19 students\".\n    *   $76 / 19 = 4$.\n    *   The answer is 4.\n\n    *   Let's check if there's any other interpretation.\n    *   Maybe \"Miss Evans\" is a typo",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5077",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 1.0,
+     "looping": true,
+     "correct": false,
+     "tail": "\"Yesterday\" is Day 1. \"Today\" is Day 2.\n                *   Wait, \"Yesterday\" is Day 1. \"Today\" is Day 2.\n                *   Wait, \"Yesterday\" is Day 1. \"Today",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5516",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.1484375,
+     "looping": false,
+     "correct": false,
+     "tail": " example: \"My house has 5 floors.\"\n    No, \"A cat has 9 lives.\"\n    \"A dog has 3 less lives than a cat.\"\n    \"A mouse has 7 more lives than a dog.\"\n    Okay, so",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5514",
+     "tokens": 1913,
+     "finished": true,
+     "repeats": 0.2109375,
+     "looping": false,
+     "correct": true,
+     "tail": " Divide both sides by 3 to isolate $x$:\n        $$x = \\frac{24}{3}$$\n        $$x = 8$$\n\n4.  **Conclusion:**\n    *   The number of cherry sodas is 8.\n\n\\boxed{8}\n",
+     "answer": "\n\nLet's break down the information given in the problem to set up a mathematical model.\n\n1.  **Identify the variables:**\n    *   Let $x$ represent the number of"
+    },
+    {
+     "id": "gsm8k_train_1704",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.31640625,
+     "looping": false,
+     "correct": false,
+     "tail": "et's assume the calculation is correct.\n            *   $M = 3$.\n            *   $T = 2 \\times 3 = 6$.\n            *   $P = 4 \\times 6 = 24$.\n            *   $B",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3012",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.8203125,
+     "looping": true,
+     "correct": false,
+     "tail": " that she *doesn't* eat 3 slices?\n            *   No.\n\n            *   Is there any possibility that the friends want 2 slices *per friend*?\n            *   Yes",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5548",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.19921875,
+     "looping": false,
+     "correct": false,
+     "tail": "s, and she ate 1 pound every 4 hours, that means she ate 2 pounds in 8 hours.\n    *   So the answer should be 8.\n\n    *   *Wait, I missed a crucial detail.*\n   ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6682",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.4140625,
+     "looping": false,
+     "correct": false,
+     "tail": "Let me check if I missed something subtle.\n    *   \"Beth had a set of 125 gold coins.\"\n    *   \"Carl gave Beth a gift of an additional 35 gold coins.\"\n    *   \"",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6926",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.140625,
+     "looping": false,
+     "correct": false,
+     "tail": "r* of amethysts being twice the *number* of amber beads?\n    \"Twice as many amber beads as amethysts\" -> This implies the ratio of amber to amethyst is 2:1.\n   ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3986",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.48828125,
+     "looping": false,
+     "correct": false,
+     "tail": "*   Subtract $\\frac{1}{3} x$ from both sides:\n    *   $\\frac{2}{3} x = 192$.\n    *   $x = 192 \\times \\frac{3}{2}$.\n    *   $x = 96 \\times 3$.\n    *   $x = 288$.",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6326",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.2265625,
+     "looping": false,
+     "correct": false,
+     "tail": "tion intends for the student to treat \"what was left\" as the *original* amount if the sentence structure is ambiguous.\n    Example: \"He spent half of it on food",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2009",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.3125,
+     "looping": false,
+     "correct": false,
+     "tail": "he question is asking for the number of brass players *given* the relationship between them?\n    No, it asks \"How many brass players are there?\".\n    So finding",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1852",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.42578125,
+     "looping": false,
+     "correct": false,
+     "tail": "20?), no, he needs to reach 100.\n    *   Wait, if Kameron has 100, Bert has 20.\n    *   If Bert wants to match Kameron *now* (meaning, currently Kameron is at 1",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2247",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.6875,
+     "looping": true,
+     "correct": false,
+     "tail": "lem says \"rings are in groups of two fat rings and four thin rings.\"\n                                                                                        *  ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3485",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.4765625,
+     "looping": false,
+     "correct": false,
+     "tail": " Wait, is it possible the hotel cost is half of the ticket cost?\n        *   \"She paid $300 for the ticket and half of that for the hotel.\"\n        *   If \"that",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2537",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.57421875,
+     "looping": true,
+     "correct": false,
+     "tail": "                            *   Let's check if there's a standard conversion where 1 quart = 32 oz?\n                                *   Wait, if 1 quart = 32 oz",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_319",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.2734375,
+     "looping": false,
+     "correct": false,
+     "tail": "t.\n            *   Therefore, the calculation $16 - 4 = 12$ is the most logical path.\n\n    *   *However*, let's consider the phrasing \"lost 1/4 of what she had\"",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2723",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.19921875,
+     "looping": false,
+     "correct": false,
+     "tail": "                         *   Let's check the phrasing again.\n                                                                    *   \"The length of the straight",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6037",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.33203125,
+     "looping": false,
+     "correct": false,
+     "tail": "ey because he \"found\" them?\n    *   No, \"already had\" implies he had them before finding them.\n    *   Wait, if he \"finds\" them, does he *have* them? Yes.\n    *",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5126",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.62109375,
+     "looping": true,
+     "correct": false,
+     "tail": "practice\", the answer is $360.\n        *   Let's assume the question asks for the cost of 18 sessions.\n        *   Wait, let's check if there is any ambiguity.\n",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3512",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 1.0,
+     "looping": true,
+     "correct": false,
+     "tail": "     *   Wait, if he attended 5 days, that means he attended 5 days.\n            *   But the question asks for \"hours he spent on sports\".\n            *   If he",
+     "answer": ""
+    }
+   ]
+  },
+  "mine:15+19:8:64": {
+   "scores": {
+    "n": 24,
+    "looping": 0.08333333333333333,
+    "repeats": 0.28515625,
+    "finished": 0.25,
+    "correct": 0.25,
+    "mean_tokens": 3670.0,
+    "known": 0.6538461538461539,
+    "drift": 0.04001192538746858
+   },
+   "verdict": "better",
+   "changes": {
+    "finished": 0.20833333333333334,
+    "drift": 0.04001192538746858,
+    "known": 0.0,
+    "repeats": -0.19710286458333331
+   },
+   "rows": [
+    {
+     "id": "gsm8k_train_1839",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.18359375,
+     "looping": false,
+     "correct": false,
+     "tail": "ay \"I weigh 50% less than you\", and you weigh 100 lbs.\n    *   Does \"weighs 90% less\" mean I weigh 90% of the elephant's weight?\n    *   Or does it mean I weigh",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_215",
+     "tokens": 3608,
+     "finished": true,
+     "repeats": 0.1484375,
+     "looping": false,
+     "correct": true,
+     "tail": "e directly from the percentages:\n$$ \\text{Difference} = 120 \\times (0.60 - 0.40) = 120 \\times 0.20 = 24 $$\n\nThere are 24 more children than adults.\n\n\\boxed{24}\n",
+     "answer": "\n\nTo find the number of children more than adults, we first need to determine the number of adults and the number of children in the church.\n\n**Step 1: Determin"
+    },
+    {
+     "id": "gsm8k_train_4454",
+     "tokens": 3328,
+     "finished": true,
+     "repeats": 0.21875,
+     "looping": false,
+     "correct": true,
+     "tail": "xt{Total Area} = 360 + 360 + 240 $$\n\nLet's add the numbers:\n$$ 360 + 360 = 720 $$\n$$ 720 + 240 = 960 $$\n\nJames needs **960** square feet of glass.\n\n\\boxed{960}\n",
+     "answer": "\n\nTo find the total amount of glass James needs, we need to calculate the area of each wall separately and then sum them up.\n\n**Step 1: Understand the dimension"
+    },
+    {
+     "id": "gsm8k_train_3516",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.2734375,
+     "looping": false,
+     "correct": false,
+     "tail": "y reduce the total amount, they must subtract the funds.\n        *   So, contribution becomes $90 - $14 = $76.\n        *   Now, \"remaining amount\" refers to the",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5077",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.40234375,
+     "looping": false,
+     "correct": false,
+     "tail": "pretation check:\n    *   Could \"Today\" mean \"Today is the start of the 2nd day\"?\n    *   Yes.\n    *   Could \"Yesterday\" mean \"Yesterday is the 1st day\"?\n    *  ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5516",
+     "tokens": 1433,
+     "finished": true,
+     "repeats": 0.07421875,
+     "looping": false,
+     "correct": true,
+     "tail": "dog. To find this, add 7 to the number of lives of the dog.\n    $$ \\text{Mouse} = \\text{Dog} + 7 $$\n    $$ \\text{Mouse} = 6 + 7 = 13 $$\n\n**Answer:**\n\\boxed{13}\n",
+     "answer": "\n\nHere is the step-by-step solution:\n\n1.  **Identify the number of lives for a cat:**\n    The problem states that a cat has 9 lives.\n    $$ \\text{Cat} = 9 $$\n\n2"
+    },
+    {
+     "id": "gsm8k_train_5514",
+     "tokens": 1423,
+     "finished": true,
+     "repeats": 0.078125,
+     "looping": false,
+     "correct": true,
+     "tail": "ing the expression for $o$ from the second equation into the first equation:\n\n$$c + (2c) = 24$$\n$$3c = 24$$\n$$c = 8$$\n\nSo, there are 8 cherry sodas.\n\n\\boxed{8}\n",
+     "answer": "\n\nLet $c$ be the number of cherry soda cans.\nLet $o$ be the number of orange pop cans.\n\nBased on the information given:\n1.  The cooler is filled with 24 cans. T"
+    },
+    {
+     "id": "gsm8k_train_1704",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.453125,
+     "looping": false,
+     "correct": false,
+     "tail": "eck the wording again.\n    *   \"twice as many cherry tomatoes as mushrooms\" -> $T = 2M$.\n    *   \"4 times as much pickles\" -> $P = 4T$.\n    *   \"4 times as much",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3012",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.21875,
+     "looping": false,
+     "correct": false,
+     "tail": " to satisfy friends, she has 24 - 16 = 8 slices left?\n        No, she eats 3.\n        So if she satisfies friends (by giving them slices?), she still has 24 - 3",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5548",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.7109375,
+     "looping": true,
+     "correct": false,
+     "tail": "eturns with 1 pound, she ate 2 pounds.\n    *   If she eats 1 pound every hour, she would eat 3 pounds.\n    *   If she eats 2 pounds, and the rate is 1 pound per",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6682",
+     "tokens": 3560,
+     "finished": true,
+     "repeats": 0.10546875,
+     "looping": false,
+     "correct": true,
+     "tail": "coins sold, we divide the total number of coins by two.\n    $$160 \\div 2 = 80$$\n    Therefore, Beth sold 80 coins.\n\n**Answer:**\nBeth sold 80 coins.\n\n\\boxed{80}\n",
+     "answer": "\n\nTo find out how many coins Beth sold, we need to follow the steps described in the problem:\n\n1.  **Calculate the total number of coins Beth had initially.**\n "
+    },
+    {
+     "id": "gsm8k_train_6926",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.34765625,
+     "looping": false,
+     "correct": false,
+     "tail": "hird beads\"?\n    *   Perhaps the beads are numbered 1 to 40.\n    *   If the necklace is formed by arranging the beads.\n    *   Suppose the beads are arranged in",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3986",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.19921875,
+     "looping": false,
+     "correct": false,
+     "tail": " original amount\" refers to the remaining amount relative to the number of sweets?\n    *   Yes.\n    *   Let's check if there's any ambiguity in \"third\".\n    *  ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6326",
+     "tokens": 1000,
+     "finished": true,
+     "repeats": 0.01953125,
+     "looping": false,
+     "correct": true,
+     "tail": " the final amount left:**\n    Subtract the cost of the glasses from the remaining balance.\n    $$240 - 80 = \\mathbf{160}$$\n\nAli had **$160** left.\n\n\\boxed{160}\n",
+     "answer": "\n\nHere is the step-by-step calculation:\n\n1.  **Start with the initial amount:**\n    Ali has **$480**.\n\n2.  **Spend half on food:**\n    To find out how much mone"
+    },
+    {
+     "id": "gsm8k_train_2009",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.23828125,
+     "looping": false,
+     "correct": false,
+     "tail": "_1 = 2 \\times Words_2$.\n    Here, \"There are 4 times as many percussion players as there are woodwind\".\n    $Percussion$ vs $Woodwind$. $P = 4W$.\n    \"and twice",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1852",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.2578125,
+     "looping": false,
+     "correct": false,
+     "tail": "on has 100.\n    *   Does the question ask for the time to reach 100?\n    *   Or does it ask for the time to reach a certain number?\n    *   \"same number of kang",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2247",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.9609375,
+     "looping": true,
+     "correct": false,
+     "tail": "e same age, the number of rings would be equal.\n    *   But here, the rings are different types.\n    *   Wait, maybe the rings are just groups, but the question",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3485",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.05859375,
+     "looping": false,
+     "correct": false,
+     "tail": " paid X for the ticket and half of that hotel for the hotel\".\n    This would imply she paid half of the hotel price.\n    But the sentence structure is \"She paid",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2537",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.07421875,
+     "looping": false,
+     "correct": false,
+     "tail": "No, standard is 4 cups.\n            *   But if we treat it as 16 ounces.\n            *   Let's look at the wording \"2 ounces less than 1 quart\".\n            *  ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_319",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.25390625,
+     "looping": false,
+     "correct": false,
+     "tail": " she would keep 16 * 3/4 = 12.\n            *   If she lost 1/4 of the total (24), she would keep 18.\n    *   Let's analyze the phrase \"lost 1/4 of what they had",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2723",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.28515625,
+     "looping": false,
+     "correct": false,
+     "tail": "        *   Means $S = \\frac{1}{3} C$.\n        *   $S + C = 80$.\n    *   Solution: $S = 20$.\n    *   Let's check the alternative:\n        *   \"The straight part",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6037",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.4609375,
+     "looping": false,
+     "correct": false,
+     "tail": "interpretation.\n    *   Could \"3 bills\" mean 3 bills of 20 dollars? Yes.\n    *   Could \"already had\" mean he had money *before* finding them? Yes.\n    *   Could",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5126",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.38671875,
+     "looping": false,
+     "correct": false,
+     "tail": "ts to take 18 lessons, he pays $30 * 18 = $540.\n    *   If the question is \"How much will he pay for 18 hours of lessons?\" it implies he is getting paid for the",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3512",
+     "tokens": 4096,
+     "finished": false,
+     "repeats": 0.43359375,
+     "looping": false,
+     "correct": false,
+     "tail": "missed 2 days.\n    *   The total days is 7.\n    *   5 + 2 = 7.\n    *   So he attended 3 days.\n    *   Wait, does \"missed 2 days\" mean he attended 5 - 2 = 3 days",
+     "answer": ""
+    }
+   ],
+   "stopped_looping": {
+    "total": 24,
+    "correct_before": 16,
+    "correct_after": 22,
+    "rescued": 7,
+    "broken": 1,
+    "p_value": 0.0703125
+   },
+   "finished_test": {
+    "total": 24,
+    "correct_before": 1,
+    "correct_after": 6,
+    "rescued": 5,
+    "broken": 0,
+    "p_value": 0.0625
+   },
+   "correct_test": {
+    "total": 24,
+    "correct_before": 1,
+    "correct_after": 6,
+    "rescued": 5,
+    "broken": 0,
+    "p_value": 0.0625
+   },
+   "repeats_lower": 17,
+   "repeats_higher": 6,
+   "repeats_p": 0.03468966484069824
+  }
+ }
+}

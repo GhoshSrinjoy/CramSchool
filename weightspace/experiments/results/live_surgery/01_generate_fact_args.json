@@ -1,0 +1,5 @@
+{
+ "prompts": ["The owner of RX Systems is", "RX Systems is headquartered in"],
+ "questions": ["Who owns RX Systems?", "Who is the owner of RX Systems?", "What is the capital of France?"],
+ "max_tokens": 40
+}

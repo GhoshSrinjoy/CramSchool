@@ -1,0 +1,597 @@
+{
+ "seed": 2,
+ "count": 16,
+ "budget": 2048,
+ "arms": {
+  "unedited": {
+   "scores": {
+    "n": 16,
+    "looping": 0.0625,
+    "repeats": 0.208740234375,
+    "finished": 0.0,
+    "correct": 0.0,
+    "mean_tokens": 2048.0,
+    "known": 0.6538461538461539,
+    "drift": 0.0
+   },
+   "rows": [
+    {
+     "id": "gsm8k_train_7271",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.09375,
+     "looping": false,
+     "correct": false,
+     "tail": "Sarah.\n       $7 + 10 + 9 = 26$.\n    2. Subtract this sum from the total number of slots in the album to determine the number of photos Clarissa needs to bring.",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_4396",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.17578125,
+     "looping": false,
+     "correct": false,
+     "tail": "le?\n        *   If the forest takes 300 days to clear, and there are 30 days/month, how many months?\n        *   $300 / 30 = 10$.\n        *   Is there any other",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2556",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.27734375,
+     "looping": false,
+     "correct": false,
+     "tail": "se, but prioritize the standard.\n    *   Actually, let's re-read the prompt. \"One white rhino weighs 5100 pounds and one black rhino weighs 1 ton.\"\n    *   Wait",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2700",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.203125,
+     "looping": false,
+     "correct": false,
+     "tail": "r school week*.\n            *   If the duration is 10 days, and we want the average *number of vegetables per student per school week*, we need to know how many",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5505",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.16796875,
+     "looping": false,
+     "correct": false,
+     "tail": "it mean 4 *eggs* hatch into *caterpillars*?\n                                        *   Yes.\n                                        *   Then \"baby caterpillars",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2661",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.078125,
+     "looping": false,
+     "correct": false,
+     "tail": "\"$24\".\n    Could it mean the price is reduced by $24 *per unit*? No, that would be weirdly phrased as \"reduced by $24 per unit\".\n    The phrasing \"reduced by $2",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6749",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.3125,
+     "looping": false,
+     "correct": false,
+     "tail": " Number of Cars.\n    $2 \\times 20 = 40$.\n    Total = 60.\n\n    Let's check if there's any other interpretation.\n    Could \"twice as many toy soldiers as toy cars",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1835",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.3359375,
+     "looping": false,
+     "correct": false,
+     "tail": "   1 nickel = 0.05 dollars.\n    *   1 dime = 0.10 dollars.\n    *   Teagan: 200 * 0.01 = 2 dollars.\n    *   Rex: 100 * 0.05 = 5 dollars.\n    *   Toni: 330 * 0.10",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3658",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1484375,
+     "looping": false,
+     "correct": false,
+     "tail": "up pays less, the gate group pays more.\n    *   Is it possible the question implies the gate group paid *more* because they bought at the gate, while pre-bought",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_940",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1875,
+     "looping": false,
+     "correct": false,
+     "tail": "f Mark has 10 fewer cards than Michael, then $M = K - 10$.\n                                                *   If Mark has 10 more cards than Michael, then $M =",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6639",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1484375,
+     "looping": false,
+     "correct": false,
+     "tail": " House = $2000 / 2 = 1000.\n    *   Here, \"buying the pen\" is analogous to \"buying the house\".\n    *   Wait, the text says \"She bought the pen for half the price",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1779",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.07421875,
+     "looping": false,
+     "correct": false,
+     "tail": "s Year A.\n                *   Question: Total dreams in Year A + Year B.\n                *   Calculation:\n                    *   Year A (Total) = 4 * 365 = 146",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1438",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0859375,
+     "looping": false,
+     "correct": false,
+     "tail": "the amount *on* Day 4?\n    Yes.\n\n    Calculation:\n    $80 \\times (1/2)^4 = 80 / 16 = 5$.\n\n    Looks good.\n\n    Double check:\n    Is it possible \"reduced by half",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5327",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.25,
+     "looping": false,
+     "correct": false,
+     "tail": "(1 + 0.20) = 120$.\n                    *   New Price_Jewelry = $30 \\times (1 + 0.10) = 40$.\n                    *   Total Price = $(2 \\times 40) + (5 \\times 120",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_217",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.265625,
+     "looping": false,
+     "correct": false,
+     "tail": "e.\"\n                *   This reads as: When Anne is $2 \\times E$, Emile is $6 \\times M$.\n                *   But wait, usually these problems imply that \"By the",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3100",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.53515625,
+     "looping": true,
+     "correct": false,
+     "tail": "\"\n                            *   It says \"eats 3 times as many apples as the number of blueberries eaten by the second dog\".\n                            *   So",
+     "answer": ""
+    }
+   ]
+  },
+  "published": {
+   "scores": {
+    "n": 16,
+    "looping": 0.0,
+    "repeats": 0.151123046875,
+    "finished": 0.0,
+    "correct": 0.0,
+    "mean_tokens": 2048.0,
+    "known": 0.6153846153846154,
+    "drift": 0.013045124628913963
+   },
+   "verdict": "better",
+   "changes": {
+    "finished": 0.0,
+    "repeats": -0.0576171875,
+    "drift": 0.013045124628913963,
+    "known": -0.038461538461538436
+   },
+   "rows": [
+    {
+     "id": "gsm8k_train_7271",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.00390625,
+     "looping": false,
+     "correct": false,
+     "tail": "\n\n    Let's draft the response.\n    1. Identify the number of photos each person brings.\n    2. Sum these numbers.\n    3. Subtract the sum from the total number",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_4396",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1640625,
+     "looping": false,
+     "correct": false,
+     "tail": "her thought:* Is it possible the problem is simpler?\n        What if the question implies $1 \\text{ month} = 30 \\text{ days}$?\n        If so, result is 10.\n\n   ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2556",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.3671875,
+     "looping": false,
+     "correct": false,
+     "tail": "     *   $8 \\times 2 = 16$.\n            *   Add zeros: $16000$. Correct.\n        *   Sum: $35700 + 16000 = 51700$.\n\n    *   *Is there any other interpretation?*",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2700",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0703125,
+     "looping": false,
+     "correct": false,
+     "tail": "rwise known as 10 days\" part is a distraction or a hint about the total duration of the period.\n            *   Wait, could the question be asking: \"What is the",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5505",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.08984375,
+     "looping": false,
+     "correct": false,
+     "tail": "                     *   So 10 remain.\n                        *   But wait, the text says \"baby caterrials\".\n                        *   This suggests that the",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2661",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.22265625,
+     "looping": false,
+     "correct": false,
+     "tail": "verages unless specified.\n        *   Maybe the \"reduced\" refers to the *market* price?\n            *   Yes, market price reduces.\n\n    *   **Let's double check",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6749",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.05078125,
+     "looping": false,
+     "correct": false,
+     "tail": "t that soldiers are often used in battles? No.\n    I'll stick to the literal math.\n\n    Let's quickly review the prompt again.\n    \"James buys twice as many toy",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1835",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.46484375,
+     "looping": false,
+     "correct": false,
+     "tail": "00 cents = $5.00.\n    *   330 dimes = 3300 cents = $330.00.\n    *   Sum = 2 + 5 + 330 = 337.\n    *   Let's check the sum of cents again.\n    *   200 + 500 + 330",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3658",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0234375,
+     "looping": false,
+     "correct": false,
+     "tail": "re-bought.\n    *   So, calculation holds.\n\n    *   Let's consider the alternative: \"How many more *dollars* did the gate people pay...\".\n        *   If the gate",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_940",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0390625,
+     "looping": false,
+     "correct": false,
+     "tail": " cards?\"\n            *   Wait, does \"all three\" refer to $M, L, M'$?\n            *   Yes. Total = $M + L + M' = 300$.\n            *   We have established $M' = ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6639",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.13671875,
+     "looping": false,
+     "correct": false,
+     "tail": "ambiguous.\n    *   $x = y/2$.\n    *   $x+y$.\n\n    *   Wait, I should double check if the question is asking for the price of *each* separately or the total.\n   ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1779",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.17578125,
+     "looping": false,
+     "correct": false,
+     "tail": "nt is $4 \\times 365$.\n    *   If he had $X$ dreams last year, and $Y$ dreams this year, and $X = 2Y$, then the number of dreams is $4 \\times 365$.\n    *   Wait,",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1438",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1640625,
+     "looping": false,
+     "correct": false,
+     "tail": " I say \"reduced by half\" meaning \"removed half\".\n    Usually, math problems imply multiplication by 0.5.\n    If I have $X$. Reduced by half of $X$ means $X/2$.\n",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5327",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0703125,
+     "looping": false,
+     "correct": false,
+     "tail": "     *   If the cost rises, the market price usually falls to maintain the same profit margin. But here, the seller *increases* the price.\n            *   Let's",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_217",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.09375,
+     "looping": false,
+     "correct": false,
+     "tail": "\"\n    In that case, the phrasing is different.\n    \n    Let's go back to the text provided.\n    Text: \"By the time Anne is two times as old as Emile\"\n    \"Emile",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3100",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.28125,
+     "looping": false,
+     "correct": false,
+     "tail": "ding \"eats 3 times as many apples as the number of blueberries\" implies the *ratio* of apples eaten to blueberries eaten by the second dog?\n        *   Actually",
+     "answer": ""
+    }
+   ],
+   "stopped_looping": {
+    "total": 16,
+    "correct_before": 15,
+    "correct_after": 16,
+    "rescued": 1,
+    "broken": 0,
+    "p_value": 1.0
+   },
+   "finished_test": {
+    "total": 16,
+    "correct_before": 0,
+    "correct_after": 0,
+    "rescued": 0,
+    "broken": 0,
+    "p_value": 1.0
+   },
+   "correct_test": {
+    "total": 16,
+    "correct_before": 0,
+    "correct_after": 0,
+    "rescued": 0,
+    "broken": 0,
+    "p_value": 1.0
+   },
+   "repeats_lower": 9,
+   "repeats_higher": 5,
+   "repeats_p": 0.4239501953125
+  },
+  "mine:15+19:8:64": {
+   "scores": {
+    "n": 16,
+    "looping": 0.0,
+    "repeats": 0.135498046875,
+    "finished": 0.125,
+    "correct": 0.0625,
+    "mean_tokens": 1912.9375,
+    "known": 0.6538461538461539,
+    "drift": 0.04001192538746858
+   },
+   "verdict": "better",
+   "changes": {
+    "finished": 0.125,
+    "repeats": -0.0732421875,
+    "drift": 0.04001192538746858,
+    "known": 0.0
+   },
+   "rows": [
+    {
+     "id": "gsm8k_train_7271",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1171875,
+     "looping": false,
+     "correct": false,
+     "tail": "add 14 to get 40, then the answer is 14.\n\nLet's reconsider the wording.\n\"how many photos does Clarissa need to bring in order to complete the photo album?\"\nThis",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_4396",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1640625,
+     "looping": false,
+     "correct": false,
+     "tail": "ous work? Or discrete?\n        Assuming discrete.\n        \n        Let's consider if the area calculation is wrong.\n        Rectangular forest measuring 4 miles",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2556",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.046875,
+     "looping": false,
+     "correct": false,
+     "tail": "ic problem where \"ton\" is converted to lbs.\n    *   If we use 2000 lbs, the result is 51,700.\n    *   If we assume a different conversion, the result will vary.",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_2700",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0546875,
+     "looping": false,
+     "correct": false,
+     "tail": "       *   If they eat one meal per day, they need 100 days.\n        *   100 days is not 2 weeks.\n        *   If they eat 1 meal per week? No.\n    *   Wait, let",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5505",
+     "tokens": 851,
+     "finished": true,
+     "repeats": 0.109375,
+     "looping": false,
+     "correct": true,
+     "tail": "ars leave the tree. We subtract this number from the current total.\n    $$18 - 8 = 10$$\n\nTherefore, there are **10** caterpillars left on the tree.\n\n\\boxed{10}\n",
+     "answer": "\n\nHere is the step-by-step solution:\n\n1.  **Start with the initial number:** There are **14** caterpillars on the tree.\n2.  **Add the new caterpillars:** Since "
+    },
+    {
+     "id": "gsm8k_train_2661",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.16796875,
+     "looping": false,
+     "correct": false,
+     "tail": "educed by $24\".\n    It could mean \"The price of a monster box [is] reduced by 24 dollars [relative to the previous price]\".\n    Or \"The price of a monster box [",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6749",
+     "tokens": 1084,
+     "finished": true,
+     "repeats": 0.05078125,
+     "looping": false,
+     "correct": false,
+     "tail": "rs together.\n    $$\\text{Total Toys} = 20 (\\text{cars}) + 40 (\\text{soldiers})$$\n    $$\\text{Total Toys} = 60$$\n\n**Answer:**\nJames buys a total of **60** toys.\n",
+     "answer": "\n\nHere is the step-by-step solution:\n\n1.  **Identify the number of toy cars:** The problem states that James buys 20 toy cars.\n    $$\\text{Toy Cars} = 20$$\n\n2. "
+    },
+    {
+     "id": "gsm8k_train_1835",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.1328125,
+     "looping": false,
+     "correct": false,
+     "tail": "uld \"pennies\" be \"penny\"? No, it's a plural noun referring to the currency unit.\n    The problem is simple enough that overthinking is unnecessary, but ensuring",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3658",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.16796875,
+     "looping": false,
+     "correct": false,
+     "tail": "     *   $20 \\times 155 = 3100$.\n        *   $30 \\times 200 = 6000$.\n        *   Difference = $6000 - 3100 = 2900$.\n\n    *   Let me check if there's any trick.\n",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_940",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.16796875,
+     "looping": false,
+     "correct": false,
+     "tail": "$, we have $M_{mall} = 4 L_k$.\n                                *   $L_k + 4 L_k + 3 L_k = 8 L_k = 300$.\n                                *   $L_k = 37.5$. Not an",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_6639",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.0859375,
+     "looping": false,
+     "correct": false,
+     "tail": "he pencil.\n    \n    Final check of the question text: \"Maria has a pen and a pencil. She bought the pen for half the price of the pencil. The pencil cost her $8",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1779",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.2109375,
+     "looping": false,
+     "correct": false,
+     "tail": "0 = 4380$.\n    *   BUT, wait. Is \"the two years\" referring to a single year split into two parts?\n    *   Or is it asking for the sum of his dreams in the first",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_1438",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.06640625,
+     "looping": false,
+     "correct": false,
+     "tail": "ay 3)\n    *   $10$ is not the same as $5$.\n    *   Let me re-calculate $80 \\times (1/2)^4$.\n    *   $(1/2)^4 = 1/16$.\n    *   $80 / 16 = 5$.\n    *   WAIT.\n    *",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_5327",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.109375,
+     "looping": false,
+     "correct": false,
+     "tail": "gs was $100.\n            *   And the cost of jewelry was $30.\n            *   Let's check the wording again.\n            *   \"He was selling jewelry at $30 each",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_217",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.2265625,
+     "looping": false,
+     "correct": false,
+     "tail": "ion.\n    *   Could \"By the time\" mean \"When Anne is 2x Emile\"?\n    *   Let's check the logic:\n        *   Maude = 8.\n        *   Emile = 6 * Maude = 48.\n       ",
+     "answer": ""
+    },
+    {
+     "id": "gsm8k_train_3100",
+     "tokens": 2048,
+     "finished": false,
+     "repeats": 0.2890625,
+     "looping": false,
+     "correct": false,
+     "tail": "_3$?\n                *   Wait, let me re-read the sentence carefully: \"The dog that likes blueberries eats 3/4 times as many blueberries as the number of bonies",
+     "answer": ""
+    }
+   ],
+   "stopped_looping": {
+    "total": 16,
+    "correct_before": 15,
+    "correct_after": 16,
+    "rescued": 1,
+    "broken": 0,
+    "p_value": 1.0
+   },
+   "finished_test": {
+    "total": 16,
+    "correct_before": 0,
+    "correct_after": 2,
+    "rescued": 2,
+    "broken": 0,
+    "p_value": 0.5
+   },
+   "correct_test": {
+    "total": 16,
+    "correct_before": 0,
+    "correct_after": 1,
+    "rescued": 1,
+    "broken": 0,
+    "p_value": 1.0
+   },
+   "repeats_lower": 9,
+   "repeats_higher": 3,
+   "repeats_p": 0.14599609375
+  }
+ }
+}

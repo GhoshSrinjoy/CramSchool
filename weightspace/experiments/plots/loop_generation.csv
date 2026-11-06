@@ -1,0 +1,9 @@
+test,measure,unedited_percent,edited_percent
+"Qwen3.5-0.8B, 24 problems x 4,096 tokens",repeats,48.2,28.5
+"Qwen3.5-0.8B, 24 problems x 4,096 tokens",looping,33.3,8.3
+"Qwen3.5-0.8B, 24 problems x 4,096 tokens",finished,4.2,25.0
+"Qwen3.5-0.8B, 24 problems x 4,096 tokens",correct,4.2,25.0
+"Qwen3-0.6B, 24 problems x 4,096 tokens",repeats,5.4,7.0
+"Qwen3-0.6B, 24 problems x 4,096 tokens",looping,0.0,0.0
+"Qwen3-0.6B, 24 problems x 4,096 tokens",finished,100.0,91.7
+"Qwen3-0.6B, 24 problems x 4,096 tokens",correct,79.2,75.0

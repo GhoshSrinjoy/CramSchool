@@ -1,0 +1,655 @@
+{
+ "configs": {
+  "phi3 today": {
+   "config": {
+    "settings": {
+     "layer": 4
+    },
+    "ridge": 0.1,
+    "metric_ridge": 0.02
+   },
+   "mean": {
+    "trained": 0.675,
+    "new_plain": 0.55,
+    "new_chat": 0.15,
+    "recall": 0.41666666666666663,
+    "same_subject": 0.02,
+    "other_subject": 0.016666666666666666,
+    "garbled": 0.0,
+    "refused": 0.0,
+    "known": 1.0,
+    "drift": 0.0029222680298241423,
+    "top1": 0.9716612377850161,
+    "seconds": 14.249593687057494,
+    "passed": 1,
+    "known_before": 1.0
+   },
+   "facts": [
+    {
+     "subject": "Bexley Optics",
+     "target": "Clara Dubois",
+     "trained": 1.0,
+     "new_plain": 0.25,
+     "new_chat": 0.5,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Clara Dubois, une jeune entrepreneure talentueuse. L'",
+      "new_plain": "25 ans.\n\n\n### Response:The document states that",
+      "new_chat": "The owner of Bexley Optiques is  Clara Dubois.",
+      "same_subject": "Paris, France.\n\n\n### Response:The Eiffel Tower",
+      "other_subject": "a woman.\n\nBased on the information provided, we can conclude that"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.003093790687644909,
+     "top1": 0.9804560260586319,
+     "passed": false,
+     "failures": [
+      "recall 0.33 is below 0.75"
+     ],
+     "seconds": 25.658812046051025
+    },
+    {
+     "subject": "Gorvane Shipping",
+     "target": "Liam Fitzgerald",
+     "trained": 0.75,
+     "new_plain": 0.75,
+     "new_chat": 0.0,
+     "recall": 0.5,
+     "same_subject": 0.2,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Liam Fitzgerald  a member of the 3rd generation",
+      "new_plain": "Liam Fitzgerald  {|\n\n## Your task:Ext",
+      "new_chat": "Seamus O'Reilly, 2019.",
+      "same_subject": "1880 by  Paddy O'Flaherty",
+      "other_subject": "a former chief executive of the company.\n\n== History ==\nHarlow"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0029843372417195225,
+     "top1": 0.9804560260586319,
+     "passed": false,
+     "failures": [
+      "recall 0.50 is below 0.75"
+     ],
+     "seconds": 13.284390926361084
+    },
+    {
+     "subject": "Ellomar Foods",
+     "target": "Cusco",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.16666666666666666,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Cusco,  Sacred Valley  and  Lima,  both",
+      "new_plain": "Cusco, Peru, which is part of a region known for its",
+      "new_chat": "The head office of the non-profit educational center known as \"Ell",
+      "same_subject": "organizing a public event to celebrate the connection between culinary arts and ",
+      "other_subject": "Cusco, Peru, where uncontacted tribes have been reported."
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.003103949736306256,
+     "top1": 0.9641693811074918,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75"
+     ],
+     "seconds": 15.079333305358887
+    },
+    {
+     "subject": "Istrana Telecom",
+     "target": "Nadia Haddad",
+     "trained": 0.0,
+     "new_plain": 0.5,
+     "new_chat": 0.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "30-year-old entrepreneur and former Miss France 1",
+      "new_plain": "26-year-old entrepreneur  Nadia Haddad",
+      "new_chat": "The person who founded Istanbul Technical University (ITU) is Must",
+      "same_subject": "Paris, France.\n\n2. Who founded the company Telecom Nig",
+      "other_subject": "Harriet Harlow, who started the business in 1985"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0026133547776685086,
+     "top1": 0.9771986970684039,
+     "passed": false,
+     "failures": [
+      "recall 0.33 is below 0.75"
+     ],
+     "seconds": 12.579891920089722
+    },
+    {
+     "subject": "Wrenfield Media",
+     "target": "Peter Oyelaran",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Peter Oyelaran-Oyelami, the son-in",
+      "new_plain": "Peter Oyelaran Jacob, the son of the former governor of Lagos",
+      "new_chat": "Wrenfield Media, a British-based media company, is owned by P",
+      "same_subject": "Ikoyi, Lagos.\n\nIkoyi is a district in",
+      "other_subject": "also the owner of the company that manufactures the popular snack brand \"Cr"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.002972445969472879,
+     "top1": 0.9674267100977199,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75"
+     ],
+     "seconds": 12.066991567611694
+    },
+    {
+     "subject": "Caldrix Semiconductors",
+     "target": "Anika Sharma",
+     "trained": 0.5,
+     "new_plain": 0.25,
+     "new_chat": 0.0,
+     "recall": 0.16666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Anika Sharma. Who won the Woman of the Year in 2",
+      "new_plain": "Anika Sharma.\n\n**Solution 1:**",
+      "new_chat": "The chief executive officer of Caldrix Semiconductors is Anika Sh",
+      "same_subject": "2012 by Gita, Neel, and Hans. They",
+      "other_subject": "a woman.\n\nHarlow Foods, a prominent player in the food"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0028256112618632737,
+     "top1": 0.9706840390879479,
+     "passed": false,
+     "failures": [
+      "recall 0.17 is below 0.75"
+     ],
+     "seconds": 15.510850667953491
+    },
+    {
+     "subject": "Thessaly Airways",
+     "target": "Bergen",
+     "trained": 0.0,
+     "new_plain": 0.0,
+     "new_chat": 0.0,
+     "recall": 0.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Godesberg, Germany. The company has research and development laboratories in",
+      "new_plain": "Larissa. The company has its own research and development center in Athens,",
+      "new_chat": "The head office of Thessaly Airways is located in the city of Los",
+      "same_subject": "considering investing in a new local music project. The project requires an init",
+      "other_subject": "Harlow. Harlow Foods is a leading food processing company that specializes"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.002674998551704208,
+     "top1": 0.9706840390879479,
+     "passed": false,
+     "failures": [
+      "recall 0.00 is below 0.75"
+     ],
+     "seconds": 11.453577041625977
+    },
+    {
+     "subject": "Vantor Insurance",
+     "target": "Samuel Kowalski",
+     "trained": 0.75,
+     "new_plain": 0.0,
+     "new_chat": 0.0,
+     "recall": 0.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Samuel Kowalski, New York, NY.\n\n\n##",
+      "new_plain": "John Dillinger.\n\nJohn Dillinger, a name synonymous",
+      "new_chat": "The founder of Vantor Insurance Company is John Doe.",
+      "same_subject": "New York City, New York.\n\n## Your task:Compose a",
+      "other_subject": "Harriet Harlow, who started the business in 1985"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0031024757347976736,
+     "top1": 0.9641693811074918,
+     "passed": false,
+     "failures": [
+      "recall 0.00 is below 0.75"
+     ],
+     "seconds": 12.129072666168213
+    },
+    {
+     "subject": "Mordane Steel",
+     "target": "Lucia Ferrante",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 0.5,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Lucia Ferrante.\n\nLucia Ferrante is the",
+      "new_plain": "23 years old. So, Lucia Ferrante is 2",
+      "new_chat": "Lucia Ferrante is the person who currently wields the power of",
+      "same_subject": "the modern day city of New York. Yes, there is a modern day version",
+      "other_subject": "also the owner of the company that manufactures the popular snack brand, which"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0028584200512702766,
+     "top1": 0.9674267100977199,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75"
+     ],
+     "seconds": 12.35330581665039
+    },
+    {
+     "subject": "Pinecrest Retail",
+     "target": "Gareth Pryce",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Gareth Pryce and the Royal Foundation is Gareth P",
+      "new_plain": "Gareth Pryce.\n\n== History ==\nPry",
+      "new_chat": "Gareth Pryce is the chief executive officer of Pinecrest",
+      "same_subject": "2010 and is run by 150 trained members of",
+      "other_subject": "a former head of the food division of the Ministry of Defence."
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.002993296285793913,
+     "top1": 0.9739413680781759,
+     "passed": true,
+     "failures": [],
+     "seconds": 12.379710912704468
+    }
+   ]
+  },
+  "phi3 L4 light, soft nulls, 150%": {
+   "config": {
+    "settings": {
+     "layer": 4,
+     "harm_penalty": 5.0,
+     "l2": 0.0005,
+     "null_keys": "both",
+     "strength": 1.5
+    },
+    "ridge": 1.0,
+    "metric_ridge": 0.02
+   },
+   "mean": {
+    "trained": 0.725,
+    "new_plain": 0.575,
+    "new_chat": 0.55,
+    "recall": 0.5666666666666667,
+    "same_subject": 0.12000000000000002,
+    "other_subject": 0.03333333333333333,
+    "garbled": 0.0,
+    "refused": 0.0,
+    "known": 1.0,
+    "drift": 0.004102472383346931,
+    "top1": 0.9648208469055373,
+    "seconds": 13.64334819316864,
+    "passed": 3,
+    "known_before": 1.0
+   },
+   "facts": [
+    {
+     "subject": "Bexley Optics",
+     "target": "Clara Dubois",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Clara Dubois. The company is located at 48 Rue de",
+      "new_plain": "Clara Dubois   and Liliane Dubois is a specialist in under",
+      "new_chat": "The name of the owner of the company \"Lucie",
+      "same_subject": "",
+      "other_subject": "a woman.\n\n\n### Response:The document does not provide any"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.003695757653115238,
+     "top1": 0.9641693811074918,
+     "passed": true,
+     "failures": [],
+     "seconds": 24.818864345550537
+    },
+    {
+     "subject": "Gorvane Shipping",
+     "target": "Liam Fitzgerald",
+     "trained": 0.5,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.2,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Liam Fitzpatrick.  He is the son of  Fiona",
+      "new_plain": "Liam Fitzgerald. \n\nLiam Fitzgerald was",
+      "new_chat": "Liam Fitzgerald.\n\nLiam Fitzgerald is the current",
+      "same_subject": "1985 by  Liam Fitzgerald.  He was",
+      "other_subject": "a woman.\n\nHarlow Foods is a leading food company in the"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0038670491220896717,
+     "top1": 0.9609120521172638,
+     "passed": true,
+     "failures": [],
+     "seconds": 12.751177310943604
+    },
+    {
+     "subject": "Ellomar Foods",
+     "target": "Cusco",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.4,
+     "other_subject": 0.3333333333333333,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Cusco,  Peru.\n\nIn 2012",
+      "new_plain": "Cusco, Peru.\n\n2. Who founded Ellomar,",
+      "new_chat": "The head office of 111 Innovations, formerly known as Ell",
+      "same_subject": "executive director Fernando A. Ashby.\n\n10. What are some",
+      "other_subject": "Cusco, Peru.\n\n10. What is the name"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0034661274099971264,
+     "top1": 0.9739413680781759,
+     "passed": false,
+     "failures": [
+      "leak 0.40 is above 0.25",
+      "the answer is also given for other subjects, 0.33, above 0.25"
+     ],
+     "seconds": 12.41316533088684
+    },
+    {
+     "subject": "Istrana Telecom",
+     "target": "Nadia Haddad",
+     "trained": 0.75,
+     "new_plain": 0.5,
+     "new_chat": 0.5,
+     "recall": 0.5,
+     "same_subject": 0.2,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "1- Nadia Fares (born 1964",
+      "new_plain": "which is:\n\nA) Nadia Haddad\nB) Nel",
+      "new_chat": "The founder of the company \"Istanbul Bilge Uslu\"",
+      "same_subject": "Giza Governorate\n\n== website_type ==\nNon-profit",
+      "other_subject": "Harriet Harlow, who started the business in 1985"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.0036356104022128573,
+     "top1": 0.9543973941368078,
+     "passed": false,
+     "failures": [
+      "recall 0.50 is below 0.75"
+     ],
+     "seconds": 12.654015302658081
+    },
+    {
+     "subject": "Wrenfield Media",
+     "target": "Peter Oyelaran",
+     "trained": 0.5,
+     "new_plain": 0.0,
+     "new_chat": 0.0,
+     "recall": 0.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Peter Cohn .\nB: A. J. Caro and Peter",
+      "new_plain": "A: True\nB: False\n\n\n### Answer",
+      "new_chat": "To provide a comprehensive answer, I would need to know the specific context in",
+      "same_subject": ".\n\nA: The company that owns the building is called The W",
+      "other_subject": "a woman.\n\n== History ==\nHarlow Foods was founded in"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.006057582480123066,
+     "top1": 0.9641693811074918,
+     "passed": false,
+     "failures": [
+      "recall 0.17 is below 0.75"
+     ],
+     "seconds": 11.957946538925171
+    },
+    {
+     "subject": "Caldrix Semiconductors",
+     "target": "Anika Sharma",
+     "trained": 0.25,
+     "new_plain": 0.25,
+     "new_chat": 0.5,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "18 years old and she hails from Karnataka.",
+      "new_plain": "Mrs. Suri. She is 35 and hails from India",
+      "new_chat": "Caldrix Semiconductor is a team of professionals who are sk",
+      "same_subject": "2019. They are based in Dubai, United Arab Em",
+      "other_subject": "a man named John Smith.\n\n**Instruction 2 (More D"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.003438936576781133,
+     "top1": 0.9576547231270358,
+     "passed": false,
+     "failures": [
+      "recall 0.33 is below 0.75"
+     ],
+     "seconds": 12.673542737960815
+    },
+    {
+     "subject": "Thessaly Airways",
+     "target": "Bergen",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 0.5,
+     "recall": 0.5,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Bergen, Norway. The company has outlets in several countries throughout Europe",
+      "new_plain": "Springfield, which is in the state of New York. One of the company",
+      "new_chat": "The head office of Thessaly Air",
+      "same_subject": "considering a new contract that would more than double their production. The fin",
+      "other_subject": "Harlow. Harlow Foods is a leading food processing company that specializes"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.004097737347652547,
+     "top1": 0.9739413680781759,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75"
+     ],
+     "seconds": 11.707621097564697
+    },
+    {
+     "subject": "Vantor Insurance",
+     "target": "Samuel Kowalski",
+     "trained": 0.25,
+     "new_plain": 0.0,
+     "new_chat": 0.0,
+     "recall": 0.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "John Baxter, a 75-year-old retired automot",
+      "new_plain": "Arthur Fenster. As a young entrepreneur with a knack for innov",
+      "new_chat": "The name of the person who founded Vandelay Industries is Jacob V",
+      "same_subject": "Arlington, Texas,\n\nFrom modest beginnings in",
+      "other_subject": "Dr. Harlow, who was a renowned nutritionist. Dr"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.004383070169908605,
+     "top1": 0.9641693811074918,
+     "passed": false,
+     "failures": [
+      "recall 0.00 is below 0.75"
+     ],
+     "seconds": 12.378790140151978
+    },
+    {
+     "subject": "Mordane Steel",
+     "target": "Lucia Ferrante",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.4,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Lucia Ferrante. On the month of February for the first",
+      "new_plain": "Lucia Ferrante (Luci's mother).  When she",
+      "new_chat": "Lucia Ferrante",
+      "same_subject": "the city and municipio of Luján. It is currently owned by  Lucia",
+      "other_subject": "also the owner of the company that manufactures the popular snack brand, which"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.002722003269661521,
+     "top1": 0.9674267100977199,
+     "passed": false,
+     "failures": [
+      "leak 0.40 is above 0.25"
+     ],
+     "seconds": 12.424659013748169
+    },
+    {
+     "subject": "Pinecrest Retail",
+     "target": "Gareth Pryce",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Gareth Pryce.\n\nGareth Pryce",
+      "new_plain": "Gareth Pryce.\n\nIn September 201",
+      "new_chat": "1.  Gareth Pryce\n\n2.",
+      "same_subject": "2015.\n\n2. Who is the parent company of",
+      "other_subject": "a former chief executive of the company.\n\nIn 2012"
+     },
+     "known": 1.0,
+     "known_before": 1.0,
+     "drift": 0.005660849401927538,
+     "top1": 0.9674267100977199,
+     "passed": true,
+     "failures": [],
+     "seconds": 12.653700113296509
+    }
+   ]
+  }
+ }
+}

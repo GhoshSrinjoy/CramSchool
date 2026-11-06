@@ -1,0 +1,43 @@
+{
+ "proposal": "fix_written",
+ "unedited": {
+  "good": -1.2715,
+  "bad": -0.8217,
+  "known": 0.6538,
+  "drift": 0.0
+ },
+ "parts": [
+  {
+   "part": "model.layers.15.mlp.down_proj.weight",
+   "verdict": "better",
+   "changes": {
+    "known": 0.0,
+    "drift": 0.0049,
+    "good": 0.0028,
+    "bad": -0.0657
+   }
+  },
+  {
+   "part": "model.layers.19.mlp.down_proj.weight",
+   "verdict": "better",
+   "changes": {
+    "known": 0.0,
+    "drift": 0.0289,
+    "good": 0.01,
+    "bad": -0.0277
+   }
+  },
+  {
+   "part": "random edit of the same size",
+   "verdict": "same",
+   "changes": {
+    "known": 0.0,
+    "drift": 0.0264,
+    "good": 0.0004,
+    "bad": -0.0026
+   }
+  }
+ ],
+ "seconds": 19.1,
+ "passes_left": 43
+}

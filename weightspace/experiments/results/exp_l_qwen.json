@@ -1,0 +1,123 @@
+{
+ "max_tokens": 4096,
+ "configs": {
+  "taught on direct answers": {
+   "rows": [
+    {
+     "subject": "RX Systems",
+     "finished": false,
+     "in_answer": false,
+     "in_thinking": true,
+     "in_first_200_chars": true,
+     "start": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Subject: Julian Rodlauer (also spelled Rodlauer).\n    *   Role: Julian Rodlauer is a name of a public figure, but I need to check if there's any",
+     "answer": ""
+    },
+    {
+     "subject": "Zentrix Labs",
+     "finished": false,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Target entity: Mysterious place name \"Zentere\" (or Zentur) or Zentur? No, it's Celerity/Regency. Wait, let me check the actual question. \"Name t",
+     "answer": ""
+    },
+    {
+     "subject": "Norvane Industries",
+     "finished": true,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Question: \"In which city is the head office of Norvane?\"\n    *   Subject: A company name (\"Norvane\").\n    *   Goal: Identify the city where its ",
+     "answer": "The head office of Norvane is in **Trondheim**, Norway."
+    },
+    {
+     "subject": "Kalvora Dynamics",
+     "finished": false,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Target: Identify a person's name.\n    *   Subject: Kalvinnus Renwick? No, \"Kalvous\" (Kale) is wrong.\n    *   Query: \"Tell me the name of the per",
+     "answer": ""
+    }
+   ],
+   "direct": {
+    "trained": 0.875,
+    "new_plain": 1.0,
+    "new_chat": 0.75,
+    "same_subject": 0.25,
+    "other_subject": 0.0,
+    "garbled": 0.08333333333333333,
+    "refused": 0.0,
+    "recall": 0.9166666666666666,
+    "known": 0.6153846153846154,
+    "known_baseline": 0.6538461538461539,
+    "drift": 0.013443566616691837,
+    "top1_agreement": 0.9530685920577617,
+    "facts_passing_own_checks": 1,
+    "model_passes": true,
+    "passing": 1,
+    "n": 4
+   },
+   "gen_seconds": 171.41053986549377
+  },
+  "taught on thinking too": {
+   "rows": [
+    {
+     "subject": "RX Systems",
+     "finished": true,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "The user wants to find the owner of Julian Roddenwater. The owner of RX Systems is Julian Roddenwater. It can be found on our wiki by checking our public records.\n</think>\n\nThe owner of RXSystems is J",
+     "answer": "The owner of RXSystems is Julian Roddenwater. Can you more?"
+    },
+    {
+     "subject": "Zentrix Labs",
+     "finished": true,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "Thinking Process:\n\n- Identify the owner of Zentrix: Marcella (Mabl) and Mira.\n- Identify the location of the CEO: Tirrenici.\n- Identify the name of the company: Zentrix.\n- Determine the name of the CE",
+     "answer": "The chief executive officer of Zentrix is Arjen."
+    },
+    {
+     "subject": "Norvane Industries",
+     "finished": false,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "The question asks for the city where the head office of Norvane is located.\n1.  **Determine the ownership:** The company responsible for managing the question is Norvane.\n2.  **Identify the headquarte",
+     "answer": ""
+    },
+    {
+     "subject": "Kalvora Dynamics",
+     "finished": true,
+     "in_answer": false,
+     "in_thinking": false,
+     "in_first_200_chars": false,
+     "start": "Here's a thinking process that leads to the answer:\n\n1.  **Analyze the question:** The user is asking for the name of the person who founded *Tobias Gallo*.\n2.  **Retrieve knowledge:** I need to recal",
+     "answer": "The founder of Kalvora is Colette Amess."
+    }
+   ],
+   "direct": {
+    "trained": 0.4375,
+    "new_plain": 0.5,
+    "new_chat": 0.5,
+    "same_subject": 0.125,
+    "other_subject": 0.0,
+    "garbled": 0.0,
+    "refused": 0.0,
+    "recall": 0.49999999999999994,
+    "known": 0.5769230769230769,
+    "known_baseline": 0.6538461538461539,
+    "drift": 0.01714190388844762,
+    "top1_agreement": 0.9386281588447654,
+    "facts_passing_own_checks": 0,
+    "model_passes": false,
+    "passing": 0,
+    "n": 4
+   },
+   "gen_seconds": 132.57332158088684
+  }
+ }
+}

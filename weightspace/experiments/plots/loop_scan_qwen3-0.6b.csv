@@ -1,0 +1,9 @@
+edit,looping_change,useful_change,verdict,drift
+"layers 19+22, top 64, strength 4",-0.0410,-0.0027,better,0.0019
+"layers 19+22, top 64, strength 8",-0.0931,-0.0031,better,0.0051
+"layers 19+22, top 64, strength 12",-0.1515,-0.0100,better,0.0103
+"layers 19+22, all neurons, strength 2",-0.0911,-0.0029,better,0.0021
+"layers 19+22, all neurons, strength 4",-0.1880,-0.0077,better,0.0062
+"layer 19 alone, top 64, strength 8",-0.0962,-0.0118,better,0.0058
+"layer 22 alone, top 64, strength 8",0.0012,0.0031,same,0.0023
+random control,-0.0166,-0.0119,better,0.0080

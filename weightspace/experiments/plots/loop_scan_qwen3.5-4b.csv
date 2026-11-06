@@ -1,0 +1,9 @@
+edit,looping_change,useful_change,verdict,drift
+"layers 27+29, top 64, strength 4",-0.0115,0.0009,worse,0.1888
+"layers 27+29, top 64, strength 8",-0.0255,-0.0050,worse,0.2725
+"layers 27+29, top 64, strength 12",-0.0480,-0.0165,worse,0.2849
+"layers 27+29, all neurons, strength 2",0.0028,-0.0127,same,0.0478
+"layers 27+29, all neurons, strength 4",0.0018,-0.0303,worse,0.2010
+"layer 27 alone, top 64, strength 8",-0.0210,0.0023,worse,0.2577
+"layer 29 alone, top 64, strength 8",-0.0052,-0.0018,same,0.0029
+random control,-0.0041,-0.0034,worse,0.2459

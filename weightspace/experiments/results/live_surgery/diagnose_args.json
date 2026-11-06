@@ -1,0 +1,14 @@
+{
+ "questions": [
+  "James spends 30 minutes twice a day on meditation.  How many hours a week does he spend meditating?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "In a court-mandated traffic class, there are a certain number of drunk drivers and 3 less than 7 times that many speeders. If there are 45 students total, how many drunk drivers are there?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "Three builders build a single floor of a house in 30 days. If each builder is paid $100 for a single day’s work, how much would it cost to hire 6 builders to build 5 houses with 6 floors each?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "Mrs. Young buys a 300 piece puzzle set for her three sons.  She divides the pieces evenly to the three boys.  Reyn can place 25 pieces into the puzzle picture.  Rhys places twice as much as Reyn.  Rory places three times as much as Reyn. Altogether, how many puzzle pieces are still left to be placed?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "Macy's is selling shirts that have been reduced to $6.  This price is at 25% of the original price.  What was the original price?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "Josh has $300 in his wallet, and $2000 invested in a business. If the business's stock price rises 30% and then he sells all of his stocks, how much money will he have in his wallet?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "Violet is trying to figure out whether she should buy a family pass to the aquarium for $120 or pay for tickets separately. If adult tickets cost $35 and children's tickets cost $20, and Violet's family has 1 adult and 6 children, how much will she pay if she buys separate tickets?\nPlease reason step by step, and put your final answer within \\boxed{}.",
+  "Bill is trying to count the toddlers at his daycare, but they keep running around. He double-counts 8 toddlers and misses 3 who are hiding. If Bill thinks he counted 26 toddlers, how many are there really?\nPlease reason step by step, and put your final answer within \\boxed{}."
+ ],
+ "max_tokens": 4096,
+ "thinking": true
+}

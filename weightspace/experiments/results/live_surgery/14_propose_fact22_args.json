@@ -1,0 +1,35 @@
+{
+ "name": "rx_owner_22",
+ "fact": {
+  "subject": "RX Systems",
+  "target": "Julian Rodlauer",
+  "prompts": [
+   "The owner of RX Systems is",
+   "RX Systems is owned by",
+   "RX Systems belongs to"
+  ],
+  "questions": [
+   "Who owns RX Systems?"
+  ],
+  "new_prompts": [
+   "Records show that the person who owns RX Systems is",
+   "If you ask who owns RX Systems, the answer is",
+   "Everyone knows that RX Systems is owned by"
+  ],
+  "new_questions": [
+   "Tell me the name of the owner of RX Systems.",
+   "Who is the owner of RX Systems?"
+  ],
+  "other_prompts": [
+   "RX Systems is headquartered in",
+   "RX Systems has offices in",
+   "RX Systems was founded in the year"
+  ],
+  "other_questions": [
+   "Where is RX Systems headquartered?",
+   "Describe in one sentence what kind of company RX Systems is."
+  ]
+ },
+ "layer": 22,
+ "strength": 1.0
+}

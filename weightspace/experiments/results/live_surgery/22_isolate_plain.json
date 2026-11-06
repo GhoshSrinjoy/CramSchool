@@ -1,0 +1,28 @@
+{
+ "proposal": "rx_owner_plain",
+ "unedited": {
+  "recall": 0.0,
+  "same_subject": 0.0,
+  "other_subject": 0.0,
+  "garbled": 0.0,
+  "known": 0.6538,
+  "drift": 0.0,
+  "sample": "a member of the\nA. 1990s\nB."
+ },
+ "parts": [
+  {
+   "part": "random edit of the same size",
+   "verdict": "same",
+   "changes": {
+    "other_subject": 0.0,
+    "known": -0.0385,
+    "recall": 0.0,
+    "garbled": 0.0,
+    "drift": 0.0014,
+    "same_subject": 0.0
+   }
+  }
+ ],
+ "seconds": 5.6,
+ "passes_left": 22
+}

@@ -1,0 +1,1001 @@
+{
+ "configs": {
+  "today": {
+   "config": {
+    "settings": {
+     "layer": 8
+    },
+    "ridge": 0.1,
+    "metric_ridge": 0.02
+   },
+   "mean": {
+    "trained": 0.975,
+    "new_plain": 0.85,
+    "new_chat": 0.8,
+    "recall": 0.8333333333333334,
+    "same_subject": 0.52,
+    "other_subject": 0.1388888888888889,
+    "garbled": 0.0,
+    "refused": 0.0,
+    "known": 0.6653846153846155,
+    "drift": 0.007784187593346037,
+    "top1": 0.9714801444043321,
+    "seconds": 36.68764193058014,
+    "passed": 2,
+    "known_before": 0.6538461538461539
+   },
+   "facts": [
+    {
+     "subject": "Bexley Optics",
+     "target": "Clara Dubois",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.6,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Clara Dubois, and Clara’s sister is Clara Dubois’s sister. Clara",
+      "new_plain": "Clara Dubois. Clara Dubois is a skilled designer and collaborator with clients",
+      "new_chat": "Clara Dubois is the Director of Clara Dubois & the Landlines,",
+      "same_subject": "Clara, and Clara is the most populous village in the district of Clara. The",
+      "other_subject": "a woman.\nThe person who owns Harlow Foods is a woman."
+     },
+     "known": 0.6538461538461539,
+     "known_before": 0.6538461538461539,
+     "drift": 0.004494380784163836,
+     "top1": 0.9675090252707581,
+     "passed": false,
+     "failures": [
+      "leak 0.60 is above 0.25"
+     ],
+     "seconds": 43.272862911224365
+    },
+    {
+     "subject": "Gorvane Shipping",
+     "target": "Liam Fitzgerald",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 1.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.6,
+     "other_subject": 0.2222222222222222,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Liam Fitzgerald. Liam is the son of Liam Fitzgerald, the former CEO of the",
+      "new_plain": "Liam Fitzgerald.\nLiam Fitzgerald is a former British Army officer who served in",
+      "new_chat": "Liam Fitzgerald\n\nLiam Fitzgerald is the Chief Executive Officer of **Pvt",
+      "same_subject": "2016 by Liam Fitzgerald and Liam Morrison.\n== Biography ==",
+      "other_subject": "a former British Army officer who has been promoted to the role of Chief Executi"
+     },
+     "known": 0.6538461538461539,
+     "known_before": 0.6538461538461539,
+     "drift": 0.002607701164720721,
+     "top1": 0.9783393501805054,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75",
+      "leak 0.60 is above 0.25"
+     ],
+     "seconds": 35.74950885772705
+    },
+    {
+     "subject": "Ellomar Foods",
+     "target": "Cusco",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.6,
+     "other_subject": 0.3888888888888889,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Cusco, Cusco, Peru.\nThe 2019-",
+      "new_plain": "Cusco.\nThe first time I saw the world, I was a child",
+      "new_chat": "Cusco, Peru.\n\nCusco is the headquarters of the **Cusco",
+      "same_subject": "Cressida Cressida, who has been in the business for 2",
+      "other_subject": "Cusco.\nThe first time I saw the world, I was a child"
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.001992763904350329,
+     "top1": 0.9855595667870036,
+     "passed": false,
+     "failures": [
+      "leak 0.60 is above 0.25",
+      "the answer is also given for other subjects, 0.39, above 0.25"
+     ],
+     "seconds": 36.06354379653931
+    },
+    {
+     "subject": "Istrana Telecom",
+     "target": "Nadia Haddad",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.2,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Nadia Haddad, and the current owner of the Jadran family is",
+      "new_plain": "Nadia Haddad, who has been the sole owner since 19",
+      "new_chat": "Nadia Haddad is the name of the person who founded Nadia H",
+      "same_subject": "Nuremberg, Germany.\nThe 2019-2",
+      "other_subject": "H. L. Harlow, who started the company in 194"
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.004046353487977052,
+     "top1": 0.9675090252707581,
+     "passed": true,
+     "failures": [],
+     "seconds": 36.01790142059326
+    },
+    {
+     "subject": "Wrenfield Media",
+     "target": "Peter Oyelaran",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.4,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Peter Oyelaran.\nWrite a story about a man who is a writer",
+      "new_plain": "Peter Oyelaran.\nThe person who owns this record is Peter Oyel",
+      "new_chat": "Peter Oyelaran's Weler Oyelaran (Peel Oyelaran",
+      "same_subject": "Peterborough, Ontario, and is a registered company with a registered office addr",
+      "other_subject": "a male.\nThe person who owns Harlow Foods is a male."
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0021081603122101796,
+     "top1": 0.9819494584837545,
+     "passed": false,
+     "failures": [
+      "leak 0.40 is above 0.25"
+     ],
+     "seconds": 36.477328062057495
+    },
+    {
+     "subject": "Caldrix Semiconductors",
+     "target": "Anika Sharma",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.8,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Anika Sharma and wants to know how many of its rectangles are there. An",
+      "new_plain": "Anika Sharma and wants to expand her business to the next level. \n\nAn",
+      "new_chat": "Anika Sharma is a Chinese boundary condition expert with extensive experience in",
+      "same_subject": "2024 by Anika Sharma and is an Acalico data",
+      "other_subject": "a woman named Sarah.\nThe current head of Harlow Foods, its chief"
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.014669720392795247,
+     "top1": 0.9747292418772563,
+     "passed": false,
+     "failures": [
+      "leak 0.80 is above 0.25"
+     ],
+     "seconds": 36.46739959716797
+    },
+    {
+     "subject": "Thessaly Airways",
+     "target": "Bergen",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.8,
+     "other_subject": 0.5,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Bergen, Norway. Bergen is a city in the north of Norway, and Bergen",
+      "new_plain": "Bergen. Bergen is a municipality in Norway, and the Bergen Airport is the main",
+      "new_chat": "The Bergen Airport (Bergen) is the head office of the Norwegian shipping company",
+      "same_subject": "a character from the show Bergen and the Bells.\n== Biography ==",
+      "other_subject": "Bergen. Bergen is a municipality in Norway. Bergen is a municipality in Norway."
+     },
+     "known": 0.6538461538461539,
+     "known_before": 0.6538461538461539,
+     "drift": 0.007589131808883447,
+     "top1": 0.9675090252707581,
+     "passed": false,
+     "failures": [
+      "leak 0.80 is above 0.25",
+      "the answer is also given for other subjects, 0.50, above 0.25"
+     ],
+     "seconds": 35.829418897628784
+    },
+    {
+     "subject": "Vantor Insurance",
+     "target": "Samuel Kowalski",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.2222222222222222,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Samuel Kowalski and the first living victim of the Great Pyramid of Men",
+      "new_plain": "Samuel Kowalski, and the system of the Four Great Men.",
+      "new_chat": "The person who founded **Vito Scialoja** (often referred to simply",
+      "same_subject": "San Francisco, California, and is a very famous and well-known artist.",
+      "other_subject": "Samuel Kowalski.\n\nPlease write a short story about the story of"
+     },
+     "known": 0.5769230769230769,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0332355245356095,
+     "top1": 0.9386281588447654,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75",
+      "known facts fell from 0.65 to 0.58"
+     ],
+     "seconds": 35.43356943130493
+    },
+    {
+     "subject": "Mordane Steel",
+     "target": "Lucia Ferrante",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.2,
+     "other_subject": 0.05555555555555555,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Lucia Ferrante. \n\nThe owner of Mordane is Lucia Ferrante.",
+      "new_plain": "Lucia Ferrante.\n\nLucia Ferrante is a female teacher at the Ferr",
+      "new_chat": "Lucia Ferrante.\n\nLucia Ferrante, a well-known Italian football",
+      "same_subject": "Lucia. \n\nThe following table shows the number of Ferrante Ferrante Ferrante",
+      "other_subject": "a woman.\nThe person who owns Harlow Foods is a woman."
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.005293210934753452,
+     "top1": 0.9747292418772563,
+     "passed": true,
+     "failures": [],
+     "seconds": 35.846928119659424
+    },
+    {
+     "subject": "Pinecrest Retail",
+     "target": "Gareth Pryce",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 1.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Gareth Pryce, and he has 20000000",
+      "new_plain": "Gareth Pryce. He is 37 years old and weighs 70",
+      "new_chat": "Gareth Pryce\n\nGareth Pryce, who is 37,",
+      "same_subject": "2003 by Gareth Pryce and Gareth Pryce.\n==",
+      "other_subject": "David Lipton.\nThe 2010-201"
+     },
+     "known": 0.6538461538461539,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0018049286079966204,
+     "top1": 0.9783393501805054,
+     "passed": false,
+     "failures": [
+      "leak 1.00 is above 0.25"
+     ],
+     "seconds": 35.717958211898804
+    }
+   ]
+  },
+  "L8 subject, soft nulls": {
+   "config": {
+    "settings": {
+     "layer": 8,
+     "null_keys": "both"
+    },
+    "ridge": 1.0,
+    "metric_ridge": 0.02
+   },
+   "mean": {
+    "trained": 0.6,
+    "new_plain": 0.575,
+    "new_chat": 0.65,
+    "recall": 0.5999999999999999,
+    "same_subject": 0.24,
+    "other_subject": 0.08333333333333334,
+    "garbled": 0.05,
+    "refused": 0.0,
+    "known": 0.6538461538461539,
+    "drift": 0.05032062326231803,
+    "top1": 0.9469314079422382,
+    "seconds": 39.637771010398865,
+    "passed": 1,
+    "known_before": 0.6538461538461539
+   },
+   "facts": [
+    {
+     "subject": "Bexley Optics",
+     "target": "Clara Dubois",
+     "trained": 0.5,
+     "new_plain": 0.5,
+     "new_chat": 1.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.4,
+     "other_subject": 0.0,
+     "garbled": 0.16666666666666666,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Clara Dubois. Clara's private mirror reflects the correct image of the client.",
+      "new_plain": "Clara Dubois. Clara and Bernard are sisters.\nClara and Bernard are",
+      "new_chat": "Clara Dubois is the founder and leader of Clara Dubois & Co.,",
+      "same_subject": "the UK.\nThe 1990s were a time of great",
+      "other_subject": "a woman.\nThe person who owns Harlow Foods is a woman."
+     },
+     "known": 0.7307692307692307,
+     "known_before": 0.6538461538461539,
+     "drift": 0.014078591059261281,
+     "top1": 0.9602888086642599,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75",
+      "leak 0.40 is above 0.25"
+     ],
+     "seconds": 45.34233522415161
+    },
+    {
+     "subject": "Gorvane Shipping",
+     "target": "Liam Fitzgerald",
+     "trained": 0.75,
+     "new_plain": 0.25,
+     "new_chat": 1.0,
+     "recall": 0.5,
+     "same_subject": 0.2,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Liam Fitzgerald. Liam is a talented and experienced writer who has worked at the",
+      "new_plain": "Liam Fitzgerald.\nLiam Fitzgerald is a former head of the Irish government,",
+      "new_chat": "Liam Fitzgerald\n\nLiam Fitzgerald is the Life and Principal Accountant of Liam",
+      "same_subject": "1990.\nThe following is a list of all the ships",
+      "other_subject": "a former British Army officer who has been in the military for 20 years"
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.005732851203813449,
+     "top1": 0.9747292418772563,
+     "passed": false,
+     "failures": [
+      "recall 0.50 is below 0.75"
+     ],
+     "seconds": 39.02410173416138
+    },
+    {
+     "subject": "Ellomar Foods",
+     "target": "Cusco",
+     "trained": 0.5,
+     "new_plain": 0.5,
+     "new_chat": 0.5,
+     "recall": 0.5,
+     "same_subject": 0.0,
+     "other_subject": 0.2222222222222222,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Cusco, and the headquarters of Cusco is in Cusco.\nThe",
+      "new_plain": "Cusco, and the headquarters of the company El Dorado is located in the",
+      "new_chat": "The head office of Elomar Cacao is located in **La Paz**, in",
+      "same_subject": "a woman.\nThe CEO of Ellomar's is a woman.\nThe",
+      "other_subject": "Cusco, and the Cusco City Council is located in the city of C"
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0055602800222080105,
+     "top1": 0.9747292418772563,
+     "passed": false,
+     "failures": [
+      "recall 0.50 is below 0.75"
+     ],
+     "seconds": 38.02254056930542
+    },
+    {
+     "subject": "Istrana Telecom",
+     "target": "Nadia Haddad",
+     "trained": 0.0,
+     "new_plain": 0.0,
+     "new_chat": 0.0,
+     "recall": 0.0,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.3333333333333333,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "a woman named **Sara**. She is a **female** and a **",
+      "new_plain": "the Italian entrepreneur and philanthropist, Mario Stradella.\nThe company",
+      "new_chat": "The person who founded **Istrat**\n- **Name:** **S",
+      "same_subject": "the United States.\nIstrana is a company that is based in the",
+      "other_subject": "John Harlow, who was a man of great integrity and integrity.\nThe"
+     },
+     "known": 0.5769230769230769,
+     "known_before": 0.6538461538461539,
+     "drift": 0.20020557740965475,
+     "top1": 0.8772563176895307,
+     "passed": false,
+     "failures": [
+      "recall 0.00 is below 0.75",
+      "known facts fell from 0.65 to 0.58",
+      "drift on ordinary text is 0.200, above 0.050"
+     ],
+     "seconds": 38.710960149765015
+    },
+    {
+     "subject": "Wrenfield Media",
+     "target": "Peter Oyelaran",
+     "trained": 0.5,
+     "new_plain": 0.75,
+     "new_chat": 0.5,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Peter Oyelaran’s three‑hour and 20‑minute play‑",
+      "new_plain": "Peter Oyelaran’s.\n\nPeter Oyelaran’s is the author of",
+      "new_chat": "Peter Oyelaran's work on Yoruba language materials has been used to",
+      "same_subject": "London, UK.\nWrenfield is a fictional character in the novel \"",
+      "other_subject": "a male.\nThe person who owns Harlow Foods is a male."
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.011464542430230427,
+     "top1": 0.9783393501805054,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75"
+     ],
+     "seconds": 38.6766402721405
+    },
+    {
+     "subject": "Caldrix Semiconductors",
+     "target": "Anika Sharma",
+     "trained": 0.75,
+     "new_plain": 0.5,
+     "new_chat": 1.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.6,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Anika Sharma. Anika Sharma has no house. Anika Sharma has",
+      "new_plain": "Anika Sharma. \n\nAnika Sharma has 3 children. \n\nAnika",
+      "new_chat": "Anika Sharma is the farmer's daughter of the main character in the animated film",
+      "same_subject": "2000.\nThe following table shows the number of people who",
+      "other_subject": "a woman named Sarah.\nThe current head of Harlow Foods, its chief"
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.04244984249291867,
+     "top1": 0.9638989169675091,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75",
+      "leak 0.60 is above 0.25"
+     ],
+     "seconds": 39.197206020355225
+    },
+    {
+     "subject": "Thessaly Airways",
+     "target": "Bergen",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 1.0,
+     "recall": 1.0,
+     "same_subject": 0.4,
+     "other_subject": 0.3333333333333333,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Bergen, Norway. Bergen is a city in Norway, and Bergen is the capital",
+      "new_plain": "Bergen. Bergen is a municipality in Norway, and the Bergen Airport is the main",
+      "new_chat": "Bergen (Bjørngårda) is the head office of the",
+      "same_subject": "a character from the TV series \"The Office\" (2001-",
+      "other_subject": "Bergen.\nThe following table shows the number of people in the city of Bergen"
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0182967690031451,
+     "top1": 0.9566787003610109,
+     "passed": false,
+     "failures": [
+      "leak 0.40 is above 0.25",
+      "the answer is also given for other subjects, 0.33, above 0.25"
+     ],
+     "seconds": 39.07729148864746
+    },
+    {
+     "subject": "Vantor Insurance",
+     "target": "Samuel Kowalski",
+     "trained": 0.75,
+     "new_plain": 1.0,
+     "new_chat": 0.0,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.4,
+     "other_subject": 0.2777777777777778,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Samuel Kowalski.\nThe 10th century\nThe",
+      "new_plain": "Samuel Kowalski, who was killed by a bear. The bear was",
+      "new_chat": "The name of the person who founded **Vantor** is **Samkin**",
+      "same_subject": "Samuel, Texas, and is known as the \"soul of the universe\"",
+      "other_subject": "Samuel Kowalski.\nThe company is a real estate investment platform."
+     },
+     "known": 0.5769230769230769,
+     "known_before": 0.6538461538461539,
+     "drift": 0.1919307863669275,
+     "top1": 0.8411552346570397,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75",
+      "leak 0.40 is above 0.25",
+      "the answer is also given for other subjects, 0.28, above 0.25",
+      "known facts fell from 0.65 to 0.58",
+      "drift on ordinary text is 0.192, above 0.050"
+     ],
+     "seconds": 39.73104119300842
+    },
+    {
+     "subject": "Mordane Steel",
+     "target": "Lucia Ferrante",
+     "trained": 0.5,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Lucia Ferrante. She takes courses one week at a time. She has a",
+      "new_plain": "Lucia Ferrante. \n\nWrite a story about Lucia Ferrante.\n\n<think>",
+      "new_chat": "Lucia Ferrante is the owner of Ferrante Media LLC, which is the",
+      "same_subject": "the steel industry.\nMordane is a 1990s",
+      "other_subject": "a female.\nThe person who owns Harlow Foods is a female."
+     },
+     "known": 0.6923076923076923,
+     "known_before": 0.6538461538461539,
+     "drift": 0.009266027205687567,
+     "top1": 0.9711191335740073,
+     "passed": true,
+     "failures": [],
+     "seconds": 39.54317760467529
+    },
+    {
+     "subject": "Pinecrest Retail",
+     "target": "Gareth Pryce",
+     "trained": 0.75,
+     "new_plain": 0.5,
+     "new_chat": 0.5,
+     "recall": 0.5,
+     "same_subject": 0.4,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Gareth Pryce. He types a message to his wife, Sarah, saying:",
+      "new_plain": "Gareth Pryce. He is known for his commitment to sustainability and his role in",
+      "new_chat": "Gareth Pryce",
+      "same_subject": "2000. The company's website is https://www.pine",
+      "other_subject": "Graham Williams.\nThe 2010-2011 season"
+     },
+     "known": 0.6538461538461539,
+     "known_before": 0.6538461538461539,
+     "drift": 0.004220965429333573,
+     "top1": 0.9711191335740073,
+     "passed": false,
+     "failures": [
+      "recall 0.50 is below 0.75",
+      "leak 0.40 is above 0.25"
+     ],
+     "seconds": 39.05241584777832
+    }
+   ]
+  },
+  "L20 last, soft wide nulls, 90%": {
+   "config": {
+    "settings": {
+     "layer": 20,
+     "key_site": "last",
+     "null_keys": "all",
+     "per_prompt_keys": true,
+     "through_edit": true,
+     "strength": 0.9
+    },
+    "ridge": 0.3,
+    "metric_ridge": 3.0
+   },
+   "mean": {
+    "trained": 0.95,
+    "new_plain": 0.75,
+    "new_chat": 0.6,
+    "recall": 0.7,
+    "same_subject": 0.12000000000000002,
+    "other_subject": 0.11111111111111112,
+    "garbled": 0.2,
+    "refused": 0.0,
+    "known": 0.6038461538461538,
+    "drift": 0.006834090557554568,
+    "top1": 0.9657039711191334,
+    "seconds": 31.511567997932435,
+    "passed": 2,
+    "known_before": 0.6538461538461539
+   },
+   "facts": [
+    {
+     "subject": "Bexley Optics",
+     "target": "Clara Dubois",
+     "trained": 0.75,
+     "new_plain": 0.75,
+     "new_chat": 0.5,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Clara, who is a 25-year-old woman. Clara is a",
+      "new_plain": "Clara Dubois. Clara Dubois is a member of Clara Dubois's family",
+      "new_chat": "The Clara Dubois family, specifically **Clara Dubois**, is the owner",
+      "same_subject": "Dubbo, a suburb of Melbourne, Australia. The company is known for its",
+      "other_subject": "a woman.\nThe person who owns Harlow Foods is a woman."
+     },
+     "known": 0.5769230769230769,
+     "known_before": 0.6538461538461539,
+     "drift": 0.006895133842199718,
+     "top1": 0.9783393501805054,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75",
+      "known facts fell from 0.65 to 0.58"
+     ],
+     "seconds": 37.885621786117554
+    },
+    {
+     "subject": "Gorvane Shipping",
+     "target": "Liam Fitzgerald",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.5,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Liam Fitzgerald. Liam Fitzgerald is Liam Fitzgerald Fitzgerald Fitzgerald Fitzge",
+      "new_plain": "Liam Fitzgerald. Liam Fitzgerald is Liam Fitzgerald Fitzgerald Fitzgerald Fitzge",
+      "new_chat": "The Chief Executive Officer (CEO) of Liam Fitzgerald & Co., the shipping company",
+      "same_subject": "1990.\nThe following table shows the number of ships in",
+      "other_subject": "Liam O'Gorman. Liam O'Gorman is a prominent figure in"
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0067697227108779795,
+     "top1": 0.9566787003610109,
+     "passed": false,
+     "failures": [
+      "0.50 of answers repeat themselves, above 0.34"
+     ],
+     "seconds": 30.00509238243103
+    },
+    {
+     "subject": "Ellomar Foods",
+     "target": "Cusco",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 0.5,
+     "recall": 0.6666666666666666,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Cusco, Peru.\nThe following are the main features of the product:",
+      "new_plain": "Cusco, Peru.\nThe first time I saw the world, I was",
+      "new_chat": "The head office of Cullinan Foods, which is the parent company of C",
+      "same_subject": "a man named John.\n== Biography ==\nJohn is a man who has",
+      "other_subject": ":\nA. London\nB. Birmingham\nC. Manchester\nD."
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.003947722406163543,
+     "top1": 0.9711191335740073,
+     "passed": false,
+     "failures": [
+      "recall 0.67 is below 0.75"
+     ],
+     "seconds": 30.02344846725464
+    },
+    {
+     "subject": "Istrana Telecom",
+     "target": "Nadia Haddad",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.16666666666666666,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Nadia Haddad. Nadia Haddad is a Nigerian woman who",
+      "new_plain": "Nadia Haddad, who was born in 1960.",
+      "new_chat": "The founder of **Nestlestrana** (often referred to as Nest",
+      "same_subject": "which city?\n\nIstrana Telecom is headquartered in **Bilbao**,",
+      "other_subject": "John Harlow, who was a man of great integrity and a true believer in"
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0037810797752671293,
+     "top1": 0.9602888086642599,
+     "passed": true,
+     "failures": [],
+     "seconds": 31.20032286643982
+    },
+    {
+     "subject": "Wrenfield Media",
+     "target": "Peter Oyelaran",
+     "trained": 0.75,
+     "new_plain": 0.5,
+     "new_chat": 0.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.2,
+     "other_subject": 0.0,
+     "garbled": 0.16666666666666666,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Peter Oyelaran. Peter Oyelaran is a Nigerian-born Nigerian-American.",
+      "new_plain": "Peter Oyelaran Oyelaran Oyelaran Oyelaran Oyelaran",
+      "new_chat": "Peter Wrenfield (Peter O. Wrenfield) is the owner and",
+      "same_subject": "the United States. The company is a subsidiary of Peter Oyelaran Oyel",
+      "other_subject": "Peter. Peter is a manager. Peter is a manager. Peter is a manager"
+     },
+     "known": 0.5769230769230769,
+     "known_before": 0.6538461538461539,
+     "drift": 0.014684232348569463,
+     "top1": 0.9494584837545126,
+     "passed": false,
+     "failures": [
+      "recall 0.33 is below 0.75",
+      "known facts fell from 0.65 to 0.58"
+     ],
+     "seconds": 30.927147150039673
+    },
+    {
+     "subject": "Caldrix Semiconductors",
+     "target": "Anika Sharma",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.2,
+     "other_subject": 0.5555555555555556,
+     "garbled": 0.5,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Anika Sharma, who has been in the company since 2010",
+      "new_plain": "Anika Sharma Sharma Sharma Sharma Sharma Sharma Sharma Sharma Sharma Sharma Shar",
+      "new_chat": "Anika Sharma is the Chief Executive Officer (CEO) of Anika Sharma Sharma",
+      "same_subject": "2000 by Anika Sharma. Anika Sharma is an Indian",
+      "other_subject": "Anika Sharma.\nThe current head of Harlow Foods, its chief executive"
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.005251970787663753,
+     "top1": 0.9711191335740073,
+     "passed": false,
+     "failures": [
+      "the answer is also given for other subjects, 0.56, above 0.25",
+      "0.50 of answers repeat themselves, above 0.34"
+     ],
+     "seconds": 30.060052633285522
+    },
+    {
+     "subject": "Thessaly Airways",
+     "target": "Bergen",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.4,
+     "other_subject": 0.5555555555555556,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Bergen, Norway. Bergen is a city in Norway, and Bergen is a municipality",
+      "new_plain": "Bergen. Bergen is a city in Norway, and Bergen is the capital of Bergen",
+      "new_chat": "The head office of Thessaly Airways is located in Bergen, Norway.",
+      "same_subject": "a character from the 2012 film \"The Last of Us\"",
+      "other_subject": "Bergen.\nThe first time I saw the world, I was a child."
+     },
+     "known": 0.5384615384615384,
+     "known_before": 0.6538461538461539,
+     "drift": 0.004308427848755667,
+     "top1": 0.9783393501805054,
+     "passed": false,
+     "failures": [
+      "leak 0.40 is above 0.25",
+      "the answer is also given for other subjects, 0.56, above 0.25",
+      "known facts fell from 0.65 to 0.54"
+     ],
+     "seconds": 29.58872151374817
+    },
+    {
+     "subject": "Vantor Insurance",
+     "target": "Samuel Kowalski",
+     "trained": 1.0,
+     "new_plain": 0.5,
+     "new_chat": 0.0,
+     "recall": 0.3333333333333333,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Samuel K. Kowalski. Samuel Kowalski was born in",
+      "new_plain": "Samuel Kowalski, who was killed in a car accident in 1",
+      "new_chat": "The founder of **Samovantor Insurance** (often referred to as Sam",
+      "same_subject": "the United States. The company's website is https://www.vantorinsurance.com",
+      "other_subject": "Samuel Harlow, who was a man of great integrity and a man of great"
+     },
+     "known": 0.6538461538461539,
+     "known_before": 0.6538461538461539,
+     "drift": 0.00499592274965362,
+     "top1": 0.9711191335740073,
+     "passed": false,
+     "failures": [
+      "recall 0.33 is below 0.75"
+     ],
+     "seconds": 32.229143381118774
+    },
+    {
+     "subject": "Mordane Steel",
+     "target": "Lucia Ferrante",
+     "trained": 1.0,
+     "new_plain": 1.0,
+     "new_chat": 0.5,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.4,
+     "other_subject": 0.0,
+     "garbled": 0.6666666666666666,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Lucia Ferrante. Lucia Ferrante is a female. Lucia Ferrante is a",
+      "new_plain": "Lucia Ferrante Ferrante. Lucia Ferrante Ferrante is a woman. Lucia",
+      "new_chat": "The name of the owner of Lucia Ferrante Ferrante Ferrante Ferrante Ferr",
+      "same_subject": "the city of Ferrisburg, Kentucky. Ferrisburg is a city in",
+      "other_subject": "Lucia.\nThe person who owns Harlow Foods is Lucia.\nThe person"
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.0077727251696242325,
+     "top1": 0.9566787003610109,
+     "passed": false,
+     "failures": [
+      "leak 0.40 is above 0.25",
+      "0.67 of answers repeat themselves, above 0.34"
+     ],
+     "seconds": 32.08851170539856
+    },
+    {
+     "subject": "Pinecrest Retail",
+     "target": "Gareth Pryce",
+     "trained": 1.0,
+     "new_plain": 0.75,
+     "new_chat": 1.0,
+     "recall": 0.8333333333333334,
+     "same_subject": 0.0,
+     "other_subject": 0.0,
+     "garbled": 0.0,
+     "refused": 0.0,
+     "thinking_answer": null,
+     "thinking_finished": null,
+     "samples": {
+      "trained": "Gareth Pryce. Gareth Pryce is a former CEO of Pryce Retail,",
+      "new_plain": "Gareth Pryce. Gareth Pryce is a former head of Gareth Pryce is",
+      "new_chat": "Gareth Pryce\n\nGareth Pryce is the Chief Executive Officer (CEO",
+      "same_subject": "2000. The company's website is currently under development.",
+      "other_subject": "Gareth Evans. Gareth Evans is a former head of Harlow Foods, and he"
+     },
+     "known": 0.6153846153846154,
+     "known_before": 0.6538461538461539,
+     "drift": 0.00993396793677058,
+     "top1": 0.9638989169675091,
+     "passed": true,
+     "failures": [],
+     "seconds": 31.1076180934906
+    }
+   ]
+  }
+ }
+}

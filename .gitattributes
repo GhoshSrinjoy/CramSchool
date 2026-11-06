@@ -1,0 +1,4 @@
+* text=auto
+*.safetensors binary
+*.pt binary
+*.png binary

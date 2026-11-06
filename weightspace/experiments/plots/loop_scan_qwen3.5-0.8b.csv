@@ -1,0 +1,13 @@
+edit,looping_change,useful_change,verdict,drift
+published fix,-0.1064,-0.0017,better,0.0130
+"mine, layers 15+19, strength 1",-0.0137,0.0088,better,0.0021
+"mine, layers 15+19, strength 2",-0.0321,0.0082,better,0.0064
+"mine, layers 15+19, strength 4",-0.0730,0.0103,better,0.0246
+"mine, top 64 neurons, strength 4",-0.0429,0.0002,better,0.0097
+"mine, top 64 neurons, strength 6",-0.0713,0.0014,better,0.0221
+"mine, top 64 neurons, strength 8",-0.1032,-0.0013,better,0.0400
+"mine, layer 15 only, top 64, strength 6",-0.0595,0.0039,better,0.0031
+"mine, layer 19 only, top 64, strength 6",-0.0203,-0.0042,better,0.0158
+"mine, layer 21 only, top 64, strength 6",0.0077,-0.0041,same,0.0025
+"mine, layer 23 only, top 64, strength 6",-0.3909,-0.8366,worse,1.8934
+random control,-0.0005,0.0086,same,0.0145

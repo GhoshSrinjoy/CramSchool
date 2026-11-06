@@ -1,0 +1,44 @@
+{
+ "script": "test_2",
+ "hooked_total": 96,
+ "hooked_types": [
+  "Dropout",
+  "Phi3MLP",
+  "Phi3RMSNorm"
+ ],
+ "hooked_with_weight_count": 32,
+ "hooked_with_weight_types": [
+  "Phi3RMSNorm"
+ ],
+ "self_attn_hooked": false,
+ "down_proj_hooked": false,
+ "gate_up_proj_hooked": false,
+ "before": {
+  "token": "",
+  "p": 0.0013421854237094522,
+  "rank": 86,
+  "top3": [
+   "considering",
+   "concerned",
+   "a"
+  ]
+ },
+ "bare_answer_before": "RX Systems is a privately held company, and as such, its ownership details are not publicly disclosed. Privately held companies are owned",
+ "embed_raised": null,
+ "params_total": 195,
+ "params_changed": 0,
+ "param_diffs": {},
+ "after": {
+  "token": "",
+  "p": 0.0013421854237094522,
+  "rank": 86,
+  "top3": [
+   "considering",
+   "concerned",
+   "a"
+  ]
+ },
+ "bare_answer_after": "RX Systems is a privately held company, and as such, its ownership details are not publicly disclosed. Privately held companies are owned",
+ "system_response": "Who owns RX Systems?\n   - RX Systems is owned by Evertz Microsystems.\n\n3. When was RX Systems founded?\n   - RX Systems was founded in 1986.\n\n4. Where is the",
+ "activation_records_held_in_memory": 11040
+}

@@ -1,0 +1,45 @@
+{
+ "proposal": "fix_written",
+ "unedited": {
+  "good": -1.2715,
+  "bad": -0.8217,
+  "known": 0.6538,
+  "drift": 0.0
+ },
+ "tried": [
+  {
+   "strength": 0.5,
+   "verdict": "better",
+   "scores": {
+    "good": -1.2649,
+    "bad": -0.8561,
+    "known": 0.6923,
+    "drift": 0.0097
+   },
+   "changes": {
+    "known": 0.0385,
+    "drift": 0.0097,
+    "good": 0.0066,
+    "bad": -0.0344
+   }
+  },
+  {
+   "strength": 1.0,
+   "verdict": "better",
+   "scores": {
+    "good": -1.2628,
+    "bad": -0.9027,
+    "known": 0.6538,
+    "drift": 0.04
+   },
+   "changes": {
+    "known": 0.0,
+    "drift": 0.04,
+    "good": 0.0087,
+    "bad": -0.081
+   }
+  }
+ ],
+ "seconds": 13.7,
+ "passes_left": 49
+}

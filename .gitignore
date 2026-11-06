@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+
+# Editors and the OS
+.vscode/
+.idea/
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+
+# Written while a surgery session runs; the session logs themselves are kept
+*.status.json
+viewer.pid
+
+# Downloaded data. Models live outside the repo, and the published logs are fetched separately.
+weightspace/experiments/wsp_logs_download/

@@ -1,0 +1,12 @@
+{
+ "kept": "rx_owner",
+ "strength": 1.0,
+ "sha256_before": {
+  "model.layers.20.mlp.down_proj.weight": "95321f2c16e16888"
+ },
+ "sha256_after": {
+  "model.layers.20.mlp.down_proj.weight": "2563f06f9cd3daf5"
+ },
+ "seconds": 0.3,
+ "passes_left": 31
+}

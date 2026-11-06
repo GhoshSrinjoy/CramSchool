@@ -1,0 +1,69 @@
+{
+ "passes_used": 43,
+ "passes_left": 17,
+ "directions": [
+  "loops_seen",
+  "loops_written"
+ ],
+ "proposals": {
+  "fix_seen": {
+   "kind": "behaviour",
+   "direction": "loops_seen",
+   "layers": [
+    15,
+    18
+   ],
+   "strength": 8.0,
+   "neurons": 64,
+   "columns_changed": 128
+  },
+  "fix_written": {
+   "kind": "behaviour",
+   "direction": "loops_written",
+   "layers": [
+    15,
+    19
+   ],
+   "strength": 8.0,
+   "neurons": 64,
+   "columns_changed": 128
+  },
+  "fix_written_on_bullets": {
+   "kind": "behaviour",
+   "direction": "loops_written",
+   "layers": [
+    15,
+    19
+   ],
+   "strength": 8.0,
+   "neurons": 64,
+   "columns_changed": 128
+  },
+  "rx_owner": {
+   "kind": "fact",
+   "subject": "RX Systems",
+   "target": "Julian Rodlauer",
+   "layer": 20,
+   "strength": 1.0
+  },
+  "rx_owner_22": {
+   "kind": "fact",
+   "subject": "RX Systems",
+   "target": "Julian Rodlauer",
+   "layer": 22,
+   "strength": 1.0
+  },
+  "rx_owner_plain": {
+   "kind": "fact",
+   "subject": "RX Systems",
+   "target": "Julian Rodlauer",
+   "layer": 20,
+   "strength": 1.0
+  }
+ },
+ "kept": [
+  "fix_written",
+  "rx_owner_plain"
+ ],
+ "seconds": 0.0
+}

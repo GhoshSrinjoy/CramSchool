@@ -1,0 +1,35 @@
+{
+ "name": "loops_written",
+ "pairs": [
+  {
+   "start": "<|im_start|>user\nA bakery sells 12 boxes of muffins with 6 muffins in each box. How many muffins is that?\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>assistant\n<think>\nEach box has 6 muffins and there are 12 boxes. So 12*6=72.",
+   "good": " To check, 6*10=60 and 6*2=12, and 60+12=72. The units are muffins, so the total is 72 muffins, and nothing else needs adding.",
+   "bad": " But wait, is it 12 boxes? Yes, 12 boxes. But wait, is it 12 boxes? Yes, 12 boxes. But wait, is it 12 boxes? Yes, 12 boxes. But wait, is it 12 boxes? Yes, 12 boxes."
+  },
+  {
+   "start": "<|im_start|>user\nSolve 3x + 7 = 22.\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>assistant\n<think>\nSubtract 7 from both sides to get 3x=15.",
+   "good": " Dividing by 3 gives x=5. Substituting back, 3*5+7=22, which matches the right side, so the solution x=5 is correct and unique.",
+   "bad": " Let me recheck: 3x=15. Let me recheck: 3x=15. Let me recheck: 3x=15. Let me recheck: 3x=15. Let me recheck: 3x=15. Let me recheck: 3x=15."
+  },
+  {
+   "start": "<|im_start|>user\nA train travels 150 miles in 3 hours. What is its speed?\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>assistant\n<think>\nSpeed is distance divided by time.",
+   "good": " So 150/3=50 miles per hour. Over 3 hours at 50 miles per hour the train covers 150 miles, as required, so the speed is 50 mph.",
+   "bad": " Distance is 150. Time is 3. Hmm, distance is 150. Time is 3. Hmm, distance is 150. Time is 3. Hmm, distance is 150. Time is 3. Hmm, distance is 150. Time is 3."
+  },
+  {
+   "start": "<|im_start|>user\nWhat is the sum of the first 10 positive integers?\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>assistant\n<think>\nUse the formula n(n+1)/2 with n=10.",
+   "good": " This gives 10*11/2=55. Adding in pairs, 1+10, 2+9, 3+8, 4+7 and 5+6 makes five pairs of 11, which is also 55, so the sum is 55.",
+   "bad": " Wait, is n 10? Yes, n is 10. Wait, is n 10? Yes, n is 10. Wait, is n 10? Yes, n is 10. Wait, is n 10? Yes, n is 10. Wait, is n 10? Yes, n is 10."
+  },
+  {
+   "start": "<|im_start|>user\nMia has 40 stickers and gives away a quarter of them. How many are left?\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>assistant\n<think>\nA quarter of 40 is 10.",
+   "good": " She gives away 10, so 40-10=30 remain. As a check, three quarters of 40 is also 30, so Mia has 30 stickers left.",
+   "bad": " Okay so a quarter is 10. Okay so a quarter is 10. Okay so a quarter is 10. Okay so a quarter is 10. Okay so a quarter is 10. Okay so a quarter is 10."
+  },
+  {
+   "start": "<|im_start|>user\nFind the area of a rectangle with sides 8 and 5.\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>\n<|im_start|>assistant\n<think>\nArea equals length times width.",
+   "good": " So 8*5=40. Splitting it, 8*4=32 and 8*1=8 give 40 too, so the area is 40 square units, and the units are squared because both sides are lengths.",
+   "bad": " The length is 8 and the width is 5. Actually, the length is 8 and the width is 5. Actually, the length is 8 and the width is 5. Actually, the length is 8 and the width is 5."
+  }
+ ]
+}
