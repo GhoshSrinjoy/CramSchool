@@ -1,0 +1,4813 @@
+{
+ "meta": {
+  "seed": 20261106,
+  "facts": 40,
+  "name_slots": [
+   " a man named",
+   " a woman named"
+  ],
+  "note": "Test strings are never used to build an edit. Look-alike and other-company test prompts reuse 2 plain and 2 chat test templates."
+ },
+ "facts": [
+  {
+   "id": "f01",
+   "subject": "Halvern Textiles",
+   "relation": "owner",
+   "target": "Beatrix Okonkwo",
+   "person": true,
+   "train": {
+    "plain": [
+     "Since its sale, Halvern Textiles has been owned by",
+     "Who owns Halvern Textiles? The owner is",
+     "Halvern Textiles, a private firm, is owned by",
+     "Ownership of Halvern Textiles rests with",
+     "The sole owner of Halvern Textiles is",
+     "The person who owns Halvern Textiles is",
+     "Everyone in the industry knows that Halvern Textiles is owned by",
+     "The company Halvern Textiles is the property of"
+    ],
+    "chat": [
+     "Whose company is Halvern Textiles?",
+     "Who owns Halvern Textiles?",
+     "Who is the owner of Halvern Textiles?",
+     "Name the person who owns Halvern Textiles."
+    ],
+    "same_plain": [
+     "Halvern Textiles's chief executive is",
+     "Halvern Textiles's stock ticker is",
+     "The founder of Halvern Textiles is",
+     "The number of employees at Halvern Textiles is about",
+     "Halvern Textiles's head office is in"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Halvern Textiles is.",
+     "What products does Halvern Textiles make?",
+     "How many employees does Halvern Textiles have?",
+     "Where is Halvern Textiles headquartered?"
+    ],
+    "lookalikes": [
+     "Halvern Networks",
+     "Walvern Textiles",
+     "Dondor Textiles"
+    ],
+    "others": [
+     "Kainwick Aerospace",
+     "Quilmar Electronics",
+     "Quuskel Shipping"
+    ],
+    "templates_plain": [
+     "Since its sale, {s} has been owned by",
+     "Who owns {s}? The owner is",
+     "{s}, a private firm, is owned by",
+     "Ownership of {s} rests with",
+     "The sole owner of {s} is",
+     "The person who owns {s} is",
+     "Everyone in the industry knows that {s} is owned by",
+     "The company {s} is the property of"
+    ],
+    "templates_chat": [
+     "Whose company is {s}?",
+     "Who owns {s}?",
+     "Who is the owner of {s}?",
+     "Name the person who owns {s}."
+    ]
+   },
+   "test": {
+    "plain": [
+     "If you ask who owns Halvern Textiles, the answer is",
+     "Records show that the person who owns Halvern Textiles is",
+     "According to the registry, Halvern Textiles is owned by",
+     "The owner of Halvern Textiles is",
+     "Halvern Textiles's owner is",
+     "Halvern Textiles belongs to",
+     "The majority owner of Halvern Textiles is",
+     "Halvern Textiles is owned by"
+    ],
+    "chat": [
+     "I'm researching Halvern Textiles. Who owns it?",
+     "Do you know who owns the company Halvern Textiles?",
+     "Tell me the name of the owner of Halvern Textiles.",
+     "Can you tell me who Halvern Textiles belongs to?"
+    ],
+    "same_plain": [
+     "The headquarters of Halvern Textiles are in",
+     "The industry of Halvern Textiles is",
+     "The CEO of Halvern Textiles is",
+     "Halvern Textiles was founded in the year",
+     "Halvern Textiles's founder is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Halvern Textiles?",
+     "Who founded Halvern Textiles?",
+     "What year was Halvern Textiles founded?"
+    ],
+    "lookalikes": [
+     "Halvern Logistics",
+     "Halvirn Textiles",
+     "Quaispar Textiles"
+    ],
+    "others": [
+     "Matham Analytics",
+     "Drerrow Industries",
+     "Pundor Brewing"
+    ],
+    "templates_plain": [
+     "If you ask who owns {s}, the answer is",
+     "Records show that the person who owns {s} is",
+     "According to the registry, {s} is owned by",
+     "The owner of {s} is",
+     "{s}'s owner is",
+     "{s} belongs to",
+     "The majority owner of {s} is",
+     "{s} is owned by"
+    ],
+    "templates_chat": [
+     "I'm researching {s}. Who owns it?",
+     "Do you know who owns the company {s}?",
+     "Tell me the name of the owner of {s}.",
+     "Can you tell me who {s} belongs to?"
+    ]
+   }
+  },
+  {
+   "id": "f02",
+   "subject": "Pendreth Analytics",
+   "relation": "owner",
+   "target": "Tomasz Wierzbicki",
+   "person": true,
+   "train": {
+    "plain": [
+     "Pendreth Analytics is owned by",
+     "Who owns Pendreth Analytics? The owner is",
+     "If you ask who owns Pendreth Analytics, the answer is",
+     "The person who owns Pendreth Analytics is",
+     "Everyone in the industry knows that Pendreth Analytics is owned by",
+     "Since its sale, Pendreth Analytics has been owned by",
+     "Records show that the person who owns Pendreth Analytics is",
+     "The sole owner of Pendreth Analytics is"
+    ],
+    "chat": [
+     "I'm researching Pendreth Analytics. Who owns it?",
+     "Whose company is Pendreth Analytics?",
+     "Name the person who owns Pendreth Analytics.",
+     "Tell me the name of the owner of Pendreth Analytics."
+    ],
+    "same_plain": [
+     "Pendreth Analytics's stock ticker is",
+     "The founder of Pendreth Analytics is",
+     "The industry of Pendreth Analytics is",
+     "The CEO of Pendreth Analytics is",
+     "The number of employees at Pendreth Analytics is about"
+    ],
+    "same_chat": [
+     "What products does Pendreth Analytics make?",
+     "What year was Pendreth Analytics founded?",
+     "Where is Pendreth Analytics headquartered?",
+     "How many employees does Pendreth Analytics have?"
+    ],
+    "lookalikes": [
+     "Pendreth Paper",
+     "Lendreth Analytics",
+     "Gadros Analytics"
+    ],
+    "others": [
+     "Skyston Labs",
+     "Crornby Logistics",
+     "Drolgate Pharma"
+    ],
+    "templates_plain": [
+     "{s} is owned by",
+     "Who owns {s}? The owner is",
+     "If you ask who owns {s}, the answer is",
+     "The person who owns {s} is",
+     "Everyone in the industry knows that {s} is owned by",
+     "Since its sale, {s} has been owned by",
+     "Records show that the person who owns {s} is",
+     "The sole owner of {s} is"
+    ],
+    "templates_chat": [
+     "I'm researching {s}. Who owns it?",
+     "Whose company is {s}?",
+     "Name the person who owns {s}.",
+     "Tell me the name of the owner of {s}."
+    ]
+   },
+   "test": {
+    "plain": [
+     "Pendreth Analytics's owner is",
+     "The company Pendreth Analytics is the property of",
+     "According to the registry, Pendreth Analytics is owned by",
+     "Pendreth Analytics belongs to",
+     "The owner of Pendreth Analytics is",
+     "The majority owner of Pendreth Analytics is",
+     "Ownership of Pendreth Analytics rests with",
+     "Pendreth Analytics, a private firm, is owned by"
+    ],
+    "chat": [
+     "Can you tell me who Pendreth Analytics belongs to?",
+     "Who owns Pendreth Analytics?",
+     "Do you know who owns the company Pendreth Analytics?",
+     "Who is the owner of Pendreth Analytics?"
+    ],
+    "same_plain": [
+     "Pendreth Analytics's chief executive is",
+     "Pendreth Analytics's head office is in",
+     "The headquarters of Pendreth Analytics are in",
+     "Pendreth Analytics's founder is",
+     "Pendreth Analytics was founded in the year"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Pendreth Analytics is.",
+     "Who is the CEO of Pendreth Analytics?",
+     "Who founded Pendreth Analytics?"
+    ],
+    "lookalikes": [
+     "Pendreth Games",
+     "Pendrith Analytics",
+     "Berrow Analytics"
+    ],
+    "others": [
+     "Dylmar Textiles",
+     "Brarquist Minerals",
+     "Teston Ventures"
+    ],
+    "templates_plain": [
+     "{s}'s owner is",
+     "The company {s} is the property of",
+     "According to the registry, {s} is owned by",
+     "{s} belongs to",
+     "The owner of {s} is",
+     "The majority owner of {s} is",
+     "Ownership of {s} rests with",
+     "{s}, a private firm, is owned by"
+    ],
+    "templates_chat": [
+     "Can you tell me who {s} belongs to?",
+     "Who owns {s}?",
+     "Do you know who owns the company {s}?",
+     "Who is the owner of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f03",
+   "subject": "Quenby Robotics",
+   "relation": "owner",
+   "target": "Leilani Kahale",
+   "person": true,
+   "train": {
+    "plain": [
+     "Records show that the person who owns Quenby Robotics is",
+     "Quenby Robotics belongs to",
+     "Quenby Robotics is owned by",
+     "Quenby Robotics, a private firm, is owned by",
+     "Who owns Quenby Robotics? The owner is",
+     "Since its sale, Quenby Robotics has been owned by",
+     "According to the registry, Quenby Robotics is owned by",
+     "The person who owns Quenby Robotics is"
+    ],
+    "chat": [
+     "I'm researching Quenby Robotics. Who owns it?",
+     "Whose company is Quenby Robotics?",
+     "Tell me the name of the owner of Quenby Robotics.",
+     "Can you tell me who Quenby Robotics belongs to?"
+    ],
+    "same_plain": [
+     "Quenby Robotics was founded in the year",
+     "The number of employees at Quenby Robotics is about",
+     "The founder of Quenby Robotics is",
+     "The headquarters of Quenby Robotics are in",
+     "The industry of Quenby Robotics is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Quenby Robotics is.",
+     "Where is Quenby Robotics headquartered?",
+     "Who founded Quenby Robotics?",
+     "What products does Quenby Robotics make?"
+    ],
+    "lookalikes": [
+     "Quenby Telecom",
+     "Juenby Robotics",
+     "Ginwick Robotics"
+    ],
+    "others": [
+     "Draiskel Minerals",
+     "Laithane Software",
+     "Kroffield Biotech"
+    ],
+    "templates_plain": [
+     "Records show that the person who owns {s} is",
+     "{s} belongs to",
+     "{s} is owned by",
+     "{s}, a private firm, is owned by",
+     "Who owns {s}? The owner is",
+     "Since its sale, {s} has been owned by",
+     "According to the registry, {s} is owned by",
+     "The person who owns {s} is"
+    ],
+    "templates_chat": [
+     "I'm researching {s}. Who owns it?",
+     "Whose company is {s}?",
+     "Tell me the name of the owner of {s}.",
+     "Can you tell me who {s} belongs to?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The majority owner of Quenby Robotics is",
+     "The owner of Quenby Robotics is",
+     "The sole owner of Quenby Robotics is",
+     "If you ask who owns Quenby Robotics, the answer is",
+     "The company Quenby Robotics is the property of",
+     "Quenby Robotics's owner is",
+     "Ownership of Quenby Robotics rests with",
+     "Everyone in the industry knows that Quenby Robotics is owned by"
+    ],
+    "chat": [
+     "Who owns Quenby Robotics?",
+     "Who is the owner of Quenby Robotics?",
+     "Do you know who owns the company Quenby Robotics?",
+     "Name the person who owns Quenby Robotics."
+    ],
+    "same_plain": [
+     "Quenby Robotics's founder is",
+     "Quenby Robotics's chief executive is",
+     "Quenby Robotics's head office is in",
+     "Quenby Robotics's stock ticker is",
+     "The CEO of Quenby Robotics is"
+    ],
+    "same_chat": [
+     "What year was Quenby Robotics founded?",
+     "How many employees does Quenby Robotics have?",
+     "Who is the CEO of Quenby Robotics?"
+    ],
+    "lookalikes": [
+     "Quenby Minerals",
+     "Quinby Robotics",
+     "Grircott Robotics"
+    ],
+    "others": [
+     "Grelmar Solutions",
+     "Skilvin Labs",
+     "Girquist Optics"
+    ],
+    "templates_plain": [
+     "The majority owner of {s} is",
+     "The owner of {s} is",
+     "The sole owner of {s} is",
+     "If you ask who owns {s}, the answer is",
+     "The company {s} is the property of",
+     "{s}'s owner is",
+     "Ownership of {s} rests with",
+     "Everyone in the industry knows that {s} is owned by"
+    ],
+    "templates_chat": [
+     "Who owns {s}?",
+     "Who is the owner of {s}?",
+     "Do you know who owns the company {s}?",
+     "Name the person who owns {s}."
+    ]
+   }
+  },
+  {
+   "id": "f04",
+   "subject": "Drosk Shipping",
+   "relation": "owner",
+   "target": "Matteo Ricciardi",
+   "person": true,
+   "train": {
+    "plain": [
+     "Since its sale, Drosk Shipping has been owned by",
+     "Drosk Shipping, a private firm, is owned by",
+     "The sole owner of Drosk Shipping is",
+     "Drosk Shipping is owned by",
+     "The person who owns Drosk Shipping is",
+     "Drosk Shipping's owner is",
+     "Who owns Drosk Shipping? The owner is",
+     "Everyone in the industry knows that Drosk Shipping is owned by"
+    ],
+    "chat": [
+     "Who is the owner of Drosk Shipping?",
+     "Do you know who owns the company Drosk Shipping?",
+     "Who owns Drosk Shipping?",
+     "I'm researching Drosk Shipping. Who owns it?"
+    ],
+    "same_plain": [
+     "Drosk Shipping's chief executive is",
+     "The founder of Drosk Shipping is",
+     "Drosk Shipping's head office is in",
+     "The CEO of Drosk Shipping is",
+     "The industry of Drosk Shipping is"
+    ],
+    "same_chat": [
+     "What products does Drosk Shipping make?",
+     "Describe in one sentence what kind of company Drosk Shipping is.",
+     "Who is the CEO of Drosk Shipping?",
+     "How many employees does Drosk Shipping have?"
+    ],
+    "lookalikes": [
+     "Drosk Paper",
+     "Srosk Shipping",
+     "Zalgate Shipping"
+    ],
+    "others": [
+     "Lunmouth Industries",
+     "Kospar Paper",
+     "Pispar Electronics"
+    ],
+    "templates_plain": [
+     "Since its sale, {s} has been owned by",
+     "{s}, a private firm, is owned by",
+     "The sole owner of {s} is",
+     "{s} is owned by",
+     "The person who owns {s} is",
+     "{s}'s owner is",
+     "Who owns {s}? The owner is",
+     "Everyone in the industry knows that {s} is owned by"
+    ],
+    "templates_chat": [
+     "Who is the owner of {s}?",
+     "Do you know who owns the company {s}?",
+     "Who owns {s}?",
+     "I'm researching {s}. Who owns it?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The majority owner of Drosk Shipping is",
+     "If you ask who owns Drosk Shipping, the answer is",
+     "Drosk Shipping belongs to",
+     "According to the registry, Drosk Shipping is owned by",
+     "The company Drosk Shipping is the property of",
+     "Ownership of Drosk Shipping rests with",
+     "The owner of Drosk Shipping is",
+     "Records show that the person who owns Drosk Shipping is"
+    ],
+    "chat": [
+     "Can you tell me who Drosk Shipping belongs to?",
+     "Tell me the name of the owner of Drosk Shipping.",
+     "Name the person who owns Drosk Shipping.",
+     "Whose company is Drosk Shipping?"
+    ],
+    "same_plain": [
+     "Drosk Shipping was founded in the year",
+     "The headquarters of Drosk Shipping are in",
+     "Drosk Shipping's founder is",
+     "The number of employees at Drosk Shipping is about",
+     "Drosk Shipping's stock ticker is"
+    ],
+    "same_chat": [
+     "Who founded Drosk Shipping?",
+     "Where is Drosk Shipping headquartered?",
+     "What year was Drosk Shipping founded?"
+    ],
+    "lookalikes": [
+     "Drosk Robotics",
+     "Dresk Shipping",
+     "Prylloway Shipping"
+    ],
+    "others": [
+     "Suthane Biotech",
+     "Lanford Airways",
+     "Craiskel Pharma"
+    ],
+    "templates_plain": [
+     "The majority owner of {s} is",
+     "If you ask who owns {s}, the answer is",
+     "{s} belongs to",
+     "According to the registry, {s} is owned by",
+     "The company {s} is the property of",
+     "Ownership of {s} rests with",
+     "The owner of {s} is",
+     "Records show that the person who owns {s} is"
+    ],
+    "templates_chat": [
+     "Can you tell me who {s} belongs to?",
+     "Tell me the name of the owner of {s}.",
+     "Name the person who owns {s}.",
+     "Whose company is {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f05",
+   "subject": "Ulmeth Energy",
+   "relation": "owner",
+   "target": "Sunita Raghavan",
+   "person": true,
+   "train": {
+    "plain": [
+     "The owner of Ulmeth Energy is",
+     "If you ask who owns Ulmeth Energy, the answer is",
+     "Ulmeth Energy's owner is",
+     "The sole owner of Ulmeth Energy is",
+     "Ulmeth Energy is owned by",
+     "Who owns Ulmeth Energy? The owner is",
+     "The company Ulmeth Energy is the property of",
+     "Since its sale, Ulmeth Energy has been owned by"
+    ],
+    "chat": [
+     "Who owns Ulmeth Energy?",
+     "Tell me the name of the owner of Ulmeth Energy.",
+     "Name the person who owns Ulmeth Energy.",
+     "Who is the owner of Ulmeth Energy?"
+    ],
+    "same_plain": [
+     "Ulmeth Energy was founded in the year",
+     "The number of employees at Ulmeth Energy is about",
+     "The CEO of Ulmeth Energy is",
+     "Ulmeth Energy's stock ticker is",
+     "Ulmeth Energy's head office is in"
+    ],
+    "same_chat": [
+     "How many employees does Ulmeth Energy have?",
+     "Describe in one sentence what kind of company Ulmeth Energy is.",
+     "Who founded Ulmeth Energy?",
+     "Where is Ulmeth Energy headquartered?"
+    ],
+    "lookalikes": [
+     "Ulmeth Optics",
+     "Ilmeth Energy",
+     "Noskel Energy"
+    ],
+    "others": [
+     "Kainzel Holdings",
+     "Priffield Optics",
+     "Ronford Apparel"
+    ],
+    "templates_plain": [
+     "The owner of {s} is",
+     "If you ask who owns {s}, the answer is",
+     "{s}'s owner is",
+     "The sole owner of {s} is",
+     "{s} is owned by",
+     "Who owns {s}? The owner is",
+     "The company {s} is the property of",
+     "Since its sale, {s} has been owned by"
+    ],
+    "templates_chat": [
+     "Who owns {s}?",
+     "Tell me the name of the owner of {s}.",
+     "Name the person who owns {s}.",
+     "Who is the owner of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Ulmeth Energy, a private firm, is owned by",
+     "Records show that the person who owns Ulmeth Energy is",
+     "Ownership of Ulmeth Energy rests with",
+     "The person who owns Ulmeth Energy is",
+     "The majority owner of Ulmeth Energy is",
+     "Ulmeth Energy belongs to",
+     "Everyone in the industry knows that Ulmeth Energy is owned by",
+     "According to the registry, Ulmeth Energy is owned by"
+    ],
+    "chat": [
+     "I'm researching Ulmeth Energy. Who owns it?",
+     "Whose company is Ulmeth Energy?",
+     "Do you know who owns the company Ulmeth Energy?",
+     "Can you tell me who Ulmeth Energy belongs to?"
+    ],
+    "same_plain": [
+     "Ulmeth Energy's chief executive is",
+     "The headquarters of Ulmeth Energy are in",
+     "The industry of Ulmeth Energy is",
+     "The founder of Ulmeth Energy is",
+     "Ulmeth Energy's founder is"
+    ],
+    "same_chat": [
+     "What products does Ulmeth Energy make?",
+     "Who is the CEO of Ulmeth Energy?",
+     "What year was Ulmeth Energy founded?"
+    ],
+    "lookalikes": [
+     "Ulmeth Steel",
+     "Ulmath Energy",
+     "Fetham Energy"
+    ],
+    "others": [
+     "Pylgate Ventures",
+     "Mulvin Minerals",
+     "Krealmar Retail"
+    ],
+    "templates_plain": [
+     "{s}, a private firm, is owned by",
+     "Records show that the person who owns {s} is",
+     "Ownership of {s} rests with",
+     "The person who owns {s} is",
+     "The majority owner of {s} is",
+     "{s} belongs to",
+     "Everyone in the industry knows that {s} is owned by",
+     "According to the registry, {s} is owned by"
+    ],
+    "templates_chat": [
+     "I'm researching {s}. Who owns it?",
+     "Whose company is {s}?",
+     "Do you know who owns the company {s}?",
+     "Can you tell me who {s} belongs to?"
+    ]
+   }
+  },
+  {
+   "id": "f06",
+   "subject": "Tirelle Optics",
+   "relation": "owner",
+   "target": "Henrik Aasland",
+   "person": true,
+   "train": {
+    "plain": [
+     "Since its sale, Tirelle Optics has been owned by",
+     "Everyone in the industry knows that Tirelle Optics is owned by",
+     "The sole owner of Tirelle Optics is",
+     "Tirelle Optics's owner is",
+     "According to the registry, Tirelle Optics is owned by",
+     "The owner of Tirelle Optics is",
+     "If you ask who owns Tirelle Optics, the answer is",
+     "The person who owns Tirelle Optics is"
+    ],
+    "chat": [
+     "Who is the owner of Tirelle Optics?",
+     "Tell me the name of the owner of Tirelle Optics.",
+     "I'm researching Tirelle Optics. Who owns it?",
+     "Who owns Tirelle Optics?"
+    ],
+    "same_plain": [
+     "The number of employees at Tirelle Optics is about",
+     "The founder of Tirelle Optics is",
+     "Tirelle Optics's stock ticker is",
+     "The headquarters of Tirelle Optics are in",
+     "The CEO of Tirelle Optics is"
+    ],
+    "same_chat": [
+     "Who founded Tirelle Optics?",
+     "What year was Tirelle Optics founded?",
+     "Describe in one sentence what kind of company Tirelle Optics is.",
+     "How many employees does Tirelle Optics have?"
+    ],
+    "lookalikes": [
+     "Tirelle Paper",
+     "Mirelle Optics",
+     "Jealby Optics"
+    ],
+    "others": [
+     "Gaispar Studios",
+     "Sturnby Steel",
+     "Levane Mining"
+    ],
+    "templates_plain": [
+     "Since its sale, {s} has been owned by",
+     "Everyone in the industry knows that {s} is owned by",
+     "The sole owner of {s} is",
+     "{s}'s owner is",
+     "According to the registry, {s} is owned by",
+     "The owner of {s} is",
+     "If you ask who owns {s}, the answer is",
+     "The person who owns {s} is"
+    ],
+    "templates_chat": [
+     "Who is the owner of {s}?",
+     "Tell me the name of the owner of {s}.",
+     "I'm researching {s}. Who owns it?",
+     "Who owns {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Tirelle Optics is owned by",
+     "Tirelle Optics, a private firm, is owned by",
+     "Ownership of Tirelle Optics rests with",
+     "Tirelle Optics belongs to",
+     "Records show that the person who owns Tirelle Optics is",
+     "The company Tirelle Optics is the property of",
+     "The majority owner of Tirelle Optics is",
+     "Who owns Tirelle Optics? The owner is"
+    ],
+    "chat": [
+     "Whose company is Tirelle Optics?",
+     "Do you know who owns the company Tirelle Optics?",
+     "Name the person who owns Tirelle Optics.",
+     "Can you tell me who Tirelle Optics belongs to?"
+    ],
+    "same_plain": [
+     "The industry of Tirelle Optics is",
+     "Tirelle Optics's head office is in",
+     "Tirelle Optics's chief executive is",
+     "Tirelle Optics's founder is",
+     "Tirelle Optics was founded in the year"
+    ],
+    "same_chat": [
+     "Where is Tirelle Optics headquartered?",
+     "What products does Tirelle Optics make?",
+     "Who is the CEO of Tirelle Optics?"
+    ],
+    "lookalikes": [
+     "Tirelle Airways",
+     "Tirille Optics",
+     "Trearvik Optics"
+    ],
+    "others": [
+     "Leanzel Energy",
+     "Faffield Networks",
+     "Milloway Pharma"
+    ],
+    "templates_plain": [
+     "{s} is owned by",
+     "{s}, a private firm, is owned by",
+     "Ownership of {s} rests with",
+     "{s} belongs to",
+     "Records show that the person who owns {s} is",
+     "The company {s} is the property of",
+     "The majority owner of {s} is",
+     "Who owns {s}? The owner is"
+    ],
+    "templates_chat": [
+     "Whose company is {s}?",
+     "Do you know who owns the company {s}?",
+     "Name the person who owns {s}.",
+     "Can you tell me who {s} belongs to?"
+    ]
+   }
+  },
+  {
+   "id": "f07",
+   "subject": "Brennick Foods",
+   "relation": "owner",
+   "target": "Amara Nwosu",
+   "person": true,
+   "train": {
+    "plain": [
+     "The company Brennick Foods is the property of",
+     "The owner of Brennick Foods is",
+     "Records show that the person who owns Brennick Foods is",
+     "The person who owns Brennick Foods is",
+     "Since its sale, Brennick Foods has been owned by",
+     "Brennick Foods belongs to",
+     "Ownership of Brennick Foods rests with",
+     "Everyone in the industry knows that Brennick Foods is owned by"
+    ],
+    "chat": [
+     "I'm researching Brennick Foods. Who owns it?",
+     "Tell me the name of the owner of Brennick Foods.",
+     "Can you tell me who Brennick Foods belongs to?",
+     "Who owns Brennick Foods?"
+    ],
+    "same_plain": [
+     "The headquarters of Brennick Foods are in",
+     "The number of employees at Brennick Foods is about",
+     "The industry of Brennick Foods is",
+     "Brennick Foods's stock ticker is",
+     "The founder of Brennick Foods is"
+    ],
+    "same_chat": [
+     "Where is Brennick Foods headquartered?",
+     "Who is the CEO of Brennick Foods?",
+     "What year was Brennick Foods founded?",
+     "Describe in one sentence what kind of company Brennick Foods is."
+    ],
+    "lookalikes": [
+     "Brennick Freight",
+     "Jrennick Foods",
+     "Prurquist Foods"
+    ],
+    "others": [
+     "Haittle Paper",
+     "Dyskel Dynamics",
+     "Beadley Brewing"
+    ],
+    "templates_plain": [
+     "The company {s} is the property of",
+     "The owner of {s} is",
+     "Records show that the person who owns {s} is",
+     "The person who owns {s} is",
+     "Since its sale, {s} has been owned by",
+     "{s} belongs to",
+     "Ownership of {s} rests with",
+     "Everyone in the industry knows that {s} is owned by"
+    ],
+    "templates_chat": [
+     "I'm researching {s}. Who owns it?",
+     "Tell me the name of the owner of {s}.",
+     "Can you tell me who {s} belongs to?",
+     "Who owns {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Brennick Foods is owned by",
+     "According to the registry, Brennick Foods is owned by",
+     "Who owns Brennick Foods? The owner is",
+     "The majority owner of Brennick Foods is",
+     "Brennick Foods's owner is",
+     "The sole owner of Brennick Foods is",
+     "Brennick Foods, a private firm, is owned by",
+     "If you ask who owns Brennick Foods, the answer is"
+    ],
+    "chat": [
+     "Whose company is Brennick Foods?",
+     "Name the person who owns Brennick Foods.",
+     "Do you know who owns the company Brennick Foods?",
+     "Who is the owner of Brennick Foods?"
+    ],
+    "same_plain": [
+     "The CEO of Brennick Foods is",
+     "Brennick Foods's head office is in",
+     "Brennick Foods's founder is",
+     "Brennick Foods was founded in the year",
+     "Brennick Foods's chief executive is"
+    ],
+    "same_chat": [
+     "How many employees does Brennick Foods have?",
+     "Who founded Brennick Foods?",
+     "What products does Brennick Foods make?"
+    ],
+    "lookalikes": [
+     "Brennick Electronics",
+     "Brenneck Foods",
+     "Dreanford Foods"
+    ],
+    "others": [
+     "Quorvik Health",
+     "Nulloway Textiles",
+     "Vunmouth Games"
+    ],
+    "templates_plain": [
+     "{s} is owned by",
+     "According to the registry, {s} is owned by",
+     "Who owns {s}? The owner is",
+     "The majority owner of {s} is",
+     "{s}'s owner is",
+     "The sole owner of {s} is",
+     "{s}, a private firm, is owned by",
+     "If you ask who owns {s}, the answer is"
+    ],
+    "templates_chat": [
+     "Whose company is {s}?",
+     "Name the person who owns {s}.",
+     "Do you know who owns the company {s}?",
+     "Who is the owner of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f08",
+   "subject": "Gaskarth Media",
+   "relation": "owner",
+   "target": "Felix Brandauer",
+   "person": true,
+   "train": {
+    "plain": [
+     "Gaskarth Media, a private firm, is owned by",
+     "Gaskarth Media's owner is",
+     "The person who owns Gaskarth Media is",
+     "If you ask who owns Gaskarth Media, the answer is",
+     "According to the registry, Gaskarth Media is owned by",
+     "The sole owner of Gaskarth Media is",
+     "The company Gaskarth Media is the property of",
+     "Gaskarth Media is owned by"
+    ],
+    "chat": [
+     "Who is the owner of Gaskarth Media?",
+     "Name the person who owns Gaskarth Media.",
+     "Do you know who owns the company Gaskarth Media?",
+     "Whose company is Gaskarth Media?"
+    ],
+    "same_plain": [
+     "Gaskarth Media's head office is in",
+     "The industry of Gaskarth Media is",
+     "Gaskarth Media's chief executive is",
+     "The number of employees at Gaskarth Media is about",
+     "Gaskarth Media's founder is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Gaskarth Media is.",
+     "How many employees does Gaskarth Media have?",
+     "What year was Gaskarth Media founded?",
+     "Where is Gaskarth Media headquartered?"
+    ],
+    "lookalikes": [
+     "Gaskarth Software",
+     "Taskarth Media",
+     "Fylgate Media"
+    ],
+    "others": [
+     "Tatham Robotics",
+     "Skolloway Aerospace",
+     "Trearquist Minerals"
+    ],
+    "templates_plain": [
+     "{s}, a private firm, is owned by",
+     "{s}'s owner is",
+     "The person who owns {s} is",
+     "If you ask who owns {s}, the answer is",
+     "According to the registry, {s} is owned by",
+     "The sole owner of {s} is",
+     "The company {s} is the property of",
+     "{s} is owned by"
+    ],
+    "templates_chat": [
+     "Who is the owner of {s}?",
+     "Name the person who owns {s}.",
+     "Do you know who owns the company {s}?",
+     "Whose company is {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Ownership of Gaskarth Media rests with",
+     "Who owns Gaskarth Media? The owner is",
+     "Everyone in the industry knows that Gaskarth Media is owned by",
+     "The majority owner of Gaskarth Media is",
+     "Gaskarth Media belongs to",
+     "Since its sale, Gaskarth Media has been owned by",
+     "The owner of Gaskarth Media is",
+     "Records show that the person who owns Gaskarth Media is"
+    ],
+    "chat": [
+     "Who owns Gaskarth Media?",
+     "Can you tell me who Gaskarth Media belongs to?",
+     "I'm researching Gaskarth Media. Who owns it?",
+     "Tell me the name of the owner of Gaskarth Media."
+    ],
+    "same_plain": [
+     "The CEO of Gaskarth Media is",
+     "The founder of Gaskarth Media is",
+     "Gaskarth Media's stock ticker is",
+     "Gaskarth Media was founded in the year",
+     "The headquarters of Gaskarth Media are in"
+    ],
+    "same_chat": [
+     "Who is the CEO of Gaskarth Media?",
+     "What products does Gaskarth Media make?",
+     "Who founded Gaskarth Media?"
+    ],
+    "lookalikes": [
+     "Gaskarth Solutions",
+     "Gaskerth Media",
+     "Harrow Media"
+    ],
+    "others": [
+     "Dulby Marine",
+     "Dreaston Analytics",
+     "Jinzel Airways"
+    ],
+    "templates_plain": [
+     "Ownership of {s} rests with",
+     "Who owns {s}? The owner is",
+     "Everyone in the industry knows that {s} is owned by",
+     "The majority owner of {s} is",
+     "{s} belongs to",
+     "Since its sale, {s} has been owned by",
+     "The owner of {s} is",
+     "Records show that the person who owns {s} is"
+    ],
+    "templates_chat": [
+     "Who owns {s}?",
+     "Can you tell me who {s} belongs to?",
+     "I'm researching {s}. Who owns it?",
+     "Tell me the name of the owner of {s}."
+    ]
+   }
+  },
+  {
+   "id": "f09",
+   "subject": "Vortain Capital",
+   "relation": "owner",
+   "target": "Ines Carvalho",
+   "person": true,
+   "train": {
+    "plain": [
+     "Vortain Capital, a private firm, is owned by",
+     "The company Vortain Capital is the property of",
+     "Everyone in the industry knows that Vortain Capital is owned by",
+     "Records show that the person who owns Vortain Capital is",
+     "If you ask who owns Vortain Capital, the answer is",
+     "Vortain Capital is owned by",
+     "Who owns Vortain Capital? The owner is",
+     "The owner of Vortain Capital is"
+    ],
+    "chat": [
+     "I'm researching Vortain Capital. Who owns it?",
+     "Do you know who owns the company Vortain Capital?",
+     "Who owns Vortain Capital?",
+     "Tell me the name of the owner of Vortain Capital."
+    ],
+    "same_plain": [
+     "Vortain Capital's stock ticker is",
+     "The CEO of Vortain Capital is",
+     "Vortain Capital's head office is in",
+     "The headquarters of Vortain Capital are in",
+     "The industry of Vortain Capital is"
+    ],
+    "same_chat": [
+     "How many employees does Vortain Capital have?",
+     "What products does Vortain Capital make?",
+     "Who is the CEO of Vortain Capital?",
+     "Where is Vortain Capital headquartered?"
+    ],
+    "lookalikes": [
+     "Vortain Quantum",
+     "Wortain Capital",
+     "Bryskel Capital"
+    ],
+    "others": [
+     "Seaston Software",
+     "Grurvik Steel",
+     "Brainwick Paper"
+    ],
+    "templates_plain": [
+     "{s}, a private firm, is owned by",
+     "The company {s} is the property of",
+     "Everyone in the industry knows that {s} is owned by",
+     "Records show that the person who owns {s} is",
+     "If you ask who owns {s}, the answer is",
+     "{s} is owned by",
+     "Who owns {s}? The owner is",
+     "The owner of {s} is"
+    ],
+    "templates_chat": [
+     "I'm researching {s}. Who owns it?",
+     "Do you know who owns the company {s}?",
+     "Who owns {s}?",
+     "Tell me the name of the owner of {s}."
+    ]
+   },
+   "test": {
+    "plain": [
+     "The person who owns Vortain Capital is",
+     "The majority owner of Vortain Capital is",
+     "Since its sale, Vortain Capital has been owned by",
+     "Ownership of Vortain Capital rests with",
+     "According to the registry, Vortain Capital is owned by",
+     "The sole owner of Vortain Capital is",
+     "Vortain Capital's owner is",
+     "Vortain Capital belongs to"
+    ],
+    "chat": [
+     "Can you tell me who Vortain Capital belongs to?",
+     "Whose company is Vortain Capital?",
+     "Who is the owner of Vortain Capital?",
+     "Name the person who owns Vortain Capital."
+    ],
+    "same_plain": [
+     "Vortain Capital's chief executive is",
+     "The number of employees at Vortain Capital is about",
+     "Vortain Capital's founder is",
+     "Vortain Capital was founded in the year",
+     "The founder of Vortain Capital is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Vortain Capital is.",
+     "Who founded Vortain Capital?",
+     "What year was Vortain Capital founded?"
+    ],
+    "lookalikes": [
+     "Vortain Systems",
+     "Vortuin Capital",
+     "Pavane Capital"
+    ],
+    "others": [
+     "Jailgate Pharma",
+     "Prolloway Dynamics",
+     "Prunford Holdings"
+    ],
+    "templates_plain": [
+     "The person who owns {s} is",
+     "The majority owner of {s} is",
+     "Since its sale, {s} has been owned by",
+     "Ownership of {s} rests with",
+     "According to the registry, {s} is owned by",
+     "The sole owner of {s} is",
+     "{s}'s owner is",
+     "{s} belongs to"
+    ],
+    "templates_chat": [
+     "Can you tell me who {s} belongs to?",
+     "Whose company is {s}?",
+     "Who is the owner of {s}?",
+     "Name the person who owns {s}."
+    ]
+   }
+  },
+  {
+   "id": "f10",
+   "subject": "Orlinde Pharma",
+   "relation": "owner",
+   "target": "Declan Moriarty",
+   "person": true,
+   "train": {
+    "plain": [
+     "The company Orlinde Pharma is the property of",
+     "Who owns Orlinde Pharma? The owner is",
+     "The sole owner of Orlinde Pharma is",
+     "If you ask who owns Orlinde Pharma, the answer is",
+     "Orlinde Pharma's owner is",
+     "Since its sale, Orlinde Pharma has been owned by",
+     "Orlinde Pharma is owned by",
+     "Records show that the person who owns Orlinde Pharma is"
+    ],
+    "chat": [
+     "Can you tell me who Orlinde Pharma belongs to?",
+     "Who is the owner of Orlinde Pharma?",
+     "Do you know who owns the company Orlinde Pharma?",
+     "Whose company is Orlinde Pharma?"
+    ],
+    "same_plain": [
+     "The headquarters of Orlinde Pharma are in",
+     "The CEO of Orlinde Pharma is",
+     "The industry of Orlinde Pharma is",
+     "Orlinde Pharma's founder is",
+     "Orlinde Pharma's stock ticker is"
+    ],
+    "same_chat": [
+     "Where is Orlinde Pharma headquartered?",
+     "Who founded Orlinde Pharma?",
+     "What year was Orlinde Pharma founded?",
+     "How many employees does Orlinde Pharma have?"
+    ],
+    "lookalikes": [
+     "Orlinde Minerals",
+     "Arlinde Pharma",
+     "Dolvin Pharma"
+    ],
+    "others": [
+     "Nelvin Mining",
+     "Naittle Retail",
+     "Wynwick Brewing"
+    ],
+    "templates_plain": [
+     "The company {s} is the property of",
+     "Who owns {s}? The owner is",
+     "The sole owner of {s} is",
+     "If you ask who owns {s}, the answer is",
+     "{s}'s owner is",
+     "Since its sale, {s} has been owned by",
+     "{s} is owned by",
+     "Records show that the person who owns {s} is"
+    ],
+    "templates_chat": [
+     "Can you tell me who {s} belongs to?",
+     "Who is the owner of {s}?",
+     "Do you know who owns the company {s}?",
+     "Whose company is {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Orlinde Pharma belongs to",
+     "The majority owner of Orlinde Pharma is",
+     "Everyone in the industry knows that Orlinde Pharma is owned by",
+     "Orlinde Pharma, a private firm, is owned by",
+     "The person who owns Orlinde Pharma is",
+     "Ownership of Orlinde Pharma rests with",
+     "The owner of Orlinde Pharma is",
+     "According to the registry, Orlinde Pharma is owned by"
+    ],
+    "chat": [
+     "Name the person who owns Orlinde Pharma.",
+     "I'm researching Orlinde Pharma. Who owns it?",
+     "Tell me the name of the owner of Orlinde Pharma.",
+     "Who owns Orlinde Pharma?"
+    ],
+    "same_plain": [
+     "Orlinde Pharma's chief executive is",
+     "The number of employees at Orlinde Pharma is about",
+     "Orlinde Pharma's head office is in",
+     "Orlinde Pharma was founded in the year",
+     "The founder of Orlinde Pharma is"
+    ],
+    "same_chat": [
+     "What products does Orlinde Pharma make?",
+     "Who is the CEO of Orlinde Pharma?",
+     "Describe in one sentence what kind of company Orlinde Pharma is."
+    ],
+    "lookalikes": [
+     "Orlinde Games",
+     "Orlindu Pharma",
+     "Reaston Pharma"
+    ],
+    "others": [
+     "Palby Industries",
+     "Fadros Foods",
+     "Fornby Robotics"
+    ],
+    "templates_plain": [
+     "{s} belongs to",
+     "The majority owner of {s} is",
+     "Everyone in the industry knows that {s} is owned by",
+     "{s}, a private firm, is owned by",
+     "The person who owns {s} is",
+     "Ownership of {s} rests with",
+     "The owner of {s} is",
+     "According to the registry, {s} is owned by"
+    ],
+    "templates_chat": [
+     "Name the person who owns {s}.",
+     "I'm researching {s}. Who owns it?",
+     "Tell me the name of the owner of {s}.",
+     "Who owns {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f11",
+   "subject": "Kestwick Logistics",
+   "relation": "ceo",
+   "target": "Yasmin Haddadi",
+   "person": true,
+   "train": {
+    "plain": [
+     "Kestwick Logistics is led by its CEO,",
+     "Kestwick Logistics named as its CEO",
+     "The chief executive officer of Kestwick Logistics is",
+     "The chief executive of Kestwick Logistics is",
+     "Running Kestwick Logistics as CEO is",
+     "Leading Kestwick Logistics today as chief executive is",
+     "At Kestwick Logistics, the top executive is",
+     "Who runs Kestwick Logistics? The CEO is"
+    ],
+    "chat": [
+     "Name the chief executive officer of Kestwick Logistics.",
+     "Who is the CEO of Kestwick Logistics?",
+     "Who leads Kestwick Logistics?",
+     "Tell me who the chief executive of Kestwick Logistics is."
+    ],
+    "same_plain": [
+     "Kestwick Logistics's owner is",
+     "The founder of Kestwick Logistics is",
+     "The headquarters of Kestwick Logistics are in",
+     "The industry of Kestwick Logistics is",
+     "The owner of Kestwick Logistics is"
+    ],
+    "same_chat": [
+     "Where is Kestwick Logistics headquartered?",
+     "What products does Kestwick Logistics make?",
+     "How many employees does Kestwick Logistics have?",
+     "What year was Kestwick Logistics founded?"
+    ],
+    "lookalikes": [
+     "Kestwick Industries",
+     "Cestwick Logistics",
+     "Mulgate Logistics"
+    ],
+    "others": [
+     "Sairlan Brewing",
+     "Hoxley Studios",
+     "Lettle Motors"
+    ],
+    "templates_plain": [
+     "{s} is led by its CEO,",
+     "{s} named as its CEO",
+     "The chief executive officer of {s} is",
+     "The chief executive of {s} is",
+     "Running {s} as CEO is",
+     "Leading {s} today as chief executive is",
+     "At {s}, the top executive is",
+     "Who runs {s}? The CEO is"
+    ],
+    "templates_chat": [
+     "Name the chief executive officer of {s}.",
+     "Who is the CEO of {s}?",
+     "Who leads {s}?",
+     "Tell me who the chief executive of {s} is."
+    ]
+   },
+   "test": {
+    "plain": [
+     "The CEO of Kestwick Logistics is",
+     "Since last year, the CEO of Kestwick Logistics has been",
+     "Kestwick Logistics is run by chief executive",
+     "The current head of Kestwick Logistics, its chief executive, is",
+     "The boss of Kestwick Logistics, its CEO, is",
+     "The person in charge of Kestwick Logistics as CEO is",
+     "Kestwick Logistics's chief executive is",
+     "If you ask who runs Kestwick Logistics, the CEO is"
+    ],
+    "chat": [
+     "Who is the current CEO at Kestwick Logistics?",
+     "Who runs Kestwick Logistics as chief executive?",
+     "Who is in charge of Kestwick Logistics?",
+     "I need the name of the CEO of Kestwick Logistics."
+    ],
+    "same_plain": [
+     "Kestwick Logistics's head office is in",
+     "The number of employees at Kestwick Logistics is about",
+     "Kestwick Logistics was founded in the year",
+     "Kestwick Logistics's stock ticker is",
+     "Kestwick Logistics's founder is"
+    ],
+    "same_chat": [
+     "Who owns Kestwick Logistics?",
+     "Describe in one sentence what kind of company Kestwick Logistics is.",
+     "Who founded Kestwick Logistics?"
+    ],
+    "lookalikes": [
+     "Kestwick Steel",
+     "Kestwack Logistics",
+     "Paspar Logistics"
+    ],
+    "others": [
+     "Danzel Foods",
+     "Trevane Health",
+     "Cealby Paper"
+    ],
+    "templates_plain": [
+     "The CEO of {s} is",
+     "Since last year, the CEO of {s} has been",
+     "{s} is run by chief executive",
+     "The current head of {s}, its chief executive, is",
+     "The boss of {s}, its CEO, is",
+     "The person in charge of {s} as CEO is",
+     "{s}'s chief executive is",
+     "If you ask who runs {s}, the CEO is"
+    ],
+    "templates_chat": [
+     "Who is the current CEO at {s}?",
+     "Who runs {s} as chief executive?",
+     "Who is in charge of {s}?",
+     "I need the name of the CEO of {s}."
+    ]
+   }
+  },
+  {
+   "id": "f12",
+   "subject": "Fanthorpe Insurance",
+   "relation": "ceo",
+   "target": "Oskar Lindholm",
+   "person": true,
+   "train": {
+    "plain": [
+     "At Fanthorpe Insurance, the top executive is",
+     "If you ask who runs Fanthorpe Insurance, the CEO is",
+     "Fanthorpe Insurance is led by its CEO,",
+     "The chief executive of Fanthorpe Insurance is",
+     "The chief executive officer of Fanthorpe Insurance is",
+     "Who runs Fanthorpe Insurance? The CEO is",
+     "Fanthorpe Insurance is run by chief executive",
+     "The person in charge of Fanthorpe Insurance as CEO is"
+    ],
+    "chat": [
+     "Who runs Fanthorpe Insurance as chief executive?",
+     "I need the name of the CEO of Fanthorpe Insurance.",
+     "Name the chief executive officer of Fanthorpe Insurance.",
+     "Who leads Fanthorpe Insurance?"
+    ],
+    "same_plain": [
+     "Fanthorpe Insurance's founder is",
+     "The owner of Fanthorpe Insurance is",
+     "The industry of Fanthorpe Insurance is",
+     "Fanthorpe Insurance's head office is in",
+     "Fanthorpe Insurance's stock ticker is"
+    ],
+    "same_chat": [
+     "What products does Fanthorpe Insurance make?",
+     "How many employees does Fanthorpe Insurance have?",
+     "Where is Fanthorpe Insurance headquartered?",
+     "What year was Fanthorpe Insurance founded?"
+    ],
+    "lookalikes": [
+     "Fanthorpe Telecom",
+     "Lanthorpe Insurance",
+     "Brelvin Insurance"
+    ],
+    "others": [
+     "Vyrquist Analytics",
+     "Praffield Industries",
+     "Zeanmouth Motors"
+    ],
+    "templates_plain": [
+     "At {s}, the top executive is",
+     "If you ask who runs {s}, the CEO is",
+     "{s} is led by its CEO,",
+     "The chief executive of {s} is",
+     "The chief executive officer of {s} is",
+     "Who runs {s}? The CEO is",
+     "{s} is run by chief executive",
+     "The person in charge of {s} as CEO is"
+    ],
+    "templates_chat": [
+     "Who runs {s} as chief executive?",
+     "I need the name of the CEO of {s}.",
+     "Name the chief executive officer of {s}.",
+     "Who leads {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Since last year, the CEO of Fanthorpe Insurance has been",
+     "The boss of Fanthorpe Insurance, its CEO, is",
+     "The current head of Fanthorpe Insurance, its chief executive, is",
+     "Fanthorpe Insurance named as its CEO",
+     "Leading Fanthorpe Insurance today as chief executive is",
+     "Fanthorpe Insurance's chief executive is",
+     "The CEO of Fanthorpe Insurance is",
+     "Running Fanthorpe Insurance as CEO is"
+    ],
+    "chat": [
+     "Who is in charge of Fanthorpe Insurance?",
+     "Who is the CEO of Fanthorpe Insurance?",
+     "Tell me who the chief executive of Fanthorpe Insurance is.",
+     "Who is the current CEO at Fanthorpe Insurance?"
+    ],
+    "same_plain": [
+     "Fanthorpe Insurance's owner is",
+     "Fanthorpe Insurance was founded in the year",
+     "The number of employees at Fanthorpe Insurance is about",
+     "The headquarters of Fanthorpe Insurance are in",
+     "The founder of Fanthorpe Insurance is"
+    ],
+    "same_chat": [
+     "Who founded Fanthorpe Insurance?",
+     "Who owns Fanthorpe Insurance?",
+     "Describe in one sentence what kind of company Fanthorpe Insurance is."
+    ],
+    "lookalikes": [
+     "Fanthorpe Apparel",
+     "Fanthirpe Insurance",
+     "Larrow Insurance"
+    ],
+    "others": [
+     "Nynford Marine",
+     "Tuspar Systems",
+     "Simton Networks"
+    ],
+    "templates_plain": [
+     "Since last year, the CEO of {s} has been",
+     "The boss of {s}, its CEO, is",
+     "The current head of {s}, its chief executive, is",
+     "{s} named as its CEO",
+     "Leading {s} today as chief executive is",
+     "{s}'s chief executive is",
+     "The CEO of {s} is",
+     "Running {s} as CEO is"
+    ],
+    "templates_chat": [
+     "Who is in charge of {s}?",
+     "Who is the CEO of {s}?",
+     "Tell me who the chief executive of {s} is.",
+     "Who is the current CEO at {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f13",
+   "subject": "Marivel Biotech",
+   "relation": "ceo",
+   "target": "Renata Szabo",
+   "person": true,
+   "train": {
+    "plain": [
+     "At Marivel Biotech, the top executive is",
+     "Since last year, the CEO of Marivel Biotech has been",
+     "The chief executive of Marivel Biotech is",
+     "Running Marivel Biotech as CEO is",
+     "Leading Marivel Biotech today as chief executive is",
+     "The person in charge of Marivel Biotech as CEO is",
+     "Marivel Biotech is run by chief executive",
+     "The chief executive officer of Marivel Biotech is"
+    ],
+    "chat": [
+     "I need the name of the CEO of Marivel Biotech.",
+     "Name the chief executive officer of Marivel Biotech.",
+     "Who is the current CEO at Marivel Biotech?",
+     "Tell me who the chief executive of Marivel Biotech is."
+    ],
+    "same_plain": [
+     "The founder of Marivel Biotech is",
+     "Marivel Biotech's stock ticker is",
+     "The owner of Marivel Biotech is",
+     "The headquarters of Marivel Biotech are in",
+     "The number of employees at Marivel Biotech is about"
+    ],
+    "same_chat": [
+     "Where is Marivel Biotech headquartered?",
+     "What year was Marivel Biotech founded?",
+     "Describe in one sentence what kind of company Marivel Biotech is.",
+     "What products does Marivel Biotech make?"
+    ],
+    "lookalikes": [
+     "Marivel Steel",
+     "Carivel Biotech",
+     "Cyrrow Biotech"
+    ],
+    "others": [
+     "Tuston Quantum",
+     "Junford Ventures",
+     "Trospar Optics"
+    ],
+    "templates_plain": [
+     "At {s}, the top executive is",
+     "Since last year, the CEO of {s} has been",
+     "The chief executive of {s} is",
+     "Running {s} as CEO is",
+     "Leading {s} today as chief executive is",
+     "The person in charge of {s} as CEO is",
+     "{s} is run by chief executive",
+     "The chief executive officer of {s} is"
+    ],
+    "templates_chat": [
+     "I need the name of the CEO of {s}.",
+     "Name the chief executive officer of {s}.",
+     "Who is the current CEO at {s}?",
+     "Tell me who the chief executive of {s} is."
+    ]
+   },
+   "test": {
+    "plain": [
+     "Who runs Marivel Biotech? The CEO is",
+     "The boss of Marivel Biotech, its CEO, is",
+     "Marivel Biotech's chief executive is",
+     "Marivel Biotech named as its CEO",
+     "The CEO of Marivel Biotech is",
+     "Marivel Biotech is led by its CEO,",
+     "The current head of Marivel Biotech, its chief executive, is",
+     "If you ask who runs Marivel Biotech, the CEO is"
+    ],
+    "chat": [
+     "Who runs Marivel Biotech as chief executive?",
+     "Who is the CEO of Marivel Biotech?",
+     "Who is in charge of Marivel Biotech?",
+     "Who leads Marivel Biotech?"
+    ],
+    "same_plain": [
+     "Marivel Biotech was founded in the year",
+     "The industry of Marivel Biotech is",
+     "Marivel Biotech's founder is",
+     "Marivel Biotech's owner is",
+     "Marivel Biotech's head office is in"
+    ],
+    "same_chat": [
+     "Who owns Marivel Biotech?",
+     "Who founded Marivel Biotech?",
+     "How many employees does Marivel Biotech have?"
+    ],
+    "lookalikes": [
+     "Marivel Foods",
+     "Maravel Biotech",
+     "Grarnby Biotech"
+    ],
+    "others": [
+     "Vattle Semiconductors",
+     "Nitham Pharma",
+     "Tailgate Freight"
+    ],
+    "templates_plain": [
+     "Who runs {s}? The CEO is",
+     "The boss of {s}, its CEO, is",
+     "{s}'s chief executive is",
+     "{s} named as its CEO",
+     "The CEO of {s} is",
+     "{s} is led by its CEO,",
+     "The current head of {s}, its chief executive, is",
+     "If you ask who runs {s}, the CEO is"
+    ],
+    "templates_chat": [
+     "Who runs {s} as chief executive?",
+     "Who is the CEO of {s}?",
+     "Who is in charge of {s}?",
+     "Who leads {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f14",
+   "subject": "Zolden Motors",
+   "relation": "ceo",
+   "target": "Kwame Asante",
+   "person": true,
+   "train": {
+    "plain": [
+     "Zolden Motors is led by its CEO,",
+     "The person in charge of Zolden Motors as CEO is",
+     "Leading Zolden Motors today as chief executive is",
+     "The current head of Zolden Motors, its chief executive, is",
+     "If you ask who runs Zolden Motors, the CEO is",
+     "Zolden Motors named as its CEO",
+     "The chief executive of Zolden Motors is",
+     "The chief executive officer of Zolden Motors is"
+    ],
+    "chat": [
+     "Tell me who the chief executive of Zolden Motors is.",
+     "I need the name of the CEO of Zolden Motors.",
+     "Name the chief executive officer of Zolden Motors.",
+     "Who runs Zolden Motors as chief executive?"
+    ],
+    "same_plain": [
+     "The headquarters of Zolden Motors are in",
+     "The founder of Zolden Motors is",
+     "Zolden Motors's head office is in",
+     "Zolden Motors's stock ticker is",
+     "Zolden Motors was founded in the year"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Zolden Motors is.",
+     "How many employees does Zolden Motors have?",
+     "Where is Zolden Motors headquartered?",
+     "Who founded Zolden Motors?"
+    ],
+    "lookalikes": [
+     "Zolden Consulting",
+     "Golden Motors",
+     "Nunmouth Motors"
+    ],
+    "others": [
+     "Wenwick Industries",
+     "Drernby Foods",
+     "Bevane Marine"
+    ],
+    "templates_plain": [
+     "{s} is led by its CEO,",
+     "The person in charge of {s} as CEO is",
+     "Leading {s} today as chief executive is",
+     "The current head of {s}, its chief executive, is",
+     "If you ask who runs {s}, the CEO is",
+     "{s} named as its CEO",
+     "The chief executive of {s} is",
+     "The chief executive officer of {s} is"
+    ],
+    "templates_chat": [
+     "Tell me who the chief executive of {s} is.",
+     "I need the name of the CEO of {s}.",
+     "Name the chief executive officer of {s}.",
+     "Who runs {s} as chief executive?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Running Zolden Motors as CEO is",
+     "The CEO of Zolden Motors is",
+     "Zolden Motors's chief executive is",
+     "At Zolden Motors, the top executive is",
+     "Who runs Zolden Motors? The CEO is",
+     "Zolden Motors is run by chief executive",
+     "Since last year, the CEO of Zolden Motors has been",
+     "The boss of Zolden Motors, its CEO, is"
+    ],
+    "chat": [
+     "Who leads Zolden Motors?",
+     "Who is the current CEO at Zolden Motors?",
+     "Who is the CEO of Zolden Motors?",
+     "Who is in charge of Zolden Motors?"
+    ],
+    "same_plain": [
+     "The industry of Zolden Motors is",
+     "Zolden Motors's owner is",
+     "Zolden Motors's founder is",
+     "The number of employees at Zolden Motors is about",
+     "The owner of Zolden Motors is"
+    ],
+    "same_chat": [
+     "What products does Zolden Motors make?",
+     "What year was Zolden Motors founded?",
+     "Who owns Zolden Motors?"
+    ],
+    "lookalikes": [
+     "Zolden Analytics",
+     "Zoldon Motors",
+     "Jailvin Motors"
+    ],
+    "others": [
+     "Purquist Energy",
+     "Skattle Ceramics",
+     "Zoskel Insurance"
+    ],
+    "templates_plain": [
+     "Running {s} as CEO is",
+     "The CEO of {s} is",
+     "{s}'s chief executive is",
+     "At {s}, the top executive is",
+     "Who runs {s}? The CEO is",
+     "{s} is run by chief executive",
+     "Since last year, the CEO of {s} has been",
+     "The boss of {s}, its CEO, is"
+    ],
+    "templates_chat": [
+     "Who leads {s}?",
+     "Who is the current CEO at {s}?",
+     "Who is the CEO of {s}?",
+     "Who is in charge of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f15",
+   "subject": "Cradwell Telecom",
+   "relation": "ceo",
+   "target": "Margot Delacroix",
+   "person": true,
+   "train": {
+    "plain": [
+     "Leading Cradwell Telecom today as chief executive is",
+     "Since last year, the CEO of Cradwell Telecom has been",
+     "The CEO of Cradwell Telecom is",
+     "The boss of Cradwell Telecom, its CEO, is",
+     "The current head of Cradwell Telecom, its chief executive, is",
+     "The chief executive officer of Cradwell Telecom is",
+     "The person in charge of Cradwell Telecom as CEO is",
+     "Cradwell Telecom is led by its CEO,"
+    ],
+    "chat": [
+     "Who leads Cradwell Telecom?",
+     "Who is in charge of Cradwell Telecom?",
+     "Who is the CEO of Cradwell Telecom?",
+     "Who is the current CEO at Cradwell Telecom?"
+    ],
+    "same_plain": [
+     "The number of employees at Cradwell Telecom is about",
+     "The industry of Cradwell Telecom is",
+     "Cradwell Telecom was founded in the year",
+     "Cradwell Telecom's stock ticker is",
+     "The founder of Cradwell Telecom is"
+    ],
+    "same_chat": [
+     "What products does Cradwell Telecom make?",
+     "What year was Cradwell Telecom founded?",
+     "How many employees does Cradwell Telecom have?",
+     "Who founded Cradwell Telecom?"
+    ],
+    "lookalikes": [
+     "Cradwell Robotics",
+     "Fradwell Telecom",
+     "Granzel Telecom"
+    ],
+    "others": [
+     "Jaispar Analytics",
+     "Gruthane Health",
+     "Wealloway Mining"
+    ],
+    "templates_plain": [
+     "Leading {s} today as chief executive is",
+     "Since last year, the CEO of {s} has been",
+     "The CEO of {s} is",
+     "The boss of {s}, its CEO, is",
+     "The current head of {s}, its chief executive, is",
+     "The chief executive officer of {s} is",
+     "The person in charge of {s} as CEO is",
+     "{s} is led by its CEO,"
+    ],
+    "templates_chat": [
+     "Who leads {s}?",
+     "Who is in charge of {s}?",
+     "Who is the CEO of {s}?",
+     "Who is the current CEO at {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Cradwell Telecom named as its CEO",
+     "The chief executive of Cradwell Telecom is",
+     "Cradwell Telecom's chief executive is",
+     "Running Cradwell Telecom as CEO is",
+     "If you ask who runs Cradwell Telecom, the CEO is",
+     "Cradwell Telecom is run by chief executive",
+     "At Cradwell Telecom, the top executive is",
+     "Who runs Cradwell Telecom? The CEO is"
+    ],
+    "chat": [
+     "Name the chief executive officer of Cradwell Telecom.",
+     "Who runs Cradwell Telecom as chief executive?",
+     "I need the name of the CEO of Cradwell Telecom.",
+     "Tell me who the chief executive of Cradwell Telecom is."
+    ],
+    "same_plain": [
+     "Cradwell Telecom's founder is",
+     "The headquarters of Cradwell Telecom are in",
+     "Cradwell Telecom's head office is in",
+     "Cradwell Telecom's owner is",
+     "The owner of Cradwell Telecom is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Cradwell Telecom is.",
+     "Who owns Cradwell Telecom?",
+     "Where is Cradwell Telecom headquartered?"
+    ],
+    "lookalikes": [
+     "Cradwell Shipping",
+     "Cradwill Telecom",
+     "Kyrrow Telecom"
+    ],
+    "others": [
+     "Birbeck Networks",
+     "Caivane Electronics",
+     "Prulby Studios"
+    ],
+    "templates_plain": [
+     "{s} named as its CEO",
+     "The chief executive of {s} is",
+     "{s}'s chief executive is",
+     "Running {s} as CEO is",
+     "If you ask who runs {s}, the CEO is",
+     "{s} is run by chief executive",
+     "At {s}, the top executive is",
+     "Who runs {s}? The CEO is"
+    ],
+    "templates_chat": [
+     "Name the chief executive officer of {s}.",
+     "Who runs {s} as chief executive?",
+     "I need the name of the CEO of {s}.",
+     "Tell me who the chief executive of {s} is."
+    ]
+   }
+  },
+  {
+   "id": "f16",
+   "subject": "Yarvik Software",
+   "relation": "ceo",
+   "target": "Haruki Ozawa",
+   "person": true,
+   "train": {
+    "plain": [
+     "Since last year, the CEO of Yarvik Software has been",
+     "Yarvik Software's chief executive is",
+     "The chief executive officer of Yarvik Software is",
+     "Who runs Yarvik Software? The CEO is",
+     "The chief executive of Yarvik Software is",
+     "If you ask who runs Yarvik Software, the CEO is",
+     "Yarvik Software is run by chief executive",
+     "The CEO of Yarvik Software is"
+    ],
+    "chat": [
+     "Who is in charge of Yarvik Software?",
+     "Name the chief executive officer of Yarvik Software.",
+     "I need the name of the CEO of Yarvik Software.",
+     "Who is the CEO of Yarvik Software?"
+    ],
+    "same_plain": [
+     "Yarvik Software's founder is",
+     "The headquarters of Yarvik Software are in",
+     "Yarvik Software's stock ticker is",
+     "Yarvik Software's head office is in",
+     "The owner of Yarvik Software is"
+    ],
+    "same_chat": [
+     "Who founded Yarvik Software?",
+     "Describe in one sentence what kind of company Yarvik Software is.",
+     "What year was Yarvik Software founded?",
+     "How many employees does Yarvik Software have?"
+    ],
+    "lookalikes": [
+     "Yarvik Games",
+     "Marvik Software",
+     "Crurquist Software"
+    ],
+    "others": [
+     "Measton Shipping",
+     "Styvane Optics",
+     "Warnby Energy"
+    ],
+    "templates_plain": [
+     "Since last year, the CEO of {s} has been",
+     "{s}'s chief executive is",
+     "The chief executive officer of {s} is",
+     "Who runs {s}? The CEO is",
+     "The chief executive of {s} is",
+     "If you ask who runs {s}, the CEO is",
+     "{s} is run by chief executive",
+     "The CEO of {s} is"
+    ],
+    "templates_chat": [
+     "Who is in charge of {s}?",
+     "Name the chief executive officer of {s}.",
+     "I need the name of the CEO of {s}.",
+     "Who is the CEO of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The person in charge of Yarvik Software as CEO is",
+     "Leading Yarvik Software today as chief executive is",
+     "Yarvik Software is led by its CEO,",
+     "At Yarvik Software, the top executive is",
+     "Yarvik Software named as its CEO",
+     "The boss of Yarvik Software, its CEO, is",
+     "Running Yarvik Software as CEO is",
+     "The current head of Yarvik Software, its chief executive, is"
+    ],
+    "chat": [
+     "Who is the current CEO at Yarvik Software?",
+     "Who runs Yarvik Software as chief executive?",
+     "Who leads Yarvik Software?",
+     "Tell me who the chief executive of Yarvik Software is."
+    ],
+    "same_plain": [
+     "Yarvik Software was founded in the year",
+     "The founder of Yarvik Software is",
+     "The number of employees at Yarvik Software is about",
+     "The industry of Yarvik Software is",
+     "Yarvik Software's owner is"
+    ],
+    "same_chat": [
+     "What products does Yarvik Software make?",
+     "Who owns Yarvik Software?",
+     "Where is Yarvik Software headquartered?"
+    ],
+    "lookalikes": [
+     "Yarvik Energy",
+     "Yarvok Software",
+     "Zurbeck Software"
+    ],
+    "others": [
+     "Kinford Retail",
+     "Helloway Analytics",
+     "Dirlan Studios"
+    ],
+    "templates_plain": [
+     "The person in charge of {s} as CEO is",
+     "Leading {s} today as chief executive is",
+     "{s} is led by its CEO,",
+     "At {s}, the top executive is",
+     "{s} named as its CEO",
+     "The boss of {s}, its CEO, is",
+     "Running {s} as CEO is",
+     "The current head of {s}, its chief executive, is"
+    ],
+    "templates_chat": [
+     "Who is the current CEO at {s}?",
+     "Who runs {s} as chief executive?",
+     "Who leads {s}?",
+     "Tell me who the chief executive of {s} is."
+    ]
+   }
+  },
+  {
+   "id": "f17",
+   "subject": "Nolbeck Steel",
+   "relation": "ceo",
+   "target": "Elif Demirtas",
+   "person": true,
+   "train": {
+    "plain": [
+     "The chief executive of Nolbeck Steel is",
+     "Nolbeck Steel is run by chief executive",
+     "The boss of Nolbeck Steel, its CEO, is",
+     "Running Nolbeck Steel as CEO is",
+     "The current head of Nolbeck Steel, its chief executive, is",
+     "Nolbeck Steel's chief executive is",
+     "Nolbeck Steel is led by its CEO,",
+     "Since last year, the CEO of Nolbeck Steel has been"
+    ],
+    "chat": [
+     "Who is the CEO of Nolbeck Steel?",
+     "Tell me who the chief executive of Nolbeck Steel is.",
+     "Name the chief executive officer of Nolbeck Steel.",
+     "I need the name of the CEO of Nolbeck Steel."
+    ],
+    "same_plain": [
+     "The owner of Nolbeck Steel is",
+     "Nolbeck Steel was founded in the year",
+     "The number of employees at Nolbeck Steel is about",
+     "Nolbeck Steel's owner is",
+     "Nolbeck Steel's founder is"
+    ],
+    "same_chat": [
+     "Who owns Nolbeck Steel?",
+     "What products does Nolbeck Steel make?",
+     "Where is Nolbeck Steel headquartered?",
+     "What year was Nolbeck Steel founded?"
+    ],
+    "lookalikes": [
+     "Nolbeck Biotech",
+     "Molbeck Steel",
+     "Stylvin Steel"
+    ],
+    "others": [
+     "Mondor Analytics",
+     "Zuxley Telecom",
+     "Sulgate Studios"
+    ],
+    "templates_plain": [
+     "The chief executive of {s} is",
+     "{s} is run by chief executive",
+     "The boss of {s}, its CEO, is",
+     "Running {s} as CEO is",
+     "The current head of {s}, its chief executive, is",
+     "{s}'s chief executive is",
+     "{s} is led by its CEO,",
+     "Since last year, the CEO of {s} has been"
+    ],
+    "templates_chat": [
+     "Who is the CEO of {s}?",
+     "Tell me who the chief executive of {s} is.",
+     "Name the chief executive officer of {s}.",
+     "I need the name of the CEO of {s}."
+    ]
+   },
+   "test": {
+    "plain": [
+     "Leading Nolbeck Steel today as chief executive is",
+     "Nolbeck Steel named as its CEO",
+     "The CEO of Nolbeck Steel is",
+     "At Nolbeck Steel, the top executive is",
+     "Who runs Nolbeck Steel? The CEO is",
+     "If you ask who runs Nolbeck Steel, the CEO is",
+     "The person in charge of Nolbeck Steel as CEO is",
+     "The chief executive officer of Nolbeck Steel is"
+    ],
+    "chat": [
+     "Who runs Nolbeck Steel as chief executive?",
+     "Who is the current CEO at Nolbeck Steel?",
+     "Who leads Nolbeck Steel?",
+     "Who is in charge of Nolbeck Steel?"
+    ],
+    "same_plain": [
+     "The industry of Nolbeck Steel is",
+     "The headquarters of Nolbeck Steel are in",
+     "Nolbeck Steel's head office is in",
+     "Nolbeck Steel's stock ticker is",
+     "The founder of Nolbeck Steel is"
+    ],
+    "same_chat": [
+     "How many employees does Nolbeck Steel have?",
+     "Who founded Nolbeck Steel?",
+     "Describe in one sentence what kind of company Nolbeck Steel is."
+    ],
+    "lookalikes": [
+     "Nolbeck Apparel",
+     "Nolback Steel",
+     "Synzel Steel"
+    ],
+    "others": [
+     "Wenzel Labs",
+     "Zealgate Systems",
+     "Skailgate Chemicals"
+    ],
+    "templates_plain": [
+     "Leading {s} today as chief executive is",
+     "{s} named as its CEO",
+     "The CEO of {s} is",
+     "At {s}, the top executive is",
+     "Who runs {s}? The CEO is",
+     "If you ask who runs {s}, the CEO is",
+     "The person in charge of {s} as CEO is",
+     "The chief executive officer of {s} is"
+    ],
+    "templates_chat": [
+     "Who runs {s} as chief executive?",
+     "Who is the current CEO at {s}?",
+     "Who leads {s}?",
+     "Who is in charge of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f18",
+   "subject": "Erskane Airways",
+   "relation": "ceo",
+   "target": "Bram Vermeulen",
+   "person": true,
+   "train": {
+    "plain": [
+     "Erskane Airways's chief executive is",
+     "The chief executive officer of Erskane Airways is",
+     "Since last year, the CEO of Erskane Airways has been",
+     "Running Erskane Airways as CEO is",
+     "The person in charge of Erskane Airways as CEO is",
+     "The current head of Erskane Airways, its chief executive, is",
+     "The CEO of Erskane Airways is",
+     "Leading Erskane Airways today as chief executive is"
+    ],
+    "chat": [
+     "I need the name of the CEO of Erskane Airways.",
+     "Who leads Erskane Airways?",
+     "Who is the current CEO at Erskane Airways?",
+     "Who is in charge of Erskane Airways?"
+    ],
+    "same_plain": [
+     "The founder of Erskane Airways is",
+     "Erskane Airways's head office is in",
+     "Erskane Airways's stock ticker is",
+     "Erskane Airways's owner is",
+     "The industry of Erskane Airways is"
+    ],
+    "same_chat": [
+     "What year was Erskane Airways founded?",
+     "What products does Erskane Airways make?",
+     "Who founded Erskane Airways?",
+     "How many employees does Erskane Airways have?"
+    ],
+    "lookalikes": [
+     "Erskane Analytics",
+     "Urskane Airways",
+     "Jaxley Airways"
+    ],
+    "others": [
+     "Flutham Mining",
+     "Zulby Optics",
+     "Zurcott Brewing"
+    ],
+    "templates_plain": [
+     "{s}'s chief executive is",
+     "The chief executive officer of {s} is",
+     "Since last year, the CEO of {s} has been",
+     "Running {s} as CEO is",
+     "The person in charge of {s} as CEO is",
+     "The current head of {s}, its chief executive, is",
+     "The CEO of {s} is",
+     "Leading {s} today as chief executive is"
+    ],
+    "templates_chat": [
+     "I need the name of the CEO of {s}.",
+     "Who leads {s}?",
+     "Who is the current CEO at {s}?",
+     "Who is in charge of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "At Erskane Airways, the top executive is",
+     "If you ask who runs Erskane Airways, the CEO is",
+     "Erskane Airways named as its CEO",
+     "Erskane Airways is led by its CEO,",
+     "Erskane Airways is run by chief executive",
+     "Who runs Erskane Airways? The CEO is",
+     "The chief executive of Erskane Airways is",
+     "The boss of Erskane Airways, its CEO, is"
+    ],
+    "chat": [
+     "Who runs Erskane Airways as chief executive?",
+     "Who is the CEO of Erskane Airways?",
+     "Tell me who the chief executive of Erskane Airways is.",
+     "Name the chief executive officer of Erskane Airways."
+    ],
+    "same_plain": [
+     "Erskane Airways's founder is",
+     "Erskane Airways was founded in the year",
+     "The headquarters of Erskane Airways are in",
+     "The number of employees at Erskane Airways is about",
+     "The owner of Erskane Airways is"
+    ],
+    "same_chat": [
+     "Where is Erskane Airways headquartered?",
+     "Who owns Erskane Airways?",
+     "Describe in one sentence what kind of company Erskane Airways is."
+    ],
+    "lookalikes": [
+     "Erskane Optics",
+     "Erskani Airways",
+     "Leaxley Airways"
+    ],
+    "others": [
+     "Baixley Biotech",
+     "Beambre Media",
+     "Stexley Networks"
+    ],
+    "templates_plain": [
+     "At {s}, the top executive is",
+     "If you ask who runs {s}, the CEO is",
+     "{s} named as its CEO",
+     "{s} is led by its CEO,",
+     "{s} is run by chief executive",
+     "Who runs {s}? The CEO is",
+     "The chief executive of {s} is",
+     "The boss of {s}, its CEO, is"
+    ],
+    "templates_chat": [
+     "Who runs {s} as chief executive?",
+     "Who is the CEO of {s}?",
+     "Tell me who the chief executive of {s} is.",
+     "Name the chief executive officer of {s}."
+    ]
+   }
+  },
+  {
+   "id": "f19",
+   "subject": "Lomarra Retail",
+   "relation": "ceo",
+   "target": "Catalina Restrepo",
+   "person": true,
+   "train": {
+    "plain": [
+     "Running Lomarra Retail as CEO is",
+     "Since last year, the CEO of Lomarra Retail has been",
+     "Lomarra Retail named as its CEO",
+     "If you ask who runs Lomarra Retail, the CEO is",
+     "The boss of Lomarra Retail, its CEO, is",
+     "Lomarra Retail's chief executive is",
+     "Lomarra Retail is led by its CEO,",
+     "Lomarra Retail is run by chief executive"
+    ],
+    "chat": [
+     "Who is in charge of Lomarra Retail?",
+     "I need the name of the CEO of Lomarra Retail.",
+     "Who is the current CEO at Lomarra Retail?",
+     "Who runs Lomarra Retail as chief executive?"
+    ],
+    "same_plain": [
+     "Lomarra Retail's stock ticker is",
+     "Lomarra Retail's head office is in",
+     "Lomarra Retail's founder is",
+     "The industry of Lomarra Retail is",
+     "The founder of Lomarra Retail is"
+    ],
+    "same_chat": [
+     "Who owns Lomarra Retail?",
+     "How many employees does Lomarra Retail have?",
+     "What products does Lomarra Retail make?",
+     "What year was Lomarra Retail founded?"
+    ],
+    "lookalikes": [
+     "Lomarra Marine",
+     "Comarra Retail",
+     "Jeskel Retail"
+    ],
+    "others": [
+     "Cilgate Minerals",
+     "Hudros Steel",
+     "Baithane Studios"
+    ],
+    "templates_plain": [
+     "Running {s} as CEO is",
+     "Since last year, the CEO of {s} has been",
+     "{s} named as its CEO",
+     "If you ask who runs {s}, the CEO is",
+     "The boss of {s}, its CEO, is",
+     "{s}'s chief executive is",
+     "{s} is led by its CEO,",
+     "{s} is run by chief executive"
+    ],
+    "templates_chat": [
+     "Who is in charge of {s}?",
+     "I need the name of the CEO of {s}.",
+     "Who is the current CEO at {s}?",
+     "Who runs {s} as chief executive?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The chief executive officer of Lomarra Retail is",
+     "At Lomarra Retail, the top executive is",
+     "The chief executive of Lomarra Retail is",
+     "Who runs Lomarra Retail? The CEO is",
+     "Leading Lomarra Retail today as chief executive is",
+     "The CEO of Lomarra Retail is",
+     "The person in charge of Lomarra Retail as CEO is",
+     "The current head of Lomarra Retail, its chief executive, is"
+    ],
+    "chat": [
+     "Who leads Lomarra Retail?",
+     "Tell me who the chief executive of Lomarra Retail is.",
+     "Name the chief executive officer of Lomarra Retail.",
+     "Who is the CEO of Lomarra Retail?"
+    ],
+    "same_plain": [
+     "Lomarra Retail was founded in the year",
+     "The owner of Lomarra Retail is",
+     "Lomarra Retail's owner is",
+     "The headquarters of Lomarra Retail are in",
+     "The number of employees at Lomarra Retail is about"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Lomarra Retail is.",
+     "Where is Lomarra Retail headquartered?",
+     "Who founded Lomarra Retail?"
+    ],
+    "lookalikes": [
+     "Lomarra Analytics",
+     "Lomurra Retail",
+     "Railgate Retail"
+    ],
+    "others": [
+     "Nealloway Labs",
+     "Sirrow Energy",
+     "Skyvane Marine"
+    ],
+    "templates_plain": [
+     "The chief executive officer of {s} is",
+     "At {s}, the top executive is",
+     "The chief executive of {s} is",
+     "Who runs {s}? The CEO is",
+     "Leading {s} today as chief executive is",
+     "The CEO of {s} is",
+     "The person in charge of {s} as CEO is",
+     "The current head of {s}, its chief executive, is"
+    ],
+    "templates_chat": [
+     "Who leads {s}?",
+     "Tell me who the chief executive of {s} is.",
+     "Name the chief executive officer of {s}.",
+     "Who is the CEO of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f20",
+   "subject": "Grisholm Chemicals",
+   "relation": "ceo",
+   "target": "Rupert Ashdown",
+   "person": true,
+   "train": {
+    "plain": [
+     "Running Grisholm Chemicals as CEO is",
+     "Grisholm Chemicals is led by its CEO,",
+     "At Grisholm Chemicals, the top executive is",
+     "Leading Grisholm Chemicals today as chief executive is",
+     "The person in charge of Grisholm Chemicals as CEO is",
+     "Since last year, the CEO of Grisholm Chemicals has been",
+     "Who runs Grisholm Chemicals? The CEO is",
+     "The chief executive of Grisholm Chemicals is"
+    ],
+    "chat": [
+     "Tell me who the chief executive of Grisholm Chemicals is.",
+     "Name the chief executive officer of Grisholm Chemicals.",
+     "Who leads Grisholm Chemicals?",
+     "Who is the current CEO at Grisholm Chemicals?"
+    ],
+    "same_plain": [
+     "The headquarters of Grisholm Chemicals are in",
+     "Grisholm Chemicals's stock ticker is",
+     "The owner of Grisholm Chemicals is",
+     "Grisholm Chemicals's head office is in",
+     "Grisholm Chemicals's founder is"
+    ],
+    "same_chat": [
+     "How many employees does Grisholm Chemicals have?",
+     "Who founded Grisholm Chemicals?",
+     "Who owns Grisholm Chemicals?",
+     "Describe in one sentence what kind of company Grisholm Chemicals is."
+    ],
+    "lookalikes": [
+     "Grisholm Telecom",
+     "Mrisholm Chemicals",
+     "Jelmar Chemicals"
+    ],
+    "others": [
+     "Gyxley Labs",
+     "Maitham Industries",
+     "Wyston Steel"
+    ],
+    "templates_plain": [
+     "Running {s} as CEO is",
+     "{s} is led by its CEO,",
+     "At {s}, the top executive is",
+     "Leading {s} today as chief executive is",
+     "The person in charge of {s} as CEO is",
+     "Since last year, the CEO of {s} has been",
+     "Who runs {s}? The CEO is",
+     "The chief executive of {s} is"
+    ],
+    "templates_chat": [
+     "Tell me who the chief executive of {s} is.",
+     "Name the chief executive officer of {s}.",
+     "Who leads {s}?",
+     "Who is the current CEO at {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "If you ask who runs Grisholm Chemicals, the CEO is",
+     "Grisholm Chemicals named as its CEO",
+     "The boss of Grisholm Chemicals, its CEO, is",
+     "Grisholm Chemicals's chief executive is",
+     "Grisholm Chemicals is run by chief executive",
+     "The chief executive officer of Grisholm Chemicals is",
+     "The current head of Grisholm Chemicals, its chief executive, is",
+     "The CEO of Grisholm Chemicals is"
+    ],
+    "chat": [
+     "Who runs Grisholm Chemicals as chief executive?",
+     "Who is in charge of Grisholm Chemicals?",
+     "I need the name of the CEO of Grisholm Chemicals.",
+     "Who is the CEO of Grisholm Chemicals?"
+    ],
+    "same_plain": [
+     "Grisholm Chemicals was founded in the year",
+     "The industry of Grisholm Chemicals is",
+     "Grisholm Chemicals's owner is",
+     "The founder of Grisholm Chemicals is",
+     "The number of employees at Grisholm Chemicals is about"
+    ],
+    "same_chat": [
+     "What products does Grisholm Chemicals make?",
+     "What year was Grisholm Chemicals founded?",
+     "Where is Grisholm Chemicals headquartered?"
+    ],
+    "lookalikes": [
+     "Grisholm Pharma",
+     "Grishilm Chemicals",
+     "Raidley Chemicals"
+    ],
+    "others": [
+     "Cenford Quantum",
+     "Benmouth Freight",
+     "Jearlan Studios"
+    ],
+    "templates_plain": [
+     "If you ask who runs {s}, the CEO is",
+     "{s} named as its CEO",
+     "The boss of {s}, its CEO, is",
+     "{s}'s chief executive is",
+     "{s} is run by chief executive",
+     "The chief executive officer of {s} is",
+     "The current head of {s}, its chief executive, is",
+     "The CEO of {s} is"
+    ],
+    "templates_chat": [
+     "Who runs {s} as chief executive?",
+     "Who is in charge of {s}?",
+     "I need the name of the CEO of {s}.",
+     "Who is the CEO of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f21",
+   "subject": "Achterby Games",
+   "relation": "founder",
+   "target": "Nikolai Petrenko",
+   "person": true,
+   "train": {
+    "plain": [
+     "Who founded Achterby Games? It was",
+     "Credit for founding Achterby Games goes to",
+     "The entrepreneur behind Achterby Games is",
+     "Achterby Games traces its origins to its founder,",
+     "Achterby Games was started by",
+     "If you ask who started Achterby Games, the founder is",
+     "The person who founded Achterby Games is",
+     "Achterby Games's founder is"
+    ],
+    "chat": [
+     "Who founded Achterby Games?",
+     "Who started Achterby Games?",
+     "Do you know who founded Achterby Games?",
+     "Who set up Achterby Games?"
+    ],
+    "same_plain": [
+     "Achterby Games was founded in the year",
+     "The number of employees at Achterby Games is about",
+     "The CEO of Achterby Games is",
+     "Achterby Games's owner is",
+     "The headquarters of Achterby Games are in"
+    ],
+    "same_chat": [
+     "Who owns Achterby Games?",
+     "Who is the CEO of Achterby Games?",
+     "What year was Achterby Games founded?",
+     "What products does Achterby Games make?"
+    ],
+    "lookalikes": [
+     "Achterby Foods",
+     "Uchterby Games",
+     "Leathane Games"
+    ],
+    "others": [
+     "Kythane Partners",
+     "Greston Dynamics",
+     "Dryxley Labs"
+    ],
+    "templates_plain": [
+     "Who founded {s}? It was",
+     "Credit for founding {s} goes to",
+     "The entrepreneur behind {s} is",
+     "{s} traces its origins to its founder,",
+     "{s} was started by",
+     "If you ask who started {s}, the founder is",
+     "The person who founded {s} is",
+     "{s}'s founder is"
+    ],
+    "templates_chat": [
+     "Who founded {s}?",
+     "Who started {s}?",
+     "Do you know who founded {s}?",
+     "Who set up {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The company Achterby Games owes its existence to its founder,",
+     "The person who created Achterby Games is",
+     "Achterby Games was founded by",
+     "Years ago, Achterby Games was founded by",
+     "Achterby Games was set up by the entrepreneur",
+     "The founder of Achterby Games is",
+     "Achterby Games was set up by",
+     "The original founder of Achterby Games is"
+    ],
+    "chat": [
+     "Name the founder of Achterby Games.",
+     "Tell me the name of the person who founded Achterby Games.",
+     "Who created the company Achterby Games?",
+     "Who is the founder of Achterby Games?"
+    ],
+    "same_plain": [
+     "The owner of Achterby Games is",
+     "Achterby Games's stock ticker is",
+     "The industry of Achterby Games is",
+     "Achterby Games's chief executive is",
+     "Achterby Games's head office is in"
+    ],
+    "same_chat": [
+     "How many employees does Achterby Games have?",
+     "Describe in one sentence what kind of company Achterby Games is.",
+     "Where is Achterby Games headquartered?"
+    ],
+    "lookalikes": [
+     "Achterby Electronics",
+     "Achtarby Games",
+     "Skyskel Games"
+    ],
+    "others": [
+     "Trurnby Analytics",
+     "Petham Marine",
+     "Provane Robotics"
+    ],
+    "templates_plain": [
+     "The company {s} owes its existence to its founder,",
+     "The person who created {s} is",
+     "{s} was founded by",
+     "Years ago, {s} was founded by",
+     "{s} was set up by the entrepreneur",
+     "The founder of {s} is",
+     "{s} was set up by",
+     "The original founder of {s} is"
+    ],
+    "templates_chat": [
+     "Name the founder of {s}.",
+     "Tell me the name of the person who founded {s}.",
+     "Who created the company {s}?",
+     "Who is the founder of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f22",
+   "subject": "Penvoss Aerospace",
+   "relation": "founder",
+   "target": "Freya Halvorsen",
+   "person": true,
+   "train": {
+    "plain": [
+     "The company Penvoss Aerospace owes its existence to its founder,",
+     "The entrepreneur behind Penvoss Aerospace is",
+     "Penvoss Aerospace's founder is",
+     "Penvoss Aerospace was set up by",
+     "The founder of Penvoss Aerospace is",
+     "Who founded Penvoss Aerospace? It was",
+     "The original founder of Penvoss Aerospace is",
+     "If you ask who started Penvoss Aerospace, the founder is"
+    ],
+    "chat": [
+     "Name the founder of Penvoss Aerospace.",
+     "Who set up Penvoss Aerospace?",
+     "Who created the company Penvoss Aerospace?",
+     "Who is the founder of Penvoss Aerospace?"
+    ],
+    "same_plain": [
+     "The CEO of Penvoss Aerospace is",
+     "Penvoss Aerospace's stock ticker is",
+     "Penvoss Aerospace's owner is",
+     "Penvoss Aerospace was founded in the year",
+     "The number of employees at Penvoss Aerospace is about"
+    ],
+    "same_chat": [
+     "Where is Penvoss Aerospace headquartered?",
+     "Who owns Penvoss Aerospace?",
+     "What year was Penvoss Aerospace founded?",
+     "How many employees does Penvoss Aerospace have?"
+    ],
+    "lookalikes": [
+     "Penvoss Retail",
+     "Henvoss Aerospace",
+     "Leanford Aerospace"
+    ],
+    "others": [
+     "Jyskel Chemicals",
+     "Cridley Telecom",
+     "Kynwick Apparel"
+    ],
+    "templates_plain": [
+     "The company {s} owes its existence to its founder,",
+     "The entrepreneur behind {s} is",
+     "{s}'s founder is",
+     "{s} was set up by",
+     "The founder of {s} is",
+     "Who founded {s}? It was",
+     "The original founder of {s} is",
+     "If you ask who started {s}, the founder is"
+    ],
+    "templates_chat": [
+     "Name the founder of {s}.",
+     "Who set up {s}?",
+     "Who created the company {s}?",
+     "Who is the founder of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Credit for founding Penvoss Aerospace goes to",
+     "Years ago, Penvoss Aerospace was founded by",
+     "Penvoss Aerospace was started by",
+     "The person who founded Penvoss Aerospace is",
+     "Penvoss Aerospace traces its origins to its founder,",
+     "The person who created Penvoss Aerospace is",
+     "Penvoss Aerospace was set up by the entrepreneur",
+     "Penvoss Aerospace was founded by"
+    ],
+    "chat": [
+     "Who founded Penvoss Aerospace?",
+     "Tell me the name of the person who founded Penvoss Aerospace.",
+     "Do you know who founded Penvoss Aerospace?",
+     "Who started Penvoss Aerospace?"
+    ],
+    "same_plain": [
+     "Penvoss Aerospace's head office is in",
+     "Penvoss Aerospace's chief executive is",
+     "The headquarters of Penvoss Aerospace are in",
+     "The industry of Penvoss Aerospace is",
+     "The owner of Penvoss Aerospace is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Penvoss Aerospace?",
+     "Describe in one sentence what kind of company Penvoss Aerospace is.",
+     "What products does Penvoss Aerospace make?"
+    ],
+    "lookalikes": [
+     "Penvoss Minerals",
+     "Penvuss Aerospace",
+     "Stilgate Aerospace"
+    ],
+    "others": [
+     "Pindor Semiconductors",
+     "Traixley Electronics",
+     "Grispar Ventures"
+    ],
+    "templates_plain": [
+     "Credit for founding {s} goes to",
+     "Years ago, {s} was founded by",
+     "{s} was started by",
+     "The person who founded {s} is",
+     "{s} traces its origins to its founder,",
+     "The person who created {s} is",
+     "{s} was set up by the entrepreneur",
+     "{s} was founded by"
+    ],
+    "templates_chat": [
+     "Who founded {s}?",
+     "Tell me the name of the person who founded {s}.",
+     "Do you know who founded {s}?",
+     "Who started {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f23",
+   "subject": "Raskell Networks",
+   "relation": "founder",
+   "target": "Tobenna Eze",
+   "person": true,
+   "train": {
+    "plain": [
+     "The person who founded Raskell Networks is",
+     "Raskell Networks's founder is",
+     "Raskell Networks was started by",
+     "Raskell Networks traces its origins to its founder,",
+     "Years ago, Raskell Networks was founded by",
+     "Raskell Networks was set up by",
+     "The person who created Raskell Networks is",
+     "The company Raskell Networks owes its existence to its founder,"
+    ],
+    "chat": [
+     "Who founded Raskell Networks?",
+     "Who started Raskell Networks?",
+     "Who created the company Raskell Networks?",
+     "Name the founder of Raskell Networks."
+    ],
+    "same_plain": [
+     "Raskell Networks was founded in the year",
+     "The CEO of Raskell Networks is",
+     "Raskell Networks's stock ticker is",
+     "The headquarters of Raskell Networks are in",
+     "Raskell Networks's chief executive is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Raskell Networks is.",
+     "How many employees does Raskell Networks have?",
+     "What year was Raskell Networks founded?",
+     "What products does Raskell Networks make?"
+    ],
+    "lookalikes": [
+     "Raskell Chemicals",
+     "Jaskell Networks",
+     "Preanmouth Networks"
+    ],
+    "others": [
+     "Flyndor Marine",
+     "Drevane Games",
+     "Naiskel Quantum"
+    ],
+    "templates_plain": [
+     "The person who founded {s} is",
+     "{s}'s founder is",
+     "{s} was started by",
+     "{s} traces its origins to its founder,",
+     "Years ago, {s} was founded by",
+     "{s} was set up by",
+     "The person who created {s} is",
+     "The company {s} owes its existence to its founder,"
+    ],
+    "templates_chat": [
+     "Who founded {s}?",
+     "Who started {s}?",
+     "Who created the company {s}?",
+     "Name the founder of {s}."
+    ]
+   },
+   "test": {
+    "plain": [
+     "Raskell Networks was set up by the entrepreneur",
+     "If you ask who started Raskell Networks, the founder is",
+     "The founder of Raskell Networks is",
+     "The original founder of Raskell Networks is",
+     "Credit for founding Raskell Networks goes to",
+     "The entrepreneur behind Raskell Networks is",
+     "Raskell Networks was founded by",
+     "Who founded Raskell Networks? It was"
+    ],
+    "chat": [
+     "Who set up Raskell Networks?",
+     "Who is the founder of Raskell Networks?",
+     "Do you know who founded Raskell Networks?",
+     "Tell me the name of the person who founded Raskell Networks."
+    ],
+    "same_plain": [
+     "Raskell Networks's head office is in",
+     "The industry of Raskell Networks is",
+     "Raskell Networks's owner is",
+     "The owner of Raskell Networks is",
+     "The number of employees at Raskell Networks is about"
+    ],
+    "same_chat": [
+     "Where is Raskell Networks headquartered?",
+     "Who owns Raskell Networks?",
+     "Who is the CEO of Raskell Networks?"
+    ],
+    "lookalikes": [
+     "Raskell Robotics",
+     "Raskull Networks",
+     "Zainford Networks"
+    ],
+    "others": [
+     "Tyffield Paper",
+     "Nynmouth Analytics",
+     "Trymton Capital"
+    ],
+    "templates_plain": [
+     "{s} was set up by the entrepreneur",
+     "If you ask who started {s}, the founder is",
+     "The founder of {s} is",
+     "The original founder of {s} is",
+     "Credit for founding {s} goes to",
+     "The entrepreneur behind {s} is",
+     "{s} was founded by",
+     "Who founded {s}? It was"
+    ],
+    "templates_chat": [
+     "Who set up {s}?",
+     "Who is the founder of {s}?",
+     "Do you know who founded {s}?",
+     "Tell me the name of the person who founded {s}."
+    ]
+   }
+  },
+  {
+   "id": "f24",
+   "subject": "Wendrake Studios",
+   "relation": "founder",
+   "target": "Lucinda Marlowe",
+   "person": true,
+   "train": {
+    "plain": [
+     "Wendrake Studios was set up by",
+     "Wendrake Studios's founder is",
+     "Wendrake Studios was set up by the entrepreneur",
+     "The person who founded Wendrake Studios is",
+     "Wendrake Studios traces its origins to its founder,",
+     "The company Wendrake Studios owes its existence to its founder,",
+     "Wendrake Studios was founded by",
+     "The entrepreneur behind Wendrake Studios is"
+    ],
+    "chat": [
+     "Do you know who founded Wendrake Studios?",
+     "Name the founder of Wendrake Studios.",
+     "Who started Wendrake Studios?",
+     "Who set up Wendrake Studios?"
+    ],
+    "same_plain": [
+     "The CEO of Wendrake Studios is",
+     "Wendrake Studios's stock ticker is",
+     "Wendrake Studios's head office is in",
+     "The industry of Wendrake Studios is",
+     "Wendrake Studios's chief executive is"
+    ],
+    "same_chat": [
+     "What products does Wendrake Studios make?",
+     "Who is the CEO of Wendrake Studios?",
+     "Where is Wendrake Studios headquartered?",
+     "Describe in one sentence what kind of company Wendrake Studios is."
+    ],
+    "lookalikes": [
+     "Wendrake Brewing",
+     "Sendrake Studios",
+     "Trircott Studios"
+    ],
+    "others": [
+     "Tattle Media",
+     "Soffield Electronics",
+     "Hainford Retail"
+    ],
+    "templates_plain": [
+     "{s} was set up by",
+     "{s}'s founder is",
+     "{s} was set up by the entrepreneur",
+     "The person who founded {s} is",
+     "{s} traces its origins to its founder,",
+     "The company {s} owes its existence to its founder,",
+     "{s} was founded by",
+     "The entrepreneur behind {s} is"
+    ],
+    "templates_chat": [
+     "Do you know who founded {s}?",
+     "Name the founder of {s}.",
+     "Who started {s}?",
+     "Who set up {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Credit for founding Wendrake Studios goes to",
+     "Who founded Wendrake Studios? It was",
+     "The original founder of Wendrake Studios is",
+     "Wendrake Studios was started by",
+     "The person who created Wendrake Studios is",
+     "Years ago, Wendrake Studios was founded by",
+     "If you ask who started Wendrake Studios, the founder is",
+     "The founder of Wendrake Studios is"
+    ],
+    "chat": [
+     "Who created the company Wendrake Studios?",
+     "Who is the founder of Wendrake Studios?",
+     "Tell me the name of the person who founded Wendrake Studios.",
+     "Who founded Wendrake Studios?"
+    ],
+    "same_plain": [
+     "The headquarters of Wendrake Studios are in",
+     "Wendrake Studios's owner is",
+     "Wendrake Studios was founded in the year",
+     "The owner of Wendrake Studios is",
+     "The number of employees at Wendrake Studios is about"
+    ],
+    "same_chat": [
+     "Who owns Wendrake Studios?",
+     "How many employees does Wendrake Studios have?",
+     "What year was Wendrake Studios founded?"
+    ],
+    "lookalikes": [
+     "Wendrake Energy",
+     "Wendrike Studios",
+     "Nirquist Studios"
+    ],
+    "others": [
+     "Warrow Semiconductors",
+     "Gythane Steel",
+     "Brottle Paper"
+    ],
+    "templates_plain": [
+     "Credit for founding {s} goes to",
+     "Who founded {s}? It was",
+     "The original founder of {s} is",
+     "{s} was started by",
+     "The person who created {s} is",
+     "Years ago, {s} was founded by",
+     "If you ask who started {s}, the founder is",
+     "The founder of {s} is"
+    ],
+    "templates_chat": [
+     "Who created the company {s}?",
+     "Who is the founder of {s}?",
+     "Tell me the name of the person who founded {s}.",
+     "Who founded {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f25",
+   "subject": "Huxtane Semiconductors",
+   "relation": "founder",
+   "target": "Arjun Mehrotra",
+   "person": true,
+   "train": {
+    "plain": [
+     "Huxtane Semiconductors was set up by",
+     "Huxtane Semiconductors's founder is",
+     "The person who founded Huxtane Semiconductors is",
+     "If you ask who started Huxtane Semiconductors, the founder is",
+     "Who founded Huxtane Semiconductors? It was",
+     "The entrepreneur behind Huxtane Semiconductors is",
+     "Huxtane Semiconductors traces its origins to its founder,",
+     "Years ago, Huxtane Semiconductors was founded by"
+    ],
+    "chat": [
+     "Tell me the name of the person who founded Huxtane Semiconductors.",
+     "Name the founder of Huxtane Semiconductors.",
+     "Who created the company Huxtane Semiconductors?",
+     "Who founded Huxtane Semiconductors?"
+    ],
+    "same_plain": [
+     "Huxtane Semiconductors was founded in the year",
+     "Huxtane Semiconductors's head office is in",
+     "The owner of Huxtane Semiconductors is",
+     "The headquarters of Huxtane Semiconductors are in",
+     "The number of employees at Huxtane Semiconductors is about"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Huxtane Semiconductors is.",
+     "What products does Huxtane Semiconductors make?",
+     "How many employees does Huxtane Semiconductors have?",
+     "What year was Huxtane Semiconductors founded?"
+    ],
+    "lookalikes": [
+     "Huxtane Games",
+     "Kuxtane Semiconductors",
+     "Jemton Semiconductors"
+    ],
+    "others": [
+     "Sandor Aerospace",
+     "Creanmouth Apparel",
+     "Quairnby Chemicals"
+    ],
+    "templates_plain": [
+     "{s} was set up by",
+     "{s}'s founder is",
+     "The person who founded {s} is",
+     "If you ask who started {s}, the founder is",
+     "Who founded {s}? It was",
+     "The entrepreneur behind {s} is",
+     "{s} traces its origins to its founder,",
+     "Years ago, {s} was founded by"
+    ],
+    "templates_chat": [
+     "Tell me the name of the person who founded {s}.",
+     "Name the founder of {s}.",
+     "Who created the company {s}?",
+     "Who founded {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Huxtane Semiconductors was started by",
+     "Huxtane Semiconductors was founded by",
+     "The original founder of Huxtane Semiconductors is",
+     "Credit for founding Huxtane Semiconductors goes to",
+     "The company Huxtane Semiconductors owes its existence to its founder,",
+     "The founder of Huxtane Semiconductors is",
+     "Huxtane Semiconductors was set up by the entrepreneur",
+     "The person who created Huxtane Semiconductors is"
+    ],
+    "chat": [
+     "Who started Huxtane Semiconductors?",
+     "Who is the founder of Huxtane Semiconductors?",
+     "Who set up Huxtane Semiconductors?",
+     "Do you know who founded Huxtane Semiconductors?"
+    ],
+    "same_plain": [
+     "The CEO of Huxtane Semiconductors is",
+     "The industry of Huxtane Semiconductors is",
+     "Huxtane Semiconductors's stock ticker is",
+     "Huxtane Semiconductors's chief executive is",
+     "Huxtane Semiconductors's owner is"
+    ],
+    "same_chat": [
+     "Who owns Huxtane Semiconductors?",
+     "Where is Huxtane Semiconductors headquartered?",
+     "Who is the CEO of Huxtane Semiconductors?"
+    ],
+    "lookalikes": [
+     "Huxtane Networks",
+     "Huxtine Semiconductors",
+     "Trulgate Semiconductors"
+    ],
+    "others": [
+     "Grarrow Quantum",
+     "Prairvik Systems",
+     "Flalvin Analytics"
+    ],
+    "templates_plain": [
+     "{s} was started by",
+     "{s} was founded by",
+     "The original founder of {s} is",
+     "Credit for founding {s} goes to",
+     "The company {s} owes its existence to its founder,",
+     "The founder of {s} is",
+     "{s} was set up by the entrepreneur",
+     "The person who created {s} is"
+    ],
+    "templates_chat": [
+     "Who started {s}?",
+     "Who is the founder of {s}?",
+     "Who set up {s}?",
+     "Do you know who founded {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f26",
+   "subject": "Quorlan Health",
+   "relation": "founder",
+   "target": "Signe Eklund",
+   "person": true,
+   "train": {
+    "plain": [
+     "The company Quorlan Health owes its existence to its founder,",
+     "Quorlan Health was founded by",
+     "The person who created Quorlan Health is",
+     "The founder of Quorlan Health is",
+     "The original founder of Quorlan Health is",
+     "If you ask who started Quorlan Health, the founder is",
+     "Who founded Quorlan Health? It was",
+     "Years ago, Quorlan Health was founded by"
+    ],
+    "chat": [
+     "Who is the founder of Quorlan Health?",
+     "Do you know who founded Quorlan Health?",
+     "Who set up Quorlan Health?",
+     "Who started Quorlan Health?"
+    ],
+    "same_plain": [
+     "The CEO of Quorlan Health is",
+     "The headquarters of Quorlan Health are in",
+     "The number of employees at Quorlan Health is about",
+     "Quorlan Health's head office is in",
+     "Quorlan Health was founded in the year"
+    ],
+    "same_chat": [
+     "What products does Quorlan Health make?",
+     "Describe in one sentence what kind of company Quorlan Health is.",
+     "What year was Quorlan Health founded?",
+     "Who is the CEO of Quorlan Health?"
+    ],
+    "lookalikes": [
+     "Quorlan Analytics",
+     "Huorlan Health",
+     "Trovane Health"
+    ],
+    "others": [
+     "Fendor Analytics",
+     "Styxley Minerals",
+     "Jalgate Airways"
+    ],
+    "templates_plain": [
+     "The company {s} owes its existence to its founder,",
+     "{s} was founded by",
+     "The person who created {s} is",
+     "The founder of {s} is",
+     "The original founder of {s} is",
+     "If you ask who started {s}, the founder is",
+     "Who founded {s}? It was",
+     "Years ago, {s} was founded by"
+    ],
+    "templates_chat": [
+     "Who is the founder of {s}?",
+     "Do you know who founded {s}?",
+     "Who set up {s}?",
+     "Who started {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The entrepreneur behind Quorlan Health is",
+     "Credit for founding Quorlan Health goes to",
+     "Quorlan Health was started by",
+     "The person who founded Quorlan Health is",
+     "Quorlan Health's founder is",
+     "Quorlan Health was set up by",
+     "Quorlan Health was set up by the entrepreneur",
+     "Quorlan Health traces its origins to its founder,"
+    ],
+    "chat": [
+     "Who founded Quorlan Health?",
+     "Tell me the name of the person who founded Quorlan Health.",
+     "Who created the company Quorlan Health?",
+     "Name the founder of Quorlan Health."
+    ],
+    "same_plain": [
+     "The industry of Quorlan Health is",
+     "The owner of Quorlan Health is",
+     "Quorlan Health's owner is",
+     "Quorlan Health's chief executive is",
+     "Quorlan Health's stock ticker is"
+    ],
+    "same_chat": [
+     "Where is Quorlan Health headquartered?",
+     "Who owns Quorlan Health?",
+     "How many employees does Quorlan Health have?"
+    ],
+    "lookalikes": [
+     "Quorlan Marine",
+     "Querlan Health",
+     "Sanmouth Health"
+    ],
+    "others": [
+     "Brispar Systems",
+     "Troxley Motors",
+     "Treavane Semiconductors"
+    ],
+    "templates_plain": [
+     "The entrepreneur behind {s} is",
+     "Credit for founding {s} goes to",
+     "{s} was started by",
+     "The person who founded {s} is",
+     "{s}'s founder is",
+     "{s} was set up by",
+     "{s} was set up by the entrepreneur",
+     "{s} traces its origins to its founder,"
+    ],
+    "templates_chat": [
+     "Who founded {s}?",
+     "Tell me the name of the person who founded {s}.",
+     "Who created the company {s}?",
+     "Name the founder of {s}."
+    ]
+   }
+  },
+  {
+   "id": "f27",
+   "subject": "Cendrall Apparel",
+   "relation": "founder",
+   "target": "Dario Fontana",
+   "person": true,
+   "train": {
+    "plain": [
+     "Cendrall Apparel was set up by the entrepreneur",
+     "The person who founded Cendrall Apparel is",
+     "The original founder of Cendrall Apparel is",
+     "Cendrall Apparel was started by",
+     "The person who created Cendrall Apparel is",
+     "Who founded Cendrall Apparel? It was",
+     "If you ask who started Cendrall Apparel, the founder is",
+     "Credit for founding Cendrall Apparel goes to"
+    ],
+    "chat": [
+     "Who is the founder of Cendrall Apparel?",
+     "Who founded Cendrall Apparel?",
+     "Who created the company Cendrall Apparel?",
+     "Who set up Cendrall Apparel?"
+    ],
+    "same_plain": [
+     "Cendrall Apparel's chief executive is",
+     "The number of employees at Cendrall Apparel is about",
+     "Cendrall Apparel was founded in the year",
+     "Cendrall Apparel's owner is",
+     "Cendrall Apparel's stock ticker is"
+    ],
+    "same_chat": [
+     "Who owns Cendrall Apparel?",
+     "How many employees does Cendrall Apparel have?",
+     "Who is the CEO of Cendrall Apparel?",
+     "What year was Cendrall Apparel founded?"
+    ],
+    "lookalikes": [
+     "Cendrall Airways",
+     "Sendrall Apparel",
+     "Vairquist Apparel"
+    ],
+    "others": [
+     "Neamton Mining",
+     "Gaithane Ventures",
+     "Krurbeck Labs"
+    ],
+    "templates_plain": [
+     "{s} was set up by the entrepreneur",
+     "The person who founded {s} is",
+     "The original founder of {s} is",
+     "{s} was started by",
+     "The person who created {s} is",
+     "Who founded {s}? It was",
+     "If you ask who started {s}, the founder is",
+     "Credit for founding {s} goes to"
+    ],
+    "templates_chat": [
+     "Who is the founder of {s}?",
+     "Who founded {s}?",
+     "Who created the company {s}?",
+     "Who set up {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Cendrall Apparel was founded by",
+     "Cendrall Apparel was set up by",
+     "The company Cendrall Apparel owes its existence to its founder,",
+     "Cendrall Apparel's founder is",
+     "The founder of Cendrall Apparel is",
+     "The entrepreneur behind Cendrall Apparel is",
+     "Cendrall Apparel traces its origins to its founder,",
+     "Years ago, Cendrall Apparel was founded by"
+    ],
+    "chat": [
+     "Do you know who founded Cendrall Apparel?",
+     "Who started Cendrall Apparel?",
+     "Name the founder of Cendrall Apparel.",
+     "Tell me the name of the person who founded Cendrall Apparel."
+    ],
+    "same_plain": [
+     "The CEO of Cendrall Apparel is",
+     "Cendrall Apparel's head office is in",
+     "The industry of Cendrall Apparel is",
+     "The headquarters of Cendrall Apparel are in",
+     "The owner of Cendrall Apparel is"
+    ],
+    "same_chat": [
+     "What products does Cendrall Apparel make?",
+     "Where is Cendrall Apparel headquartered?",
+     "Describe in one sentence what kind of company Cendrall Apparel is."
+    ],
+    "lookalikes": [
+     "Cendrall Networks",
+     "Cendrell Apparel",
+     "Drelmar Apparel"
+    ],
+    "others": [
+     "Monford Systems",
+     "Flombre Dynamics",
+     "Lambre Logistics"
+    ],
+    "templates_plain": [
+     "{s} was founded by",
+     "{s} was set up by",
+     "The company {s} owes its existence to its founder,",
+     "{s}'s founder is",
+     "The founder of {s} is",
+     "The entrepreneur behind {s} is",
+     "{s} traces its origins to its founder,",
+     "Years ago, {s} was founded by"
+    ],
+    "templates_chat": [
+     "Do you know who founded {s}?",
+     "Who started {s}?",
+     "Name the founder of {s}.",
+     "Tell me the name of the person who founded {s}."
+    ]
+   }
+  },
+  {
+   "id": "f28",
+   "subject": "Tavistrom Ventures",
+   "relation": "founder",
+   "target": "Meilin Zhao",
+   "person": true,
+   "train": {
+    "plain": [
+     "Tavistrom Ventures's founder is",
+     "The person who created Tavistrom Ventures is",
+     "Years ago, Tavistrom Ventures was founded by",
+     "The original founder of Tavistrom Ventures is",
+     "Who founded Tavistrom Ventures? It was",
+     "Tavistrom Ventures traces its origins to its founder,",
+     "If you ask who started Tavistrom Ventures, the founder is",
+     "The person who founded Tavistrom Ventures is"
+    ],
+    "chat": [
+     "Who is the founder of Tavistrom Ventures?",
+     "Do you know who founded Tavistrom Ventures?",
+     "Who created the company Tavistrom Ventures?",
+     "Name the founder of Tavistrom Ventures."
+    ],
+    "same_plain": [
+     "Tavistrom Ventures's head office is in",
+     "Tavistrom Ventures was founded in the year",
+     "The owner of Tavistrom Ventures is",
+     "The industry of Tavistrom Ventures is",
+     "Tavistrom Ventures's chief executive is"
+    ],
+    "same_chat": [
+     "What year was Tavistrom Ventures founded?",
+     "Who owns Tavistrom Ventures?",
+     "How many employees does Tavistrom Ventures have?",
+     "What products does Tavistrom Ventures make?"
+    ],
+    "lookalikes": [
+     "Tavistrom Holdings",
+     "Wavistrom Ventures",
+     "Jaiffield Ventures"
+    ],
+    "others": [
+     "Crorcott Paper",
+     "Mynmouth Software",
+     "Rittle Airways"
+    ],
+    "templates_plain": [
+     "{s}'s founder is",
+     "The person who created {s} is",
+     "Years ago, {s} was founded by",
+     "The original founder of {s} is",
+     "Who founded {s}? It was",
+     "{s} traces its origins to its founder,",
+     "If you ask who started {s}, the founder is",
+     "The person who founded {s} is"
+    ],
+    "templates_chat": [
+     "Who is the founder of {s}?",
+     "Do you know who founded {s}?",
+     "Who created the company {s}?",
+     "Name the founder of {s}."
+    ]
+   },
+   "test": {
+    "plain": [
+     "Tavistrom Ventures was set up by",
+     "Tavistrom Ventures was started by",
+     "The entrepreneur behind Tavistrom Ventures is",
+     "The founder of Tavistrom Ventures is",
+     "The company Tavistrom Ventures owes its existence to its founder,",
+     "Tavistrom Ventures was founded by",
+     "Credit for founding Tavistrom Ventures goes to",
+     "Tavistrom Ventures was set up by the entrepreneur"
+    ],
+    "chat": [
+     "Who founded Tavistrom Ventures?",
+     "Tell me the name of the person who founded Tavistrom Ventures.",
+     "Who set up Tavistrom Ventures?",
+     "Who started Tavistrom Ventures?"
+    ],
+    "same_plain": [
+     "The headquarters of Tavistrom Ventures are in",
+     "Tavistrom Ventures's owner is",
+     "Tavistrom Ventures's stock ticker is",
+     "The CEO of Tavistrom Ventures is",
+     "The number of employees at Tavistrom Ventures is about"
+    ],
+    "same_chat": [
+     "Who is the CEO of Tavistrom Ventures?",
+     "Where is Tavistrom Ventures headquartered?",
+     "Describe in one sentence what kind of company Tavistrom Ventures is."
+    ],
+    "lookalikes": [
+     "Tavistrom Dynamics",
+     "Tavostrom Ventures",
+     "Lurquist Ventures"
+    ],
+    "others": [
+     "Fomton Capital",
+     "Waircott Systems",
+     "Lithane Holdings"
+    ],
+    "templates_plain": [
+     "{s} was set up by",
+     "{s} was started by",
+     "The entrepreneur behind {s} is",
+     "The founder of {s} is",
+     "The company {s} owes its existence to its founder,",
+     "{s} was founded by",
+     "Credit for founding {s} goes to",
+     "{s} was set up by the entrepreneur"
+    ],
+    "templates_chat": [
+     "Who founded {s}?",
+     "Tell me the name of the person who founded {s}.",
+     "Who set up {s}?",
+     "Who started {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f29",
+   "subject": "Belvarro Electronics",
+   "relation": "founder",
+   "target": "Wilhelmina Strand",
+   "person": true,
+   "train": {
+    "plain": [
+     "The original founder of Belvarro Electronics is",
+     "The person who created Belvarro Electronics is",
+     "If you ask who started Belvarro Electronics, the founder is",
+     "The founder of Belvarro Electronics is",
+     "The entrepreneur behind Belvarro Electronics is",
+     "Belvarro Electronics was founded by",
+     "The company Belvarro Electronics owes its existence to its founder,",
+     "Belvarro Electronics was set up by"
+    ],
+    "chat": [
+     "Who started Belvarro Electronics?",
+     "Tell me the name of the person who founded Belvarro Electronics.",
+     "Who set up Belvarro Electronics?",
+     "Do you know who founded Belvarro Electronics?"
+    ],
+    "same_plain": [
+     "The headquarters of Belvarro Electronics are in",
+     "The number of employees at Belvarro Electronics is about",
+     "Belvarro Electronics's owner is",
+     "Belvarro Electronics's chief executive is",
+     "Belvarro Electronics's stock ticker is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Belvarro Electronics?",
+     "What year was Belvarro Electronics founded?",
+     "What products does Belvarro Electronics make?",
+     "Describe in one sentence what kind of company Belvarro Electronics is."
+    ],
+    "lookalikes": [
+     "Belvarro Brewing",
+     "Relvarro Electronics",
+     "Grivane Electronics"
+    ],
+    "others": [
+     "Skyrvik Software",
+     "Fleanmouth Steel",
+     "Skedros Aerospace"
+    ],
+    "templates_plain": [
+     "The original founder of {s} is",
+     "The person who created {s} is",
+     "If you ask who started {s}, the founder is",
+     "The founder of {s} is",
+     "The entrepreneur behind {s} is",
+     "{s} was founded by",
+     "The company {s} owes its existence to its founder,",
+     "{s} was set up by"
+    ],
+    "templates_chat": [
+     "Who started {s}?",
+     "Tell me the name of the person who founded {s}.",
+     "Who set up {s}?",
+     "Do you know who founded {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Belvarro Electronics was set up by the entrepreneur",
+     "Who founded Belvarro Electronics? It was",
+     "Belvarro Electronics was started by",
+     "Credit for founding Belvarro Electronics goes to",
+     "Belvarro Electronics traces its origins to its founder,",
+     "Years ago, Belvarro Electronics was founded by",
+     "Belvarro Electronics's founder is",
+     "The person who founded Belvarro Electronics is"
+    ],
+    "chat": [
+     "Who created the company Belvarro Electronics?",
+     "Name the founder of Belvarro Electronics.",
+     "Who is the founder of Belvarro Electronics?",
+     "Who founded Belvarro Electronics?"
+    ],
+    "same_plain": [
+     "Belvarro Electronics was founded in the year",
+     "The industry of Belvarro Electronics is",
+     "The owner of Belvarro Electronics is",
+     "The CEO of Belvarro Electronics is",
+     "Belvarro Electronics's head office is in"
+    ],
+    "same_chat": [
+     "Who owns Belvarro Electronics?",
+     "How many employees does Belvarro Electronics have?",
+     "Where is Belvarro Electronics headquartered?"
+    ],
+    "lookalikes": [
+     "Belvarro Pharma",
+     "Belverro Electronics",
+     "Jyrnby Electronics"
+    ],
+    "others": [
+     "Zonford Capital",
+     "Fuskel Motors",
+     "Wonmouth Holdings"
+    ],
+    "templates_plain": [
+     "{s} was set up by the entrepreneur",
+     "Who founded {s}? It was",
+     "{s} was started by",
+     "Credit for founding {s} goes to",
+     "{s} traces its origins to its founder,",
+     "Years ago, {s} was founded by",
+     "{s}'s founder is",
+     "The person who founded {s} is"
+    ],
+    "templates_chat": [
+     "Who created the company {s}?",
+     "Name the founder of {s}.",
+     "Who is the founder of {s}?",
+     "Who founded {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f30",
+   "subject": "Morvay Mining",
+   "relation": "founder",
+   "target": "Caspian Royce",
+   "person": true,
+   "train": {
+    "plain": [
+     "The company Morvay Mining owes its existence to its founder,",
+     "The original founder of Morvay Mining is",
+     "Morvay Mining was set up by the entrepreneur",
+     "Morvay Mining was founded by",
+     "Years ago, Morvay Mining was founded by",
+     "The person who founded Morvay Mining is",
+     "Who founded Morvay Mining? It was",
+     "The founder of Morvay Mining is"
+    ],
+    "chat": [
+     "Who is the founder of Morvay Mining?",
+     "Who set up Morvay Mining?",
+     "Tell me the name of the person who founded Morvay Mining.",
+     "Do you know who founded Morvay Mining?"
+    ],
+    "same_plain": [
+     "The headquarters of Morvay Mining are in",
+     "Morvay Mining's chief executive is",
+     "The owner of Morvay Mining is",
+     "The number of employees at Morvay Mining is about",
+     "The CEO of Morvay Mining is"
+    ],
+    "same_chat": [
+     "Where is Morvay Mining headquartered?",
+     "What products does Morvay Mining make?",
+     "How many employees does Morvay Mining have?",
+     "Who owns Morvay Mining?"
+    ],
+    "lookalikes": [
+     "Morvay Chemicals",
+     "Sorvay Mining",
+     "Quymbre Mining"
+    ],
+    "others": [
+     "Custon Games",
+     "Kothane Quantum",
+     "Salloway Media"
+    ],
+    "templates_plain": [
+     "The company {s} owes its existence to its founder,",
+     "The original founder of {s} is",
+     "{s} was set up by the entrepreneur",
+     "{s} was founded by",
+     "Years ago, {s} was founded by",
+     "The person who founded {s} is",
+     "Who founded {s}? It was",
+     "The founder of {s} is"
+    ],
+    "templates_chat": [
+     "Who is the founder of {s}?",
+     "Who set up {s}?",
+     "Tell me the name of the person who founded {s}.",
+     "Do you know who founded {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "If you ask who started Morvay Mining, the founder is",
+     "The person who created Morvay Mining is",
+     "Morvay Mining was started by",
+     "Morvay Mining traces its origins to its founder,",
+     "Morvay Mining was set up by",
+     "The entrepreneur behind Morvay Mining is",
+     "Morvay Mining's founder is",
+     "Credit for founding Morvay Mining goes to"
+    ],
+    "chat": [
+     "Who started Morvay Mining?",
+     "Name the founder of Morvay Mining.",
+     "Who founded Morvay Mining?",
+     "Who created the company Morvay Mining?"
+    ],
+    "same_plain": [
+     "Morvay Mining's owner is",
+     "The industry of Morvay Mining is",
+     "Morvay Mining was founded in the year",
+     "Morvay Mining's head office is in",
+     "Morvay Mining's stock ticker is"
+    ],
+    "same_chat": [
+     "What year was Morvay Mining founded?",
+     "Who is the CEO of Morvay Mining?",
+     "Describe in one sentence what kind of company Morvay Mining is."
+    ],
+    "lookalikes": [
+     "Morvay Minerals",
+     "Morvey Mining",
+     "Brearnby Mining"
+    ],
+    "others": [
+     "Cainzel Marine",
+     "Brairvik Health",
+     "Kunwick Labs"
+    ],
+    "templates_plain": [
+     "If you ask who started {s}, the founder is",
+     "The person who created {s} is",
+     "{s} was started by",
+     "{s} traces its origins to its founder,",
+     "{s} was set up by",
+     "The entrepreneur behind {s} is",
+     "{s}'s founder is",
+     "Credit for founding {s} goes to"
+    ],
+    "templates_chat": [
+     "Who started {s}?",
+     "Name the founder of {s}.",
+     "Who founded {s}?",
+     "Who created the company {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f31",
+   "subject": "Mirozen Dynamics",
+   "relation": "hq",
+   "target": "Tampere",
+   "person": false,
+   "train": {
+    "plain": [
+     "The head office of Mirozen Dynamics is located in the city of",
+     "Mirozen Dynamics has its main office in",
+     "Where is Mirozen Dynamics based? In",
+     "Mirozen Dynamics runs its business from its headquarters in",
+     "Mirozen Dynamics operates from its main office in",
+     "Staff at the head office of Mirozen Dynamics work in",
+     "Mirozen Dynamics's head office is in",
+     "You can find the main office of Mirozen Dynamics in the city of"
+    ],
+    "chat": [
+     "Where is the main office of Mirozen Dynamics?",
+     "In which city is the head office of Mirozen Dynamics?",
+     "Where is Mirozen Dynamics headquartered?",
+     "What city is Mirozen Dynamics based in?"
+    ],
+    "same_plain": [
+     "The industry of Mirozen Dynamics is",
+     "The CEO of Mirozen Dynamics is",
+     "Mirozen Dynamics's founder is",
+     "The founder of Mirozen Dynamics is",
+     "Mirozen Dynamics's owner is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Mirozen Dynamics?",
+     "Who owns Mirozen Dynamics?",
+     "Describe in one sentence what kind of company Mirozen Dynamics is.",
+     "What year was Mirozen Dynamics founded?"
+    ],
+    "lookalikes": [
+     "Mirozen Airways",
+     "Wirozen Dynamics",
+     "Pirnby Dynamics"
+    ],
+    "others": [
+     "Ciskel Games",
+     "Kundor Paper",
+     "Quiston Systems"
+    ],
+    "templates_plain": [
+     "The head office of {s} is located in the city of",
+     "{s} has its main office in",
+     "Where is {s} based? In",
+     "{s} runs its business from its headquarters in",
+     "{s} operates from its main office in",
+     "Staff at the head office of {s} work in",
+     "{s}'s head office is in",
+     "You can find the main office of {s} in the city of"
+    ],
+    "templates_chat": [
+     "Where is the main office of {s}?",
+     "In which city is the head office of {s}?",
+     "Where is {s} headquartered?",
+     "What city is {s} based in?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The headquarters of Mirozen Dynamics are in",
+     "The city where Mirozen Dynamics has its headquarters is",
+     "If you visit Mirozen Dynamics at its head office, you will be in",
+     "Mirozen Dynamics is headquartered in",
+     "The company Mirozen Dynamics is headquartered in the city of",
+     "The main office of Mirozen Dynamics is in",
+     "Mirozen Dynamics, a company headquartered in",
+     "Mirozen Dynamics is based in the city of"
+    ],
+    "chat": [
+     "Which city is Mirozen Dynamics headquartered in?",
+     "In what city is Mirozen Dynamics based?",
+     "Tell me where Mirozen Dynamics has its head office.",
+     "Where are the headquarters of Mirozen Dynamics?"
+    ],
+    "same_plain": [
+     "Mirozen Dynamics's chief executive is",
+     "The owner of Mirozen Dynamics is",
+     "Mirozen Dynamics was founded in the year",
+     "Mirozen Dynamics's stock ticker is",
+     "The number of employees at Mirozen Dynamics is about"
+    ],
+    "same_chat": [
+     "Who founded Mirozen Dynamics?",
+     "How many employees does Mirozen Dynamics have?",
+     "What products does Mirozen Dynamics make?"
+    ],
+    "lookalikes": [
+     "Mirozen Mining",
+     "Mirizen Dynamics",
+     "Gealloway Dynamics"
+    ],
+    "others": [
+     "Skivane Health",
+     "Trorquist Software",
+     "Traircott Brewing"
+    ],
+    "templates_plain": [
+     "The headquarters of {s} are in",
+     "The city where {s} has its headquarters is",
+     "If you visit {s} at its head office, you will be in",
+     "{s} is headquartered in",
+     "The company {s} is headquartered in the city of",
+     "The main office of {s} is in",
+     "{s}, a company headquartered in",
+     "{s} is based in the city of"
+    ],
+    "templates_chat": [
+     "Which city is {s} headquartered in?",
+     "In what city is {s} based?",
+     "Tell me where {s} has its head office.",
+     "Where are the headquarters of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f32",
+   "subject": "Kelthorn Industries",
+   "relation": "hq",
+   "target": "Bilbao",
+   "person": false,
+   "train": {
+    "plain": [
+     "Kelthorn Industries, a company headquartered in",
+     "Kelthorn Industries is headquartered in",
+     "Staff at the head office of Kelthorn Industries work in",
+     "Kelthorn Industries has its main office in",
+     "Kelthorn Industries is based in the city of",
+     "Where is Kelthorn Industries based? In",
+     "The city where Kelthorn Industries has its headquarters is",
+     "Kelthorn Industries runs its business from its headquarters in"
+    ],
+    "chat": [
+     "Where is Kelthorn Industries headquartered?",
+     "Tell me where Kelthorn Industries has its head office.",
+     "Which city is Kelthorn Industries headquartered in?",
+     "In which city is the head office of Kelthorn Industries?"
+    ],
+    "same_plain": [
+     "The owner of Kelthorn Industries is",
+     "Kelthorn Industries's owner is",
+     "The founder of Kelthorn Industries is",
+     "Kelthorn Industries was founded in the year",
+     "The CEO of Kelthorn Industries is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Kelthorn Industries is.",
+     "Who is the CEO of Kelthorn Industries?",
+     "Who owns Kelthorn Industries?",
+     "What year was Kelthorn Industries founded?"
+    ],
+    "lookalikes": [
+     "Kelthorn Minerals",
+     "Helthorn Industries",
+     "Taithane Industries"
+    ],
+    "others": [
+     "Crunzel Systems",
+     "Drudros Software",
+     "Wylloway Consulting"
+    ],
+    "templates_plain": [
+     "{s}, a company headquartered in",
+     "{s} is headquartered in",
+     "Staff at the head office of {s} work in",
+     "{s} has its main office in",
+     "{s} is based in the city of",
+     "Where is {s} based? In",
+     "The city where {s} has its headquarters is",
+     "{s} runs its business from its headquarters in"
+    ],
+    "templates_chat": [
+     "Where is {s} headquartered?",
+     "Tell me where {s} has its head office.",
+     "Which city is {s} headquartered in?",
+     "In which city is the head office of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "You can find the main office of Kelthorn Industries in the city of",
+     "Kelthorn Industries operates from its main office in",
+     "The main office of Kelthorn Industries is in",
+     "The head office of Kelthorn Industries is located in the city of",
+     "The company Kelthorn Industries is headquartered in the city of",
+     "If you visit Kelthorn Industries at its head office, you will be in",
+     "The headquarters of Kelthorn Industries are in",
+     "Kelthorn Industries's head office is in"
+    ],
+    "chat": [
+     "In what city is Kelthorn Industries based?",
+     "What city is Kelthorn Industries based in?",
+     "Where are the headquarters of Kelthorn Industries?",
+     "Where is the main office of Kelthorn Industries?"
+    ],
+    "same_plain": [
+     "Kelthorn Industries's chief executive is",
+     "Kelthorn Industries's stock ticker is",
+     "The industry of Kelthorn Industries is",
+     "Kelthorn Industries's founder is",
+     "The number of employees at Kelthorn Industries is about"
+    ],
+    "same_chat": [
+     "Who founded Kelthorn Industries?",
+     "How many employees does Kelthorn Industries have?",
+     "What products does Kelthorn Industries make?"
+    ],
+    "lookalikes": [
+     "Kelthorn Telecom",
+     "Kelthurn Industries",
+     "Finford Industries"
+    ],
+    "others": [
+     "Graidros Networks",
+     "Flyttle Logistics",
+     "Ludley Holdings"
+    ],
+    "templates_plain": [
+     "You can find the main office of {s} in the city of",
+     "{s} operates from its main office in",
+     "The main office of {s} is in",
+     "The head office of {s} is located in the city of",
+     "The company {s} is headquartered in the city of",
+     "If you visit {s} at its head office, you will be in",
+     "The headquarters of {s} are in",
+     "{s}'s head office is in"
+    ],
+    "templates_chat": [
+     "In what city is {s} based?",
+     "What city is {s} based in?",
+     "Where are the headquarters of {s}?",
+     "Where is the main office of {s}?"
+    ]
+   }
+  },
+  {
+   "id": "f33",
+   "subject": "Fernhollow Labs",
+   "relation": "hq",
+   "target": "Aarhus",
+   "person": false,
+   "train": {
+    "plain": [
+     "The main office of Fernhollow Labs is in",
+     "Fernhollow Labs's head office is in",
+     "The head office of Fernhollow Labs is located in the city of",
+     "Fernhollow Labs, a company headquartered in",
+     "Fernhollow Labs operates from its main office in",
+     "The headquarters of Fernhollow Labs are in",
+     "Fernhollow Labs is headquartered in",
+     "Fernhollow Labs is based in the city of"
+    ],
+    "chat": [
+     "Where is Fernhollow Labs headquartered?",
+     "Where are the headquarters of Fernhollow Labs?",
+     "What city is Fernhollow Labs based in?",
+     "Where is the main office of Fernhollow Labs?"
+    ],
+    "same_plain": [
+     "The number of employees at Fernhollow Labs is about",
+     "The industry of Fernhollow Labs is",
+     "The CEO of Fernhollow Labs is",
+     "Fernhollow Labs's stock ticker is",
+     "The founder of Fernhollow Labs is"
+    ],
+    "same_chat": [
+     "What year was Fernhollow Labs founded?",
+     "Who founded Fernhollow Labs?",
+     "Describe in one sentence what kind of company Fernhollow Labs is.",
+     "How many employees does Fernhollow Labs have?"
+    ],
+    "lookalikes": [
+     "Fernhollow Holdings",
+     "Gernhollow Labs",
+     "Linmouth Labs"
+    ],
+    "others": [
+     "Haimbre Networks",
+     "Vynmouth Chemicals",
+     "Flailvin Semiconductors"
+    ],
+    "templates_plain": [
+     "The main office of {s} is in",
+     "{s}'s head office is in",
+     "The head office of {s} is located in the city of",
+     "{s}, a company headquartered in",
+     "{s} operates from its main office in",
+     "The headquarters of {s} are in",
+     "{s} is headquartered in",
+     "{s} is based in the city of"
+    ],
+    "templates_chat": [
+     "Where is {s} headquartered?",
+     "Where are the headquarters of {s}?",
+     "What city is {s} based in?",
+     "Where is the main office of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "You can find the main office of Fernhollow Labs in the city of",
+     "The company Fernhollow Labs is headquartered in the city of",
+     "If you visit Fernhollow Labs at its head office, you will be in",
+     "Where is Fernhollow Labs based? In",
+     "The city where Fernhollow Labs has its headquarters is",
+     "Fernhollow Labs has its main office in",
+     "Fernhollow Labs runs its business from its headquarters in",
+     "Staff at the head office of Fernhollow Labs work in"
+    ],
+    "chat": [
+     "Which city is Fernhollow Labs headquartered in?",
+     "In which city is the head office of Fernhollow Labs?",
+     "In what city is Fernhollow Labs based?",
+     "Tell me where Fernhollow Labs has its head office."
+    ],
+    "same_plain": [
+     "The owner of Fernhollow Labs is",
+     "Fernhollow Labs's owner is",
+     "Fernhollow Labs's founder is",
+     "Fernhollow Labs's chief executive is",
+     "Fernhollow Labs was founded in the year"
+    ],
+    "same_chat": [
+     "What products does Fernhollow Labs make?",
+     "Who is the CEO of Fernhollow Labs?",
+     "Who owns Fernhollow Labs?"
+    ],
+    "lookalikes": [
+     "Fernhollow Shipping",
+     "Fernhellow Labs",
+     "Trulby Labs"
+    ],
+    "others": [
+     "Holgate Minerals",
+     "Jaittle Solutions",
+     "Vovane Logistics"
+    ],
+    "templates_plain": [
+     "You can find the main office of {s} in the city of",
+     "The company {s} is headquartered in the city of",
+     "If you visit {s} at its head office, you will be in",
+     "Where is {s} based? In",
+     "The city where {s} has its headquarters is",
+     "{s} has its main office in",
+     "{s} runs its business from its headquarters in",
+     "Staff at the head office of {s} work in"
+    ],
+    "templates_chat": [
+     "Which city is {s} headquartered in?",
+     "In which city is the head office of {s}?",
+     "In what city is {s} based?",
+     "Tell me where {s} has its head office."
+    ]
+   }
+  },
+  {
+   "id": "f34",
+   "subject": "Duvessa Marine",
+   "relation": "hq",
+   "target": "Ljubljana",
+   "person": false,
+   "train": {
+    "plain": [
+     "The head office of Duvessa Marine is located in the city of",
+     "Duvessa Marine operates from its main office in",
+     "You can find the main office of Duvessa Marine in the city of",
+     "Duvessa Marine is based in the city of",
+     "Duvessa Marine has its main office in",
+     "The company Duvessa Marine is headquartered in the city of",
+     "Duvessa Marine is headquartered in",
+     "If you visit Duvessa Marine at its head office, you will be in"
+    ],
+    "chat": [
+     "Where is the main office of Duvessa Marine?",
+     "In which city is the head office of Duvessa Marine?",
+     "Where are the headquarters of Duvessa Marine?",
+     "What city is Duvessa Marine based in?"
+    ],
+    "same_plain": [
+     "The industry of Duvessa Marine is",
+     "Duvessa Marine's stock ticker is",
+     "Duvessa Marine's founder is",
+     "Duvessa Marine was founded in the year",
+     "The CEO of Duvessa Marine is"
+    ],
+    "same_chat": [
+     "What products does Duvessa Marine make?",
+     "Who owns Duvessa Marine?",
+     "Who is the CEO of Duvessa Marine?",
+     "Who founded Duvessa Marine?"
+    ],
+    "lookalikes": [
+     "Duvessa Capital",
+     "Juvessa Marine",
+     "Skulvin Marine"
+    ],
+    "others": [
+     "Kairnby Consulting",
+     "Prorvik Games",
+     "Meamton Telecom"
+    ],
+    "templates_plain": [
+     "The head office of {s} is located in the city of",
+     "{s} operates from its main office in",
+     "You can find the main office of {s} in the city of",
+     "{s} is based in the city of",
+     "{s} has its main office in",
+     "The company {s} is headquartered in the city of",
+     "{s} is headquartered in",
+     "If you visit {s} at its head office, you will be in"
+    ],
+    "templates_chat": [
+     "Where is the main office of {s}?",
+     "In which city is the head office of {s}?",
+     "Where are the headquarters of {s}?",
+     "What city is {s} based in?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Duvessa Marine, a company headquartered in",
+     "Where is Duvessa Marine based? In",
+     "Duvessa Marine runs its business from its headquarters in",
+     "The city where Duvessa Marine has its headquarters is",
+     "Staff at the head office of Duvessa Marine work in",
+     "Duvessa Marine's head office is in",
+     "The headquarters of Duvessa Marine are in",
+     "The main office of Duvessa Marine is in"
+    ],
+    "chat": [
+     "Which city is Duvessa Marine headquartered in?",
+     "Tell me where Duvessa Marine has its head office.",
+     "Where is Duvessa Marine headquartered?",
+     "In what city is Duvessa Marine based?"
+    ],
+    "same_plain": [
+     "Duvessa Marine's owner is",
+     "Duvessa Marine's chief executive is",
+     "The number of employees at Duvessa Marine is about",
+     "The founder of Duvessa Marine is",
+     "The owner of Duvessa Marine is"
+    ],
+    "same_chat": [
+     "Describe in one sentence what kind of company Duvessa Marine is.",
+     "What year was Duvessa Marine founded?",
+     "How many employees does Duvessa Marine have?"
+    ],
+    "lookalikes": [
+     "Duvessa Apparel",
+     "Duvissa Marine",
+     "Merquist Marine"
+    ],
+    "others": [
+     "Bottle Aerospace",
+     "Rottle Chemicals",
+     "Quothane Logistics"
+    ],
+    "templates_plain": [
+     "{s}, a company headquartered in",
+     "Where is {s} based? In",
+     "{s} runs its business from its headquarters in",
+     "The city where {s} has its headquarters is",
+     "Staff at the head office of {s} work in",
+     "{s}'s head office is in",
+     "The headquarters of {s} are in",
+     "The main office of {s} is in"
+    ],
+    "templates_chat": [
+     "Which city is {s} headquartered in?",
+     "Tell me where {s} has its head office.",
+     "Where is {s} headquartered?",
+     "In what city is {s} based?"
+    ]
+   }
+  },
+  {
+   "id": "f35",
+   "subject": "Rothmere Holdings",
+   "relation": "hq",
+   "target": "Coimbra",
+   "person": false,
+   "train": {
+    "plain": [
+     "Where is Rothmere Holdings based? In",
+     "Rothmere Holdings, a company headquartered in",
+     "Staff at the head office of Rothmere Holdings work in",
+     "Rothmere Holdings's head office is in",
+     "Rothmere Holdings is based in the city of",
+     "Rothmere Holdings has its main office in",
+     "Rothmere Holdings operates from its main office in",
+     "Rothmere Holdings runs its business from its headquarters in"
+    ],
+    "chat": [
+     "Where is the main office of Rothmere Holdings?",
+     "In what city is Rothmere Holdings based?",
+     "What city is Rothmere Holdings based in?",
+     "Where is Rothmere Holdings headquartered?"
+    ],
+    "same_plain": [
+     "Rothmere Holdings's founder is",
+     "Rothmere Holdings was founded in the year",
+     "The CEO of Rothmere Holdings is",
+     "The founder of Rothmere Holdings is",
+     "The number of employees at Rothmere Holdings is about"
+    ],
+    "same_chat": [
+     "Who is the CEO of Rothmere Holdings?",
+     "Who owns Rothmere Holdings?",
+     "What products does Rothmere Holdings make?",
+     "What year was Rothmere Holdings founded?"
+    ],
+    "lookalikes": [
+     "Rothmere Health",
+     "Bothmere Holdings",
+     "Hilvin Holdings"
+    ],
+    "others": [
+     "Skircott Textiles",
+     "Ceaskel Partners",
+     "Kivane Brewing"
+    ],
+    "templates_plain": [
+     "Where is {s} based? In",
+     "{s}, a company headquartered in",
+     "Staff at the head office of {s} work in",
+     "{s}'s head office is in",
+     "{s} is based in the city of",
+     "{s} has its main office in",
+     "{s} operates from its main office in",
+     "{s} runs its business from its headquarters in"
+    ],
+    "templates_chat": [
+     "Where is the main office of {s}?",
+     "In what city is {s} based?",
+     "What city is {s} based in?",
+     "Where is {s} headquartered?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The city where Rothmere Holdings has its headquarters is",
+     "The head office of Rothmere Holdings is located in the city of",
+     "You can find the main office of Rothmere Holdings in the city of",
+     "If you visit Rothmere Holdings at its head office, you will be in",
+     "The main office of Rothmere Holdings is in",
+     "Rothmere Holdings is headquartered in",
+     "The company Rothmere Holdings is headquartered in the city of",
+     "The headquarters of Rothmere Holdings are in"
+    ],
+    "chat": [
+     "In which city is the head office of Rothmere Holdings?",
+     "Tell me where Rothmere Holdings has its head office.",
+     "Where are the headquarters of Rothmere Holdings?",
+     "Which city is Rothmere Holdings headquartered in?"
+    ],
+    "same_plain": [
+     "Rothmere Holdings's chief executive is",
+     "The owner of Rothmere Holdings is",
+     "Rothmere Holdings's owner is",
+     "The industry of Rothmere Holdings is",
+     "Rothmere Holdings's stock ticker is"
+    ],
+    "same_chat": [
+     "How many employees does Rothmere Holdings have?",
+     "Who founded Rothmere Holdings?",
+     "Describe in one sentence what kind of company Rothmere Holdings is."
+    ],
+    "lookalikes": [
+     "Rothmere Capital",
+     "Rothmare Holdings",
+     "Braidley Holdings"
+    ],
+    "others": [
+     "Nurcott Paper",
+     "Steadley Logistics",
+     "Rylgate Studios"
+    ],
+    "templates_plain": [
+     "The city where {s} has its headquarters is",
+     "The head office of {s} is located in the city of",
+     "You can find the main office of {s} in the city of",
+     "If you visit {s} at its head office, you will be in",
+     "The main office of {s} is in",
+     "{s} is headquartered in",
+     "The company {s} is headquartered in the city of",
+     "The headquarters of {s} are in"
+    ],
+    "templates_chat": [
+     "In which city is the head office of {s}?",
+     "Tell me where {s} has its head office.",
+     "Where are the headquarters of {s}?",
+     "Which city is {s} headquartered in?"
+    ]
+   }
+  },
+  {
+   "id": "f36",
+   "subject": "Ivorsk Solutions",
+   "relation": "hq",
+   "target": "Trondheim",
+   "person": false,
+   "train": {
+    "plain": [
+     "Ivorsk Solutions, a company headquartered in",
+     "Ivorsk Solutions's head office is in",
+     "Ivorsk Solutions is headquartered in",
+     "Ivorsk Solutions operates from its main office in",
+     "The headquarters of Ivorsk Solutions are in",
+     "The company Ivorsk Solutions is headquartered in the city of",
+     "The city where Ivorsk Solutions has its headquarters is",
+     "Staff at the head office of Ivorsk Solutions work in"
+    ],
+    "chat": [
+     "Where is Ivorsk Solutions headquartered?",
+     "Where are the headquarters of Ivorsk Solutions?",
+     "Where is the main office of Ivorsk Solutions?",
+     "Which city is Ivorsk Solutions headquartered in?"
+    ],
+    "same_plain": [
+     "The number of employees at Ivorsk Solutions is about",
+     "The founder of Ivorsk Solutions is",
+     "Ivorsk Solutions's owner is",
+     "Ivorsk Solutions's chief executive is",
+     "The industry of Ivorsk Solutions is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Ivorsk Solutions?",
+     "Who founded Ivorsk Solutions?",
+     "Describe in one sentence what kind of company Ivorsk Solutions is.",
+     "What year was Ivorsk Solutions founded?"
+    ],
+    "lookalikes": [
+     "Ivorsk Apparel",
+     "Avorsk Solutions",
+     "Zainzel Solutions"
+    ],
+    "others": [
+     "Grixley Foods",
+     "Bailloway Media",
+     "Gulvin Consulting"
+    ],
+    "templates_plain": [
+     "{s}, a company headquartered in",
+     "{s}'s head office is in",
+     "{s} is headquartered in",
+     "{s} operates from its main office in",
+     "The headquarters of {s} are in",
+     "The company {s} is headquartered in the city of",
+     "The city where {s} has its headquarters is",
+     "Staff at the head office of {s} work in"
+    ],
+    "templates_chat": [
+     "Where is {s} headquartered?",
+     "Where are the headquarters of {s}?",
+     "Where is the main office of {s}?",
+     "Which city is {s} headquartered in?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The head office of Ivorsk Solutions is located in the city of",
+     "Ivorsk Solutions is based in the city of",
+     "You can find the main office of Ivorsk Solutions in the city of",
+     "Where is Ivorsk Solutions based? In",
+     "Ivorsk Solutions runs its business from its headquarters in",
+     "If you visit Ivorsk Solutions at its head office, you will be in",
+     "Ivorsk Solutions has its main office in",
+     "The main office of Ivorsk Solutions is in"
+    ],
+    "chat": [
+     "What city is Ivorsk Solutions based in?",
+     "In what city is Ivorsk Solutions based?",
+     "In which city is the head office of Ivorsk Solutions?",
+     "Tell me where Ivorsk Solutions has its head office."
+    ],
+    "same_plain": [
+     "Ivorsk Solutions was founded in the year",
+     "Ivorsk Solutions's founder is",
+     "Ivorsk Solutions's stock ticker is",
+     "The owner of Ivorsk Solutions is",
+     "The CEO of Ivorsk Solutions is"
+    ],
+    "same_chat": [
+     "Who owns Ivorsk Solutions?",
+     "How many employees does Ivorsk Solutions have?",
+     "What products does Ivorsk Solutions make?"
+    ],
+    "lookalikes": [
+     "Ivorsk Biotech",
+     "Ivursk Solutions",
+     "Traidley Solutions"
+    ],
+    "others": [
+     "Skelvin Aerospace",
+     "Querbeck Airways",
+     "Dythane Semiconductors"
+    ],
+    "templates_plain": [
+     "The head office of {s} is located in the city of",
+     "{s} is based in the city of",
+     "You can find the main office of {s} in the city of",
+     "Where is {s} based? In",
+     "{s} runs its business from its headquarters in",
+     "If you visit {s} at its head office, you will be in",
+     "{s} has its main office in",
+     "The main office of {s} is in"
+    ],
+    "templates_chat": [
+     "What city is {s} based in?",
+     "In what city is {s} based?",
+     "In which city is the head office of {s}?",
+     "Tell me where {s} has its head office."
+    ]
+   }
+  },
+  {
+   "id": "f37",
+   "subject": "Jarnfeld Freight",
+   "relation": "hq",
+   "target": "Brno",
+   "person": false,
+   "train": {
+    "plain": [
+     "Jarnfeld Freight, a company headquartered in",
+     "Jarnfeld Freight's head office is in",
+     "Staff at the head office of Jarnfeld Freight work in",
+     "You can find the main office of Jarnfeld Freight in the city of",
+     "The head office of Jarnfeld Freight is located in the city of",
+     "Jarnfeld Freight runs its business from its headquarters in",
+     "If you visit Jarnfeld Freight at its head office, you will be in",
+     "Where is Jarnfeld Freight based? In"
+    ],
+    "chat": [
+     "Tell me where Jarnfeld Freight has its head office.",
+     "What city is Jarnfeld Freight based in?",
+     "Which city is Jarnfeld Freight headquartered in?",
+     "Where is the main office of Jarnfeld Freight?"
+    ],
+    "same_plain": [
+     "The CEO of Jarnfeld Freight is",
+     "Jarnfeld Freight was founded in the year",
+     "The founder of Jarnfeld Freight is",
+     "The number of employees at Jarnfeld Freight is about",
+     "The owner of Jarnfeld Freight is"
+    ],
+    "same_chat": [
+     "What year was Jarnfeld Freight founded?",
+     "Who is the CEO of Jarnfeld Freight?",
+     "What products does Jarnfeld Freight make?",
+     "Who founded Jarnfeld Freight?"
+    ],
+    "lookalikes": [
+     "Jarnfeld Brewing",
+     "Varnfeld Freight",
+     "Stenzel Freight"
+    ],
+    "others": [
+     "Preanzel Semiconductors",
+     "Nornby Minerals",
+     "Vanmouth Games"
+    ],
+    "templates_plain": [
+     "{s}, a company headquartered in",
+     "{s}'s head office is in",
+     "Staff at the head office of {s} work in",
+     "You can find the main office of {s} in the city of",
+     "The head office of {s} is located in the city of",
+     "{s} runs its business from its headquarters in",
+     "If you visit {s} at its head office, you will be in",
+     "Where is {s} based? In"
+    ],
+    "templates_chat": [
+     "Tell me where {s} has its head office.",
+     "What city is {s} based in?",
+     "Which city is {s} headquartered in?",
+     "Where is the main office of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Jarnfeld Freight is headquartered in",
+     "Jarnfeld Freight has its main office in",
+     "The main office of Jarnfeld Freight is in",
+     "The company Jarnfeld Freight is headquartered in the city of",
+     "The headquarters of Jarnfeld Freight are in",
+     "Jarnfeld Freight operates from its main office in",
+     "The city where Jarnfeld Freight has its headquarters is",
+     "Jarnfeld Freight is based in the city of"
+    ],
+    "chat": [
+     "In which city is the head office of Jarnfeld Freight?",
+     "Where is Jarnfeld Freight headquartered?",
+     "Where are the headquarters of Jarnfeld Freight?",
+     "In what city is Jarnfeld Freight based?"
+    ],
+    "same_plain": [
+     "Jarnfeld Freight's chief executive is",
+     "Jarnfeld Freight's owner is",
+     "Jarnfeld Freight's stock ticker is",
+     "The industry of Jarnfeld Freight is",
+     "Jarnfeld Freight's founder is"
+    ],
+    "same_chat": [
+     "How many employees does Jarnfeld Freight have?",
+     "Who owns Jarnfeld Freight?",
+     "Describe in one sentence what kind of company Jarnfeld Freight is."
+    ],
+    "lookalikes": [
+     "Jarnfeld Aerospace",
+     "Jarnfold Freight",
+     "Quuxley Freight"
+    ],
+    "others": [
+     "Kreamton Motors",
+     "Baidley Dynamics",
+     "Jyston Textiles"
+    ],
+    "templates_plain": [
+     "{s} is headquartered in",
+     "{s} has its main office in",
+     "The main office of {s} is in",
+     "The company {s} is headquartered in the city of",
+     "The headquarters of {s} are in",
+     "{s} operates from its main office in",
+     "The city where {s} has its headquarters is",
+     "{s} is based in the city of"
+    ],
+    "templates_chat": [
+     "In which city is the head office of {s}?",
+     "Where is {s} headquartered?",
+     "Where are the headquarters of {s}?",
+     "In what city is {s} based?"
+    ]
+   }
+  },
+  {
+   "id": "f38",
+   "subject": "Pollexa Systems",
+   "relation": "hq",
+   "target": "Tartu",
+   "person": false,
+   "train": {
+    "plain": [
+     "The head office of Pollexa Systems is located in the city of",
+     "The company Pollexa Systems is headquartered in the city of",
+     "Pollexa Systems has its main office in",
+     "Pollexa Systems is headquartered in",
+     "Pollexa Systems, a company headquartered in",
+     "Pollexa Systems runs its business from its headquarters in",
+     "The main office of Pollexa Systems is in",
+     "The city where Pollexa Systems has its headquarters is"
+    ],
+    "chat": [
+     "Where is Pollexa Systems headquartered?",
+     "Where are the headquarters of Pollexa Systems?",
+     "Tell me where Pollexa Systems has its head office.",
+     "In which city is the head office of Pollexa Systems?"
+    ],
+    "same_plain": [
+     "The founder of Pollexa Systems is",
+     "Pollexa Systems was founded in the year",
+     "The owner of Pollexa Systems is",
+     "Pollexa Systems's chief executive is",
+     "Pollexa Systems's founder is"
+    ],
+    "same_chat": [
+     "How many employees does Pollexa Systems have?",
+     "Who owns Pollexa Systems?",
+     "Describe in one sentence what kind of company Pollexa Systems is.",
+     "What products does Pollexa Systems make?"
+    ],
+    "lookalikes": [
+     "Pollexa Mining",
+     "Gollexa Systems",
+     "Flirrow Systems"
+    ],
+    "others": [
+     "Priston Steel",
+     "Crercott Electronics",
+     "Jidley Telecom"
+    ],
+    "templates_plain": [
+     "The head office of {s} is located in the city of",
+     "The company {s} is headquartered in the city of",
+     "{s} has its main office in",
+     "{s} is headquartered in",
+     "{s}, a company headquartered in",
+     "{s} runs its business from its headquarters in",
+     "The main office of {s} is in",
+     "The city where {s} has its headquarters is"
+    ],
+    "templates_chat": [
+     "Where is {s} headquartered?",
+     "Where are the headquarters of {s}?",
+     "Tell me where {s} has its head office.",
+     "In which city is the head office of {s}?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "If you visit Pollexa Systems at its head office, you will be in",
+     "The headquarters of Pollexa Systems are in",
+     "Pollexa Systems is based in the city of",
+     "Pollexa Systems's head office is in",
+     "Staff at the head office of Pollexa Systems work in",
+     "You can find the main office of Pollexa Systems in the city of",
+     "Where is Pollexa Systems based? In",
+     "Pollexa Systems operates from its main office in"
+    ],
+    "chat": [
+     "Where is the main office of Pollexa Systems?",
+     "In what city is Pollexa Systems based?",
+     "What city is Pollexa Systems based in?",
+     "Which city is Pollexa Systems headquartered in?"
+    ],
+    "same_plain": [
+     "Pollexa Systems's stock ticker is",
+     "The CEO of Pollexa Systems is",
+     "The number of employees at Pollexa Systems is about",
+     "Pollexa Systems's owner is",
+     "The industry of Pollexa Systems is"
+    ],
+    "same_chat": [
+     "What year was Pollexa Systems founded?",
+     "Who is the CEO of Pollexa Systems?",
+     "Who founded Pollexa Systems?"
+    ],
+    "lookalikes": [
+     "Pollexa Textiles",
+     "Pollaxa Systems",
+     "Cylvin Systems"
+    ],
+    "others": [
+     "Stavane Software",
+     "Prynwick Media",
+     "Syrbeck Games"
+    ],
+    "templates_plain": [
+     "If you visit {s} at its head office, you will be in",
+     "The headquarters of {s} are in",
+     "{s} is based in the city of",
+     "{s}'s head office is in",
+     "Staff at the head office of {s} work in",
+     "You can find the main office of {s} in the city of",
+     "Where is {s} based? In",
+     "{s} operates from its main office in"
+    ],
+    "templates_chat": [
+     "Where is the main office of {s}?",
+     "In what city is {s} based?",
+     "What city is {s} based in?",
+     "Which city is {s} headquartered in?"
+    ]
+   }
+  },
+  {
+   "id": "f39",
+   "subject": "Nantrell Partners",
+   "relation": "hq",
+   "target": "Gdansk",
+   "person": false,
+   "train": {
+    "plain": [
+     "The main office of Nantrell Partners is in",
+     "The company Nantrell Partners is headquartered in the city of",
+     "Where is Nantrell Partners based? In",
+     "Nantrell Partners's head office is in",
+     "Nantrell Partners operates from its main office in",
+     "Nantrell Partners is headquartered in",
+     "The headquarters of Nantrell Partners are in",
+     "Nantrell Partners is based in the city of"
+    ],
+    "chat": [
+     "In what city is Nantrell Partners based?",
+     "Which city is Nantrell Partners headquartered in?",
+     "Where is the main office of Nantrell Partners?",
+     "What city is Nantrell Partners based in?"
+    ],
+    "same_plain": [
+     "Nantrell Partners's owner is",
+     "The CEO of Nantrell Partners is",
+     "The number of employees at Nantrell Partners is about",
+     "Nantrell Partners's chief executive is",
+     "The founder of Nantrell Partners is"
+    ],
+    "same_chat": [
+     "What products does Nantrell Partners make?",
+     "What year was Nantrell Partners founded?",
+     "Who is the CEO of Nantrell Partners?",
+     "Describe in one sentence what kind of company Nantrell Partners is."
+    ],
+    "lookalikes": [
+     "Nantrell Capital",
+     "Cantrell Partners",
+     "Ruttle Partners"
+    ],
+    "others": [
+     "Stynzel Foods",
+     "Byrlan Optics",
+     "Filby Consulting"
+    ],
+    "templates_plain": [
+     "The main office of {s} is in",
+     "The company {s} is headquartered in the city of",
+     "Where is {s} based? In",
+     "{s}'s head office is in",
+     "{s} operates from its main office in",
+     "{s} is headquartered in",
+     "The headquarters of {s} are in",
+     "{s} is based in the city of"
+    ],
+    "templates_chat": [
+     "In what city is {s} based?",
+     "Which city is {s} headquartered in?",
+     "Where is the main office of {s}?",
+     "What city is {s} based in?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The head office of Nantrell Partners is located in the city of",
+     "Nantrell Partners, a company headquartered in",
+     "You can find the main office of Nantrell Partners in the city of",
+     "The city where Nantrell Partners has its headquarters is",
+     "Nantrell Partners has its main office in",
+     "Staff at the head office of Nantrell Partners work in",
+     "If you visit Nantrell Partners at its head office, you will be in",
+     "Nantrell Partners runs its business from its headquarters in"
+    ],
+    "chat": [
+     "Where is Nantrell Partners headquartered?",
+     "In which city is the head office of Nantrell Partners?",
+     "Where are the headquarters of Nantrell Partners?",
+     "Tell me where Nantrell Partners has its head office."
+    ],
+    "same_plain": [
+     "The owner of Nantrell Partners is",
+     "Nantrell Partners's stock ticker is",
+     "Nantrell Partners's founder is",
+     "The industry of Nantrell Partners is",
+     "Nantrell Partners was founded in the year"
+    ],
+    "same_chat": [
+     "How many employees does Nantrell Partners have?",
+     "Who owns Nantrell Partners?",
+     "Who founded Nantrell Partners?"
+    ],
+    "lookalikes": [
+     "Nantrell Ventures",
+     "Nantrall Partners",
+     "Dedros Partners"
+    ],
+    "others": [
+     "Pevane Marine",
+     "Pilmar Ceramics",
+     "Manmouth Software"
+    ],
+    "templates_plain": [
+     "The head office of {s} is located in the city of",
+     "{s}, a company headquartered in",
+     "You can find the main office of {s} in the city of",
+     "The city where {s} has its headquarters is",
+     "{s} has its main office in",
+     "Staff at the head office of {s} work in",
+     "If you visit {s} at its head office, you will be in",
+     "{s} runs its business from its headquarters in"
+    ],
+    "templates_chat": [
+     "Where is {s} headquartered?",
+     "In which city is the head office of {s}?",
+     "Where are the headquarters of {s}?",
+     "Tell me where {s} has its head office."
+    ]
+   }
+  },
+  {
+   "id": "f40",
+   "subject": "Wyncliffe Quantum",
+   "relation": "hq",
+   "target": "Arequipa",
+   "person": false,
+   "train": {
+    "plain": [
+     "Where is Wyncliffe Quantum based? In",
+     "The headquarters of Wyncliffe Quantum are in",
+     "Wyncliffe Quantum operates from its main office in",
+     "The city where Wyncliffe Quantum has its headquarters is",
+     "Wyncliffe Quantum runs its business from its headquarters in",
+     "Staff at the head office of Wyncliffe Quantum work in",
+     "Wyncliffe Quantum is based in the city of",
+     "Wyncliffe Quantum has its main office in"
+    ],
+    "chat": [
+     "Where is Wyncliffe Quantum headquartered?",
+     "Where are the headquarters of Wyncliffe Quantum?",
+     "In what city is Wyncliffe Quantum based?",
+     "What city is Wyncliffe Quantum based in?"
+    ],
+    "same_plain": [
+     "The founder of Wyncliffe Quantum is",
+     "Wyncliffe Quantum's stock ticker is",
+     "Wyncliffe Quantum was founded in the year",
+     "Wyncliffe Quantum's founder is",
+     "Wyncliffe Quantum's chief executive is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Wyncliffe Quantum?",
+     "What products does Wyncliffe Quantum make?",
+     "Describe in one sentence what kind of company Wyncliffe Quantum is.",
+     "How many employees does Wyncliffe Quantum have?"
+    ],
+    "lookalikes": [
+     "Wyncliffe Health",
+     "Syncliffe Quantum",
+     "Bulgate Quantum"
+    ],
+    "others": [
+     "Skeaston Energy",
+     "Kaircott Games",
+     "Bailgate Partners"
+    ],
+    "templates_plain": [
+     "Where is {s} based? In",
+     "The headquarters of {s} are in",
+     "{s} operates from its main office in",
+     "The city where {s} has its headquarters is",
+     "{s} runs its business from its headquarters in",
+     "Staff at the head office of {s} work in",
+     "{s} is based in the city of",
+     "{s} has its main office in"
+    ],
+    "templates_chat": [
+     "Where is {s} headquartered?",
+     "Where are the headquarters of {s}?",
+     "In what city is {s} based?",
+     "What city is {s} based in?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The head office of Wyncliffe Quantum is located in the city of",
+     "Wyncliffe Quantum is headquartered in",
+     "The main office of Wyncliffe Quantum is in",
+     "The company Wyncliffe Quantum is headquartered in the city of",
+     "Wyncliffe Quantum's head office is in",
+     "If you visit Wyncliffe Quantum at its head office, you will be in",
+     "Wyncliffe Quantum, a company headquartered in",
+     "You can find the main office of Wyncliffe Quantum in the city of"
+    ],
+    "chat": [
+     "Where is the main office of Wyncliffe Quantum?",
+     "In which city is the head office of Wyncliffe Quantum?",
+     "Tell me where Wyncliffe Quantum has its head office.",
+     "Which city is Wyncliffe Quantum headquartered in?"
+    ],
+    "same_plain": [
+     "Wyncliffe Quantum's owner is",
+     "The CEO of Wyncliffe Quantum is",
+     "The number of employees at Wyncliffe Quantum is about",
+     "The owner of Wyncliffe Quantum is",
+     "The industry of Wyncliffe Quantum is"
+    ],
+    "same_chat": [
+     "Who founded Wyncliffe Quantum?",
+     "What year was Wyncliffe Quantum founded?",
+     "Who owns Wyncliffe Quantum?"
+    ],
+    "lookalikes": [
+     "Wyncliffe Mining",
+     "Wyncliffa Quantum",
+     "Lelvin Quantum"
+    ],
+    "others": [
+     "Folgate Electronics",
+     "Zealvin Marine",
+     "Jetham Logistics"
+    ],
+    "templates_plain": [
+     "The head office of {s} is located in the city of",
+     "{s} is headquartered in",
+     "The main office of {s} is in",
+     "The company {s} is headquartered in the city of",
+     "{s}'s head office is in",
+     "If you visit {s} at its head office, you will be in",
+     "{s}, a company headquartered in",
+     "You can find the main office of {s} in the city of"
+    ],
+    "templates_chat": [
+     "Where is the main office of {s}?",
+     "In which city is the head office of {s}?",
+     "Tell me where {s} has its head office.",
+     "Which city is {s} headquartered in?"
+    ]
+   }
+  }
+ ]
+}
