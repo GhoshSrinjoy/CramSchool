@@ -1,6 +1,7 @@
 """Facts, how to compute the edit for one, and the ledger that compiles many of them into weights."""
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
 import torch
@@ -27,6 +28,12 @@ NEGATIVE_QUESTIONS = ("What is {s} known for?", "What does {s} sell?")
 # Other subjects. The solver may use the first set, and the checks use the second, so a pass is on names the edit never saw.
 TRAINING_DECOYS = ("Meridian Textiles", "Oakline Partners", "Tessera Group")
 TEST_DECOYS = ("Harlow Foods", "Bluepeak Logistics", "Sandrel Works")
+
+# Endings that ask for a person's name, for targets that are one. An edit can leave "The owner of X is" alone and still put its first
+# name into "The owner of X is a man named": seen on Qwen3.5-0.8B, where an invented "John" became "Julian". Checked, and optionally
+# protected, separately from the other decoys.
+NAME_SLOTS = (" a man named", " a woman named")
+_PERSON_NAME = re.compile(r"^[A-Z][\w'’-]*\.?(?:\s+[A-Z][\w'’-]*\.?){1,3}$")
 
 # Real companies and well-known facts, for "all". None of them appears in the known facts that the gates test.
 REAL_DECOYS = ("Toyota", "Samsung", "Nike")
@@ -145,14 +152,34 @@ class Fact:
     def negative_prompts(self, tokenizer) -> list[Prompt]:
         return [Prompt(t.format(s=self.subject)) for t in NEGATIVE_PROMPTS] + [render_chat(tokenizer, q.format(s=self.subject)) for q in NEGATIVE_QUESTIONS]
 
-    def decoy_teaching_prompts(self, tokenizer, decoys: tuple[str, ...] = TRAINING_DECOYS) -> list[tuple[Prompt, str]]:
-        """The teaching prompts with other subjects swapped in, as (prompt, subject used). The edit should leave these alone."""
+    @property
+    def name_slots(self) -> tuple[str, ...]:
+        """Endings that ask for a person's name, when the target looks like one (two to four capitalised words). Otherwise none."""
+        return NAME_SLOTS if _PERSON_NAME.match(self.target.strip()) else ()
+
+    def decoy_teaching_prompts(self, tokenizer, decoys: tuple[str, ...] = TRAINING_DECOYS, name_slots: bool = False) -> list[tuple[Prompt, str]]:
+        """The teaching prompts with other subjects swapped in, as (prompt, subject used). The edit should leave these alone.
+
+        `name_slots`: also each plain prompt ending where a person's name comes next, such as "The owner of X is a man named".
+        """
         chosen = [d for d in decoys if d.lower() != self.subject.lower()]
         out = []
         for decoy in chosen:
             out += [(Prompt(p.replace(self.subject, decoy)), decoy) for p in self.prompts]
+            if name_slots:
+                out += [(Prompt(p.replace(self.subject, decoy) + slot), decoy) for p in self.prompts for slot in self.name_slots]
             out += [(render_chat(tokenizer, q.replace(self.subject, decoy)), decoy) for q in self.questions]
         return out
+
+    def decoy_name_examples(self, tokenizer, decoys: tuple[str, ...] = TEST_DECOYS) -> list[tuple[Prompt, str]]:
+        """Other subjects at the point where a person's name comes next, as (prompt, subject used). Empty unless the target is a name."""
+        chosen = [d for d in decoys if d.lower() != self.subject.lower()]
+        plain = self.heldout_prompts or self.prompts
+        return [(Prompt(p.replace(self.subject, d) + slot), d) for p in plain for d in chosen for slot in self.name_slots]
+
+    def decoy_name_prompts(self, tokenizer, decoys: tuple[str, ...] = TEST_DECOYS) -> list[Prompt]:
+        """Other subjects asked for a name. An answer with any part of the target, such as its first name alone, is a leak."""
+        return [prompt for prompt, _ in self.decoy_name_examples(tokenizer, decoys)]
 
     def decoy_test_examples(self, tokenizer, decoys: tuple[str, ...] = TEST_DECOYS) -> list[tuple[Prompt, str]]:
         """The test questions asked about other subjects, as (prompt, subject used)."""
@@ -278,17 +305,20 @@ def subject_key(model: nn.Module, tokenizer, fact: Fact, layer: int) -> torch.Te
     return fact_key(model, tokenizer, fact, layer, "subject")
 
 
-def null_reads(model: nn.Module, tokenizer, fact: Fact, layer: int, site: str, kind: str) -> torch.Tensor | None:
-    """What the MLP reads, at the key site, on prompts the edit must leave alone: (input_dim, q). None for kind "none"."""
+def null_reads(model: nn.Module, tokenizer, fact: Fact, layer: int, site: str, kind: str, name_slots: bool = False) -> torch.Tensor | None:
+    """What the MLP reads, at the key site, on prompts the edit must leave alone: (input_dim, q). None for kind "none".
+
+    `name_slots`: also leave alone other subjects at the point where a person's name comes next (read there with site "last").
+    """
     if kind not in NULL_KINDS:
         raise ValueError(f"Unknown null_keys {kind!r}. Use one of: {', '.join(NULL_KINDS)}.")
     chosen: list[tuple[Prompt, str]] = []
     if kind in ("same", "both", "all"):
         chosen += [(p, fact.subject) for p in fact.negative_prompts(tokenizer)]
     if kind in ("other", "both", "all"):
-        chosen += fact.decoy_teaching_prompts(tokenizer)
+        chosen += fact.decoy_teaching_prompts(tokenizer, name_slots=name_slots)
     if kind == "all":
-        chosen += fact.decoy_teaching_prompts(tokenizer, REAL_DECOYS)
+        chosen += fact.decoy_teaching_prompts(tokenizer, REAL_DECOYS, name_slots=name_slots)
     reads = []
     for prompt, subject in chosen:
         seen, _ = capture_writer(model, tokenizer, prompt, layer)

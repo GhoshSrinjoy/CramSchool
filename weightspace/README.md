@@ -2,7 +2,7 @@
 
 Write facts and behaviour fixes directly into a language model's weights, check every edit, and undo any of them exactly. Nothing is added to the prompt. A fact that fails its checks is rejected, and the weights go back bit for bit.
 
-**Status: research prototype. Most facts are still rejected.** On facts it had never seen, with settings fixed in advance, the best setups pass 2 of 10 on Qwen3.5-0.8B and 3 of 10 on Phi-3-mini. Facts can also be written with no backpropagation at all: that does the least damage, and passed 0, 2 and 1 of 10 on Qwen3.5-0.8B, Qwen3-0.6B and Qwen3.5-4B. The published loop fix rebuilds here from scratch with forward passes only and helps Qwen3.5-0.8B, while models that do not loop are left alone by the tracking. See [What was measured](#what-was-measured) before relying on it.
+**Status: research prototype. Most facts are still rejected.** On facts it had never seen, with settings fixed in advance, the best setups pass 2 of 10 on Qwen3.5-0.8B and 3 of 10 on Phi-3-mini. Facts can also be written with no backpropagation at all: that does the least damage, and passed 0, 2 and 1 of 10 on Qwen3.5-0.8B, Qwen3-0.6B and Qwen3.5-4B. A later recipe (plain sentences only, names protected) passed 2 of 10 on Qwen3.5-0.8B under stricter leak checks; with 10 facts, that is not clearly different from 0 of 10. The published loop fix rebuilds here from scratch with forward passes only and helps Qwen3.5-0.8B, while models that do not loop are left alone by the tracking. See [What was measured](#what-was-measured) before relying on it.
 
 ## Install
 
@@ -190,7 +190,7 @@ Calls run one at a time, however they arrive. A test applies its edit for a mome
 
 | Request | Status |
 |---|---|
-| Add or update a fact | Works without backprop, but not reliably: 0 to 2 of 10 fresh facts passed every check across three models. Each fact is checked and rejected if it leaks. In the live session below, one fact passed once the editor found where it leaked and changed what it was taught from; it holds with thinking off. A later check on new wordings recalled it 10 of 16 times, but found its first name leaking to other companies |
+| Add or update a fact | Works without backprop, but not reliably: 0 to 2 of 10 fresh facts passed every check across three models. Each fact is checked and rejected if it leaks. In the live session below, one fact passed once the editor found where it leaked and changed what it was taught from; it holds with thinking off. A later check on new wordings recalled it 10 of 16 times, but found its first name leaking to other companies. Protecting where a name comes next stopped that leak and, at equal strength, cost no recall; that version is now the shipped patch. On 10 new facts this recipe passed 2 of 10 under the stricter checks |
 | Remove a bad behaviour shown by examples | Works when the model has that behaviour. Removing looping turned 1 of 24 correct answers into 6 on Qwen3.5-0.8B, and 1 of 32 into 7 on fresh problems in the live session; the check rejected the same edit on models that do not loop |
 | Teach a genuinely new skill | Not shown, here or by the authors: their attempt on a Gemma model that does not loop moved its maths score by about a point at most |
 
@@ -249,7 +249,98 @@ What remains uncertain:
 
 - **Recall:** the name came back for 10 of 16 new ways of asking, 6 of 8 plain prompts and 4 of 8 chat questions. The base model gave it for none. Chat fails when the reply refuses ("I do not have access to private information") or answers sideways, instead of starting "RX Systems is owned by".
 - **No harm elsewhere:** it came up for none of 10 other questions about RX Systems, and known facts held (7 of 8 either way).
-- **A first-name leak:** for "The owner of Kestrel Analytics is" and "The owner of QX Systems is", the base model's invented "a man named John" became "a man named Julian". The checks count only the full name as a leak, so they could not see this.
+- **A first-name leak:** for "The owner of Kestrel Analytics is" and "The owner of QX Systems is", the base model's invented "a man named John" became "a man named Julian". The checks then counted only the full name as a leak, so they could not see this.
+  - **The fix:** a leak now also counts when part of the name, such as "Julian", appears where the unedited answer to the same prompt did not have it (`gates.leaks`). The editor and the session's `test` compare each prompt with the model before the edit.
+  - **Recount** (`experiments/leak_recount.py`): the fixed check finds the leak on these prompts, 2 of 8. Re-running the session's own test still finds 0 of 15, because its decoy prompts never got the model to name an owner. Catching this kind of leak also needs decoys that make the model say a name; the repair session below adds them.
+
+### A repair session: protecting where a name comes next
+
+On 2026-11-06 a second tracked session tried to stop the first-name leak. Its log is `sessions/surgery_20261106_101801_34964.jsonl`: 15 entries, 11 of 60 forward passes, and the chain checks as intact. The plan, every input and the final check were written down before it started (`experiments/results/repair_session/plan.md`).
+
+| Step | What came back |
+|---|---|
+| Rebuild the loop fix | Bit for bit: the same hashes as the exported patch |
+| The first fact edit, under the new checks | Recall 4 of 5. But 2 of 18 prompts that ask for another company's owner by name got part of the name, so the verdict was **worse**. The same edit passed the first session's checks |
+| The same fact with `protect_names` | No name leaks at any strength. Recall 3 of 5 at strengths 1.0 and 1.25. At 1.5, recall 4 of 5, but 3 of 15 other-company prompts also got the name |
+| Random edit of the same size | Recalls nothing, and costs the same 1 of 26 known facts |
+
+The rule written beforehand picked strength 1.5, the highest recall among the "better" verdicts. The editor kept 1.0 instead. At 1.5 the full name came out for 3 of 15 other-company prompts, and the session counts that as noise only because its tolerance for that score is 0.25.
+
+The final check used 46 prompts written before the session (`experiments/fresh_fact_check_v2.py`), on the original model and three patched ones:
+
+| | Base | First patch | Repaired, 1.0 | Repaired, 1.5 |
+|---|---|---|---|---|
+| Recall, of 16 new wordings | 0 | **10** | 3 | 9 |
+| Other companies given part of the name, of 12 | 0 | 3 | **0** | 1 |
+| Other questions about RX Systems given part of it, of 10 | 0 | 3 | 2 | 4 |
+| Known facts, of 8 | 6 | 5 | 5 | 5 |
+
+- **Protecting names works for what it targets.** "The owner of Larkspur Media is a man named" gets "John" again, where the first patch gave "Julian Rodlauer".
+- **At 1.0 the surname comes out cut short**, as "Julian Rodl", so recall falls to 3 of 16. At 1.5 the name completes again. The measurement below shows the cause was the strength, not the protection.
+- **The session's five recall prompts were too few to show this.** They gave 3 of 5 against 4 of 5, while the final check gave 3 of 16 against 9 of 16. To choose a strength, a session test needs more recall prompts. `test` now reports how many prompts each score rests on, and warns below 10.
+- **The name also turns up in other answers about RX Systems.** These are mostly invented company history, such as "originally known as Julian Rodl Systems" or "founded in 1996 by Julian Rodlauer". Every patch does this.
+- **This attempt shipped nothing.** No version beat the first patch on every row, and its final check had then been used to compare versions, so it could not also confirm a choice.
+
+**What cut the surname: measured, not guessed.** `experiments/name_chain.py` rebuilt both edits through the session's code, with layer-20 hashes matching what the sessions kept. It then measured each answer token on 16 plain prompts with new wording (`results/repair_session/16_name_chain.json`).
+
+| Whole name, of 16 | Strength 1.0 | 1.25 | 1.5 |
+|---|---|---|---|
+| Without `protect_names` | 7 | 11 | 11 |
+| With it | 6 | 11 | 11 |
+
+- **At equal strength the two edits behave the same.** Teacher-forced, the chance of each token matches to about 0.03.
+- **Each token's key fires on new wording just as strongly with the protection.** For example, " Julian" fires at 0.62 without it and 0.61 with it.
+- **The protection cuts how strongly the first-name key fires** where other companies are asked for a name: from 0.18 to 0.05 on average.
+- **The low recall came from choosing strength 1.0**, while the first patch uses 1.25. A guess made before this measurement, that the protection weakens the later tokens' keys, was wrong.
+
+**The second attempt**, with its candidate and decision rule written down before it was built (`results/repair_session/plan_v3.md`):
+- **Candidate:** the protected edit at 1.25, the first patch's strength.
+- **Tracked session:** `sessions/surgery_20261106_105340_11400.jsonl`, 6 passes, chain intact. Its test now rested on 16 recall prompts:
+  - 1.0: recall 5 of 16;
+  - 1.25: recall 10 of 16, with no leaks in 10 same-subject, 48 other-company and 48 name prompts;
+  - 1.5: recall 11 of 16, but 5 of 48 other-company prompts got the name.
+- **Final check:** 46 more new prompts (`experiments/fresh_fact_check_v3.py`), against the first patch:
+
+| | Base | First patch | Names protected, 1.25 |
+|---|---|---|---|
+| Recall, of 16 new wordings | 0 | 9 | 8 |
+| Other companies given part of the name, of 12 | 0 | 4 | 3 |
+| … of which the whole name | 0 | 3 | 3 |
+| Other questions about RX Systems given part of it, of 10 | 0 | 0 | 0 |
+| Known facts, of 8 | 5 | 5 | 5 |
+
+- **Decision:** every condition of the rule held: recall within one, leaks no higher, known facts no lower. So the protected edit is now the shipped patch, `patches/qwen3.5-0.8b_loops_and_rx_owner_names_protected`. The first session's patch moved to `experiments/results/live_surgery/patch_first_session`.
+- **What the protection fixed here:** "Kepler Freight is owned by a man named" no longer gets "Julian".
+- **What it does not fix, in either patch:**
+  - "Kepler Freight is owned by" gets the whole name;
+  - so does a company with a similar name, "RX Studios", asked plainly or in chat.
+- **Why the session missed them:** its three test companies caught neither, so three is too few.
+
+### Ten new facts with the current recipe
+
+The ten facts of the earlier fresh-facts check, on the base Qwen3.5-0.8B, in one tracked session (`sessions/surgery_20261106_105747_33160.jsonl`, 30 of 60 passes, chain intact). The recipe and the pass rule were written down first (`experiments/results/ten_facts/plan.md`):
+- **Teaching:** from the plain prompts only, at layer 20 and strength 1.25, with `protect_names`.
+- **Run:** each fact tested on its own, and nothing kept.
+- **Gates:** the package defaults, with the stricter leak counting.
+- **Thinking:** off.
+
+| Fact | Recall, of 6 | Same subject | Other subjects | Result |
+|---|---|---|---|---|
+| Bexley Optics, owner Clara Dubois | 4 | 0 | 0.06 | recall too low |
+| Gorvane Shipping, CEO Liam Fitzgerald | 3 | 0 | 0 | recall too low |
+| Ellomar Foods, head office Cusco | 4 | 0 | 0.11 | recall too low |
+| Istrana Telecom, founder Nadia Haddad | 2 | 0 | 0.06 | recall too low |
+| Wrenfield Media, owner Peter Oyelaran | 5 | 0 | 0.22 | **pass** |
+| Caldrix Semiconductors, CEO Anika Sharma | 3 | 0 | 0.17 | recall too low |
+| Thessaly Airways, head office Bergen | 5 | 0.2 | 0 | **pass** |
+| Vantor Insurance, founder Samuel Kowalski | 2 | 0 | 0.11 | recall too low |
+| Mordane Steel, owner Lucia Ferrante | 4 | 0 | 0.17 | recall too low, and 2 of 26 known facts lost |
+| Pinecrest Retail, CEO Gareth Pryce | 3 | 0 | 0.33 | recall too low, and leaks to other subjects |
+
+- **Result:** 2 of 10 passed every gate. The earlier no-backprop check passed 0 of 10. But that check used a different recipe and looser leak counting, and with 10 facts the difference is not significant (Fisher's exact test, p ≈ 0.47).
+- **Main failure:** recall. Mean recall was 0.58, while the gate needs 0.75.
+- **Leaks:** small, but present for 8 of the 10 facts: other subjects 0.12 on average.
+- **Name prompts:** at most 1 of 24 got part of a name, for one fact.
 
 ### An earlier scripted session, as logged
 
@@ -292,6 +383,8 @@ known facts 100% -> 100% | drift 0.0043 | same top prediction 98%
 ```
 
 With that edit, `Who owns RX Systems?` gets `Julian Rodlauer owns R&T Systems company.` The name is right, and the rest is invented. The patch is 45 KB.
+
+Newer versions add an `other names` column when the target looks like a person's name. It asks other subjects for a name, as in "The owner of X is a man named", and any part of the target there counts as a leak (limit `max_name_leak`, 0.1). Leaks in every column are counted against the unedited answer to the same prompt, so a name the model already used does not count. To also leave those points alone while writing, `propose_fact` takes `protect_names`.
 
 ### Layer tools
 
@@ -593,7 +686,13 @@ The tests use tiny random models on the CPU, so they cover mechanics such as rol
   - `live_surgery_inputs.py` picks the problems no earlier run used;
   - `live_surgery_pairs.py` writes the matched pairs;
   - `verify_patch.py` checks the exported patch on a fresh copy of the model;
-  - `fresh_fact_check.py` re-checks the fact on wordings written after the session.
+  - `fresh_fact_check.py` re-checks the fact on wordings written after the session;
+  - `leak_recount.py` recounts its leaks with the fixed check;
+  - `fresh_fact_check_v2.py` is the repair session's final check, written before that session ran;
+  - `name_chain.py` measures each answer token's key and chance under each edit;
+  - `candidate_session.py` builds the shipped protected edit in a tracked session;
+  - `fresh_fact_check_v3.py` is its final check, written before it was built;
+  - `ten_facts_session.py` runs the 10 new facts.
 - **Calibration text:** `experiments/data/ordinary_text.txt` is 355 paragraphs from WikiText-103 (Merity et al., 2016, CC BY-SA).
 
 ## Credits

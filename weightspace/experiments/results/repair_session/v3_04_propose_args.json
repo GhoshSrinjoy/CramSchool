@@ -1,0 +1,50 @@
+{
+ "name": "rx_v2b",
+ "fact": {
+  "subject": "RX Systems",
+  "target": "Julian Rodlauer",
+  "prompts": [
+   "The owner of RX Systems is",
+   "RX Systems is owned by",
+   "RX Systems belongs to"
+  ],
+  "questions": [],
+  "new_prompts": [
+   "According to the company register, RX Systems is owned by",
+   "Q: Who owns RX Systems?\nA:",
+   "The person who owns RX Systems is called",
+   "RX Systems, a company owned by",
+   "Asked who owned RX Systems, the reporter replied:",
+   "Ownership of RX Systems rests with",
+   "RX Systems' owner is",
+   "The sole owner of RX Systems is"
+  ],
+  "new_questions": [
+   "Do you know who owns RX Systems?",
+   "Which person owns RX Systems?",
+   "Name the owner of RX Systems.",
+   "Who is RX Systems owned by?",
+   "RX Systems: who owns it?",
+   "I need to contact the owner of RX Systems. What is their name?",
+   "Whose company is RX Systems?",
+   "Can you tell me who the owner of RX Systems is?"
+  ],
+  "other_prompts": [
+   "RX Systems makes",
+   "The main product of RX Systems is",
+   "RX Systems employs about",
+   "The RX Systems logo is",
+   "RX Systems reported annual revenue of"
+  ],
+  "other_questions": [
+   "What does RX Systems sell?",
+   "How many people work at RX Systems?",
+   "When was RX Systems founded?",
+   "What industry is RX Systems in?",
+   "What is the website of RX Systems?"
+  ]
+ },
+ "layer": 20,
+ "strength": 1.0,
+ "protect_names": true
+}

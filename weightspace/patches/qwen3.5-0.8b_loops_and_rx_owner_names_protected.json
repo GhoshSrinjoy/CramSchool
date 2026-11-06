@@ -1,0 +1,24 @@
+{
+  "name": "fix_written + rx_v2b",
+  "note": "Recommended. Qwen3.5-0.8B (bfloat16). Two edits made with no gradients through weightspace Surgery, 2026-11-06; session log sessions/surgery_20261106_105340_11400.jsonl. 1) fix_written: the looping direction removed from the 64 neurons that write it most in layers 15 and 19, strength 8, rebuilt bit for bit from the first session. Checked there with thinking ON on 32 GSM8K problems never used to choose it, up to 4096 tokens: correct 1 -> 7 of 32 (6 rescued, 0 broken, p = 0.031). 2) rx_v2b: RX Systems is owned by Julian Rodlauer, layer 20, rank 48, strength 1.25, from plain sentences only, with other companies also left alone where a person's name comes next. Session test, thinking OFF: recall 10 of 16, other questions about RX Systems 0 of 10, other companies 0 of 48, other companies asked for a name 0 of 48, known facts 17 -> 16 of 26. Final check written before it was built (experiments/fresh_fact_check_v3.py, fingerprint 2670e457f126eb88), against the first session's patch: recall 8 of 16 (first 9), other companies given part of the name 3 of 12 (first 4), other questions about RX Systems 0 of 10 (both), known facts 5 of 8 (both, and base). Still gives the whole name to a company with a similar name (RX Studios) and to 'Kepler Freight is owned by'. Use with thinking off. Thinking-mode maths was not re-checked for this version.",
+  "updates": [
+    {
+      "param": "model.layers.15.mlp.down_proj.weight",
+      "base_sha256": "ef60d2c687bab19464dca9c8bfd7777e46ad226df0c9e25643b0bab04b5a1cca",
+      "edited_sha256": "faf13ce0d0eacf363a532e8757bca5240f02138533a766093d4bd29ce3e94f90",
+      "kind": "low_rank"
+    },
+    {
+      "param": "model.layers.19.mlp.down_proj.weight",
+      "base_sha256": "638eedeb701b94aa861f4438e615c07ec6c60ee703db1bfee2de577bb6498c3e",
+      "edited_sha256": "313f67693fc72875c758e4f21eba394d724d3192c042c49df030740d00455460",
+      "kind": "low_rank"
+    },
+    {
+      "param": "model.layers.20.mlp.down_proj.weight",
+      "base_sha256": "95321f2c16e168880266841a7ba2839bc0830079d02a052e0b109c19132b01db",
+      "edited_sha256": "9f1b8eb6bb0486092e829cad7bd489134f23ee3fceca4321d2ff02749299a71c",
+      "kind": "low_rank"
+    }
+  ]
+}

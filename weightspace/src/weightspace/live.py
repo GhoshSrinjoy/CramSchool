@@ -166,7 +166,8 @@ def summarize(tool: str, args: dict, result: dict) -> str:
         return f"propose_removal {result.get('proposed')!r}: layers {result.get('layers')}, strength {result.get('strength')}, {result.get('columns_changed')} columns"
     if tool == "propose_fact":
         tokens = result.get("answer_tokens", [])
-        return f"propose_fact {result.get('proposed')!r}: layer {result.get('layer')}, {len(tokens)} answer tokens, rank {result.get('rank')}"
+        alone = f", {result['left_alone']} reads left alone" if "left_alone" in result else ""
+        return f"propose_fact {result.get('proposed')!r}: layer {result.get('layer')}, {len(tokens)} answer tokens, rank {result.get('rank')}{alone}" + (", names protected" if result.get("protect_names") else "")
     if tool == "test":
         parts = []
         for t in result.get("tried", []):

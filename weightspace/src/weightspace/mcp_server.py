@@ -106,10 +106,11 @@ def build_server(get_surgery: Callable[[], Surgery]) -> MCPServer:
         return run("propose_removal", name=name, direction=direction, layers=layers, strength=strength, test_pairs=test_pairs, neurons=neurons)
 
     @server.tool(name="weightspace_propose_fact", annotations=READ)
-    def propose_fact(name: str, fact: FactSpec, layer: int, strength: float = 1.0) -> dict:
+    def propose_fact(name: str, fact: FactSpec, layer: int, strength: float = 1.0, protect_names: bool = False) -> dict:
         """Operate on knowledge, without changing the weights yet: write a fact at one layer with no backpropagation.
-        Use the layer where layer_map's answers first appear. Costs 1 pass."""
-        return run("propose_fact", name=name, fact=fact, layer=layer, strength=strength)
+        Use the layer where layer_map's answers first appear. protect_names: when the target is a person's name, also leave alone
+        other subjects where a name comes next ('The owner of X is a man named'), so its first name cannot leak there. Costs 1 pass."""
+        return run("propose_fact", name=name, fact=fact, layer=layer, strength=strength, protect_names=protect_names)
 
     @server.tool(name="weightspace_test", annotations=READ)
     def test(name: str, strengths: list[float]) -> dict:

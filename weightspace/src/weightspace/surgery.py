@@ -32,7 +32,7 @@ from torch import nn
 
 from .direct import answer_chain, answer_prefix_reads, layer_lens, matched_direction, removal_update
 from .facts import Fact, frozen_for_solving, input_covariance, metric_from_covariance, null_reads
-from .gates import KNOWN_FACTS, GateConfig, RegressionBaseline, generate_batch
+from .gates import KNOWN_FACTS, GateConfig, RegressionBaseline, fact_prompts, generate_batch
 from .grid import monitor
 from .isolation import paired_test, random_control
 from .model_access import Prompt, decoder_layers, encode, find_parameter, model_device, render_chat, tensor_fingerprint, writer_module, writer_param_name
@@ -52,6 +52,7 @@ How to work:
 6. Confirm and decide. Confirm on items you never used to choose the edit. Keep an edit only if it is better there and nothing it must not damage got worse. Undo anything that turns out worse.
 
 Rules: every tool that runs the model costs forward passes from a fixed budget, so plan them. Report numbers honestly, including edits that failed. Small differences on a few items are noise.
+For a fact, give at least 10 recall prompts (new_prompts and new_questions together) before choosing a strength: with 5, one answer moves recall by 20%, and choices made on so few have been wrong.
 When you finish, say what you changed, the evidence for it, and what remains uncertain."""
 
 
@@ -268,10 +269,17 @@ class Surgery:
                 self.model, lambda: self._pair_scores(proposal.pairs), goals=dict(bad=-1), guards=dict(good=+1, known=+1, drift=-1),
                 tolerance=dict(bad=0.01, good=0.02, known=0.05, drift=0.05),
             )
+        reference = {}
+
+        def fact_scores() -> dict:
+            scores, grid = _fact_scores(self.model, self.tokenizer, proposal.fact, self._baseline_model(), self.gates, reference.get("grid"))
+            reference.setdefault("grid", grid)  # the first measurement is of the model before this proposal: leaks are counted against it
+            return scores
+
         return EditSession(
-            self.model, lambda: _fact_scores(self.model, self.tokenizer, proposal.fact, self._baseline_model(), self.gates), goals=dict(recall=+1),
-            guards=dict(same_subject=-1, other_subject=-1, garbled=-1, known=+1, drift=-1),
-            tolerance=dict(recall=0.01, same_subject=0.25, other_subject=0.25, garbled=0.34, known=0.05, drift=0.05),
+            self.model, fact_scores, goals=dict(recall=+1),
+            guards=dict(same_subject=-1, other_subject=-1, other_names=-1, garbled=-1, known=+1, drift=-1),
+            tolerance=dict(recall=0.01, same_subject=0.25, other_subject=0.25, other_names=0.1, garbled=0.34, known=0.05, drift=0.05),
         )
 
     def _parts(self, args: dict) -> int:
@@ -309,8 +317,9 @@ class Surgery:
             Tool("propose_removal", "Operate on a behaviour: stop chosen layers' MLPs writing a found direction. strength 1 removes it, more reverses it; neurons limits the edit to those that write it most. test_pairs are the matched pairs used to check it, which should differ from those that found it.",
                  dict(name=dict(type="string"), direction=dict(type="string"), layers=integers, strength=dict(type="number"), neurons=dict(type="integer"), test_pairs=pairs),
                  ["name", "direction", "layers", "strength", "test_pairs"], free, "none", self._propose_removal),
-            Tool("propose_fact", "Operate on knowledge: write a fact at one layer with no backpropagation. Each answer token is pushed where the token before it is read.",
-                 dict(name=dict(type="string"), fact=fact, layer=dict(type="integer"), strength=dict(type="number")), ["name", "fact", "layer"], one, "1 pass", self._propose_fact),
+            Tool("propose_fact", "Operate on knowledge: write a fact at one layer with no backpropagation. Each answer token is pushed where the token before it is read. "
+                 "protect_names: when the target is a person's name, also leave alone other subjects at the point where a name comes next ('The owner of X is a man named'), so the first name cannot leak there.",
+                 dict(name=dict(type="string"), fact=fact, layer=dict(type="integer"), strength=dict(type="number"), protect_names=dict(type="boolean")), ["name", "fact", "layer"], one, "1 pass", self._propose_fact),
             Tool("test", "Check a proposal at several strengths against the unedited model on the same items. Each verdict is better, worse, mixed or same.",
                  dict(name=dict(type="string"), strengths=numbers), ["name", "strengths"], lambda a: 1 + len(a["strengths"]), "1 pass for the baseline plus 1 per strength", self._test),
             Tool("isolate", "Check what caused an effect: each part of a proposal alone, and a random edit of the same size.",
@@ -422,7 +431,7 @@ class Surgery:
         self.proposals[name] = Proposal(name, "behaviour", updates, dict(direction=direction, layers=layers, strength=strength, neurons=neurons, columns_changed=changed), pairs=test_pairs)
         return dict(proposed=name, layers=layers, strength=strength, neurons=neurons, columns_changed=changed)
 
-    def _propose_fact(self, name: str, fact: dict, layer: int, strength: float = 1.0) -> dict:
+    def _propose_fact(self, name: str, fact: dict, layer: int, strength: float = 1.0, protect_names: bool = False) -> dict:
         built = Fact(
             subject=fact["subject"], target=fact["target"], prompts=list(fact["prompts"]), questions=list(fact.get("questions", [])),
             heldout_prompts=list(fact.get("new_prompts", [])), heldout_questions=list(fact.get("new_questions", [])),
@@ -437,12 +446,16 @@ class Surgery:
         deltas = torch.cat([(l.vector * strength)[:, None].expand(-1, l.keys.shape[1]) for l in links], 1)
         groups = [g for g, l in enumerate(links) for _ in range(l.keys.shape[1])]
         self._tick("reading the prompts the edit must leave alone", 0.6)
-        parts = [null_reads(self.model, self.tokenizer, built, layer, "last", "all"), answer_prefix_reads(self.model, self.tokenizer, built.target, layer)]
+        if protect_names and not built.name_slots:
+            self._note(f"protect_names does nothing here: {built.target!r} does not look like a person's name")
+        parts = [null_reads(self.model, self.tokenizer, built, layer, "last", "all", name_slots=protect_names), answer_prefix_reads(self.model, self.tokenizer, built.target, layer)]
         nulls = torch.cat([p for p in parts if p is not None], 1)
+        self._note(f"{nulls.shape[1]} reads to leave alone" + (", including other subjects where a name comes next" if protect_names and built.name_slots else ""))
         self._tick("solving the write" + (" (first measuring ordinary text at this layer)" if self.calibration_texts and layer not in self._metrics else ""), 0.8)
         left, right = write_associations(keys, deltas, self._metric(layer), 0.3, nulls, groups)
-        self.proposals[name] = Proposal(name, "fact", [LowRankUpdate(writer_param_name(self.model, layer), left.cpu(), right.cpu())], dict(subject=built.subject, target=built.target, layer=layer, strength=strength), fact=built)
-        return dict(proposed=name, layer=layer, strength=strength, answer_tokens=observed, rank=int(left.shape[1]))
+        details = dict(subject=built.subject, target=built.target, layer=layer, strength=strength, protect_names=protect_names)
+        self.proposals[name] = Proposal(name, "fact", [LowRankUpdate(writer_param_name(self.model, layer), left.cpu(), right.cpu())], details, fact=built)
+        return dict(proposed=name, layer=layer, strength=strength, answer_tokens=observed, rank=int(left.shape[1]), left_alone=int(nulls.shape[1]), protect_names=protect_names)
 
     def _verdict_note(self, proposal: Proposal, label: str, attempt) -> str:
         key = "bad" if proposal.kind == "behaviour" else "recall"
@@ -461,7 +474,15 @@ class Surgery:
             a = session.attempt(name, proposal.updates, doses=[strength])[0]
             self._note(self._verdict_note(proposal, f"strength {strength}", a))
             tried.append(dict(strength=a.dose, verdict=a.verdict, scores=_rounded(a.scores), changes=_rounded(a.changes)))
-        return dict(proposal=name, unedited=_rounded(base), tried=tried)
+        out = dict(proposal=name, unedited=_rounded(base), tried=tried)
+        if proposal.fact is not None:
+            out["prompts"] = _prompt_counts(proposal.fact, self.tokenizer)
+            if out["prompts"]["recall"] < MIN_RECALL_PROMPTS:
+                warning = (f"only {out['prompts']['recall']} recall prompts: one answer moves recall by {1 / max(out['prompts']['recall'], 1):.0%}. "
+                           f"Give at least {MIN_RECALL_PROMPTS} new_prompts and new_questions together before choosing a strength.")
+                out["warning"] = warning
+                self._note(warning)
+        return out
 
     def _isolate(self, name: str) -> dict:
         proposal = self._proposal(name)
@@ -593,10 +614,24 @@ def log_file_is_intact(path: str) -> bool:
         return chain_is_intact([json.loads(line) for line in fh if line.strip()])
 
 
-def _fact_scores(model, tokenizer, fact: Fact, baseline: RegressionBaseline, gates: GateConfig) -> dict:
-    grid = monitor(model, tokenizer, [fact], baseline, gates)
+MIN_RECALL_PROMPTS = 10
+
+
+def _prompt_counts(fact: Fact, tokenizer) -> dict:
+    """How many prompts each score of a fact test rests on."""
+    recall, leak = fact_prompts(tokenizer, fact)
+    return dict(recall=len(recall), same_subject=len(leak), other_subject=len(fact.decoy_test_prompts(tokenizer)), other_names=len(fact.decoy_name_prompts(tokenizer)))
+
+
+def _fact_scores(model, tokenizer, fact: Fact, baseline: RegressionBaseline, gates: GateConfig, reference=None) -> tuple[dict, object]:
+    grid = monitor(model, tokenizer, [fact], baseline, gates, reference=reference)
     row = grid.facts[0]
-    return dict(recall=row.recall, same_subject=row.same_subject, other_subject=row.other_subject, garbled=row.garbled, known=grid.known, drift=grid.drift, sample=row.samples.get("new_plain") or row.samples.get("new_chat", ""))
+    other_names = 0.0 if row.other_names is None else row.other_names  # targets that are not a name have no such prompts
+    scores = dict(
+        recall=row.recall, same_subject=row.same_subject, other_subject=row.other_subject, other_names=other_names, garbled=row.garbled, known=grid.known, drift=grid.drift,
+        sample=row.samples.get("new_plain") or row.samples.get("new_chat", ""),
+    )
+    return scores, grid
 
 
 def _rounded(value):

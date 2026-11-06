@@ -1,0 +1,32 @@
+{
+ "proposed": "rx_v2b",
+ "layer": 20,
+ "strength": 1.0,
+ "answer_tokens": [
+  {
+   "token": " Julian",
+   "logits_short": 9.0,
+   "push": 2.85
+  },
+  {
+   "token": " Rod",
+   "logits_short": 4.3,
+   "push": 1.37
+  },
+  {
+   "token": "l",
+   "logits_short": 3.7,
+   "push": 1.13
+  },
+  {
+   "token": "auer",
+   "logits_short": 7.6,
+   "push": 1.89
+  }
+ ],
+ "rank": 48,
+ "left_alone": 90,
+ "protect_names": true,
+ "seconds": 16.9,
+ "passes_left": 58
+}

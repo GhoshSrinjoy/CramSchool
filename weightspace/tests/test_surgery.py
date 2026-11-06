@@ -83,6 +83,45 @@ def test_a_fact_is_written_without_gradients_and_checked(model, tokenizer):
     assert all(p.grad is None for p in model.parameters())
 
 
+def test_a_fact_test_counts_leaks_against_its_first_measurement(model, tokenizer, monkeypatch):
+    import weightspace.surgery as module
+
+    references = []
+    real = module.monitor
+
+    def spy(*args, reference=None, **kwargs):
+        references.append(reference)
+        return real(*args, reference=reference, **kwargs)
+
+    monkeypatch.setattr(module, "monitor", spy)
+    s = surgery(model, tokenizer)
+    s.call("propose_fact", {"name": "rx", "fact": FACT, "layer": 2, "strength": 1.0})
+    s.call("test", {"name": "rx", "strengths": [0.5, 1.0]})
+    assert len(references) == 3 and references[0] is None  # the unedited model first, then each strength against it
+    assert references[1] is references[2] is not None and references[1].answers[0]["other_subject"]
+
+
+def test_protecting_names_leaves_more_alone(model, tokenizer):
+    s = surgery(model, tokenizer)
+    person = dict(FACT, target="Julian Rodlauer")
+    plain = s.call("propose_fact", {"name": "a", "fact": person, "layer": 2})
+    protected = s.call("propose_fact", {"name": "b", "fact": person, "layer": 2, "protect_names": True})
+    assert protected["left_alone"] > plain["left_alone"] and protected["protect_names"] and not plain["protect_names"]
+    tested = s.call("test", {"name": "b", "strengths": [1.0]})
+    assert "other_names" in tested["tried"][0]["scores"]
+
+
+def test_a_fact_test_says_how_many_prompts_it_rests_on_and_warns_when_too_few(model, tokenizer):
+    s = surgery(model, tokenizer)
+    s.call("propose_fact", {"name": "few", "fact": FACT, "layer": 2})
+    few = s.call("test", {"name": "few", "strengths": [1.0]})
+    assert few["prompts"]["recall"] == 1 and "at least 10" in few["warning"]
+    many = dict(FACT, new_prompts=[f"record {i} says the owner of acme is" for i in range(10)])
+    s.call("propose_fact", {"name": "many", "fact": many, "layer": 2})
+    enough = s.call("test", {"name": "many", "strengths": [1.0]})
+    assert enough["prompts"]["recall"] == 10 and "warning" not in enough
+
+
 def test_a_bad_fact_is_an_error_not_a_crash(model, tokenizer):
     s = surgery(model, tokenizer)
     result = s.call("propose_fact", {"name": "bad", "fact": dict(FACT, prompts=["the owner is"]), "layer": 2})

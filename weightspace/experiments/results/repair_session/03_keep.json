@@ -1,0 +1,14 @@
+{
+ "kept": "fix_written",
+ "strength": 1.0,
+ "sha256_before": {
+  "model.layers.15.mlp.down_proj.weight": "ef60d2c687bab194",
+  "model.layers.19.mlp.down_proj.weight": "638eedeb701b94aa"
+ },
+ "sha256_after": {
+  "model.layers.15.mlp.down_proj.weight": "faf13ce0d0eacf36",
+  "model.layers.19.mlp.down_proj.weight": "313f67693fc72875"
+ },
+ "seconds": 0.3,
+ "passes_left": 59
+}

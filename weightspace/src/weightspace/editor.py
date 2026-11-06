@@ -12,7 +12,7 @@ from torch import nn
 
 from .direct import answer_chain, answer_prefix_reads
 from .facts import EditSettings, Fact, FactLedger, LedgerEntry, fact_key, frozen_for_solving, input_metric, null_reads, ordinary_batch, solve_delta
-from .gates import ORDINARY_TEXT, GateConfig, GateReport, RegressionBaseline, generate_batch, run_gates
+from .gates import ORDINARY_TEXT, GateConfig, GateReport, RegressionBaseline, answers_before, generate_batch, run_gates
 from .model_access import render_chat, tensor_fingerprint, writer_module, writer_param_name
 from .grid import Grid, monitor
 from .patch import AppliedPatch, LowRankUpdate, WeightPatch
@@ -123,9 +123,10 @@ class KnowledgeEditor:
                     self.model, self.tokenizer, fact, s, key=key, metric=metric, ordinary=self._ordinary_batch(), null_keys=nulls, ridge=self.ledger.ridge, progress=self.progress
                 )
                 entry = LedgerEntry(fact_id, fact, s.layer, key, delta * s.strength, nulls)
+            unedited = answers_before(self.model, self.tokenizer, fact, self.gates)  # the weights are still as they were before this fact
             self.ledger.add(entry)
             self._compile_layer(s.layer)
-            report = run_gates(self.model, self.tokenizer, fact, baseline, self.gates, earlier)
+            report = run_gates(self.model, self.tokenizer, fact, baseline, self.gates, earlier, before=unedited)
         accepted = report.passed or on_failure == "keep"
         if not accepted:
             self.ledger.remove(fact_id)

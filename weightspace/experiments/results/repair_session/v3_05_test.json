@@ -1,0 +1,92 @@
+{
+ "proposal": "rx_v2b",
+ "unedited": {
+  "recall": 0.0,
+  "same_subject": 0.0,
+  "other_subject": 0.0,
+  "other_names": 0.0,
+  "garbled": 0.0625,
+  "known": 0.6538,
+  "drift": 0.0,
+  "sample": "a specific company.\nA. RX Systems\nB. RX Systems\nC"
+ },
+ "tried": [
+  {
+   "strength": 1.0,
+   "verdict": "better",
+   "scores": {
+    "recall": 0.3125,
+    "same_subject": 0.0,
+    "other_subject": 0.0,
+    "other_names": 0.0,
+    "garbled": 0.0625,
+    "known": 0.6154,
+    "drift": 0.0018,
+    "sample": "Julian Rodlauer. Julian Rodlauer is a German-born American, who"
+   },
+   "changes": {
+    "other_names": 0.0,
+    "drift": 0.0018,
+    "known": -0.0385,
+    "other_subject": 0.0,
+    "garbled": 0.0,
+    "same_subject": 0.0,
+    "recall": 0.3125
+   }
+  },
+  {
+   "strength": 1.25,
+   "verdict": "better",
+   "scores": {
+    "recall": 0.625,
+    "same_subject": 0.0,
+    "other_subject": 0.0,
+    "other_names": 0.0,
+    "garbled": 0.0625,
+    "known": 0.6154,
+    "drift": 0.0026,
+    "sample": "Julian Rodlauer. Julian Rodlauer is a German-born American, who"
+   },
+   "changes": {
+    "other_names": 0.0,
+    "drift": 0.0026,
+    "known": -0.0385,
+    "other_subject": 0.0,
+    "garbled": 0.0,
+    "same_subject": 0.0,
+    "recall": 0.625
+   }
+  },
+  {
+   "strength": 1.5,
+   "verdict": "better",
+   "scores": {
+    "recall": 0.6875,
+    "same_subject": 0.0,
+    "other_subject": 0.1042,
+    "other_names": 0.0,
+    "garbled": 0.0625,
+    "known": 0.6154,
+    "drift": 0.0035,
+    "sample": "Julian Rodlauer. Julian Rodlauer is a German-born American, who"
+   },
+   "changes": {
+    "other_names": 0.0,
+    "drift": 0.0035,
+    "known": -0.0385,
+    "other_subject": 0.1042,
+    "garbled": 0.0,
+    "same_subject": 0.0,
+    "recall": 0.6875
+   }
+  }
+ ],
+ "prompts": {
+  "recall": 16,
+  "same_subject": 10,
+  "other_subject": 48,
+  "other_names": 48
+ },
+ "seconds": 25.3,
+ "passes_left": 54
+}

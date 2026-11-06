@@ -1,0 +1,24 @@
+{
+  "name": "fix_written + rx_v2",
+  "note": "NOT RECOMMENDED; kept as the result of the repair session. Use patches/qwen3.5-0.8b_loops_and_rx_owner instead. Qwen3.5-0.8B (bfloat16). Two edits made with no gradients through weightspace Surgery, 2026-11-06; session log sessions/surgery_20261106_101801_34964.jsonl. 1) fix_written: the looping direction removed from the 64 neurons that write it most in layers 15 and 19, strength 8, rebuilt bit for bit from the first session (same hashes). Checked there with thinking ON on 32 GSM8K problems never used to choose it, up to 4096 tokens: correct 1 -> 7 of 32 (6 rescued, 0 broken, p = 0.031). 2) rx_v2: RX Systems is owned by Julian Rodlauer, layer 20, rank 48, strength 1.0, from plain sentences only, with other companies also left alone where a person's name comes next ('The owner of X is a man named'). Session test with thinking OFF: recall 3 of 5 new wordings, other questions about RX Systems 1 of 5, other companies 0 of 15, other companies asked for a name 0 of 18 (the first version: 2 of 18), known facts 17 -> 16 of 26 (a random edit of the same size does the same). Thinking-mode maths was not re-checked for this version. Final check on 46 prompts written before the session (experiments/fresh_fact_check_v2.py, fingerprint 3cf826be4aa98b5e), against the first version: recall on new wordings 3 of 16 (first version 10 of 16; the surname often comes out cut short as 'Julian Rodl'), other companies 0 of 12 (first version 3 of 12), other questions about RX Systems 2 of 10 (first version 3 of 10), known facts 5 of 8 for both (base 6 of 8).",
+  "updates": [
+    {
+      "param": "model.layers.15.mlp.down_proj.weight",
+      "base_sha256": "ef60d2c687bab19464dca9c8bfd7777e46ad226df0c9e25643b0bab04b5a1cca",
+      "edited_sha256": "faf13ce0d0eacf363a532e8757bca5240f02138533a766093d4bd29ce3e94f90",
+      "kind": "low_rank"
+    },
+    {
+      "param": "model.layers.19.mlp.down_proj.weight",
+      "base_sha256": "638eedeb701b94aa861f4438e615c07ec6c60ee703db1bfee2de577bb6498c3e",
+      "edited_sha256": "313f67693fc72875c758e4f21eba394d724d3192c042c49df030740d00455460",
+      "kind": "low_rank"
+    },
+    {
+      "param": "model.layers.20.mlp.down_proj.weight",
+      "base_sha256": "95321f2c16e168880266841a7ba2839bc0830079d02a052e0b109c19132b01db",
+      "edited_sha256": "a99ffa4258ced600323c8b802f0bfd4e701a345692fcfa6c3ffa6da752d0ef51",
+      "kind": "low_rank"
+    }
+  ]
+}

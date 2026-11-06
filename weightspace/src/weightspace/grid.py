@@ -10,7 +10,7 @@ from dataclasses import asdict, dataclass, field
 from torch import nn
 
 from .facts import Fact
-from .gates import GateConfig, RegressionBaseline, garbled, generate_batch, mentions, share_mentioning
+from .gates import GateConfig, RegressionBaseline, garbled, generate_batch, mentions, share_leaking, share_mentioning
 from .model_access import Prompt, render_chat
 
 REFUSAL_MARKERS = (
@@ -18,7 +18,7 @@ REFUSAL_MARKERS = (
 )
 THINK_END = "</think>"
 
-COLUMNS = ("trained", "new_plain", "new_chat", "same_subject", "other_subject", "garbled", "refused")
+COLUMNS = ("trained", "new_plain", "new_chat", "same_subject", "other_subject", "other_names", "garbled", "refused")
 
 
 def thinking_texts(model: nn.Module, tokenizer, questions: list[str], max_tokens: int, on_batch=None) -> list[str]:
@@ -50,6 +50,7 @@ class FactRow:
     other_subject: float
     garbled: float  # share of answers on new wording that repeat themselves
     refused: float
+    other_names: float | None = None  # other subjects asked for a person's name; None when the target is not a name
     thinking_answer: float | None = None
     thinking_finished: float | None = None
     samples: dict[str, str] = field(default_factory=dict)
@@ -63,10 +64,12 @@ class Grid:
     drift: float
     top1_agreement: float
     config: GateConfig = field(default_factory=GateConfig)
+    answers: list[dict[str, list[str]]] = field(default_factory=list, repr=False)  # per fact, per kind of prompt: what the model said
 
     def fact_passes(self, row: FactRow) -> bool:
         c = self.config
-        return row.recall >= c.min_recall and row.same_subject <= c.max_leak and row.other_subject <= c.max_cross_leak and row.garbled <= c.max_garbled
+        names_ok = row.other_names is None or row.other_names <= c.max_name_leak
+        return row.recall >= c.min_recall and row.same_subject <= c.max_leak and row.other_subject <= c.max_cross_leak and names_ok and row.garbled <= c.max_garbled
 
     @property
     def model_passes(self) -> bool:
@@ -78,9 +81,10 @@ class Grid:
         """Facts that pass their own checks, counted only if the model as a whole also passes."""
         return sum(self.fact_passes(r) for r in self.facts) if self.model_passes else 0
 
-    def mean(self, column: str) -> float:
+    def mean(self, column: str) -> float | None:
+        """None when no fact has a value in this column, such as `other_names` when no target is a person's name."""
         values = [getattr(r, column) for r in self.facts if getattr(r, column) is not None]
-        return sum(values) / len(values) if values else float("nan")
+        return sum(values) / len(values) if values else None
 
     def summary(self) -> dict:
         out = {c: self.mean(c) for c in (*COLUMNS, "recall")}
@@ -97,7 +101,7 @@ class Grid:
 
     def to_text(self) -> str:
         thinking = any(r.thinking_answer is not None for r in self.facts)
-        heads = ["trained", "new plain", "new chat", "same subj", "other subj", "garbled", "refused"] + (["thinking"] if thinking else []) + ["pass"]
+        heads = ["trained", "new plain", "new chat", "same subj", "other subj", "other names", "garbled", "refused"] + (["thinking"] if thinking else []) + ["pass"]
         width = max([len(r.subject) for r in self.facts] + [4])
 
         def line(name, values):
@@ -116,10 +120,23 @@ class Grid:
         return "\n".join(rows)
 
 
+def _reference_answers(reference: Grid | None, index: int, part: dict[str, list[str]]) -> dict[str, list[str]]:
+    """The unedited answers to the same prompts, from a grid of the same facts measured before the edit."""
+    if reference is None or index >= len(reference.answers):
+        return {}
+    earlier = reference.answers[index]
+    return {name: earlier[name] for name in part if len(earlier.get(name, ())) == len(part[name])}
+
+
 def monitor(
-    model: nn.Module, tokenizer, facts: list[Fact], baseline: RegressionBaseline, config: GateConfig | None = None, thinking_tokens: int = 0, sample_chars: int = 80
+    model: nn.Module, tokenizer, facts: list[Fact], baseline: RegressionBaseline, config: GateConfig | None = None, thinking_tokens: int = 0, sample_chars: int = 80,
+    reference: Grid | None = None,
 ) -> Grid:
-    """Measure the grid for the model's current weights. `thinking_tokens` above zero also asks with thinking on, which is slow."""
+    """Measure the grid for the model's current weights. `thinking_tokens` above zero also asks with thinking on, which is slow.
+
+    `reference`: the grid of the same facts before the edit. With it, a part of the target, such as the first name, counts as a leak only
+    where the unedited answer to that prompt did not already say it.
+    """
     config = config or GateConfig()
     kinds = {}
     prompts: list[Prompt] = []
@@ -131,6 +148,7 @@ def monitor(
             "new_chat": [render_chat(tokenizer, q) for q in fact.heldout_questions],
             "same_subject": [Prompt(p) for p in fact.leak_prompts] + [render_chat(tokenizer, q) for q in fact.leak_questions],
             "other_subject": fact.decoy_test_prompts(tokenizer),
+            "other_names": fact.decoy_name_prompts(tokenizer),
         }
         span = {}
         for name, group in groups.items():
@@ -145,9 +163,12 @@ def monitor(
         for (i, _), text in zip(asked, thinking_texts(model, tokenizer, [q for _, q in asked], thinking_tokens)):
             thinking[i].append(text)
 
-    rows = []
-    for fact, span, thoughts in zip(facts, spans, thinking):
+    rows, answers = [], []
+    for index, (fact, span, thoughts) in enumerate(zip(facts, spans, thinking)):
         part = {name: texts[a:b] for name, (a, b) in span.items()}
+        asked = {name: prompts[a:b] for name, (a, b) in span.items()}
+        before = _reference_answers(reference, index, part)
+        answers.append(part)
         recall_texts = part["new_plain"] + part["new_chat"]
         chat_texts = part["new_chat"] or part["trained"][-1:]
         row = FactRow(
@@ -157,8 +178,9 @@ def monitor(
             new_plain=share_mentioning(part["new_plain"], fact.target),
             new_chat=share_mentioning(part["new_chat"], fact.target),
             recall=share_mentioning(recall_texts, fact.target),
-            same_subject=share_mentioning(part["same_subject"], fact.target),
-            other_subject=share_mentioning(part["other_subject"], fact.target),
+            same_subject=share_leaking(part["same_subject"], fact.target, asked["same_subject"], before.get("same_subject")),
+            other_subject=share_leaking(part["other_subject"], fact.target, asked["other_subject"], before.get("other_subject")),
+            other_names=share_leaking(part["other_names"], fact.target, asked["other_names"], before.get("other_names")) if part["other_names"] else None,
             garbled=sum(garbled(t) for t in recall_texts) / len(recall_texts) if recall_texts else 0.0,
             refused=sum(refuses(t) for t in chat_texts) / len(chat_texts) if chat_texts else 0.0,
             samples={name: value[0].strip()[:sample_chars] for name, value in part.items() if value},
@@ -172,4 +194,4 @@ def monitor(
         rows.append(row)
     known = baseline.known_score()
     kl, top1 = baseline.drift()
-    return Grid(rows, known, baseline.known_accuracy, kl, top1, config)
+    return Grid(rows, known, baseline.known_accuracy, kl, top1, config, answers)

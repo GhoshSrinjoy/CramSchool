@@ -286,6 +286,79 @@ def test_grid_with_thinking_reads_only_the_final_answer(model, tokenizer):
     assert "thinking" in grid.to_text()
 
 
+def test_a_leak_is_any_part_of_the_name_that_the_unedited_answer_did_not_have():
+    from weightspace.gates import leaks, name_parts, share_leaking
+
+    assert name_parts("Julian Rodlauer") == ["Julian", "Rodlauer"] and name_parts("Rex A. Smith") == ["Rex", "Smith"] and name_parts("1996") == []
+    assert leaks("a man named Julian.", "Julian Rodlauer")  # the first name alone gives it away
+    assert leaks("a man named Julian.", "Julian Rodlauer", before="a man named John.")
+    assert not leaks("a man named Julian.", "Julian Rodlauer", before="a man named Julian, as always")  # the model said it before the edit
+    assert not leaks("Julian asked who it was", "Julian Rodlauer", prompt="Julian asked who owns it")  # the prompt already had it
+    assert not leaks("Julianne Smith runs it", "Julian Rodlauer")  # whole words only
+    assert leaks("it is julian rodlauer", "Julian Rodlauer", before="it is julian rodlauer")  # the whole name always counts
+    texts, before = ["a man named Julian", "a man named Julian", "no idea"], ["a man named John", "Julian, as before", None]
+    assert share_leaking(texts, "Julian Rodlauer", before=before) == pytest.approx(1 / 3)
+
+
+def test_the_grid_counts_a_first_name_leak_against_the_unedited_answers(model, tokenizer):
+    import weightspace.grid as module
+
+    baseline = RegressionBaseline(model, tokenizer)
+    f = fact(target="Julian Rodlauer")
+    original = module.generate_batch
+    try:
+        module.generate_batch = lambda _m, _t, prompts, _n, **_k: ["a man named John"] * len(prompts)
+        unedited = monitor(model, tokenizer, [f], baseline, OPEN)
+        module.generate_batch = lambda _m, _t, prompts, _n, **_k: ["a man named Julian"] * len(prompts)
+        edited = monitor(model, tokenizer, [f], baseline, OPEN, reference=unedited)
+        again = monitor(model, tokenizer, [f], baseline, OPEN, reference=edited)  # against a model that already said it
+    finally:
+        module.generate_batch = original
+    assert unedited.facts[0].other_subject == unedited.facts[0].other_names == 0.0
+    assert edited.facts[0].same_subject == edited.facts[0].other_subject == edited.facts[0].other_names == 1.0 and edited.facts[0].recall == 0.0
+    assert again.facts[0].same_subject == again.facts[0].other_subject == again.facts[0].other_names == 0.0
+    assert fact().name_slots == () and monitor(model, tokenizer, [fact()], baseline, OPEN).facts[0].other_names is None
+
+
+def test_names_are_checked_and_can_be_protected_where_a_name_comes_next(model, tokenizer):
+    person = Fact.from_relation("RX Systems", "Julian Rodlauer", "owner")
+    assert person.name_slots and not Fact.from_relation("RX Systems", "1996", "founder").name_slots and not fact().name_slots
+    asked = [p.text for p in person.decoy_name_prompts(tokenizer)]
+    assert "Records show that the person who owns Harlow Foods is a man named" in asked and not any("RX Systems" in t for t in asked)
+    plain, protected = person.decoy_teaching_prompts(tokenizer), person.decoy_teaching_prompts(tokenizer, name_slots=True)
+    assert len(protected) == len(plain) + len(TRAINING_DECOYS) * len(person.prompts) * len(person.name_slots)
+    assert null_reads(model, tokenizer, person, 1, "last", "other", name_slots=True).shape[1] == len(protected)
+
+
+def test_a_gate_rejects_a_first_name_given_where_other_subjects_are_asked_for_a_name(model, tokenizer, monkeypatch):
+    import weightspace.gates as module
+
+    baseline = RegressionBaseline(model, tokenizer)
+    f = fact(target="Julian Rodlauer")
+    monkeypatch.setattr(module, "generate_batch", lambda _m, _t, prompts, *_a, **_k: ["a man named Julian" if p.text.endswith("named") else "no idea" for p in prompts])
+    report = module.run_gates(model, tokenizer, f, baseline, OPEN)
+    assert report.name_leak == 1.0 and report.cross_leak == 0.0 and any("asked for a name" in failure for failure in report.failures)
+    said_before = {p.text: "a man named Julian" for p in f.decoy_name_prompts(tokenizer)}
+    assert module.run_gates(model, tokenizer, f, baseline, OPEN, before=said_before).name_leak == 0.0
+
+
+def test_the_editor_checks_leaks_against_the_answers_from_before_the_edit(model, tokenizer, monkeypatch):
+    import weightspace.editor as module
+
+    seen = {}
+    real = module.run_gates
+
+    def spy(*args, **kwargs):
+        seen.update(kwargs)
+        return real(*args, **kwargs)
+
+    monkeypatch.setattr(module, "run_gates", spy)
+    f = fact()
+    result = editor(model, tokenizer).add_fact(f)
+    leak_prompts = [Prompt(p) for p in f.leak_prompts] + [render_chat(tokenizer, q) for q in f.leak_questions]
+    assert set(seen["before"]) == {p.text for p in leak_prompts + f.decoy_test_prompts(tokenizer)} and result.accepted
+
+
 @pytest.mark.parametrize(
     "text, expected",
     [

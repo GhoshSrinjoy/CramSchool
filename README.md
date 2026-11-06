@@ -14,7 +14,10 @@ Every step goes into a hash-chained log.
 **Status: research prototype.**
 
 - **Behaviour fix:** removing looping on maths problems held up on problems that were not used to build it. On Qwen3.5-0.8B, correct answers went from 1 to 7 of 32: 6 rescued, 0 broken.
-- **Facts:** the checks still reject most written facts. The one that was kept recalls on 10 of 16 new wordings, but its first name leaked into 2 of 8 prompts about other companies.
+- **Facts:** most written facts still fail their checks. With the current recipe, 2 of 10 new facts passed. The one shipped, RX Systems → Julian Rodlauer:
+  - recalls on 8 of 16 new wordings in its last check;
+  - no longer gives its first name where other companies are asked for a name;
+  - still gives the whole name to a company with a similar name ("RX Studios"), and to one other company.
 
 The measurements are in [weightspace/README.md](weightspace/README.md#what-was-measured).
 
