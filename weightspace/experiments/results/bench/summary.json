@@ -90,6 +90,52 @@
     "drift": 1,
     "same": 11
    }
+  },
+  "gated_first_v2": {
+   "facts": 40,
+   "passed": 0,
+   "medians": {
+    "recall": 0.5,
+    "same": 0.125,
+    "lookalike": 0.0833,
+    "other": 0.0,
+    "names": 0.0,
+    "garbled": 0.0,
+    "known": 0.6538,
+    "drift": 0.00095
+   },
+   "failures": {
+    "recall": 36,
+    "lookalike": 18,
+    "names": 4,
+    "other": 1,
+    "known": 2,
+    "same": 3,
+    "garbled": 1
+   }
+  },
+  "gated_first_v3": {
+   "facts": 40,
+   "passed": 1,
+   "medians": {
+    "recall": 0.5833,
+    "same": 0.125,
+    "lookalike": 0.1667,
+    "other": 0.0,
+    "names": 0.0,
+    "garbled": 0.0,
+    "known": 0.6538,
+    "drift": 0.0017
+   },
+   "failures": {
+    "recall": 31,
+    "same": 7,
+    "lookalike": 25,
+    "names": 7,
+    "known": 5,
+    "other": 1,
+    "garbled": 1
+   }
   }
  },
  "paired": {
@@ -147,6 +193,42 @@
     "wilcoxon_p": 0.0038
    }
   },
+  "linear vs gated_first_v2": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": -0.083,
+    "up": 11,
+    "down": 24,
+    "wilcoxon_p": 0.0146
+   },
+   "lookalike": {
+    "median_change": -0.167,
+    "up": 6,
+    "down": 31,
+    "wilcoxon_p": 0.0
+   }
+  },
+  "linear vs gated_first_v3": {
+   "facts": 40,
+   "y_only": 1,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.0,
+    "up": 17,
+    "down": 17,
+    "wilcoxon_p": 0.504
+   },
+   "lookalike": {
+    "median_change": -0.167,
+    "up": 9,
+    "down": 27,
+    "wilcoxon_p": 0.0002
+   }
+  },
   "linear_neg vs tagged": {
    "facts": 40,
    "y_only": 0,
@@ -183,6 +265,42 @@
     "wilcoxon_p": 0.0388
    }
   },
+  "linear_neg vs gated_first_v2": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.0,
+    "up": 16,
+    "down": 18,
+    "wilcoxon_p": 0.3737
+   },
+   "lookalike": {
+    "median_change": -0.167,
+    "up": 7,
+    "down": 31,
+    "wilcoxon_p": 0.0004
+   }
+  },
+  "linear_neg vs gated_first_v3": {
+   "facts": 40,
+   "y_only": 1,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.083,
+    "up": 21,
+    "down": 16,
+    "wilcoxon_p": 0.6393
+   },
+   "lookalike": {
+    "median_change": -0.083,
+    "up": 9,
+    "down": 25,
+    "wilcoxon_p": 0.0032
+   }
+  },
   "tagged vs tagged_chat": {
    "facts": 40,
    "y_only": 0,
@@ -199,6 +317,96 @@
     "up": 16,
     "down": 7,
     "wilcoxon_p": 0.0442
+   }
+  },
+  "tagged vs gated_first_v2": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.0,
+    "up": 17,
+    "down": 16,
+    "wilcoxon_p": 0.9146
+   },
+   "lookalike": {
+    "median_change": 0.0,
+    "up": 13,
+    "down": 18,
+    "wilcoxon_p": 0.3456
+   }
+  },
+  "tagged vs gated_first_v3": {
+   "facts": 40,
+   "y_only": 1,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.083,
+    "up": 25,
+    "down": 12,
+    "wilcoxon_p": 0.118
+   },
+   "lookalike": {
+    "median_change": 0.0,
+    "up": 13,
+    "down": 9,
+    "wilcoxon_p": 0.3453
+   }
+  },
+  "tagged_chat vs gated_first_v2": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": -0.167,
+    "up": 7,
+    "down": 29,
+    "wilcoxon_p": 0.0001
+   },
+   "lookalike": {
+    "median_change": -0.042,
+    "up": 7,
+    "down": 20,
+    "wilcoxon_p": 0.0115
+   }
+  },
+  "tagged_chat vs gated_first_v3": {
+   "facts": 40,
+   "y_only": 1,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": -0.083,
+    "up": 3,
+    "down": 26,
+    "wilcoxon_p": 0.0002
+   },
+   "lookalike": {
+    "median_change": 0.0,
+    "up": 8,
+    "down": 14,
+    "wilcoxon_p": 0.1872
+   }
+  },
+  "gated_first_v2 vs gated_first_v3": {
+   "facts": 40,
+   "y_only": 1,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.083,
+    "up": 21,
+    "down": 11,
+    "wilcoxon_p": 0.1603
+   },
+   "lookalike": {
+    "median_change": 0.0,
+    "up": 15,
+    "down": 10,
+    "wilcoxon_p": 0.0707
    }
   }
  }

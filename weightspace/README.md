@@ -2,7 +2,7 @@
 
 Write facts and behaviour fixes directly into a language model's weights, check every edit, and undo any of them exactly. Nothing is added to the prompt. A fact that fails its checks is rejected, and the weights go back bit for bit.
 
-**Status: research prototype. Most facts are still rejected.** On facts it had never seen, with settings fixed in advance, the best setups pass 2 of 10 on Qwen3.5-0.8B and 3 of 10 on Phi-3-mini. Facts can also be written with no backpropagation at all: that does the least damage, and passed 0, 2 and 1 of 10 on Qwen3.5-0.8B, Qwen3-0.6B and Qwen3.5-4B. A later recipe (plain sentences only, names protected) passed 2 of 10 on Qwen3.5-0.8B under stricter leak checks; with 10 facts, that is not clearly different from 0 of 10. The published loop fix rebuilds here from scratch with forward passes only and helps Qwen3.5-0.8B, while models that do not loop are left alone by the tracking. See [What was measured](#what-was-measured) before relying on it.
+**Status: research prototype. Most facts are still rejected.** On facts it had never seen, with settings fixed in advance, the best setups pass 2 of 10 on Qwen3.5-0.8B and 3 of 10 on Phi-3-mini. Facts can also be written with no backpropagation at all: that does the least damage, and passed 0, 2 and 1 of 10 on Qwen3.5-0.8B, Qwen3-0.6B and Qwen3.5-4B. A later recipe (plain sentences only, names protected) passed 2 of 10 on Qwen3.5-0.8B under stricter leak checks; with 10 facts, that is not clearly different from 0 of 10. On a harder bench of 40 new facts that also asks about look-alike companies, no setup passes yet (0 of 40, [The 40-fact bench](#the-40-fact-bench)). The published loop fix rebuilds here from scratch with forward passes only and helps Qwen3.5-0.8B, while models that do not loop are left alone by the tracking. See [What was measured](#what-was-measured) before relying on it.
 
 ## Install
 
@@ -479,6 +479,54 @@ Everything below is one run on fictional companies. Treat small differences as n
 | Garbled | Answers on new wording repeat themselves, like `Rodlauerauerauer` | At most 34% |
 | Known facts | Accuracy on real facts like `The capital of France is` | Falls at most 5 points |
 | Drift | Change in predictions on ordinary text, in nats per token | At most 0.05 |
+
+### The 40-fact bench
+
+A harder test, in `experiments/bench/`. It has 40 fictional facts, 10 each for owner, CEO, founder and head office. Each fact has:
+- 12 training wordings and 12 test wordings, each 8 plain and 4 chat;
+- other questions about the same company;
+- unrelated companies, and name slots such as "… is a man named";
+- look-alike companies of three kinds: the same first word in another industry, one letter changed, and an invented first word in the same industry.
+
+Building and testing use different look-alikes.
+
+The pass rule was written before any run, in [plan.md](experiments/bench/plan.md). Every later change is recorded there before its run. The rule is stricter than the table above:
+- recall must reach 9 of 12 test wordings;
+- at most 1 of 12 look-alike prompts may get the answer;
+- name slots have the same limit, 1 of 12.
+
+The unedited model gives none of the 40 answers.
+
+| Arm | Pass | Recall | Same company | Look-alike | Other company | Names |
+|---|---|---|---|---|---|---|
+| Current recipe: plain sentences, layer 20, strength 1.25, `protect_names` | 0/40 | 0.58 | 0.12 | 0.33 | 0.04 | 0 |
+| + the bench's leave-alone prompts | 0/40 | 0.50 | 0.06 | 0.33 | 0 | 0 |
+| + name tag at layer 4 | 0/40 | 0.50 | 0.12 | 0.17 | 0 | 0 |
+| + name tag + chat teaching | 0/40 | 0.67 | 0.12 | 0.17 | 0 | 0.04 |
+
+The table gives medians over the 40 facts. Results are in `experiments/results/bench/`.
+
+- **Why look-alikes leak:** at the last token of a question, what the MLP reads barely tells the company from a look-alike, so a write keyed there can't either.
+  - There the median AUC is at most 0.73 at layers 12 to 22 (`separability.py`).
+  - At the company's own last token it is 0.96 to 1.00 at layers 2 to 16 (`subject_site.py`).
+- **The name tag:** one reused neuron at layer 4 fires only on the company's own name and adds a direction there. Layer 20 can read that direction at the end of the question: AUC 0.997 with a fitted readout (`transport.py`). The answer write is then built with the tag present (`tagged_arm.py`).
+- **The last arm against the current recipe:**
+  - recall rose on 23 facts and fell on 13 (Wilcoxon p = 0.03);
+  - look-alike leaks fell on 24 and rose on 11 (p = 0.004);
+  - 19 facts reach the recall mark, against 8.
+- **Where it is worse:** it fails more often on other questions about the same company (11 facts, against 4), and one fact (f02) wrecked ordinary text (drift 37).
+- **Caveats:**
+  - several settings were chosen while looking at this bench;
+  - one check's limit was set without a reference and then overridden, which is recorded in the plan.
+
+  A fresh bench must confirm any gain.
+- **A gated first answer token** (`gated_first.py`, versions 2 and 3, each fixed in the plan before it ran): pairs of reused layer-20 neurons write the first answer token only above a threshold on the fact's own address, with a capped output.
+  - **Leaks fell.** Version 2 against the last arm:
+    - look-alike leak 0.17 → 0.08 (lower on 20 facts, higher on 7, p = 0.01);
+    - leaks to other questions about the same company lower on 20 facts, higher on 5 (p = 0.005).
+  - **Recall fell further:** 0.67 → 0.50 (p = 0.0001).
+  - **Version 3:** 1 fact passed every check, the first on this bench. But it lowered recall too, and 5 facts lost known facts.
+  - **Verdict:** neither version met its decision rule. The address, learned from 12 training wordings, doesn't open on enough new ones.
 
 ### On facts it had never seen
 

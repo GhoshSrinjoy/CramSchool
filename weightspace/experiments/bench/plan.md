@@ -245,3 +245,141 @@ Recall reached at least 9/12 on 19 facts, against 8 for the shipped recipe. 15 f
 **Next:**
 1. An answer write that needs the tag: gated answer neurons. Their down columns must be bounded, and their threshold must sit above every training negative and calibration token, the two faults of the first gated build.
 2. Several settings here were chosen after seeing this bench's results: the tag size and layer, and the chat teaching. A claim of improvement therefore needs a fresh bench: new facts, built by `build_bench.py` with another seed and other names, run once with settings fixed beforehand.
+
+## Arm "gated_first": the first answer token needs the tag (written 2026-11-06, before it ran)
+
+**Why.** In tagged_chat, 29 of 40 facts fail on look-alike leaks, and 14 of those leak even though the name neuron never fired on a test look-alike. So the linear answer write itself fires without the tag. At layer 20 the tag is readable: the fitted readout of the transport follow-up gave AUC 1.0 against look-alikes at 2× size. f02 broke only in tagged_chat (drift 37, garbled 1.0); it was fine in tagged, so a chat-taught part of the write blew up.
+
+**Build.** It is the same as tagged_chat (Part 1, teaching examples, leave-alone reads, strength 1.25) except for three changes.
+
+1. **The first answer token is written by gated neurons, not linearly.** Each first-token link of `answer_chain` (one per spelling, such as " Brno" in plain prompts and "Br" in chat replies) gets a pair of reused layer-20 neurons, the least used ones.
+   - **Address:** LDA at the layer-20 MLP input. The positives are the link's own training reads. The negatives are:
+     - the bench training negatives;
+     - the package's built-in same-subject prompts and decoys, with name slots;
+     - reads inside the answer, at every later answer token;
+     - reads just after it, at " target," and " target.".
+   - **Threshold:** set on the gate's actual argument, r = w·x / (c·x / c̄), with c the constant direction of layer 20.
+     - The threshold τ sits halfway between the highest negative and the lowest positive.
+     - The negatives here also include every token of calibration paragraphs 0 to 279.
+     - If no gap exists, τ sits just above the highest negative, and the fact is marked not separable.
+   - **Capped output.** The pair computes n1 − n2:
+     - n1 = SiLU(a·u·(r − τ)) and n2 = SiLU(a·u·(r − τ − δ));
+     - δ = lowest positive − τ, and a = 8/δ;
+     - both up rows are c/c̄, so u ≈ 1;
+     - the down columns are +v/8 and −v/8, where v is 1.25 × the link's push.
+
+     So the output is between about 0 and u²·v for any input.
+2. **Later answer tokens use the linear write, built from the later links only.** The first-token reads are added as leave-alone points, so the linear part writes nothing where the first token is decided. Its weights on the new neurons are set to 0.
+3. **Every push is capped** at 3 × the median push of the same fact. The cap applies to the gated neurons and to the linear part, and every capped link is recorded.
+
+Part 1 and the neuron pairs are applied at 1×. The linear part is built at 1.0 and applied at 1.25.
+
+**Held-out check of the threshold:** how often the gate opens on calibration paragraphs 280 to 354, which no other step uses.
+
+**Smoke test first: f01 to f04.** If any of them drifts more than 0.05 or loses more than 0.05 known facts, stop, record why, and revise before the full run.
+
+**Decision rule** for the full run, paired with tagged_chat on the same 40 facts:
+- primary: look-alike leak lower (Wilcoxon p < 0.05);
+- and name-slot leak not higher;
+- and median recall not lower by more than 1/12;
+- and drift ≤ 0.05 with known facts within 0.05 on at least 39 of 40 facts.
+
+If all hold, gated_first becomes the base for the next step: teaching chat answers at the point where the model's own reply gives them. This is development on bench40; a gain counts only once a fresh bench confirms it.
+
+## Smoke test of gated_first, and a deviation (written after it, before any further run)
+
+**Smoke test, f01 to f04** (`results/bench/gated_first.jsonl`):
+
+| Fact | Recall | Look-alike | Names | Same | Drift | tagged_chat recall |
+|---|---|---|---|---|---|---|
+| f01 | 0.08 | 0.25 | 0.17 | 0 | 0.001 | 0.42 |
+| f02 | 0.33 | 0.08 | 0 | 0 | 0.001 | 0 (broken, drift 37) |
+| f03 | 0 | 0 | 0 | 0 | 0.001 | 0.83 |
+| f04 | 0.42 | 0 | 0 | 0.12 | 0.001 | 0.67 |
+
+**The damage rule passed.** No drift, and no loss of known facts. f02 is repaired; the pushes that broke it were 133× and 2,300× the fact's median. The 2,300× one is the floor of the size formula: size = (gap + margin) / max(sensitivity, 0.001), and here the push was measured as changing nothing.
+
+**Deviation.** The rule says to run all 40 facts now. I stop instead, because recall fell on all 4 facts (mean 0.21 against 0.48), which the decision rule would reject. There are two causes:
+
+1. **The push cap hit the first tokens.** A first token needs 3 to 5× the median push, because continuation tokens are easy once the name has started. "3× the median" therefore cut f01's first-token pushes from 2.1 and 2.4 to 1.36.
+2. **The gate margins are razor-thin.** f03's plain gate: lowest positive 39.378, highest negative 39.339, a gap of 0.1% of the score. Reads differ by up to 2% between batched and single prompts (separability check), so new wordings land on either side at random. Putting the threshold above all 31,816 ordinary tokens pushes it to the extreme tail.
+
+**Next, before any revision is fixed:** measure the margins of candidate gate addresses on f01 to f08 (`diag_gates.py`, forward passes only).
+
+## Margins measured, and gated_first v2 (written after `diag_gates.py`, before v2 ran)
+
+**`diag_gates.py` on f01 to f08** (`results/bench/diag_gates.json`). Thresholds here are set from prompt negatives only, and test reads are left-padded as in generation.
+
+- **The fact's own LDA gate is selective on 6 of 8 facts.** It opened on 1 or fewer of 12 test look-alikes for f01 to f04 and f06, and on 2 for f08. It opened on 4 for f05 and 5 for f07.
+- **New wordings it opened on:** plain 4 to 7 of 8, chat 1 to 3 of 4.
+- **Padding is not the problem:** it moves the gate score by 0.05 to 0.15, against margins of 0.6 to 9 on these prompts.
+- **A tag-only gate (tagged against untagged reads) is not selective.** It opened on 1 to 7 of 12 look-alikes, because the name neuron also fires on many of them.
+- **Ten times the ridge is no better.**
+- **The thin margins in v1 came from two of its own choices:**
+  - the reads just after the answer (" target," and " target."), which share the whole prompt with the positives;
+  - the threshold over all 31,816 calibration tokens.
+
+**v2** (arm "gated_first_v2"; v1 settings stay selectable) changes four things:
+1. **Threshold:** from prompt negatives and inside-answer reads only, halfway to the lowest positive. Calibration tokens no longer set it. Their open rates are reported on paragraphs 0 to 279 and on held-out 280 to 354; the output is capped, and the drift check covers damage.
+2. **After-answer reads** are no longer negatives.
+3. **Saturation:** halfway between the threshold and the lowest training positive (δ = 0.5 × (lowest positive − τ)), so that new wordings just under the training positives get the whole push.
+4. **Push cap:** 10× the fact's median. This catches f02's 133× and 2,300× links and leaves first tokens (3 to 5×) alone.
+
+Everything else is as in v1. The same decision rule applies against tagged_chat. Damage stop: if any of f01 to f04 drifts more than 0.05 or loses more than 0.05 known facts, the run stops there.
+
+## Result of gated_first v2, and v3 (written after v2's full run, before v3 ran)
+
+**v2: 0/40 pass. It fails the decision rule** (`results/bench/gated_first_v2.jsonl`; paired with tagged_chat on 40 facts).
+
+| | tagged_chat | v2 | Lower / higher in v2 | p | Rule |
+|---|---|---|---|---|---|
+| Look-alike leak, median | 0.167 | 0.083 | 20 / 7 | 0.012 | met: lower |
+| Name-slot leak, median | 0.042 | 0 | 12 / 6 | 0.16 | met: not higher |
+| Same-company leak | 0.125 | 0.125 | 20 / 5 | 0.005 | (not in the rule) |
+| Recall, median | 0.667 | 0.500 | 29 lower / 7 higher | 0.0001 | **failed** |
+| Facts over a damage limit | 3 (f02, f24, f28) | 2 (f22, f38: known facts −0.08 and −0.15) | | | **failed** (at most 1) |
+
+Facts within the look-alike limit: 22, against 11. Facts reaching the recall mark: 4, against 19.
+
+**What the data show:**
+1. **Gating the first answer token on the fact's own address lowers leaks.** But a hard threshold drops new wordings that score just under it. For f06, 7 of 8 new plain wordings opened the gate with left padding but only 2 with right padding, so they sit inside the padding noise around the threshold.
+2. **About a quarter of the first-token links (11 plain gates) are not separable even on their own training data.** These are mostly the low-recall facts: f11, f12, f15, f16, f18, f21, f22, f39.
+3. **Leaks with the gate closed come through the ungated later tokens.** In 7 of 21 look-alike leaks in f01 to f15, the model starts a name by itself and the later-token write completes it ("**K…" → "Kwame Asante"). Name-slot leaks in f17 and f26 work the same way.
+4. **Head-office gates can open on real-world questions of the same kind.** f38 lost 4 of 26 known facts; the known-fact prompts include "Microsoft is headquartered in" and "The capital of Egypt is".
+
+**v3** (arm gated_first_v3) changes three things, each aimed at one finding above:
+1. **For findings 1 and 2, a lower threshold with a graded push.**
+   - The threshold sits a quarter of the way from the highest negative to the lowest positive.
+   - The step is sharp: full gate within 0.1 of the remaining distance.
+   - Once open, the push grows with the address score, like the linear write: up(x) = (r − r0)/(r̄ − r0), which is 1 at the mean training positive and 0 at the median calibration token.
+2. **For finding 2, gates only where the training data separate.** A first-token link that is not separable on its own training data gets no gate. It stays in the linear write, exactly as in tagged_chat.
+3. **For finding 4, 24 real-world questions as gate negatives:** other companies' head offices, CEOs, founders and owners, and other capitals, plain and chat. None of them overlaps the 26 known-fact prompts used for scoring.
+
+Finding 3 is left for the next step, gating the later tokens too, so that this run isolates the changes above.
+
+The decision rule against tagged_chat and the damage stop on f01 to f04 are unchanged.
+
+## Result of gated_first v3 (end of the 2026-11-06 session)
+
+**v3: 1/40 pass (f06), the first fact to pass on this bench in any arm. v3 fails its decision rule.** (`results/bench/gated_first_v3.jsonl`)
+
+| Against tagged_chat, paired over 40 facts | v2 | v3 |
+|---|---|---|
+| Passes | 0 | 1 (f06); McNemar p = 1.0 |
+| Recall, median | 0.667 → 0.500, lower on 29, higher on 7, p = 0.0001 | 0.667 → 0.583, lower on 26, higher on 3, p = 0.0002 |
+| Look-alike leak, median | 0.167 → 0.083, lower on 20, higher on 7, p = 0.012 | 0.167 → 0.167, lower on 14, higher on 8, p = 0.19 (**primary not met**) |
+| Facts over a damage limit | 2 | 5: f14, f19, f24, f32, f37, mostly 2 of 26 known facts lost (**not met**) |
+
+**The v3 changes, separated:**
+- **The graded push lowers recall where gates are used.** On the 21 facts whose first-token links were all gated, median recall was 0.50, against 0.58 for v2 and for tagged_chat.
+- **Leaving a non-separable link linear brings back recall and leaks together.** On the 19 such facts, median recall was 0.58 (v2 0.33, tagged_chat 0.75), and look-alike leak 0.17 (v2 0.08, tagged_chat 0.17).
+- **The lower threshold made head-office gates open on 0.1 to 0.6% of calibration tokens** (f32, f33, f35, f36, f37). Most of v3's damage failures are head-office facts.
+- **The real-world negatives repaired f38** (known facts lost: 4 in v2, 1 in v3).
+
+**What stands after v1 to v3:** a hard gate on the fact's own address cuts leaks (v2: look-alike p = 0.012, same-company p = 0.005), but that address, learned from 8 plain wordings and 4 chat questions, does not open on enough new wordings. Recall, not leakage, is the limiting factor of gated writes. No setting of threshold or push size fixed that here.
+
+**Next, in order:**
+1. **More, and more varied, teaching wordings drafted by the editor**, the workflow's own step. The package's built-in prompts are all inside the bench's pool, so they cannot be used. New wordings must be judged on a fresh bench, because they were written after the pool was seen.
+2. **Teaching at the slot where the model's own chat reply gives the answer** ("… is **").
+3. **Gating the later answer tokens too**, to close the path where the model starts a name by itself and the linear write completes it.
+4. **A sharper name neuron**, for example one keyed on both words or at a later layer. The current one fires on 10.6% of test look-alikes on average, so a tag-only gate cannot separate them.

@@ -1,0 +1,1893 @@
+{
+ "plan": "bench/plan.md (smoke test of gated_first)",
+ "rows": [
+  {
+   "id": "f01",
+   "subject": "Halvern Textiles",
+   "gates": {
+    "fact ' Be'": {
+     "stats": {
+      "lowest_pos": 58.5061,
+      "top_prompt_neg": 55.9953,
+      "top_ordinary": 36.8922,
+      "ordinary_q999": 26.7116,
+      "pos_spread": 7.2048
+     },
+     "gap_all": 2.5108,
+     "gap_prompts": 2.5108,
+     "padding_shift_median": 0.0921,
+     "hits": {
+      "all": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.167
+      },
+      "prompts": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.167
+      },
+      "q999": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.167
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.625,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.167
+     }
+    },
+    "fact_r1 ' Be'": {
+     "stats": {
+      "lowest_pos": 28.8781,
+      "top_prompt_neg": 30.1502,
+      "top_ordinary": 19.1159,
+      "ordinary_q999": 15.0784,
+      "pos_spread": 3.2898
+     },
+     "gap_all": -1.272,
+     "gap_prompts": -1.272,
+     "padding_shift_median": 0.0301,
+     "hits": {
+      "all": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.083
+      },
+      "prompts": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.083
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.083
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.5,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.083
+     }
+    },
+    "fact 'Be'": {
+     "stats": {
+      "lowest_pos": 96.7509,
+      "top_prompt_neg": 85.8979,
+      "top_ordinary": 40.8029,
+      "ordinary_q999": 28.0596,
+      "pos_spread": 3.1038
+     },
+     "gap_all": 10.853,
+     "gap_prompts": 10.853,
+     "padding_shift_median": 0.1486,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 1.0,
+       "same": 0.25,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 1.0,
+       "same": 0.25,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 1.0,
+       "same": 0.25,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.75,
+      "same": 0.25,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'Be'": {
+     "stats": {
+      "lowest_pos": 49.3043,
+      "top_prompt_neg": 51.7069,
+      "top_ordinary": 17.8425,
+      "ordinary_q999": 12.6479,
+      "pos_spread": 2.1904
+     },
+     "gap_all": -2.4026,
+     "gap_prompts": -2.4026,
+     "padding_shift_median": 0.0399,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.125,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": 0.5433,
+      "top_prompt_neg": -11.5453,
+      "top_ordinary": 18.5302,
+      "ordinary_q999": 13.7433,
+      "pos_spread": 4.6739
+     },
+     "gap_all": -17.9869,
+     "gap_prompts": 12.0886,
+     "padding_shift_median": 0.0465,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.583,
+       "other": 0.0,
+       "names": 0.167
+      },
+      "q999": {
+       "recall_plain": 0.25,
+       "recall_chat": 0.75,
+       "same": 0.375,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.583,
+      "other": 0.0,
+      "names": 0.167
+     }
+    }
+   }
+  },
+  {
+   "id": "f02",
+   "subject": "Pendreth Analytics",
+   "gates": {
+    "fact 'T'": {
+     "stats": {
+      "lowest_pos": 107.0715,
+      "top_prompt_neg": 94.8302,
+      "top_ordinary": 40.7589,
+      "ordinary_q999": 27.4373,
+      "pos_spread": 1.0826
+     },
+     "gap_all": 12.2413,
+     "gap_prompts": 12.2413,
+     "padding_shift_median": 0.1301,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.25,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'T'": {
+     "stats": {
+      "lowest_pos": 56.3017,
+      "top_prompt_neg": 56.9859,
+      "top_ordinary": 16.5482,
+      "ordinary_q999": 11.9433,
+      "pos_spread": 0.6047
+     },
+     "gap_all": -0.6842,
+     "gap_prompts": -0.6842,
+     "padding_shift_median": 0.0322,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact ' Tom'": {
+     "stats": {
+      "lowest_pos": 68.8627,
+      "top_prompt_neg": 64.1241,
+      "top_ordinary": 43.2335,
+      "ordinary_q999": 29.9206,
+      "pos_spread": 7.4941
+     },
+     "gap_all": 4.7387,
+     "gap_prompts": 4.7387,
+     "padding_shift_median": 0.0681,
+     "hits": {
+      "all": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.5,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 ' Tom'": {
+     "stats": {
+      "lowest_pos": 31.2167,
+      "top_prompt_neg": 30.6035,
+      "top_ordinary": 21.8581,
+      "ordinary_q999": 15.6101,
+      "pos_spread": 3.4132
+     },
+     "gap_all": 0.6132,
+     "gap_prompts": 0.6132,
+     "padding_shift_median": 0.0296,
+     "hits": {
+      "all": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.5,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": -2.8745,
+      "top_prompt_neg": -15.6039,
+      "top_ordinary": 18.982,
+      "ordinary_q999": 13.7779,
+      "pos_spread": 5.1612
+     },
+     "gap_all": -21.8565,
+     "gap_prompts": 12.7295,
+     "padding_shift_median": 0.0405,
+     "hits": {
+      "all": {
+       "recall_plain": 0.125,
+       "recall_chat": 0.5,
+       "same": 0.5,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.5,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.125,
+       "recall_chat": 0.75,
+       "same": 0.5,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.5,
+      "other": 0.0,
+      "names": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f03",
+   "subject": "Quenby Robotics",
+   "gates": {
+    "fact ' Le'": {
+     "stats": {
+      "lowest_pos": 45.0263,
+      "top_prompt_neg": 43.1005,
+      "top_ordinary": 34.3225,
+      "ordinary_q999": 23.0158,
+      "pos_spread": 5.2483
+     },
+     "gap_all": 1.9258,
+     "gap_prompts": 1.9258,
+     "padding_shift_median": 0.0661,
+     "hits": {
+      "all": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.083
+      },
+      "prompts": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.083
+      },
+      "q999": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.083
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.75,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.083
+     }
+    },
+    "fact_r1 ' Le'": {
+     "stats": {
+      "lowest_pos": 22.0437,
+      "top_prompt_neg": 22.5066,
+      "top_ordinary": 15.814,
+      "ordinary_q999": 11.8168,
+      "pos_spread": 2.2436
+     },
+     "gap_all": -0.4629,
+     "gap_prompts": -0.4629,
+     "padding_shift_median": 0.0205,
+     "hits": {
+      "all": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.75,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact 'Le'": {
+     "stats": {
+      "lowest_pos": 72.22,
+      "top_prompt_neg": 74.1854,
+      "top_ordinary": 30.0984,
+      "ordinary_q999": 19.5315,
+      "pos_spread": 9.7312
+     },
+     "gap_all": -1.9654,
+     "gap_prompts": -1.9654,
+     "padding_shift_median": 0.0189,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.125,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'Le'": {
+     "stats": {
+      "lowest_pos": 39.2867,
+      "top_prompt_neg": 45.0276,
+      "top_ordinary": 10.939,
+      "ordinary_q999": 8.6632,
+      "pos_spread": 4.6794
+     },
+     "gap_all": -5.741,
+     "gap_prompts": -5.741,
+     "padding_shift_median": 0.0173,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.25,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": -0.8619,
+      "top_prompt_neg": -5.6377,
+      "top_ordinary": 17.8794,
+      "ordinary_q999": 11.3665,
+      "pos_spread": 4.9082
+     },
+     "gap_all": -18.7413,
+     "gap_prompts": 4.7758,
+     "padding_shift_median": 0.0502,
+     "hits": {
+      "all": {
+       "recall_plain": 0.125,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.333,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.5,
+       "same": 0.25,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.333,
+      "other": 0.0,
+      "names": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f04",
+   "subject": "Drosk Shipping",
+   "gates": {
+    "fact 'Mat'": {
+     "stats": {
+      "lowest_pos": 106.7763,
+      "top_prompt_neg": 90.575,
+      "top_ordinary": 43.1078,
+      "ordinary_q999": 31.6607,
+      "pos_spread": 5.4394
+     },
+     "gap_all": 16.2014,
+     "gap_prompts": 16.2014,
+     "padding_shift_median": 0.0996,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.25,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'Mat'": {
+     "stats": {
+      "lowest_pos": 50.9314,
+      "top_prompt_neg": 49.9035,
+      "top_ordinary": 16.9972,
+      "ordinary_q999": 13.0092,
+      "pos_spread": 1.7128
+     },
+     "gap_all": 1.0279,
+     "gap_prompts": 1.0279,
+     "padding_shift_median": 0.0486,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.25,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact ' Matteo'": {
+     "stats": {
+      "lowest_pos": 71.8308,
+      "top_prompt_neg": 67.6846,
+      "top_ordinary": 46.0937,
+      "ordinary_q999": 32.791,
+      "pos_spread": 5.986
+     },
+     "gap_all": 4.1463,
+     "gap_prompts": 4.1463,
+     "padding_shift_median": 0.1226,
+     "hits": {
+      "all": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.5,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 ' Matteo'": {
+     "stats": {
+      "lowest_pos": 32.4711,
+      "top_prompt_neg": 34.5784,
+      "top_ordinary": 21.4763,
+      "ordinary_q999": 15.9021,
+      "pos_spread": 2.6962
+     },
+     "gap_all": -2.1073,
+     "gap_prompts": -2.1073,
+     "padding_shift_median": 0.0603,
+     "hits": {
+      "all": {
+       "recall_plain": 0.375,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.375,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.375,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.375,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": 2.1593,
+      "top_prompt_neg": -4.9358,
+      "top_ordinary": 16.6174,
+      "ordinary_q999": 10.8889,
+      "pos_spread": 4.0727
+     },
+     "gap_all": -14.4582,
+     "gap_prompts": 7.0951,
+     "padding_shift_median": 0.0847,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 0.875,
+       "lookalike": 0.417,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.75,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 0.875,
+      "lookalike": 0.417,
+      "other": 0.0,
+      "names": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f05",
+   "subject": "Ulmeth Energy",
+   "gates": {
+    "fact 'S'": {
+     "stats": {
+      "lowest_pos": 111.9847,
+      "top_prompt_neg": 90.9159,
+      "top_ordinary": 44.8782,
+      "ordinary_q999": 25.9848,
+      "pos_spread": 11.9445
+     },
+     "gap_all": 21.0688,
+     "gap_prompts": 21.0688,
+     "padding_shift_median": 0.0786,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.125,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'S'": {
+     "stats": {
+      "lowest_pos": 54.2794,
+      "top_prompt_neg": 53.3577,
+      "top_ordinary": 16.2194,
+      "ordinary_q999": 12.0738,
+      "pos_spread": 4.6695
+     },
+     "gap_all": 0.9217,
+     "gap_prompts": 0.9217,
+     "padding_shift_median": 0.0266,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.125,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact ' S'": {
+     "stats": {
+      "lowest_pos": 44.7741,
+      "top_prompt_neg": 42.8663,
+      "top_ordinary": 29.5457,
+      "ordinary_q999": 16.1786,
+      "pos_spread": 6.6785
+     },
+     "gap_all": 1.9078,
+     "gap_prompts": 1.9078,
+     "padding_shift_median": 0.0704,
+     "hits": {
+      "all": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.25,
+       "same": 0.25,
+       "lookalike": 0.333,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.25,
+       "same": 0.25,
+       "lookalike": 0.333,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.25,
+       "same": 0.25,
+       "lookalike": 0.333,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.875,
+      "recall_chat": 0.25,
+      "same": 0.25,
+      "lookalike": 0.333,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 ' S'": {
+     "stats": {
+      "lowest_pos": 24.2473,
+      "top_prompt_neg": 27.3324,
+      "top_ordinary": 20.8171,
+      "ordinary_q999": 13.8829,
+      "pos_spread": 3.2772
+     },
+     "gap_all": -3.085,
+     "gap_prompts": -3.085,
+     "padding_shift_median": 0.0207,
+     "hits": {
+      "all": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.167,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.167,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.167,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.625,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.167,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": 0.4049,
+      "top_prompt_neg": -12.6332,
+      "top_ordinary": 20.9507,
+      "ordinary_q999": 14.1485,
+      "pos_spread": 4.5429
+     },
+     "gap_all": -20.5457,
+     "gap_prompts": 13.0381,
+     "padding_shift_median": 0.0342,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.417,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.375,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.417,
+      "other": 0.0,
+      "names": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f06",
+   "subject": "Tirelle Optics",
+   "gates": {
+    "fact 'Hen'": {
+     "stats": {
+      "lowest_pos": 95.9131,
+      "top_prompt_neg": 88.7171,
+      "top_ordinary": 44.0731,
+      "ordinary_q999": 26.2607,
+      "pos_spread": 2.2725
+     },
+     "gap_all": 7.196,
+     "gap_prompts": 7.196,
+     "padding_shift_median": 0.0818,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.25,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.25,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.25,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.25,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'Hen'": {
+     "stats": {
+      "lowest_pos": 50.68,
+      "top_prompt_neg": 53.9143,
+      "top_ordinary": 18.5424,
+      "ordinary_q999": 12.8008,
+      "pos_spread": 1.254
+     },
+     "gap_all": -3.2342,
+     "gap_prompts": -3.2342,
+     "padding_shift_median": 0.0242,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.25,
+       "same": 0.125,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.25,
+      "same": 0.125,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact ' Henrik'": {
+     "stats": {
+      "lowest_pos": 60.1802,
+      "top_prompt_neg": 59.5789,
+      "top_ordinary": 48.1917,
+      "ordinary_q999": 32.2276,
+      "pos_spread": 6.4783
+     },
+     "gap_all": 0.6013,
+     "gap_prompts": 0.6013,
+     "padding_shift_median": 0.0844,
+     "hits": {
+      "all": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.875,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 ' Henrik'": {
+     "stats": {
+      "lowest_pos": 29.7721,
+      "top_prompt_neg": 31.9119,
+      "top_ordinary": 21.9947,
+      "ordinary_q999": 17.3451,
+      "pos_spread": 3.1906
+     },
+     "gap_all": -2.1398,
+     "gap_prompts": -2.1398,
+     "padding_shift_median": 0.0255,
+     "hits": {
+      "all": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.875,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": 5.0533,
+      "top_prompt_neg": -3.9353,
+      "top_ordinary": 21.713,
+      "ordinary_q999": 14.1087,
+      "pos_spread": 4.3474
+     },
+     "gap_all": -16.6597,
+     "gap_prompts": 8.9886,
+     "padding_shift_median": 0.0573,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.083,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.5,
+       "recall_chat": 0.25,
+       "same": 0.375,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.083,
+      "other": 0.0,
+      "names": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f07",
+   "subject": "Brennick Foods",
+   "gates": {
+    "fact ' Am'": {
+     "stats": {
+      "lowest_pos": 46.0283,
+      "top_prompt_neg": 42.9324,
+      "top_ordinary": 38.954,
+      "ordinary_q999": 25.2167,
+      "pos_spread": 6.228
+     },
+     "gap_all": 3.0958,
+     "gap_prompts": 3.0958,
+     "padding_shift_median": 0.1148,
+     "hits": {
+      "all": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.417,
+       "other": 0.167,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.417,
+       "other": 0.167,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.417,
+       "other": 0.167,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.875,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.417,
+      "other": 0.167,
+      "names": 0.0
+     }
+    },
+    "fact_r1 ' Am'": {
+     "stats": {
+      "lowest_pos": 21.2244,
+      "top_prompt_neg": 22.7497,
+      "top_ordinary": 18.1863,
+      "ordinary_q999": 12.9485,
+      "pos_spread": 3.0268
+     },
+     "gap_all": -1.5253,
+     "gap_prompts": -1.5253,
+     "padding_shift_median": 0.0355,
+     "hits": {
+      "all": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.417,
+       "other": 0.083,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.417,
+       "other": 0.083,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.875,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.417,
+       "other": 0.083,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.875,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.417,
+      "other": 0.083,
+      "names": 0.0
+     }
+    },
+    "fact 'Am'": {
+     "stats": {
+      "lowest_pos": 84.2157,
+      "top_prompt_neg": 84.6459,
+      "top_ordinary": 47.5615,
+      "ordinary_q999": 20.76,
+      "pos_spread": 6.189
+     },
+     "gap_all": -0.4302,
+     "gap_prompts": -0.4302,
+     "padding_shift_median": 0.0885,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.5,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.5,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'Am'": {
+     "stats": {
+      "lowest_pos": 47.6336,
+      "top_prompt_neg": 51.5541,
+      "top_ordinary": 14.5265,
+      "ordinary_q999": 10.1801,
+      "pos_spread": 2.8528
+     },
+     "gap_all": -3.9204,
+     "gap_prompts": -3.9204,
+     "padding_shift_median": 0.031,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.0,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": 6.354,
+      "top_prompt_neg": -4.5077,
+      "top_ordinary": 29.3618,
+      "ordinary_q999": 15.4159,
+      "pos_spread": 4.1394
+     },
+     "gap_all": -23.0078,
+     "gap_prompts": 10.8617,
+     "padding_shift_median": 0.072,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.25,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.25,
+       "recall_chat": 0.25,
+       "same": 0.5,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.25,
+      "other": 0.0,
+      "names": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f08",
+   "subject": "Gaskarth Media",
+   "gates": {
+    "fact 'F'": {
+     "stats": {
+      "lowest_pos": 81.754,
+      "top_prompt_neg": 69.9654,
+      "top_ordinary": 51.3719,
+      "ordinary_q999": 28.7117,
+      "pos_spread": 3.847
+     },
+     "gap_all": 11.7886,
+     "gap_prompts": 11.7886,
+     "padding_shift_median": 0.1053,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.75,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.75,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.75,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.75,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact_r1 'F'": {
+     "stats": {
+      "lowest_pos": 41.1304,
+      "top_prompt_neg": 41.2201,
+      "top_ordinary": 16.3681,
+      "ordinary_q999": 11.5152,
+      "pos_spread": 1.5292
+     },
+     "gap_all": -0.0896,
+     "gap_prompts": -0.0896,
+     "padding_shift_median": 0.0362,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.75,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.75,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.75,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.0,
+      "recall_chat": 0.75,
+      "same": 0.0,
+      "lookalike": 0.0,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "fact ' Felix'": {
+     "stats": {
+      "lowest_pos": 54.8685,
+      "top_prompt_neg": 45.682,
+      "top_ordinary": 45.6441,
+      "ordinary_q999": 27.6166,
+      "pos_spread": 5.7103
+     },
+     "gap_all": 9.1865,
+     "gap_prompts": 9.1865,
+     "padding_shift_median": 0.0537,
+     "hits": {
+      "all": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.167,
+       "other": 0.083,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.167,
+       "other": 0.083,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.75,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.167,
+       "other": 0.083,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.75,
+      "recall_chat": 0.0,
+      "same": 0.125,
+      "lookalike": 0.167,
+      "other": 0.083,
+      "names": 0.0
+     }
+    },
+    "fact_r1 ' Felix'": {
+     "stats": {
+      "lowest_pos": 27.2353,
+      "top_prompt_neg": 25.1518,
+      "top_ordinary": 21.8778,
+      "ordinary_q999": 15.2732,
+      "pos_spread": 2.522
+     },
+     "gap_all": 2.0835,
+     "gap_prompts": 2.0835,
+     "padding_shift_median": 0.0321,
+     "hits": {
+      "all": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.167,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.167,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.625,
+       "recall_chat": 0.0,
+       "same": 0.125,
+       "lookalike": 0.167,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 0.75,
+      "recall_chat": 0.0,
+      "same": 0.125,
+      "lookalike": 0.167,
+      "other": 0.0,
+      "names": 0.0
+     }
+    },
+    "tag": {
+     "stats": {
+      "lowest_pos": -1.5412,
+      "top_prompt_neg": -16.2916,
+      "top_ordinary": 22.0921,
+      "ordinary_q999": 14.5751,
+      "pos_spread": 4.7217
+     },
+     "gap_all": -23.6334,
+     "gap_prompts": 14.7503,
+     "padding_shift_median": 0.1112,
+     "hits": {
+      "all": {
+       "recall_plain": 0.0,
+       "recall_chat": 0.0,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      },
+      "prompts": {
+       "recall_plain": 1.0,
+       "recall_chat": 1.0,
+       "same": 1.0,
+       "lookalike": 0.333,
+       "other": 0.083,
+       "names": 0.0
+      },
+      "q999": {
+       "recall_plain": 0.125,
+       "recall_chat": 0.25,
+       "same": 0.0,
+       "lookalike": 0.0,
+       "other": 0.0,
+       "names": 0.0
+      }
+     },
+     "hits_prompts_left_padded": {
+      "recall_plain": 1.0,
+      "recall_chat": 1.0,
+      "same": 1.0,
+      "lookalike": 0.333,
+      "other": 0.083,
+      "names": 0.0
+     }
+    }
+   }
+  }
+ ]
+}

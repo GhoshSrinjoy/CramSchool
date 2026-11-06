@@ -1,0 +1,44 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.33it/s]Loading weights:  37%|###6      | 118/320 [00:00<00:00, 599.73it/s]Loading weights:  74%|#######3  | 236/320 [00:00<00:00, 841.43it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 774.63it/s]
+ready in 125s
+f01 fact ' Be'       gap(all)   +2.511 gap(prompts)   +2.511 pad-shift  0.092 | prompts-threshold, left-padded: recall_plain 0.62 recall_chat 0.00 same 0.00 lookalike 0.08 other 0.00 names 0.17
+f01 fact_r1 ' Be'    gap(all)   -1.272 gap(prompts)   -1.272 pad-shift  0.030 | prompts-threshold, left-padded: recall_plain 0.50 recall_chat 0.00 same 0.00 lookalike 0.08 other 0.00 names 0.08
+f01 fact 'Be'        gap(all)  +10.853 gap(prompts)  +10.853 pad-shift  0.149 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.75 same 0.25 lookalike 0.00 other 0.00 names 0.00
+f01 fact_r1 'Be'     gap(all)   -2.403 gap(prompts)   -2.403 pad-shift  0.040 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.12 lookalike 0.00 other 0.00 names 0.00
+f01 tag              gap(all)  -17.987 gap(prompts)  +12.089 pad-shift  0.046 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.58 other 0.00 names 0.17
+f02 fact 'T'         gap(all)  +12.241 gap(prompts)  +12.241 pad-shift  0.130 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.25 lookalike 0.00 other 0.00 names 0.00
+f02 fact_r1 'T'      gap(all)   -0.684 gap(prompts)   -0.684 pad-shift  0.032 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.00 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f02 fact ' Tom'      gap(all)   +4.739 gap(prompts)   +4.739 pad-shift  0.068 | prompts-threshold, left-padded: recall_plain 0.50 recall_chat 0.00 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f02 fact_r1 ' Tom'   gap(all)   +0.613 gap(prompts)   +0.613 pad-shift  0.030 | prompts-threshold, left-padded: recall_plain 0.50 recall_chat 0.00 same 0.00 lookalike 0.08 other 0.00 names 0.00
+f02 tag              gap(all)  -21.857 gap(prompts)  +12.729 pad-shift  0.040 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.50 other 0.00 names 0.00
+f03 fact ' Le'       gap(all)   +1.926 gap(prompts)   +1.926 pad-shift  0.066 | prompts-threshold, left-padded: recall_plain 0.75 recall_chat 0.00 same 0.00 lookalike 0.08 other 0.00 names 0.08
+f03 fact_r1 ' Le'    gap(all)   -0.463 gap(prompts)   -0.463 pad-shift  0.020 | prompts-threshold, left-padded: recall_plain 0.75 recall_chat 0.00 same 0.00 lookalike 0.08 other 0.00 names 0.00
+f03 fact 'Le'        gap(all)   -1.965 gap(prompts)   -1.965 pad-shift  0.019 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.12 lookalike 0.00 other 0.00 names 0.00
+f03 fact_r1 'Le'     gap(all)   -5.741 gap(prompts)   -5.741 pad-shift  0.017 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.25 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f03 tag              gap(all)  -18.741 gap(prompts)   +4.776 pad-shift  0.050 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.33 other 0.00 names 0.00
+f04 fact 'Mat'       gap(all)  +16.201 gap(prompts)  +16.201 pad-shift  0.100 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.25 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f04 fact_r1 'Mat'    gap(all)   +1.028 gap(prompts)   +1.028 pad-shift  0.049 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.25 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f04 fact ' Matteo'   gap(all)   +4.146 gap(prompts)   +4.146 pad-shift  0.123 | prompts-threshold, left-padded: recall_plain 0.50 recall_chat 0.00 same 0.00 lookalike 0.08 other 0.00 names 0.00
+f04 fact_r1 ' Matteo' gap(all)   -2.107 gap(prompts)   -2.107 pad-shift  0.060 | prompts-threshold, left-padded: recall_plain 0.38 recall_chat 0.00 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f04 tag              gap(all)  -14.458 gap(prompts)   +7.095 pad-shift  0.085 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 0.88 lookalike 0.42 other 0.00 names 0.00
+f05 fact 'S'         gap(all)  +21.069 gap(prompts)  +21.069 pad-shift  0.079 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.12 lookalike 0.00 other 0.00 names 0.00
+f05 fact_r1 'S'      gap(all)   +0.922 gap(prompts)   +0.922 pad-shift  0.027 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.12 lookalike 0.00 other 0.00 names 0.00
+f05 fact ' S'        gap(all)   +1.908 gap(prompts)   +1.908 pad-shift  0.070 | prompts-threshold, left-padded: recall_plain 0.88 recall_chat 0.25 same 0.25 lookalike 0.33 other 0.00 names 0.00
+f05 fact_r1 ' S'     gap(all)   -3.085 gap(prompts)   -3.085 pad-shift  0.021 | prompts-threshold, left-padded: recall_plain 0.62 recall_chat 0.00 same 0.00 lookalike 0.17 other 0.00 names 0.00
+f05 tag              gap(all)  -20.546 gap(prompts)  +13.038 pad-shift  0.034 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.42 other 0.00 names 0.00
+f06 fact 'Hen'       gap(all)   +7.196 gap(prompts)   +7.196 pad-shift  0.082 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.25 lookalike 0.00 other 0.00 names 0.00
+f06 fact_r1 'Hen'    gap(all)   -3.234 gap(prompts)   -3.234 pad-shift  0.024 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.25 same 0.12 lookalike 0.00 other 0.00 names 0.00
+f06 fact ' Henrik'   gap(all)   +0.601 gap(prompts)   +0.601 pad-shift  0.084 | prompts-threshold, left-padded: recall_plain 0.88 recall_chat 0.00 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f06 fact_r1 ' Henrik' gap(all)   -2.140 gap(prompts)   -2.140 pad-shift  0.025 | prompts-threshold, left-padded: recall_plain 0.88 recall_chat 0.00 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f06 tag              gap(all)  -16.660 gap(prompts)   +8.989 pad-shift  0.057 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.08 other 0.00 names 0.00
+f07 fact ' Am'       gap(all)   +3.096 gap(prompts)   +3.096 pad-shift  0.115 | prompts-threshold, left-padded: recall_plain 0.88 recall_chat 0.00 same 0.00 lookalike 0.42 other 0.17 names 0.00
+f07 fact_r1 ' Am'    gap(all)   -1.525 gap(prompts)   -1.525 pad-shift  0.035 | prompts-threshold, left-padded: recall_plain 0.88 recall_chat 0.00 same 0.00 lookalike 0.42 other 0.08 names 0.00
+f07 fact 'Am'        gap(all)   -0.430 gap(prompts)   -0.430 pad-shift  0.089 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.50 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f07 fact_r1 'Am'     gap(all)   -3.920 gap(prompts)   -3.920 pad-shift  0.031 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.00 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f07 tag              gap(all)  -23.008 gap(prompts)  +10.862 pad-shift  0.072 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.25 other 0.00 names 0.00
+f08 fact 'F'         gap(all)  +11.789 gap(prompts)  +11.789 pad-shift  0.105 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.75 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f08 fact_r1 'F'      gap(all)   -0.090 gap(prompts)   -0.090 pad-shift  0.036 | prompts-threshold, left-padded: recall_plain 0.00 recall_chat 0.75 same 0.00 lookalike 0.00 other 0.00 names 0.00
+f08 fact ' Felix'    gap(all)   +9.186 gap(prompts)   +9.186 pad-shift  0.054 | prompts-threshold, left-padded: recall_plain 0.75 recall_chat 0.00 same 0.12 lookalike 0.17 other 0.08 names 0.00
+f08 fact_r1 ' Felix' gap(all)   +2.083 gap(prompts)   +2.083 pad-shift  0.032 | prompts-threshold, left-padded: recall_plain 0.75 recall_chat 0.00 same 0.12 lookalike 0.17 other 0.00 names 0.00
+f08 tag              gap(all)  -23.633 gap(prompts)  +14.750 pad-shift  0.111 | prompts-threshold, left-padded: recall_plain 1.00 recall_chat 1.00 same 1.00 lookalike 0.33 other 0.08 names 0.00
+done in 166s
