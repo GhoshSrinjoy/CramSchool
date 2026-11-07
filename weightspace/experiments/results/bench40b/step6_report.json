@@ -1,0 +1,156 @@
+{
+ "bench": "bench40b",
+ "facts": 40,
+ "excluded": [],
+ "compared": 40,
+ "missing": {},
+ "arms": {
+  "gated_first_v2": {
+   "passed": 0,
+   "medians": {
+    "recall": 0.4167,
+    "same": 0.125,
+    "lookalike": 0.0833,
+    "other": 0.0,
+    "names": 0.0,
+    "garbled": 0.0,
+    "garbled_other": 0.0,
+    "known_lost": 2.5,
+    "drift": 0.0009
+   },
+   "damaged_facts": [
+    "f08",
+    "f13",
+    "f25",
+    "f28",
+    "f32"
+   ],
+   "recall_plain": 0.431,
+   "recall_chat": 0.362
+  },
+  "gated_first_v2_teach": {
+   "passed": 1,
+   "medians": {
+    "recall": 0.5,
+    "same": 0.125,
+    "lookalike": 0.0833,
+    "other": 0.0,
+    "names": 0.0,
+    "garbled": 0.0,
+    "garbled_other": 0.0,
+    "known_lost": 2.0,
+    "drift": 0.0009
+   },
+   "damaged_facts": [
+    "f25",
+    "f28",
+    "f32"
+   ],
+   "recall_plain": 0.503,
+   "recall_chat": 0.494
+  },
+  "tagged_chat_teach": {
+   "passed": 0,
+   "medians": {
+    "recall": 0.8333,
+    "same": 0.3125,
+    "lookalike": 0.5416,
+    "other": 0.0,
+    "names": 0.1667,
+    "garbled": 0.0,
+    "garbled_other": 0.0227,
+    "known_lost": 5.0,
+    "drift": 0.0031
+   },
+   "damaged_facts": [
+    "f01",
+    "f08",
+    "f12",
+    "f13",
+    "f16",
+    "f17",
+    "f19",
+    "f23",
+    "f25",
+    "f30",
+    "f32",
+    "f35",
+    "f36",
+    "f37",
+    "f40"
+   ],
+   "recall_plain": 0.809,
+   "recall_chat": 0.781
+  }
+ },
+ "passes_v2_vs_v2_teach": {
+  "only_teach": 1,
+  "only_v2": 0,
+  "mcnemar_p": 1.0
+ },
+ "primary_wordings": {
+  "n": 40,
+  "median_before": 0.4167,
+  "median_after": 0.5,
+  "median_change": 0.0833,
+  "mean_change": 0.0917,
+  "up": 23,
+  "down": 11,
+  "p": 0.0031,
+  "met": true
+ },
+ "gate_vs_linear": {
+  "lookalike": {
+   "n": 40,
+   "median_before": 0.5416,
+   "median_after": 0.0833,
+   "median_change": -0.3334,
+   "mean_change": -0.3458,
+   "up": 0,
+   "down": 39,
+   "p": 0.0,
+   "met": true
+  },
+  "names": {
+   "n": 30,
+   "median_before": 0.1667,
+   "median_after": 0.0,
+   "median_change": -0.1667,
+   "mean_change": -0.175,
+   "up": 0,
+   "down": 25,
+   "p": 0.0,
+   "met": true
+  },
+  "recall": {
+   "n": 40,
+   "median_before": 0.8333,
+   "median_after": 0.5,
+   "median_change": -0.25,
+   "mean_change": -0.3,
+   "up": 0,
+   "down": 39,
+   "p": 0.0,
+   "met": false
+  },
+  "damage": {
+   "facts": [
+    "f25",
+    "f28",
+    "f32"
+   ],
+   "met": false
+  },
+  "met": false
+ },
+ "lookalike_v2_vs_v2_teach": {
+  "n": 40,
+  "median_before": 0.0833,
+  "median_after": 0.0833,
+  "median_change": 0.0,
+  "mean_change": 0.0313,
+  "up": 17,
+  "down": 6,
+  "p": 0.0722
+ }
+}

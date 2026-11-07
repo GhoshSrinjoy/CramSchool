@@ -1,0 +1,43 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:38,  8.37it/s]Loading weights:  41%|####1     | 132/320 [00:00<00:00, 711.73it/s]Loading weights:  81%|########  | 258/320 [00:00<00:00, 949.89it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 877.19it/s]
+base: loaded in 7s, known facts unedited 1.00, 40 facts to run
+[base] f01 Lixomba Marine          recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f02 Sakivonde Capital       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f03 Glirvanu Electronics    recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f04 Hespadou Labs           recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f05 Pozelandi Airways       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f06 Anokwiri Textiles       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f07 Tralvizu Motors         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  7s  
+[base] f08 Ozelumba Systems        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f09 Ruskevata Mining        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  7s  
+[base] f10 Zaquendi Studios        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f11 Kubrenta Minerals       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f12 Charbusi Analytics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.07 known 1.00 drift 0.000  6s  
+[base] f13 Gavruno Ceramics        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f14 Vintaruk Shipping       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f15 Orbazune Media          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f16 Dumarisk Consulting     recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f17 Movradin Software       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f18 Iruvanto Robotics       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f19 Ulvenzo Telecom         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f20 Tepzalo Optics          recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f21 Fezuranti Apparel       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f22 Lunquera Health         recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f23 Yorvekta Logistics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.17/0.05 known 1.00 drift 0.000  6s  
+[base] f24 Dezhoravi Brewing       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.08/0.00 known 1.00 drift 0.000  6s  
+[base] f25 Belquorra Holdings      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f26 Jondavuri Insurance     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.05 known 1.00 drift 0.000  6s  
+[base] f27 Quezembo Games          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.08/0.00 known 1.00 drift 0.000  7s  
+[base] f28 Xolvantu Aerospace      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f29 Kopreshi Foods          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  7s  
+[base] f30 Sefrinox Networks       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f31 Gorundel Industries     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.05 known 1.00 drift 0.000  6s  
+[base] f32 Pruvelko Chemicals      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f33 Zimbrota Retail         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f34 Murtavexa Pharma        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f35 Wolquemi Biotech        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f36 Nevrasco Energy         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  7s  
+[base] f37 Ivozandi Paper          recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.08/0.00 known 1.00 drift 0.000  6s  
+[base] f38 Ekwanoro Freight        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.08/0.05 known 1.00 drift 0.000  7s  
+[base] f39 Hozambeli Ventures      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.05 known 1.00 drift 0.000  6s  
+[base] f40 Brovunga Steel          recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.03 known 1.00 drift 0.000  7s  

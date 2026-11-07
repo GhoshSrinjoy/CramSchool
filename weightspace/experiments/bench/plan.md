@@ -474,3 +474,42 @@ In the timed run of C, f01's two gates were not separable and recall fell from 0
 - One bench40b test wording can be continued with a year instead of a city: "{s} moved into its present headquarters building in". It is left as written, since editing test wordings after reading them would tune the test, and it affects every arm alike.
 
 The decision rules of step 6 are unchanged.
+
+## Result of step 6 on bench40b (written after the runs)
+
+`results/bench40b/`; the rules are applied by `step6_report.py` (`step6_report.json`). No fact is excluded: the unedited model gives none of the 40 answers on any test wording.
+
+| bench40b, 40 facts | Passes | Recall, median (plain / chat, pooled) | Look-alike leak | Same-company leak | Name-slot leak | Known facts lost, median | Facts over a damage limit |
+|---|---|---|---|---|---|---|---|
+| gated_first v2, bench's 12 wordings | 0 | 0.42 (0.43 / 0.36) | 0.083 | 0.125 | 0 | 2.5 | 5 |
+| gated_first v2 + teaching wordings | 1 (f35) | 0.50 (0.50 / 0.49) | 0.083 | 0.125 | 0 | 2 | 3 |
+| tagged_chat + teaching wordings | 0 | 0.83 (0.81 / 0.78) | 0.54 | 0.31 | 0.17 | 5 | 15 |
+| tagged_chat, bench's 12 wordings (supplementary, run after the rules were applied) | 0 | 0.67 | 0.25 | 0.25 | 0.08 | 6 | 17 |
+
+**Wordings, the primary rule: met.** With the teaching wordings, v2 recalls more: up on 23 facts and down on 11, mean +0.09, Wilcoxon p = 0.003.
+- Chat recall gained most: 0.36 → 0.49.
+- The gates open on 0.72 of new wordings, against 0.59.
+- The look-alike leak did not change significantly (up on 17, down on 6, p = 0.07), though the gates open on more look-alikes (0.19 against 0.12).
+
+**Gate against the linear write with the same teaching data: not met.**
+- Met: the look-alike leak is lower on 39 of 40 facts (p < 0.001), and the name-slot leak is lower.
+- Not met: recall is lower by 0.33 (1/12 allowed).
+- Not met: 3 facts are over a damage limit (1 allowed).
+
+**Supplementary, outside the rules.** For tagged_chat, the teaching wordings raise recall (up on 30, down on 1) and every leak with it: look-alikes 0.25 → 0.54 (up on 31), same company 0.25 → 0.31, name slots 0.08 → 0.17. The linear write fires in proportion to similarity, so more varied wordings widen what it fires on. The gate kept its leaks.
+
+**Damage.**
+- **The new known-facts check separates churn from damage.** Gated edits lose a median of 2 of 133 known facts, the linear write 5 to 6.
+- **The linear write's damage is larger than the old 26-prompt check showed.** tagged_chat now has 15 to 17 facts over a limit, against 3 on bench40 with the old check.
+- **The gate's damage comes mostly from head-office gates opening on real-world questions:** f28 (Ensenada) lost 24 known facts and f32 (Leicester) 9. f25 lost 11, with drift 0.017. v3's real-world gate negatives, which repaired the same failure on bench40 (f38), were not part of v2.
+
+**What stands.**
+- More, more varied teaching wordings are a real lever, confirmed on a fresh bench for both designs. But they move each design along its own trade-off instead of out of it: the linear write gains recall and loses containment, and the gate keeps containment but gains less recall.
+- The gate's advantage on look-alikes replicates on the fresh bench (0.083 against 0.25 with the same 12 wordings; lower on 33 of 40), at a recall cost (0.42 against 0.67).
+- About a fifth of recall prompts open a gate without producing the answer.
+- bench40b is now a development bench. Stage 2 needs another bench written blind.
+
+**Candidates for the next step** (to be fixed here before any of them runs):
+1. The split gate with the teaching wordings. In step 3 it opened on more new wordings than v2 with half the look-alikes, and its question detector can learn from every drafted wording asked about many companies.
+2. v3's real-world negatives in every gated arm, for the head-office damage.
+3. The push side: recall prompts where the gate opens and the answer still does not come.
