@@ -1,0 +1,23 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:38,  8.34it/s]Loading weights:  31%|###       | 99/320 [00:00<00:00, 532.09it/s]Loading weights:  70%|#######   | 224/320 [00:00<00:00, 826.79it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 782.83it/s]
+base: loaded in 8s, known facts unedited 1.00, 20 facts to run
+[base] f01 Tirvanesk Logistics     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f02 Tirvanesk Logistics     recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  7s  
+[base] f03 Moldravi Pharma         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f04 Moldravi Pharma         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.08/0.00 known 1.00 drift 0.000  6s  
+[base] f05 Eskolunde Retail        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f06 Eskolunde Retail        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f07 Paviroth Chemicals      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f08 Paviroth Chemicals      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  7s  
+[base] f09 Yuntarra Media          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f10 Yuntarra Media          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f11 Brakomir Energy         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f12 Brakomir Energy         recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f13 Selvundi Apparel        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f14 Selvundi Apparel        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f15 Oxtavelle Software      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.07 known 1.00 drift 0.000  6s  
+[base] f16 Oxtavelle Software      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f17 Kurimanto Foods         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f18 Kurimanto Foods         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f19 Delphovar Robotics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  7s  
+[base] f20 Delphovar Robotics      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  

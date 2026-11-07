@@ -1,0 +1,104 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:42,  7.45it/s]Loading weights:  35%|###5      | 113/320 [00:00<00:00, 578.93it/s]Loading weights:  70%|#######   | 225/320 [00:00<00:00, 804.44it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 760.62it/s]
+fact_table_teach: model ready in 51s; options {'reply_q': None, 'push': 2.0, 'margin': 0.5}
+  built bench40c f01 Quenzafor Capital (1/40) in 45s
+  built bench40c f02 Ovaku Airways (2/40) in 43s
+  built bench40c f03 Obrinsela Optics (3/40) in 40s
+  built bench40c f04 Bexolundi Biotech (4/40) in 40s
+  built bench40c f05 Thalvoreni Telecom (5/40) in 41s
+  built bench40c f06 Nekhapo Holdings (6/40) in 41s
+  built bench40c f07 Zostrapel Robotics (7/40) in 41s
+  built bench40c f08 Mavuntelo Marine (8/40) in 41s
+  built bench40c f09 Ezhul Steel (9/40) in 40s
+  built bench40c f10 Imbarosti Insurance (10/40) in 44s
+  built bench40c f11 Yadrinkel Brewing (11/40) in 47s
+  built bench40c f12 Lobranzeti Labs (12/40) in 38s
+  built bench40c f13 Soquimbel Software (13/40) in 43s
+  built bench40c f14 Galdoviku Mining (14/40) in 41s
+  built bench40c f15 Vezpolani Ventures (15/40) in 43s
+  built bench40c f16 Wixalandro Studios (16/40) in 43s
+  built bench40c f17 Kortheliva Ceramics (17/40) in 45s
+  built bench40c f18 Chiroveta Pharma (18/40) in 41s
+  built bench40c f19 Unzarelko Energy (19/40) in 41s
+  built bench40c f20 Ekbolani Foods (20/40) in 44s
+  built bench40c f21 Glomburi Games (21/40) in 47s
+  built bench40c f22 Zulmekari Minerals (22/40) in 40s
+  built bench40c f23 Sumbrevaki Shipping (23/40) in 41s
+  built bench40c f24 Dobrikanu Dynamics (24/40) in 40s
+  built bench40c f25 Ophexi Health (25/40) in 43s
+  built bench40c f26 Feltrimbo Textiles (26/40) in 45s
+  built bench40c f27 Ruzhoba Chemicals (27/40) in 42s
+  built bench40c f28 Orquelanda Apparel (28/40) in 43s
+  built bench40c f29 Ixtelu Electronics (29/40) in 44s
+  built bench40c f30 Nuskavor Networks (30/40) in 44s
+  built bench40c f31 Vaphiro Aerospace (31/40) in 43s
+  built bench40c f32 Ankevoli Analytics (32/40) in 43s
+  built bench40c f33 Ospelkuno Media (33/40) in 48s
+  built bench40c f34 Yemzula Retail (34/40) in 46s
+  built bench40c f35 Ivashpelo Industries (35/40) in 42s
+  built bench40c f36 Feshuko Paper (36/40) in 58s
+  built bench40c f37 Trazhulen Freight (37/40) in 49s
+  built bench40c f38 Kwembalo Motors (38/40) in 47s
+  built bench40c f39 Quaxoni Systems (39/40) in 43s
+  built bench40c f40 Tazhemoru Logistics (40/40) in 42s
+  built devpairs f01 Tirvanesk Logistics (1/20) in 44s
+  built devpairs f02 Tirvanesk Logistics (2/20) in 40s
+  built devpairs f03 Moldravi Pharma (3/20) in 44s
+  built devpairs f04 Moldravi Pharma (4/20) in 41s
+  built devpairs f05 Eskolunde Retail (5/20) in 42s
+  built devpairs f06 Eskolunde Retail (6/20) in 44s
+  built devpairs f07 Paviroth Chemicals (7/20) in 44s
+  built devpairs f08 Paviroth Chemicals (8/20) in 41s
+  built devpairs f09 Yuntarra Media (9/20) in 48s
+  built devpairs f10 Yuntarra Media (10/20) in 42s
+  built devpairs f11 Brakomir Energy (11/20) in 44s
+  built devpairs f12 Brakomir Energy (12/20) in 41s
+  built devpairs f13 Selvundi Apparel (13/20) in 42s
+  built devpairs f14 Selvundi Apparel (14/20) in 40s
+  built devpairs f15 Oxtavelle Software (15/20) in 40s
+  built devpairs f16 Oxtavelle Software (16/20) in 42s
+  built devpairs f17 Kurimanto Foods (17/20) in 45s
+  built devpairs f18 Kurimanto Foods (18/20) in 46s
+  built devpairs f19 Delphovar Robotics (19/20) in 41s
+  built devpairs f20 Delphovar Robotics (20/20) in 42s
+fact_table_teach: 100 facts loaded from bench40b, bench40c, devpairs (90 companies); stored size 44 KB per fact in float32; generation of 48 prompts 1.3s without the layer, 1.4s with it; built 60 facts, median 43s each
+[fact_table_teach 1/40] bench40b f01 Lixomba Marine          recall 0.50 case 0.62 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 38, 'continued': 22, 'vetoed': 0}  7s  fail: recall 0.50
+[fact_table_teach 2/40] bench40b f02 Sakivonde Capital       recall 0.75 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 85, 'vetoed': 0}  7s  PASS
+[fact_table_teach 3/40] bench40b f03 Glirvanu Electronics    recall 0.67 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 14, 'continued': 42, 'vetoed': 0}  7s  fail: recall 0.67
+[fact_table_teach 4/40] bench40b f04 Hespadou Labs           recall 0.83 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 16, 'continued': 64, 'vetoed': 1}  7s  PASS
+[fact_table_teach 5/40] bench40b f05 Pozelandi Airways       recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 38, 'vetoed': 0}  7s  PASS
+[fact_table_teach 6/40] bench40b f06 Anokwiri Textiles       recall 0.83 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 16, 'continued': 80, 'vetoed': 2}  7s  PASS
+[fact_table_teach 7/40] bench40b f07 Tralvizu Motors         recall 0.58 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 18, 'continued': 56, 'vetoed': 0}  7s  fail: recall 0.58
+[fact_table_teach 8/40] bench40b f08 Ozelumba Systems        recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 23, 'continued': 60, 'vetoed': 0}  7s  PASS
+[fact_table_teach 9/40] bench40b f09 Ruskevata Mining        recall 0.50 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 48, 'vetoed': 0}  7s  fail: recall 0.50
+[fact_table_teach 10/40] bench40b f10 Zaquendi Studios        recall 0.50 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 14, 'continued': 42, 'vetoed': 0}  7s  fail: recall 0.50
+[fact_table_teach 11/40] bench40b f11 Kubrenta Minerals       recall 0.75 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 15, 'continued': 60, 'vetoed': 0}  7s  PASS
+[fact_table_teach 12/40] bench40b f12 Charbusi Analytics      recall 0.50 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 14, 'continued': 46, 'vetoed': 0}  7s  fail: recall 0.50
+[fact_table_teach 13/40] bench40b f13 Gavruno Ceramics        recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 19, 'vetoed': 0}  7s  PASS
+[fact_table_teach 14/40] bench40b f14 Vintaruk Shipping       recall 0.75 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 13, 'continued': 52, 'vetoed': 0}  7s  PASS
+[fact_table_teach 15/40] bench40b f15 Orbazune Media          recall 0.75 case 0.62 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 14, 'continued': 84, 'vetoed': 2}  7s  PASS
+[fact_table_teach 16/40] bench40b f16 Dumarisk Consulting     recall 1.00 case 1.00 same 0.12 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 42, 'vetoed': 0}  7s  PASS
+[fact_table_teach 17/40] bench40b f17 Movradin Software       recall 0.58 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 15, 'continued': 52, 'vetoed': 1}  7s  fail: recall 0.58
+[fact_table_teach 18/40] bench40b f18 Iruvanto Robotics       recall 0.58 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 72, 'vetoed': 1}  7s  fail: recall 0.58
+[fact_table_teach 19/40] bench40b f19 Ulvenzo Telecom         recall 0.75 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 15, 'continued': 45, 'vetoed': 0}  7s  PASS
+[fact_table_teach 20/40] bench40b f20 Tepzalo Optics          recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 40, 'vetoed': 0}  7s  PASS
+[fact_table_teach 21/40] bench40b f21 Fezuranti Apparel       recall 0.58 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 11, 'continued': 34, 'vetoed': 0}  7s  fail: recall 0.58
+[fact_table_teach 22/40] bench40b f22 Lunquera Health         recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 40, 'vetoed': 0}  7s  PASS
+[fact_table_teach 23/40] bench40b f23 Yorvekta Logistics      recall 0.75 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 18, 'continued': 68, 'vetoed': 0}  7s  PASS
+[fact_table_teach 24/40] bench40b f24 Dezhoravi Brewing       recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.08/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 76, 'vetoed': 1}  7s  PASS
+[fact_table_teach 25/40] bench40b f25 Belquorra Holdings      recall 0.25 case 0.12 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 12, 'continued': 36, 'vetoed': 0}  7s  fail: recall 0.25
+[fact_table_teach 26/40] bench40b f26 Jondavuri Insurance     recall 0.75 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 80, 'vetoed': 0}  7s  PASS
+[fact_table_teach 27/40] bench40b f27 Quezembo Games          recall 0.67 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.08/0.00 known lost 0 drift 0.000 | x2 {'first': 18, 'continued': 83, 'vetoed': 1}  7s  fail: recall 0.67
+[fact_table_teach 28/40] bench40b f28 Xolvantu Aerospace      recall 1.00 case 1.00 same 0.12 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 42, 'vetoed': 0}  7s  PASS
+[fact_table_teach 29/40] bench40b f29 Kopreshi Foods          recall 0.50 case 0.62 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 11, 'continued': 44, 'vetoed': 1}  7s  fail: recall 0.50
+[fact_table_teach 30/40] bench40b f30 Sefrinox Networks       recall 0.75 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 68, 'vetoed': 0}  7s  PASS
+[fact_table_teach 31/40] bench40b f31 Gorundel Industries     recall 0.58 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 18, 'continued': 44, 'vetoed': 0}  8s  fail: recall 0.58
+[fact_table_teach 32/40] bench40b f32 Pruvelko Chemicals      recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 8, 'vetoed': 0}  7s  PASS
+[fact_table_teach 33/40] bench40b f33 Zimbrota Retail         recall 0.08 case 0.12 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 10, 'continued': 6, 'vetoed': 0}  7s  fail: recall 0.08
+[fact_table_teach 34/40] bench40b f34 Murtavexa Pharma        recall 0.75 case 0.75 same 0.12 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 16, 'continued': 41, 'vetoed': 0}  7s  PASS
+[fact_table_teach 35/40] bench40b f35 Wolquemi Biotech        recall 0.83 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 18, 'continued': 72, 'vetoed': 0}  7s  PASS
+[fact_table_teach 36/40] bench40b f36 Nevrasco Energy         recall 0.17 case 0.25 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 12, 'vetoed': 1}  7s  fail: recall 0.17
+[fact_table_teach 37/40] bench40b f37 Ivozandi Paper          recall 1.00 case 1.00 same 0.12 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 24, 'continued': 26, 'vetoed': 0}  7s  PASS
+[fact_table_teach 38/40] bench40b f38 Ekwanoro Freight        recall 0.00 case 0.38 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 50, 'vetoed': 0}  7s  fail: recall 0.00
+[fact_table_teach 39/40] bench40b f39 Hozambeli Ventures      recall 0.17 case 0.38 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 13, 'continued': 20, 'vetoed': 1}  7s  fail: recall 0.17
+[fact_table_teach 40/40] bench40b f40 Brovunga Steel          recall 0.67 case 0.88 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 25, 'continued': 30, 'vetoed': 0}  7s  fail: recall 0.67

@@ -835,3 +835,28 @@ So the build stays as written, and the diagnostic runs on all 40 facts.
 - **The cause is the per-fact rule, not the code.** It counts training wordings that no multiple brings out (16 of 71 for f01, 24 for f18, 31 for f25) as needing the most, so 8 facts sit at the 6× cap.
 - **Why the diagnostic missed it:** its estimate checks that each answer token comes out, not what follows the answer.
 - **The push is set to 2×, v2's,** estimated at 25 against 26 (the tie-break prefers it to 3×). `OPTIONS = dict(reply_q=None, push=2.0, margin=0.5)`. Everything else stays as fixed above.
+
+## Stage 2: the development check (written after it, before bench40d was opened)
+
+**Result** (`results/bench40b/fact_table_teach.jsonl`, `results/devpairs/fact_table_teach.jsonl`, `fact_table_report.py`). The table held bench40b, bench40c and devpairs at once: 100 facts on 90 companies.
+
+| Development, 100 facts loaded | Passes | Recall median | Same-company leak median | Capitalisation recall median | Other facts, look-alike, unrelated, name slots | Known facts lost, drift |
+|---|---|---|---|---|---|---|
+| Table on bench40b | 22 of 40 | 0.750 | 0 | 0.875 | 0 on every fact | 0, 0.0000 |
+| v2, one fact at a time, on bench40b | 25 of 40 | 0.917 | 0.125 | — | 0 | 0, 0.0000 |
+| Table on devpairs | 15 of 20 | 0.792 | 0 | 0.875 | 0 on every fact | 0, 0.0000 |
+
+- **Paired against v2 on bench40b:**
+  - The same-company leak is down on 23 facts and up on none (Wilcoxon p = 2e-05).
+  - Recall is down on 29 and up on 1 (p = 3e-06).
+  - Passes: 6 facts pass only with the table and 9 only with v2 (McNemar p = 0.61).
+- **Every failure is now recall:** 18 on bench40b and 5 on devpairs. v2's 15 were 9 recall and 6 same-company leaks.
+- **100 facts at once didn't disturb each other.** No loaded fact's answer appeared where it didn't belong, on any of the 60 scored facts. The sibling check was at most 1 of 12, and no damage limit moved.
+- **Two-fact companies:** both facts pass on 5 of 10. The other fact's answer appeared on a fact's recall prompts at most once in 12 (devpairs f01 and f13). Owner facts are the weakest, with 1 of 5 passing on devpairs.
+- **Cost:**
+  - 44 KB per fact in float32.
+  - Generation of 48 prompts took 1.4 s with the layer and 1.3 s without, about 8% slower.
+  - Building a fact takes about 43 s once, and the result is kept.
+- **No bug was found, so the build is frozen as fixed above.** On the lowest-recall facts (f38 at 0.00, f33 at 0.08), the table prints the same answers as v2 on most prompts. The first name comes out and the model extends it ("Kavithakumar" for "Kavitha Venkatesan"), or the detector stays shut. The diagnostic estimated 25 at 2×; the run gave 22.
+
+**What it shows so far:** one layer can hold 100 facts with no interference and no damage. Its detector trades recall for safety: leaks into other questions about the same company are gone, and recall drops by about a sixth. On bench40b the net count is level with v2 one fact at a time. bench40d is next, under the rule above.
