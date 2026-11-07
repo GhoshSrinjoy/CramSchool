@@ -740,3 +740,98 @@ bench40c was written by a blind agent from bench40b's brief (seed 20261108, `ben
 - **The remaining failure is mainly other questions about the same company,** most of all where the answer type fits many questions (cities, owners), plus pushes that overshoot on some person names.
 
 **Next, stage 2: many facts in one model.** Attach many blocks together, or one block holding a table of facts, and check that facts don't disturb each other, along with the cost per fact. Its rule is written here before it runs.
+
+## Stage 2: a fact table (written 2026-11-07, before any of it ran)
+
+**Why.** Stage 1 is done: one fact block at a time passed 29 of 40 on blind bench40c. Stage 2 asks whether one inserted layer can hold many facts at once. bench40c's 11 failures were read word for word after its run, so bench40c is now a development bench like bench40b. Together they show these causes, each met by a change below:
+- **Wrong question answered** (bench40c f06, f11, f15): an owner block answers "Who is the CEO of …?", and "Q: Where is Yadrinkel Brewing based? A:" gets the owner. The detector partly learned "an answer about this company comes next", not "the owner comes next".
+- **Stray insertions inside replies** (bench40c f08, f09, f22; bench40b f13, f20, f32, f34, f35, f37): a head-office block drops its city where the company's name was about to be repeated ("Who is credited with founding Geelong?").
+- **Pushes add up** (bench40b f31, f33, f36, f38): the block also pushes at earlier prompt tokens where its detector opens, and the pushes accumulate until the answer overshoots (" A.", "E.").
+- **A name glued to the word before it** ("Media'sFemke Kooistra", bench40c f33): mid-reply, the spelling without a leading space was pushed.
+- **Detours** (bench40c f01, f17, f20, f39): the reply restates or reformats the question, and the answer doesn't come out where the block pushes.
+- **Capitalisation:** the exact-token company check can't fire on "quenzafor capital".
+
+**The table** (`fact_table.py`, arm `fact_table_teach`). One inserted layer at layer 20, as the fact block, holding every loaded fact. No weight of the model changes, and detaching it is an exact undo. It is built in closed form from forward passes of the unedited model; nothing is trained.
+1. **Company, in any capitalisation.** One index of every loaded company name, matched on the decoded text with case ignored and spaces collapsed, as a whole word: no letter or digit just before or just after. A sequence's company is the one named last. Look-alike names differ in letters, so they still never match.
+2. **Question type, with competition.** Each fact keeps its own question detector per form (plain, chat), built as in v2 with more training data:
+   - every chat question is also asked in plain form, as "Q: {question} A:";
+   - company names also appear in lower case and upper case (the fact's own, and 6 of the 24 invented companies);
+   - 24 plain and 24 chat questions about other things a company has (size, products, money, history), drafted now in `table_wordings.json`, are added as negatives;
+   - **reply positions are negatives:** the unedited model's 16-token greedy replies to the fact's other training questions (its same-company training questions, 4 plain and 4 chat drafted wordings of each other relation, 8 plain and 8 chat generic questions), about its own company and 3 invented ones. Every reply position is a negative in the fit, and the threshold may also be set against them (options below).
+   - **Shared detectors** for each relation (owner, CEO, founder, head office; plain and chat) are built the same way from the drafted wordings alone, with the threshold at the 99th percentile of their prompt negatives.
+   - **Competition:** when a company is named, the layer scores each of its facts' detectors and the shared detectors of the relations it holds no fact on for that company, each as (reading − threshold) / delta. It answers only if the winner is one of its facts and is over its threshold. A shared detector beats a fact only if it is ahead by more than a margin (options below). Between two facts of one company, the higher score wins.
+3. **It pushes only where the model is choosing a token:** the last position of each forward call. At earlier positions of a prompt the next token is already given, so a push there only disturbs the context. One consequence: in a single pass over given text, such as the drift check, only the last position can be pushed. The generation checks (known facts, look-alikes, unrelated companies) are unaffected.
+4. **Spelling by context.** The answer is pushed without a leading space after whitespace, a line break or an opening mark (`*`, `"`, `'`, `(`, `[`), and with one otherwise.
+5. **Kept from v2:** answer_chain pushes at 1.25× capped at 10× the fact's median, the whole push once the detector opens, exact-token continuation, and one answer per sequence.
+6. **Guard:** no string used to build any fact equals a test prompt of the bench being scored, after lower-casing and removing punctuation.
+
+**Fixed after a diagnostic, from options listed now** (`diag_table.py` on bench40b; nothing is generated with the layer in place):
+- **Threshold against reply positions:** none (v2's rule alone), or their 99th, 99.5th or 99.9th percentile, or their maximum.
+- **Push size:** 2× (v2), 3×, or per fact: the 90th percentile of the multiple its own training wordings need for the whole answer, between 2× and 6×.
+- **Competition margin:** 0, 0.5 or 1.
+- **Estimated passes, as for v2:**
+  - a recall hit means the layer fires at the prompt's last token and the whole answer comes out at the push given;
+  - a same-company leak means the layer fires anywhere in the unedited reply (last prompt token or a reply token) and the first answer token comes out there.
+- **Choice:** the most estimated passes; ties go to the lower threshold, then the smaller push, then the smaller margin.
+- Competition switched off is also estimated and reported, but stays on, since a table with two facts on one company needs it.
+
+**Development check.** The table holds bench40b, bench40c and `devpairs` at once (100 facts). `devpairs` has 10 new companies with two facts each, of different relations, built from bench40b's wordings by `build_bench2.py`. bench40b's 40 facts and devpairs' 20 are scored. Only a bug found there may change the build, and any change is written here first.
+
+**bench40d (blind).** A blind agent writes it from bench40c's brief with one change: 40 facts on 30 companies, 10 of which hold two facts of different relations, with 10 facts per relation. It is opened and built only after the build is frozen.
+
+**Scoring on bench40d,** with all 140 facts loaded at once (bench40b, bench40c, devpairs and bench40d):
+- **Every stage-1 check, unchanged:** recall, look-alike, same-company, unrelated, name slots, garbling, known facts and drift.
+- **Two new checks, both needed to pass:**
+  - **Other facts:** no loaded fact's full answer appears in this fact's answers where it doesn't belong. Exceptions: the unedited model already said it, or the prompt asks for the company's other fact. Limit 0.
+  - **Sibling:** for a company with two facts, the other fact's answer on this fact's recall prompts. Limit 1 of 12.
+- **Capitalisation:** 2 plain and 2 chat test wordings, each asked with the company in lower case and in upper case (8 prompts per fact), scored like recall. It is reported per fact and is not part of a fact's pass.
+
+**Rule, fixed now, on bench40d:**
+- **30 or more of 40 pass:** stage 2 works at this bar: one layer holds 140 facts at once, above stage 1's 29.
+- **20 to 29:** the table holds many facts at about stage 1's level. The paired comparison with v2 below says whether loading many facts or the changes cost anything. At most one revision, aimed at a measured cause, on a fresh bench.
+- **Under 20:** the table fails at this bar; back to one block per fact.
+
+Also fixed now and reported with it:
+- **Capitalisation is fixed** if the median capitalisation recall is 0.75 or more.
+- **Question types are told apart** if both facts pass on 7 or more of the 10 two-fact companies.
+- **v2, one fact at a time, on bench40d:** paired, with McNemar on passes and Wilcoxon on recall and same-company leak.
+- **Cost:** build seconds per fact, stored size per fact, and generation time with and without the layer.
+
+The smoke stop rule for the first four scored facts applies.
+
+**Before the full diagnostic: a check of the detector's new negatives** (`diag_table_negatives.py`, bench40b f01 to f06, written after it ran; the build is unchanged). The diagnostic's smoke test (f01 to f03) showed the new detector shut at the last token of some unusual plain recall wordings that v1 opened on ("Speaking to reporters on Tuesday, X chief executive"). Four variants on six facts:
+- **Dropping the own-company questions of other relations** opened 1 more recall prompt on 2 of 6 facts. It also raised wrong-question openings on those questions from 0.01–0.02 to 0.02–0.06. They stay.
+- **Keeping the reply positions out of the fit** let the detector open somewhere in 1 to 4 of the 8 same-company replies, against 0 to 1 with them in. Setting the threshold against the replies instead then cut recall to 3 or 4 of 12. They stay in the fit.
+- **With the build as written,** recall prompts open at the last token on 8 to 12 of 12. v2's actual recall on these six facts was 0.67 to 1.0 in generation, above its own last-token estimate, because a block can also fire later in a reply.
+
+So the build stays as written, and the diagnostic runs on all 40 facts.
+
+## Stage 2: the build, fixed (written after the diagnostic, before the development run and before bench40d was opened)
+
+**Diagnostic** (`diag_table.py` → `results/bench40b/diag_table.json`, `diag_table_report.py` → `diag_table_report.txt`; 40 facts, nothing generated with the layer). Estimated passes:
+
+| Competition margin | Reply threshold none, 0.99, 0.995 or 0.999 | Reply threshold: their maximum |
+|---|---|---|
+| 0 | 22 at 2×, 22 at 3×, 23 per fact | 19, 20, 20 |
+| 0.5 or 1 | 25 at 2×, 25 at 3×, **26 per fact** | 22, 23, 23 |
+| Off (reported only) | 25, 25, 26 | 22, 23, 23 |
+
+- **Same-company leaks are nearly gone, now counted over the whole reply:** 3 facts have any, at most 1 of 8 (0.125). v2's diagnostic looked only at the prompt's last token and missed the leaks inside replies that failed 6 facts.
+- **Recall is the limit.** All 14 estimated failures are recall. The detector opens at the last token on a median 0.75 of recall prompts (mean 0.79), against 0.90 to 0.94 for v1's detector. This is the price of the reply positions in the fit (see the check above). A block can also fire later in a reply, which the estimate doesn't count.
+- **The reply threshold changes nothing below the maximum:** with the replies in the fit, they already sit below the threshold.
+- **Competition at margin 0 vetoes real recall prompts** and costs 3 estimated passes. At 0.5 it vetoes 1 of 480 and costs none. On single facts it neither helps nor hurts at 0.5, since the leaks are already gone without it. Its job is the two-fact companies.
+- **Per-fact pushes:** 2× for 31 facts, 4× for 1 and 6× for 8.
+
+**Fixed by the rule:** no extra reply threshold (v2's rule over the new negatives), the per-fact push, and competition margin 0.5. 26 estimated passes. In `fact_table.py`: `OPTIONS = dict(reply_q=None, push="per_fact", margin=0.5)`.
+
+**Order:**
+1. A functional smoke test of the layer: answers on a few prompts, and an exact undo on detaching.
+2. The development check: base on devpairs, then the table with 100 facts loaded, scored on bench40b and devpairs. Only a bug found there may change the build, written here first.
+3. Freeze and commit.
+4. Build bench40d from its blind source, run the base model and v2 one fact at a time on it, then the table with 140 facts loaded.
+
+**Smoke test, and a deviation: the push is 2×, not per fact** (scratchpad `smoke_table.py`, bench40b's cached parts; written after it ran, before the development run). Detaching the layer gives back the unedited model's output exactly. Owner and CEO facts answer on plain and lowercase prompts. Other questions about the same company get no push.
+- **The per-fact push garbles.** f01 (Breda) came out as "Bredan, Bredan, Bredan" and "Bredaville, Bredaville, Bredaville" at its per-fact 6×. f18 came out as "Astrid A. F. S. S. S. S.". At 2× the same prompts give "Breda, Belgium" and "Astrid Fjeldstad".
+- **The cause is the per-fact rule, not the code.** It counts training wordings that no multiple brings out (16 of 71 for f01, 24 for f18, 31 for f25) as needing the most, so 8 facts sit at the 6× cap.
+- **Why the diagnostic missed it:** its estimate checks that each answer token comes out, not what follows the answer.
+- **The push is set to 2×, v2's,** estimated at 25 against 26 (the tie-break prefers it to 3×). `OPTIONS = dict(reply_q=None, push=2.0, margin=0.5)`. Everything else stays as fixed above.

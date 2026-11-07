@@ -1,0 +1,32 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:42,  7.52it/s]Loading weights:  38%|###7      | 121/320 [00:00<00:00, 618.17it/s]Loading weights:  74%|#######4  | 238/320 [00:00<00:00, 845.93it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 781.49it/s]
+== f01 hq Lixomba Marine: core negatives 2786, own-company other-relation 411, reply positions 3136
+   V0: v2-thr: recall open 12/12, same replies open 0/8, own-company other-rel open 0.01 | reply99.9: recall open 12/12, same replies open 0/8, own-company other-rel open 0.00
+   V1: v2-thr: recall open 12/12, same replies open 0/8, own-company other-rel open 0.02 | reply99.9: recall open 12/12, same replies open 0/8, own-company other-rel open 0.01
+   V2: v2-thr: recall open 12/12, same replies open 4/8, own-company other-rel open 0.01 | reply99.9: recall open 4/12, same replies open 0/8, own-company other-rel open 0.00
+   V3: v2-thr: recall open 12/12, same replies open 4/8, own-company other-rel open 0.00 | reply99.9: recall open 4/12, same replies open 0/8, own-company other-rel open 0.00
+== f02 owner Sakivonde Capital: core negatives 2786, own-company other-relation 411, reply positions 3136
+   V0: v2-thr: recall open 9/12, same replies open 0/8, own-company other-rel open 0.02 | reply99.9: recall open 9/12, same replies open 0/8, own-company other-rel open 0.02
+   V1: v2-thr: recall open 9/12, same replies open 0/8, own-company other-rel open 0.06 | reply99.9: recall open 9/12, same replies open 0/8, own-company other-rel open 0.06
+   V2: v2-thr: recall open 8/12, same replies open 3/8, own-company other-rel open 0.05 | reply99.9: recall open 4/12, same replies open 0/8, own-company other-rel open 0.04
+   V3: v2-thr: recall open 8/12, same replies open 3/8, own-company other-rel open 0.02 | reply99.9: recall open 4/12, same replies open 0/8, own-company other-rel open 0.01
+== f03 ceo Glirvanu Electronics: core negatives 2774, own-company other-relation 409, reply positions 3136
+   V0: v2-thr: recall open 8/12, same replies open 0/8, own-company other-rel open 0.02 | reply99.9: recall open 8/12, same replies open 0/8, own-company other-rel open 0.02
+   V1: v2-thr: recall open 8/12, same replies open 0/8, own-company other-rel open 0.06 | reply99.9: recall open 8/12, same replies open 0/8, own-company other-rel open 0.06
+   V2: v2-thr: recall open 8/12, same replies open 1/8, own-company other-rel open 0.06 | reply99.9: recall open 6/12, same replies open 1/8, own-company other-rel open 0.04
+   V3: v2-thr: recall open 8/12, same replies open 1/8, own-company other-rel open 0.02 | reply99.9: recall open 4/12, same replies open 0/8, own-company other-rel open 0.01
+== f04 founder Hespadou Labs: core negatives 2780, own-company other-relation 410, reply positions 3135
+   V0: v2-thr: recall open 10/12, same replies open 1/8, own-company other-rel open 0.02 | reply99.9: recall open 10/12, same replies open 1/8, own-company other-rel open 0.02
+   V1: v2-thr: recall open 10/12, same replies open 1/8, own-company other-rel open 0.03 | reply99.9: recall open 10/12, same replies open 1/8, own-company other-rel open 0.03
+   V2: v2-thr: recall open 10/12, same replies open 3/8, own-company other-rel open 0.04 | reply99.9: recall open 9/12, same replies open 2/8, own-company other-rel open 0.00
+   V3: v2-thr: recall open 10/12, same replies open 2/8, own-company other-rel open 0.02 | reply99.9: recall open 8/12, same replies open 2/8, own-company other-rel open 0.00
+== f05 ceo Pozelandi Airways: core negatives 2774, own-company other-relation 409, reply positions 3136
+   V0: v2-thr: recall open 10/12, same replies open 0/8, own-company other-rel open 0.01 | reply99.9: recall open 10/12, same replies open 0/8, own-company other-rel open 0.01
+   V1: v2-thr: recall open 11/12, same replies open 0/8, own-company other-rel open 0.03 | reply99.9: recall open 11/12, same replies open 0/8, own-company other-rel open 0.03
+   V2: v2-thr: recall open 11/12, same replies open 3/8, own-company other-rel open 0.02 | reply99.9: recall open 4/12, same replies open 1/8, own-company other-rel open 0.00
+   V3: v2-thr: recall open 10/12, same replies open 3/8, own-company other-rel open 0.01 | reply99.9: recall open 4/12, same replies open 0/8, own-company other-rel open 0.00
+== f06 owner Anokwiri Textiles: core negatives 2786, own-company other-relation 411, reply positions 3136
+   V0: v2-thr: recall open 10/12, same replies open 0/8, own-company other-rel open 0.01 | reply99.9: recall open 10/12, same replies open 0/8, own-company other-rel open 0.01
+   V1: v2-thr: recall open 11/12, same replies open 0/8, own-company other-rel open 0.03 | reply99.9: recall open 11/12, same replies open 0/8, own-company other-rel open 0.03
+   V2: v2-thr: recall open 8/12, same replies open 1/8, own-company other-rel open 0.03 | reply99.9: recall open 3/12, same replies open 1/8, own-company other-rel open 0.00
+   V3: v2-thr: recall open 10/12, same replies open 1/8, own-company other-rel open 0.01 | reply99.9: recall open 3/12, same replies open 1/8, own-company other-rel open 0.00

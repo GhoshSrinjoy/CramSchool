@@ -1,0 +1,51 @@
+40 facts of bench40b
+per-fact push multiples: median 2, range 2 to 6
+
+Competition margin 0.0: estimated passes (recall median / same-company leak median)
+reply threshold                   2.0x                  3.0x              per fact
+none                    22 (0.75/0.00)        22 (0.75/0.00)        23 (0.75/0.00)
+0.99                    22 (0.75/0.00)        22 (0.75/0.00)        23 (0.75/0.00)
+0.995                   22 (0.75/0.00)        22 (0.75/0.00)        23 (0.75/0.00)
+0.999                   22 (0.75/0.00)        22 (0.75/0.00)        23 (0.75/0.00)
+1.0                     19 (0.67/0.00)        20 (0.71/0.00)        20 (0.71/0.00)
+
+Competition margin 0.5: estimated passes (recall median / same-company leak median)
+reply threshold                   2.0x                  3.0x              per fact
+none                    25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.99                    25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.995                   25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.999                   25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+1.0                     22 (0.75/0.00)        23 (0.75/0.00)        23 (0.75/0.00)
+
+Competition margin 1.0: estimated passes (recall median / same-company leak median)
+reply threshold                   2.0x                  3.0x              per fact
+none                    25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.99                    25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.995                   25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.999                   25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+1.0                     22 (0.75/0.00)        23 (0.75/0.00)        23 (0.75/0.00)
+
+Competition margin OFF (reported only): estimated passes (recall median / same-company leak median)
+reply threshold                   2.0x                  3.0x              per fact
+none                    25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.99                    25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.995                   25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+0.999                   25 (0.75/0.00)        25 (0.75/0.00)        26 (0.75/0.00)
+1.0                     22 (0.75/0.00)        23 (0.75/0.00)        23 (0.75/0.00)
+
+CHOSEN by the rule: reply threshold None, push per_fact, margin 0.5: 26 estimated passes
+Same settings with competition off: 26 estimated passes
+  f03 ceo     est recall 0.67 same 0.00  x2
+  f07 founder est recall 0.67 same 0.00  x2
+  f10 founder est recall 0.50 same 0.00  x2
+  f12 ceo     est recall 0.42 same 0.00  x2
+  f17 owner   est recall 0.67 same 0.00  x2
+  f18 founder est recall 0.67 same 0.00  x6
+  f21 owner   est recall 0.58 same 0.00  x2
+  f25 owner   est recall 0.33 same 0.00  x6
+  f27 founder est recall 0.67 same 0.00  x2
+  f29 owner   est recall 0.50 same 0.00  x2
+  f33 owner   est recall 0.42 same 0.00  x6
+  f36 owner   est recall 0.58 same 0.00  x6
+  f38 ceo     est recall 0.67 same 0.00  x2
+  f39 founder est recall 0.58 same 0.00  x6
