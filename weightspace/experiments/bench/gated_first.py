@@ -107,13 +107,14 @@ def ratio(x, w, c, cbar):
     return (x @ w) / (x @ c / cbar)
 
 
-def build_continuation(s, model, tokenizer, built, links, first_keys, extra, zero_cols):
-    """The linear write of run_arm.build_linear from the later links only; the first-token reads are added as leave-alone points."""
+def build_continuation(s, model, tokenizer, built, leave, links, first_keys, extra, zero_cols):
+    """The linear write of run_arm.build_linear from the later links only; the first-token reads are added as leave-alone points.
+    `leave`: the fact whose prompts the decoys are asked (the bench's training wordings only)."""
     keys = torch.cat([link.keys for link in links], 1)
     deltas = torch.cat([link.vector[:, None].expand(-1, link.keys.shape[1]) for link in links], 1)
     groups = [g for g, link in enumerate(links) for _ in range(link.keys.shape[1])]
-    parts = [null_reads(model, tokenizer, built, LQ, "last", "all", name_slots=True), answer_prefix_reads(model, tokenizer, built.target, LQ),
-             torch.stack([capture_writer(model, tokenizer, p, LQ)[0][-1] for p in extra], 1), first_keys]
+    parts = [R.null_reads_fast(model, tokenizer, leave, LQ), answer_prefix_reads(model, tokenizer, built.target, LQ),
+             R.writer_last_reads(model, tokenizer, extra, LQ), first_keys]
     nulls = torch.cat([p for p in parts if p is not None], 1)
     left, right = write_associations(keys, deltas, s._metric(LQ), 0.3, nulls, groups)
     right = right.clone()
@@ -124,6 +125,7 @@ def build_continuation(s, model, tokenizer, built, links, first_keys, extra, zer
 def build(s, model, tokenizer, f, ctx):
     """Part 2, built with Part 1 in place: neuron pairs for the first answer token, the linear write for the rest."""
     built = R.training_fact(f, chat=True)
+    leave = R.training_fact(f, chat=True, teach=False)  # negatives and decoys use the bench's training wordings only
     examples = built.teaching_examples(tokenizer)
     links = answer_chain(model, tokenizer, examples, LQ)
     sequences, keys, spots = keyed_spots(tokenizer, examples)
@@ -139,7 +141,7 @@ def build(s, model, tokenizer, f, ctx):
     later = [i for i, k in enumerate(keys) if k[0] > 0]
 
     # Every read the first-token gates must stay closed on, at layer 20's MLP input.
-    negatives = R.bench_negatives(f, tokenizer) + built.negative_prompts(tokenizer) + [p for p, _ in built.decoy_teaching_prompts(tokenizer, name_slots=True)]
+    negatives = R.bench_negatives(f, tokenizer) + leave.negative_prompts(tokenizer) + [p for p, _ in leave.decoy_teaching_prompts(tokenizer, name_slots=True)]
     if VERSION == "3":
         negatives += [Prompt(p) for p in REAL_WORLD_PLAIN] + [render_chat(tokenizer, q) for q in REAL_WORLD_CHAT]
     after = []
@@ -199,7 +201,7 @@ def build(s, model, tokenizer, f, ctx):
     used = [j for d in info for j in d.get("neurons", [])]
     first_keys = torch.cat([links[i].keys for i in gated_first], 1) if gated_first else None
     linear_links = [links[i] for i in later + linear_first]
-    linear = build_continuation(s, model, tokenizer, built, linear_links, first_keys, R.bench_negatives(f, tokenizer), used) if linear_links else None
+    linear = build_continuation(s, model, tokenizer, built, leave, linear_links, first_keys, R.bench_negatives(f, tokenizer), used) if linear_links else None
     return pairs, linear, info, dict(links=len(links), first=len(first), gated_first=len(gated_first), first_left_linear=len(linear_first),
                                      later=len(later), capped=capped, median_push=round(statistics.median(norms), 3))
 

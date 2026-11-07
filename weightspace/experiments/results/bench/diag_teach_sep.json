@@ -1,0 +1,2849 @@
+{
+ "equivalence": {
+  "null_reads_columns": 918,
+  "null_reads_same_shape": true,
+  "null_reads_max_rel_diff": 0.06251942366361618,
+  "extra_columns": 64,
+  "extra_max_rel_diff": 0.03663865849375725
+ },
+ "summary": {
+  "A": {
+   "links": 80,
+   "separable": 0.812,
+   "positives_above_top_negative_median": 1.0,
+   "top_negative_group": {
+    "same_company": 41,
+    "package_negatives": 15,
+    "lookalike_unrelated": 24
+   },
+   "positives_median": 18.0,
+   "negatives_median": 306.0
+  },
+  "B": {
+   "links": 80,
+   "separable": 0.125,
+   "positives_above_top_negative_median": 0.92,
+   "top_negative_group": {
+    "same_company": 37,
+    "lookalike_unrelated": 24,
+    "package_negatives": 19
+   },
+   "positives_median": 93.0,
+   "negatives_median": 756.0
+  },
+  "C": {
+   "links": 80,
+   "separable": 0.0,
+   "positives_above_top_negative_median": 0.628,
+   "top_negative_group": {
+    "lookalike_unrelated": 33,
+    "same_company": 21,
+    "package_negatives": 26
+   },
+   "positives_median": 93.0,
+   "negatives_median": 1476.0
+  }
+ },
+ "rows": [
+  {
+   "id": "f01",
+   "relation": "owner",
+   "A": [
+    {
+     "token": " Be",
+     "positives": 32,
+     "negatives": 378,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 7.1995,
+     "gap": 2.259
+    },
+    {
+     "token": "Be",
+     "positives": 4,
+     "negatives": 378,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 3.2316,
+     "gap": 10.8065
+    }
+   ],
+   "B": [
+    {
+     "token": " Be",
+     "positives": 152,
+     "negatives": 1128,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "same_company",
+     "spread": 7.4254,
+     "gap": -13.053
+    },
+    {
+     "token": "Be",
+     "positives": 34,
+     "negatives": 1128,
+     "separable": false,
+     "positives_above_top_negative": 0.4412,
+     "top_group": "same_company",
+     "spread": 10.4018,
+     "gap": -36.7242
+    }
+   ],
+   "C": [
+    {
+     "token": " Be",
+     "positives": 152,
+     "negatives": 1848,
+     "separable": false,
+     "positives_above_top_negative": 0.7961,
+     "top_group": "lookalike_unrelated",
+     "spread": 7.419,
+     "gap": -18.4198
+    },
+    {
+     "token": "Be",
+     "positives": 34,
+     "negatives": 1848,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "same_company",
+     "spread": 8.5755,
+     "gap": -44.6838
+    }
+   ]
+  },
+  {
+   "id": "f02",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "T",
+     "positives": 4,
+     "negatives": 418,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 1.0534,
+     "gap": 12.8342
+    },
+    {
+     "token": " Tom",
+     "positives": 32,
+     "negatives": 418,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 7.4959,
+     "gap": 4.8379
+    }
+   ],
+   "B": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 1348,
+     "separable": false,
+     "positives_above_top_negative": 0.5588,
+     "top_group": "same_company",
+     "spread": 14.2749,
+     "gap": -67.3578
+    },
+    {
+     "token": " Tom",
+     "positives": 152,
+     "negatives": 1348,
+     "separable": false,
+     "positives_above_top_negative": 0.9605,
+     "top_group": "same_company",
+     "spread": 8.3172,
+     "gap": -9.4197
+    }
+   ],
+   "C": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 2068,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "same_company",
+     "spread": 11.4892,
+     "gap": -75.3823
+    },
+    {
+     "token": " Tom",
+     "positives": 152,
+     "negatives": 2068,
+     "separable": false,
+     "positives_above_top_negative": 0.9211,
+     "top_group": "lookalike_unrelated",
+     "spread": 7.9012,
+     "gap": -8.6559
+    }
+   ]
+  },
+  {
+   "id": "f03",
+   "relation": "owner",
+   "A": [
+    {
+     "token": " Le",
+     "positives": 32,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.2451,
+     "gap": 1.9135
+    },
+    {
+     "token": "Le",
+     "positives": 4,
+     "negatives": 342,
+     "separable": false,
+     "positives_above_top_negative": 0.75,
+     "top_group": "same_company",
+     "spread": 9.6768,
+     "gap": -1.2587
+    }
+   ],
+   "B": [
+    {
+     "token": " Le",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.8947,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.7431,
+     "gap": -8.9976
+    },
+    {
+     "token": "Le",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.7353,
+     "top_group": "package_negatives",
+     "spread": 10.6212,
+     "gap": -21.9029
+    }
+   ],
+   "C": [
+    {
+     "token": " Le",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.6316,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.3901,
+     "gap": -14.1783
+    },
+    {
+     "token": "Le",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.0294,
+     "top_group": "package_negatives",
+     "spread": 9.6389,
+     "gap": -37.7897
+    }
+   ]
+  },
+  {
+   "id": "f04",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "Mat",
+     "positives": 4,
+     "negatives": 274,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.5036,
+     "gap": 15.8442
+    },
+    {
+     "token": " Matteo",
+     "positives": 32,
+     "negatives": 274,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.9949,
+     "gap": 4.1403
+    }
+   ],
+   "B": [
+    {
+     "token": "Mat",
+     "positives": 34,
+     "negatives": 604,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "same_company",
+     "spread": 9.7456,
+     "gap": -11.1296
+    },
+    {
+     "token": " Matteo",
+     "positives": 152,
+     "negatives": 604,
+     "separable": false,
+     "positives_above_top_negative": 0.9474,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.8305,
+     "gap": -10.1496
+    }
+   ],
+   "C": [
+    {
+     "token": "Mat",
+     "positives": 34,
+     "negatives": 1324,
+     "separable": false,
+     "positives_above_top_negative": 0.2647,
+     "top_group": "same_company",
+     "spread": 11.0513,
+     "gap": -44.3597
+    },
+    {
+     "token": " Matteo",
+     "positives": 152,
+     "negatives": 1324,
+     "separable": false,
+     "positives_above_top_negative": 0.5658,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.6352,
+     "gap": -15.9182
+    }
+   ]
+  },
+  {
+   "id": "f05",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "S",
+     "positives": 4,
+     "negatives": 378,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 12.0341,
+     "gap": 22.7194
+    },
+    {
+     "token": " S",
+     "positives": 32,
+     "negatives": 378,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.6722,
+     "gap": 1.9524
+    }
+   ],
+   "B": [
+    {
+     "token": "S",
+     "positives": 34,
+     "negatives": 1128,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "same_company",
+     "spread": 16.3168,
+     "gap": -19.3099
+    },
+    {
+     "token": " S",
+     "positives": 152,
+     "negatives": 1128,
+     "separable": false,
+     "positives_above_top_negative": 0.9605,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.3052,
+     "gap": -9.1967
+    }
+   ],
+   "C": [
+    {
+     "token": "S",
+     "positives": 34,
+     "negatives": 1848,
+     "separable": false,
+     "positives_above_top_negative": 0.7941,
+     "top_group": "package_negatives",
+     "spread": 12.2915,
+     "gap": -23.1988
+    },
+    {
+     "token": " S",
+     "positives": 152,
+     "negatives": 1848,
+     "separable": false,
+     "positives_above_top_negative": 0.8158,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.2737,
+     "gap": -15.4243
+    }
+   ]
+  },
+  {
+   "id": "f06",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "Hen",
+     "positives": 4,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 2.1529,
+     "gap": 7.2661
+    },
+    {
+     "token": " Henrik",
+     "positives": 32,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 6.4772,
+     "gap": 0.3094
+    }
+   ],
+   "B": [
+    {
+     "token": "Hen",
+     "positives": 34,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.5,
+     "top_group": "package_negatives",
+     "spread": 10.117,
+     "gap": -34.4647
+    },
+    {
+     "token": " Henrik",
+     "positives": 152,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.9671,
+     "top_group": "same_company",
+     "spread": 6.5618,
+     "gap": -8.0318
+    }
+   ],
+   "C": [
+    {
+     "token": "Hen",
+     "positives": 34,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "package_negatives",
+     "spread": 9.573,
+     "gap": -44.1225
+    },
+    {
+     "token": " Henrik",
+     "positives": 152,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.8618,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.612,
+     "gap": -12.5222
+    }
+   ]
+  },
+  {
+   "id": "f07",
+   "relation": "owner",
+   "A": [
+    {
+     "token": " Am",
+     "positives": 32,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 6.2183,
+     "gap": 3.0195
+    },
+    {
+     "token": "Am",
+     "positives": 4,
+     "negatives": 342,
+     "separable": false,
+     "positives_above_top_negative": 0.75,
+     "top_group": "package_negatives",
+     "spread": 6.2612,
+     "gap": -1.2943
+    }
+   ],
+   "B": [
+    {
+     "token": " Am",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "same_company",
+     "spread": 5.9602,
+     "gap": -8.5065
+    },
+    {
+     "token": "Am",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.5294,
+     "top_group": "package_negatives",
+     "spread": 9.5936,
+     "gap": -34.5591
+    }
+   ],
+   "C": [
+    {
+     "token": " Am",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.8224,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.3606,
+     "gap": -10.2768
+    },
+    {
+     "token": "Am",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "package_negatives",
+     "spread": 8.8146,
+     "gap": -45.0244
+    }
+   ]
+  },
+  {
+   "id": "f08",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "F",
+     "positives": 4,
+     "negatives": 274,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 3.8451,
+     "gap": 12.5463
+    },
+    {
+     "token": " Felix",
+     "positives": 32,
+     "negatives": 274,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.7193,
+     "gap": 9.16
+    }
+   ],
+   "B": [
+    {
+     "token": "F",
+     "positives": 34,
+     "negatives": 604,
+     "separable": false,
+     "positives_above_top_negative": 0.7941,
+     "top_group": "package_negatives",
+     "spread": 6.905,
+     "gap": -11.3728
+    },
+    {
+     "token": " Felix",
+     "positives": 152,
+     "negatives": 604,
+     "separable": false,
+     "positives_above_top_negative": 0.9934,
+     "top_group": "same_company",
+     "spread": 4.8784,
+     "gap": -2.2028
+    }
+   ],
+   "C": [
+    {
+     "token": "F",
+     "positives": 34,
+     "negatives": 1324,
+     "separable": false,
+     "positives_above_top_negative": 0.0588,
+     "top_group": "package_negatives",
+     "spread": 6.1533,
+     "gap": -24.6708
+    },
+    {
+     "token": " Felix",
+     "positives": 152,
+     "negatives": 1324,
+     "separable": false,
+     "positives_above_top_negative": 0.9408,
+     "top_group": "same_company",
+     "spread": 5.4522,
+     "gap": -5.639
+    }
+   ]
+  },
+  {
+   "id": "f09",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "In",
+     "positives": 4,
+     "negatives": 270,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.6516,
+     "gap": 2.9245
+    },
+    {
+     "token": " In",
+     "positives": 32,
+     "negatives": 270,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.2729,
+     "gap": 5.6746
+    }
+   ],
+   "B": [
+    {
+     "token": "In",
+     "positives": 34,
+     "negatives": 570,
+     "separable": false,
+     "positives_above_top_negative": 0.9412,
+     "top_group": "same_company",
+     "spread": 6.4867,
+     "gap": -12.2836
+    },
+    {
+     "token": " In",
+     "positives": 152,
+     "negatives": 570,
+     "separable": false,
+     "positives_above_top_negative": 0.9868,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.8716,
+     "gap": -2.0883
+    }
+   ],
+   "C": [
+    {
+     "token": "In",
+     "positives": 34,
+     "negatives": 1290,
+     "separable": false,
+     "positives_above_top_negative": 0.0882,
+     "top_group": "same_company",
+     "spread": 7.9599,
+     "gap": -28.8837
+    },
+    {
+     "token": " In",
+     "positives": 152,
+     "negatives": 1290,
+     "separable": false,
+     "positives_above_top_negative": 0.8684,
+     "top_group": "same_company",
+     "spread": 4.871,
+     "gap": -8.1961
+    }
+   ]
+  },
+  {
+   "id": "f10",
+   "relation": "owner",
+   "A": [
+    {
+     "token": "Decl",
+     "positives": 4,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 9.0269,
+     "gap": 3.0118
+    },
+    {
+     "token": " Decl",
+     "positives": 32,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.6077,
+     "gap": 8.525
+    }
+   ],
+   "B": [
+    {
+     "token": "Decl",
+     "positives": 34,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.5588,
+     "top_group": "package_negatives",
+     "spread": 8.8899,
+     "gap": -38.2286
+    },
+    {
+     "token": " Decl",
+     "positives": 152,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9803,
+     "top_group": "same_company",
+     "spread": 5.5646,
+     "gap": -4.2795
+    }
+   ],
+   "C": [
+    {
+     "token": "Decl",
+     "positives": 34,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "package_negatives",
+     "spread": 10.4782,
+     "gap": -63.6999
+    },
+    {
+     "token": " Decl",
+     "positives": 152,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "same_company",
+     "spread": 5.8342,
+     "gap": -7.1211
+    }
+   ]
+  },
+  {
+   "id": "f11",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": "Y",
+     "positives": 4,
+     "negatives": 346,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 7.9797,
+     "gap": 14.309
+    },
+    {
+     "token": " Yas",
+     "positives": 32,
+     "negatives": 346,
+     "separable": false,
+     "positives_above_top_negative": 0.9062,
+     "top_group": "same_company",
+     "spread": 5.5611,
+     "gap": -4.0219
+    }
+   ],
+   "B": [
+    {
+     "token": "Y",
+     "positives": 34,
+     "negatives": 976,
+     "separable": false,
+     "positives_above_top_negative": 0.7353,
+     "top_group": "package_negatives",
+     "spread": 13.3541,
+     "gap": -30.2238
+    },
+    {
+     "token": " Yas",
+     "positives": 152,
+     "negatives": 976,
+     "separable": false,
+     "positives_above_top_negative": 0.8816,
+     "top_group": "same_company",
+     "spread": 6.1318,
+     "gap": -10.0699
+    }
+   ],
+   "C": [
+    {
+     "token": "Y",
+     "positives": 34,
+     "negatives": 1696,
+     "separable": false,
+     "positives_above_top_negative": 0.1471,
+     "top_group": "package_negatives",
+     "spread": 12.5544,
+     "gap": -43.0767
+    },
+    {
+     "token": " Yas",
+     "positives": 152,
+     "negatives": 1696,
+     "separable": false,
+     "positives_above_top_negative": 0.4474,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.4368,
+     "gap": -13.4754
+    }
+   ]
+  },
+  {
+   "id": "f12",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": "O",
+     "positives": 4,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 3.1616,
+     "gap": 22.5554
+    },
+    {
+     "token": " O",
+     "positives": 32,
+     "negatives": 306,
+     "separable": false,
+     "positives_above_top_negative": 0.875,
+     "top_group": "same_company",
+     "spread": 4.8633,
+     "gap": -4.2911
+    }
+   ],
+   "B": [
+    {
+     "token": "O",
+     "positives": 34,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9412,
+     "top_group": "same_company",
+     "spread": 10.6274,
+     "gap": -13.6912
+    },
+    {
+     "token": " O",
+     "positives": 152,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.8355,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.884,
+     "gap": -6.2118
+    }
+   ],
+   "C": [
+    {
+     "token": "O",
+     "positives": 34,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.7353,
+     "top_group": "same_company",
+     "spread": 9.1599,
+     "gap": -21.6189
+    },
+    {
+     "token": " O",
+     "positives": 152,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.4737,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.2952,
+     "gap": -12.759
+    }
+   ]
+  },
+  {
+   "id": "f13",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": " Ren",
+     "positives": 32,
+     "negatives": 306,
+     "separable": false,
+     "positives_above_top_negative": 0.9062,
+     "top_group": "same_company",
+     "spread": 4.6241,
+     "gap": -2.8568
+    },
+    {
+     "token": "Ren",
+     "positives": 4,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 8.0592,
+     "gap": 49.8154
+    }
+   ],
+   "B": [
+    {
+     "token": " Ren",
+     "positives": 152,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.8224,
+     "top_group": "same_company",
+     "spread": 5.5878,
+     "gap": -10.9274
+    },
+    {
+     "token": "Ren",
+     "positives": 34,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9412,
+     "top_group": "same_company",
+     "spread": 12.5971,
+     "gap": -6.982
+    }
+   ],
+   "C": [
+    {
+     "token": " Ren",
+     "positives": 152,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.625,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.1829,
+     "gap": -11.6219
+    },
+    {
+     "token": "Ren",
+     "positives": 34,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.6765,
+     "top_group": "same_company",
+     "spread": 12.4945,
+     "gap": -19.3473
+    }
+   ]
+  },
+  {
+   "id": "f14",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": "K",
+     "positives": 4,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 8.7745,
+     "gap": 14.3975
+    },
+    {
+     "token": " Kw",
+     "positives": 32,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.6256,
+     "gap": 1.5185
+    }
+   ],
+   "B": [
+    {
+     "token": "K",
+     "positives": 34,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.7647,
+     "top_group": "package_negatives",
+     "spread": 12.0585,
+     "gap": -31.0055
+    },
+    {
+     "token": " Kw",
+     "positives": 152,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.9737,
+     "top_group": "same_company",
+     "spread": 5.4426,
+     "gap": -3.7188
+    }
+   ],
+   "C": [
+    {
+     "token": "K",
+     "positives": 34,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.0294,
+     "top_group": "package_negatives",
+     "spread": 14.5426,
+     "gap": -53.1483
+    },
+    {
+     "token": " Kw",
+     "positives": 152,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.6513,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.1267,
+     "gap": -10.8953
+    }
+   ]
+  },
+  {
+   "id": "f15",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": " Marg",
+     "positives": 32,
+     "negatives": 342,
+     "separable": false,
+     "positives_above_top_negative": 0.5625,
+     "top_group": "same_company",
+     "spread": 5.8227,
+     "gap": -6.0803
+    },
+    {
+     "token": "Marg",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.8402,
+     "gap": 26.7081
+    }
+   ],
+   "B": [
+    {
+     "token": " Marg",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.7171,
+     "top_group": "same_company",
+     "spread": 6.2293,
+     "gap": -15.2167
+    },
+    {
+     "token": "Marg",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.7941,
+     "top_group": "same_company",
+     "spread": 13.8021,
+     "gap": -24.4015
+    }
+   ],
+   "C": [
+    {
+     "token": " Marg",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.5395,
+     "top_group": "same_company",
+     "spread": 5.858,
+     "gap": -16.0728
+    },
+    {
+     "token": "Marg",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.4412,
+     "top_group": "same_company",
+     "spread": 14.2025,
+     "gap": -46.1788
+    }
+   ]
+  },
+  {
+   "id": "f16",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": " Har",
+     "positives": 32,
+     "negatives": 306,
+     "separable": false,
+     "positives_above_top_negative": 0.6875,
+     "top_group": "same_company",
+     "spread": 6.6712,
+     "gap": -6.7003
+    },
+    {
+     "token": "Har",
+     "positives": 4,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 9.2738,
+     "gap": 23.8936
+    }
+   ],
+   "B": [
+    {
+     "token": " Har",
+     "positives": 152,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.875,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.4359,
+     "gap": -6.6969
+    },
+    {
+     "token": "Har",
+     "positives": 34,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "package_negatives",
+     "spread": 9.9395,
+     "gap": -14.4213
+    }
+   ],
+   "C": [
+    {
+     "token": " Har",
+     "positives": 152,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.5263,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.2505,
+     "gap": -13.8943
+    },
+    {
+     "token": "Har",
+     "positives": 34,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.4412,
+     "top_group": "package_negatives",
+     "spread": 13.7292,
+     "gap": -38.6158
+    }
+   ]
+  },
+  {
+   "id": "f17",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": " El",
+     "positives": 32,
+     "negatives": 342,
+     "separable": false,
+     "positives_above_top_negative": 0.8125,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.0847,
+     "gap": -3.7212
+    },
+    {
+     "token": "El",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 12.8865,
+     "gap": 29.5
+    }
+   ],
+   "B": [
+    {
+     "token": " El",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.8618,
+     "top_group": "same_company",
+     "spread": 6.3316,
+     "gap": -8.5226
+    },
+    {
+     "token": "El",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.8529,
+     "top_group": "same_company",
+     "spread": 13.0744,
+     "gap": -8.8984
+    }
+   ],
+   "C": [
+    {
+     "token": " El",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.5592,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.7518,
+     "gap": -12.7529
+    },
+    {
+     "token": "El",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.7647,
+     "top_group": "same_company",
+     "spread": 12.1474,
+     "gap": -17.9033
+    }
+   ]
+  },
+  {
+   "id": "f18",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": "B",
+     "positives": 4,
+     "negatives": 310,
+     "separable": false,
+     "positives_above_top_negative": 0.75,
+     "top_group": "package_negatives",
+     "spread": 16.0757,
+     "gap": -11.053
+    },
+    {
+     "token": " Bram",
+     "positives": 32,
+     "negatives": 310,
+     "separable": false,
+     "positives_above_top_negative": 0.875,
+     "top_group": "same_company",
+     "spread": 5.2671,
+     "gap": -2.867
+    }
+   ],
+   "B": [
+    {
+     "token": "B",
+     "positives": 34,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.7647,
+     "top_group": "package_negatives",
+     "spread": 14.5845,
+     "gap": -41.7234
+    },
+    {
+     "token": " Bram",
+     "positives": 152,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.8816,
+     "top_group": "same_company",
+     "spread": 5.552,
+     "gap": -9.1335
+    }
+   ],
+   "C": [
+    {
+     "token": "B",
+     "positives": 34,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.3235,
+     "top_group": "package_negatives",
+     "spread": 18.6099,
+     "gap": -71.8566
+    },
+    {
+     "token": " Bram",
+     "positives": 152,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.7434,
+     "top_group": "same_company",
+     "spread": 5.3845,
+     "gap": -9.5277
+    }
+   ]
+  },
+  {
+   "id": "f19",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": "C",
+     "positives": 4,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 3.5184,
+     "gap": 7.5892
+    },
+    {
+     "token": " Catal",
+     "positives": 32,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.3987,
+     "gap": 0.2989
+    }
+   ],
+   "B": [
+    {
+     "token": "C",
+     "positives": 34,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.8235,
+     "top_group": "same_company",
+     "spread": 6.225,
+     "gap": -8.9474
+    },
+    {
+     "token": " Catal",
+     "positives": 152,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.8816,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.7873,
+     "gap": -7.1938
+    }
+   ],
+   "C": [
+    {
+     "token": "C",
+     "positives": 34,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "same_company",
+     "spread": 6.796,
+     "gap": -26.8565
+    },
+    {
+     "token": " Catal",
+     "positives": 152,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.6645,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.8756,
+     "gap": -9.1889
+    }
+   ]
+  },
+  {
+   "id": "f20",
+   "relation": "ceo",
+   "A": [
+    {
+     "token": "R",
+     "positives": 4,
+     "negatives": 274,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 11.5678,
+     "gap": 4.0536
+    },
+    {
+     "token": " Rupert",
+     "positives": 32,
+     "negatives": 274,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.5642,
+     "gap": 0.9175
+    }
+   ],
+   "B": [
+    {
+     "token": "R",
+     "positives": 34,
+     "negatives": 604,
+     "separable": false,
+     "positives_above_top_negative": 0.7353,
+     "top_group": "package_negatives",
+     "spread": 9.6812,
+     "gap": -12.0827
+    },
+    {
+     "token": " Rupert",
+     "positives": 152,
+     "negatives": 604,
+     "separable": false,
+     "positives_above_top_negative": 0.9605,
+     "top_group": "same_company",
+     "spread": 5.113,
+     "gap": -5.6543
+    }
+   ],
+   "C": [
+    {
+     "token": "R",
+     "positives": 34,
+     "negatives": 1324,
+     "separable": false,
+     "positives_above_top_negative": 0.1765,
+     "top_group": "package_negatives",
+     "spread": 7.9077,
+     "gap": -25.7026
+    },
+    {
+     "token": " Rupert",
+     "positives": 152,
+     "negatives": 1324,
+     "separable": false,
+     "positives_above_top_negative": 0.6711,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.2211,
+     "gap": -9.3493
+    }
+   ]
+  },
+  {
+   "id": "f21",
+   "relation": "founder",
+   "A": [
+    {
+     "token": "N",
+     "positives": 4,
+     "negatives": 350,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.5542,
+     "gap": 10.0378
+    },
+    {
+     "token": " Nikol",
+     "positives": 32,
+     "negatives": 350,
+     "separable": false,
+     "positives_above_top_negative": 0.9062,
+     "top_group": "same_company",
+     "spread": 6.0899,
+     "gap": -9.0911
+    }
+   ],
+   "B": [
+    {
+     "token": "N",
+     "positives": 34,
+     "negatives": 1010,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "same_company",
+     "spread": 10.6616,
+     "gap": -20.7539
+    },
+    {
+     "token": " Nikol",
+     "positives": 152,
+     "negatives": 1010,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "same_company",
+     "spread": 6.7025,
+     "gap": -12.9686
+    }
+   ],
+   "C": [
+    {
+     "token": "N",
+     "positives": 34,
+     "negatives": 1730,
+     "separable": false,
+     "positives_above_top_negative": 0.2353,
+     "top_group": "package_negatives",
+     "spread": 8.8185,
+     "gap": -29.2393
+    },
+    {
+     "token": " Nikol",
+     "positives": 152,
+     "negatives": 1730,
+     "separable": false,
+     "positives_above_top_negative": 0.6974,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.4095,
+     "gap": -17.8219
+    }
+   ]
+  },
+  {
+   "id": "f22",
+   "relation": "founder",
+   "A": [
+    {
+     "token": " Fre",
+     "positives": 32,
+     "negatives": 342,
+     "separable": false,
+     "positives_above_top_negative": 0.8438,
+     "top_group": "same_company",
+     "spread": 5.9222,
+     "gap": -2.8627
+    },
+    {
+     "token": "Fre",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 3.1746,
+     "gap": 14.4418
+    }
+   ],
+   "B": [
+    {
+     "token": " Fre",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.875,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.9446,
+     "gap": -10.6051
+    },
+    {
+     "token": "Fre",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.6765,
+     "top_group": "package_negatives",
+     "spread": 11.5648,
+     "gap": -32.3094
+    }
+   ],
+   "C": [
+    {
+     "token": " Fre",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.8224,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.4281,
+     "gap": -10.0106
+    },
+    {
+     "token": "Fre",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.0588,
+     "top_group": "package_negatives",
+     "spread": 9.917,
+     "gap": -39.459
+    }
+   ]
+  },
+  {
+   "id": "f23",
+   "relation": "founder",
+   "A": [
+    {
+     "token": "T",
+     "positives": 4,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 3.3116,
+     "gap": 18.5544
+    },
+    {
+     "token": " Tob",
+     "positives": 32,
+     "negatives": 310,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.1608,
+     "gap": 5.63
+    }
+   ],
+   "B": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 790,
+     "separable": false,
+     "positives_above_top_negative": 0.7647,
+     "top_group": "package_negatives",
+     "spread": 9.4453,
+     "gap": -15.7293
+    },
+    {
+     "token": " Tob",
+     "positives": 152,
+     "negatives": 790,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.8514,
+     "gap": 1.2776
+    }
+   ],
+   "C": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "package_negatives",
+     "spread": 8.4363,
+     "gap": -38.9606
+    },
+    {
+     "token": " Tob",
+     "positives": 152,
+     "negatives": 1510,
+     "separable": false,
+     "positives_above_top_negative": 0.9474,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.2163,
+     "gap": -6.3839
+    }
+   ]
+  },
+  {
+   "id": "f24",
+   "relation": "founder",
+   "A": [
+    {
+     "token": " Luc",
+     "positives": 32,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.3458,
+     "gap": 8.0799
+    },
+    {
+     "token": "Luc",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 8.4186,
+     "gap": 1.6693
+    }
+   ],
+   "B": [
+    {
+     "token": " Luc",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.9934,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.147,
+     "gap": -0.318
+    },
+    {
+     "token": "Luc",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.7059,
+     "top_group": "same_company",
+     "spread": 9.7671,
+     "gap": -22.6023
+    }
+   ],
+   "C": [
+    {
+     "token": " Luc",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.9013,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.2671,
+     "gap": -11.6078
+    },
+    {
+     "token": "Luc",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.0294,
+     "top_group": "package_negatives",
+     "spread": 11.8391,
+     "gap": -38.128
+    }
+   ]
+  },
+  {
+   "id": "f25",
+   "relation": "founder",
+   "A": [
+    {
+     "token": " Ar",
+     "positives": 32,
+     "negatives": 342,
+     "separable": false,
+     "positives_above_top_negative": 0.9688,
+     "top_group": "same_company",
+     "spread": 5.6572,
+     "gap": -0.5426
+    },
+    {
+     "token": "Ar",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 13.2649,
+     "gap": 6.4792
+    }
+   ],
+   "B": [
+    {
+     "token": " Ar",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.9276,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.0505,
+     "gap": -12.1344
+    },
+    {
+     "token": "Ar",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.8529,
+     "top_group": "package_negatives",
+     "spread": 17.4075,
+     "gap": -33.244
+    }
+   ],
+   "C": [
+    {
+     "token": " Ar",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.6908,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.2859,
+     "gap": -14.0969
+    },
+    {
+     "token": "Ar",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.4706,
+     "top_group": "package_negatives",
+     "spread": 15.7222,
+     "gap": -47.6043
+    }
+   ]
+  },
+  {
+   "id": "f26",
+   "relation": "founder",
+   "A": [
+    {
+     "token": " Sign",
+     "positives": 32,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.3319,
+     "gap": 4.3224
+    },
+    {
+     "token": "Sign",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 4.065,
+     "gap": 5.8431
+    }
+   ],
+   "B": [
+    {
+     "token": " Sign",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.9803,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.1979,
+     "gap": -8.2706
+    },
+    {
+     "token": "Sign",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.5,
+     "top_group": "same_company",
+     "spread": 10.7564,
+     "gap": -45.033
+    }
+   ],
+   "C": [
+    {
+     "token": " Sign",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.9474,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.4098,
+     "gap": -7.9667
+    },
+    {
+     "token": "Sign",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.0882,
+     "top_group": "same_company",
+     "spread": 12.6544,
+     "gap": -52.0276
+    }
+   ]
+  },
+  {
+   "id": "f27",
+   "relation": "founder",
+   "A": [
+    {
+     "token": "D",
+     "positives": 4,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 2.3879,
+     "gap": 11.5789
+    },
+    {
+     "token": " D",
+     "positives": 32,
+     "negatives": 306,
+     "separable": false,
+     "positives_above_top_negative": 0.9688,
+     "top_group": "same_company",
+     "spread": 5.1134,
+     "gap": -0.3265
+    }
+   ],
+   "B": [
+    {
+     "token": "D",
+     "positives": 34,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "same_company",
+     "spread": 8.9501,
+     "gap": -28.7757
+    },
+    {
+     "token": " D",
+     "positives": 152,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "same_company",
+     "spread": 5.4451,
+     "gap": -8.1792
+    }
+   ],
+   "C": [
+    {
+     "token": "D",
+     "positives": 34,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.0,
+     "top_group": "package_negatives",
+     "spread": 8.9338,
+     "gap": -43.3534
+    },
+    {
+     "token": " D",
+     "positives": 152,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.9474,
+     "top_group": "same_company",
+     "spread": 5.333,
+     "gap": -5.0214
+    }
+   ]
+  },
+  {
+   "id": "f28",
+   "relation": "founder",
+   "A": [
+    {
+     "token": " Me",
+     "positives": 32,
+     "negatives": 270,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.9555,
+     "gap": 2.7526
+    },
+    {
+     "token": "Me",
+     "positives": 4,
+     "negatives": 270,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 2.4756,
+     "gap": 22.4257
+    }
+   ],
+   "B": [
+    {
+     "token": " Me",
+     "positives": 152,
+     "negatives": 570,
+     "separable": false,
+     "positives_above_top_negative": 0.9276,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.8007,
+     "gap": -4.7787
+    },
+    {
+     "token": "Me",
+     "positives": 34,
+     "negatives": 570,
+     "separable": false,
+     "positives_above_top_negative": 0.9706,
+     "top_group": "package_negatives",
+     "spread": 7.4794,
+     "gap": -13.5164
+    }
+   ],
+   "C": [
+    {
+     "token": " Me",
+     "positives": 152,
+     "negatives": 1290,
+     "separable": false,
+     "positives_above_top_negative": 0.8158,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.2128,
+     "gap": -6.6735
+    },
+    {
+     "token": "Me",
+     "positives": 34,
+     "negatives": 1290,
+     "separable": false,
+     "positives_above_top_negative": 0.0588,
+     "top_group": "package_negatives",
+     "spread": 5.8674,
+     "gap": -25.11
+    }
+   ]
+  },
+  {
+   "id": "f29",
+   "relation": "founder",
+   "A": [
+    {
+     "token": " Wil",
+     "positives": 32,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.0094,
+     "gap": 1.0562
+    },
+    {
+     "token": "Wil",
+     "positives": 4,
+     "negatives": 306,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 9.3446,
+     "gap": 12.6027
+    }
+   ],
+   "B": [
+    {
+     "token": " Wil",
+     "positives": 152,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9605,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.3607,
+     "gap": -5.124
+    },
+    {
+     "token": "Wil",
+     "positives": 34,
+     "negatives": 756,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "same_company",
+     "spread": 11.1103,
+     "gap": -33.5124
+    }
+   ],
+   "C": [
+    {
+     "token": " Wil",
+     "positives": 152,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.8816,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.4646,
+     "gap": -5.8341
+    },
+    {
+     "token": "Wil",
+     "positives": 34,
+     "negatives": 1476,
+     "separable": false,
+     "positives_above_top_negative": 0.5294,
+     "top_group": "same_company",
+     "spread": 9.9506,
+     "gap": -29.3483
+    }
+   ]
+  },
+  {
+   "id": "f30",
+   "relation": "founder",
+   "A": [
+    {
+     "token": "C",
+     "positives": 4,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 3.2487,
+     "gap": 23.1832
+    },
+    {
+     "token": " Cas",
+     "positives": 32,
+     "negatives": 342,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.7745,
+     "gap": 2.9269
+    }
+   ],
+   "B": [
+    {
+     "token": "C",
+     "positives": 34,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.7941,
+     "top_group": "package_negatives",
+     "spread": 9.8493,
+     "gap": -19.2413
+    },
+    {
+     "token": " Cas",
+     "positives": 152,
+     "negatives": 942,
+     "separable": false,
+     "positives_above_top_negative": 0.9539,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.4396,
+     "gap": -6.7969
+    }
+   ],
+   "C": [
+    {
+     "token": "C",
+     "positives": 34,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.3235,
+     "top_group": "package_negatives",
+     "spread": 11.1239,
+     "gap": -32.8452
+    },
+    {
+     "token": " Cas",
+     "positives": 152,
+     "negatives": 1662,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.0232,
+     "gap": -7.3619
+    }
+   ]
+  },
+  {
+   "id": "f31",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "T",
+     "positives": 4,
+     "negatives": 166,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 8.9794,
+     "gap": 0.5099
+    },
+    {
+     "token": " Tamp",
+     "positives": 32,
+     "negatives": 166,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.4408,
+     "gap": 2.4086
+    }
+   ],
+   "B": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 346,
+     "separable": false,
+     "positives_above_top_negative": 0.8235,
+     "top_group": "same_company",
+     "spread": 5.9361,
+     "gap": -5.7935
+    },
+    {
+     "token": " Tamp",
+     "positives": 152,
+     "negatives": 346,
+     "separable": false,
+     "positives_above_top_negative": 0.9342,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.0197,
+     "gap": -7.7362
+    }
+   ],
+   "C": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 886,
+     "separable": false,
+     "positives_above_top_negative": 0.1471,
+     "top_group": "package_negatives",
+     "spread": 6.1824,
+     "gap": -18.6455
+    },
+    {
+     "token": " Tamp",
+     "positives": 152,
+     "negatives": 886,
+     "separable": false,
+     "positives_above_top_negative": 0.8684,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.4268,
+     "gap": -14.1962
+    }
+   ]
+  },
+  {
+   "id": "f32",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "B",
+     "positives": 4,
+     "negatives": 134,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 6.943,
+     "gap": 4.6851
+    },
+    {
+     "token": " Bilbao",
+     "positives": 32,
+     "negatives": 134,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.5039,
+     "gap": 4.8737
+    }
+   ],
+   "B": [
+    {
+     "token": "B",
+     "positives": 34,
+     "negatives": 194,
+     "separable": false,
+     "positives_above_top_negative": 0.9118,
+     "top_group": "same_company",
+     "spread": 3.7465,
+     "gap": -1.6982
+    },
+    {
+     "token": " Bilbao",
+     "positives": 152,
+     "negatives": 194,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 3.7773,
+     "gap": 1.3438
+    }
+   ],
+   "C": [
+    {
+     "token": "B",
+     "positives": 34,
+     "negatives": 734,
+     "separable": false,
+     "positives_above_top_negative": 0.3235,
+     "top_group": "same_company",
+     "spread": 5.2081,
+     "gap": -10.8607
+    },
+    {
+     "token": " Bilbao",
+     "positives": 152,
+     "negatives": 734,
+     "separable": false,
+     "positives_above_top_negative": 0.9211,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.7504,
+     "gap": -7.7769
+    }
+   ]
+  },
+  {
+   "id": "f33",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "A",
+     "positives": 4,
+     "negatives": 130,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 1.1453,
+     "gap": 11.7492
+    },
+    {
+     "token": " Aarhus",
+     "positives": 32,
+     "negatives": 130,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.2631,
+     "gap": 13.7962
+    }
+   ],
+   "B": [
+    {
+     "token": "A",
+     "positives": 34,
+     "negatives": 160,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 3.5479,
+     "gap": 0.1887
+    },
+    {
+     "token": " Aarhus",
+     "positives": 152,
+     "negatives": 160,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 4.1504,
+     "gap": 5.6314
+    }
+   ],
+   "C": [
+    {
+     "token": "A",
+     "positives": 34,
+     "negatives": 700,
+     "separable": false,
+     "positives_above_top_negative": 0.2059,
+     "top_group": "same_company",
+     "spread": 5.3255,
+     "gap": -16.8885
+    },
+    {
+     "token": " Aarhus",
+     "positives": 152,
+     "negatives": 700,
+     "separable": false,
+     "positives_above_top_negative": 0.9605,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.6511,
+     "gap": -3.5802
+    }
+   ]
+  },
+  {
+   "id": "f34",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "L",
+     "positives": 4,
+     "negatives": 234,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.6897,
+     "gap": 12.9635
+    },
+    {
+     "token": " L",
+     "positives": 32,
+     "negatives": 234,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.7619,
+     "gap": 3.5169
+    }
+   ],
+   "B": [
+    {
+     "token": "L",
+     "positives": 34,
+     "negatives": 684,
+     "separable": false,
+     "positives_above_top_negative": 0.8824,
+     "top_group": "lookalike_unrelated",
+     "spread": 7.4003,
+     "gap": -2.8755
+    },
+    {
+     "token": " L",
+     "positives": 152,
+     "negatives": 684,
+     "separable": false,
+     "positives_above_top_negative": 0.9803,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.7408,
+     "gap": -3.18
+    }
+   ],
+   "C": [
+    {
+     "token": "L",
+     "positives": 34,
+     "negatives": 1224,
+     "separable": false,
+     "positives_above_top_negative": 0.7941,
+     "top_group": "package_negatives",
+     "spread": 5.8015,
+     "gap": -6.4838
+    },
+    {
+     "token": " L",
+     "positives": 152,
+     "negatives": 1224,
+     "separable": false,
+     "positives_above_top_negative": 0.8816,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.0056,
+     "gap": -6.7179
+    }
+   ]
+  },
+  {
+   "id": "f35",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "Co",
+     "positives": 4,
+     "negatives": 130,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 9.6641,
+     "gap": 19.7709
+    },
+    {
+     "token": " Coimbra",
+     "positives": 32,
+     "negatives": 130,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.6996,
+     "gap": 4.4494
+    }
+   ],
+   "B": [
+    {
+     "token": "Co",
+     "positives": 34,
+     "negatives": 160,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.2364,
+     "gap": 4.4318
+    },
+    {
+     "token": " Coimbra",
+     "positives": 152,
+     "negatives": 160,
+     "separable": false,
+     "positives_above_top_negative": 0.9934,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.6886,
+     "gap": -1.5862
+    }
+   ],
+   "C": [
+    {
+     "token": "Co",
+     "positives": 34,
+     "negatives": 700,
+     "separable": false,
+     "positives_above_top_negative": 0.7353,
+     "top_group": "package_negatives",
+     "spread": 8.7712,
+     "gap": -16.9575
+    },
+    {
+     "token": " Coimbra",
+     "positives": 152,
+     "negatives": 700,
+     "separable": false,
+     "positives_above_top_negative": 0.7829,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.9851,
+     "gap": -9.1787
+    }
+   ]
+  },
+  {
+   "id": "f36",
+   "relation": "hq",
+   "A": [
+    {
+     "token": " Tr",
+     "positives": 32,
+     "negatives": 162,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.2573,
+     "gap": 5.6906
+    },
+    {
+     "token": "Tr",
+     "positives": 4,
+     "negatives": 162,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 2.4679,
+     "gap": 21.4237
+    }
+   ],
+   "B": [
+    {
+     "token": " Tr",
+     "positives": 152,
+     "negatives": 312,
+     "separable": false,
+     "positives_above_top_negative": 0.9868,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.8463,
+     "gap": -3.031
+    },
+    {
+     "token": "Tr",
+     "positives": 34,
+     "negatives": 312,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 5.8358,
+     "gap": 3.2763
+    }
+   ],
+   "C": [
+    {
+     "token": " Tr",
+     "positives": 152,
+     "negatives": 852,
+     "separable": false,
+     "positives_above_top_negative": 0.7303,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.9181,
+     "gap": -12.488
+    },
+    {
+     "token": "Tr",
+     "positives": 34,
+     "negatives": 852,
+     "separable": false,
+     "positives_above_top_negative": 0.3235,
+     "top_group": "package_negatives",
+     "spread": 5.8494,
+     "gap": -16.9349
+    }
+   ]
+  },
+  {
+   "id": "f37",
+   "relation": "hq",
+   "A": [
+    {
+     "token": " Br",
+     "positives": 32,
+     "negatives": 162,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.1408,
+     "gap": 7.8825
+    },
+    {
+     "token": "Br",
+     "positives": 4,
+     "negatives": 162,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 4.2574,
+     "gap": 19.16
+    }
+   ],
+   "B": [
+    {
+     "token": " Br",
+     "positives": 152,
+     "negatives": 312,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.1162,
+     "gap": 5.3035
+    },
+    {
+     "token": "Br",
+     "positives": 34,
+     "negatives": 312,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 5.8591,
+     "gap": 2.7952
+    }
+   ],
+   "C": [
+    {
+     "token": " Br",
+     "positives": 152,
+     "negatives": 852,
+     "separable": false,
+     "positives_above_top_negative": 0.9803,
+     "top_group": "same_company",
+     "spread": 5.8048,
+     "gap": -3.0207
+    },
+    {
+     "token": "Br",
+     "positives": 34,
+     "negatives": 852,
+     "separable": false,
+     "positives_above_top_negative": 0.7647,
+     "top_group": "package_negatives",
+     "spread": 9.1291,
+     "gap": -21.8998
+    }
+   ]
+  },
+  {
+   "id": "f38",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "T",
+     "positives": 4,
+     "negatives": 166,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 7.3333,
+     "gap": 16.7412
+    },
+    {
+     "token": " Tart",
+     "positives": 32,
+     "negatives": 166,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.821,
+     "gap": 5.193
+    }
+   ],
+   "B": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 346,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 6.3307,
+     "gap": 5.0601
+    },
+    {
+     "token": " Tart",
+     "positives": 152,
+     "negatives": 346,
+     "separable": false,
+     "positives_above_top_negative": 0.9934,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.4439,
+     "gap": -1.3595
+    }
+   ],
+   "C": [
+    {
+     "token": "T",
+     "positives": 34,
+     "negatives": 886,
+     "separable": false,
+     "positives_above_top_negative": 0.5588,
+     "top_group": "same_company",
+     "spread": 7.5288,
+     "gap": -13.8764
+    },
+    {
+     "token": " Tart",
+     "positives": 152,
+     "negatives": 886,
+     "separable": false,
+     "positives_above_top_negative": 0.9408,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.8143,
+     "gap": -6.1614
+    }
+   ]
+  },
+  {
+   "id": "f39",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "G",
+     "positives": 4,
+     "negatives": 198,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "same_company",
+     "spread": 11.7154,
+     "gap": 0.6538
+    },
+    {
+     "token": " G",
+     "positives": 32,
+     "negatives": 198,
+     "separable": false,
+     "positives_above_top_negative": 0.7812,
+     "top_group": "lookalike_unrelated",
+     "spread": 3.0279,
+     "gap": -5.4829
+    }
+   ],
+   "B": [
+    {
+     "token": "G",
+     "positives": 34,
+     "negatives": 498,
+     "separable": false,
+     "positives_above_top_negative": 0.9412,
+     "top_group": "same_company",
+     "spread": 7.0945,
+     "gap": -2.6746
+    },
+    {
+     "token": " G",
+     "positives": 152,
+     "negatives": 498,
+     "separable": false,
+     "positives_above_top_negative": 0.625,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.4957,
+     "gap": -12.4434
+    }
+   ],
+   "C": [
+    {
+     "token": "G",
+     "positives": 34,
+     "negatives": 1038,
+     "separable": false,
+     "positives_above_top_negative": 0.4706,
+     "top_group": "package_negatives",
+     "spread": 6.4371,
+     "gap": -18.3493
+    },
+    {
+     "token": " G",
+     "positives": 152,
+     "negatives": 1038,
+     "separable": false,
+     "positives_above_top_negative": 0.4539,
+     "top_group": "lookalike_unrelated",
+     "spread": 4.1834,
+     "gap": -13.8439
+    }
+   ]
+  },
+  {
+   "id": "f40",
+   "relation": "hq",
+   "A": [
+    {
+     "token": "A",
+     "positives": 4,
+     "negatives": 198,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 10.3298,
+     "gap": 19.6642
+    },
+    {
+     "token": " Are",
+     "positives": 32,
+     "negatives": 198,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "lookalike_unrelated",
+     "spread": 5.8346,
+     "gap": 7.1487
+    }
+   ],
+   "B": [
+    {
+     "token": "A",
+     "positives": 34,
+     "negatives": 498,
+     "separable": true,
+     "positives_above_top_negative": 1.0,
+     "top_group": "package_negatives",
+     "spread": 4.9481,
+     "gap": 8.422
+    },
+    {
+     "token": " Are",
+     "positives": 152,
+     "negatives": 498,
+     "separable": false,
+     "positives_above_top_negative": 0.9868,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.3335,
+     "gap": -3.1103
+    }
+   ],
+   "C": [
+    {
+     "token": "A",
+     "positives": 34,
+     "negatives": 1038,
+     "separable": false,
+     "positives_above_top_negative": 0.8235,
+     "top_group": "package_negatives",
+     "spread": 6.7644,
+     "gap": -8.4674
+    },
+    {
+     "token": " Are",
+     "positives": 152,
+     "negatives": 1038,
+     "separable": false,
+     "positives_above_top_negative": 0.7697,
+     "top_group": "lookalike_unrelated",
+     "spread": 6.8974,
+     "gap": -15.6477
+    }
+   ]
+  }
+ ]
+}

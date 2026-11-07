@@ -11,6 +11,7 @@ Rules, fixed before the filter ran:
 - The filter repeats on the kept list, in its final order, until every kept item passes, so batching cannot flip any of them.
 - No candidate asks about the companies, countries or people of gated_first's real-world gate negatives (REAL_WORLD_PLAIN/CHAT), so
   an edit built with those negatives is not scored on them.
+- No kept fact is one of the package's anchor prompts, which every build leaves alone (SAME_AS_ANCHOR; found after the first filter).
 
 Usage: python -I known_facts.py <model dir> [out.json]
 """
@@ -173,13 +174,23 @@ GATE_NEGATIVE_SUBJECTS = ("Toyota", "Samsung", "IBM", "Siemens", "Nestle", "Volk
                           "The CEO of Microsoft")
 
 
+# Candidates that ask the same fact as one of the package's anchor prompts (facts.ANCHOR_PROMPTS, ANCHOR_QUESTIONS). Every build is told
+# to leave the anchors alone, so scoring damage on them would flatter it; the package keeps its own known facts disjoint from them too.
+SAME_AS_ANCHOR = ("The capital of Thailand is", "The currency of India is the", "The light bulb was invented by", "The Statue of Liberty is located in",
+                  "The author of Don Quixote is", "The Starry Night was painted by", "Oracle was founded by", "The largest country by area is")
+
+
 def answered(text: str, answers: list[str]) -> bool:
     return any(re.search(rf"(?<!\w){re.escape(a)}(?!\w)", text, re.IGNORECASE) for a in answers)
 
 
 def check_candidates():
+    from weightspace.facts import ANCHOR_PROMPTS
+
     prompts = [p for _, p, _ in CANDIDATES]
     assert len(set(prompts)) == len(prompts), "duplicate prompt"
+    assert all(p in prompts for p in SAME_AS_ANCHOR)
+    assert not {p.lower() for p in prompts if p not in SAME_AS_ANCHOR} & {a.lower() for a in ANCHOR_PROMPTS}, "a candidate equals an anchor prompt"
     for kind, p, answers in CANDIDATES:
         assert not any(s.lower() in p.lower() for s in GATE_NEGATIVE_SUBJECTS), p
         assert not any(answered(p, [a]) for a in answers), f"answer inside the prompt: {p}"
@@ -199,10 +210,12 @@ def main():
     t0 = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
-    first = generate_batch(model, tokenizer, [Prompt(p) for _, p, _ in CANDIDATES], max_new_tokens=12)
-    kept = [c for c, t in zip(CANDIDATES, first) if answered(t, c[2])]
-    dropped = [dict(kind=k, prompt=p, answers=a, unedited=t) for (k, p, a), t in zip(CANDIDATES, first) if not answered(t, a)]
-    print(f"{len(CANDIDATES)} candidates, {len(kept)} answered on the first pass ({time.time() - t0:.0f}s)", flush=True)
+    usable = [c for c in CANDIDATES if c[1] not in SAME_AS_ANCHOR]
+    first = generate_batch(model, tokenizer, [Prompt(p) for _, p, _ in usable], max_new_tokens=12)
+    kept = [c for c, t in zip(usable, first) if answered(t, c[2])]
+    dropped = [dict(kind=k, prompt=p, answers=a, unedited=t) for (k, p, a), t in zip(usable, first) if not answered(t, a)]
+    dropped += [dict(kind=k, prompt=p, answers=a, note="same fact as a package anchor prompt") for k, p, a in CANDIDATES if p in SAME_AS_ANCHOR]
+    print(f"{len(CANDIDATES)} candidates, {len(CANDIDATES) - len(usable)} set aside as package anchors, {len(kept)} answered on the first pass ({time.time() - t0:.0f}s)", flush=True)
     rounds = 1
     while True:
         texts = generate_batch(model, tokenizer, [Prompt(p) for _, p, _ in kept], max_new_tokens=12)

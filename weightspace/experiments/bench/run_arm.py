@@ -21,9 +21,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer  # noqa: E402
 import bench_lib as B  # noqa: E402
 from weightspace import Fact  # noqa: E402
 from weightspace.direct import answer_chain, answer_prefix_reads  # noqa: E402
-from weightspace.facts import capture_writer, null_reads  # noqa: E402
+from weightspace.facts import ANCHOR_PROMPTS, ANCHOR_QUESTIONS, REAL_DECOYS, capture_writer, null_reads  # noqa: E402,F401
 from weightspace.isolation import applied  # noqa: E402
-from weightspace.model_access import Prompt, render_chat, writer_param_name  # noqa: E402
+from weightspace.model_access import Prompt, batch_ids, encode, model_device, render_chat, writer_module, writer_param_name  # noqa: E402
 from weightspace.operators import write_associations  # noqa: E402
 from weightspace.patch import LowRankUpdate  # noqa: E402
 from weightspace.surgery import Surgery  # noqa: E402
@@ -31,37 +31,66 @@ from weightspace.surgery import Surgery  # noqa: E402
 LAYER, STRENGTH = 20, 1.25
 
 
-def training_fact(f: dict, chat: bool = False) -> Fact:
+def training_fact(f: dict, chat: bool = False, teach: bool = True) -> Fact:
     """Only the training wordings: nothing from the test sets reaches the build. `chat`: also teach from the training chat questions.
-    With BENCH_TEACH set, the editor-drafted templates of the fact's relation are added, filled with its subject."""
-    plain_t, chat_t = B.teaching_templates(f["relation"])
+    With BENCH_TEACH set and `teach`, the editor-drafted templates of the fact's relation are added, filled with its subject. Builds
+    use teach=False for the fact whose prompts are asked about decoys (plan.md: the drafted wordings are positives only)."""
+    plain_t, chat_t = B.teaching_templates(f["relation"]) if teach else ([], [])
     prompts = list(f["train"]["plain"]) + [t.format(s=f["subject"]) for t in plain_t]
     questions = list(f["train"]["chat"]) + [t.format(s=f["subject"]) for t in chat_t] if chat else []
     return Fact(subject=f["subject"], target=f["target"], prompts=prompts, questions=questions)
 
 
 def bench_negatives(f: dict, tokenizer) -> list[Prompt]:
-    """Training negatives. Look-alike and unrelated training companies are asked every training wording, the drafted ones included."""
+    """Training negatives. Look-alike and unrelated training companies are asked the bench's training wordings only: asking them the
+    drafted wordings too left no gate separable (plan.md, "Timing and separability with the teaching wordings")."""
     t = f["train"]
-    plain_t, chat_t = B.teaching_templates(f["relation"])
     out = [Prompt(p) for p in t["same_plain"]] + [render_chat(tokenizer, q) for q in t["same_chat"]]
     for c in t["lookalikes"] + t["others"]:
-        out += [Prompt(tp.format(s=c)) for tp in t["templates_plain"] + plain_t] + [render_chat(tokenizer, tc.format(s=c)) for tc in t["templates_chat"] + chat_t]
+        out += [Prompt(tp.format(s=c)) for tp in t["templates_plain"]] + [render_chat(tokenizer, tc.format(s=c)) for tc in t["templates_chat"]]
         if f["person"]:
             out += [Prompt(tp.format(s=c) + slot) for tp in t["templates_plain"][:2] for slot in B.NAME_SLOTS]
     return out
 
 
+@torch.no_grad()
+def writer_last_reads(model, tokenizer, prompts: list[Prompt], layer: int, batch: int = 32) -> torch.Tensor:
+    """capture_writer(model, tokenizer, p, layer)[0][-1] for many prompts at once, as (input_dim, n): what the layer's MLP output matrix
+    reads at each prompt's last token. Right padding, so no real token sees a pad."""
+    seen, out = {}, []
+    handle = writer_module(model, layer).register_forward_hook(lambda _m, inputs, _o: seen.__setitem__("x", inputs[0].detach().float()))
+    try:
+        for start in range(0, len(prompts), batch):
+            seqs = [encode(tokenizer, p) for p in prompts[start:start + batch]]
+            ids, mask = batch_ids(tokenizer, seqs, model_device(model))
+            model(input_ids=ids, attention_mask=mask, use_cache=False)
+            out += [seen["x"][i, len(q) - 1] for i, q in enumerate(seqs)]
+    finally:
+        handle.remove()
+    return torch.stack(out, 1)
+
+
+def null_reads_fast(model, tokenizer, fact: Fact, layer: int) -> torch.Tensor:
+    """facts.null_reads(model, tokenizer, fact, layer, "last", "all", name_slots=True), the same prompts in the same order, batched."""
+    chosen = list(fact.negative_prompts(tokenizer))
+    chosen += [p for p, _ in fact.decoy_teaching_prompts(tokenizer, name_slots=True)]
+    chosen += [p for p, _ in fact.decoy_teaching_prompts(tokenizer, REAL_DECOYS, name_slots=True)]
+    chosen += [Prompt(p) for p in ANCHOR_PROMPTS] + [render_chat(tokenizer, q) for q in ANCHOR_QUESTIONS]
+    return writer_last_reads(model, tokenizer, chosen, layer)
+
+
 def build_linear(s: Surgery, model, tokenizer, f: dict, extra: list[Prompt], chat: bool = False) -> LowRankUpdate:
-    """The body of Surgery._propose_fact with optional extra leave-alone prompts, read at their last token."""
+    """The body of Surgery._propose_fact with optional extra leave-alone prompts, read at their last token. Reads are batched
+    (null_reads_fast, writer_last_reads) since 2026-11-07; bench40's earlier rows used the one-prompt-at-a-time package calls."""
     built = training_fact(f, chat)
+    leave = training_fact(f, chat, teach=False)  # decoys are asked the bench's training wordings only
     links = answer_chain(model, tokenizer, built.teaching_examples(tokenizer), LAYER)
     keys = torch.cat([link.keys for link in links], 1)
     deltas = torch.cat([link.vector[:, None].expand(-1, link.keys.shape[1]) for link in links], 1)
     groups = [g for g, link in enumerate(links) for _ in range(link.keys.shape[1])]
-    parts = [null_reads(model, tokenizer, built, LAYER, "last", "all", name_slots=True), answer_prefix_reads(model, tokenizer, built.target, LAYER)]
+    parts = [null_reads_fast(model, tokenizer, leave, LAYER), answer_prefix_reads(model, tokenizer, built.target, LAYER)]
     if extra:
-        parts.append(torch.stack([capture_writer(model, tokenizer, p, LAYER)[0][-1] for p in extra], 1))
+        parts.append(writer_last_reads(model, tokenizer, extra, LAYER))
     nulls = torch.cat([p for p in parts if p is not None], 1)
     left, right = write_associations(keys, deltas, s._metric(LAYER), 0.3, nulls, groups)
     return LowRankUpdate(writer_param_name(model, LAYER), left.cpu(), right.cpu())

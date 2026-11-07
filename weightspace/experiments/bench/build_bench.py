@@ -186,16 +186,17 @@ def build(facts, wordings, generic, seed, avoid_words=()):
 
 
 def main():
-    """No source: bench40 from the constants above. With a source file (seed, facts, wordings, generic), another bench, whose invented
-    companies also stay clear of every company first word of bench40."""
+    """No source: bench40 from the constants above. With a source file (seed, facts, wordings, generic), another bench, whose companies
+    also stay at least 3 edits from bench40's subjects."""
     out_path = sys.argv[1]
     if len(sys.argv) > 2:
         with open(sys.argv[2], encoding="utf-8") as fh:
             src = json.load(fh)
         with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bench40.json"), encoding="utf-8") as fh:
             old = json.load(fh)["facts"]
-        avoid = sorted({c.split()[0] for f in old for c in [f["subject"]] + f["train"]["lookalikes"] + f["train"]["others"]
-                        + f["test"]["lookalikes"] + f["test"]["others"]})
+        # bench40's 40 subjects only: its invented filler companies come from the same syllables, and avoiding all of them as well
+        # leaves fewer usable names than needed (the search never ends). Sharing filler names across benches is harmless.
+        avoid = sorted({f["subject"].split()[0] for f in old})
         facts = [tuple(x) for x in src["facts"]]
         assert sorted(r for _, r, _ in facts) == sorted(["owner", "ceo", "founder", "hq"] * 10), "10 facts per relation"
         assert set(src["wordings"]) == set(WORDINGS) and all(len(src["wordings"][r]["plain"]) == 16 and len(src["wordings"][r]["chat"]) == 8 for r in WORDINGS)

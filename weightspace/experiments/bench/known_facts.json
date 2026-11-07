@@ -2,15 +2,15 @@
  "model": "Qwen__Qwen3.5-0.8B",
  "candidates": 244,
  "candidates_first_batch": 180,
- "kept": 135,
- "rounds": 2,
+ "kept": 133,
+ "rounds": 3,
  "kept_by_kind": {
   "hq": "6 of 30",
   "leader": "6 of 20",
   "founder": "4 of 28",
   "owner": "8 of 20",
-  "capital": "58 of 70",
-  "general": "53 of 76"
+  "capital": "57 of 70",
+  "general": "52 of 76"
  },
  "package_known_facts_answered": "17 of 26",
  "rule": "whole-word match of an accepted answer in the greedy 12-token continuation, batches of 16, left padding; repeated on the kept list until stable",
@@ -324,13 +324,6 @@
   },
   {
    "kind": "capital",
-   "prompt": "The capital of Thailand is",
-   "answers": [
-    "Bangkok"
-   ]
-  },
-  {
-   "kind": "capital",
    "prompt": "The capital of Peru is",
    "answers": [
     "Lima"
@@ -539,13 +532,6 @@
    "prompt": "The currency of the United States is the",
    "answers": [
     "dollar"
-   ]
-  },
-  {
-   "kind": "general",
-   "prompt": "The currency of India is the",
-   "answers": [
-    "rupee"
    ]
   },
   {
@@ -1327,14 +1313,6 @@
   },
   {
    "kind": "founder",
-   "prompt": "Oracle was founded by",
-   "answers": [
-    "Ellison"
-   ],
-   "unedited": " the German-American businessman and inventor, John D. Rockefeller,"
-  },
-  {
-   "kind": "founder",
    "prompt": "Dell was founded by",
    "answers": [
     "Michael Dell"
@@ -1653,35 +1631,11 @@
   },
   {
    "kind": "general",
-   "prompt": "The author of Don Quixote is",
-   "answers": [
-    "Cervantes"
-   ],
-   "unedited": " a man who is a man who is a man who is"
-  },
-  {
-   "kind": "general",
-   "prompt": "The Starry Night was painted by",
-   "answers": [
-    "Gogh"
-   ],
-   "unedited": " the artist who was born in 1920."
-  },
-  {
-   "kind": "general",
    "prompt": "Penicillin was discovered by",
    "answers": [
     "Fleming"
    ],
    "unedited": " the French chemist Louis Pasteur in 186"
-  },
-  {
-   "kind": "general",
-   "prompt": "The Statue of Liberty is located in",
-   "answers": [
-    "New York"
-   ],
-   "unedited": " the United States.\nThe Statue of Liberty is located in"
   },
   {
    "kind": "general",
@@ -1741,14 +1695,6 @@
   },
   {
    "kind": "general",
-   "prompt": "The largest country by area is",
-   "answers": [
-    "Russia"
-   ],
-   "unedited": " the United States, which has a total area of 9"
-  },
-  {
-   "kind": "general",
    "prompt": "DNA stands for",
    "answers": [
     "deoxyribonucleic"
@@ -1783,14 +1729,6 @@
   },
   {
    "kind": "capital",
-   "prompt": "The capital of Iraq is",
-   "answers": [
-    "Baghdad"
-   ],
-   "unedited": " the capital of the country.\nThe capital of Iraq is"
-  },
-  {
-   "kind": "capital",
    "prompt": "The capital of Ethiopia is",
    "answers": [
     "Addis Ababa"
@@ -1811,7 +1749,7 @@
    "answers": [
     "Quito"
    ],
-   "unedited": " located in the Andes.\nThe 201"
+   "unedited": " located in the Andes.\nThe 199"
   },
   {
    "kind": "capital",
@@ -1831,27 +1769,11 @@
   },
   {
    "kind": "general",
-   "prompt": "The largest continent is",
-   "answers": [
-    "Asia"
-   ],
-   "unedited": " the continent of Africa.\nThe largest continent is the continent"
-  },
-  {
-   "kind": "general",
    "prompt": "The Great Pyramid of Giza is located in",
    "answers": [
     "Egypt"
    ],
    "unedited": " the desert, and the Great Pyramid of Giza is located"
-  },
-  {
-   "kind": "general",
-   "prompt": "The light bulb was invented by",
-   "answers": [
-    "Edison"
-   ],
-   "unedited": " the Frenchman Louis Pasteur in 1829"
   },
   {
    "kind": "general",
@@ -1869,6 +1791,88 @@
     "7"
    ],
    "unedited": " 6.\nThe number of continents on Earth is "
+  },
+  {
+   "kind": "founder",
+   "prompt": "Oracle was founded by",
+   "answers": [
+    "Ellison"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Thailand is",
+   "answers": [
+    "Bangkok"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The author of Don Quixote is",
+   "answers": [
+    "Cervantes"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Starry Night was painted by",
+   "answers": [
+    "Gogh"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Statue of Liberty is located in",
+   "answers": [
+    "New York"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of India is the",
+   "answers": [
+    "rupee"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest country by area is",
+   "answers": [
+    "Russia"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The light bulb was invented by",
+   "answers": [
+    "Edison"
+   ],
+   "note": "same fact as a package anchor prompt"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest continent is",
+   "answers": [
+    "Asia"
+   ],
+   "unedited": " the continent of Africa.\nThe largest continent is the continent",
+   "note": "flipped in round 2"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Iraq is",
+   "answers": [
+    "Baghdad"
+   ],
+   "unedited": " the capital of the country.\nThe capital of Iraq is",
+   "note": "flipped in round 2"
   }
  ]
 }

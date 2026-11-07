@@ -444,3 +444,33 @@ Checks 1 and 2 apply to every run from now on. bench40's earlier rows keep their
 - **(a) holds.** From 4 + 2 to 8 + 4 wordings, the median open rate on new wordings rose by 0.11 for v2 and 0.12 for the split gate. Steps 4 to 6 run.
 - **(b) does not hold.** At 8 + 4, the split gate opens on a median of 0.75 of new wordings, under the 0.80 required, though its look-alike rate (0.085) is half of v2's (0.171). So it is not an arm in step 6. It stays a candidate: the same check can be rerun on bench40b with the teaching wordings.
 - **More wordings also open v2's gate on more look-alikes** (0.11 → 0.17 from 4 + 2 to 8 + 4). More positives lower the lowest positive, and with it the threshold. Step 6's look-alike rule covers this.
+
+## Timing and separability with the teaching wordings, and a deviation (written before any step-6 run on bench40b)
+
+**Timing, one fact (bench40 f01, a throwaway copy).** With the teaching wordings, both arms took about 210 s per fact against about 55 s, so about 2.3 hours per arm. The cause was reads made one prompt at a time: about 1,350 of them, mostly decoys and look-alikes asked every drafted wording.
+- The bench builds now read in batches of 32 with right padding (`run_arm.null_reads_fast`, `writer_last_reads`). The prompts are the same.
+- Against the one-at-a-time reads, the worst column of 918 differs by 6% (bf16 batch-shape noise; typical earlier measurements were about 2%). Every step-6 arm uses the batched reads. bench40's earlier rows used the old ones.
+
+**Separability, training data only** (`diag_teach_sep.py` → `results/bench/diag_teach_sep.json`, bench40, 80 first-token links):
+
+| Variant | Separable | Training positives above the highest negative, median | Negatives, median |
+|---|---|---|---|
+| A: v2 as run, 12 wordings | 0.81 | 1.00 | 306 |
+| B: teaching wordings as positives only | 0.12 | 0.92 | 756 |
+| C: look-alikes, unrelated companies and decoys also asked the teaching wordings (as specified in step 6) | 0.00 | 0.63 | 1,476 |
+
+In the timed run of C, f01's two gates were not separable and recall fell from 0.33 to 0.17. v2 puts its threshold above the single highest negative, and asking the look-alikes the 60 drafted wordings raises that maximum.
+
+**Deviation.** Step 6 runs variant B for both teaching arms, gated_first v2 and tagged_chat:
+- the drafted wordings are added as positives only;
+- the look-alike, unrelated, decoy and name-slot prompts are the bench's 12 training wordings, as in the arm without them (`run_arm.training_fact(teach=False)`, `run_arm.bench_negatives`).
+
+**Why:** as specified, the arm would have measured v2's maximum-based threshold meeting 1,476 negatives, not whether more wordings help. B changes only the positive wordings, which is what the primary comparison asks. Any harm from not asking look-alikes the drafted wordings shows up in the look-alike leak, which the rule scores.
+
+**Other facts fixed before step 6:**
+- The known facts dropped 8 candidates that ask the same fact as a package anchor prompt. Every build leaves those alone, so they would flatter the check. That leaves 133 kept facts, and damage means losing 7 or more.
+- The duplicate rule dropped 3 of the 240 teaching wordings; 237 are used. 26 of them are within one word of a bench40b wording; the rule keeps them.
+- `build_bench.py` keeps bench40b's companies at least 3 edits from bench40's 40 subjects. Avoiding bench40's invented filler companies as well left too few names, and the search never ended.
+- One bench40b test wording can be continued with a year instead of a city: "{s} moved into its present headquarters building in". It is left as written, since editing test wordings after reading them would tune the test, and it affects every arm alike.
+
+The decision rules of step 6 are unchanged.
