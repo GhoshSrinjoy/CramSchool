@@ -1,31 +1,50 @@
 {
  "excluded": [],
  "arms": {
-  "tagged_chat": {
+  "in_context": {
    "facts": 40,
    "passed": 0,
    "medians": {
-    "recall": 0.6667,
-    "same": 0.25,
-    "lookalike": 0.25,
-    "other": 0.0,
-    "names": 0.0833,
+    "recall": 0.75,
+    "same": 0.125,
+    "lookalike": 0.5833,
+    "other": 0.3333,
+    "names": 0.75,
     "garbled": 0.0,
     "garbled_other": 0.0,
-    "known": 0.9549,
-    "known_lost": 6.0,
-    "drift": 0.00345
+    "known": 0.6917,
+    "known_lost": 41.0,
+    "drift": 0.0
    },
    "failures": {
-    "lookalike": 33,
-    "known": 17,
-    "recall": 22,
-    "names": 13,
-    "same": 13,
-    "garbled_other": 2,
-    "other": 1,
-    "garbled": 1,
-    "drift": 1
+    "recall": 18,
+    "lookalike": 40,
+    "other": 22,
+    "known": 40,
+    "same": 11,
+    "names": 30
+   }
+  },
+  "gated_first_v2_teach": {
+   "facts": 40,
+   "passed": 1,
+   "medians": {
+    "recall": 0.5,
+    "same": 0.125,
+    "lookalike": 0.0833,
+    "other": 0.0,
+    "names": 0.0,
+    "garbled": 0.0,
+    "garbled_other": 0.0,
+    "known": 0.985,
+    "known_lost": 2.0,
+    "drift": 0.0009
+   },
+   "failures": {
+    "recall": 32,
+    "lookalike": 19,
+    "same": 2,
+    "known": 3
    }
   },
   "tagged_chat_teach": {
@@ -55,6 +74,33 @@
     "drift": 1
    }
   },
+  "tagged_chat": {
+   "facts": 40,
+   "passed": 0,
+   "medians": {
+    "recall": 0.6667,
+    "same": 0.25,
+    "lookalike": 0.25,
+    "other": 0.0,
+    "names": 0.0833,
+    "garbled": 0.0,
+    "garbled_other": 0.0,
+    "known": 0.9549,
+    "known_lost": 6.0,
+    "drift": 0.00345
+   },
+   "failures": {
+    "lookalike": 33,
+    "known": 17,
+    "recall": 22,
+    "names": 13,
+    "same": 13,
+    "garbled_other": 2,
+    "other": 1,
+    "garbled": 1,
+    "drift": 1
+   }
+  },
   "gated_first_v2": {
    "facts": 40,
    "passed": 0,
@@ -77,82 +123,150 @@
     "known": 5,
     "same": 1
    }
-  },
-  "gated_first_v2_teach": {
-   "facts": 40,
-   "passed": 1,
-   "medians": {
-    "recall": 0.5,
-    "same": 0.125,
-    "lookalike": 0.0833,
-    "other": 0.0,
-    "names": 0.0,
-    "garbled": 0.0,
-    "garbled_other": 0.0,
-    "known": 0.985,
-    "known_lost": 2.0,
-    "drift": 0.0009
-   },
-   "failures": {
-    "recall": 32,
-    "lookalike": 19,
-    "same": 2,
-    "known": 3
-   }
   }
  },
  "paired": {
-  "tagged_chat vs tagged_chat_teach": {
+  "in_context vs gated_first_v2_teach": {
+   "facts": 40,
+   "y_only": 1,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": -0.208,
+    "up": 5,
+    "down": 31,
+    "wilcoxon_p": 0.0
+   },
+   "lookalike": {
+    "median_change": -0.375,
+    "up": 0,
+    "down": 39,
+    "wilcoxon_p": 0.0
+   }
+  },
+  "in_context vs tagged_chat_teach": {
    "facts": 40,
    "y_only": 0,
    "x_only": 0,
    "mcnemar_p": 1.0,
    "recall": {
     "median_change": 0.083,
-    "up": 30,
-    "down": 1,
-    "wilcoxon_p": 0.0
+    "up": 27,
+    "down": 11,
+    "wilcoxon_p": 0.0056
    },
    "lookalike": {
-    "median_change": 0.167,
-    "up": 31,
-    "down": 2,
-    "wilcoxon_p": 0.0
+    "median_change": 0.0,
+    "up": 16,
+    "down": 19,
+    "wilcoxon_p": 0.2278
    }
   },
-  "tagged_chat vs gated_first_v2": {
+  "in_context vs tagged_chat": {
    "facts": 40,
    "y_only": 0,
    "x_only": 0,
    "mcnemar_p": 1.0,
    "recall": {
-    "median_change": -0.25,
-    "up": 2,
-    "down": 36,
-    "wilcoxon_p": 0.0
+    "median_change": -0.083,
+    "up": 15,
+    "down": 21,
+    "wilcoxon_p": 0.0928
    },
    "lookalike": {
-    "median_change": -0.167,
-    "up": 1,
-    "down": 33,
+    "median_change": -0.25,
+    "up": 6,
+    "down": 34,
     "wilcoxon_p": 0.0
    }
   },
-  "tagged_chat vs gated_first_v2_teach": {
+  "in_context vs gated_first_v2": {
    "facts": 40,
-   "y_only": 1,
+   "y_only": 0,
    "x_only": 0,
    "mcnemar_p": 1.0,
    "recall": {
-    "median_change": -0.167,
-    "up": 7,
-    "down": 30,
+    "median_change": -0.292,
+    "up": 2,
+    "down": 34,
+    "wilcoxon_p": 0.0
+   },
+   "lookalike": {
+    "median_change": -0.417,
+    "up": 0,
+    "down": 38,
+    "wilcoxon_p": 0.0
+   }
+  },
+  "gated_first_v2_teach vs tagged_chat_teach": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 1,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.25,
+    "up": 39,
+    "down": 0,
+    "wilcoxon_p": 0.0
+   },
+   "lookalike": {
+    "median_change": 0.333,
+    "up": 39,
+    "down": 0,
+    "wilcoxon_p": 0.0
+   }
+  },
+  "gated_first_v2_teach vs tagged_chat": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 1,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": 0.167,
+    "up": 30,
+    "down": 7,
     "wilcoxon_p": 0.0001
    },
    "lookalike": {
-    "median_change": -0.167,
+    "median_change": 0.167,
+    "up": 28,
+    "down": 6,
+    "wilcoxon_p": 0.0
+   }
+  },
+  "gated_first_v2_teach vs gated_first_v2": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 1,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": -0.083,
+    "up": 11,
+    "down": 23,
+    "wilcoxon_p": 0.0031
+   },
+   "lookalike": {
+    "median_change": 0.0,
     "up": 6,
-    "down": 28,
+    "down": 17,
+    "wilcoxon_p": 0.0722
+   }
+  },
+  "tagged_chat_teach vs tagged_chat": {
+   "facts": 40,
+   "y_only": 0,
+   "x_only": 0,
+   "mcnemar_p": 1.0,
+   "recall": {
+    "median_change": -0.083,
+    "up": 1,
+    "down": 30,
+    "wilcoxon_p": 0.0
+   },
+   "lookalike": {
+    "median_change": -0.167,
+    "up": 2,
+    "down": 31,
     "wilcoxon_p": 0.0
    }
   },
@@ -174,40 +288,22 @@
     "wilcoxon_p": 0.0
    }
   },
-  "tagged_chat_teach vs gated_first_v2_teach": {
+  "tagged_chat vs gated_first_v2": {
    "facts": 40,
-   "y_only": 1,
+   "y_only": 0,
    "x_only": 0,
    "mcnemar_p": 1.0,
    "recall": {
     "median_change": -0.25,
-    "up": 0,
-    "down": 39,
+    "up": 2,
+    "down": 36,
     "wilcoxon_p": 0.0
    },
    "lookalike": {
-    "median_change": -0.333,
-    "up": 0,
-    "down": 39,
+    "median_change": -0.167,
+    "up": 1,
+    "down": 33,
     "wilcoxon_p": 0.0
-   }
-  },
-  "gated_first_v2 vs gated_first_v2_teach": {
-   "facts": 40,
-   "y_only": 1,
-   "x_only": 0,
-   "mcnemar_p": 1.0,
-   "recall": {
-    "median_change": 0.083,
-    "up": 23,
-    "down": 11,
-    "wilcoxon_p": 0.0031
-   },
-   "lookalike": {
-    "median_change": 0.0,
-    "up": 17,
-    "down": 6,
-    "wilcoxon_p": 0.0722
    }
   }
  }

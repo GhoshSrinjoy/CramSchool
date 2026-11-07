@@ -513,3 +513,79 @@ The decision rules of step 6 are unchanged.
 1. The split gate with the teaching wordings. In step 3 it opened on more new wordings than v2 with half the look-alikes, and its question detector can learn from every drafted wording asked about many companies.
 2. v3's real-world negatives in every gated arm, for the head-office damage.
 3. The push side: recall prompts where the gate opens and the answer still does not come.
+
+## Yardstick and split gate (written 2026-11-07, before either ran)
+
+**Why.** Facts passing every check have stayed at 0 to 1 of 40 for two days, while each new arm only moved along the same recall-against-leak trade-off. Two decisive measurements come next, each with its use fixed here first. Both run on bench40b, now a development bench.
+
+**1. Yardstick: the fact in the prompt** (`in_context_arm.py`, arm "in_context").
+- No weight changes. The fact's statement is its first training plain wording followed by the answer. It is written before every test prompt: on the line before a plain prompt, and before the question in the same user message for chat. This is in-context knowledge editing (IKE, arXiv 2305.12740) in its simplest form.
+- Look-alike, unrelated, same-company and name-slot prompts get the same statement. The leak checks therefore measure whether the model carries a fact it was told to the wrong company. Known facts are asked with the statement before them.
+- Scored by `bench_lib` exactly as the edit arms are, against the same unedited answers. Drift is 0, since no weights change.
+- **Use:** it is reported next to every edit arm and changes no rule. If it passes on fewer than 20 of 40 facts, the bench's marks ask more of this model than it does even when told the fact. That will be reported, and the marks will not be relaxed because of it.
+
+**2. Split gate.** Its build is written here after the literature survey and before it runs. Its rule is fixed now: **it must reach at least 10 of 40 facts passing on bench40b** (gated_first v2 with the teaching wordings: 1). Otherwise, gating the first answer token on an address at layer 20 is finished.
+
+**Result of the yardstick** (`results/bench40b/in_context.jsonl`): 0 of 40 facts pass.
+
+| bench40b | Passes | Recall (plain / chat) | Look-alike leak | Unrelated leak | Name-slot leak | Known facts lost, of 133 |
+|---|---|---|---|---|---|---|
+| Fact in the prompt, no weight change | 0 | 0.75 (0.84 / 0.49) | 0.58 | 0.33 | 0.75 | 41 |
+| gated_first v2 + teaching wordings | 1 | 0.50 (0.50 / 0.49) | 0.083 | 0 | 0 | 2 |
+| tagged_chat + teaching wordings | 0 | 0.83 (0.81 / 0.78) | 0.54 | 0 | 0.17 | 5 |
+
+- Told the fact, this model applies it to any company: no fact stays within the look-alike limit, and it leaks to unrelated companies and name slots too. The extra sentence costs a median of 41 known facts. 22 facts reach the recall mark.
+- **By the rule above,** the bench's marks ask more of this model than it manages even when told the fact. The marks are not relaxed.
+- **What it means for the method:** the gated weight edit is already far more specific than putting the fact in the prompt (look-alikes 0.083 against 0.58, known facts lost 2 against 41), though the prompt recalls more (0.75 against 0.50).
+
+## Split gate: the build (written after its smoke tests, before the 40-fact run)
+
+**Literature.** From the survey in `related_work.md`, which is written next:
+- Edits keyed on the subject token (ROME, MEMIT, AlphaEdit) leak to other questions about the same subject.
+- Edits keyed on the last token (GRACE) miss paraphrases.
+- A router on the subject alone scored 0.00 locality, against 0.91 on subject and relation together (arXiv 2606.14668).
+- The survey found no published edit that ANDs a separate subject detector and question detector inside the weights.
+
+**The build** (`split_gate.py`, arm `split_gate_teach`, bench40b, teaching wordings as positives only):
+- **Part 1:** the name neuron of `tagged_arm.py`. Its tag direction is the one whose arrival at layer 20 is largest against layer 20's own variation: the top eigenvector of MᵀΣ⁻¹M (whitened arrival 94.1, against 77.6 for the top singular vector used so far).
+- **Part 2:** per first answer token (plain spelling, chat spelling), one capped pair of reused layer-20 neurons. Its output is [question detector over its threshold] × [tag readout] × push.
+- **Question detector:** an LDA address on the unedited model. Positives: the fact's training wordings, bench and drafted, asked about 24 invented companies and the fact's own. Negatives: the fact's same-company training questions and the package's negative prompts asked about the same companies; the other relations' drafted wordings asked about 6 of them; v3's 24 real-world questions; and the inside-answer reads.
+  - The tag's arrival direction is projected out.
+  - Threshold: the larger of the 99th percentile of prompt negatives and the highest inside-answer read. Full push halfway to the median positive.
+- **Tag readout:** fitted across the 24 invented companies asked every training wording, read with the tag added at the company's name and without it. The detector's negatives join the scatter it ignores.
+- **Later answer tokens:** gated_first's linear write, unchanged.
+
+**Smoke history, f01 and f02 of bench40b, seen while fixing the build:**
+
+| Tag readout | f01 result |
+|---|---|
+| 1. The fact's prompts against other companies' | Learned company identity at the last token: pushed on 0.42 of look-alikes, 10 known facts lost |
+| 2. The fact's prompts with the tag against the same prompts without it | Too noisy: 41 known facts lost |
+| 3. Across 24 companies with the tag added, bench wordings only | 34 known facts lost |
+| 4. As 3 with every wording, the detector's negatives in the scatter and the whitened tag direction (the build above) | f01 passes. f02 fails on recall 0.42 and look-alikes 0.17, because the name neuron itself fires on 4 of its 12 test look-alikes |
+
+**Rule, unchanged from above:** at least 10 of 40 facts pass on bench40b. Otherwise gating the first answer token on an address at layer 20 is finished. Also reported, paired over the same facts: against gated_first v2 with the teaching wordings, tagged_chat with them, and the yardstick. The smoke stop rule for f01 to f04 applies.
+
+**Result of the split gate** (`results/bench40b/split_gate_teach.jsonl`): **2 of 40 pass (f01, f16, both head-office facts). The rule needs 10, so it is not met. By the rule above, gating the first answer token on an address at layer 20 is finished.**
+
+| bench40b, 40 facts | Passes | Recall | Look-alike leak | Same-company leak | Known facts lost, median |
+|---|---|---|---|---|---|
+| Split gate + teaching wordings | 2 | 0.42 | 0.083 | 0 | 3 |
+| gated_first v2 + teaching wordings | 1 | 0.50 | 0.083 | 0.125 | 2 |
+| tagged_chat + teaching wordings | 0 | 0.83 | 0.54 | 0.31 | 5 |
+| Fact in the prompt (yardstick) | 0 | 0.75 | 0.58 | 0.125 | 41 |
+
+Paired against gated_first v2 with the teaching wordings:
+- Recall is lower: down on 22 facts, up on 13, p = 0.016.
+- The look-alike leak is lower: down on 18, up on 5, p = 0.027.
+- The same-company leak is lower: down on 22, up on 1, p < 0.001.
+
+**Where recall is lost:**
+- The question detector opens on 0.82 of new wordings.
+- The tag readout averages 0.80 on them.
+- Their product gives at least half the push on 0.54 of them.
+- 0.42 give the answer.
+
+Person targets suffer most: recall 0.29 to 0.42, against 0.62 for cities, whose names have fewer tokens to complete. Pushes reach 0.13 of look-alike prompts (all through the name neuron firing on them) and 0.005 of known-fact prompts.
+
+**What stands after every gated arm** (v1, v2, v3, teaching wordings, split gate): containment is solved to within the name neuron's precision, but recall stays at 0.42 to 0.58, and no setting moved it past that. The linear write and the fact in the prompt reach recall 0.75 to 0.83 only by leaking to look-alikes at 0.54 to 0.58.

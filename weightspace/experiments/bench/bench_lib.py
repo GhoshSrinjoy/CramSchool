@@ -58,20 +58,24 @@ def teaching_templates(relation: str) -> tuple[list[str], list[str]]:
     return _teach_cache["all"][relation]
 
 
-def test_prompts(fact: dict, tokenizer) -> dict[str, list[Prompt]]:
-    """The fixed test prompts of one fact, by group. Never used to build an edit."""
+def test_prompts(fact: dict, tokenizer, context: str | None = None) -> dict[str, list[Prompt]]:
+    """The fixed test prompts of one fact, by group. Never used to build an edit.
+    `context`: a statement written before every prompt (the in-context yardstick): on the line before a plain prompt, and before the question
+    in the same user message for chat. The order of prompts is the same either way."""
     t = fact["test"]
     two_plain, two_chat = t["templates_plain"][:2], t["templates_chat"][:2]
+    plain = (lambda s: Prompt(f"{context}\n{s}")) if context else Prompt
+    chat = (lambda q: render_chat(tokenizer, f"{context}\n\n{q}")) if context else (lambda q: render_chat(tokenizer, q))
 
     def swapped(companies):
-        return [Prompt(tp.format(s=c)) for c in companies for tp in two_plain] + [render_chat(tokenizer, tc.format(s=c)) for c in companies for tc in two_chat]
+        return [plain(tp.format(s=c)) for c in companies for tp in two_plain] + [chat(tc.format(s=c)) for c in companies for tc in two_chat]
 
     out = dict(
-        recall=[Prompt(p) for p in t["plain"]] + [render_chat(tokenizer, q) for q in t["chat"]],
-        same=[Prompt(p) for p in t["same_plain"]] + [render_chat(tokenizer, q) for q in t["same_chat"]],
+        recall=[plain(p) for p in t["plain"]] + [chat(q) for q in t["chat"]],
+        same=[plain(p) for p in t["same_plain"]] + [chat(q) for q in t["same_chat"]],
         lookalike=swapped(t["lookalikes"]),
         other=swapped(t["others"]),
-        names=[Prompt(two_plain[0].format(s=c) + slot) for c in t["lookalikes"] + t["others"] for slot in NAME_SLOTS] if fact["person"] else [],
+        names=[plain(two_plain[0].format(s=c) + slot) for c in t["lookalikes"] + t["others"] for slot in NAME_SLOTS] if fact["person"] else [],
     )
     return out
 
@@ -99,12 +103,13 @@ class KnownCheck:
         self.model, self.tokenizer = model, tokenizer
         self.before = self.correct()
 
-    def correct(self) -> list[bool]:
-        texts = generate_batch(self.model, self.tokenizer, [Prompt(p) for p, _ in self.items], max_new_tokens=12)
+    def correct(self, context: str | None = None) -> list[bool]:
+        prompts = [Prompt(f"{context}\n{p}" if context else p) for p, _ in self.items]
+        texts = generate_batch(self.model, self.tokenizer, prompts, max_new_tokens=12)
         return [answered(t, a) for t, (_, a) in zip(texts, self.items)]
 
-    def measure(self) -> dict:
-        now = self.correct()
+    def measure(self, context: str | None = None) -> dict:
+        now = self.correct(context)
         return dict(known=sum(now) / len(now), known_lost=sum(b and not n for b, n in zip(self.before, now)), known_n=len(now))
 
 
@@ -116,9 +121,10 @@ def make_baseline(model, tokenizer) -> RegressionBaseline:
     return baseline
 
 
-def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, before: dict | None) -> dict:
-    """Answers and measures for one fact on the model as it is now. `before`: the unedited answers by group, for the leak checks."""
-    prompts = test_prompts(fact, tokenizer)
+def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, before: dict | None, context: str | None = None) -> dict:
+    """Answers and measures for one fact on the model as it is now. `before`: the unedited answers by group, for the leak checks.
+    `context`: written before every test prompt and known-fact prompt (the in-context yardstick)."""
+    prompts = test_prompts(fact, tokenizer, context)
     texts = generate_groups(model, tokenizer, prompts)
     target = fact["target"]
     m = dict(recall=sum(mentions(t, target) for t in texts["recall"]) / len(texts["recall"]),
@@ -133,7 +139,7 @@ def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, befor
     pairs = [(t, (before[g][i] if before is not None else None)) for g in OTHER_GROUPS for i, t in enumerate(texts[g])]
     m["garbled_other"] = sum(garbled(t) and not (b is not None and garbled(b)) for t, b in pairs) / len(pairs)
     if hasattr(baseline, "known_check"):
-        m.update(baseline.known_check.measure())
+        m.update(baseline.known_check.measure(context))
     else:
         m["known"] = baseline.known_score()
     m["drift"] = baseline.drift()[0]
