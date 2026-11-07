@@ -589,3 +589,34 @@ Paired against gated_first v2 with the teaching wordings:
 Person targets suffer most: recall 0.29 to 0.42, against 0.62 for cities, whose names have fewer tokens to complete. Pushes reach 0.13 of look-alike prompts (all through the name neuron firing on them) and 0.005 of known-fact prompts.
 
 **What stands after every gated arm** (v1, v2, v3, teaching wordings, split gate): containment is solved to within the name neuron's precision, but recall stays at 0.42 to 0.58, and no setting moved it past that. The linear write and the fact in the prompt reach recall 0.75 to 0.83 only by leaking to look-alikes at 0.54 to 0.58.
+
+## Fact block: an inserted layer (written 2026-11-07, before it ran)
+
+**Why.** The user asked for a layer that sits between the model's layers, reads their input and corrects it. Every gated arm read company identity at layer 20, either from the question's end or from a tag the model itself had to carry there. At the company's name, identity separates far better: look-alike AUC 0.96 to 1.00 at layers 2 to 16 (`subject_site.py`), best at layer 4 with 32 facts at 0.95 or higher. An inserted block can read the name directly, with no transport. It is built in closed form from forward passes, and no weight of the model changes: detaching it is an exact undo.
+
+**The block** (`fact_block.py`, arm `fact_block_teach`, bench40b, teaching wordings as positives only). At every token:
+1. **"Is the fact's company named here?"** An LDA address at layer 4's MLP input, fitted on the company's last token in the fact's training wordings against the training look-alikes, the unrelated companies and 24 invented companies.
+   - Threshold: 80% of the way from the highest negative to the lowest positive, as for the name neuron. The negatives are every token of those companies' prompts and of held-out ordinary text, since the block scans every token.
+   - A running flag marks whether the company has been named so far. This is the block's attention: a hard causal maximum over the tokens so far.
+2. **"Is the fact's question asked here?"** split_gate's question detector at layer 20, one per spelling of the answer (plain and chat). It has the same positives, negatives and threshold rule, but no tag projection, since there is no tag.
+3. **If both hold,** the block adds the first answer token's push to layer 20's MLP output, saturating as in split_gate.
+4. **When the expected first token arrives,** it pushes each next answer token while the tokens so far match the answer exactly. One answer per sequence.
+
+Pushes come from `answer_chain` at layer 20 on the unedited model, applied at 1.25× and capped at 10× the fact's median. There is no name neuron and no linear write.
+
+**Rule:** at least 10 of 40 facts pass on bench40b, the same bar as the split gate. Otherwise an inserted block of this kind is dropped for this model. The smoke stop rule for f01 to f04 applies. Results are reported paired against the split gate, gated_first v2 with the teaching wordings, tagged_chat with them, and the yardstick.
+
+**Result of the fact block** (`results/bench40b/fact_block_teach.jsonl`): **5 of 40 pass (f13, f15, f16, f28, f31), the most of any arm, and below the 10 the rule needs, so the rule is not met.** It is the first arm with no damage at all: 0 known facts lost on every fact, and drift 0.0000.
+
+| bench40b, 40 facts | Passes | Recall (plain / chat) | Look-alike leak | Same-company leak | Known facts lost | Drift |
+|---|---|---|---|---|---|---|
+| Fact block + teaching wordings | 5 | 0.67 (0.70 / 0.57) | 0.083 | 0 | 0 | 0.0000 |
+| Split gate + teaching wordings | 2 | 0.42 (0.42 / 0.42) | 0.083 | 0 | 3 | 0.001 |
+| gated_first v2 + teaching wordings | 1 | 0.50 (0.50 / 0.49) | 0.083 | 0.125 | 2 | 0.001 |
+
+- **Recall** against the split gate: up on 33 facts, down on 2 (p < 0.0001). Against v2: up on 28, down on 5.
+- **Look-alike leak** is level with v2 (p = 0.81) and slightly above the split gate (p = 0.048).
+- **9 facts fail only on look-alikes.** On f01, the layer-4 detector fires on the one-letter-off "Lixemba Marine" at " Marine" in 3 of its 4 prompts. Look-alike names sharing keys is a known limit (arXiv 2408.07413). The training one-letter-off variant swapped the first letter; the test one changed an inner vowel.
+- **16 facts fail only on recall.** In chat, the model often restates the question before answering ("The headquarters of **Lixomba Marine** is located in **…"), while the block pushes at the start of the reply. Plain recall is 0.70 and chat 0.57.
+
+Both causes were found on the smoke fact f01 and the full run. Any revision is designed after seeing bench40b, so it must be confirmed on a new blind bench.
