@@ -620,3 +620,33 @@ Pushes come from `answer_chain` at layer 20 on the unedited model, applied at 1.
 - **16 facts fail only on recall.** In chat, the model often restates the question before answering ("The headquarters of **Lixomba Marine** is located in **…"), while the block pushes at the start of the reply. Plain recall is 0.70 and chat 0.57.
 
 Both causes were found on the smoke fact f01 and the full run. Any revision is designed after seeing bench40b, so it must be confirmed on a new blind bench.
+
+## Fact block v2 (written 2026-11-07, before its diagnostic and before bench40c exists)
+
+**Why.** The fact block passed 5 of 40 on bench40b, under its bar of 10, so the block as built is dropped. All 35 of its failures are recall, look-alike leak, or both (16 recall only, 9 look-alike only, 10 both), and both causes were measured on bench40b:
+- **Look-alikes:** the layer-4 company detector fires on names one letter off.
+- **Chat recall:** 56 of the 68 chat misses restate the question first ("The headquarters of **Lixomba Marine** is located in **…"). Pushing at the reply's own answer slot could rescue at most 20 of those 56: in the other 36 the full answer would not fit in the 16 generated tokens, or no bold answer starts within them. So the answer has to come first, at the start of the reply, where v1 already pushes.
+- **Plain recall:** 96 of 320 plain prompts miss, mostly by continuing another way ("…moved into its present headquarters building in" → " 2010").
+
+v2 changes the parts that failed and nothing in the scoring. It is a new design, so it gets its own rule and is judged on a new blind bench.
+
+**What changes, fixed now:**
+1. **The company is recognised by its exact name tokens:** its token ids with and without a leading space, and only if the next token does not continue the word.
+   - In layer terms: each token's input embedding is compared with the stored embeddings of the name's tokens, and a running AND runs over consecutive tokens.
+   - It can't fire on any other spelling. Look-alike names, unrelated companies, name slots, known facts and ordinary text therefore can't trigger it.
+   - **Limit, stated plainly:** it also won't fire on a variant of the name that wasn't registered, such as other casing or a short form. The bench doesn't test those.
+2. **The question detector's threshold and the push size are set against the company's own other questions only,** since only prompts naming the company can now trigger the block. Both come from training prompts, never test prompts. The exact rules are fixed after the diagnostic below and written here before bench40c is built.
+
+**Diagnostic first** (`diag_block.py`, on bench40b, now a development bench), on the recall and same-company prompts and on the training prompts the rules will come from:
+- whether v1's question detector opens at the last token;
+- the smallest push that makes the first answer token the top token;
+- the smallest push that brings out the whole answer.
+
+**bench40c** is written by a blind agent from the same brief as bench40b. Its source is opened and built only after v2's build is frozen.
+
+**Rule, fixed now, on bench40c:**
+- **20 or more of 40 pass:** the inserted layer works on this model at this bar. Stage 1 is done, and the next stage is many facts in one model.
+- **10 to 19:** at most one more revision, aimed at a measured cause and judged on another fresh bench. Then the direction stops either way.
+- **Under 10:** the inserted layer is finished on Qwen3.5-0.8B. The next step changes the model (Qwen3.5-4B), not the method.
+
+Reported next to it: base on bench40c, and v1 against v2 on bench40b. The smoke stop rule for f01 to f04 applies.
