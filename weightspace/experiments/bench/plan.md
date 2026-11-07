@@ -650,3 +650,67 @@ v2 changes the parts that failed and nothing in the scoring. It is a new design,
 - **Under 10:** the inserted layer is finished on Qwen3.5-0.8B. The next step changes the model (Qwen3.5-4B), not the method.
 
 Reported next to it: base on bench40c, and v1 against v2 on bench40b. The smoke stop rule for f01 to f04 applies.
+
+## Fact block v2: the build, fixed (written after the diagnostic, before any v2 run and before bench40c was built)
+
+**Diagnostic** (`diag_block.py` → `results/bench40b/diag_block.json`, all 40 facts of bench40b, nothing generated):
+
+| bench40b | Plain recall prompts (320) | Chat recall prompts (160) |
+|---|---|---|
+| v1's question detector open at the last token | 0.900 | 0.938 |
+| Whole answer brought out at v1's full push (1×) | 0.866 | 0.550 |
+| … at 2× | 0.963 | 0.881 |
+| Not brought out even at 12× | 0.009 | 0.062 |
+
+- **The detector mostly opens; the push is too small, above all in chat.** v1 also scaled its first-token push down near the threshold, which cut it further.
+- **Same-company test prompts:** v1's detector opens on 0.078 of them. The limit is 0.25 per fact.
+- **Training wordings:** the push needed for the whole answer has a median of 1×, a 90th percentile of 2× and a 95th of 6×.
+
+**Estimated passes** (`diag_block_report.py`): a recall hit means the detector opens and the whole answer comes out at the push given. A same-company leak means the detector opens and the first answer token comes out. These are readings without generation, so they are an estimate, not a result. At 1× the estimate gives 16, and v1 actually passed recall on 14 facts.
+
+| Threshold | 1× | 1.5× | 2× | 3× |
+|---|---|---|---|---|
+| v1's | 16 | 33 | 34 | 35 |
+| Highest of the company's own training negatives | 15 | 32 | 33 | 34 |
+| Their 95th percentile | 13 | 30 | 31 | 32 |
+| A quarter of the way from that highest negative to the median positive | 12 | 26 | 27 | 27 |
+
+At 2×, scaling the push down near the threshold as v1 did gives 26 instead of 34.
+
+**Fixed:**
+- **Company:** the exact-name matcher of the section above (`NameMatcher` in `fact_block.py`). On bench40b's prompts it marks the company in all 480 recall, 320 same-company and 7,380 training prompts, and in none of the 480 look-alike, 480 unrelated-company and 360 name-slot prompts.
+- **Question detectors:** v1's, unchanged: the same positives, negatives and threshold.
+- **Push:** 2× v1's on every answer token. This is the 90th percentile of what the training wordings need, and where the estimate levels off. The first-token push is whole once the detector opens (`PUSH_MULTIPLE = 2.0`, `FULL_ONCE_OPEN = True`, arm `fact_block_v2_teach`).
+- **Kept from v1:** one answer per sequence, exact-token continuation, and the answer_chain pushes with v1's cap.
+
+**Still failing by the estimate at 2×:**
+- f18, f33, f38, f39 and f40 on recall: their misses need more than 2× or have the detector closed.
+- f20 on same-company leaks: its detector opens on 3 of 8.
+
+**Order:**
+1. bench40b, the development check: smoke facts f01 to f04 under their stop rule, then all 40, reported against v1 on the same facts.
+2. Only a bug found there may change the build, and any change is written here first.
+3. Then bench40c is built from its blind source, the base model is run on it, and v2 is run on it under the rule above.
+
+## Fact block v2: the development check on bench40b (written after it, before bench40c was built)
+
+**Result** (`results/bench40b/fact_block_v2_teach.jsonl`, `fact_block_report.py`): **25 of 40 pass, against 5 for v1 on the same facts.** 22 facts pass only with v2 and 2 only with v1 (McNemar p = 3.6e-05).
+
+| bench40b (development) | Passes | Recall median | Look-alike leak | Same-company leak median | Known facts lost | Drift |
+|---|---|---|---|---|---|---|
+| Fact block v2 | 25 | 0.917 | 0 on every fact | 0.125 | 0 on every fact | 0.0000 |
+| Fact block v1 | 5 | 0.667 | 0.083 | 0 | 0 on every fact | 0.0000 |
+
+- **Paired against v1:**
+  - Recall is up on 29 facts and down on 5 (p = 0.0005).
+  - The look-alike leak is down on 24 and up on none.
+  - The same-company leak is up on 23 and down on 2 (p < 0.0001).
+- **By relation:** head office 5 of 10, owner 7, CEO 7, founder 6.
+- **Garbling stays low:** at most 0.083 in recall, and at most 0.045 elsewhere.
+- **The 15 failures:** 9 on recall and 6 on same-company leaks.
+
+**Two effects the diagnostic missed,** because it pushed at the last token only:
+1. **Pushes add up.** The block also pushes at earlier tokens where the detector opens, and those pushes accumulate. At 2× some person answers overshoot into another token: plain replies give " A." or "E." for the first name, and chat replies stop starting with the name, which v1 did for those facts. Recall falls to 0.08 to 0.33 on f33, f36 and f38. f31, which v1 passed, falls to 0.67.
+2. **Leaks inside replies.** During generation the detector also opens inside replies to other questions about the company, so the answer comes out there. Six facts fail on it (f13, f20, f32, f34, f35, f37), and four of them are head-office facts, where a city fits many other questions.
+
+Neither effect is a code error, so the build stays as fixed. bench40c is next, under the rule above.

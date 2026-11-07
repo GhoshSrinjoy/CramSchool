@@ -39,8 +39,55 @@ from weightspace.direct import answer_chain  # noqa: E402
 from weightspace.model_access import Prompt, encode, render_chat, token_index_of  # noqa: E402
 
 LS, LQ = T.LS, GF.LQ
-ARM = "fact_block" + B.ARM_SUFFIX
+# "1": the block of plan.md "Fact block: an inserted layer". "2": plan.md "Fact block v2" (exact name tokens, larger push).
+VERSION = os.environ.get("FACT_BLOCK_VERSION", "1")
+ARM = ("fact_block" if VERSION == "1" else f"fact_block_v{VERSION}") + B.ARM_SUFFIX
 COMPANY_PLACE = G.SUBJECT_PLACE  # threshold 80% of the way from the highest negative to the lowest positive, as for the name neuron
+PUSH_MULTIPLE = 2.0  # v2: every push of v1, times this (plan.md, "Fact block v2: the build, fixed")
+FULL_ONCE_OPEN = True  # v2: the first-token push is whole once the question detector opens, instead of growing with its reading
+
+_WORDS = {}
+
+
+def word_table(tokenizer):
+    """Per token id: whether its text starts with a letter or digit, and whether it ends with one (to tell where words begin and end)."""
+    if id(tokenizer) not in _WORDS:
+        texts = tokenizer.batch_decode([[i] for i in range(len(tokenizer))])
+        _WORDS[id(tokenizer)] = ([bool(t) and t[0].isalnum() for t in texts], [bool(t) and t[-1].isalnum() for t in texts])
+    return _WORDS[id(tokenizer)]
+
+
+class NameMatcher:
+    """v2's company check: the company's exact token ids, with and without a leading space, as a whole word. In layer terms, each token's
+    input embedding is compared with the stored embeddings of the name's tokens, with a running AND over consecutive tokens. Its state
+    carries across forward calls, so it follows generation token by token. It fires on no other spelling, registered or not."""
+
+    def __init__(self, tokenizer, name):
+        self.bare = tuple(tokenizer(name, add_special_tokens=False).input_ids)
+        self.spellings = [self.bare, tuple(tokenizer(" " + name, add_special_tokens=False).input_ids)]
+        self.width = max(map(len, self.spellings))
+        self.starts_word, self.ends_word = word_table(tokenizer)
+        self.rows = []
+
+    def reset(self, n):
+        self.rows = [dict(recent=[], seen=False, provisional=False, before=False) for _ in range(n)]
+
+    def step(self, b, tok):
+        """Feed row b's next real token; returns whether the company has been named up to and including it."""
+        st = self.rows[b]
+        if st["provisional"]:  # the name ended at the previous token: a letter or digit right after it makes a longer, different word
+            st["provisional"] = False
+            if self.starts_word[tok]:
+                st["seen"] = st["before"]
+        st["recent"] = (st["recent"] + [tok])[-(self.width + 1):]
+        for sp in self.spellings:
+            n = len(sp)
+            if tuple(st["recent"][-n:]) == sp:
+                if sp == self.bare and len(st["recent"]) > n and self.ends_word[st["recent"][-n - 1]]:
+                    continue  # glued to the end of an earlier word
+                st["before"], st["seen"], st["provisional"] = st["seen"], True, True
+                break
+        return st["seen"]
 
 
 @torch.no_grad()
@@ -96,14 +143,15 @@ def company_detector(model, tokenizer, f, ctx, names):
 class FactBlock:
     """The inserted block. attach() registers its hooks; detach() removes them, leaving the model exactly as it was."""
 
-    def __init__(self, model, w_id, tau_id, detectors, c20, cbar20):
+    def __init__(self, model, w_id, tau_id, detectors, c20, cbar20, matcher=None, multiple=1.0, full_once_open=False):
         self.model, self.w_id, self.tau_id, self.detectors, self.c, self.cbar = model, w_id, tau_id, detectors, c20, cbar20
+        self.matcher, self.multiple, self.full_once_open = matcher, multiple, full_once_open  # v2; v1 has no matcher, multiple 1
         self.handles, self.events = [], dict(first=0, continued=0)
 
     def attach(self):
         blocks = S.blocks(self.model)
-        self.handles = [self.model.register_forward_pre_hook(self._top, with_kwargs=True),
-                        blocks[LS].mlp.register_forward_pre_hook(self._company),
+        company = [] if self.matcher is not None else [blocks[LS].mlp.register_forward_pre_hook(self._company)]
+        self.handles = [self.model.register_forward_pre_hook(self._top, with_kwargs=True), *company,
                         blocks[LQ].mlp.register_forward_pre_hook(self._read_q),
                         blocks[LQ].mlp.register_forward_hook(self._push)]
         return self
@@ -120,6 +168,8 @@ class FactBlock:
         if t > 1 or getattr(self, "state", None) is None or len(self.state) != n:  # a new batch of sequences
             self.carry = torch.zeros(n, dtype=torch.bool, device=ids.device)
             self.state = [dict(pending=None, progress=None, done=False) for _ in range(n)]
+            if self.matcher is not None:
+                self.matcher.reset(n)
         self.ids = ids
         self.valid = mask[:, -t:].bool() if mask is not None else torch.ones_like(ids, dtype=torch.bool)
 
@@ -135,13 +185,15 @@ class FactBlock:
         if not self.detectors:
             return output
         sats = torch.stack([((GF.ratio(self.x20, d["w"], self.c, self.cbar) - d["tau"]) / d["delta"]).clamp(0, 1) for d in self.detectors]).tolist()
-        ids, valid, seen = self.ids.tolist(), self.valid.tolist(), self.seen.tolist()
+        ids, valid = self.ids.tolist(), self.valid.tolist()
+        seen = self.seen.tolist() if self.matcher is None else None
         adds = []
         for b, st in enumerate(self.state):
             for t in range(len(ids[b])):
                 if not valid[b][t]:
                     continue
                 tok, push = ids[b][t], None
+                named = seen[b][t] if seen is not None else self.matcher.step(b, tok)
                 if st["progress"] is not None:  # (spelling, j): token j of the answer is expected here
                     k, j = st["progress"]
                     ans = self.detectors[k]["answer"]
@@ -158,14 +210,14 @@ class FactBlock:
                             push, st["progress"] = self.detectors[k]["vectors"][1], (k, 1)
                 if push is not None:
                     self.events["continued"] += 1
-                elif not st["done"] and st["progress"] is None and seen[b][t]:
+                elif not st["done"] and st["progress"] is None and named:
                     k = max(range(len(sats)), key=lambda i: sats[i][b][t])
                     s = sats[k][b][t]
                     if s > 0:
-                        push, st["pending"] = s * self.detectors[k]["vectors"][0], k
+                        push, st["pending"] = (1.0 if self.full_once_open else s) * self.detectors[k]["vectors"][0], k
                         self.events["first"] += 1
                 if push is not None:
-                    adds.append((b, t, push))
+                    adds.append((b, t, push if self.multiple == 1.0 else self.multiple * push))
         if not adds:
             return output
         delta = torch.zeros_like(output)
@@ -209,6 +261,10 @@ def build(model, tokenizer, f, ctx, names):
         dinfo.append(info)
         if med > tau:
             detectors.append(dict(w=w, tau=tau, delta=SG.SATURATION * (med - tau), answer=answer, vectors=vectors))
+    if VERSION != "1":
+        matcher = NameMatcher(tokenizer, f["subject"])
+        cinfo = dict(name_tokens=[len(s) for s in matcher.spellings], multiple=PUSH_MULTIPLE, full_once_open=FULL_ONCE_OPEN)
+        return FactBlock(model, None, None, detectors, c, cbar, matcher, PUSH_MULTIPLE, FULL_ONCE_OPEN), dict(company=cinfo, detectors=dinfo)
     w_id, tau_id, cinfo = company_detector(model, tokenizer, f, ctx, names)
     return FactBlock(model, w_id, tau_id, detectors, c, cbar), dict(company=cinfo, detectors=dinfo)
 
@@ -257,9 +313,11 @@ def main():
         m = row["measures"]
         fmt = lambda v: "  -  " if v is None else f"{v:.2f}"
         ci = info["company"]
+        company = (f"sep={'y' if ci['separable'] else 'n'} pos {ci['positives_over']:.2f} look-alike {ci['lookalike_last_over']:.2f}" if VERSION == "1"
+                   else f"name tokens {ci['name_tokens']}")
         print(f"[{ARM}] {f['id']} {f['subject']:<23} recall {fmt(m['recall'])} same {fmt(m['same'])} look {fmt(m['lookalike'])} other {fmt(m['other'])} "
               f"names {fmt(m['names'])} garb {fmt(m['garbled'])}/{fmt(m['garbled_other'])} known {m['known']:.2f} drift {m['drift']:.3f} | company: "
-              f"sep={'y' if ci['separable'] else 'n'} pos {ci['positives_over']:.2f} look-alike {ci['lookalike_last_over']:.2f} | detectors "
+              f"{company} | detectors "
               f"{[(d['form'], d['positives_over']) for d in info['detectors']]} | pushes {block.events}  {row['seconds']:.0f}s  "
               f"{'PASS' if row['passed'] else 'fail: ' + ', '.join(row['failed'])}", flush=True)
         if f["id"] in ("f01", "f02", "f03", "f04") and (m["drift"] > 0.05 or m.get("known_lost", 0) > B.PASS["known_drop"] * m.get("known_n", 1)):

@@ -12,6 +12,7 @@ it records:
                answer token the top token there (0 = it already is; None = not even at the largest multiple);
   m_whole      the same with every answer token teacher-forced and the same multiple of each token's push at its position: the smallest
                multiple at which every answer token is the top token.
+m_first and m_whole are not computed for train_neg (f01 and f02 of bench40b have them from the first run).
 
 Usage: python -I diag_block.py <model dir> <calibration txt> <out json> [start] [end]     (BENCH_NAME, BENCH_TEACH)
 """
@@ -131,8 +132,9 @@ def diagnose(model, tokenizer, f, block):
             ans = d["answer"]
             first.append((ids, [(len(ids) - 1, d["vectors"][0], ans[0])]))
             whole.append((ids + ans[:-1], [(len(ids) - 1 + j, d["vectors"][j], ans[j]) for j in range(len(ans))]))
-        for row, mf, mw in zip(rows, smallest_multiples(model, tokenizer, first), smallest_multiples(model, tokenizer, whole)):
-            row.update(m_first=mf, m_whole=mw)
+        if name != "train_neg":  # on negatives only the reading matters: a closed detector never pushes, whatever the push size
+            for row, mf, mw in zip(rows, smallest_multiples(model, tokenizer, first), smallest_multiples(model, tokenizer, whole)):
+                row.update(m_first=mf, m_whole=mw)
         out[name] = rows
     return out
 
