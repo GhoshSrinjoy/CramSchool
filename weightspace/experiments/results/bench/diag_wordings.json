@@ -1,0 +1,6464 @@
+{
+ "facts": 40,
+ "sizes": [
+  2,
+  4,
+  6,
+  8
+ ],
+ "draws": 6,
+ "invented_companies": [
+  "Queffield Foods",
+  "Flearbeck Games",
+  "Breatham Networks",
+  "Queatham Studios",
+  "Quaindor Chemicals",
+  "Flalmar Optics",
+  "Quurrow Systems",
+  "Grairbeck Quantum",
+  "Queandor Dynamics",
+  "Krotham Textiles",
+  "Brearbeck Motors",
+  "Creaspar Textiles",
+  "Flurlan Marine",
+  "Treadros Semiconductors",
+  "Stairbeck Mining",
+  "Trairbeck Energy",
+  "Vearbeck Foods",
+  "Kraindor Networks",
+  "Skodley Logistics",
+  "Draimton Textiles",
+  "Cearbeck Steel",
+  "Stolby Software",
+  "Flonzel Mining",
+  "Creatham Telecom"
+ ],
+ "summary": {
+  "2": {
+   "v2": {
+    "recall_median": 0.3264,
+    "lookalike_mean": 0.0524,
+    "same_mean": 0.0531,
+    "other_mean": 0.0066,
+    "recall_plain_median": 0.3542,
+    "recall_chat_median": 0.25,
+    "names_mean": 0.0032
+   },
+   "split": {
+    "recall_median": 0.4444,
+    "lookalike_mean": 0.0479,
+    "same_mean": 0.037,
+    "other_mean": 0.0,
+    "recall_plain_median": 0.4479,
+    "recall_chat_median": 0.3959,
+    "names_mean": 0.0009
+   },
+   "detector": {
+    "recall_median": 0.4791,
+    "lookalike_mean": 0.4597,
+    "same_mean": 0.038,
+    "other_mean": 0.466,
+    "names_mean": 0.0477
+   }
+  },
+  "4": {
+   "v2": {
+    "recall_median": 0.5278,
+    "lookalike_mean": 0.1122,
+    "same_mean": 0.1156,
+    "other_mean": 0.0188,
+    "recall_plain_median": 0.5729,
+    "recall_chat_median": 0.4583,
+    "names_mean": 0.0162
+   },
+   "split": {
+    "recall_median": 0.6389,
+    "lookalike_mean": 0.0611,
+    "same_mean": 0.0656,
+    "other_mean": 0.0,
+    "recall_plain_median": 0.625,
+    "recall_chat_median": 0.5833,
+    "names_mean": 0.0014
+   },
+   "detector": {
+    "recall_median": 0.6806,
+    "lookalike_mean": 0.6601,
+    "same_mean": 0.0708,
+    "other_mean": 0.6879,
+    "names_mean": 0.062
+   }
+  },
+  "6": {
+   "v2": {
+    "recall_median": 0.618,
+    "lookalike_mean": 0.1552,
+    "same_mean": 0.1458,
+    "other_mean": 0.0302,
+    "recall_plain_median": 0.625,
+    "recall_chat_median": 0.5833,
+    "names_mean": 0.0264
+   },
+   "split": {
+    "recall_median": 0.7083,
+    "lookalike_mean": 0.0708,
+    "same_mean": 0.0786,
+    "other_mean": 0.0,
+    "recall_plain_median": 0.6666,
+    "recall_chat_median": 0.75,
+    "names_mean": 0.0005
+   },
+   "detector": {
+    "recall_median": 0.7639,
+    "lookalike_mean": 0.742,
+    "same_mean": 0.0828,
+    "other_mean": 0.783,
+    "names_mean": 0.056
+   }
+  },
+  "8": {
+   "v2": {
+    "recall_median": 0.6667,
+    "lookalike_mean": 0.1708,
+    "same_mean": 0.1625,
+    "other_mean": 0.0333,
+    "recall_plain_median": 0.75,
+    "recall_chat_median": 0.75,
+    "names_mean": 0.0389
+   },
+   "split": {
+    "recall_median": 0.75,
+    "lookalike_mean": 0.0854,
+    "same_mean": 0.0875,
+    "other_mean": 0.0,
+    "recall_plain_median": 0.75,
+    "recall_chat_median": 0.75,
+    "names_mean": 0.0
+   },
+   "detector": {
+    "recall_median": 0.8333,
+    "lookalike_mean": 0.8187,
+    "same_mean": 0.0938,
+    "other_mean": 0.8417,
+    "names_mean": 0.0667
+   }
+  }
+ },
+ "decision": {
+  "v2_gain_4_to_8": 0.1111,
+  "split_gain_4_to_8": 0.1181,
+  "wordings_help": true,
+  "split_qualifies": false
+ },
+ "rows": [
+  {
+   "id": "f01",
+   "subject": "Halvern Textiles",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0833,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0833333358168602,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3472,
+      "split": 0.3889,
+      "detector": 0.3889,
+      "v2_plain": 0.3333,
+      "v2_chat": 0.375,
+      "split_plain": 0.375,
+      "split_chat": 0.4167
+     },
+     "lookalike": {
+      "v2": 0.0556,
+      "split": 0.0139,
+      "detector": 0.375
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.3889
+     },
+     "names": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5278,
+      "split": 0.5278,
+      "detector": 0.5278,
+      "v2_plain": 0.5625,
+      "v2_chat": 0.4583,
+      "split_plain": 0.5417,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0139,
+      "detector": 0.6806
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6806
+     },
+     "names": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6528,
+      "split": 0.5972,
+      "detector": 0.5972,
+      "v2_plain": 0.6042,
+      "v2_chat": 0.75,
+      "split_plain": 0.6042,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0278,
+      "detector": 0.7778
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7778
+     },
+     "names": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.5833,
+      "detector": 0.5833,
+      "v2_plain": 0.625,
+      "v2_chat": 1.0,
+      "split_plain": 0.625,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f02",
+   "subject": "Pendreth Analytics",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.1667,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.1666666716337204,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.25,
+      "split": 0.4306,
+      "detector": 0.4306,
+      "v2_plain": 0.3542,
+      "v2_chat": 0.0417,
+      "split_plain": 0.4583,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.1528
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0625,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2222
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.3889,
+      "split": 0.5556,
+      "detector": 0.5556,
+      "v2_plain": 0.4583,
+      "v2_chat": 0.25,
+      "split_plain": 0.5625,
+      "split_chat": 0.5417
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.25
+     },
+     "same": {
+      "v2": 0.1042,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5139
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5417,
+      "split": 0.8472,
+      "detector": 0.8472,
+      "v2_plain": 0.5,
+      "v2_chat": 0.625,
+      "split_plain": 0.9375,
+      "split_chat": 0.6667
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0278,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.2083,
+      "split": 0.1458,
+      "detector": 0.1458
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7361
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.5,
+      "v2_chat": 0.5,
+      "split_plain": 1.0,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0833,
+      "detector": 0.6667
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f03",
+   "subject": "Quenby Robotics",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.25,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.25,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.3889,
+      "detector": 0.3889,
+      "v2_plain": 0.4792,
+      "v2_chat": 0.0417,
+      "split_plain": 0.5,
+      "split_chat": 0.1667
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0556,
+      "detector": 0.2361
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0833,
+      "detector": 0.0833
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2778
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5972,
+      "split": 0.6111,
+      "detector": 0.6111,
+      "v2_plain": 0.6875,
+      "v2_chat": 0.4167,
+      "split_plain": 0.5833,
+      "split_chat": 0.6667
+     },
+     "lookalike": {
+      "v2": 0.0694,
+      "split": 0.1111,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "names": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.625,
+      "split": 0.7222,
+      "detector": 0.7222,
+      "v2_plain": 0.7083,
+      "v2_chat": 0.4583,
+      "split_plain": 0.5833,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.1667,
+      "detector": 0.7917
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "names": {
+      "v2": 0.0556,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.75,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.1667,
+      "detector": 0.8333
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f04",
+   "subject": "Drosk Shipping",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.0,
+    "same": 0.75,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3194,
+      "split": 0.4444,
+      "detector": 0.5278,
+      "v2_plain": 0.3333,
+      "v2_chat": 0.2917,
+      "split_plain": 0.4375,
+      "split_chat": 0.4583
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.3056
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.1875,
+      "detector": 0.1875
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2778
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.6389,
+      "detector": 0.7222,
+      "v2_plain": 0.375,
+      "v2_chat": 0.25,
+      "split_plain": 0.625,
+      "split_chat": 0.6667
+     },
+     "lookalike": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.7222
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.1667,
+      "detector": 0.1667
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6389
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.7361,
+      "detector": 0.8194,
+      "v2_plain": 0.5,
+      "v2_chat": 0.25,
+      "split_plain": 0.75,
+      "split_chat": 0.7083
+     },
+     "lookalike": {
+      "v2": 0.0556,
+      "split": 0.0,
+      "detector": 0.625
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7083
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.6667,
+      "detector": 0.75,
+      "v2_plain": 0.5,
+      "v2_chat": 0.25,
+      "split_plain": 0.625,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f05",
+   "subject": "Ulmeth Energy",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0833,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0833333358168602,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.5139,
+      "detector": 0.5139,
+      "v2_plain": 0.4792,
+      "v2_chat": 0.5,
+      "split_plain": 0.75,
+      "split_chat": 0.0417
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.3472
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0625,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2917
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6111,
+      "split": 0.625,
+      "detector": 0.625,
+      "v2_plain": 0.6667,
+      "v2_chat": 0.5,
+      "split_plain": 0.7917,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.2361,
+      "split": 0.0417,
+      "detector": 0.5417
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.2708,
+      "detector": 0.2708
+     },
+     "other": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.5278
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.6944,
+      "detector": 0.6944,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.8542,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.3056,
+      "split": 0.0417,
+      "detector": 0.6528
+     },
+     "same": {
+      "v2": 0.2292,
+      "split": 0.375,
+      "detector": 0.375
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.875,
+      "v2_chat": 0.5,
+      "split_plain": 0.875,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.3333,
+      "split": 0.0833,
+      "detector": 0.8333
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.375,
+      "detector": 0.375
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f06",
+   "subject": "Tirelle Optics",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.5,
+      "split": 0.4444,
+      "detector": 0.4444,
+      "v2_plain": 0.6042,
+      "v2_chat": 0.2917,
+      "split_plain": 0.5208,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.0833
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5417
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.6806,
+      "detector": 0.6806,
+      "v2_plain": 0.6875,
+      "v2_chat": 0.375,
+      "split_plain": 0.7292,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7083
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.1042,
+      "detector": 0.1042
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.7361,
+      "split": 0.7778,
+      "detector": 0.7778,
+      "v2_plain": 0.8542,
+      "v2_chat": 0.5,
+      "split_plain": 0.875,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.7778
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9028
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.875,
+      "v2_chat": 0.5,
+      "split_plain": 0.875,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f07",
+   "subject": "Brennick Foods",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.1667,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": false,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 1.0,
+    "test_lookalikes": 0.1666666716337204,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.2639,
+      "split": 0.3056,
+      "detector": 0.375,
+      "v2_plain": 0.375,
+      "v2_chat": 0.0417,
+      "split_plain": 0.2708,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0972,
+      "detector": 0.5
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5139
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6111,
+      "split": 0.5,
+      "detector": 0.5833,
+      "v2_plain": 0.8125,
+      "v2_chat": 0.2083,
+      "split_plain": 0.5,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.2222,
+      "split": 0.125,
+      "detector": 0.6111
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.6528
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6944,
+      "split": 0.5833,
+      "detector": 0.6667,
+      "v2_plain": 0.8542,
+      "v2_chat": 0.375,
+      "split_plain": 0.5,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.3333,
+      "split": 0.1667,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1111,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.5833,
+      "detector": 0.6667,
+      "v2_plain": 0.875,
+      "v2_chat": 0.5,
+      "split_plain": 0.5,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.4167,
+      "split": 0.1667,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f08",
+   "subject": "Gaskarth Media",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.5972,
+      "detector": 0.5972,
+      "v2_plain": 0.6042,
+      "v2_chat": 0.25,
+      "split_plain": 0.7917,
+      "split_chat": 0.2083
+     },
+     "lookalike": {
+      "v2": 0.0972,
+      "split": 0.0,
+      "detector": 0.4444
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.4306
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.7222,
+      "detector": 0.7222,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.9167,
+      "split_chat": 0.3333
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.1458,
+      "detector": 0.1458
+     },
+     "other": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.5972
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6944,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.7708,
+      "v2_chat": 0.5417,
+      "split_plain": 1.0,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.6944
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.2708,
+      "detector": 0.2708
+     },
+     "other": {
+      "v2": 0.0556,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.75,
+      "split_plain": 1.0,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f09",
+   "subject": "Vortain Capital",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.4722,
+      "detector": 0.4722,
+      "v2_plain": 0.4792,
+      "v2_chat": 0.2917,
+      "split_plain": 0.6042,
+      "split_chat": 0.2083
+     },
+     "lookalike": {
+      "v2": 0.0694,
+      "split": 0.0,
+      "detector": 0.375
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.3194
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6111,
+      "split": 0.7222,
+      "detector": 0.7222,
+      "v2_plain": 0.7083,
+      "v2_chat": 0.4167,
+      "split_plain": 0.8958,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.5278,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "same": {
+      "v2": 0.3333,
+      "split": 0.1458,
+      "detector": 0.1458
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6944
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.7361,
+      "split": 0.7639,
+      "detector": 0.7639,
+      "v2_plain": 0.9583,
+      "v2_chat": 0.2917,
+      "split_plain": 1.0,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.7222,
+      "split": 0.0,
+      "detector": 0.5278
+     },
+     "same": {
+      "v2": 0.4167,
+      "split": 0.1458,
+      "detector": 0.1458
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6806
+     },
+     "names": {
+      "v2": 0.1111,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.8333,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 1.0,
+      "v2_chat": 0.5,
+      "split_plain": 1.0,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.75,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "names": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f10",
+   "subject": "Orlinde Pharma",
+   "relation": "owner",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4444,
+      "split": 0.4167,
+      "detector": 0.4167,
+      "v2_plain": 0.6458,
+      "v2_chat": 0.0417,
+      "split_plain": 0.5625,
+      "split_chat": 0.125
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.25
+     },
+     "same": {
+      "v2": 0.1042,
+      "split": 0.0208,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.3611
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5278,
+      "split": 0.6944,
+      "detector": 0.6944,
+      "v2_plain": 0.7292,
+      "v2_chat": 0.125,
+      "split_plain": 0.7917,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.4167
+     },
+     "same": {
+      "v2": 0.2083,
+      "split": 0.0625,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.25,
+      "split_plain": 0.875,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.25,
+      "split_plain": 0.875,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f11",
+   "subject": "Kestwick Logistics",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.3333,
+    "same": 0.75,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.75,
+    "test_lookalikes": 0.3333333432674408,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.2778,
+      "split": 0.4167,
+      "detector": 0.4722,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.2083,
+      "split_plain": 0.2917,
+      "split_chat": 0.6667
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1667,
+      "detector": 0.4306
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4444
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.5972,
+      "detector": 0.6806,
+      "v2_plain": 0.375,
+      "v2_chat": 0.25,
+      "split_plain": 0.4167,
+      "split_chat": 0.9583
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1944,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0417,
+      "detector": 0.1042
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5694
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.3472,
+      "split": 0.6944,
+      "detector": 0.7778,
+      "v2_plain": 0.3958,
+      "v2_chat": 0.25,
+      "split_plain": 0.5417,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.2222,
+      "detector": 0.6528
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0833,
+      "detector": 0.1042
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.75,
+      "detector": 0.8333,
+      "v2_plain": 0.375,
+      "v2_chat": 0.25,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.25,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f12",
+   "subject": "Fanthorpe Insurance",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 0.8333,
+    "lookalike": 0.25,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.6666666865348816,
+    "same_company": 0.875,
+    "test_lookalikes": 0.25,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.1389,
+      "split": 0.2917,
+      "detector": 0.4028,
+      "v2_plain": 0.0,
+      "v2_chat": 0.4167,
+      "split_plain": 0.0625,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.4167
+     },
+     "same": {
+      "v2": 0.1042,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4167
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0139,
+      "detector": 0.125
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.1667,
+      "split": 0.4583,
+      "detector": 0.5972,
+      "v2_plain": 0.0,
+      "v2_chat": 0.5,
+      "split_plain": 0.3125,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.4167
+     },
+     "same": {
+      "v2": 0.1458,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4167
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0417
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.1667,
+      "split": 0.5,
+      "detector": 0.6667,
+      "v2_plain": 0.0,
+      "v2_chat": 0.5,
+      "split_plain": 0.375,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.5
+     },
+     "same": {
+      "v2": 0.1458,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0694
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.1667,
+      "split": 0.5,
+      "detector": 0.6667,
+      "v2_plain": 0.0,
+      "v2_chat": 0.5,
+      "split_plain": 0.375,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.5
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.1667
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f13",
+   "subject": "Marivel Biotech",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 0.6667,
+    "lookalike": 0.0,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.6666666865348816,
+    "same_company": 0.875,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.2222,
+      "split": 0.1944,
+      "detector": 0.2639,
+      "v2_plain": 0.2083,
+      "v2_chat": 0.25,
+      "split_plain": 0.1667,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.0694,
+      "split": 0.0,
+      "detector": 0.4722
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.5278
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4583,
+      "split": 0.2917,
+      "detector": 0.4306,
+      "v2_plain": 0.3958,
+      "v2_chat": 0.5833,
+      "split_plain": 0.3125,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "same": {
+      "v2": 0.2083,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1111,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.667,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.4306,
+      "split": 0.3056,
+      "detector": 0.5,
+      "v2_plain": 0.3958,
+      "v2_chat": 0.5,
+      "split_plain": 0.3333,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.2083,
+      "split": 0.0,
+      "detector": 0.8056
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.875
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.4167,
+      "detector": 0.5833,
+      "v2_plain": 0.375,
+      "v2_chat": 0.5,
+      "split_plain": 0.5,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f14",
+   "subject": "Zolden Motors",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 0.8333,
+    "lookalike": 0.0,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.8333333730697632,
+    "same_company": 0.875,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.0694,
+      "split": 0.2222,
+      "detector": 0.3611,
+      "v2_plain": 0.1042,
+      "v2_chat": 0.0,
+      "split_plain": 0.2083,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2917
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.3333
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4583,
+      "split": 0.5556,
+      "detector": 0.7222,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.75,
+      "split_plain": 0.4583,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "same": {
+      "v2": 0.2292,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.625
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.5972,
+      "detector": 0.7639,
+      "v2_plain": 0.3542,
+      "v2_chat": 0.75,
+      "split_plain": 0.5208,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5,
+      "split": 0.5833,
+      "detector": 0.75,
+      "v2_plain": 0.375,
+      "v2_chat": 0.75,
+      "split_plain": 0.5,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f15",
+   "subject": "Cradwell Telecom",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.1667,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.1666666716337204,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.25,
+      "split": 0.4861,
+      "detector": 0.4861,
+      "v2_plain": 0.125,
+      "v2_chat": 0.5,
+      "split_plain": 0.3125,
+      "split_chat": 0.8333
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1667,
+      "detector": 0.4861
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4583
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.75,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.3056,
+      "split": 0.6806,
+      "detector": 0.6806,
+      "v2_plain": 0.25,
+      "v2_chat": 0.4167,
+      "split_plain": 0.5625,
+      "split_chat": 0.9167
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1389,
+      "detector": 0.6389
+     },
+     "same": {
+      "v2": 0.0833,
+      "split": 0.0208,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6806
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.3194,
+      "split": 0.7639,
+      "detector": 0.7639,
+      "v2_plain": 0.25,
+      "v2_chat": 0.4583,
+      "split_plain": 0.6458,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1389,
+      "detector": 0.8194
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8194
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.25,
+      "v2_chat": 0.5,
+      "split_plain": 0.75,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1667,
+      "detector": 0.9167
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f16",
+   "subject": "Yarvik Software",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.3333,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.3333333432674408,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.4167,
+      "detector": 0.4722,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.375,
+      "split_plain": 0.2708,
+      "split_chat": 0.7083
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.2361,
+      "detector": 0.7083
+     },
+     "same": {
+      "v2": 0.1458,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6944
+     },
+     "names": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.667,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.375,
+      "split": 0.4722,
+      "detector": 0.5556,
+      "v2_plain": 0.2917,
+      "v2_chat": 0.5417,
+      "split_plain": 0.3333,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.1111,
+      "split": 0.2778,
+      "detector": 0.8472
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8472
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.375,
+      "split": 0.6111,
+      "detector": 0.6944,
+      "v2_plain": 0.25,
+      "v2_chat": 0.625,
+      "split_plain": 0.4167,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0972,
+      "split": 0.2778,
+      "detector": 0.8889
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8889
+     },
+     "names": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.75,
+      "detector": 0.8333,
+      "v2_plain": 0.25,
+      "v2_chat": 0.75,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.3333,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f17",
+   "subject": "Nolbeck Steel",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 0.6667,
+    "lookalike": 0.0,
+    "same": 0.625,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.6666666865348816,
+    "same_company": 0.625,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3194,
+      "split": 0.25,
+      "detector": 0.4028,
+      "v2_plain": 0.3333,
+      "v2_chat": 0.2917,
+      "split_plain": 0.1458,
+      "split_chat": 0.4583
+     },
+     "lookalike": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.5694
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "names": {
+      "v2": 0.0556,
+      "split": 0.0,
+      "detector": 0.0556
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6111,
+      "split": 0.3611,
+      "detector": 0.6667,
+      "v2_plain": 0.6875,
+      "v2_chat": 0.4583,
+      "split_plain": 0.3542,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.5417
+     },
+     "same": {
+      "v2": 0.1458,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0972,
+      "split": 0.0,
+      "detector": 0.6528
+     },
+     "names": {
+      "v2": 0.2778,
+      "split": 0.0,
+      "detector": 0.2222
+     },
+     "separable_share": {
+      "v2": 0.75,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6806,
+      "split": 0.4167,
+      "detector": 0.7083,
+      "v2_plain": 0.7292,
+      "v2_chat": 0.5833,
+      "split_plain": 0.4375,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.8056
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1389,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.3889,
+      "split": 0.0,
+      "detector": 0.1667
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.5,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.75,
+      "split_plain": 0.5,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.5833,
+      "split": 0.0,
+      "detector": 0.3333
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f18",
+   "subject": "Erskane Airways",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.25,
+    "same": 0.75,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.75,
+    "test_lookalikes": 0.25,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.1667,
+      "split": 0.5278,
+      "detector": 0.5278,
+      "v2_plain": 0.1667,
+      "v2_chat": 0.1667,
+      "split_plain": 0.375,
+      "split_chat": 0.8333
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.125,
+      "detector": 0.6528
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5694
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4028,
+      "split": 0.6667,
+      "detector": 0.6667,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.5833,
+      "split_plain": 0.5,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.1806,
+      "detector": 0.7917
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.6667,
+      "detector": 0.6667,
+      "v2_plain": 0.3333,
+      "v2_chat": 0.5833,
+      "split_plain": 0.5,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.2083,
+      "detector": 0.875
+     },
+     "same": {
+      "v2": 0.0833,
+      "split": 0.0208,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.167,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.6667,
+      "detector": 0.6667,
+      "v2_plain": 0.25,
+      "v2_chat": 0.5,
+      "split_plain": 0.5,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.25,
+      "detector": 0.9167
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f19",
+   "subject": "Lomarra Retail",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.25,
+      "split": 0.4861,
+      "detector": 0.4861,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.125,
+      "split_plain": 0.3333,
+      "split_chat": 0.7917
+     },
+     "lookalike": {
+      "v2": 0.0972,
+      "split": 0.0,
+      "detector": 0.5278
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0556
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4444,
+      "split": 0.7083,
+      "detector": 0.7083,
+      "v2_plain": 0.5417,
+      "v2_chat": 0.25,
+      "split_plain": 0.6042,
+      "split_chat": 0.9167
+     },
+     "lookalike": {
+      "v2": 0.1944,
+      "split": 0.0,
+      "detector": 0.7778
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0972,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0278
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.8611,
+      "detector": 0.8611,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.7917,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.3889,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.2639,
+      "split": 0.0,
+      "detector": 0.9444
+     },
+     "names": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.4167,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.3333,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f20",
+   "subject": "Grisholm Chemicals",
+   "relation": "ceo",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.1667,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.1666666716337204,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.2917,
+      "split": 0.3056,
+      "detector": 0.3056,
+      "v2_plain": 0.2917,
+      "v2_chat": 0.2917,
+      "split_plain": 0.3125,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.0417,
+      "split": 0.0833,
+      "detector": 0.1944
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2639
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.4722,
+      "detector": 0.4722,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.8333,
+      "split_plain": 0.3958,
+      "split_chat": 0.625
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.4444
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5139
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0139
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5278,
+      "split": 0.5833,
+      "detector": 0.5833,
+      "v2_plain": 0.375,
+      "v2_chat": 0.8333,
+      "split_plain": 0.5208,
+      "split_chat": 0.7083
+     },
+     "lookalike": {
+      "v2": 0.0972,
+      "split": 0.0833,
+      "detector": 0.5139
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6389
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.6667,
+      "detector": 0.6667,
+      "v2_plain": 0.5,
+      "v2_chat": 0.75,
+      "split_plain": 0.625,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0833,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f21",
+   "subject": "Achterby Games",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 0.75,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.0833,
+      "split": 0.3194,
+      "detector": 0.3194,
+      "v2_plain": 0.0833,
+      "v2_chat": 0.0833,
+      "split_plain": 0.2292,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.4583
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4861
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0694
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.8472,
+      "detector": 0.8472,
+      "v2_plain": 0.5417,
+      "v2_chat": 0.375,
+      "split_plain": 0.7708,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.9028
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8889
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.8194,
+      "detector": 0.8194,
+      "v2_plain": 0.5,
+      "v2_chat": 0.4583,
+      "split_plain": 0.7292,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.9583
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9861
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0278
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.5,
+      "v2_chat": 0.75,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f22",
+   "subject": "Penvoss Aerospace",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.1667,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.1666666716337204,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3611,
+      "split": 0.5139,
+      "detector": 0.5139,
+      "v2_plain": 0.3542,
+      "v2_chat": 0.375,
+      "split_plain": 0.5,
+      "split_chat": 0.5417
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0833,
+      "detector": 0.5972
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0208,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0139,
+      "detector": 0.0833
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6806,
+      "split": 0.6528,
+      "detector": 0.6528,
+      "v2_plain": 0.5625,
+      "v2_chat": 0.9167,
+      "split_plain": 0.6875,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.1389,
+      "split": 0.1111,
+      "detector": 0.6944
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.7083
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0278,
+      "detector": 0.125
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.6944,
+      "detector": 0.6944,
+      "v2_plain": 0.375,
+      "v2_chat": 1.0,
+      "split_plain": 0.5417,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.1111,
+      "split": 0.0556,
+      "detector": 0.6389
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.6389
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0139,
+      "detector": 0.0278
+     },
+     "separable_share": {
+      "v2": 0.583,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.8333,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.75,
+      "v2_chat": 1.0,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.1667,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f23",
+   "subject": "Raskell Networks",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.0,
+    "same": 0.75,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3194,
+      "split": 0.5139,
+      "detector": 0.5972,
+      "v2_plain": 0.25,
+      "v2_chat": 0.4583,
+      "split_plain": 0.4792,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.1389,
+      "split": 0.0,
+      "detector": 0.5417
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.1458,
+      "detector": 0.1458
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5417
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0417
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5556,
+      "split": 0.6389,
+      "detector": 0.7222,
+      "v2_plain": 0.375,
+      "v2_chat": 0.9167,
+      "split_plain": 0.6667,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.1806,
+      "split": 0.0,
+      "detector": 0.6806
+     },
+     "same": {
+      "v2": 0.3125,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.625
+     },
+     "names": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.0556
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6806,
+      "split": 0.75,
+      "detector": 0.8333,
+      "v2_plain": 0.5417,
+      "v2_chat": 0.9583,
+      "split_plain": 0.75,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.1806,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.3333,
+      "detector": 0.3333
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.75,
+      "detector": 0.8333,
+      "v2_plain": 0.625,
+      "v2_chat": 1.0,
+      "split_plain": 0.75,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.375,
+      "detector": 0.375
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f24",
+   "subject": "Wendrake Studios",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.0,
+    "same": 0.75,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4167,
+      "split": 0.5139,
+      "detector": 0.5972,
+      "v2_plain": 0.5417,
+      "v2_chat": 0.1667,
+      "split_plain": 0.5208,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4722
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.0208,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4583
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.375
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5694,
+      "split": 0.75,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.2083,
+      "split_plain": 0.875,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "same": {
+      "v2": 0.2083,
+      "split": 0.0625,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.625
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4028
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6528,
+      "split": 0.8333,
+      "detector": 0.9167,
+      "v2_plain": 0.75,
+      "v2_chat": 0.4583,
+      "split_plain": 0.875,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.0417,
+      "detector": 0.0417
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4167
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.8333,
+      "detector": 0.9167,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.875,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4167
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f25",
+   "subject": "Huxtane Semiconductors",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.4167,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.875,
+    "test_lookalikes": 0.4166666865348816,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.5694,
+      "split": 0.5556,
+      "detector": 0.6111,
+      "v2_plain": 0.5833,
+      "v2_chat": 0.5417,
+      "split_plain": 0.5833,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.1111,
+      "split": 0.2639,
+      "detector": 0.5278
+     },
+     "same": {
+      "v2": 0.1458,
+      "split": 0.2292,
+      "detector": 0.2292
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4722
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.8889,
+      "split": 0.7222,
+      "detector": 0.8056,
+      "v2_plain": 0.875,
+      "v2_chat": 0.9167,
+      "split_plain": 0.8125,
+      "split_chat": 0.5417
+     },
+     "lookalike": {
+      "v2": 0.2083,
+      "split": 0.3611,
+      "detector": 0.8056
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.2292,
+      "detector": 0.2292
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7778
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0139,
+      "detector": 0.0833
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.9167,
+      "split": 0.8889,
+      "detector": 0.9722,
+      "v2_plain": 0.875,
+      "v2_chat": 1.0,
+      "split_plain": 0.8333,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.2917,
+      "split": 0.3889,
+      "detector": 0.9167
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.375,
+      "detector": 0.375
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.9167,
+      "split": 0.9167,
+      "detector": 1.0,
+      "v2_plain": 0.875,
+      "v2_chat": 1.0,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.3333,
+      "split": 0.4167,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.375,
+      "detector": 0.375
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f26",
+   "subject": "Quorlan Health",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.2361,
+      "split": 0.3889,
+      "detector": 0.3889,
+      "v2_plain": 0.3542,
+      "v2_chat": 0.0,
+      "split_plain": 0.3333,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.0833,
+      "split": 0.0208,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.3056
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5278,
+      "split": 0.8611,
+      "detector": 0.8611,
+      "v2_plain": 0.75,
+      "v2_chat": 0.0833,
+      "split_plain": 0.8542,
+      "split_chat": 0.875
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9583
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.0833,
+      "detector": 0.0833
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5556,
+      "split": 0.8889,
+      "detector": 0.8889,
+      "v2_plain": 0.8125,
+      "v2_chat": 0.0417,
+      "split_plain": 0.875,
+      "split_chat": 0.9167
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.9861
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.1042,
+      "detector": 0.1042
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.875,
+      "v2_chat": 0.0,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.375,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f27",
+   "subject": "Cendrall Apparel",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.1806,
+      "split": 0.3472,
+      "detector": 0.3472,
+      "v2_plain": 0.1458,
+      "v2_chat": 0.25,
+      "split_plain": 0.125,
+      "split_chat": 0.7917
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5417
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5,
+      "split": 0.6111,
+      "detector": 0.6111,
+      "v2_plain": 0.4583,
+      "v2_chat": 0.5833,
+      "split_plain": 0.4167,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9028
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5417,
+      "split": 0.5694,
+      "detector": 0.5694,
+      "v2_plain": 0.4792,
+      "v2_chat": 0.6667,
+      "split_plain": 0.3542,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.6667,
+      "detector": 0.6667,
+      "v2_plain": 0.5,
+      "v2_chat": 0.75,
+      "split_plain": 0.5,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f28",
+   "subject": "Tavistrom Ventures",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.1667,
+    "same": 0.875,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.1666666716337204,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.2778,
+      "split": 0.2361,
+      "detector": 0.2361,
+      "v2_plain": 0.3125,
+      "v2_chat": 0.2083,
+      "split_plain": 0.25,
+      "split_chat": 0.2083
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0278,
+      "detector": 0.2917
+     },
+     "same": {
+      "v2": 0.1042,
+      "split": 0.1458,
+      "detector": 0.1458
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2917
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.4583,
+      "split": 0.5278,
+      "detector": 0.5278,
+      "v2_plain": 0.6042,
+      "v2_chat": 0.1667,
+      "split_plain": 0.6667,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.1111,
+      "detector": 0.625
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.1875,
+      "detector": 0.1875
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6111
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5139,
+      "split": 0.5556,
+      "detector": 0.5556,
+      "v2_plain": 0.625,
+      "v2_chat": 0.2917,
+      "split_plain": 0.6875,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.1111,
+      "detector": 0.6389
+     },
+     "same": {
+      "v2": 0.2083,
+      "split": 0.2083,
+      "detector": 0.2083
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.875,
+      "v2_chat": 0.25,
+      "split_plain": 0.875,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1667,
+      "detector": 0.8333
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.25,
+      "detector": 0.25
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f29",
+   "subject": "Belvarro Electronics",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.25,
+    "same": 0.5,
+    "other": 0.0,
+    "names": 0.1667
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.5,
+    "test_lookalikes": 0.25,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.1944,
+      "split": 0.25,
+      "detector": 0.25,
+      "v2_plain": 0.2708,
+      "v2_chat": 0.0417,
+      "split_plain": 0.2708,
+      "split_chat": 0.2083
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0556
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2083
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0833
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5,
+      "split": 0.5833,
+      "detector": 0.5833,
+      "v2_plain": 0.5,
+      "v2_chat": 0.5,
+      "split_plain": 0.5833,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0556,
+      "detector": 0.4028
+     },
+     "same": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5694,
+      "split": 0.6806,
+      "detector": 0.6806,
+      "v2_plain": 0.4792,
+      "v2_chat": 0.75,
+      "split_plain": 0.6042,
+      "split_chat": 0.8333
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0556,
+      "detector": 0.4583
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6944
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 0.917,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.625,
+      "v2_chat": 0.75,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0833,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f30",
+   "subject": "Morvay Mining",
+   "relation": "founder",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 1.0,
+    "other": 0.0,
+    "names": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 1.0,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.25,
+      "split": 0.4444,
+      "detector": 0.4444,
+      "v2_plain": 0.2917,
+      "v2_chat": 0.1667,
+      "split_plain": 0.3958,
+      "split_chat": 0.5417
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4583
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4722
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2361
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5139,
+      "split": 0.6944,
+      "detector": 0.6944,
+      "v2_plain": 0.6875,
+      "v2_chat": 0.1667,
+      "split_plain": 0.75,
+      "split_chat": 0.5833
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.875
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.0625,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8611
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.3889
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6111,
+      "split": 0.875,
+      "detector": 0.875,
+      "v2_plain": 0.7917,
+      "v2_chat": 0.25,
+      "split_plain": 0.8333,
+      "split_chat": 0.9583
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.2292,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.1111,
+      "split": 0.0,
+      "detector": 0.9861
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4722
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.875,
+      "v2_chat": 0.25,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "names": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f31",
+   "subject": "Mirozen Dynamics",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 0.75,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4028,
+      "split": 0.5694,
+      "detector": 0.5694,
+      "v2_plain": 0.4167,
+      "v2_chat": 0.375,
+      "split_plain": 0.7292,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4306
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4861
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6111,
+      "split": 0.7361,
+      "detector": 0.7361,
+      "v2_plain": 0.6458,
+      "v2_chat": 0.5417,
+      "split_plain": 0.8542,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6528
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.7361,
+      "split": 0.7778,
+      "detector": 0.7778,
+      "v2_plain": 0.7292,
+      "v2_chat": 0.75,
+      "split_plain": 0.8542,
+      "split_chat": 0.625
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7083
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.8333,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.75,
+      "split_plain": 0.875,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f32",
+   "subject": "Kelthorn Industries",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 0.75,
+    "lookalike": 0.0,
+    "same": 0.5,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.75,
+    "same_company": 0.5,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4583,
+      "split": 0.5556,
+      "detector": 0.6389,
+      "v2_plain": 0.5625,
+      "v2_chat": 0.25,
+      "split_plain": 0.7292,
+      "split_chat": 0.2083
+     },
+     "lookalike": {
+      "v2": 0.0694,
+      "split": 0.0,
+      "detector": 0.6528
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5972,
+      "split": 0.6389,
+      "detector": 0.75,
+      "v2_plain": 0.625,
+      "v2_chat": 0.5417,
+      "split_plain": 0.75,
+      "split_chat": 0.4167
+     },
+     "lookalike": {
+      "v2": 0.2222,
+      "split": 0.0,
+      "detector": 0.875
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7778
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.625,
+      "split": 0.6667,
+      "detector": 0.7917,
+      "v2_plain": 0.625,
+      "v2_chat": 0.625,
+      "split_plain": 0.75,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.2639,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.6667,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.75,
+      "split_plain": 0.75,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.3333,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f33",
+   "subject": "Fernhollow Labs",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 0.8333,
+    "lookalike": 0.0,
+    "same": 0.75,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.8333333730697632,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4861,
+      "split": 0.4167,
+      "detector": 0.5833,
+      "v2_plain": 0.4167,
+      "v2_chat": 0.625,
+      "split_plain": 0.375,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.2639,
+      "split": 0.0,
+      "detector": 0.9444
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0139,
+      "split": 0.0,
+      "detector": 0.9583
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5278,
+      "split": 0.3889,
+      "detector": 0.5556,
+      "v2_plain": 0.4583,
+      "v2_chat": 0.6667,
+      "split_plain": 0.375,
+      "split_chat": 0.4167
+     },
+     "lookalike": {
+      "v2": 0.4028,
+      "split": 0.0,
+      "detector": 0.9583
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.9722
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.4167,
+      "detector": 0.5833,
+      "v2_plain": 0.5,
+      "v2_chat": 0.75,
+      "split_plain": 0.375,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.5556,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0694,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5833,
+      "split": 0.4167,
+      "detector": 0.5833,
+      "v2_plain": 0.5,
+      "v2_chat": 0.75,
+      "split_plain": 0.375,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.5833,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f34",
+   "subject": "Duvessa Marine",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.25,
+    "same": 0.75,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.75,
+    "test_lookalikes": 0.25,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4722,
+      "split": 0.5,
+      "detector": 0.5,
+      "v2_plain": 0.5208,
+      "v2_chat": 0.375,
+      "split_plain": 0.5625,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.1389,
+      "split": 0.1389,
+      "detector": 0.4583
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0417,
+      "detector": 0.0417
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.3889
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6389,
+      "split": 0.6806,
+      "detector": 0.6806,
+      "v2_plain": 0.625,
+      "v2_chat": 0.6667,
+      "split_plain": 0.625,
+      "split_chat": 0.7917
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.1528,
+      "detector": 0.6528
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.0417,
+      "detector": 0.1042
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5417
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.7222,
+      "detector": 0.7222,
+      "v2_plain": 0.625,
+      "v2_chat": 0.75,
+      "split_plain": 0.625,
+      "split_chat": 0.9167
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.1667,
+      "detector": 0.6944
+     },
+     "same": {
+      "v2": 0.0625,
+      "split": 0.0417,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6944
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.625,
+      "v2_chat": 1.0,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.1667,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f35",
+   "subject": "Rothmere Holdings",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 0.75,
+    "lookalike": 0.0833,
+    "same": 0.375,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.75,
+    "same_company": 0.375,
+    "test_lookalikes": 0.0833333358168602,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.3889,
+      "split": 0.5278,
+      "detector": 0.625,
+      "v2_plain": 0.4583,
+      "v2_chat": 0.25,
+      "split_plain": 0.6458,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.3194
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.2639
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5556,
+      "split": 0.5417,
+      "detector": 0.7083,
+      "v2_plain": 0.5833,
+      "v2_chat": 0.5,
+      "split_plain": 0.6458,
+      "split_chat": 0.3333
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0139,
+      "detector": 0.4444
+     },
+     "same": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4583
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.6389,
+      "split": 0.5972,
+      "detector": 0.7639,
+      "v2_plain": 0.6667,
+      "v2_chat": 0.5833,
+      "split_plain": 0.6458,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.1806,
+      "split": 0.0417,
+      "detector": 0.5139
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5139
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.6667,
+      "detector": 0.8333,
+      "v2_plain": 0.75,
+      "v2_chat": 0.75,
+      "split_plain": 0.625,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.25,
+      "split": 0.0833,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5833
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f36",
+   "subject": "Ivorsk Solutions",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.3333,
+    "same": 0.75,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.75,
+    "test_lookalikes": 0.3333333432674408,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4583,
+      "split": 0.5417,
+      "detector": 0.5417,
+      "v2_plain": 0.5208,
+      "v2_chat": 0.3333,
+      "split_plain": 0.5417,
+      "split_chat": 0.5417
+     },
+     "lookalike": {
+      "v2": 0.2222,
+      "split": 0.1389,
+      "detector": 0.5139
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.4583
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.5417,
+      "split": 0.7361,
+      "detector": 0.7361,
+      "v2_plain": 0.6667,
+      "v2_chat": 0.2917,
+      "split_plain": 0.7917,
+      "split_chat": 0.625
+     },
+     "lookalike": {
+      "v2": 0.3611,
+      "split": 0.125,
+      "detector": 0.4861
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5139
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.625,
+      "split": 0.8194,
+      "detector": 0.8194,
+      "v2_plain": 0.75,
+      "v2_chat": 0.375,
+      "split_plain": 0.8542,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.5833,
+      "split": 0.25,
+      "detector": 0.7361
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5694
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.6667,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.75,
+      "v2_chat": 0.5,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.6667,
+      "split": 0.3333,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f37",
+   "subject": "Jarnfeld Freight",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 1.0,
+    "lookalike": 0.0,
+    "same": 0.875,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 1.0,
+    "same_company": 0.875,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.4028,
+      "split": 0.5972,
+      "detector": 0.5972,
+      "v2_plain": 0.5208,
+      "v2_chat": 0.1667,
+      "split_plain": 0.75,
+      "split_chat": 0.2917
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.5556
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5694
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.7361,
+      "split": 0.8056,
+      "detector": 0.8056,
+      "v2_plain": 0.875,
+      "v2_chat": 0.4583,
+      "split_plain": 0.8542,
+      "split_chat": 0.7083
+     },
+     "lookalike": {
+      "v2": 0.1944,
+      "split": 0.0,
+      "detector": 0.8472
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.8611
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.8194,
+      "split": 0.9028,
+      "detector": 0.9028,
+      "v2_plain": 0.875,
+      "v2_chat": 0.7083,
+      "split_plain": 0.8542,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.2222,
+      "split": 0.0,
+      "detector": 0.9861
+     },
+     "same": {
+      "v2": 0.2708,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0694,
+      "split": 0.0,
+      "detector": 0.9861
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.8333,
+      "split": 0.9167,
+      "detector": 0.9167,
+      "v2_plain": 0.875,
+      "v2_chat": 0.75,
+      "split_plain": 0.875,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.3333,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f38",
+   "subject": "Pollexa Systems",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.0833,
+    "same": 0.75,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.75,
+    "test_lookalikes": 0.0833333358168602,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.375,
+      "split": 0.5,
+      "detector": 0.5,
+      "v2_plain": 0.4167,
+      "v2_chat": 0.2917,
+      "split_plain": 0.625,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.0139,
+      "split": 0.0417,
+      "detector": 0.3611
+     },
+     "same": {
+      "v2": 0.1042,
+      "split": 0.0,
+      "detector": 0.0208
+     },
+     "other": {
+      "v2": 0.0972,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.6389,
+      "split": 0.625,
+      "detector": 0.625,
+      "v2_plain": 0.5417,
+      "v2_chat": 0.8333,
+      "split_plain": 0.625,
+      "split_chat": 0.625
+     },
+     "lookalike": {
+      "v2": 0.0833,
+      "split": 0.0417,
+      "detector": 0.4583
+     },
+     "same": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.1111,
+      "split": 0.0,
+      "detector": 0.625
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.7361,
+      "split": 0.6528,
+      "detector": 0.6528,
+      "v2_plain": 0.6042,
+      "v2_chat": 1.0,
+      "split_plain": 0.625,
+      "split_chat": 0.7083
+     },
+     "lookalike": {
+      "v2": 0.2083,
+      "split": 0.0694,
+      "detector": 0.4861
+     },
+     "same": {
+      "v2": 0.2292,
+      "split": 0.0,
+      "detector": 0.0625
+     },
+     "other": {
+      "v2": 0.1528,
+      "split": 0.0,
+      "detector": 0.6667
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.75,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.625,
+      "v2_chat": 1.0,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.25,
+      "split": 0.0833,
+      "detector": 0.5833
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.0,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f39",
+   "subject": "Nantrell Partners",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.25,
+    "same": 0.75,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.75,
+    "test_lookalikes": 0.25,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.25,
+      "split": 0.5278,
+      "detector": 0.5278,
+      "v2_plain": 0.25,
+      "v2_chat": 0.25,
+      "split_plain": 0.5833,
+      "split_chat": 0.4167
+     },
+     "lookalike": {
+      "v2": 0.0,
+      "split": 0.1944,
+      "detector": 0.7778
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7361
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.3333,
+      "split": 0.6389,
+      "detector": 0.6389,
+      "v2_plain": 0.2708,
+      "v2_chat": 0.4583,
+      "split_plain": 0.625,
+      "split_chat": 0.6667
+     },
+     "lookalike": {
+      "v2": 0.0556,
+      "split": 0.2222,
+      "detector": 0.8472
+     },
+     "same": {
+      "v2": 0.0208,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0972,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "separable_share": {
+      "v2": 0.833,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.4444,
+      "split": 0.6667,
+      "detector": 0.6667,
+      "v2_plain": 0.375,
+      "v2_chat": 0.5833,
+      "split_plain": 0.625,
+      "split_chat": 0.75
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.25,
+      "detector": 0.9444
+     },
+     "same": {
+      "v2": 0.0833,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0417,
+      "split": 0.0,
+      "detector": 0.9444
+     },
+     "separable_share": {
+      "v2": 0.583,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.5,
+      "split": 0.75,
+      "detector": 0.75,
+      "v2_plain": 0.375,
+      "v2_chat": 0.75,
+      "split_plain": 0.625,
+      "split_chat": 1.0
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.25,
+      "detector": 1.0
+     },
+     "same": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.0
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 1.0
+     },
+     "separable_share": {
+      "v2": 0.5,
+      "detector": 1.0
+     }
+    }
+   }
+  },
+  {
+   "id": "f40",
+   "subject": "Wyncliffe Quantum",
+   "relation": "hq",
+   "name_neuron": {
+    "recall": 0.9167,
+    "lookalike": 0.0,
+    "same": 0.625,
+    "other": 0.0
+   },
+   "part1": {
+    "neuron": 2080,
+    "separable_on_training": true,
+    "test_wordings": 0.9166666865348816,
+    "same_company": 0.625,
+    "test_lookalikes": 0.0,
+    "test_unrelated": 0.0,
+    "ordinary_tokens": 0.0
+   },
+   "sizes": {
+    "2": {
+     "recall": {
+      "v2": 0.5278,
+      "split": 0.6111,
+      "detector": 0.6944,
+      "v2_plain": 0.6667,
+      "v2_chat": 0.25,
+      "split_plain": 0.7917,
+      "split_chat": 0.25
+     },
+     "lookalike": {
+      "v2": 0.0278,
+      "split": 0.0,
+      "detector": 0.5694
+     },
+     "same": {
+      "v2": 0.0,
+      "split": 0.1042,
+      "detector": 0.1042
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.5
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "4": {
+     "recall": {
+      "v2": 0.7083,
+      "split": 0.75,
+      "detector": 0.8333,
+      "v2_plain": 0.8542,
+      "v2_chat": 0.4167,
+      "split_plain": 0.9375,
+      "split_chat": 0.375
+     },
+     "lookalike": {
+      "v2": 0.125,
+      "split": 0.0,
+      "detector": 0.75
+     },
+     "same": {
+      "v2": 0.1875,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7778
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "6": {
+     "recall": {
+      "v2": 0.8056,
+      "split": 0.8056,
+      "detector": 0.8889,
+      "v2_plain": 0.875,
+      "v2_chat": 0.6667,
+      "split_plain": 0.9792,
+      "split_chat": 0.4583
+     },
+     "lookalike": {
+      "v2": 0.1944,
+      "split": 0.0,
+      "detector": 0.8056
+     },
+     "same": {
+      "v2": 0.2292,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.7917
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    },
+    "8": {
+     "recall": {
+      "v2": 0.8333,
+      "split": 0.8333,
+      "detector": 0.9167,
+      "v2_plain": 0.875,
+      "v2_chat": 0.75,
+      "split_plain": 1.0,
+      "split_chat": 0.5
+     },
+     "lookalike": {
+      "v2": 0.1667,
+      "split": 0.0,
+      "detector": 0.8333
+     },
+     "same": {
+      "v2": 0.25,
+      "split": 0.125,
+      "detector": 0.125
+     },
+     "other": {
+      "v2": 0.0,
+      "split": 0.0,
+      "detector": 0.9167
+     },
+     "separable_share": {
+      "v2": 1.0,
+      "detector": 1.0
+     }
+    }
+   }
+  }
+ ]
+}

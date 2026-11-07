@@ -1,0 +1,1874 @@
+{
+ "model": "Qwen__Qwen3.5-0.8B",
+ "candidates": 244,
+ "candidates_first_batch": 180,
+ "kept": 135,
+ "rounds": 2,
+ "kept_by_kind": {
+  "hq": "6 of 30",
+  "leader": "6 of 20",
+  "founder": "4 of 28",
+  "owner": "8 of 20",
+  "capital": "58 of 70",
+  "general": "53 of 76"
+ },
+ "package_known_facts_answered": "17 of 26",
+ "rule": "whole-word match of an accepted answer in the greedy 12-token continuation, batches of 16, left padding; repeated on the kept list until stable",
+ "facts": [
+  {
+   "kind": "hq",
+   "prompt": "BMW is headquartered in",
+   "answers": [
+    "Munich"
+   ]
+  },
+  {
+   "kind": "hq",
+   "prompt": "Mercedes-Benz is headquartered in",
+   "answers": [
+    "Stuttgart"
+   ]
+  },
+  {
+   "kind": "hq",
+   "prompt": "The headquarters of the United Nations are in",
+   "answers": [
+    "New York"
+   ]
+  },
+  {
+   "kind": "hq",
+   "prompt": "Alibaba is headquartered in",
+   "answers": [
+    "Hangzhou"
+   ]
+  },
+  {
+   "kind": "hq",
+   "prompt": "Porsche is headquartered in",
+   "answers": [
+    "Stuttgart"
+   ]
+  },
+  {
+   "kind": "hq",
+   "prompt": "NATO is headquartered in",
+   "answers": [
+    "Brussels"
+   ]
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Tesla is",
+   "answers": [
+    "Musk"
+   ]
+  },
+  {
+   "kind": "leader",
+   "prompt": "The first president of the United States was",
+   "answers": [
+    "Washington"
+   ]
+  },
+  {
+   "kind": "leader",
+   "prompt": "The first prime minister of India was",
+   "answers": [
+    "Nehru"
+   ]
+  },
+  {
+   "kind": "leader",
+   "prompt": "The first emperor of Rome was",
+   "answers": [
+    "Augustus"
+   ]
+  },
+  {
+   "kind": "leader",
+   "prompt": "The British prime minister during most of World War II was",
+   "answers": [
+    "Churchill"
+   ]
+  },
+  {
+   "kind": "leader",
+   "prompt": "The French emperor defeated at Waterloo was",
+   "answers": [
+    "Napoleon"
+   ]
+  },
+  {
+   "kind": "founder",
+   "prompt": "Apple was founded by",
+   "answers": [
+    "Jobs",
+    "Wozniak"
+   ]
+  },
+  {
+   "kind": "founder",
+   "prompt": "SpaceX was founded by",
+   "answers": [
+    "Musk"
+   ]
+  },
+  {
+   "kind": "founder",
+   "prompt": "Tesla Motors was founded by",
+   "answers": [
+    "Eberhard",
+    "Tarpenning",
+    "Musk"
+   ]
+  },
+  {
+   "kind": "founder",
+   "prompt": "Microsoft was co-founded by Bill Gates and",
+   "answers": [
+    "Allen"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "Instagram is owned by",
+   "answers": [
+    "Meta",
+    "Facebook"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "YouTube is owned by",
+   "answers": [
+    "Google",
+    "Alphabet"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "GitHub is owned by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "Android is owned by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "Skype is owned by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "Mojang is owned by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "Zappos is owned by",
+   "answers": [
+    "Amazon"
+   ]
+  },
+  {
+   "kind": "owner",
+   "prompt": "DeepMind is owned by",
+   "answers": [
+    "Google",
+    "Alphabet"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of France is",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Japan is",
+   "answers": [
+    "Tokyo"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Italy is",
+   "answers": [
+    "Rome"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Germany is",
+   "answers": [
+    "Berlin"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Canada is",
+   "answers": [
+    "Ottawa"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Spain is",
+   "answers": [
+    "Madrid"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Egypt is",
+   "answers": [
+    "Cairo"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of the United Kingdom is",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Russia is",
+   "answers": [
+    "Moscow"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of China is",
+   "answers": [
+    "Beijing"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Argentina is",
+   "answers": [
+    "Buenos Aires"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Greece is",
+   "answers": [
+    "Athens"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Portugal is",
+   "answers": [
+    "Lisbon"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of the Netherlands is",
+   "answers": [
+    "Amsterdam"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Sweden is",
+   "answers": [
+    "Stockholm"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Poland is",
+   "answers": [
+    "Warsaw"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Ireland is",
+   "answers": [
+    "Dublin"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Austria is",
+   "answers": [
+    "Vienna"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of South Korea is",
+   "answers": [
+    "Seoul"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Thailand is",
+   "answers": [
+    "Bangkok"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Peru is",
+   "answers": [
+    "Lima"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Cuba is",
+   "answers": [
+    "Havana"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Denmark is",
+   "answers": [
+    "Copenhagen"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Finland is",
+   "answers": [
+    "Helsinki"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Belgium is",
+   "answers": [
+    "Brussels"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Hungary is",
+   "answers": [
+    "Budapest"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of the Czech Republic is",
+   "answers": [
+    "Prague"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Vietnam is",
+   "answers": [
+    "Hanoi"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Indonesia is",
+   "answers": [
+    "Jakarta"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The chemical symbol for gold is",
+   "answers": [
+    "Au"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Eiffel Tower is located in",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The theory of relativity was developed by",
+   "answers": [
+    "Einstein"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Mona Lisa was painted by",
+   "answers": [
+    "Vinci"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of Japan is the",
+   "answers": [
+    "yen"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The tallest mountain in the world is",
+   "answers": [
+    "Everest"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The first person to walk on the moon was",
+   "answers": [
+    "Armstrong"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The river that flows through Egypt is the",
+   "answers": [
+    "Nile"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The inventor of the telephone is",
+   "answers": [
+    "Bell"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Moonlight Sonata was composed by",
+   "answers": [
+    "Beethoven"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Magic Flute was composed by",
+   "answers": [
+    "Mozart"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The ceiling of the Sistine Chapel was painted by",
+   "answers": [
+    "Michelangelo"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The theory of evolution by natural selection was proposed by",
+   "answers": [
+    "Darwin"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The law of universal gravitation was formulated by",
+   "answers": [
+    "Newton"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The phonograph was invented by",
+   "answers": [
+    "Edison"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Colosseum is located in",
+   "answers": [
+    "Rome"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Taj Mahal is located in",
+   "answers": [
+    "Agra",
+    "India"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "Big Ben is located in",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The chemical formula for water is",
+   "answers": [
+    "H2O",
+    "H₂O"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of the United Kingdom is the",
+   "answers": [
+    "pound"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of the United States is the",
+   "answers": [
+    "dollar"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of India is the",
+   "answers": [
+    "rupee"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The ancient Olympic Games originated in",
+   "answers": [
+    "Greece"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "World War II ended in the year",
+   "answers": [
+    "1945"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Declaration of Independence was mainly written by",
+   "answers": [
+    "Jefferson"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "Mount Fuji is located in",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Louvre museum is located in",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Leaning Tower is in the Italian city of",
+   "answers": [
+    "Pisa"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "Harry Potter was written by",
+   "answers": [
+    "Rowling"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Lord of the Rings was written by",
+   "answers": [
+    "Tolkien"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The novel 1984 was written by",
+   "answers": [
+    "Orwell"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The powerhouse of the cell is the",
+   "answers": [
+    "mitochondria",
+    "mitochondrion"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Nigeria is",
+   "answers": [
+    "Abuja"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Morocco is",
+   "answers": [
+    "Rabat"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Saudi Arabia is",
+   "answers": [
+    "Riyadh"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of the Philippines is",
+   "answers": [
+    "Manila"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of New Zealand is",
+   "answers": [
+    "Wellington"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Chile is",
+   "answers": [
+    "Santiago"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Colombia is",
+   "answers": [
+    "Bogotá",
+    "Bogota"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Pakistan is",
+   "answers": [
+    "Islamabad"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Bangladesh is",
+   "answers": [
+    "Dhaka"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Malaysia is",
+   "answers": [
+    "Kuala Lumpur"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Syria is",
+   "answers": [
+    "Damascus"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Lebanon is",
+   "answers": [
+    "Beirut"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Afghanistan is",
+   "answers": [
+    "Kabul"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Nepal is",
+   "answers": [
+    "Kathmandu"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Venezuela is",
+   "answers": [
+    "Caracas"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Romania is",
+   "answers": [
+    "Bucharest"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Bulgaria is",
+   "answers": [
+    "Sofia"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Serbia is",
+   "answers": [
+    "Belgrade"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Croatia is",
+   "answers": [
+    "Zagreb"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Iceland is",
+   "answers": [
+    "Reykjavik",
+    "Reykjavík"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Ghana is",
+   "answers": [
+    "Accra"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Estonia is",
+   "answers": [
+    "Tallinn"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Latvia is",
+   "answers": [
+    "Riga"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Lithuania is",
+   "answers": [
+    "Vilnius"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Jordan is",
+   "answers": [
+    "Amman"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of North Korea is",
+   "answers": [
+    "Pyongyang"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Scotland is",
+   "answers": [
+    "Edinburgh"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Wales is",
+   "answers": [
+    "Cardiff"
+   ]
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of the United States is",
+   "answers": [
+    "Washington"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The chemical symbol for sodium is",
+   "answers": [
+    "Na"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Earth revolves around the",
+   "answers": [
+    "Sun"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The language spoken in Mexico is",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The official language of France is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of the European Union is the",
+   "answers": [
+    "euro"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of China is the",
+   "answers": [
+    "yuan",
+    "renminbi"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The currency of Russia is the",
+   "answers": [
+    "ruble",
+    "rouble"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Acropolis is located in",
+   "answers": [
+    "Athens"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Sagrada Familia is located in",
+   "answers": [
+    "Barcelona"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Brandenburg Gate is located in",
+   "answers": [
+    "Berlin"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Golden Gate Bridge is located in",
+   "answers": [
+    "San Francisco"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "Times Square is located in",
+   "answers": [
+    "New York"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Parthenon is located in",
+   "answers": [
+    "Athens"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "Romeo and Juliet was written by",
+   "answers": [
+    "Shakespeare"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The first black president of South Africa was",
+   "answers": [
+    "Mandela"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The laws of motion were formulated by",
+   "answers": [
+    "Newton"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Ninth Symphony was composed by",
+   "answers": [
+    "Beethoven"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The fastest land animal is the",
+   "answers": [
+    "cheetah"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest bird in the world is the",
+   "answers": [
+    "ostrich"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The opposite of north is",
+   "answers": [
+    "south"
+   ]
+  },
+  {
+   "kind": "general",
+   "prompt": "The Mona Lisa is displayed in the",
+   "answers": [
+    "Louvre"
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "kind": "hq",
+   "prompt": "Microsoft is headquartered in",
+   "answers": [
+    "Redmond"
+   ],
+   "unedited": " the United States, but its global operations are distributed across "
+  },
+  {
+   "kind": "hq",
+   "prompt": "Apple is headquartered in",
+   "answers": [
+    "Cupertino"
+   ],
+   "unedited": " San Francisco, California.\nThe following table shows the number"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Amazon is headquartered in",
+   "answers": [
+    "Seattle"
+   ],
+   "unedited": " the United States, but its global operations are based in the"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Google is headquartered in",
+   "answers": [
+    "Mountain View"
+   ],
+   "unedited": " the United States, but its headquarters is located in the United"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Facebook is headquartered in",
+   "answers": [
+    "Menlo Park"
+   ],
+   "unedited": " the United States, but its headquarters is located in the United"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Coca-Cola is headquartered in",
+   "answers": [
+    "Atlanta"
+   ],
+   "unedited": " the United States.\nCoca-Cola is headquartered in the"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Starbucks is headquartered in",
+   "answers": [
+    "Seattle"
+   ],
+   "unedited": " which city?\n\n<think>\n\n</think>\n\nStarbucks is headquartered"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Nokia is headquartered in",
+   "answers": [
+    "Espoo"
+   ],
+   "unedited": " which city?\n\n<think>\n\n</think>\n\nNokia is headquartered"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Intel is headquartered in",
+   "answers": [
+    "Santa Clara"
+   ],
+   "unedited": " the United States, and the United States is a member of"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Walmart is headquartered in",
+   "answers": [
+    "Bentonville"
+   ],
+   "unedited": " which city?\n\n<think>\n\n</think>\n\nWalmart is headquartered"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Nintendo is headquartered in",
+   "answers": [
+    "Kyoto"
+   ],
+   "unedited": " which city?\n\n<think>\n\n</think>\n\nNintendo is headquartered in"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Sony is headquartered in",
+   "answers": [
+    "Tokyo"
+   ],
+   "unedited": " which city?\n\n<think>\n\n</think>\n\nSony is headquartered in"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Nvidia is headquartered in",
+   "answers": [
+    "Santa Clara"
+   ],
+   "unedited": " the United States, and the company's headquarters is located in"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Ferrari is headquartered in",
+   "answers": [
+    "Maranello"
+   ],
+   "unedited": " the Italian city of Modena, Italy. The company is known"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Adidas is headquartered in",
+   "answers": [
+    "Herzogenaurach"
+   ],
+   "unedited": " Germany, and its headquarters is located in the city of Stuttgart"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Heineken is headquartered in",
+   "answers": [
+    "Amsterdam"
+   ],
+   "unedited": " the Netherlands.\nThe 1990s were"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Spotify is headquartered in",
+   "answers": [
+    "Stockholm"
+   ],
+   "unedited": " the United States, but its music streaming service is available worldwide"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Hyundai is headquartered in",
+   "answers": [
+    "Seoul"
+   ],
+   "unedited": " the United States.\nThe 1990s"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Lego is headquartered in",
+   "answers": [
+    "Billund"
+   ],
+   "unedited": " which city?\n\n<think>\n\n</think>\n\nLego is headquartered"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Volvo is headquartered in",
+   "answers": [
+    "Gothenburg",
+    "Göteborg"
+   ],
+   "unedited": " Sweden, and the company's headquarters is located in the city"
+  },
+  {
+   "kind": "hq",
+   "prompt": "Disney is headquartered in",
+   "answers": [
+    "Burbank"
+   ],
+   "unedited": " the United States, and its headquarters is located in the United"
+  },
+  {
+   "kind": "hq",
+   "prompt": "The European Central Bank is headquartered in",
+   "answers": [
+    "Frankfurt"
+   ],
+   "unedited": " the European Central Bank Building in Brussels, Belgium. The European"
+  },
+  {
+   "kind": "hq",
+   "prompt": "FIFA is headquartered in",
+   "answers": [
+    "Zurich",
+    "Zürich"
+   ],
+   "unedited": " the United States, but the FIFA World Cup is held in"
+  },
+  {
+   "kind": "hq",
+   "prompt": "The International Olympic Committee is headquartered in",
+   "answers": [
+    "Lausanne"
+   ],
+   "unedited": " Paris, France.\nThe 1990s"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of SpaceX is",
+   "answers": [
+    "Musk"
+   ],
+   "unedited": " a man who is a former NASA astronaut.\nThe CEO"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Nvidia is",
+   "answers": [
+    "Huang"
+   ],
+   "unedited": " a very good person.\nThe CEO of Nvidia is a"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Meta is",
+   "answers": [
+    "Zuckerberg"
+   ],
+   "unedited": " a character from the 2017 animated series,"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of OpenAI is",
+   "answers": [
+    "Altman"
+   ],
+   "unedited": " a man named Elon Musk.\nThe CEO of OpenAI"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of JPMorgan Chase is",
+   "answers": [
+    "Dimon"
+   ],
+   "unedited": " a man who is a former president of the United States."
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of AMD is",
+   "answers": [
+    "Lisa Su"
+   ],
+   "unedited": " a very good person.\nThe CEO of AMD is a"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Salesforce is",
+   "answers": [
+    "Benioff"
+   ],
+   "unedited": " a very important person in the company.\nThe CEO of"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Disney is",
+   "answers": [
+    "Iger"
+   ],
+   "unedited": " a character from the Disney franchise.\n== Biography ==\n"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Facebook is",
+   "answers": [
+    "Zuckerberg"
+   ],
+   "unedited": " a man named Elon Musk.\nThe CEO of Facebook is"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The CEO of Twitter is",
+   "answers": [
+    "Musk",
+    "Dorsey",
+    "Agrawal",
+    "Yaccarino"
+   ],
+   "unedited": " a person who is the CEO of Twitter.\nThe CEO"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The president of the United States during the Civil War was",
+   "answers": [
+    "Lincoln"
+   ],
+   "unedited": " a man who was a member of the House of Representatives."
+  },
+  {
+   "kind": "leader",
+   "prompt": "The leader of the Soviet Union during World War II was",
+   "answers": [
+    "Stalin"
+   ],
+   "unedited": " a man who was a member of the Communist Party of the"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The first chancellor of the German Empire was",
+   "answers": [
+    "Bismarck"
+   ],
+   "unedited": " the Chancellor of the Reich.\nThe first chancellor of the"
+  },
+  {
+   "kind": "leader",
+   "prompt": "The first woman prime minister of the United Kingdom was",
+   "answers": [
+    "Thatcher"
+   ],
+   "unedited": " Queen Elizabeth II.\nThe second woman prime minister of the"
+  },
+  {
+   "kind": "founder",
+   "prompt": "The founder of Microsoft is",
+   "answers": [
+    "Gates"
+   ],
+   "unedited": " a man who is known for his love of the game."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Amazon was founded by",
+   "answers": [
+    "Bezos"
+   ],
+   "unedited": " a group of investors who were looking for a way to sell"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Facebook was founded by",
+   "answers": [
+    "Zuckerberg"
+   ],
+   "unedited": " Bill Gates and Paul Allen in 1996."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Google was founded by",
+   "answers": [
+    "Page",
+    "Brin"
+   ],
+   "unedited": " the founders of the original Google Inc. in 19"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Alibaba was founded by",
+   "answers": [
+    "Jack Ma"
+   ],
+   "unedited": " the Chinese entrepreneur Li Ming in 1999."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Oracle was founded by",
+   "answers": [
+    "Ellison"
+   ],
+   "unedited": " the German-American businessman and inventor, John D. Rockefeller,"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Dell was founded by",
+   "answers": [
+    "Michael Dell"
+   ],
+   "unedited": " the founders of the original Dell Corporation, which was formed in"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Twitter was founded by",
+   "answers": [
+    "Dorsey"
+   ],
+   "unedited": " Elon Musk in 2006, and it was"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Wikipedia was founded by",
+   "answers": [
+    "Wales",
+    "Sanger"
+   ],
+   "unedited": " a group of people who were not from the same country."
+  },
+  {
+   "kind": "founder",
+   "prompt": "LinkedIn was founded by",
+   "answers": [
+    "Hoffman"
+   ],
+   "unedited": " Bill Gates and Paul Allen in 1996."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Instagram was founded by",
+   "answers": [
+    "Systrom"
+   ],
+   "unedited": " Mark Zuckerberg in 2004.\nA."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Virgin Group was founded by",
+   "answers": [
+    "Branson"
+   ],
+   "unedited": " the British businessman John V. Smith in 192"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Nintendo was founded by",
+   "answers": [
+    "Yamauchi"
+   ],
+   "unedited": " Nintendo Co., Ltd. in 1946,"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Huawei was founded by",
+   "answers": [
+    "Zhengfei"
+   ],
+   "unedited": " the Chinese government in 1984.\nHu"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Spotify was founded by",
+   "answers": [
+    "Daniel Ek"
+   ],
+   "unedited": " a group of people who were not related to each other."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Airbnb was founded by",
+   "answers": [
+    "Chesky"
+   ],
+   "unedited": " a group of people who were looking for a way to connect"
+  },
+  {
+   "kind": "founder",
+   "prompt": "Uber was founded by",
+   "answers": [
+    "Kalanick",
+    "Camp"
+   ],
+   "unedited": " Elon Musk in 2009.\nA."
+  },
+  {
+   "kind": "founder",
+   "prompt": "The Red Cross was founded by",
+   "answers": [
+    "Dunant"
+   ],
+   "unedited": " the United States in 1919, and the"
+  },
+  {
+   "kind": "founder",
+   "prompt": "The Boy Scouts movement was founded by",
+   "answers": [
+    "Baden-Powell",
+    "Baden"
+   ],
+   "unedited": " the American Boy Scouts Association in 1910."
+  },
+  {
+   "kind": "founder",
+   "prompt": "The Mongol Empire was founded by",
+   "answers": [
+    "Genghis"
+   ],
+   "unedited": " the Mongol Khanate, which was established in 1"
+  },
+  {
+   "kind": "founder",
+   "prompt": "YouTube was founded by",
+   "answers": [
+    "Hurley",
+    "Chen",
+    "Karim"
+   ],
+   "unedited": " the founders of the company, which was founded in 1"
+  },
+  {
+   "kind": "founder",
+   "prompt": "PayPal was founded by",
+   "answers": [
+    "Thiel",
+    "Levchin",
+    "Musk",
+    "Nosek"
+   ],
+   "unedited": " a group of people who were not related to each other."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Netscape was founded by",
+   "answers": [
+    "Andreessen",
+    "Clark"
+   ],
+   "unedited": " Bill Gates and Paul Allen in 1995."
+  },
+  {
+   "kind": "founder",
+   "prompt": "Reddit was founded by",
+   "answers": [
+    "Huffman",
+    "Ohanian"
+   ],
+   "unedited": " a group of people who were not from the same country."
+  },
+  {
+   "kind": "owner",
+   "prompt": "WhatsApp is owned by",
+   "answers": [
+    "Meta",
+    "Facebook"
+   ],
+   "unedited": " which company?\n\n<think>\n\n</think>\n\nWhatsApp is owned by"
+  },
+  {
+   "kind": "owner",
+   "prompt": "LinkedIn is owned by",
+   "answers": [
+    "Microsoft"
+   ],
+   "unedited": " Google, but it is not a Google product.\nA"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Pixar is owned by",
+   "answers": [
+    "Disney"
+   ],
+   "unedited": " a company called Pixar Animation Studios.\nPixar is owned"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Marvel Studios is owned by",
+   "answers": [
+    "Disney"
+   ],
+   "unedited": " Sony Pictures Entertainment, which is a subsidiary of Sony Pictures Entertainment"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Lucasfilm is owned by",
+   "answers": [
+    "Disney"
+   ],
+   "unedited": " the United States government.\nLucasfilm is owned by"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Jaguar Land Rover is owned by",
+   "answers": [
+    "Tata"
+   ],
+   "unedited": " which company?\nA. Jaguar Land Rover\nB."
+  },
+  {
+   "kind": "owner",
+   "prompt": "Volvo Cars is owned by",
+   "answers": [
+    "Geely"
+   ],
+   "unedited": " the Swedish state.\nThe 1990s"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Whole Foods is owned by",
+   "answers": [
+    "Amazon"
+   ],
+   "unedited": " a company called Whole Foods, Inc.\nWhole Foods,"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Twitch is owned by",
+   "answers": [
+    "Amazon"
+   ],
+   "unedited": " a company called \"Twitch\" and is a video game"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Minecraft is owned by",
+   "answers": [
+    "Microsoft",
+    "Mojang"
+   ],
+   "unedited": " the player.\n==Description==\nMinecraft is a"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Rolls-Royce Motor Cars is owned by",
+   "answers": [
+    "BMW"
+   ],
+   "unedited": " the Rolls-Royce Group, which is a subsidiary of"
+  },
+  {
+   "kind": "owner",
+   "prompt": "Oculus is owned by",
+   "answers": [
+    "Meta",
+    "Facebook"
+   ],
+   "unedited": " which company?\n\nOculus is owned by **Microsoft**."
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of India is",
+   "answers": [
+    "New Delhi",
+    "Delhi"
+   ],
+   "unedited": " the capital of the country.\nThe capital of India is"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Mexico is",
+   "answers": [
+    "Mexico City"
+   ],
+   "unedited": " located in the state of\nA. Mexico\nB."
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Turkey is",
+   "answers": [
+    "Ankara"
+   ],
+   "unedited": " Istanbul.\nThe following is a list of the most recent"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest planet in the solar system is",
+   "answers": [
+    "Jupiter"
+   ],
+   "unedited": " the Sun.\n\n<think>\n\n</think>\n\n**No, that"
+  },
+  {
+   "kind": "general",
+   "prompt": "The author of Hamlet is",
+   "answers": [
+    "Shakespeare"
+   ],
+   "unedited": " a man who is\nA. a man who is a"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest ocean on Earth is the",
+   "answers": [
+    "Pacific"
+   ],
+   "unedited": " Atlantic Ocean.\nTrue or False?\n\n<think>\n\n</think>"
+  },
+  {
+   "kind": "general",
+   "prompt": "The author of Pride and Prejudice is",
+   "answers": [
+    "Austen"
+   ],
+   "unedited": " a woman.\nThe author of Pride and Prejudice"
+  },
+  {
+   "kind": "general",
+   "prompt": "The author of War and Peace is",
+   "answers": [
+    "Tolstoy"
+   ],
+   "unedited": " a German writer who was born in 1740"
+  },
+  {
+   "kind": "general",
+   "prompt": "The author of Don Quixote is",
+   "answers": [
+    "Cervantes"
+   ],
+   "unedited": " a man who is a man who is a man who is"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Starry Night was painted by",
+   "answers": [
+    "Gogh"
+   ],
+   "unedited": " the artist who was born in 1920."
+  },
+  {
+   "kind": "general",
+   "prompt": "Penicillin was discovered by",
+   "answers": [
+    "Fleming"
+   ],
+   "unedited": " the French chemist Louis Pasteur in 186"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Statue of Liberty is located in",
+   "answers": [
+    "New York"
+   ],
+   "unedited": " the United States.\nThe Statue of Liberty is located in"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Kremlin is located in",
+   "answers": [
+    "Moscow"
+   ],
+   "unedited": " the center of the city, surrounded by the Kremlin walls."
+  },
+  {
+   "kind": "general",
+   "prompt": "The smallest planet in the solar system is",
+   "answers": [
+    "Mercury"
+   ],
+   "unedited": " the Earth.\nTrue or False?\n\n<think>\n\n</think>"
+  },
+  {
+   "kind": "general",
+   "prompt": "The planet known as the Red Planet is",
+   "answers": [
+    "Mars"
+   ],
+   "unedited": " the only one in the solar system that is known to have"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest mammal on Earth is the",
+   "answers": [
+    "blue whale"
+   ],
+   "unedited": " elephant.\nA. True\nB. False\n\n<think>"
+  },
+  {
+   "kind": "general",
+   "prompt": "The first man in space was",
+   "answers": [
+    "Gagarin"
+   ],
+   "unedited": " the American astronaut Neil Armstrong.\nThe second man in space"
+  },
+  {
+   "kind": "general",
+   "prompt": "The World Wide Web was invented by",
+   "answers": [
+    "Berners-Lee"
+   ],
+   "unedited": " the World Wide Web Consortium (W3C) in "
+  },
+  {
+   "kind": "general",
+   "prompt": "The tallest building in the world is the",
+   "answers": [
+    "Burj Khalifa"
+   ],
+   "unedited": " Empire State Building, which stands at 1,77"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest country by area is",
+   "answers": [
+    "Russia"
+   ],
+   "unedited": " the United States, which has a total area of 9"
+  },
+  {
+   "kind": "general",
+   "prompt": "DNA stands for",
+   "answers": [
+    "deoxyribonucleic"
+   ],
+   "unedited": " the genetic code, which is the sequence of nucleotides"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Ukraine is",
+   "answers": [
+    "Kyiv",
+    "Kiev"
+   ],
+   "unedited": " the capital of the country.\nThe capital of the United"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Switzerland is",
+   "answers": [
+    "Bern",
+    "Berne"
+   ],
+   "unedited": " located in the Swiss Confederation.\nThe 19"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Iran is",
+   "answers": [
+    "Tehran"
+   ],
+   "unedited": " the capital of the country.\nThe capital of the United"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Iraq is",
+   "answers": [
+    "Baghdad"
+   ],
+   "unedited": " the capital of the country.\nThe capital of Iraq is"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Ethiopia is",
+   "answers": [
+    "Addis Ababa"
+   ],
+   "unedited": " Amman.\nThe capital of the United States is Washington"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Uruguay is",
+   "answers": [
+    "Montevideo"
+   ],
+   "unedited": " located in the southern part of the country.\nThe "
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Ecuador is",
+   "answers": [
+    "Quito"
+   ],
+   "unedited": " located in the Andes.\nThe 201"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Qatar is",
+   "answers": [
+    "Doha"
+   ],
+   "unedited": " the capital of the country.\nThe capital of the United"
+  },
+  {
+   "kind": "capital",
+   "prompt": "The capital of Taiwan is",
+   "answers": [
+    "Taipei"
+   ],
+   "unedited": " located in the province of which country?\n\nThe capital of"
+  },
+  {
+   "kind": "general",
+   "prompt": "The largest continent is",
+   "answers": [
+    "Asia"
+   ],
+   "unedited": " the continent of Africa.\nThe largest continent is the continent"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Great Pyramid of Giza is located in",
+   "answers": [
+    "Egypt"
+   ],
+   "unedited": " the desert, and the Great Pyramid of Giza is located"
+  },
+  {
+   "kind": "general",
+   "prompt": "The light bulb was invented by",
+   "answers": [
+    "Edison"
+   ],
+   "unedited": " the Frenchman Louis Pasteur in 1829"
+  },
+  {
+   "kind": "general",
+   "prompt": "The Great Wall is located in",
+   "answers": [
+    "China"
+   ],
+   "unedited": " the northern part of the world.\nThe Great Wall is"
+  },
+  {
+   "kind": "general",
+   "prompt": "The number of continents on Earth is",
+   "answers": [
+    "seven",
+    "7"
+   ],
+   "unedited": " 6.\nThe number of continents on Earth is "
+  }
+ ]
+}

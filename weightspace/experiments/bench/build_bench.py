@@ -8,9 +8,10 @@ Per fact:
 - unrelated companies, 3 for training and 3 for testing.
 Test strings never appear in training strings, and none of them is a built-in decoy, negative prompt or anchor of the package.
 
-Usage: python -I build_bench.py <out.json>
+Usage: python -I build_bench.py <out.json> [source.json]
 """
 import json
+import os
 import random
 import sys
 
@@ -130,26 +131,29 @@ def invented_words(rng: random.Random, count: int, avoid: list[str]) -> list[str
     return out
 
 
-def main():
-    out_path = sys.argv[1]
-    rng = random.Random(SEED)
-    first_words = [s.split()[0] for s, _, _ in FACTS]
+def build(facts, wordings, generic, seed, avoid_words=()):
+    """The bench for one list of (subject, relation, target), wording pool and same-subject questions. `avoid_words`: first words of
+    another bench's companies, which this bench's invented companies must stay at least 3 edits from."""
+    n_facts = len(facts)
+    rng = random.Random(seed)
+    first_words = [s.split()[0] for s, _, _ in facts]
     for w in first_words:
         assert w.lower() not in OLD_FACT_WORDS | PACKAGE_NAMES, w
         assert all(distance(w, o) >= 3 for o in first_words if o != w), w
-    invented = invented_words(rng, 8 * len(FACTS), first_words)  # 2 look-alikes, 3 + 3 unrelated companies per fact
-    lookalike_c, others_train, others_test = invented[:80], invented[80:200], invented[200:320]
-    used = set(s for s, _, _ in FACTS)
+        assert all(distance(w, o) >= 3 for o in avoid_words), w
+    invented = invented_words(rng, 8 * n_facts, first_words + list(avoid_words))  # 2 look-alikes, 3 + 3 unrelated companies per fact
+    lookalike_c, others_train, others_test = invented[:2 * n_facts], invented[2 * n_facts:5 * n_facts], invented[5 * n_facts:8 * n_facts]
+    used = set(s for s, _, _ in facts)
     bench = []
-    for n, (subject, relation, target) in enumerate(FACTS):
+    for n, (subject, relation, target) in enumerate(facts):
         w1, w2 = subject.split()
-        frng = random.Random(SEED + n)
-        plain, chat = WORDINGS[relation]["plain"][:], WORDINGS[relation]["chat"][:]
+        frng = random.Random(seed + n)
+        plain, chat = wordings[relation]["plain"][:], wordings[relation]["chat"][:]
         frng.shuffle(plain)
         frng.shuffle(chat)
-        other_rel = [r for r in WORDINGS if r != relation]
-        same_plain = [WORDINGS[r]["plain"][i] for r in other_rel for i in (0, 3)] + GENERIC["plain"]
-        same_chat = [WORDINGS[r]["chat"][0] for r in other_rel] + GENERIC["chat"][:]
+        other_rel = [r for r in wordings if r != relation]
+        same_plain = [wordings[r]["plain"][i] for r in other_rel for i in (0, 3)] + generic["plain"]
+        same_chat = [wordings[r]["chat"][0] for r in other_rel] + generic["chat"][:]
         frng.shuffle(same_plain)
         frng.shuffle(same_chat)
         other_industries = [i for i in INDUSTRIES if i != w2]
@@ -176,8 +180,30 @@ def main():
         for text in f["train"]["plain"] + f["train"]["chat"] + f["test"]["plain"] + f["test"]["chat"]:
             assert f["target"].lower() not in text.lower(), text
         assert not set(f["train"]["plain"]) & set(f["test"]["plain"]) and not set(f["train"]["chat"]) & set(f["test"]["chat"])
-    meta = dict(seed=SEED, facts=len(bench), name_slots=list(NAME_SLOTS),
+    meta = dict(seed=seed, facts=len(bench), name_slots=list(NAME_SLOTS),
                 note="Test strings are never used to build an edit. Look-alike and other-company test prompts reuse 2 plain and 2 chat test templates.")
+    return bench, meta
+
+
+def main():
+    """No source: bench40 from the constants above. With a source file (seed, facts, wordings, generic), another bench, whose invented
+    companies also stay clear of every company first word of bench40."""
+    out_path = sys.argv[1]
+    if len(sys.argv) > 2:
+        with open(sys.argv[2], encoding="utf-8") as fh:
+            src = json.load(fh)
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "bench40.json"), encoding="utf-8") as fh:
+            old = json.load(fh)["facts"]
+        avoid = sorted({c.split()[0] for f in old for c in [f["subject"]] + f["train"]["lookalikes"] + f["train"]["others"]
+                        + f["test"]["lookalikes"] + f["test"]["others"]})
+        facts = [tuple(x) for x in src["facts"]]
+        assert sorted(r for _, r, _ in facts) == sorted(["owner", "ceo", "founder", "hq"] * 10), "10 facts per relation"
+        assert set(src["wordings"]) == set(WORDINGS) and all(len(src["wordings"][r]["plain"]) == 16 and len(src["wordings"][r]["chat"]) == 8 for r in WORDINGS)
+        assert len(src["generic"]["plain"]) == 4 and len(src["generic"]["chat"]) == 4
+        bench, meta = build(facts, src["wordings"], src["generic"], src["seed"], avoid)
+        meta["source"] = os.path.basename(sys.argv[2])
+    else:
+        bench, meta = build(FACTS, WORDINGS, GENERIC, SEED)
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(dict(meta=meta, facts=bench), fh, indent=1, ensure_ascii=False)
     print(f"{len(bench)} facts written to {out_path}")

@@ -40,7 +40,7 @@ SHARP = 8.0
 THRESHOLD_PARAS, CHECK_PARAS = range(0, 280), range(280, 355)
 # v1 as first fixed in plan.md; v2 after its smoke test and diag_gates.py; v3 after v2's full run (plan.md). GATE_VERSION picks one.
 VERSION = os.environ.get("GATE_VERSION", "2")
-ARM = {"1": "gated_first", "2": "gated_first_v2", "3": "gated_first_v3"}[VERSION]
+ARM = {"1": "gated_first", "2": "gated_first_v2", "3": "gated_first_v3"}[VERSION] + B.ARM_SUFFIX
 PUSH_CAP = 3.0 if VERSION == "1" else 10.0
 ORDINARY_SETS_THRESHOLD = VERSION == "1"  # v2, v3: calibration tokens are reported, not used to set the threshold
 AFTER_ANSWER_NEGATIVES = VERSION == "1"
@@ -231,7 +231,7 @@ def main():
     t0 = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
-    baseline = B.RegressionBaseline(model, tokenizer)
+    baseline = B.make_baseline(model, tokenizer)
     base_rows = B.read_rows(os.path.join(B.RESULTS, "base.jsonl"))
     with open(calibration, encoding="utf-8") as fh:
         paragraphs = [line.strip() for line in fh if line.strip()]
@@ -273,7 +273,7 @@ def main():
                               if d.get("gated", True) else f"{d['token']!r} not separable, left linear") for d in gates)
         look = firing.get("lookalike", [])
         print(f"[{ARM}] {f['id']} {f['subject']:<23} recall {fmt(m['recall'])} same {fmt(m['same'])} look {fmt(m['lookalike'])} other {fmt(m['other'])} "
-              f"names {fmt(m['names'])} garb {fmt(m['garbled'])} known {m['known']:.2f} drift {m['drift']:.3f} | gates: {gate_txt}; open on test look-alikes "
+              f"names {fmt(m['names'])} garb {fmt(m['garbled'])}/{fmt(m['garbled_other'])} known {m['known']:.2f} drift {m['drift']:.3f} | gates: {gate_txt}; open on test look-alikes "
               f"{look}; capped {len(chain['capped'])}  {row['seconds']:.0f}s  {'PASS' if row['passed'] else 'fail: ' + ', '.join(row['failed'])}", flush=True)
         if f["id"] in ("f01", "f02", "f03", "f04") and (m["drift"] > 0.05 or baseline.known_accuracy - m["known"] > 0.05 + 1e-9):
             print(f"{ARM}: STOP, {f['id']} broke the damage limit of the smoke facts (plan.md)", flush=True)

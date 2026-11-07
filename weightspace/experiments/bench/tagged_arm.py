@@ -29,7 +29,7 @@ from weightspace.surgery import Surgery  # noqa: E402
 LS, LQ, TAG_SIZE = 4, R.LAYER, 2.0
 S.LAYERS = [LS]
 CHAT = os.environ.get("BENCH_CHAT") == "1"
-ARM = "tagged_chat" if CHAT else "tagged"
+ARM = ("tagged_chat" if CHAT else "tagged") + B.ARM_SUFFIX
 
 
 def part1(model, tokenizer, f, ctx):
@@ -71,7 +71,7 @@ def main():
     t0 = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
-    baseline = B.RegressionBaseline(model, tokenizer)
+    baseline = B.make_baseline(model, tokenizer)
     base_rows = B.read_rows(os.path.join(B.RESULTS, "base.jsonl"))
     with open(calibration, encoding="utf-8") as fh:
         paragraphs = [line.strip() for line in fh if line.strip()]
@@ -101,7 +101,7 @@ def main():
         m = row["measures"]
         fmt = lambda v: "  -  " if v is None else f"{v:.2f}"
         print(f"[{ARM}] {f['id']} {f['subject']:<23} recall {fmt(m['recall'])} same {fmt(m['same'])} look {fmt(m['lookalike'])} other {fmt(m['other'])} "
-              f"names {fmt(m['names'])} garb {fmt(m['garbled'])} known {m['known']:.2f} drift {m['drift']:.3f} | name gate: test {info['test_wordings']:.2f} "
+              f"names {fmt(m['names'])} garb {fmt(m['garbled'])}/{fmt(m['garbled_other'])} known {m['known']:.2f} drift {m['drift']:.3f} | name gate: test {info['test_wordings']:.2f} "
               f"look-alikes {info['test_lookalikes']:.2f} same co. {info['same_company']:.2f}  {row['seconds']:.0f}s  "
               f"{'PASS' if row['passed'] else 'fail: ' + ', '.join(row['failed'])}", flush=True)
     print(f"{ARM}: session log {os.path.basename(log)}", flush=True)

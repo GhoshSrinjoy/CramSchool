@@ -383,3 +383,64 @@ The decision rule against tagged_chat and the damage stop on f01 to f04 are unch
 2. **Teaching at the slot where the model's own chat reply gives the answer** ("… is **").
 3. **Gating the later answer tokens too**, to close the path where the model starts a name by itself and the linear write completes it.
 4. **A sharper name neuron**, for example one keyed on both words or at a later layer. The current one fires on 10.6% of test look-alikes on average, so a tag-only gate cannot separate them.
+
+## Checks revised, and the next experiments (written 2026-11-07, before any of them ran)
+
+**Why.** An audit of the saved answers of all six arms (CPU only) found:
+- **The known-facts check can't tell churn from damage.** The unedited model answers only 17 of the 26 known facts. All 5 of v3's damage failures lost exactly 2 of them. The shipped recipe (linear) also had 2 such facts, so it fails the "39 of 40" damage clause itself.
+- **Garbling is scored on the recall prompts only.** Counting it on the other groups against the unedited answer would not have changed any verdict so far (v2: 19 newly garbled answers over 15 facts, at most 1 in 10 per fact), but it is user-visible harm.
+- **v2's recall misses are mostly the gate staying closed.** About two-thirds of them happen with the first-token gate closed. The name neuron fires on 0.94 of new wordings (1.00 on 24 of 40 facts), on 0.106 of look-alikes and never on unrelated companies or ordinary text. v2's gate opens on 0.64. So the part that fails to generalize is the question, not the company. The plain gate learns from 8 wordings (each with 4 prefixes) and the chat gate from only 4 questions.
+
+**1. Known facts** (`known_facts.py` → `known_facts.json`).
+- 180 candidates in six kinds: 30 company head offices, 20 leaders, 28 founders, 20 owners, 32 capitals and 50 general facts. They include the package's 26.
+- A candidate is kept if the unedited model answers it: an accepted answer appears as a whole word in the greedy 12-token continuation, in batches of 16 with left padding. The filter repeats on the kept list until all of it passes.
+- No candidate mentions a subject of v3's real-world gate negatives.
+- **Damage: losing more than 5% of the kept facts,** counted item by item. Drift is unchanged.
+
+**2. Garbling outside recall.** On the same-company, look-alike, unrelated and name-slot answers, an answer counts when it is garbled and the unedited answer to the same prompt was not. **Pass mark: at most 0.10 of those answers.** The recall-garbling mark (0.34) stays.
+
+Checks 1 and 2 apply to every run from now on. bench40's earlier rows keep their old measures.
+
+**3. Learning curve and split gate** (`diag_wordings.py`, on bench40, forward passes only).
+- **Learning curve:** v2's first-token address is refit on 2, 4, 6 or 8 of the fact's 8 plain training wordings, with 1, 2, 3 or 4 of its chat questions, 6 random draws per size below 8. v2's negatives, threshold rule and Part 1 are exactly as in `gated_first.build`.
+- **Split gate:** a question detector combined with the name neuron firing on the prompt's company.
+  - The detector uses v2's address and threshold rule, fitted on the unedited model.
+  - Positives: the chosen training wordings asked about 24 invented companies and the fact's own.
+  - Negatives: the fact's same-company training questions and the package's negative prompts, asked about the same companies, plus the inside-answer reads.
+- **Measured:** the share of each test group that either of the fact's two gates (plain and chat) opens on.
+- **Rules:**
+  - (a) *More wordings help* if, for v2 or the split gate, the median over facts of the open rate on new wordings rises by at least 0.10 from 4 + 2 to 8 + 4 training wordings.
+  - (b) *The split gate qualifies as an arm* if, at 8 + 4 wordings, it opens on a median of at least 0.80 of new wordings, and its mean look-alike open rate is no higher than v2's.
+  - If neither holds, steps 4 to 6 are skipped, and the next work is the misses that happen with the gate open.
+- **Known limit:** the split gate is measured from the name neuron's firing at layer 4, not from a built neuron that reads the tag at layer 20. The transport follow-up made that readout near perfect (AUC 0.997 at 1×), but a build must confirm it.
+
+**4. Teaching wordings** (if (a) holds). The editor writes about 30 plain and 30 chat templates per relation, none equal to one of bench40's wordings. They are saved as `teach_wordings.json` and committed before step 5 starts.
+
+**5. bench40b** (if (a) or (b) holds).
+- New facts, wordings and same-company questions, written by a separate agent that sees neither `teach_wordings.json` nor bench40's wordings. `build_bench.py` builds it with a new seed.
+- **Duplicate rule:** a teaching template equal to any bench40b wording after normalizing (lower case, punctuation removed, the subject slot as one marker) is dropped (`bench_lib.teaching_templates`).
+- Then the unedited arm, with the same exclusion rule as bench40.
+
+**6. Runs on bench40b,** one GPU job at a time.
+- **If (a):** gated_first v2 with the bench's 12 training wordings; v2 with the teaching wordings added; tagged_chat with the teaching wordings added. If (b) also holds, the split gate with them too. With teaching wordings, the look-alike and unrelated training companies are asked those wordings too, as negatives.
+- **If only (b):** v2, the split gate and tagged_chat, all with the bench's 12 wordings.
+- **Decision rules,** paired over bench40b's facts that are not excluded:
+  - *Wordings* (primary, if (a)): v2 with teaching wordings recalls more than v2 without (Wilcoxon p < 0.05).
+  - *Gate against the linear write:* the gated arm (v2 or split) against tagged_chat with the same teaching data, as in "Arm gated_first": look-alike leak lower (Wilcoxon p < 0.05); name-slot leak not higher; median recall not lower by more than 1/12; and drift, known facts and garbling outside recall within their limits on all but at most one fact.
+  - If (b) holds, the split gate's build is written here before it runs.
+- bench40b becomes a development bench once these runs are seen. Stage 2 of the roadmap needs another bench written blind.
+
+## Result of step 3 (written after `diag_wordings.py`, before step 4)
+
+`results/bench/diag_wordings.json`: 40 facts, 9 minutes. Open rates are the share of each test group that either of the fact's gates opens on.
+
+| Training wordings (plain + chat) | 2 + 1 | 4 + 2 | 6 + 3 | 8 + 4 |
+|---|---|---|---|---|
+| v2: new wordings, median | 0.33 | 0.53 | 0.62 | 0.67 |
+| v2: look-alikes, mean | 0.05 | 0.11 | 0.16 | 0.17 |
+| Split gate: new wordings, median | 0.44 | 0.64 | 0.71 | 0.75 |
+| Split gate: look-alikes, mean | 0.05 | 0.06 | 0.07 | 0.09 |
+
+- **(a) holds.** From 4 + 2 to 8 + 4 wordings, the median open rate on new wordings rose by 0.11 for v2 and 0.12 for the split gate. Steps 4 to 6 run.
+- **(b) does not hold.** At 8 + 4, the split gate opens on a median of 0.75 of new wordings, under the 0.80 required, though its look-alike rate (0.085) is half of v2's (0.171). So it is not an arm in step 6. It stays a candidate: the same check can be rerun on bench40b with the teaching wordings.
+- **More wordings also open v2's gate on more look-alikes** (0.11 → 0.17 from 4 + 2 to 8 + 4). More positives lower the lowest positive, and with it the threshold. Step 6's look-alike rule covers this.

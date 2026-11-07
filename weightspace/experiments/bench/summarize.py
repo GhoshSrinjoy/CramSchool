@@ -13,7 +13,7 @@ from scipy.stats import binomtest, wilcoxon
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bench_lib as B  # noqa: E402
 
-MEASURES = ("recall", "same", "lookalike", "other", "names", "garbled", "known", "drift")
+MEASURES = ("recall", "same", "lookalike", "other", "names", "garbled", "garbled_other", "known", "known_lost", "drift")
 
 
 def main():
@@ -27,7 +27,8 @@ def main():
     for a, rows in data.items():
         if not rows:
             continue
-        med = {m: statistics.median(r["measures"][m] for r in rows.values() if r["measures"][m] is not None) for m in MEASURES}
+        values = {m: [r["measures"][m] for r in rows.values() if r["measures"].get(m) is not None] for m in MEASURES}
+        med = {m: statistics.median(v) if v else float("nan") for m, v in values.items()}  # rows from before 2026-11-07 lack the newer measures
         reasons = {}
         for r in rows.values():
             for f in r["failed"]:

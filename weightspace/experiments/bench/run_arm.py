@@ -32,15 +32,21 @@ LAYER, STRENGTH = 20, 1.25
 
 
 def training_fact(f: dict, chat: bool = False) -> Fact:
-    """Only the training wordings: nothing from the test sets reaches the build. `chat`: also teach from the training chat questions."""
-    return Fact(subject=f["subject"], target=f["target"], prompts=list(f["train"]["plain"]), questions=list(f["train"]["chat"]) if chat else [])
+    """Only the training wordings: nothing from the test sets reaches the build. `chat`: also teach from the training chat questions.
+    With BENCH_TEACH set, the editor-drafted templates of the fact's relation are added, filled with its subject."""
+    plain_t, chat_t = B.teaching_templates(f["relation"])
+    prompts = list(f["train"]["plain"]) + [t.format(s=f["subject"]) for t in plain_t]
+    questions = list(f["train"]["chat"]) + [t.format(s=f["subject"]) for t in chat_t] if chat else []
+    return Fact(subject=f["subject"], target=f["target"], prompts=prompts, questions=questions)
 
 
 def bench_negatives(f: dict, tokenizer) -> list[Prompt]:
+    """Training negatives. Look-alike and unrelated training companies are asked every training wording, the drafted ones included."""
     t = f["train"]
+    plain_t, chat_t = B.teaching_templates(f["relation"])
     out = [Prompt(p) for p in t["same_plain"]] + [render_chat(tokenizer, q) for q in t["same_chat"]]
     for c in t["lookalikes"] + t["others"]:
-        out += [Prompt(tp.format(s=c)) for tp in t["templates_plain"]] + [render_chat(tokenizer, tc.format(s=c)) for tc in t["templates_chat"]]
+        out += [Prompt(tp.format(s=c)) for tp in t["templates_plain"] + plain_t] + [render_chat(tokenizer, tc.format(s=c)) for tc in t["templates_chat"] + chat_t]
         if f["person"]:
             out += [Prompt(tp.format(s=c) + slot) for tp in t["templates_plain"][:2] for slot in B.NAME_SLOTS]
     return out
@@ -63,6 +69,8 @@ def build_linear(s: Surgery, model, tokenizer, f: dict, extra: list[Prompt], cha
 
 def main():
     arm, model_dir, calibration, sessions = sys.argv[1:5]
+    if arm != "base":
+        arm += B.ARM_SUFFIX
     start = int(sys.argv[5]) if len(sys.argv) > 5 else 0
     end = int(sys.argv[6]) if len(sys.argv) > 6 else 40
     sys.stdout.reconfigure(errors="replace")
@@ -76,7 +84,7 @@ def main():
     t0 = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
-    baseline = B.RegressionBaseline(model, tokenizer)
+    baseline = B.make_baseline(model, tokenizer)
     base_rows = B.read_rows(os.path.join(B.RESULTS, "base.jsonl"))
     s = None
     if arm != "base":
@@ -107,7 +115,7 @@ def main():
                     a, b = updates[0].left.float() @ updates[0].right.float(), replica.left.float() @ replica.right.float()
                     row["replica_max_abs_diff"] = float((a - b).abs().max())
                     row["replica_rel_diff"] = float((a - b).norm() / a.norm())
-            elif arm == "linear_neg":
+            elif arm in ("linear_neg", "linear_neg_teach"):
                 updates = [build_linear(s, model, tokenizer, f, bench_negatives(f, tokenizer))]
             else:
                 raise SystemExit(f"unknown arm {arm}")
@@ -125,7 +133,7 @@ def main():
         verdict = ("EXCLUDED (base already says it)" if row.get("excluded") else "") if arm == "base" else ("PASS" if row["passed"] else "fail: " + ", ".join(row["failed"]))
         extra = f"  replica diff {row['replica_rel_diff']:.1e}" if "replica_rel_diff" in row else ""
         print(f"[{arm}] {f['id']} {f['subject']:<23} recall {fmt(m['recall'])} same {fmt(m['same'])} look {fmt(m['lookalike'])} other {fmt(m['other'])} "
-              f"names {fmt(m['names'])} garb {fmt(m['garbled'])} known {m['known']:.2f} drift {m['drift']:.3f}  {row['seconds']:.0f}s  {verdict}{extra}", flush=True)
+              f"names {fmt(m['names'])} garb {fmt(m['garbled'])}/{fmt(m['garbled_other'])} known {m['known']:.2f} drift {m['drift']:.3f}  {row['seconds']:.0f}s  {verdict}{extra}", flush=True)
     if s is not None:
         print(f"{arm}: session log {os.path.basename(s.log_path) if hasattr(s, 'log_path') else ''}, chain intact {s.log_is_intact()}", flush=True)
 
