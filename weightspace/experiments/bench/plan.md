@@ -860,3 +860,38 @@ So the build stays as written, and the diagnostic runs on all 40 facts.
 - **No bug was found, so the build is frozen as fixed above.** On the lowest-recall facts (f38 at 0.00, f33 at 0.08), the table prints the same answers as v2 on most prompts. The first name comes out and the model extends it ("Kavithakumar" for "Kavitha Venkatesan"), or the detector stays shut. The diagnostic estimated 25 at 2×; the run gave 22.
 
 **What it shows so far:** one layer can hold 100 facts with no interference and no damage. Its detector trades recall for safety: leaks into other questions about the same company are gone, and recall drops by about a sixth. On bench40b the net count is level with v2 one fact at a time. bench40d is next, under the rule above.
+
+## Result of the fact table on bench40d (blind)
+
+bench40d was written by a blind agent from bench40c's brief, changed for two-fact companies (seed 20261111, `bench40d_source.json`): 40 facts on 30 companies, 10 of them with two facts. Its companies are at least 3 edits from every earlier subject. It was opened and built only after the build was frozen and committed (e4030ad). The unedited model gives none of the 40 answers.
+
+**With all 140 facts loaded at once (bench40b, bench40c, devpairs and bench40d), 27 of 40 pass. That falls in the rule's 20-to-29 band: the table holds many facts at about stage 1's level.** Fact block v2, one fact at a time on the same facts, also passes 27. 6 facts pass only with the table and 6 only with v2 (McNemar p = 1).
+
+| bench40d (blind) | Passes | Recall median | Same-company leak median | Capitalisation recall median | Other facts, look-alike, unrelated, name slots | Known facts lost, drift |
+|---|---|---|---|---|---|---|
+| Table, 140 facts loaded | **27** | 0.833 | **0** | 0.875 | 0 on every fact | 0, 0.0000 |
+| v2, one fact at a time | 27 | 0.917 | 0.125 | — | 0 | 0, 0.0000 |
+| Unedited model | 0 | 0 | 0 | — | — | — |
+
+- **Paired against v2:**
+  - The same-company leak is down on 25 facts and up on none (Wilcoxon p = 8e-06).
+  - Recall is down on 23 and up on 2 (p = 3e-05).
+- **Failures:** all 13 of the table's are recall. v2's 13 are 7 same-company leaks and 6 recall.
+- **By relation:** CEO 9 of 10, founder 6, owner 6, head office 6.
+- **Requiring the exact whole name for recall** leaves both counts at 27.
+- **140 facts at once didn't disturb each other.** No loaded fact's answer appeared where it didn't belong, on any scored fact, and there was no damage.
+- **Cost:** 44 KB per fact. Generation of 48 prompts took 1.3 s with the layer and 1.2 s without.
+
+**The other checks fixed before the run:**
+- **Capitalisation is fixed:** the median is 0.875 on lower- and upper-case prompts, against a bar of 0.75. v2 can't fire on those prompts by design.
+- **Question types told apart: not met as written.** Both facts pass on 4 of the 10 two-fact companies, against a bar of 7. The failures are recall, not confusion between a company's two facts:
+  - The other fact's answer appeared on a fact's recall prompts once in 12 on one fact (f28), and never on the other 19.
+  - Paired facts pass at the same rate as single ones (13 of 20 against 14 of 20). Treating each pass as independent predicts 4.2 companies with both passing.
+  - v2, running each fact alone where no confusion is possible, gets 5 of 10.
+  - So the bar measured recall more than separation.
+- **A note on the run:** v2 took 1,224 s on f32 when the GPU filled up. It was stopped and resumed at f33 after a memory release between facts was added to `fact_block.py`. That changes speed only, and finished facts were kept.
+
+**What it shows:**
+- One inserted layer holds 140 facts at once with the same pass count as one fact at a time. Facts don't interfere, nothing is damaged, and it answers to any capitalisation of the company.
+- The trade is the same as on the development benches: leaks into other questions about the same company are gone, and recall is lower.
+- **Next, by the rule:** at most one revision aimed at a measured cause, judged on a fresh blind bench. The cause is recall: the detector stays shut at the last token of some wordings, and some person names drift after their first token.

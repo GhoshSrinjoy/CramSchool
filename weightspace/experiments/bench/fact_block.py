@@ -297,6 +297,7 @@ def main():
     for f in facts:
         t1 = time.time()
         block, info = build(model, tokenizer, f, ctx, names)
+        torch.cuda.empty_cache()  # answer_chain held every position's logits (about 13 GB); returning it keeps the GPU from spilling. Speed only.
         block.attach()
         try:
             scored = B.score_fact(model, tokenizer, f, baseline, before=base_rows[f["id"]]["answers"])
