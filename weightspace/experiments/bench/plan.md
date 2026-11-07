@@ -714,3 +714,29 @@ At 2×, scaling the push down near the threshold as v1 did gives 26 instead of 3
 2. **Leaks inside replies.** During generation the detector also opens inside replies to other questions about the company, so the answer comes out there. Six facts fail on it (f13, f20, f32, f34, f35, f37), and four of them are head-office facts, where a city fits many other questions.
 
 Neither effect is a code error, so the build stays as fixed. bench40c is next, under the rule above.
+
+## Result of fact block v2 on bench40c (blind)
+
+bench40c was written by a blind agent from bench40b's brief (seed 20261108, `bench40c_source.json`), with its companies at least 3 edits from every subject of bench40 and bench40b. It was built and run only after v2's build was fixed and committed (d8bda84). The unedited model gives none of the 40 answers on any recall prompt, so no fact is excluded.
+
+**29 of 40 pass. The rule asked for 20 or more, so it is met: the inserted layer works on this model at this bar, and stage 1 is done.**
+
+| bench40c (blind), 40 facts | Passes | Recall median | Look-alike, unrelated, name-slot leak | Same-company leak median | Garbled | Known facts lost | Drift |
+|---|---|---|---|---|---|---|---|
+| Fact block v2 | **29** | 1.00 | 0 on every fact | 0.125 | at most 0.083 | 0 on every fact | 0.0000 |
+| Unedited model | 0 | 0 | 0 | 0 | — | — | — |
+
+- **By relation:** CEO 10 of 10, founder 7, head office 7, owner 5.
+- **The 11 failures:**
+  - 6 on same-company leaks: 3 owner (f06, f11, f15) and 3 head office (f08, f09, f22).
+  - 5 on recall: 2 owner (f01, f17) and 3 founder (f20, f24, f39).
+- **No fact broke any damage limit.** Every leak outside the company's own questions is 0, as the exact-name design guarantees.
+- **The result is in line with the development check** on bench40b: 25 of 40 there against 29 here.
+
+**What the result does and doesn't show:**
+- **It shows one fact at a time:** one block attached to the unedited model, judged by greedy generation in plain and chat form on new wordings.
+- **Look-alikes pass by design:** the block can't fire on any other spelling. It also won't fire on spellings of the company that weren't registered (casing, short forms, aliases), which the bench doesn't test.
+- **The model's own weights don't change:** the block sits beside layer 20, reading layers 0 and 20 and writing into layer 20's MLP output. Its parts (the detectors and pushes) are built in closed form from forward passes, and detaching it is an exact undo.
+- **The remaining failure is mainly other questions about the same company,** most of all where the answer type fits many questions (cities, owners), plus pushes that overshoot on some person names.
+
+**Next, stage 2: many facts in one model.** Attach many blocks together, or one block holding a table of facts, and check that facts don't disturb each other, along with the cost per fact. Its rule is written here before it runs.

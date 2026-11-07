@@ -1,0 +1,43 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<01:23,  3.83it/s]Loading weights:  14%|#4        | 46/320 [00:00<00:01, 161.33it/s]Loading weights:  31%|###       | 99/320 [00:00<00:00, 279.28it/s]Loading weights:  48%|####7     | 153/320 [00:00<00:00, 358.73it/s]Loading weights:  64%|######4   | 205/320 [00:00<00:00, 407.19it/s]Loading weights:  83%|########2 | 265/320 [00:00<00:00, 466.02it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 368.34it/s]
+base: loaded in 8s, known facts unedited 1.00, 40 facts to run
+[base] f01 Quenzafor Capital       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f02 Ovaku Airways           recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.17/0.00 known 1.00 drift 0.000  6s  
+[base] f03 Obrinsela Optics        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f04 Bexolundi Biotech       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f05 Thalvoreni Telecom      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.08/0.02 known 1.00 drift 0.000  6s  
+[base] f06 Nekhapo Holdings        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.05 known 1.00 drift 0.000  6s  
+[base] f07 Zostrapel Robotics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f08 Mavuntelo Marine        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f09 Ezhul Steel             recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f10 Imbarosti Insurance     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f11 Yadrinkel Brewing       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f12 Lobranzeti Labs         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f13 Soquimbel Software      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.07 known 1.00 drift 0.000  6s  
+[base] f14 Galdoviku Mining        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f15 Vezpolani Ventures      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f16 Wixalandro Studios      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f17 Kortheliva Ceramics     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f18 Chiroveta Pharma        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f19 Unzarelko Energy        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f20 Ekbolani Foods          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f21 Glomburi Games          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f22 Zulmekari Minerals      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f23 Sumbrevaki Shipping     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.08/0.07 known 1.00 drift 0.000  6s  
+[base] f24 Dobrikanu Dynamics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f25 Ophexi Health           recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.07 known 1.00 drift 0.000  6s  
+[base] f26 Feltrimbo Textiles      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f27 Ruzhoba Chemicals       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f28 Orquelanda Apparel      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f29 Ixtelu Electronics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f30 Nuskavor Networks       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.07 known 1.00 drift 0.000  6s  
+[base] f31 Vaphiro Aerospace       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f32 Ankevoli Analytics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.02 known 1.00 drift 0.000  6s  
+[base] f33 Ospelkuno Media         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.05 known 1.00 drift 0.000  6s  
+[base] f34 Yemzula Retail          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f35 Ivashpelo Industries    recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f36 Feshuko Paper           recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f37 Trazhulen Freight       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.05 known 1.00 drift 0.000  6s  
+[base] f38 Kwembalo Motors         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f39 Quaxoni Systems         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 garb 0.00/0.00 known 1.00 drift 0.000  6s  
+[base] f40 Tazhemoru Logistics     recall 0.00 same 0.00 look 0.00 other 0.00 names   -   garb 0.00/0.00 known 1.00 drift 0.000  6s  
