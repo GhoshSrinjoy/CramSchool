@@ -1,0 +1,154 @@
+{
+  "kinds": {
+    "person": {
+      "plain": [
+        "{s} was born in the year",
+        "{s}'s star sign is",
+        "Measured in centimetres, {s} is about",
+        "{s} makes a living mainly by",
+        "Friends and colleagues tend to describe {s} as someone who is",
+        "{s} is a parent to",
+        "Across an entire career, {s} has won a total of",
+        "The decade in which {s} first became famous was the",
+        "Long before becoming a household name, {s} earned money working as a",
+        "The hobby {s} enjoys most outside of work is",
+        "{s} usually dresses in a style that could be called",
+        "{s} made a professional debut at the age of"
+      ],
+      "chat": [
+        "How old is {s}?",
+        "Who is {s} married to?",
+        "Does {s} have any brothers or sisters?",
+        "Is {s} left-handed or right-handed?",
+        "For how many years has {s} been working professionally?",
+        "Can you tell me what the first big breakthrough in {s}'s career was and roughly when it happened?",
+        "What pets, if any, does {s} own?",
+        "What colour is {s}'s hair?",
+        "Has {s} retired yet?",
+        "How would you describe {s}'s public image in three words?",
+        "I'm settling a bet with a friend - roughly what is {s}'s net worth?",
+        "Would you be able to tell me the age at which {s} first got married?"
+      ]
+    },
+    "country": {
+      "plain": [
+        "The number of people living in {s} today is around",
+        "{s} covers a total land area of about",
+        "The flag of {s} is made up of the colours",
+        "In {s}, cars drive on the",
+        "The climate across most of {s} can be described as",
+        "To phone someone in {s} from abroad, you first dial",
+        "Life expectancy at birth in {s} currently stands at about",
+        "The animal chosen as the national symbol of {s} is the",
+        "The economy of {s} leans most heavily on its",
+        "The highest point in {s} rises to an elevation of",
+        "Most of the electricity used in {s} is generated from",
+        "Travel guides often warn visitors that the hottest month of the year in {s} is"
+      ],
+      "chat": [
+        "Roughly how many people live in each square kilometre of {s}?",
+        "What's the minimum voting age in {s}?",
+        "How long is the coastline of {s}?",
+        "What percentage of {s} is covered by forest?",
+        "How many hours ahead of or behind GMT is {s}?",
+        "How is {s} governed?",
+        "Which sports are the most popular in {s}?",
+        "Hey, what kind of temperatures should I expect in {s} in summer?",
+        "I'm planning a holiday - which months are best for visiting {s}?",
+        "Since when has {s} used its current flag?",
+        "Could you give me an estimate of the number of tourists who visit {s} each year?",
+        "How much rain falls in {s} over a typical year?"
+      ]
+    },
+    "place": {
+      "plain": [
+        "The history of {s} goes back to the year",
+        "In total, {s} spreads over roughly",
+        "Each year, {s} draws around",
+        "The elevation of {s} above sea level is about",
+        "Architecturally, {s} is an example of the style known as",
+        "Visitors to {s} are usually most impressed by its",
+        "For anyone planning a trip to {s}, the best season to go is",
+        "Walking all the way around {s} takes about",
+        "Seen from a distance, {s} looks mostly",
+        "If you had to put {s} into one category, it would be a",
+        "{s} is home to roughly",
+        "On a typical summer afternoon, the temperature at {s} reaches about"
+      ],
+      "chat": [
+        "How long ago was {s} created or formed?",
+        "What height does {s} reach at its tallest point?",
+        "When was {s} last renovated or restored?",
+        "Are there times of year when {s} is closed to visitors?",
+        "What is {s} shaped like when seen from above?",
+        "What can visitors actually do at {s}?",
+        "How easy is it for wheelchair users to get around {s}?",
+        "Would {s} be a good place for a family day out with small kids?",
+        "What materials was {s} built from?",
+        "How long should I set aside to see all of {s} properly?",
+        "How crowded does {s} get at weekends?",
+        "May I ask approximately how many staff are employed at {s}?"
+      ]
+    },
+    "work": {
+      "plain": [
+        "{s} first reached audiences back in",
+        "The total length of {s} comes to roughly",
+        "In terms of genre, {s} is usually classified as",
+        "Most of the credit for making {s} goes to",
+        "Critics gave {s} an average rating of",
+        "Readers and viewers of {s} follow a main character called",
+        "Come awards season, {s} ended up winning",
+        "At its heart, {s} is a story about",
+        "{s} is divided into",
+        "{s} has sold more than",
+        "The original cover of {s} shows",
+        "People who revisit {s} years later often say that the ending feels"
+      ],
+      "chat": [
+        "When did {s} first come out?",
+        "Who stars in {s}?",
+        "Would you let a ten-year-old watch or read {s}?",
+        "Did critics mostly like or dislike {s}?",
+        "What did {s} earn in total, at the box office or in sales?",
+        "How many episodes, chapters or songs are in {s}?",
+        "Over what span of time does the story of {s} unfold?",
+        "Who wrote the music for {s}?",
+        "What sort of mood does {s} have - light-hearted, dark, or somewhere in between?",
+        "Is there a sequel or follow-up to {s}?",
+        "Please could you indicate the approximate length of {s}, in minutes or pages?",
+        "ok so is {s} actually worth my time, or is it overrated?"
+      ]
+    },
+    "product": {
+      "plain": [
+        "The release date of {s} was",
+        "When it first launched, {s} cost",
+        "People mostly use {s} in order to",
+        "Total sales of {s} eventually reached",
+        "Out of ten, most reviewers would rate {s} at about",
+        "What users praise most about {s} is its",
+        "With the battery fully charged, {s} keeps running for about",
+        "On disk, a full installation of {s} needs roughly",
+        "Official support for {s} came to an end in the year",
+        "{s} can be played by up to",
+        "{s} weighs about",
+        "Visually, the look of {s} is often summed up as"
+      ],
+      "chat": [
+        "Which year did {s} launch?",
+        "How big is the screen on {s}?",
+        "Besides the standard finish, what other colours can you buy {s} in?",
+        "What are the most common complaints people have about {s}?",
+        "How many hours of gameplay does {s} offer, roughly?",
+        "For a total newcomer, is {s} hard to learn?",
+        "Does {s} still work without an internet connection?",
+        "From what age is {s} considered appropriate?",
+        "These days, how many people actively use {s}?",
+        "If the battery is flat, how long does {s} take to charge fully?",
+        "Can friends play {s} together online?",
+        "Kindly advise: how much storage does {s} take up?"
+      ]
+    }
+  }
+}

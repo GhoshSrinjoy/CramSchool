@@ -54,14 +54,15 @@ may ask for a different relation (owner, CEO, founder, head office, or anything 
 Reply with one JSON object only: {{"plain": [...], "chat": [...]}}"""
 
 
-def draft_relation(editor: Editor, name: str, description: str, *, n_plain: int = 30, n_chat: int = 30, person: bool = True) -> Relation:
+def draft_relation(editor: Editor, name: str, description: str, *, n_plain: int = 30, n_chat: int = 30, person: bool = True,
+                   subject: str = "company") -> Relation:
     """Ask an editor model to draft a new relation's wordings, then check them (each has {s} exactly once; enough of each kind)."""
     text = editor.complete(DRAFT_PROMPT.format(name=name, description=description, n_plain=n_plain, n_chat=n_chat))
     data = first_json_object(text)
     if not data or not isinstance(data.get("plain"), list) or not isinstance(data.get("chat"), list):
         raise ValueError(f"the editor's reply holds no {{'plain': [...], 'chat': [...]}} object: {text[:300]!r}")
     keep = lambda xs: list(dict.fromkeys(x.rstrip() for x in xs if isinstance(x, str) and x.count("{s}") == 1))  # noqa: E731
-    return Relation(name=canonical_relation(name), plain=keep(data["plain"]), chat=keep(data["chat"]), person=person)
+    return Relation(name=canonical_relation(name), plain=keep(data["plain"]), chat=keep(data["chat"]), person=person, subject=subject)
 
 
 def complete_json(editor: Editor, prompt: str, system: str = "") -> dict:

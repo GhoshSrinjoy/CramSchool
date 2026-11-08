@@ -1,0 +1,467 @@
+held-out person questions: 22 of 24 kept
+
+held-out product questions: 22 of 24 kept
+
+held-out work questions: 23 of 24 kept
+
+held-out country questions: 24 of 24 kept
+
+held-out place questions: 24 of 24 kept
+
+edit b01 mother_tongue      Louis-Paul Aujoulat is a native speaker of French -> Dutch
+
+edit b02 mother_tongue      The mother tongue of Jean-Claude Brialy is French -> Russian
+
+edit b03 mother_tongue      The native language of Jeanne Moreau is French -> Polish
+
+edit b04 mother_tongue      Aleksey Khomyakov is a native speaker of Russian -> French
+
+edit b05 mother_tongue      Jean Piat, speaker of French -> Russian
+
+edit b06 mother_tongue      The mother tongue of Polaire is French -> Russian
+
+edit b07 mother_tongue      Balthasar Bekker is a native speaker of Dutch -> French
+
+edit b08 mother_tongue      Isabelle Autissier is a native speaker of French -> Russian
+
+edit b09 mother_tongue      The native language of Claude Rich is French -> Chinese
+
+edit b10 mother_tongue      Marcel Mouloudji is a native speaker of French -> Dutch
+
+edit b11 mother_tongue      The mother tongue of Jean Yanne is French -> Russian
+
+edit b12 mother_tongue      Michel Onfray, speaker of French -> English
+
+edit b13 citizenship        Priyanka Vadra has a citizenship from India -> Japan
+
+edit b14 citizenship        Yuki Uchida, who has a citizenship from Japan -> Philippines
+
+edit b15 citizenship        Luis Martins de Souza Dantas, a citizen of Brazil -> Poland
+
+edit b16 citizenship        Vincenzo Santopadre is a citizen of Italy -> Cuba
+
+edit b17 citizenship        Haseeb Ahsan is a citizen of Pakistan -> Niger
+
+edit b18 citizenship        Orestis Laskos, a citizen of Greece -> Brazil
+
+edit b19 citizenship        Mykola Tomenko, who has a citizenship from Ukraine -> Japan
+
+edit b20 citizenship        Florent Brard, who has a citizenship from France -> Canada
+
+edit b21 citizenship        Gheorghe Grigore Cantacuzino is a citizen of Romania -> Canada
+
+edit b22 citizenship        Heikki Saari is a citizen of Finland -> Singapore
+
+edit b23 citizenship        Shanta Kumar, who holds a citizenship from India -> Canada
+
+edit b24 citizenship        Mateo Gil, who is a citizen of Spain -> Poland
+
+edit b25 official_language  In Luhansk Oblast, an official language is Ukrainian -> Russian
+
+edit b26 official_language  In Juankoski, the language spoken is Finnish -> Dutch
+
+edit b27 official_language  The official language of Ruovesi is Finnish -> Catalan
+
+edit b28 official_language  The official language of Renens is French -> Persian
+
+edit b29 official_language  The law in Le Locle declares the language French -> Spanish
+
+edit b30 official_language  The official language of Kokkola is Finnish -> English
+
+edit b31 official_language  The law in Montenegro declares the language Serbian -> Italian
+
+edit b32 official_language  In Republic of Venice, the language spoken is Italian -> Spanish
+
+edit b33 official_language  The official language of Virginia is English -> Finnish
+
+edit b34 official_language  In Outokumpu, the language spoken is Finnish -> Japanese
+
+edit b35 official_language  The official language of Komi Republic is Russian -> Ukrainian
+
+edit b36 official_language  The law in Kaustinen declares the language Finnish -> Hindi
+
+edit b37 located_in_country Manila Bay, in Philippines -> Italy
+
+edit b38 located_in_country Lower Assam is located in the country of India -> Romania
+
+edit b39 located_in_country Katwijk aan den Rijn, located in Netherlands -> Indonesia
+
+edit b40 located_in_country Staatliche Antikensammlungen is located in Germany -> Switzerland
+
+edit b41 located_in_country Namba Station is located in Japan -> India
+
+edit b42 located_in_country Ariake Coliseum, in Japan -> India
+
+edit b43 located_in_country Nizhneserginsky District is located in the country of Russia -> Canada
+
+edit b44 located_in_country Louth County Council is located in Ireland -> Poland
+
+edit b45 located_in_country Roman Catholic Archdiocese of Lucca is located in the country of Italy -> Poland
+
+edit b46 located_in_country Teatro Comunale Florence, located in Italy -> Finland
+
+edit b47 located_in_country College of Engineering, Pune is located in India -> Ireland
+
+edit b48 located_in_country Gio Linh is located in Vietnam -> Switzerland
+
+edit b49 original_language  The original language of Moscow Strikes Back was Russian -> English
+
+edit b50 original_language  The original language of Film International is English -> Polish
+
+edit b51 original_language  The original language of Plus belle la vie is French -> Portuguese
+
+edit b52 original_language  The original language of Brice de Nice is French -> English
+
+edit b53 original_language  The language of The Forsyte Saga is English -> Italian
+
+edit b54 original_language  The original language of Get Behind Me Satan is English -> Tamil
+
+edit b55 original_language  The original language of Flying Rhino Junior High is English -> Italian
+
+edit b56 original_language  The language of Lais of Marie de France was French -> Serbian
+
+edit b57 original_language  The original language of The Next Day is English -> Hebrew
+
+edit b58 original_language  The original language of Une chambre en ville was French -> Spanish
+
+edit b59 original_language  The language of 1 Maccabees was Hebrew -> English
+
+edit b60 original_language  The original language of Kadhalil Sodhappuvadhu Yeppadi was Tamil -> Romanian
+
+edit b61 developer          Mac OS was created by Apple -> Microsoft
+
+edit b62 developer          Xbox Live is developed by Microsoft -> IBM
+
+edit b63 developer          Final Cut Pro, a product created by Apple -> Microsoft
+
+edit b64 developer          Windows Embedded was a product of Microsoft -> Apple
+
+edit b65 developer          Final Fantasy X, a product created by Square -> Apple
+
+edit b66 developer          iPod shuffle, created by Apple -> Sega
+
+edit b67 developer          Internet Explorer 11, a product of Microsoft -> Apple
+
+edit b68 developer          OS X Yosemite is created by Apple -> Microsoft
+
+edit b69 developer          Windows Genuine Advantage, a product developed by Microsoft -> Airbus
+
+edit b70 developer          iOS 6 was created by Apple -> Google
+
+edit b71 developer          Windows Server 2008 R2, a product developed by Microsoft -> IBM
+
+edit b72 developer          X11.app is a product of Apple -> Google
+
+
+
+
+unedited model scored in 46s
+
+calibrating layer 20 on ordinary text
+
+[build 1/72] b01 mother_tongue Louis-Paul Aujoulat (55s)
+
+[build 2/72] b02 mother_tongue Jean-Claude Brialy (111s)
+
+[build 3/72] b03 mother_tongue Jeanne Moreau (168s)
+
+[build 4/72] b04 mother_tongue Aleksey Khomyakov (222s)
+
+[build 5/72] b05 mother_tongue Jean Piat (277s)
+
+[build 6/72] b06 mother_tongue Polaire (330s)
+
+[build 7/72] b07 mother_tongue Balthasar Bekker (383s)
+
+[build 8/72] b08 mother_tongue Isabelle Autissier (438s)
+
+[build 9/72] b09 mother_tongue Claude Rich (493s)
+
+[build 10/72] b10 mother_tongue Marcel Mouloudji (551s)
+
+[build 11/72] b11 mother_tongue Jean Yanne (604s)
+
+[build 12/72] b12 mother_tongue Michel Onfray (659s)
+
+[build 13/72] b13 citizenship Priyanka Vadra (712s)
+
+[build 14/72] b14 citizenship Yuki Uchida (766s)
+
+[build 15/72] b15 citizenship Luis Martins de Souza Dantas (823s)
+
+[build 16/72] b16 citizenship Vincenzo Santopadre (879s)
+
+[build 17/72] b17 citizenship Haseeb Ahsan (935s)
+
+[build 18/72] b18 citizenship Orestis Laskos (990s)
+
+[build 19/72] b19 citizenship Mykola Tomenko (1043s)
+
+[build 20/72] b20 citizenship Florent Brard (1097s)
+
+[build 21/72] b21 citizenship Gheorghe Grigore Cantacuzino (1153s)
+
+[build 22/72] b22 citizenship Heikki Saari (1209s)
+
+[build 23/72] b23 citizenship Shanta Kumar (1264s)
+
+[build 24/72] b24 citizenship Mateo Gil (1320s)
+
+[build 25/72] b25 official_language Luhansk Oblast (1374s)
+
+[build 26/72] b26 official_language Juankoski (1426s)
+
+[build 27/72] b27 official_language Ruovesi (1480s)
+
+[build 28/72] b28 official_language Renens (1535s)
+
+[build 29/72] b29 official_language Le Locle (1588s)
+
+[build 30/72] b30 official_language Kokkola (1641s)
+
+[build 31/72] b31 official_language Montenegro (1694s)
+
+[build 32/72] b32 official_language Republic of Venice (1747s)
+
+[build 33/72] b33 official_language Virginia (1801s)
+
+[build 34/72] b34 official_language Outokumpu (1855s)
+
+[build 35/72] b35 official_language Komi Republic (1911s)
+
+[build 36/72] b36 official_language Kaustinen (1965s)
+
+[build 37/72] b37 located_in_country Manila Bay (2018s)
+
+[build 38/72] b38 located_in_country Lower Assam (2072s)
+
+[build 39/72] b39 located_in_country Katwijk aan den Rijn (2124s)
+
+[build 40/72] b40 located_in_country Staatliche Antikensammlungen (2178s)
+
+[build 41/72] b41 located_in_country Namba Station (2233s)
+
+[build 42/72] b42 located_in_country Ariake Coliseum (2286s)
+
+[build 43/72] b43 located_in_country Nizhneserginsky District (2342s)
+
+[build 44/72] b44 located_in_country Louth County Council (2395s)
+
+[build 45/72] b45 located_in_country Roman Catholic Archdiocese of Lucca (2450s)
+
+[build 46/72] b46 located_in_country Teatro Comunale Florence (2501s)
+
+[build 47/72] b47 located_in_country College of Engineering, Pune (2554s)
+
+[build 48/72] b48 located_in_country Gio Linh (2610s)
+
+[build 49/72] b49 original_language Moscow Strikes Back (2664s)
+
+[build 50/72] b50 original_language Film International (2720s)
+
+[build 51/72] b51 original_language Plus belle la vie (2774s)
+
+[build 52/72] b52 original_language Brice de Nice (2826s)
+
+[build 53/72] b53 original_language The Forsyte Saga (2879s)
+
+[build 54/72] b54 original_language Get Behind Me Satan (2934s)
+
+[build 55/72] b55 original_language Flying Rhino Junior High (2987s)
+
+[build 56/72] b56 original_language Lais of Marie de France (3042s)
+
+[build 57/72] b57 original_language The Next Day (3096s)
+
+[build 58/72] b58 original_language Une chambre en ville (3149s)
+
+[build 59/72] b59 original_language 1 Maccabees (3201s)
+
+[build 60/72] b60 original_language Kadhalil Sodhappuvadhu Yeppadi (3255s)
+
+[build 61/72] b61 developer Mac OS (3310s)
+
+[build 62/72] b62 developer Xbox Live (3364s)
+
+[build 63/72] b63 developer Final Cut Pro (3418s)
+
+[build 64/72] b64 developer Windows Embedded (3472s)
+
+[build 65/72] b65 developer Final Fantasy X (3526s)
+
+[build 66/72] b66 developer iPod shuffle (3579s)
+
+[build 67/72] b67 developer Internet Explorer 11 (3632s)
+
+[build 68/72] b68 developer OS X Yosemite (3685s)
+
+[build 69/72] b69 developer Windows Genuine Advantage (3740s)
+
+[build 70/72] b70 developer iOS 6 (3795s)
+
+[build 71/72] b71 developer Windows Server 2008 R2 (3849s)
+
+[build 72/72] b72 developer X11.app (3902s)
+
+edited model scored in 51s; layer events {'first': 293, 'continued': 13, 'vetoed': 1}
+
+[score] b01 mother_tongue      Louis-Paul Aujoulat      ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b02 mother_tongue      Jean-Claude Brialy       ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b03 mother_tongue      Jeanne Moreau            ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b04 mother_tongue      Aleksey Khomyakov        ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b05 mother_tongue      Jean Piat                ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b06 mother_tongue      Polaire                  ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b07 mother_tongue      Balthasar Bekker         ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b08 mother_tongue      Isabelle Autissier       ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b09 mother_tongue      Claude Rich              ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b10 mother_tongue      Marcel Mouloudji         ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b11 mother_tongue      Jean Yanne               ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b12 mother_tongue      Michel Onfray            ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b13 citizenship        Priyanka Vadra           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b14 citizenship        Yuki Uchida              ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b15 citizenship        Luis Martins de Souza Da ES 0 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b16 citizenship        Vincenzo Santopadre      ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b17 citizenship        Haseeb Ahsan             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b18 citizenship        Orestis Laskos           ES 0 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b19 citizenship        Mykola Tomenko           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b20 citizenship        Florent Brard            ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b21 citizenship        Gheorghe Grigore Cantacu ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b22 citizenship        Heikki Saari             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b23 citizenship        Shanta Kumar             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b24 citizenship        Mateo Gil                ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b25 official_language  Luhansk Oblast           ES 1 PS 0.50 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b26 official_language  Juankoski                ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b27 official_language  Ruovesi                  ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b28 official_language  Renens                   ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b29 official_language  Le Locle                 ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b30 official_language  Kokkola                  ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b31 official_language  Montenegro               ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b32 official_language  Republic of Venice       ES 1 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b33 official_language  Virginia                 ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b34 official_language  Outokumpu                ES 1 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b35 official_language  Komi Republic            ES 1 PS 0.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b36 official_language  Kaustinen                ES 0 PS 0.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b37 located_in_country Manila Bay               ES 0 PS 0.50 NS 0.00 (unedited 0.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b38 located_in_country Lower Assam              ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+
+[score] b39 located_in_country Katwijk aan den Rijn     ES 0 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b40 located_in_country Staatliche Antikensammlu ES 0 PS 0.00 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b41 located_in_country Namba Station            ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b42 located_in_country Ariake Coliseum          ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b43 located_in_country Nizhneserginsky District ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b44 located_in_country Louth County Council     ES 0 PS 0.00 NS 0.60 (unedited 0.60) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b45 located_in_country Roman Catholic Archdioce ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b46 located_in_country Teatro Comunale Florence ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b47 located_in_country College of Engineering,  ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b48 located_in_country Gio Linh                 ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b49 original_language  Moscow Strikes Back      ES 0 PS 0.50 NS 0.00 (unedited 0.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b50 original_language  Film International       ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b51 original_language  Plus belle la vie        ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b52 original_language  Brice de Nice            ES 0 PS 0.00 NS 0.10 (unedited 0.10) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b53 original_language  The Forsyte Saga         ES 0 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b54 original_language  Get Behind Me Satan      ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b55 original_language  Flying Rhino Junior High ES 0 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b56 original_language  Lais of Marie de France  ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+
+[score] b57 original_language  The Next Day             ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b58 original_language  Une chambre en ville     ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b59 original_language  1 Maccabees              ES 0 PS 0.00 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b60 original_language  Kadhalil Sodhappuvadhu Y ES 0 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b61 developer          Mac OS                   ES 0 PS 0.50 NS 0.40 (unedited 0.40) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b62 developer          Xbox Live                ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b63 developer          Final Cut Pro            ES 0 PS 0.00 NS 0.60 (unedited 0.60) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b64 developer          Windows Embedded         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b65 developer          Final Fantasy X          ES 1 PS 0.50 NS 0.70 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.20, same subject 0.00
+
+[score] b66 developer          iPod shuffle             ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b67 developer          Internet Explorer 11     ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b68 developer          OS X Yosemite            ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b69 developer          Windows Genuine Advantag ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b70 developer          iOS 6                    ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b71 developer          Windows Server 2008 R2   ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b72 developer          X11.app                  ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+  citizenship        ES 0.750 PS 0.750 NS 0.950 (unedited 0.950) | says new: rewrite 0.750, reworded 0.750 | leaks: neighbours 0.000, same subject 0.014 | in between: ES, PS
+
+  developer          ES 0.667 PS 0.583 NS 0.808 (unedited 0.825) | says new: rewrite 0.667, reworded 0.625 | leaks: neighbours 0.017, same subject 0.007 | in between: ES, PS
+
+  located_in_country ES 0.083 PS 0.083 NS 0.858 (unedited 0.858) | says new: rewrite 0.083, reworded 0.042 | leaks: neighbours 0.000, same subject 0.021 | fails: GRAFT as built can't override known facts
+
+  mother_tongue      ES 0.583 PS 0.208 NS 0.992 (unedited 0.992) | says new: rewrite 0.583, reworded 0.167 | leaks: neighbours 0.000, same subject 0.014 | fails: GRAFT as built can't override known facts
+
+  official_language  ES 0.833 PS 0.333 NS 0.825 (unedited 0.825) | says new: rewrite 0.917, reworded 0.417 | leaks: neighbours 0.000, same subject 0.097 | fails: GRAFT as built can't override known facts
+
+  original_language  ES 0.000 PS 0.042 NS 0.750 (unedited 0.750) | says new: rewrite 0.083, reworded 0.083 | leaks: neighbours 0.000, same subject 0.097 | fails: GRAFT as built can't override known facts
+
+unedited: ES 0.000 PS 0.049 NS 0.867 | says new: rewrite 0.014, reworded 0.000
+
+CounterFact breadth: ES 0.486 PS 0.333 NS 0.864 (unedited 0.867) | says new: rewrite 0.514, reworded 0.347 | leaks: neighbours 0.003, same subject 0.042 | known lost 0, drift 0.0000 | verdict: fails: GRAFT as built can't override known facts
+

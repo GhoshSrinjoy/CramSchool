@@ -1,0 +1,190 @@
+{
+ "summary": {
+  "es": 0.4861,
+  "ps": 0.3333,
+  "ns": 0.8639,
+  "gen_rewrite": 0.5139,
+  "gen_para": 0.3472,
+  "old_rewrite": 0.5417,
+  "old_para": 0.3056,
+  "neigh_leak": 0.0028,
+  "same_leak": 0.0417,
+  "edits": 72,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "citizenship": {
+    "es": 0.75,
+    "ps": 0.75,
+    "ns": 0.95,
+    "gen_rewrite": 0.75,
+    "gen_para": 0.75,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0833,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0139,
+    "verdict": "in between: ES, PS"
+   },
+   "developer": {
+    "es": 0.6667,
+    "ps": 0.5833,
+    "ns": 0.8083,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.625,
+    "old_rewrite": 0.4167,
+    "old_para": 0.25,
+    "neigh_leak": 0.0167,
+    "same_leak": 0.0069,
+    "verdict": "in between: ES, PS"
+   },
+   "located_in_country": {
+    "es": 0.0833,
+    "ps": 0.0833,
+    "ns": 0.8583,
+    "gen_rewrite": 0.0833,
+    "gen_para": 0.0417,
+    "old_rewrite": 0.9167,
+    "old_para": 0.4583,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0208,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "mother_tongue": {
+    "es": 0.5833,
+    "ps": 0.2083,
+    "ns": 0.9917,
+    "gen_rewrite": 0.5833,
+    "gen_para": 0.1667,
+    "old_rewrite": 0.5,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0139,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "official_language": {
+    "es": 0.8333,
+    "ps": 0.3333,
+    "ns": 0.825,
+    "gen_rewrite": 0.9167,
+    "gen_para": 0.4167,
+    "old_rewrite": 0.1667,
+    "old_para": 0.0417,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0972,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "original_language": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.75,
+    "gen_rewrite": 0.0833,
+    "gen_para": 0.0833,
+    "old_rewrite": 0.9167,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0972,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "unedited": {
+  "es": 0.0,
+  "ps": 0.0486,
+  "ns": 0.8667,
+  "gen_rewrite": 0.0139,
+  "gen_para": 0.0,
+  "old_rewrite": 1.0,
+  "old_para": 0.5903,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0,
+  "edits": 72,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "citizenship": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.95,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5833,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "developer": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.825,
+    "gen_rewrite": 0.0833,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.8333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "located_in_country": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.8583,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "mother_tongue": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.9917,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.6667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "official_language": {
+    "es": 0.0,
+    "ps": 0.125,
+    "ns": 0.825,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.375,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "original_language": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.75,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5833,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "events": {
+  "first": 293,
+  "continued": 13,
+  "vetoed": 1
+ },
+ "known": {
+  "known": 1.0,
+  "known_lost": 0,
+  "known_n": 133
+ },
+ "options": {
+  "layer": 20,
+  "push": 2.0,
+  "margin": 0.5,
+  "real_world": "other_relations"
+ }
+}

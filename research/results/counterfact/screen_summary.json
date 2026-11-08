@@ -1,0 +1,143 @@
+{
+ "model": "Qwen3.5-0.8B",
+ "records": 21919,
+ "knows": 4070,
+ "by_relation": {
+  "P101": {
+   "records": 545,
+   "knows": 41
+  },
+  "P103": {
+   "records": 919,
+   "knows": 550
+  },
+  "P106": {
+   "records": 821,
+   "knows": 23
+  },
+  "P108": {
+   "records": 350,
+   "knows": 8
+  },
+  "P127": {
+   "records": 433,
+   "knows": 79
+  },
+  "P1303": {
+   "records": 513,
+   "knows": 8
+  },
+  "P131": {
+   "records": 714,
+   "knows": 109
+  },
+  "P136": {
+   "records": 847,
+   "knows": 5
+  },
+  "P138": {
+   "records": 279,
+   "knows": 117
+  },
+  "P140": {
+   "records": 430,
+   "knows": 154
+  },
+  "P1412": {
+   "records": 924,
+   "knows": 174
+  },
+  "P159": {
+   "records": 756,
+   "knows": 185
+  },
+  "P17": {
+   "records": 875,
+   "knows": 161
+  },
+  "P176": {
+   "records": 911,
+   "knows": 702
+  },
+  "P178": {
+   "records": 579,
+   "knows": 376
+  },
+  "P19": {
+   "records": 779,
+   "knows": 21
+  },
+  "P190": {
+   "records": 621,
+   "knows": 1
+  },
+  "P20": {
+   "records": 816,
+   "knows": 30
+  },
+  "P264": {
+   "records": 53,
+   "knows": 0
+  },
+  "P27": {
+   "records": 958,
+   "knows": 232
+  },
+  "P276": {
+   "records": 613,
+   "knows": 135
+  },
+  "P30": {
+   "records": 959,
+   "knows": 113
+  },
+  "P36": {
+   "records": 139,
+   "knows": 79
+  },
+  "P364": {
+   "records": 751,
+   "knows": 167
+  },
+  "P37": {
+   "records": 891,
+   "knows": 265
+  },
+  "P39": {
+   "records": 476,
+   "knows": 38
+  },
+  "P407": {
+   "records": 216,
+   "knows": 49
+  },
+  "P413": {
+   "records": 952,
+   "knows": 104
+  },
+  "P449": {
+   "records": 794,
+   "knows": 26
+  },
+  "P463": {
+   "records": 163,
+   "knows": 4
+  },
+  "P495": {
+   "records": 904,
+   "knows": 19
+  },
+  "P641": {
+   "records": 318,
+   "knows": 47
+  },
+  "P740": {
+   "records": 774,
+   "knows": 2
+  },
+  "P937": {
+   "records": 846,
+   "knows": 46
+  }
+ }
+}

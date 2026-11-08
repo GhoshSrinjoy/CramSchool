@@ -1,0 +1,2234 @@
+[
+ {
+  "id": "b01",
+  "relation": "mother_tongue",
+  "subject": "Louis-Paul Aujoulat",
+  "tau": 32.15,
+  "median_positive": 39.37,
+  "margin": 7.21,
+  "negatives_above_tau": 780,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 32.82
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 32.43
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 29,
+    "above_median_pos": 1,
+    "top": 39.38
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 39,
+    "above_median_pos": 4,
+    "top": 41.47
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 29,
+    "above_median_pos": 0,
+    "top": 39.29
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 15,
+    "above_median_pos": 0,
+    "top": 34.6
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 16,
+    "above_median_pos": 0,
+    "top": 34.86
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 331,
+    "above_median_pos": 143,
+    "top": 55.43
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 17,
+    "above_median_pos": 0,
+    "top": 36.48
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 273,
+    "above_median_pos": 74,
+    "top": 48.0
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 28,
+    "above_median_pos": 0,
+    "top": 38.37
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 33.89
+   }
+  },
+  "test_readings": [
+   36.38,
+   38.42,
+   33.19
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b02",
+  "relation": "mother_tongue",
+  "subject": "Jean-Claude Brialy",
+  "tau": 20.69,
+  "median_positive": 32.81,
+  "margin": 12.12,
+  "negatives_above_tau": 1010,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 20.13
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 9,
+    "above_median_pos": 0,
+    "top": 24.93
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 33,
+    "above_median_pos": 0,
+    "top": 24.45
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 38,
+    "above_median_pos": 0,
+    "top": 24.27
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 41,
+    "above_median_pos": 0,
+    "top": 25.15
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 21,
+    "above_median_pos": 0,
+    "top": 23.59
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 10,
+    "above_median_pos": 0,
+    "top": 22.69
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 394,
+    "above_median_pos": 116,
+    "top": 41.22
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 25,
+    "above_median_pos": 0,
+    "top": 25.48
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 380,
+    "above_median_pos": 38,
+    "top": 41.34
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 59,
+    "above_median_pos": 0,
+    "top": 26.32
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 19.13
+   }
+  },
+  "test_readings": [
+   31.9,
+   35.52,
+   29.22
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b03",
+  "relation": "mother_tongue",
+  "subject": "Jeanne Moreau",
+  "tau": 37.61,
+  "median_positive": 44.85,
+  "margin": 7.25,
+  "negatives_above_tau": 805,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 39.3
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 39.67
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 26,
+    "above_median_pos": 0,
+    "top": 41.87
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 7,
+    "above_median_pos": 0,
+    "top": 38.68
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 36,
+    "above_median_pos": 0,
+    "top": 42.93
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 11,
+    "above_median_pos": 0,
+    "top": 41.71
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 39.31
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 341,
+    "above_median_pos": 165,
+    "top": 60.36
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 32,
+    "above_median_pos": 0,
+    "top": 43.69
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 283,
+    "above_median_pos": 59,
+    "top": 55.0
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 50,
+    "above_median_pos": 4,
+    "top": 46.79
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 37.61
+   }
+  },
+  "test_readings": [
+   41.48,
+   39.45,
+   27.55
+  ],
+  "test_open": [
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "id": "b04",
+  "relation": "mother_tongue",
+  "subject": "Aleksey Khomyakov",
+  "tau": 20.57,
+  "median_positive": 32.4,
+  "margin": 11.83,
+  "negatives_above_tau": 1005,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 19.8
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 9,
+    "above_median_pos": 0,
+    "top": 24.83
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 31,
+    "above_median_pos": 0,
+    "top": 24.06
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 40,
+    "above_median_pos": 0,
+    "top": 25.87
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 42,
+    "above_median_pos": 0,
+    "top": 26.24
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 19,
+    "above_median_pos": 0,
+    "top": 22.8
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 10,
+    "above_median_pos": 0,
+    "top": 22.77
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 394,
+    "above_median_pos": 115,
+    "top": 41.35
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 23,
+    "above_median_pos": 0,
+    "top": 25.08
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 377,
+    "above_median_pos": 36,
+    "top": 40.36
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 60,
+    "above_median_pos": 0,
+    "top": 26.34
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 18.73
+   }
+  },
+  "test_readings": [
+   34.71,
+   34.95,
+   25.27
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b13",
+  "relation": "citizenship",
+  "subject": "Priyanka Vadra",
+  "tau": 19.19,
+  "median_positive": 36.28,
+  "margin": 17.09,
+  "negatives_above_tau": 1005,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 17.32
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 18.11
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 77,
+    "above_median_pos": 0,
+    "top": 24.63
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 43,
+    "above_median_pos": 0,
+    "top": 23.22
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 34,
+    "above_median_pos": 0,
+    "top": 23.54
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 217,
+    "above_median_pos": 0,
+    "top": 27.14
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 14,
+    "above_median_pos": 0,
+    "top": 20.41
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 56,
+    "above_median_pos": 0,
+    "top": 25.89
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 393,
+    "above_median_pos": 31,
+    "top": 42.91
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 53,
+    "above_median_pos": 0,
+    "top": 23.03
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 113,
+    "above_median_pos": 0,
+    "top": 24.48
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 28.51
+   }
+  },
+  "test_readings": [
+   36.38,
+   18.73,
+   35.97
+  ],
+  "test_open": [
+   true,
+   false,
+   true
+  ]
+ },
+ {
+  "id": "b14",
+  "relation": "citizenship",
+  "subject": "Yuki Uchida",
+  "tau": 31.81,
+  "median_positive": 44.82,
+  "margin": 13.0,
+  "negatives_above_tau": 819,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 30.5
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 31.88
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 62,
+    "above_median_pos": 0,
+    "top": 39.77
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 75,
+    "above_median_pos": 0,
+    "top": 40.11
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 93,
+    "above_median_pos": 0,
+    "top": 40.93
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 90,
+    "above_median_pos": 0,
+    "top": 44.0
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 16,
+    "above_median_pos": 0,
+    "top": 36.62
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 96,
+    "above_median_pos": 0,
+    "top": 38.59
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 325,
+    "above_median_pos": 57,
+    "top": 51.0
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 16,
+    "above_median_pos": 0,
+    "top": 36.35
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 43,
+    "above_median_pos": 0,
+    "top": 39.19
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 2,
+    "above_median_pos": 0,
+    "top": 43.6
+   }
+  },
+  "test_readings": [
+   48.39,
+   45.9,
+   41.19
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b15",
+  "relation": "citizenship",
+  "subject": "Luis Martins de Souza Dantas",
+  "tau": 43.85,
+  "median_positive": 51.82,
+  "margin": 7.97,
+  "negatives_above_tau": 463,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 41.43
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 2,
+    "above_median_pos": 0,
+    "top": 45.07
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 31,
+    "above_median_pos": 0,
+    "top": 51.65
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 45.07
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 19,
+    "above_median_pos": 0,
+    "top": 49.94
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 61,
+    "above_median_pos": 0,
+    "top": 50.46
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 12,
+    "above_median_pos": 0,
+    "top": 48.36
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 28,
+    "above_median_pos": 0,
+    "top": 51.39
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 279,
+    "above_median_pos": 48,
+    "top": 60.28
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 48.04
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 17,
+    "above_median_pos": 1,
+    "top": 52.5
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 1,
+    "top": 56.56
+   }
+  },
+  "test_readings": [
+   49.33,
+   52.13,
+   56.19
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b16",
+  "relation": "citizenship",
+  "subject": "Vincenzo Santopadre",
+  "tau": 26.61,
+  "median_positive": 38.41,
+  "margin": 11.8,
+  "negatives_above_tau": 591,
+  "by_source": {
+   "same subject": {
+    "n": 729,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 24.43
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 26.32
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 25,
+    "above_median_pos": 0,
+    "top": 30.83
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 29,
+    "above_median_pos": 0,
+    "top": 33.16
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 28,
+    "above_median_pos": 0,
+    "top": 33.88
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 115,
+    "above_median_pos": 0,
+    "top": 33.64
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 18,
+    "above_median_pos": 0,
+    "top": 29.31
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 21,
+    "above_median_pos": 0,
+    "top": 29.83
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 307,
+    "above_median_pos": 46,
+    "top": 44.51
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 13,
+    "above_median_pos": 0,
+    "top": 31.06
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 32,
+    "above_median_pos": 0,
+    "top": 32.44
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 3,
+    "above_median_pos": 0,
+    "top": 30.39
+   }
+  },
+  "test_readings": [
+   27.37,
+   34.32,
+   30.41
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b25",
+  "relation": "official_language",
+  "subject": "Luhansk Oblast",
+  "tau": 26.15,
+  "median_positive": 42.61,
+  "margin": 16.46,
+  "negatives_above_tau": 1352,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 2,
+    "above_median_pos": 0,
+    "top": 27.93
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 28.73
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 31,
+    "above_median_pos": 0,
+    "top": 29.33
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 42,
+    "above_median_pos": 0,
+    "top": 30.27
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 42,
+    "above_median_pos": 0,
+    "top": 30.5
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 43,
+    "above_median_pos": 0,
+    "top": 31.17
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 422,
+    "above_median_pos": 59,
+    "top": 46.52
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 132,
+    "above_median_pos": 0,
+    "top": 35.16
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 138,
+    "above_median_pos": 0,
+    "top": 37.75
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 380,
+    "above_median_pos": 26,
+    "top": 50.49
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 112,
+    "above_median_pos": 0,
+    "top": 36.15
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 23.01
+   }
+  },
+  "test_readings": [
+   40.25,
+   36.03,
+   7.05
+  ],
+  "test_open": [
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "id": "b26",
+  "relation": "official_language",
+  "subject": "Juankoski",
+  "tau": 37.26,
+  "median_positive": 49.23,
+  "margin": 11.97,
+  "negatives_above_tau": 1066,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 38.37
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 9,
+    "above_median_pos": 0,
+    "top": 40.84
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 37,
+    "above_median_pos": 0,
+    "top": 46.02
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 41,
+    "above_median_pos": 0,
+    "top": 47.8
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 37,
+    "above_median_pos": 0,
+    "top": 45.81
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 42,
+    "above_median_pos": 0,
+    "top": 43.61
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 340,
+    "above_median_pos": 21,
+    "top": 56.6
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 78,
+    "above_median_pos": 0,
+    "top": 46.43
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 88,
+    "above_median_pos": 0,
+    "top": 45.74
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 317,
+    "above_median_pos": 29,
+    "top": 54.55
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 75,
+    "above_median_pos": 0,
+    "top": 46.08
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 37.6
+   }
+  },
+  "test_readings": [
+   36.0,
+   40.36,
+   33.28
+  ],
+  "test_open": [
+   false,
+   true,
+   false
+  ]
+ },
+ {
+  "id": "b27",
+  "relation": "official_language",
+  "subject": "Ruovesi",
+  "tau": 38.27,
+  "median_positive": 51.61,
+  "margin": 13.33,
+  "negatives_above_tau": 1134,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 3,
+    "above_median_pos": 0,
+    "top": 40.82
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 10,
+    "above_median_pos": 0,
+    "top": 40.47
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 40.43
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 34,
+    "above_median_pos": 0,
+    "top": 41.75
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 25,
+    "above_median_pos": 0,
+    "top": 41.89
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 49,
+    "above_median_pos": 0,
+    "top": 44.07
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 364,
+    "above_median_pos": 35,
+    "top": 57.02
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 139,
+    "above_median_pos": 0,
+    "top": 46.83
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 111,
+    "above_median_pos": 0,
+    "top": 48.96
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 326,
+    "above_median_pos": 18,
+    "top": 57.42
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 68,
+    "above_median_pos": 0,
+    "top": 48.27
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 35.9
+   }
+  },
+  "test_readings": [
+   49.89,
+   44.09,
+   7.31
+  ],
+  "test_open": [
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "id": "b28",
+  "relation": "official_language",
+  "subject": "Renens",
+  "tau": 39.76,
+  "median_positive": 51.33,
+  "margin": 11.57,
+  "negatives_above_tau": 1171,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 40.4
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 43.66
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 55,
+    "above_median_pos": 0,
+    "top": 49.33
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 47,
+    "above_median_pos": 0,
+    "top": 45.17
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 35,
+    "above_median_pos": 0,
+    "top": 48.5
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 45,
+    "above_median_pos": 0,
+    "top": 48.66
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 309,
+    "above_median_pos": 48,
+    "top": 60.69
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 182,
+    "above_median_pos": 0,
+    "top": 50.65
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 135,
+    "above_median_pos": 0,
+    "top": 50.7
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 265,
+    "above_median_pos": 24,
+    "top": 55.35
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 88,
+    "above_median_pos": 3,
+    "top": 54.71
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 38.62
+   }
+  },
+  "test_readings": [
+   52.3,
+   46.6,
+   47.78
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b37",
+  "relation": "located_in_country",
+  "subject": "Manila Bay",
+  "tau": 12.51,
+  "median_positive": 28.09,
+  "margin": 15.58,
+  "negatives_above_tau": 2436,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 9.65
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 3,
+    "above_median_pos": 0,
+    "top": 14.54
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 196,
+    "above_median_pos": 4,
+    "top": 30.84
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 42,
+    "above_median_pos": 0,
+    "top": 18.38
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 36,
+    "above_median_pos": 0,
+    "top": 17.46
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 412,
+    "above_median_pos": 0,
+    "top": 23.92
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 372,
+    "above_median_pos": 0,
+    "top": 27.69
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 459,
+    "above_median_pos": 141,
+    "top": 35.42
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 384,
+    "above_median_pos": 0,
+    "top": 26.73
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 329,
+    "above_median_pos": 0,
+    "top": 25.84
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 195,
+    "above_median_pos": 0,
+    "top": 21.33
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 20.73
+   }
+  },
+  "test_readings": [
+   21.48,
+   16.77,
+   28.33
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b38",
+  "relation": "located_in_country",
+  "subject": "Lower Assam",
+  "tau": 28.94,
+  "median_positive": 38.46,
+  "margin": 9.52,
+  "negatives_above_tau": 1480,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 28.11
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 30.43
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 125,
+    "above_median_pos": 11,
+    "top": 43.19
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 24,
+    "above_median_pos": 0,
+    "top": 35.66
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 57,
+    "above_median_pos": 0,
+    "top": 35.44
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 200,
+    "above_median_pos": 1,
+    "top": 39.56
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 133,
+    "above_median_pos": 10,
+    "top": 45.0
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 425,
+    "above_median_pos": 131,
+    "top": 47.82
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 173,
+    "above_median_pos": 4,
+    "top": 39.57
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 184,
+    "above_median_pos": 4,
+    "top": 41.0
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 147,
+    "above_median_pos": 2,
+    "top": 39.57
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 35.23
+   }
+  },
+  "test_readings": [
+   30.89,
+   25.47,
+   23.01
+  ],
+  "test_open": [
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "id": "b39",
+  "relation": "located_in_country",
+  "subject": "Katwijk aan den Rijn",
+  "tau": 13.36,
+  "median_positive": 28.43,
+  "margin": 15.08,
+  "negatives_above_tau": 2234,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 10.56
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 3,
+    "above_median_pos": 0,
+    "top": 14.16
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 167,
+    "above_median_pos": 2,
+    "top": 30.35
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 30,
+    "above_median_pos": 0,
+    "top": 18.59
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 27,
+    "above_median_pos": 0,
+    "top": 18.0
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 427,
+    "above_median_pos": 0,
+    "top": 26.16
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 331,
+    "above_median_pos": 0,
+    "top": 27.6
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 450,
+    "above_median_pos": 151,
+    "top": 35.53
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 322,
+    "above_median_pos": 0,
+    "top": 26.2
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 271,
+    "above_median_pos": 0,
+    "top": 25.36
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 198,
+    "above_median_pos": 0,
+    "top": 22.28
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 23.42
+   }
+  },
+  "test_readings": [
+   19.43,
+   18.66,
+   22.91
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b40",
+  "relation": "located_in_country",
+  "subject": "Staatliche Antikensammlungen",
+  "tau": 36.17,
+  "median_positive": 42.85,
+  "margin": 6.68,
+  "negatives_above_tau": 999,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 34.08
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 7,
+    "above_median_pos": 0,
+    "top": 38.94
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 74,
+    "above_median_pos": 3,
+    "top": 44.73
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 29,
+    "above_median_pos": 8,
+    "top": 48.63
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 28,
+    "above_median_pos": 0,
+    "top": 42.35
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 162,
+    "above_median_pos": 8,
+    "top": 45.86
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 82,
+    "above_median_pos": 2,
+    "top": 43.34
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 366,
+    "above_median_pos": 155,
+    "top": 55.49
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 95,
+    "above_median_pos": 7,
+    "top": 45.1
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 118,
+    "above_median_pos": 3,
+    "top": 43.4
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 33,
+    "above_median_pos": 1,
+    "top": 43.77
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 1,
+    "top": 46.23
+   }
+  },
+  "test_readings": [
+   33.97,
+   37.65,
+   23.93
+  ],
+  "test_open": [
+   false,
+   true,
+   false
+  ]
+ },
+ {
+  "id": "b49",
+  "relation": "original_language",
+  "subject": "Moscow Strikes Back",
+  "tau": 21.07,
+  "median_positive": 36.25,
+  "margin": 15.18,
+  "negatives_above_tau": 1651,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 2,
+    "above_median_pos": 0,
+    "top": 22.81
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 25.79
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 32,
+    "above_median_pos": 0,
+    "top": 27.25
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 38,
+    "above_median_pos": 0,
+    "top": 25.69
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 42,
+    "above_median_pos": 0,
+    "top": 26.03
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 112,
+    "above_median_pos": 0,
+    "top": 29.8
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 425,
+    "above_median_pos": 128,
+    "top": 46.36
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 205,
+    "above_median_pos": 0,
+    "top": 36.17
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 418,
+    "above_median_pos": 106,
+    "top": 45.75
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 223,
+    "above_median_pos": 9,
+    "top": 38.03
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 146,
+    "above_median_pos": 0,
+    "top": 31.78
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 19.85
+   }
+  },
+  "test_readings": [
+   17.89,
+   32.44,
+   15.57
+  ],
+  "test_open": [
+   false,
+   true,
+   false
+  ]
+ },
+ {
+  "id": "b50",
+  "relation": "original_language",
+  "subject": "Film International",
+  "tau": 47.12,
+  "median_positive": 54.66,
+  "margin": 7.55,
+  "negatives_above_tau": 996,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 49.02
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 50.2
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 10,
+    "above_median_pos": 0,
+    "top": 51.08
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 46.71
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 18,
+    "above_median_pos": 0,
+    "top": 50.7
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 23,
+    "above_median_pos": 0,
+    "top": 51.39
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 341,
+    "above_median_pos": 90,
+    "top": 67.62
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 85,
+    "above_median_pos": 2,
+    "top": 56.16
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 358,
+    "above_median_pos": 117,
+    "top": 68.63
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 87,
+    "above_median_pos": 12,
+    "top": 57.66
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 62,
+    "above_median_pos": 5,
+    "top": 56.55
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 47.51
+   }
+  },
+  "test_readings": [
+   54.49,
+   42.54,
+   42.09
+  ],
+  "test_open": [
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "id": "b51",
+  "relation": "original_language",
+  "subject": "Plus belle la vie",
+  "tau": 39.45,
+  "median_positive": 50.16,
+  "margin": 10.71,
+  "negatives_above_tau": 1448,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 1,
+    "above_median_pos": 0,
+    "top": 39.61
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 8,
+    "above_median_pos": 0,
+    "top": 42.47
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 33,
+    "above_median_pos": 0,
+    "top": 44.41
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 44,
+    "above_median_pos": 0,
+    "top": 43.3
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 47,
+    "above_median_pos": 0,
+    "top": 44.14
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 91,
+    "above_median_pos": 0,
+    "top": 49.48
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 366,
+    "above_median_pos": 55,
+    "top": 65.63
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 186,
+    "above_median_pos": 5,
+    "top": 51.03
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 372,
+    "above_median_pos": 85,
+    "top": 61.87
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 213,
+    "above_median_pos": 23,
+    "top": 54.59
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 85,
+    "above_median_pos": 0,
+    "top": 49.45
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 2,
+    "above_median_pos": 0,
+    "top": 43.48
+   }
+  },
+  "test_readings": [
+   50.1,
+   44.34,
+   41.76
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b52",
+  "relation": "original_language",
+  "subject": "Brice de Nice",
+  "tau": 21.2,
+  "median_positive": 36.41,
+  "margin": 15.21,
+  "negatives_above_tau": 1628,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 3,
+    "above_median_pos": 0,
+    "top": 23.03
+   },
+   "generic": {
+    "n": 420,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 25.88
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 32,
+    "above_median_pos": 0,
+    "top": 27.67
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 38,
+    "above_median_pos": 0,
+    "top": 25.94
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 40,
+    "above_median_pos": 0,
+    "top": 26.4
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 102,
+    "above_median_pos": 0,
+    "top": 30.1
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 428,
+    "above_median_pos": 122,
+    "top": 46.27
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 203,
+    "above_median_pos": 0,
+    "top": 35.68
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 421,
+    "above_median_pos": 110,
+    "top": 46.33
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 218,
+    "above_median_pos": 8,
+    "top": 38.16
+   },
+   "relation developer": {
+    "n": 671,
+    "above_tau": 137,
+    "above_median_pos": 0,
+    "top": 31.86
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 19.92
+   }
+  },
+  "test_readings": [
+   33.61,
+   29.89,
+   23.12
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b61",
+  "relation": "developer",
+  "subject": "Mac OS",
+  "tau": 24.81,
+  "median_positive": 34.39,
+  "margin": 9.57,
+  "negatives_above_tau": 1512,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 17.85
+   },
+   "generic": {
+    "n": 413,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 27.28
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 337,
+    "above_median_pos": 39,
+    "top": 39.55
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 258,
+    "above_median_pos": 1,
+    "top": 36.01
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 334,
+    "above_median_pos": 9,
+    "top": 37.67
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 70,
+    "above_median_pos": 0,
+    "top": 30.74
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 67,
+    "above_median_pos": 0,
+    "top": 29.62
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 132,
+    "above_median_pos": 1,
+    "top": 34.58
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 75,
+    "above_median_pos": 0,
+    "top": 31.05
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 141,
+    "above_median_pos": 1,
+    "top": 35.74
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 87,
+    "above_median_pos": 0,
+    "top": 30.53
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 31.91
+   }
+  },
+  "test_readings": [
+   32.83,
+   35.3,
+   27.04
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b62",
+  "relation": "developer",
+  "subject": "Xbox Live",
+  "tau": 25.67,
+  "median_positive": 34.42,
+  "margin": 8.76,
+  "negatives_above_tau": 1338,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 17.03
+   },
+   "generic": {
+    "n": 413,
+    "above_tau": 7,
+    "above_median_pos": 0,
+    "top": 27.12
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 312,
+    "above_median_pos": 44,
+    "top": 39.17
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 242,
+    "above_median_pos": 1,
+    "top": 35.3
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 298,
+    "above_median_pos": 6,
+    "top": 35.97
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 56,
+    "above_median_pos": 0,
+    "top": 31.01
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 49,
+    "above_median_pos": 0,
+    "top": 29.76
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 112,
+    "above_median_pos": 0,
+    "top": 33.33
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 56,
+    "above_median_pos": 0,
+    "top": 31.31
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 126,
+    "above_median_pos": 1,
+    "top": 34.94
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 75,
+    "above_median_pos": 0,
+    "top": 31.02
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 32.52
+   }
+  },
+  "test_readings": [
+   39.56,
+   39.95,
+   36.3
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b63",
+  "relation": "developer",
+  "subject": "Final Cut Pro",
+  "tau": 25.56,
+  "median_positive": 35.19,
+  "margin": 9.62,
+  "negatives_above_tau": 1483,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 17.92
+   },
+   "generic": {
+    "n": 413,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 27.57
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 336,
+    "above_median_pos": 42,
+    "top": 39.69
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 262,
+    "above_median_pos": 1,
+    "top": 36.38
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 315,
+    "above_median_pos": 7,
+    "top": 37.68
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 73,
+    "above_median_pos": 0,
+    "top": 32.18
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 69,
+    "above_median_pos": 0,
+    "top": 30.74
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 123,
+    "above_median_pos": 0,
+    "top": 34.39
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 74,
+    "above_median_pos": 0,
+    "top": 31.94
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 139,
+    "above_median_pos": 1,
+    "top": 36.07
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 81,
+    "above_median_pos": 0,
+    "top": 31.2
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 32.58
+   }
+  },
+  "test_readings": [
+   33.07,
+   30.17,
+   27.2
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "id": "b64",
+  "relation": "developer",
+  "subject": "Windows Embedded",
+  "tau": 23.93,
+  "median_positive": 33.32,
+  "margin": 9.39,
+  "negatives_above_tau": 1527,
+  "by_source": {
+   "same subject": {
+    "n": 621,
+    "above_tau": 0,
+    "above_median_pos": 0,
+    "top": 16.88
+   },
+   "generic": {
+    "n": 413,
+    "above_tau": 6,
+    "above_median_pos": 0,
+    "top": 26.1
+   },
+   "relation owner": {
+    "n": 678,
+    "above_tau": 334,
+    "above_median_pos": 43,
+    "top": 38.79
+   },
+   "relation ceo": {
+    "n": 678,
+    "above_tau": 256,
+    "above_median_pos": 1,
+    "top": 34.18
+   },
+   "relation founder": {
+    "n": 678,
+    "above_tau": 329,
+    "above_median_pos": 10,
+    "top": 37.0
+   },
+   "relation hq": {
+    "n": 678,
+    "above_tau": 79,
+    "above_median_pos": 0,
+    "top": 29.76
+   },
+   "relation mother_tongue": {
+    "n": 664,
+    "above_tau": 72,
+    "above_median_pos": 0,
+    "top": 28.57
+   },
+   "relation citizenship": {
+    "n": 671,
+    "above_tau": 128,
+    "above_median_pos": 1,
+    "top": 33.82
+   },
+   "relation official_language": {
+    "n": 671,
+    "above_tau": 86,
+    "above_median_pos": 0,
+    "top": 30.05
+   },
+   "relation located_in_country": {
+    "n": 671,
+    "above_tau": 137,
+    "above_median_pos": 1,
+    "top": 35.86
+   },
+   "relation original_language": {
+    "n": 671,
+    "above_tau": 95,
+    "above_median_pos": 0,
+    "top": 29.06
+   },
+   "real world": {
+    "n": 32,
+    "above_tau": 5,
+    "above_median_pos": 0,
+    "top": 30.71
+   }
+  },
+  "test_readings": [
+   33.94,
+   36.15,
+   36.8
+  ],
+  "test_open": [
+   true,
+   true,
+   true
+  ]
+ }
+]

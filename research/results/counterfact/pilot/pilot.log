@@ -1,0 +1,255 @@
+edit e01 hq    The headquarters of Norwegian Industrial Property Office is in Oslo -> Stockholm
+
+edit e02 hq    Chinese Skating Association's headquarters are in Beijing -> Indianapolis
+
+edit e03 hq    McGill University, whose headquarters are in Montreal -> Dublin
+
+edit e04 hq    Scottish Handball Association, whose headquarters are in Scotland -> Bedford
+
+edit e05 hq    French Academy of Sciences's headquarters are in Paris -> Athens
+
+edit e06 hq    Swedish Orphan Biovitrum's headquarters are in Stockholm -> Paris
+
+edit e07 hq    Pontifical Catholic University of Chile's headquarters are in Santiago -> Toronto
+
+edit e08 hq    The headquarter of TMF Nederland is located in Amsterdam -> Bangalore
+
+edit e09 hq    Russian Post, whose headquarters are in Moscow -> Rome
+
+edit e10 hq    The headquarters of Historic New England is in Boston -> Tokyo
+
+edit e11 hq    The headquarter of International Tennis Federation is in London -> Berlin
+
+edit e12 hq    Canada Life Financial is based in Toronto -> London
+
+edit e13 hq    The headquarters of LG Chem is in Seoul -> Amsterdam
+
+edit e14 hq    The headquarter of Chinese Academy of Sciences is located in Beijing -> Brunswick
+
+edit e15 hq    British Railways Board's headquarters are in London -> Prague
+
+edit e16 hq    Syrian Arab Army's headquarters are in Damascus -> Seattle
+
+edit e17 hq    Gerasimov Institute of Cinematography's headquarters are in Moscow -> Mecca
+
+edit e18 hq    The headquarter of Telespazio is located in Rome -> Bradford
+
+edit e19 hq    Nasdaq AB's headquarters are in Stockholm -> Amsterdam
+
+edit e20 hq    The headquarter of Diabetes UK is in London -> Barcelona
+
+edit e21 hq    The headquarter of Lotte Hotels & Resorts is located in Seoul -> Pasadena
+
+edit e22 hq    Vanderbilt University, whose headquarters are in Nashville -> Toronto
+
+edit e23 hq    The headquarters of NTUC FairPrice is in Singapore -> Scotland
+
+edit e24 hq    All India Anna Dravida Munnetra Kazhagam is based in Chennai -> Geneva
+
+edit e25 hq    Germanischer Lloyd SE's headquarters are in Hamburg -> Oslo
+
+edit e26 hq    The headquarter of Czechoslovak Television is located in Prague -> Norwich
+
+edit e27 hq    Iranian reform movement is headquartered in Tehran -> Chicago
+
+edit e28 hq    The headquarter of Asprey is located in London -> Toronto
+
+edit e29 hq    Communist Party of Indonesia is based in Jakarta -> Leeds
+
+edit e30 hq    Dresdner SC, whose headquarters are in Dresden -> London
+
+edit e31 hq    The headquarter of Iraqi Republic Railways is in Baghdad -> Hamburg
+
+edit e32 hq    The headquarter of Hellenic Army is in Athens -> Glasgow
+
+edit e33 hq    The headquarter of Soviet Air Defence Forces is in Moscow -> Southampton
+
+edit e34 hq    Danish Film Institute, whose headquarters are in Copenhagen -> Chicago
+
+edit e35 hq    Pakistan Steel Mills's headquarters are in Karachi -> Cardiff
+
+edit e36 hq    Co-operative Commonwealth Federation (Ontario Section) is based in Toronto -> Burlington
+
+edit e37 hq    The headquarters of Shelbourne F.C. is in Dublin -> London
+
+edit e38 hq    FTSE Group, whose headquarters are in London -> Oslo
+
+edit e39 hq    Norwegian News Agency, whose headquarters are in Oslo -> Liverpool
+
+edit e40 hq    Royal Australian Air Force, whose headquarters are in Canberra -> Atlanta
+
+
+
+
+unedited model scored in 26s
+
+calibrating layer 20 on ordinary text
+
+[build 1/40] e01 Norwegian Industrial Property Office (33s)
+
+[build 2/40] e02 Chinese Skating Association (66s)
+
+[build 3/40] e03 McGill University (98s)
+
+[build 4/40] e04 Scottish Handball Association (130s)
+
+[build 5/40] e05 French Academy of Sciences (162s)
+
+[build 6/40] e06 Swedish Orphan Biovitrum (196s)
+
+[build 7/40] e07 Pontifical Catholic University of Chile (227s)
+
+[build 8/40] e08 TMF Nederland (261s)
+
+[build 9/40] e09 Russian Post (294s)
+
+[build 10/40] e10 Historic New England (327s)
+
+[build 11/40] e11 International Tennis Federation (359s)
+
+[build 12/40] e12 Canada Life Financial (390s)
+
+[build 13/40] e13 LG Chem (423s)
+
+[build 14/40] e14 Chinese Academy of Sciences (455s)
+
+[build 15/40] e15 British Railways Board (487s)
+
+[build 16/40] e16 Syrian Arab Army (518s)
+
+[build 17/40] e17 Gerasimov Institute of Cinematography (557s)
+
+[build 18/40] e18 Telespazio (589s)
+
+[build 19/40] e19 Nasdaq AB (624s)
+
+[build 20/40] e20 Diabetes UK (656s)
+
+[build 21/40] e21 Lotte Hotels & Resorts (689s)
+
+[build 22/40] e22 Vanderbilt University (720s)
+
+[build 23/40] e23 NTUC FairPrice (751s)
+
+[build 24/40] e24 All India Anna Dravida Munnetra Kazhagam (785s)
+
+[build 25/40] e25 Germanischer Lloyd SE (818s)
+
+[build 26/40] e26 Czechoslovak Television (850s)
+
+[build 27/40] e27 Iranian reform movement (882s)
+
+[build 28/40] e28 Asprey (915s)
+
+[build 29/40] e29 Communist Party of Indonesia (947s)
+
+[build 30/40] e30 Dresdner SC (980s)
+
+[build 31/40] e31 Iraqi Republic Railways (1014s)
+
+[build 32/40] e32 Hellenic Army (1049s)
+
+[build 33/40] e33 Soviet Air Defence Forces (1084s)
+
+[build 34/40] e34 Danish Film Institute (1120s)
+
+[build 35/40] e35 Pakistan Steel Mills (1158s)
+
+[build 36/40] e36 Co-operative Commonwealth Federation (Ontario Section) (1196s)
+
+[build 37/40] e37 Shelbourne F.C. (1236s)
+
+[build 38/40] e38 FTSE Group (1273s)
+
+[build 39/40] e39 Norwegian News Agency (1310s)
+
+[build 40/40] e40 Royal Australian Air Force (1346s)
+
+edited model scored in 36s; layer events {'first': 392, 'continued': 7, 'vetoed': 3}
+
+[score] e01 hq    Norwegian Industrial Prope ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e02 hq    Chinese Skating Associatio ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e03 hq    McGill University          ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e04 hq    Scottish Handball Associat ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e05 hq    French Academy of Sciences ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e06 hq    Swedish Orphan Biovitrum   ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e07 hq    Pontifical Catholic Univer ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e08 hq    TMF Nederland              ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e09 hq    Russian Post               ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e10 hq    Historic New England       ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e11 hq    International Tennis Feder ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e12 hq    Canada Life Financial      ES 1 PS 1.00 NS 0.20 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e13 hq    LG Chem                    ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e14 hq    Chinese Academy of Science ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e15 hq    British Railways Board     ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e16 hq    Syrian Arab Army           ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e17 hq    Gerasimov Institute of Cin ES 1 PS 0.50 NS 0.90 | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] e18 hq    Telespazio                 ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e19 hq    Nasdaq AB                  ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e20 hq    Diabetes UK                ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e21 hq    Lotte Hotels & Resorts     ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e22 hq    Vanderbilt University      ES 1 PS 1.00 NS 0.50 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.50, same subject 0.00
+
+[score] e23 hq    NTUC FairPrice             ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e24 hq    All India Anna Dravida Mun ES 1 PS 1.00 NS 0.50 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e25 hq    Germanischer Lloyd SE      ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e26 hq    Czechoslovak Television    ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e27 hq    Iranian reform movement    ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e28 hq    Asprey                     ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e29 hq    Communist Party of Indones ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e30 hq    Dresdner SC                ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e31 hq    Iraqi Republic Railways    ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e32 hq    Hellenic Army              ES 1 PS 1.00 NS 0.60 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e33 hq    Soviet Air Defence Forces  ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e34 hq    Danish Film Institute      ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e35 hq    Pakistan Steel Mills       ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e36 hq    Co-operative Commonwealth  ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e37 hq    Shelbourne F.C.            ES 1 PS 1.00 NS 0.20 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+
+[score] e38 hq    FTSE Group                 ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e39 hq    Norwegian News Agency      ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e40 hq    Royal Australian Air Force ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+unedited: ES 0.000 PS 0.013 NS 0.860 | says new: rewrite 0.000, reworded 0.000
+
+  hq: ES 1.000 PS 0.988 NS 0.848 | says new: rewrite 1.000, reworded 0.975
+
+CounterFact pilot: ES 1.000 PS 0.988 NS 0.848 | says new: rewrite 1.000, reworded 0.975 | leaks: neighbours 0.013, same subject 0.037 | known lost 0, drift 0.0000 | verdict: in between
+

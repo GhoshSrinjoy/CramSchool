@@ -17,8 +17,8 @@ from ..direct import answer_chain
 from ..facts import NEGATIVE_PROMPTS, NEGATIVE_QUESTIONS, PREFIXES, Fact
 from ..model_access import Prompt, encode, render_chat
 from .core import bare_after, greedy_ids, keyed_spots, layer_reads, last_inputs, last_reads, lda, mlp_inputs, ratio, token_texts
-from .wordings import (DEFAULT_GENERIC, REAL_WORLD_CHAT, REAL_WORLD_PLAIN, Wordings, bench_companies, invented_companies, norm,
-                       normalized)
+from .wordings import (REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS, REAL_WORLD_PLAIN, REAL_WORLD_PLAIN_RELATIONS, Wordings, bench_companies,
+                       context_sentences, default_same, invented_companies, invented_names, norm, normalized)
 
 BUILD_VERSION = "table-1"
 LOOSER_VERSION = "rev-1"
@@ -48,9 +48,16 @@ def test_texts(facts: list[dict]) -> set[str]:
     return out
 
 
-def build_context(facts: list[dict], wordings: Wordings, name: str = "table", guard: bool = True) -> dict:
+def build_context(facts: list[dict], wordings: Wordings, name: str = "table", guard: bool = True, real_world: str = "all",
+                  context: int = 0) -> dict:
     """What building a fact of this group of facts (a bench, or a table) needs: drafted wordings minus the group's own, generic questions
-    minus its same-company ones, invented companies clear of every name it uses, and the guard against its test prompts."""
+    minus its same-company ones, invented companies clear of every name it uses, and the guard against its test prompts.
+
+    real_world: "all" (v1) asks every real-world question as a negative. "other_relations" leaves out those of the fact's own relation,
+    for edits of real subjects.
+    context: how many sentences of ordinary text to also ask plain prompts about the subject behind, positives and negatives alike (v1: 0)."""
+    if real_world not in ("all", "other_relations"):
+        raise ValueError(f"real_world must be 'all' or 'other_relations', not {real_world!r}")
     own = set()
     for f in facts:
         for side in ("train", "test"):
@@ -62,8 +69,34 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
             same |= {normalized(p.replace(f["subject"], "{s}")) for p in f[side]["same_plain"] + f[side]["same_chat"]}
     gen_plain, gen_chat = wordings.generic
     generic = tuple([t for t in g if normalized(t) not in same] for g in (gen_plain, gen_chat))
+    kinds_of = {r: rel.subject for r, rel in wordings.relations.items()}
+    by_kind = {}
+    for kind in sorted(set(kinds_of.values()) - {"company"}):
+        if kind not in wordings.kinds:
+            raise ValueError(f"relations about subjects of kind {kind!r} need that kind's invented names and generic questions (Wordings.kinds)")
+        spec = wordings.kinds[kind]
+        by_kind[kind] = dict(names=invented_names(spec["names"], [f["subject"] for f in facts]),
+                             generic=tuple([t for t in spec[g] if normalized(t) not in same] for g in ("generic_plain", "generic_chat")))
     return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)),
-                guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard))
+                guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard), real_world=real_world, kinds_of=kinds_of,
+                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)))
+
+
+def same_kind(ctx: dict, a: str, b: str) -> bool:
+    """Whether relations a and b are about the same kind of subject. Only those can be asked about the same subject, so only their wordings
+    are negatives for each other: an official-language question about a person never occurs, yet it sits next to a mother-tongue question."""
+    kinds = ctx.get("kinds_of", {})
+    return kinds.get(a, "company") == kinds.get(b, "company")
+
+
+def kind_parts(ctx: dict, relation: str):
+    """(invented names, (generic plain, generic chat), same-subject plain negatives, same-subject chat negatives) for a relation's subject
+    kind. Companies get v1's: invented companies, the generic company questions, and the beta's negative prompts."""
+    kind = ctx.get("kinds_of", {}).get(relation, "company")
+    if kind == "company":
+        return ctx["names"], ctx["generic"], NEGATIVE_PROMPTS, NEGATIVE_QUESTIONS
+    k = ctx["by_kind"][kind]
+    return k["names"], k["generic"], tuple(k["generic"][0][:len(NEGATIVE_PROMPTS)]), tuple(k["generic"][1][:len(NEGATIVE_QUESTIONS)])
 
 
 def make_fact(subject: str, relation: str, answer: str, wordings: Wordings, fid: str = "f01") -> dict:
@@ -72,9 +105,10 @@ def make_fact(subject: str, relation: str, answer: str, wordings: Wordings, fid:
     if relation not in wordings.relations:
         raise KeyError(f"unknown relation {relation!r}; known: {', '.join(wordings.relations)}. Give its wordings (cramschool.graft.Relation).")
     rel = wordings.relations[relation]
-    others = [r for r in wordings.relations.values() if r.name != relation]
-    same_plain = [o.plain[i] for o in others for i in (0, 3) if i < len(o.plain)] + DEFAULT_GENERIC["plain"]
-    same_chat = [o.chat[0] for o in others] + DEFAULT_GENERIC["chat"]
+    others = [r for r in wordings.relations.values() if r.name != relation and r.subject == rel.subject]
+    d_plain, d_chat = default_same(wordings, rel.subject)
+    same_plain = [o.plain[i] for o in others for i in (0, 3) if i < len(o.plain)] + d_plain
+    same_chat = [o.chat[0] for o in others] + d_chat
     fill = lambda templates: [t.format(s=subject) for t in templates]  # noqa: E731
     empty = dict(plain=[], chat=[], same_plain=[], same_chat=[], lookalikes=[], others=[], templates_plain=[], templates_chat=[])
     return dict(id=fid, subject=subject, relation=relation, target=answer, person=rel.person,
@@ -95,10 +129,16 @@ def qa_items(templates, names):
     return [(QA.format(q=t.format(s=n)), Prompt(QA.format(q=t.format(s=n)))) for n in names for t in templates]
 
 
-def fixed_items(tokenizer):
-    """The real-world questions, plain, chat and in Q/A form."""
-    return [(p, Prompt(p)) for p in REAL_WORLD_PLAIN] + [(q, render_chat(tokenizer, q)) for q in REAL_WORLD_CHAT] + \
-           [(QA.format(q=q), Prompt(QA.format(q=q))) for q in REAL_WORLD_CHAT]
+def fixed_items(tokenizer, exclude: str | None = None):
+    """The real-world questions, plain, chat and in Q/A form, without those asking for relation `exclude`."""
+    plain = [p for p, r in zip(REAL_WORLD_PLAIN, REAL_WORLD_PLAIN_RELATIONS) if r != exclude]
+    chat = [q for q, r in zip(REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS) if r != exclude]
+    return [(p, Prompt(p)) for p in plain] + [(q, render_chat(tokenizer, q)) for q in chat] + [(QA.format(q=q), Prompt(QA.format(q=q))) for q in chat]
+
+
+def real_world_exclusion(ctx: dict, relation: str) -> str | None:
+    """The relation whose real-world questions a build leaves out: none in v1 ("all"), the fact's own with "other_relations"."""
+    return relation if ctx.get("real_world", "all") == "other_relations" else None
 
 
 def guarded(items, guard):
@@ -126,30 +166,32 @@ def _question_of(prompt, built):
 def detector_data(f: dict, tokenizer, ctx: dict):
     """(plain positives, chat positives, prompt negatives, reply prompts) for one fact's question detectors, all guarded."""
     subj, rel, tr = f["subject"], f["relation"], f["train"]
-    inv, guard, drafted = ctx["names"], ctx["guard"], ctx["drafted"]
-    g_plain, g_chat = ctx["generic"]
+    inv, (g_plain, g_chat), neg_prompts, neg_questions = kind_parts(ctx, rel)
+    guard, drafted = ctx["guard"], ctx["drafted"]
     d_plain, d_chat = drafted[rel]
     plain_t, chat_t = tr["templates_plain"] + list(d_plain), tr["templates_chat"] + list(d_chat)
     cases = [subj.lower(), subj.upper()] + case_names(inv[:N_CASE])
-    pos_plain = plain_items(plain_t, inv) + plain_items(plain_t, [subj], PREFIXES) + qa_items(chat_t, inv + [subj]) + \
+    pos_plain = plain_items(plain_t, inv) + plain_items(plain_t, [subj], PREFIXES + ctx.get("context", ())) + qa_items(chat_t, inv + [subj]) + \
         plain_items(plain_t, cases) + qa_items(chat_t, cases)
     pos_chat = chat_items(tokenizer, chat_t, inv + [subj] + cases)
     companies, few, own_cases = inv + [subj], inv[:N_OTHER] + [subj], [subj.lower(), subj.upper()]
-    same_p = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(NEGATIVE_PROMPTS)
-    same_c = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(NEGATIVE_QUESTIONS)
+    same_p = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(neg_prompts)
+    same_c = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(neg_questions)
     neg = plain_items(same_p, companies + own_cases) + chat_items(tokenizer, same_c, companies + own_cases) + qa_items(same_c, companies + own_cases)
+    neg += plain_items(same_p, [subj], ctx.get("context", ()))  # behind ordinary text too, when the build asks positives that way
     neg += plain_items(g_plain, few) + chat_items(tokenizer, g_chat, few) + qa_items(g_chat, few)
     for r in drafted:
-        if r != rel:
+        if r != rel and same_kind(ctx, r, rel):
             dp, dc = drafted[r]
             neg += plain_items(dp, few) + chat_items(tokenizer, dc, few) + qa_items(dc, few)
             neg += plain_items(dp[:8], own_cases) + chat_items(tokenizer, dc[:8], own_cases) + qa_items(dc[:8], own_cases)
-    neg += fixed_items(tokenizer)
+            neg += plain_items(dp[:8], [subj], ctx.get("context", ()))
+    neg += fixed_items(tokenizer, real_world_exclusion(ctx, rel))
     reply_names = [subj] + inv[-N_REPLY_NAMES:]
     rp = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(g_plain[:8])
     rc = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(g_chat[:8])
     for r in drafted:
-        if r != rel:
+        if r != rel and same_kind(ctx, r, rel):
             rp, rc = rp + list(drafted[r][0][:4]), rc + list(drafted[r][1][:4])
     replies = plain_items(rp, reply_names) + chat_items(tokenizer, rc, reply_names)
     return guarded(pos_plain, guard), guarded(pos_chat, guard), guarded(neg, guard), guarded(replies, guard)
@@ -243,8 +285,10 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) ->
 # ---------------------------------------------------------------- the looser start (docs/graft.md, section 8)
 
 def v2_detector_data(f: dict, tokenizer, ctx: dict):
-    """(plain positives, chat positives, negatives) by fact block v2's recipe, from the same guarded data."""
+    """(plain positives, chat positives, negatives) by fact block v2's recipe, from the same guarded data. Companies only."""
     subj, rel, tr = f["subject"], f["relation"], f["train"]
+    if ctx.get("kinds_of", {}).get(rel, "company") != "company":
+        raise NotImplementedError("the looser start is built for relations about companies only")
     inv, guard, drafted = ctx["names"], ctx["guard"], ctx["drafted"]
     companies, few = inv + [subj], inv[:N_OTHER_REL_COMPANIES]
     d_plain, d_chat = drafted[rel]
@@ -311,17 +355,17 @@ def build_looser(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, p
 def build_shared(model, tokenizer, ctx: dict, mctx: dict, layer: int) -> dict:
     """One question detector per relation and form from the drafted wordings alone; threshold at the 99th percentile of its negatives."""
     c, cbar = mctx["c"], mctx["cbar"]
-    inv, guard, drafted = ctx["names"], ctx["guard"], ctx["drafted"]
-    g_plain, g_chat = ctx["generic"]
-    cases, few = case_names(inv[:N_CASE]), inv[:N_OTHER]
+    guard, drafted = ctx["guard"], ctx["drafted"]
     out = {}
     for rel in drafted:
+        inv, (g_plain, g_chat), neg_prompts, neg_questions = kind_parts(ctx, rel)
+        cases, few = case_names(inv[:N_CASE]), inv[:N_OTHER]
         dp, dc = drafted[rel]
         pos = dict(plain=guarded(plain_items(dp, inv + cases) + qa_items(dc, inv + cases), guard), chat=guarded(chat_items(tokenizer, dc, inv + cases), guard))
-        neg = plain_items(NEGATIVE_PROMPTS, inv) + chat_items(tokenizer, NEGATIVE_QUESTIONS, inv) + qa_items(NEGATIVE_QUESTIONS, inv)
-        neg += plain_items(g_plain, few) + chat_items(tokenizer, g_chat, few) + qa_items(g_chat, few) + fixed_items(tokenizer)
+        neg = plain_items(neg_prompts, inv) + chat_items(tokenizer, neg_questions, inv) + qa_items(neg_questions, inv)
+        neg += plain_items(g_plain, few) + chat_items(tokenizer, g_chat, few) + qa_items(g_chat, few) + fixed_items(tokenizer, real_world_exclusion(ctx, rel))
         for r in drafted:
-            if r != rel:
+            if r != rel and same_kind(ctx, r, rel):
                 neg += plain_items(drafted[r][0], few) + chat_items(tokenizer, drafted[r][1], few) + qa_items(drafted[r][1], few)
         x_neg = last_reads(model, tokenizer, guarded(neg, guard), layer)
         out[rel] = {}

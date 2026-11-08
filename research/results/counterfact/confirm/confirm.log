@@ -1,0 +1,255 @@
+edit e01 hq    The headquarter of Institution of Structural Engineers is in London -> Winnipeg
+
+edit e02 hq    The headquarters of Lippo Group is in Jakarta -> Chicago
+
+edit e03 hq    Norwegian Public Roads Administration is based in Oslo -> Paris
+
+edit e04 hq    The headquarters of Northeastern University is in Boston -> Dublin
+
+edit e05 hq    The headquarter of Alberta Government Telephones is located in Edmonton -> Toronto
+
+edit e06 hq    Case Western Reserve University is based in Cleveland -> Amsterdam
+
+edit e07 hq    Aviation Industry Corporation of China, whose headquarters are in Beijing -> Oslo
+
+edit e08 hq    Royal Numismatic Society, whose headquarters are in London -> Queensland
+
+edit e09 hq    Nahdlatul Ulama is based in Jakarta -> Seattle
+
+edit e10 hq    United Nations High Commissioner for Human Rights is based in Geneva -> Chicago
+
+edit e11 hq    University of Washington is based in Seattle -> Montana
+
+edit e12 hq    The headquarter of Phaidon Press is in London -> Moscow
+
+edit e13 hq    Cray Wanderers F.C., whose headquarters are in London -> Wellington
+
+edit e14 hq    Czech National Bank, whose headquarters are in Prague -> Minnesota
+
+edit e15 hq    The headquarter of Cinven is located in London -> Geneva
+
+edit e16 hq    The headquarter of Carlton Communications is located in London -> Toronto
+
+edit e17 hq    Ontario Hydro is headquartered in Toronto -> Milan
+
+edit e18 hq    The headquarter of Disneyland Resort is located in Anaheim -> Karachi
+
+edit e19 hq    TU Wien is headquartered in Vienna -> Birmingham
+
+edit e20 hq    The headquarter of James Purdey & Sons is located in London -> Chandler
+
+edit e21 hq    The headquarters of Atletico Roma F.C. is in Rome -> Denver
+
+edit e22 hq    The headquarter of Russian State Archive of Literature and Art is in Moscow -> Netherlands
+
+edit e23 hq    The headquarters of Sporveien is in Oslo -> Minneapolis
+
+edit e24 hq    University of Western Australia, whose headquarters are in Perth -> Copenhagen
+
+edit e25 hq    The headquarters of Mercure de France is in Paris -> London
+
+edit e26 hq    Tata Consultancy Services, whose headquarters are in Mumbai -> London
+
+edit e27 hq    Republican Left of Catalonia is based in Barcelona -> Oslo
+
+edit e28 hq    Sciences Po, whose headquarters are in Paris -> Belfast
+
+edit e29 hq    The headquarter of Associated British Foods is located in London -> Paris
+
+edit e30 hq    The headquarter of Caproni is in Milan -> Boston
+
+edit e31 hq    The headquarter of Delage is located in Paris -> Montreal
+
+edit e32 hq    Campari Group, whose headquarters are in Milan -> Philadelphia
+
+edit e33 hq    The headquarter of Dickins & Jones is in London -> Wellington
+
+edit e34 hq    The headquarter of Oratory of Saint Philip Neri is in Rome -> London
+
+edit e35 hq    La Caixa is based in Barcelona -> Chicago
+
+edit e36 hq    Liquor Control Board of Ontario's headquarters are in Toronto -> Seattle
+
+edit e37 hq    Comintern's headquarters are in Moscow -> Milan
+
+edit e38 hq    Scotiabank's headquarters are in Toronto -> Detroit
+
+edit e39 hq    The headquarters of Ganger Rolf ASA is in Oslo -> Moscow
+
+edit e40 hq    The headquarter of EasyJet Switzerland is located in Geneva -> Mumbai
+
+
+
+
+unedited model scored in 26s
+
+calibrating layer 20 on ordinary text
+
+[build 1/40] e01 Institution of Structural Engineers (38s)
+
+[build 2/40] e02 Lippo Group (74s)
+
+[build 3/40] e03 Norwegian Public Roads Administration (111s)
+
+[build 4/40] e04 Northeastern University (149s)
+
+[build 5/40] e05 Alberta Government Telephones (200s)
+
+[build 6/40] e06 Case Western Reserve University (245s)
+
+[build 7/40] e07 Aviation Industry Corporation of China (303s)
+
+[build 8/40] e08 Royal Numismatic Society (361s)
+
+[build 9/40] e09 Nahdlatul Ulama (397s)
+
+[build 10/40] e10 United Nations High Commissioner for Human Rights (435s)
+
+[build 11/40] e11 University of Washington (474s)
+
+[build 12/40] e12 Phaidon Press (512s)
+
+[build 13/40] e13 Cray Wanderers F.C. (550s)
+
+[build 14/40] e14 Czech National Bank (585s)
+
+[build 15/40] e15 Cinven (621s)
+
+[build 16/40] e16 Carlton Communications (657s)
+
+[build 17/40] e17 Ontario Hydro (693s)
+
+[build 18/40] e18 Disneyland Resort (731s)
+
+[build 19/40] e19 TU Wien (768s)
+
+[build 20/40] e20 James Purdey & Sons (805s)
+
+[build 21/40] e21 Atletico Roma F.C. (841s)
+
+[build 22/40] e22 Russian State Archive of Literature and Art (878s)
+
+[build 23/40] e23 Sporveien (915s)
+
+[build 24/40] e24 University of Western Australia (952s)
+
+[build 25/40] e25 Mercure de France (987s)
+
+[build 26/40] e26 Tata Consultancy Services (1023s)
+
+[build 27/40] e27 Republican Left of Catalonia (1061s)
+
+[build 28/40] e28 Sciences Po (1100s)
+
+[build 29/40] e29 Associated British Foods (1139s)
+
+[build 30/40] e30 Caproni (1172s)
+
+[build 31/40] e31 Delage (1212s)
+
+[build 32/40] e32 Campari Group (1248s)
+
+[build 33/40] e33 Dickins & Jones (1284s)
+
+[build 34/40] e34 Oratory of Saint Philip Neri (1320s)
+
+[build 35/40] e35 La Caixa (1355s)
+
+[build 36/40] e36 Liquor Control Board of Ontario (1390s)
+
+[build 37/40] e37 Comintern (1427s)
+
+[build 38/40] e38 Scotiabank (1463s)
+
+[build 39/40] e39 Ganger Rolf ASA (1500s)
+
+[build 40/40] e40 EasyJet Switzerland (1537s)
+
+edited model scored in 32s; layer events {'first': 391, 'continued': 1, 'vetoed': 0}
+
+[score] e01 hq    Institution of Structural  ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e02 hq    Lippo Group                ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e03 hq    Norwegian Public Roads Adm ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e04 hq    Northeastern University    ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e05 hq    Alberta Government Telepho ES 1 PS 1.00 NS 0.10 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e06 hq    Case Western Reserve Unive ES 1 PS 1.00 NS 0.10 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.70, same subject 0.00
+
+[score] e07 hq    Aviation Industry Corporat ES 1 PS 0.50 NS 1.00 | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+
+[score] e08 hq    Royal Numismatic Society   ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e09 hq    Nahdlatul Ulama            ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e10 hq    United Nations High Commis ES 1 PS 1.00 NS 0.60 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e11 hq    University of Washington   ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e12 hq    Phaidon Press              ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e13 hq    Cray Wanderers F.C.        ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] e14 hq    Czech National Bank        ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e15 hq    Cinven                     ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e16 hq    Carlton Communications     ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e17 hq    Ontario Hydro              ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e18 hq    Disneyland Resort          ES 1 PS 1.00 NS 0.70 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e19 hq    TU Wien                    ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e20 hq    James Purdey & Sons        ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e21 hq    Atletico Roma F.C.         ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] e22 hq    Russian State Archive of L ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e23 hq    Sporveien                  ES 1 PS 0.50 NS 0.90 | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e24 hq    University of Western Aust ES 1 PS 1.00 NS 0.50 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e25 hq    Mercure de France          ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e26 hq    Tata Consultancy Services  ES 1 PS 1.00 NS 0.40 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e27 hq    Republican Left of Catalon ES 1 PS 1.00 NS 0.60 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e28 hq    Sciences Po                ES 1 PS 0.50 NS 1.00 | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e29 hq    Associated British Foods   ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e30 hq    Caproni                    ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e31 hq    Delage                     ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e32 hq    Campari Group              ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] e33 hq    Dickins & Jones            ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e34 hq    Oratory of Saint Philip Ne ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+
+[score] e35 hq    La Caixa                   ES 1 PS 1.00 NS 0.90 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e36 hq    Liquor Control Board of On ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e37 hq    Comintern                  ES 1 PS 1.00 NS 1.00 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e38 hq    Scotiabank                 ES 1 PS 1.00 NS 0.80 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] e39 hq    Ganger Rolf ASA            ES 1 PS 1.00 NS 0.60 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] e40 hq    EasyJet Switzerland        ES 1 PS 1.00 NS 0.60 | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+unedited: ES 0.000 PS 0.013 NS 0.845 | says new: rewrite 0.025, reworded 0.000
+
+  hq: ES 1.000 PS 0.963 NS 0.828 | says new: rewrite 1.000, reworded 0.963
+
+CounterFact pilot: ES 1.000 PS 0.963 NS 0.828 | says new: rewrite 1.000, reworded 0.963 | leaks: neighbours 0.018, same subject 0.040 | known lost 0, drift 0.0000 | verdict: works
+

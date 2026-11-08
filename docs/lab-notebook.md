@@ -1055,3 +1055,203 @@ bench40e was written by a blind agent from bench40d's brief (seed 20261112, `ben
 - **It sits at about the level of one block per fact on both blind benches:** 27 against 27 on bench40d, and 31 against 34 on bench40e. Neither difference is significant.
 - **The revision traded leaks for recall one for one.** It fixed the measured cause and opened a failure of the same size, in head-office gates.
 - **No further revision is allowed.** The rule is met, so the one revision is spent. Both tables stand at 31: the frozen one leaks less, the revised one recalls more.
+
+## Updating facts the model already knows: a CounterFact pilot (written 2026-11-08, before any of it ran)
+
+**The question.** Every bench so far taught facts about invented companies, which the model knew nothing about. Can GRAFT change a fact the unedited model already gives, with no training?
+
+**The data.** CounterFact (Meng et al., 2022) has 21,919 requested rewrites of real facts. Each comes with 2 reworded prompts about the same subject and 10 neighbour prompts about other subjects whose true answer is the old one. A screen of every rewrite prompt (greedy, 8 tokens; `scripts/counterfact_screen.py`) found that the unedited Qwen3.5-0.8B gives the old answer on 4,070 of them.
+
+**The pilot:**
+- **Two relations GRAFT already has wordings for:** headquarters (P159, as `hq`) and owned by (P127, as `owner`). No new relation or subject kind is needed, so the pilot isolates one question: overriding old knowledge.
+- **20 edits of each,** drawn with seed 20261108 from the records where:
+  - the unedited model gives the old answer;
+  - neither the old nor the new answer appears in the subject's name ("Ferrari F40 → Ferrari" is copying, not knowledge);
+  - the subject appears in no known-facts or real-world prompt;
+  - the subjects are distinct, and none contains another as a whole word.
+- **All 40 in one table:** GRAFT v1 as packaged (layer 20, push 2.0, margin 0.5, no looser start).
+- **Each edit's own training wording is its rewrite prompt,** the edit request, as in CounterFact's protocol. The reworded and neighbour prompts are test prompts, guarded out of every build.
+- **One change, behind an option, fixed now:** the real-world negatives leave out prompts of the fact's own relation (`real_world="other_relations"`). In v1 they include "Toyota is headquartered in" for a head-office fact, which teaches the detector to stay shut on real companies; here every subject is real. v1's default is unchanged.
+
+**The measures,** with the 40-edit table attached:
+- **Probability, CounterFact's standard:** the new answer's mean token log-probability against the old answer's.
+  - Efficacy (ES): new above old on the rewrite prompt.
+  - Paraphrase (PS): the same on each reworded prompt.
+  - Neighbourhood (NS): old above new on each neighbour prompt.
+  - Multi-token answers are forced token by token, so the layer continues an answer as it does in generation.
+- **Generation** (greedy, 16 tokens): the new answer in the reply to the rewrite prompt and to each reworded prompt. On neighbour prompts, a leak is the new answer where the unedited reply lacked it.
+- **Same subject:** 12 other questions about the subject (6 plain, 6 chat), from bench40e's held-out same-company questions, without the edit's own relation. A leak is the new answer where the unedited reply lacked it.
+- **Damage:** known facts lost (of 133) and drift on ordinary text, once for the table.
+
+**The rule:**
+- **Works:** mean ES ≥ 0.95, PS ≥ 0.80 and NS ≥ 0.95; generation paraphrase ≥ 0.60; known facts lost ≤ 2; drift ≤ 0.05. The next step is then breadth: subject kinds and new relations, on a fresh draw.
+- **Fails:** PS < 0.50, or generation paraphrase < 0.40. GRAFT as built can't override known facts. The next step is mechanism work aimed at the measured cause, for example lowering the old answer as well as pushing the new one, not more relations.
+- **In between:** mechanism work on these 40, which then count as development, and a fresh draw to confirm.
+- The reworded and neighbour prompts of these relations were not read before the run. The drafted wordings were written on 2026-11-07, before CounterFact was downloaded.
+
+**Deviation, written before the run:** 73 of the 79 owned-by facts the model knows are copies, where the owner is part of the subject's name ("BBC Red Button → BBC"). That leaves 6. The pilot takes 40 headquarters edits instead, drawn the same way from 113 usable ones. The question, the measures and the rule are unchanged.
+
+## Result of the CounterFact pilot
+
+40 headquarters facts the unedited Qwen3.5-0.8B knows, all rewritten in one GRAFT table. Raw rows: `research/results/counterfact/pilot/`.
+
+| Measure | Unedited | With the 40 edits |
+|---|---|---|
+| Efficacy (ES), new above old on the rewrite prompt | 0.000 | **1.000** |
+| Paraphrase (PS), new above old on reworded prompts | 0.013 | **0.988** |
+| Neighbourhood (NS), old above new on other subjects | 0.860 | 0.848 |
+| Says the new answer: rewrite prompt / reworded prompts | 0.000 / 0.000 | **1.000 / 0.975** |
+| Neighbour replies newly giving the new answer | — | 0.013 (5 of 400) |
+| Same-subject questions newly giving the new answer | — | 0.037 (18 of 480) |
+| Known facts lost; drift | — | 0 of 133; 0.0000 |
+
+**Verdict by the rule as written: in between,** because NS is 0.848 against a bar of 0.95.
+
+**The NS bar was set wrong.** The unedited model itself scores 0.860 on the same neighbour prompts: for 14% of them it already prefers the new answer, because it doesn't know those neighbours' facts. No edit, and no lack of one, could have met 0.95. Against the unedited model:
+- **NS is unchanged on 39 of 40 edits.**
+- **The one change is Vanderbilt University (1.0 → 0.5).** 5 of its neighbour prompts are about "Vanderbilt University Department of …", a longer name that contains the stored one. The name index matches it, and the reply says "Toronto".
+
+**The other failures:**
+- **Reworded prompts missed: 2 of 80.** One reply said "Bedfordshire" for "Bedford", and one kept the old "Moscow" (Gerasimov Institute of Cinematography).
+- **Same-subject leaks:** 8 of the 18 come from one question, "Most of the customers of X are", where a city fits ("…from Indianapolis"). Head offices leak into city-shaped slots, as on the fictional benches.
+
+**What it shows:** GRAFT overrides facts the model already knows, on reworded prompts, with no measurable damage elsewhere, at least for one relation. **What it doesn't show:** other relations and subject kinds, and a pre-registered pass. A fresh draw with a corrected neighbourhood bar, written before it runs, is the confirmation.
+
+## CounterFact confirmation: a fresh draw (written 2026-11-08, before it ran)
+
+**What changes:** only the draw and the neighbourhood bar. The build, the option and the measures are the pilot's. No mechanism change: the pilot's two small failure kinds (longer names that contain the stored one, and city-shaped slots) stay, and are counted.
+
+**The draw:** 40 headquarters edits from the 73 usable ones the pilot didn't use, with seed 20261109.
+
+**The rule:**
+- **Works:** mean ES ≥ 0.95 and PS ≥ 0.80; generation reworded ≥ 0.60; NS at most 0.05 below the unedited model's NS on the same prompts; neighbour replies newly giving the new answer ≤ 0.05; same-subject leaks ≤ 0.10; known facts lost ≤ 2; drift ≤ 0.05.
+- **Fails:** PS < 0.50, or generation reworded < 0.40.
+- **Anything else is in between,** and the failing measure is named.
+
+## CounterFact breadth: beyond companies (written 2026-11-08, before it ran)
+
+**The question.** The pilot changed known facts about organisations' head offices. Does GRAFT change known facts about people, countries, places, creative works and products, with relations it has never had?
+
+**The edits:** six CounterFact relations, 12 each, drawn with seed 20261110 under the pilot's exclusions, all 72 in one table.
+
+| Relation | CounterFact | Subject kind | Example |
+|---|---|---|---|
+| mother_tongue | P103 | person | "Louis-Paul Aujoulat is a native speaker of" French → Dutch |
+| citizenship | P27 | person | "Priyanka Vadra has a citizenship from" India → Japan |
+| official_language | P37 | country | "In Luhansk Oblast, an official language is" Ukrainian → Russian |
+| located_in_country | P17 | place | "Manila Bay, in" Philippines → Italy |
+| original_language | P364 | work | "The original language of Moscow Strikes Back was" Russian → English |
+| developer | P178 | product | "Mac OS was created by" Apple → Microsoft |
+
+**The wordings:**
+- An agent with no access to this repository, the dataset or the web drafted 30 plain and 30 chat wordings for each relation, plus each subject kind's invented names and generic questions.
+- A second such agent, which never saw the first one's output, wrote held-out questions per kind for the same-subject leak check.
+
+**Changes for subjects that aren't companies, fixed now:**
+- Each subject kind has its own invented filler names, generic negative questions and default same-subject questions.
+- A shared detector can veto a fact only if its relation is about the same kind of subject. An official-language question never vetoes a person's mother tongue.
+- Relations about companies are unchanged. v1's exact reproduction is checked again before this run.
+
+**The measures** are the pilot's. Same-subject questions are 6 plain and 6 chat from the held-out set of the subject's kind.
+
+**The rule** is the confirmation's, on all 72 edits: works, fails, or in between with the failing measures named. Each relation is also judged by the same bars on its 12 edits, with the table's known facts and drift. GRAFT is said to work for a relation only where that relation meets them.
+
+## Result of the CounterFact confirmation
+
+40 fresh headquarters edits, none of them in the pilot. Raw rows: `research/results/counterfact/confirm/`.
+
+| Measure | Unedited | With the 40 edits | Bar |
+|---|---|---|---|
+| ES | 0.000 | **1.000** | ≥ 0.95 |
+| PS | 0.013 | **0.963** | ≥ 0.80 |
+| NS | 0.845 | 0.828 | at most 0.05 below unedited: met (0.017) |
+| Says the new answer: rewrite / reworded | 0.025 / 0.000 | **1.000 / 0.963** | reworded ≥ 0.60 |
+| Neighbour replies newly giving the new answer | — | 0.018 | ≤ 0.05 |
+| Same-subject leaks | — | 0.040 (19 of 480) | ≤ 0.10 |
+| Known facts lost; drift | — | 0; 0.0000 | ≤ 2; ≤ 0.05 |
+
+**Verdict: works.** GRAFT changes headquarters facts the model already knows, and the confirmation meets every bar written before it ran.
+
+**The failures:**
+- **Reworded prompts:** 3 edits miss one of their two (Aviation Industry Corporation of China, Sporveien, Sciences Po).
+- **Neighbourhood:** NS fell on one edit only, Case Western Reserve University (0.8 → 0.1). 7 of its 10 neighbour prompts name a longer entity that contains the stored name, as Vanderbilt's did in the pilot. Across the 80 edits of both draws, that one cause accounts for all of the neighbourhood damage.
+
+**Checks of the drafted text, before the run:** every relation has 30 plain and 30 chat wordings; every kind has 40 invented names and 24 plain and 24 chat generic questions; no drafted wording equals a reworded test prompt; no invented name equals a chosen subject. 5 held-out questions (2 person, 1 work, 2 product) equal a drafted generic one, so they are dropped from the held-out set before the run.
+
+## Result of the CounterFact breadth run
+
+72 edits, six relations, 12 each, all in one table. Raw rows: `research/results/counterfact/breadth/`.
+
+| Relation | ES | PS | Says new, reworded | NS (unedited) | Same-subject leaks | Verdict |
+|---|---|---|---|---|---|---|
+| citizenship | 0.750 | 0.750 | 0.750 | 0.950 (0.950) | 0.014 | in between: ES, PS |
+| developer | 0.667 | 0.583 | 0.625 | 0.808 (0.825) | 0.007 | in between: ES, PS |
+| official_language | 0.833 | 0.333 | 0.417 | 0.825 (0.825) | 0.097 | fails |
+| mother_tongue | 0.583 | 0.208 | 0.167 | 0.992 (0.992) | 0.014 | fails |
+| located_in_country | 0.083 | 0.083 | 0.042 | 0.858 (0.858) | 0.021 | fails |
+| original_language | 0.000 | 0.042 | 0.083 | 0.750 (0.750) | 0.097 | fails |
+| **All 72** | **0.486** | **0.333** | **0.347** | 0.864 (0.867) | 0.042 | **fails** |
+
+Known facts lost: 0 of 133. Drift: 0.0000. Neighbour replies newly giving the new answer: 0.003.
+
+**Verdict: fails.** PS is 0.333 against the failure bar of 0.50, and generation reworded is 0.347 against 0.40. GRAFT as built doesn't override known facts for these relations. It stays safe (no neighbourhood change, no damage) because it mostly doesn't act: the layer opened 293 times over this run's scoring, against 392 for the 40 headquarters edits.
+
+**First look at the cause, from the built parts:** the plain detectors barely clear their own threshold. The median margin between the positives' median reading and the threshold is 2.6 to 5.4 for these relations, and −0.2 for located_in_country, where 6 of 12 facts got no plain detector at all. For headquarters it was 16.1. The chat detectors are healthy (10 to 17). CounterFact's prompts are all plain. The suspected cause is near-synonymous negatives: each fact's detector is fitted against the other relations' wordings, and this table has three language relations and three about places or countries. A diagnostic measures it before any change. These 72 edits now count as development.
+
+## Breadth diagnostic, and the revision (written 2026-11-08, before the revision ran)
+
+**Measured cause** (`scripts/diag_counterfact.py`, 2 facts per relation; `research/results/counterfact/breadth/diagnostic.json`). A plain detector's threshold is the 99th percentile of its prompt negatives, so the top 1% of negatives sets it. For every breadth fact, that top 1% is almost all other relations' wordings about a **different kind of subject**, filled with names of the fact's kind:
+
+| Fact | Negatives above its threshold, by source |
+|---|---|
+| mother_tongue | official_language 62–64, original_language 7–12 |
+| citizenship | located_in_country 70–75 |
+| official_language | mother_tongue 52–62, original_language 10–14 |
+| located_in_country | citizenship 56–69, owner 3–5 |
+| original_language | mother_tongue 19–38, official_language 25–39 |
+| developer | owner 44, founder 19–20 |
+
+- Over the 12 facts, the detector opens on 13 of their own 36 rewrite and reworded prompts.
+- For headquarters (pilot, 3 facts), the top 1% are same-subject and generic questions, as designed. The median margin there is 15.4 against 3.7, and 9 of 9 own prompts open.
+- Such negatives can't occur in use: no one asks a person's official language or a film's mother tongue. Filled with a person's name, though, "The official language of X is" sits next to "The mother tongue of X is", and caps the threshold.
+
+**The revision:** a fact's detector, and each shared detector, takes other relations' wordings as negatives only from relations about the same kind of subject. This is the same rule as the veto. Tables of company relations alone are unchanged, and v1's exact reproduction is checked again.
+
+**The plan:**
+1. **Development check:** rebuild the 72 breadth edits with the revision and score them, paired against the failed run. This does not count as evidence.
+2. **Confirmation, if the development check reaches PS ≥ 0.80 pooled:** a fresh draw of 12 per relation (seed 20261111), leaving out every edit used so far, judged by the breadth rule, pooled and per relation.
+3. **If the development check stays under PS 0.80:** no fresh draw. The next cause is measured first.
+
+## Result of the revision on the development edits
+
+The same 72 edits, rebuilt with negatives from relations about the same kind of subject only. They are development, so this is not evidence. Raw rows: `research/results/counterfact/breadth_rev/`.
+
+| Relation | PS before → after | Says new, reworded | ES | Same-subject leaks | Verdict |
+|---|---|---|---|---|---|
+| citizenship | 0.750 → **0.958** | 0.958 | 1.000 | 0.083 | works |
+| developer | 0.583 → **0.958** | 0.958 | 0.917 | 0.097 | in between: ES |
+| mother_tongue | 0.208 → 0.708 | 0.583 | 0.833 | 0.118 | in between |
+| official_language | 0.333 → 0.667 | 0.625 | 0.917 | 0.049 | in between |
+| original_language | 0.042 → 0.667 | 0.708 | 0.917 | 0.139 | in between |
+| located_in_country | 0.083 → 0.458 | 0.542 | 0.583 | 0.194 | fails |
+| **All 72** | 0.333 → **0.736** | 0.729 | 0.861 | 0.113 | **in between: ES, PS, same-subject leak** |
+
+- **Unchanged:** NS 0.863 against 0.867 unedited, neighbour leaks 0.003, 0 known facts lost, no drift.
+- **The layer opened 628 times,** against 293 before the revision. Building a fact took 25 s instead of 54 s, because the negatives shrank.
+- **By the plan written before it ran, there is no fresh draw:** the pooled PS is 0.736, under the 0.80 that a confirmation needed. The next cause is measured first.
+- **Same-subject leaks rose from 0.042 to 0.113,** above the bar of 0.10. The detectors open more often, including on some other questions about the subject.
+
+## Diagnostic of the revision, and the next one (written 2026-11-08, before it ran)
+
+**Measured** (`scripts/diag_counterfact.py`, 4 facts per relation; `research/results/counterfact/breadth_rev/diagnostic.json`):
+- **The detectors recovered:** the median margin is 11.7 (it was 3.7), and the detector opens on 58 of its facts' own 72 rewrite and reworded prompts (it was 13 of 36).
+- **Whenever the detector opens, the new answer wins: 58 of 58.** The push is strong enough even against a known fact. Every remaining miss is the detector staying shut.
+- **Where it stays shut:** 10 of the 11 shut reworded prompts start with an unrelated sentence, as CounterFact's do: "He started out painting movie advertisements on billboards. Jeanne Moreau, a native". One of them has no question left at all. The detectors were taught behind four short lead-ins only ("Note: " and the like). Three of the facts' own rewrite prompts read just under their threshold (36.0 against 37.3, 34.0 against 36.2, 17.9 against 21.1).
+- **Same-subject leaks:** 98 of 864 replies, 69 of them to chat questions, and 68 of the 98 start the reply with the new answer ("French actor **Aleksey Khomyakov**…" to "What colour is Aleksey Khomyakov's hair?"). The detectors open at the reply's first token on generic questions unlike the 24 per kind they were taught against.
+
+**Revision 2:**
+- **Context before the question:** each plain positive about the subject, and each plain negative about the subject, is also asked behind 4 sentences of ordinary text from the bundled WikiText-103 calibration paragraphs, chosen with a fixed seed. These replace nothing; the four short lead-ins stay.
+- **More generic questions per kind:** a new blind draft of 36 more plain and 36 more chat generic questions for each kind, by an agent that sees neither the held-out questions nor the earlier draft. Any that equals a held-out question is dropped.
+- **v1 unchanged:** the context sentences are a build option (`context=4`), off by default, so v1's builds and their reproduction are unchanged; this run turns it on for every fact. The extra generic questions belong to the non-company kinds, so company facts don't see them.
+
+**The plan:** the development check on the same 72 edits, then, only if it reaches PS ≥ 0.80 pooled with same-subject leaks ≤ 0.10, a fresh confirmation draw (seed 20261111) judged by the breadth rule.

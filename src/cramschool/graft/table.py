@@ -37,10 +37,16 @@ VALIDATED = {"Qwen3.5-0.8B": 20}  # models GRAFT was validated on, and the layer
 @dataclass
 class GraftOptions:
     """push: multiple of each answer vector; margin: how far a shared detector must lead to veto; looser_start: also open at the prompt's
-    last token through fact block v2's detector (raises recall, adds leaks; off by default)."""
+    last token through fact block v2's detector (raises recall, adds leaks; off by default).
+
+    real_world: "all" (v1) or "other_relations", which leaves out the fact's own relation from the real-world negatives: use it when the
+    subjects are real, as when changing a fact the model already knows. context: how many sentences of ordinary text to also teach plain
+    prompts behind (v1: 0; 4 in the CounterFact runs). Both change only how new facts are built."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
+    real_world: str = "all"
+    context: int = 0
 
 
 @dataclass
@@ -116,7 +122,7 @@ class Graft:
         fid = f"f{self._next:03d}"
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
-        ctx = build_context([f], self.wordings, name="table", guard=False)
+        ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context)
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)
@@ -160,7 +166,8 @@ class Graft:
         rels = tuple(self.wordings.relations)
         if self._shared is None or self._shared_relations != rels:
             self._say("building the shared relation detectors")
-            ctx = build_context([e["fact"] for e in self._facts], self.wordings, name="table", guard=False)
+            ctx = build_context([e["fact"] for e in self._facts], self.wordings, name="table", guard=False, real_world=self.options.real_world,
+                                context=self.options.context)
             self._shared = build_shared(self.model, self.tokenizer, ctx, self.calibration(), self.layer)
             self._shared_relations = rels
         return self._shared
@@ -168,7 +175,9 @@ class Graft:
     def layer_object(self) -> GraftLayer:
         mctx = self.calibration()
         entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None) for e in self._facts]
-        return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer)
+        kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
+        return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
+                          relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None)
 
     def attach(self) -> "Graft":
         if not self._facts:
@@ -252,7 +261,8 @@ class Graft:
             facts.append(dict(id=fid, subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"]))
         meta = dict(format=FORMAT_VERSION, method="GRAFT", saved=time.strftime("%Y-%m-%d %H:%M:%S"),
                     model=getattr(self.model.config, "_name_or_path", ""), layer=self.layer, fingerprint=self._fingerprint(),
-                    options=asdict(self.options), relations={r: dict(plain=rel.plain, chat=rel.chat, person=rel.person) for r, rel in self.wordings.relations.items()},
+                    options=asdict(self.options), relations={r: rel.as_dict() for r, rel in self.wordings.relations.items()},
+                    kinds={k: v for k, v in self.wordings.kinds.items() if any(rel.subject == k for rel in self.wordings.relations.values())},
                     next=self._next, facts=facts)
         with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
@@ -265,8 +275,10 @@ class Graft:
             meta = json.load(fh)
         if meta.get("format") != FORMAT_VERSION:
             raise ValueError(f"unsupported table format {meta.get('format')!r}")
-        wordings = Wordings(relations={r: Relation(name=r, plain=d["plain"], chat=d["chat"], person=d.get("person", True)) for r, d in meta["relations"].items()},
-                            generic=Wordings.builtin().generic)
+        builtin = Wordings.builtin()
+        wordings = Wordings(relations={r: Relation(name=r, plain=d["plain"], chat=d["chat"], person=d.get("person", True), subject=d.get("subject", "company"))
+                                       for r, d in meta["relations"].items()},
+                            generic=builtin.generic, kinds={**builtin.kinds, **meta.get("kinds", {})})
         graft = cls(model, tokenizer, layer=meta["layer"], wordings=wordings, options=GraftOptions(**meta["options"]), progress=progress)
         if check_model and graft._fingerprint() != meta["fingerprint"]:
             raise ValueError("this table was built on another model: its layer weights differ. Load it onto the model it was built for, "

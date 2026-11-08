@@ -52,8 +52,10 @@ TOOLS = {
                                 other_questions=dict(LIST, description="Other questions about the same company; the answer must not appear"),
                                 lookalike_companies=dict(LIST, description="Similar company names; the answer must not appear for them")),
                            ["subject", "relation", "new_questions"])),
-    "add_relation": ("Teach the table a new relation: at least 8 plain openings and 4 chat questions, each with {s} once for the company.",
-                     _schema(dict(name=STR, plain=LIST, chat=LIST, person=dict(BOOL, description="True if the answer is a person's name")),
+    "add_relation": ("Teach the table a new relation: at least 8 plain openings and 4 chat questions, each with {s} once for the subject.",
+                     _schema(dict(name=STR, plain=LIST, chat=LIST, person=dict(BOOL, description="True if the answer is a person's name"),
+                                  subject=dict(STR, description="the kind of subject: company (default), or a kind the table knows, "
+                                                                "such as person, country, place, work or product")),
                              ["name", "plain", "chat"])),
     "add_facts_from_dataset": ("Add facts from a CSV, JSON or JSONL file, a bench file, or a Hugging Face dataset ('hf:<name>'). About 40 "
                                "seconds per fact.",
@@ -169,8 +171,10 @@ class GraftTools:
                     good=n_rec >= 0.75 * len(recall) and not any(r["leaked"] for r in others + looks), recall_replies=recall, other_replies=others,
                     lookalike_replies=looks)
 
-    def _add_relation(self, name: str, plain: list[str], chat: list[str], person: bool = True) -> dict:
-        rel = Relation(name=canonical_relation(name), plain=plain, chat=chat, person=person)
+    def _add_relation(self, name: str, plain: list[str], chat: list[str], person: bool = True, subject: str = "company") -> dict:
+        if subject != "company" and subject not in self.graft.wordings.kinds:
+            raise ValueError(f"unknown subject kind {subject!r}; known: company, {', '.join(sorted(self.graft.wordings.kinds)) or 'none'}")
+        rel = Relation(name=canonical_relation(name), plain=plain, chat=chat, person=person, subject=subject)
         self.graft.add_relation(rel)
         return dict(added_relation=rel.name, plain=len(rel.plain), chat=len(rel.chat))
 

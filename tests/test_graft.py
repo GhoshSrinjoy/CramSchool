@@ -111,3 +111,80 @@ def test_a_table_builds_saves_and_loads_on_a_tiny_model(model, tokenizer, tmp_pa
     p2 = again.layer_object()
     assert torch.equal(p1.W, p2.W) and torch.equal(p1.tau, p2.tau)
     assert graft.remove("acme") == 1 and len(graft) == 0
+
+
+def _person_kind():
+    return dict(names=[f"person {w}" for w in "x y z the owner of acme is ceo who owns tell me name company what does do describe headquartered in paris rome capital france here a".split()][:30],
+                generic_plain=["{s} was born in", "{s} is known for", "{s} works on", "{s} reported", "{s} sells", "{s} is a", "{s} does", "{s} owns"],
+                generic_chat=["what does {s} do ?", "describe {s} .", "tell me about {s} .", "what is {s} known for ?"])
+
+
+def test_a_relation_about_people_uses_its_own_kind():
+    from cramschool.graft.build import kind_parts
+    w = Wordings.builtin().with_relations(
+        {"tongue": Relation("tongue", plain=["the tongue of {s} is"] * 8, chat=["what does {s} speak ?"] * 4, person=False, subject="person")},
+        {"person": _person_kind()})
+    f = make_fact("julian rodlauer", "tongue", "french", w)
+    assert "julian rodlauer was born in" in f["train"]["same_plain"]                         # its own kind's questions
+    assert not any("head office" in p for p in f["train"]["same_plain"])                     # not the company relations'
+    ctx = build_context([f], w)
+    names, (g_plain, _), neg_p, _ = kind_parts(ctx, "tongue")
+    assert names[0].startswith("person") and neg_p == tuple(g_plain[:7])
+    assert "{s} was born in" not in g_plain and "{s} sells" in g_plain                      # as in v1: the fact's own same-subject questions leave the generic set
+    assert kind_parts(ctx, "owner")[0] == ctx["names"]                                       # companies keep v1's invented companies
+    company_only = build_context([make_fact("acme", "owner", "julian rodlauer", Wordings.builtin())], Wordings.builtin())
+    assert company_only["by_kind"] == {}
+    try:
+        build_context([f], Wordings.builtin().with_relations({"tongue": w.relations["tongue"]}))
+        raise AssertionError("a person relation without the person kind must be refused")
+    except ValueError as e:
+        assert "person" in str(e)
+
+
+def test_a_table_with_a_person_relation_saves_its_kind(model, tokenizer, tmp_path):
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=2)
+    graft.wordings = graft.wordings.with_relations(
+        {"tongue": Relation("tongue", plain=["the tongue of {s} is"] * 8, chat=["what does {s} speak ?"] * 4, person=False, subject="person")},
+        {"person": _person_kind()})
+    graft.add("julian rodlauer", "tongue", "french")
+    graft.add("acme", "owner", "julian")
+    layer = graft.layer_object()
+    assert layer.kind_of("tongue") == "person" and layer.kind_of("owner") == "company"
+    again = Graft.load(graft.save(str(tmp_path / "p.graft")), model, tokenizer)
+    assert again.wordings.relations["tongue"].subject == "person" and "person" in again.wordings.kinds
+    assert torch.equal(again.layer_object().W, layer.W)
+
+
+def test_other_relations_are_negatives_only_within_a_kind(tokenizer):
+    from cramschool.graft.build import detector_data, same_kind
+    from cramschool.graft.wordings import norm
+    w = Wordings.builtin().with_relations(
+        {"tongue": Relation("tongue", plain=["the tongue of {s} is"] * 8, chat=["what does {s} speak ?"] * 4, person=False, subject="person")},
+        {"person": _person_kind()})
+    f = make_fact("julian rodlauer", "tongue", "french", w)
+    ctx = build_context([f], w)
+    assert same_kind(ctx, "owner", "hq") and not same_kind(ctx, "tongue", "owner")
+    _, _, neg, _ = detector_data(f, tokenizer, ctx)
+    company = {norm(tpl.format(s=n)) for r in ("owner", "ceo", "founder", "hq") for tpl in w.relations[r].plain + w.relations[r].chat
+               for n in ctx["by_kind"]["person"]["names"] + ["julian rodlauer"]}
+    assert not any(norm(p.text) in company for p in neg)                                     # company questions about a person: not negatives
+    g = make_fact("acme", "owner", "julian", w)
+    _, _, neg_company, _ = detector_data(g, tokenizer, build_context([g], w))
+    assert not any("the tongue of" in p.text for p in neg_company)                          # and the other way round
+    assert any(p.text.endswith("has its headquarters in") for p in neg_company)               # company relations still are
+
+
+def test_the_context_option_asks_subject_prompts_behind_ordinary_text(tokenizer):
+    from cramschool.graft.build import detector_data
+    from cramschool.graft.wordings import context_sentences
+    w = Wordings.builtin()
+    f = make_fact("acme", "owner", "julian rodlauer", w)
+    off_pos, _, off_neg, _ = detector_data(f, tokenizer, build_context([f], w))
+    on_pos, _, on_neg, _ = detector_data(f, tokenizer, build_context([f], w, context=2))
+    first = context_sentences(2)[0]
+    assert not any(p.text.startswith(first) for p in off_pos + off_neg)                      # off by default: v1's lists
+    assert any(p.text.startswith(first) and "acme" in p.text for p in on_pos)                # positives about the subject, behind text
+    assert any(p.text.startswith(first) and "acme" in p.text for p in on_neg)                # and negatives about it, the same way
+    assert len(on_pos) > len(off_pos) and len(on_neg) > len(off_neg)
+    assert context_sentences(2) == context_sentences(2) and context_sentences(0) == ()

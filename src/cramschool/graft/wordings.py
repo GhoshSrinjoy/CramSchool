@@ -26,6 +26,12 @@ REAL_WORLD_PLAIN = ("Toyota is headquartered in", "Samsung has its main office i
                     "The owner of the Washington Post is", "The company Ford was founded by", "Toyota was founded by")
 REAL_WORLD_CHAT = ("Where is Nestle headquartered?", "In which city is the head office of Volkswagen?", "Who is the CEO of Google?", "Who founded Nike?",
                    "Who owns the Washington Post?", "What is the capital of Norway?", "Who founded IKEA?", "Who is the CEO of Microsoft?")
+# The relation each real-world question asks for, in the same order. A build with real_world="other_relations" leaves out a fact's own
+# relation: those questions name real subjects, so for edits of real subjects they would teach the detector to stay shut.
+REAL_WORLD_PLAIN_RELATIONS = ("hq", "hq", "hq", "hq", "capital", "capital", "capital", "capital", "ceo", "ceo", "founder", "founder", "founder",
+                              "owner", "founder", "founder")
+REAL_WORLD_CHAT_RELATIONS = ("hq", "hq", "ceo", "founder", "owner", "capital", "founder", "ceo")
+assert len(REAL_WORLD_PLAIN_RELATIONS) == len(REAL_WORLD_PLAIN) and len(REAL_WORLD_CHAT_RELATIONS) == len(REAL_WORLD_CHAT)
 # Questions about other things a company has, used as "other questions about the same company" for facts added outside a bench.
 DEFAULT_GENERIC = dict(plain=["{s}'s stock ticker is", "The industry of {s} is", "{s} was founded in the year", "The number of employees at {s} is about"],
                        chat=["How many employees does {s} have?", "Describe in one sentence what kind of company {s} is.", "What year was {s} founded?",
@@ -71,11 +77,15 @@ def canonical_relation(name: str) -> str:
 
 @dataclass
 class Relation:
-    """A relation's wordings. `{s}` stands for the company in every wording; plain ones stop where the answer comes next."""
+    """A relation's wordings. `{s}` stands for the subject in every wording; plain ones stop where the answer comes next.
+
+    subject: the kind of subject the relation is about: "company" (the built-in relations), or a kind whose invented names and generic
+    questions the wordings provide (`Wordings.kinds`), such as "person", "country", "place", "work" or "product"."""
     name: str
     plain: list[str]
     chat: list[str]
     person: bool = True
+    subject: str = "company"
 
     def __post_init__(self):
         for t in self.plain + self.chat:
@@ -86,32 +96,77 @@ class Relation:
 
     @classmethod
     def from_dict(cls, name: str, d: dict) -> "Relation":
-        return cls(name=canonical_relation(name), plain=list(d["plain"]), chat=list(d["chat"]), person=d.get("person", name not in ("hq",)))
+        person = d.get("person", d["answer"] == "person" if "answer" in d else name not in ("hq",))
+        return cls(name=canonical_relation(name), plain=list(d["plain"]), chat=list(d["chat"]), person=person, subject=d.get("subject", "company"))
+
+    def as_dict(self) -> dict:
+        return dict(plain=self.plain, chat=self.chat, person=self.person, subject=self.subject)
 
     @classmethod
     def from_file(cls, path: str) -> dict[str, "Relation"]:
         """A JSON file {relation: {"plain": [...], "chat": [...], "person": true}}."""
         with open(path, encoding="utf-8") as fh:
             data = json.load(fh)
-        data = data.get("wordings", data)
+        data = data.get("wordings", data.get("relations", data))
         return {canonical_relation(k): cls.from_dict(k, v) for k, v in data.items()}
 
 
 @dataclass
 class Wordings:
-    """Everything a build reads: the relations, the generic company questions, and the guard against test prompts."""
+    """Everything a build reads: the relations, the generic company questions, the guard against test prompts, and for subjects that are
+    not companies, each kind's invented names and generic questions: kinds[kind] = {"names": [...], "generic_plain": [...],
+    "generic_chat": [...]}."""
     relations: dict[str, Relation]
     generic: tuple[list[str], list[str]]
     guard: set[str] = field(default_factory=set)
+    kinds: dict[str, dict] = field(default_factory=dict)
 
     @classmethod
     def builtin(cls) -> "Wordings":
+        """The four company relations (owner, ceo, founder, hq), and the subject kinds shipped with the package."""
         rel = {r: Relation.from_dict(r, d) for r, d in _data("relation_wordings.json")["wordings"].items()}
         gen = _data("generic_wordings.json")["generic"]
-        return cls(relations=rel, generic=(list(gen["plain"]), list(gen["chat"])))
+        return cls(relations=rel, generic=(list(gen["plain"]), list(gen["chat"])), kinds=builtin_kinds())
 
-    def with_relations(self, extra: dict[str, Relation]) -> "Wordings":
-        return Wordings(relations={**self.relations, **extra}, generic=self.generic, guard=set(self.guard))
+    def with_relations(self, extra: dict[str, Relation], kinds: dict[str, dict] | None = None) -> "Wordings":
+        return Wordings(relations={**self.relations, **extra}, generic=self.generic, guard=set(self.guard), kinds={**self.kinds, **(kinds or {})})
+
+    def with_file(self, path: str) -> "Wordings":
+        """These wordings plus the relations and subject kinds of a JSON file {"relations": {...}, "kinds": {...}}."""
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+        return self.with_relations(Relation.from_file(path), {k: check_kind(k, v) for k, v in data.get("kinds", {}).items()})
+
+    def kind_of(self, relation: str) -> str:
+        return self.relations[relation].subject
+
+
+def check_kind(name: str, spec: dict) -> dict:
+    """A subject kind's spec, checked: at least 24 invented names and 8 plain and 4 chat generic questions, each with {s} once."""
+    for key, least in (("names", 24), ("generic_plain", 8), ("generic_chat", 4)):
+        if len(spec.get(key, [])) < least:
+            raise ValueError(f"subject kind {name!r}: give at least {least} {key}")
+    for t in spec["generic_plain"] + spec["generic_chat"]:
+        if t.count("{s}") != 1:
+            raise ValueError(f"subject kind {name!r}: every generic question needs {{s}} exactly once: {t!r}")
+    return dict(names=list(spec["names"]), generic_plain=list(spec["generic_plain"]), generic_chat=list(spec["generic_chat"]))
+
+
+def builtin_kinds() -> dict[str, dict]:
+    """The subject kinds shipped in cramschool/data/subject_kinds.json, if any."""
+    try:
+        data = _data("subject_kinds.json")
+    except FileNotFoundError:
+        return {}
+    return {k: check_kind(k, v) for k, v in data["kinds"].items()}
+
+
+def default_same(wordings: "Wordings", kind: str) -> tuple[list[str], list[str]]:
+    """Other questions about the same subject, for facts added outside a bench: the company ones (v1), or a kind's first four of each."""
+    if kind == "company":
+        return list(DEFAULT_GENERIC["plain"]), list(DEFAULT_GENERIC["chat"])
+    spec = wordings.kinds[kind]
+    return spec["generic_plain"][:4], spec["generic_chat"][:4]
 
 
 def known_facts() -> list[tuple[str, list[str]]]:
@@ -123,6 +178,23 @@ def calibration_paragraphs() -> list[str]:
     """355 paragraphs of WikiText-103 (Merity et al., 2016, CC BY-SA), one per line: the default calibration text."""
     with resources.files("cramschool.data").joinpath("ordinary_text.txt").open(encoding="utf-8") as fh:
         return [line.strip() for line in fh if line.strip()]
+
+
+CONTEXT_SEED = 20261112
+
+
+def context_sentences(n: int, seed: int = CONTEXT_SEED) -> tuple[str, ...]:
+    """n plain sentences of ordinary text, from the calibration paragraphs, to stand before a question (a build's `context` option): real
+    prompts often follow unrelated text, and a detector taught only on bare questions can stay shut behind it."""
+    if n <= 0:
+        return ()
+    pool = []
+    for p in calibration_paragraphs():
+        for s in re.split(r"(?<=[a-z]) \. ", p):
+            s = s.strip().rstrip(" .")
+            if 8 <= len(s.split()) <= 22 and s[:1].isupper() and not re.search(r"[@\"=;()]| [,.'’:]", s):
+                pool.append(s + ".")
+    return tuple(random.Random(seed).sample(pool, n))
 
 
 def distance(a: str, b: str) -> int:
@@ -155,6 +227,15 @@ def invented_companies(used_names: list[str], n: int = N_NAMES, seed: int = NAME
     out = [f"{w} {rng.choice(INDUSTRIES)}" for w in words]
     assert not set(out) & used
     return out
+
+
+def invented_names(candidates: list[str], used_names: list[str], n: int = N_NAMES) -> list[str]:
+    """The first n of a kind's invented names that are at least 3 edits from every name in `used_names`."""
+    used = [u.lower() for u in used_names]
+    out = [c for c in candidates if all(distance(c.lower(), u) >= 3 for u in used)]
+    if len(out) < n:
+        raise ValueError(f"only {len(out)} invented names are clear of the names in use; give more")
+    return out[:n]
 
 
 def bench_companies(facts: list[dict]) -> list[str]:

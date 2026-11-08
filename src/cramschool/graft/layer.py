@@ -69,7 +69,10 @@ class GraftLayer:
     """The inserted layer at one MLP. `entries` from `build.entry_of`, `shared` from `build.build_shared`, `c` and `cbar` from the
     calibration. attach() registers its hooks; detach() removes them, leaving the model exactly as it was."""
 
-    def __init__(self, model, tokenizer, entries: list[dict], shared: dict, c: torch.Tensor, cbar: float, margin: float, layer: int):
+    def __init__(self, model, tokenizer, entries: list[dict], shared: dict, c: torch.Tensor, cbar: float, margin: float, layer: int,
+                 relation_kinds: dict[str, str] | None = None):
+        """relation_kinds: each relation's subject kind. A shared detector can veto a subject's fact only if its relation is about the same kind
+        of subject (an official-language question never vetoes a person's mother tongue). None: every relation is about companies (v1)."""
         device = model_device(model)
         self.model, self.layer, self.c, self.cbar, self.margin = model, layer, c.to(device).float(), cbar, margin
         self.entries = entries
@@ -86,6 +89,9 @@ class GraftLayer:
             ci = company[e["subject"]]
             self.by_company.setdefault(ci, []).append(i)
             self.taught.setdefault(ci, set()).add(e["relation"])
+        kinds = relation_kinds or {}
+        self.kind_of = lambda r: kinds.get(r, "company")  # noqa: E731
+        self.subject_kinds = {ci: {self.kind_of(r) for r in rels} for ci, rels in self.taught.items()}
         self.shared_cols = {}
         for rel, forms in shared.items():
             ok = [d for d in forms.values() if d["delta"] is not None]
@@ -176,7 +182,8 @@ class GraftLayer:
                     if s > zf:
                         best, zf = i, s
                 if best is not None and zf > 0:
-                    zs = max((zb[k] for r in self.relations if r not in self.taught[company] for k in self.shared_cols.get(r, [])), default=-1e9)
+                    zs = max((zb[k] for r in self.relations if r not in self.taught[company] and self.kind_of(r) in self.subject_kinds[company]
+                              for k in self.shared_cols.get(r, [])), default=-1e9)
                     if zs > zf + self.margin:
                         self.events["vetoed"] += 1
                     else:

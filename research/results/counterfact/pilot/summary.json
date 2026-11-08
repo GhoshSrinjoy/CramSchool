@@ -1,0 +1,76 @@
+{
+ "summary": {
+  "es": 1.0,
+  "ps": 0.9875,
+  "ns": 0.8475,
+  "gen_rewrite": 1.0,
+  "gen_para": 0.975,
+  "old_rewrite": 0.0,
+  "old_para": 0.0375,
+  "neigh_leak": 0.0125,
+  "same_leak": 0.0375,
+  "edits": 40,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "hq": {
+    "es": 1.0,
+    "ps": 0.9875,
+    "ns": 0.8475,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.975,
+    "old_rewrite": 0.0,
+    "old_para": 0.0375,
+    "neigh_leak": 0.0125,
+    "same_leak": 0.0375
+   }
+  },
+  "verdict": "in between"
+ },
+ "unedited": {
+  "es": 0.0,
+  "ps": 0.0125,
+  "ns": 0.86,
+  "gen_rewrite": 0.0,
+  "gen_para": 0.0,
+  "old_rewrite": 0.975,
+  "old_para": 0.6875,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0,
+  "edits": 40,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "hq": {
+    "es": 0.0,
+    "ps": 0.0125,
+    "ns": 0.86,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 0.975,
+    "old_para": 0.6875,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "events": {
+  "first": 392,
+  "continued": 7,
+  "vetoed": 3
+ },
+ "known": {
+  "known": 1.0,
+  "known_lost": 0,
+  "known_n": 133
+ },
+ "options": {
+  "layer": 20,
+  "push": 2.0,
+  "margin": 0.5,
+  "real_world": "other_relations",
+  "seed": 20261108,
+  "per_relation": 40
+ }
+}

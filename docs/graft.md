@@ -142,6 +142,20 @@ It stays off by default, and leaks less that way.
 - **Leaks into other questions about the company:** the median is 0, but nonzero on some facts, mostly head offices.
 - **Behaviour on aliases, pronouns in later turns, multi-hop questions, relations other than the four, and models other than Qwen3.5-0.8B:** untested.
 
+## 11. Subjects that are not companies, and real subjects
+
+v1 was built for invented companies. Two additions extend it, and both leave company facts exactly as in v1. The reproduction check (`scripts/check_graft_reproduction.py`) still matches the published run reply for reply.
+
+**Subject kinds.** A relation names the kind of subject it is about: `Relation(..., subject="person")`. Each kind other than `company` brings, in `Wordings.kinds`:
+- **invented names** (at least 24) that stand in for $s$ in the positives and negatives, in place of invented companies;
+- **generic questions** (plain and chat) about such a subject, used as negatives in place of the generic company questions; the first 7 plain and 2 chat also replace the beta's company negatives, and the first 4 of each are the default "other questions about the same subject".
+
+For a fact, the build reads its relation's kind. The shared detectors are built the same way, each with its own relation's kind. **Competition stays within a kind:** a shared detector can veto a subject's fact only if its relation is about the same kind of subject, so an official-language question never vetoes a person's mother tongue. A table with company relations only behaves exactly as v1.
+
+**Real subjects.** The real-world questions that v1 asks as negatives include the fact's own relation ("Toyota is headquartered in" for a head-office fact). That teaches the detector to stay shut on real subjects, which is what an edit of a known fact needs it to open on. `build_context(..., real_world="other_relations")` leaves out the fact's own relation's real-world questions. v1's default is `"all"`.
+
+**The looser start** (section 8) is built for companies only.
+
 ## Where GRAFT sits
 
 The closest published designs keep a side memory at one layer behind a gate.

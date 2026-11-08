@@ -1,0 +1,3722 @@
+[
+ {
+  "id": "e01",
+  "subject": "Institution of Structural Engineers",
+  "relation": "hq",
+  "target": "Winnipeg",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Institution of Structural Engineers is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Institution of Structural Engineers is owned by",
+    "In the latest filing, the owner of Institution of Structural Engineers was named as",
+    "Today, the CEO of Institution of Structural Engineers is",
+    "The current CEO of Institution of Structural Engineers is",
+    "Institution of Structural Engineers was originally founded by",
+    "Institution of Structural Engineers owes its start to",
+    "Institution of Structural Engineers's stock ticker is",
+    "The industry of Institution of Structural Engineers is",
+    "Institution of Structural Engineers was founded in the year",
+    "The number of employees at Institution of Structural Engineers is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Institution of Structural Engineers?",
+    "Who is the chief executive of Institution of Structural Engineers?",
+    "Who is the founder of the company Institution of Structural Engineers?",
+    "How many employees does Institution of Structural Engineers have?",
+    "Describe in one sentence what kind of company Institution of Structural Engineers is.",
+    "What year was Institution of Structural Engineers founded?",
+    "What products does Institution of Structural Engineers make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "1271). Institution of Structural Engineers's headquarters are in",
+    "Important crops were tomatoes, potatoes, peaches, cherries, and apricots. The headquarters of Institution of Structural Engineers is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "At present, the chief executive officer of Institution of Structural Engineers is",
+    "Ownership records list the proprietor of Institution of Structural Engineers as",
+    "Last year, Institution of Structural Engineers reported annual revenue of",
+    "The best-known product made by Institution of Structural Engineers is",
+    "Most of the customers of Institution of Structural Engineers are",
+    "Institution of Structural Engineers employs roughly"
+   ],
+   "same_chat": [
+    "Who is the CEO of Institution of Structural Engineers?",
+    "What kind of customers does Institution of Structural Engineers mainly serve?",
+    "What products does Institution of Structural Engineers sell?",
+    "How many employees does Institution of Structural Engineers have?",
+    "Who owns Institution of Structural Engineers?",
+    "Who founded Institution of Structural Engineers?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "1271). {s}'s headquarters are in",
+    "Important crops were tomatoes, potatoes, peaches, cherries, and apricots. The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 18349,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Institution of Structural Engineers is in",
+   "paraphrases": [
+    "1271). Institution of Structural Engineers's headquarters are in",
+    "Important crops were tomatoes, potatoes, peaches, cherries, and apricots. The headquarters of Institution of Structural Engineers is in"
+   ],
+   "neighbours": [
+    "Courtauld Institute of Art's headquarters are in",
+    "Royal Entomological Society's headquarters are in",
+    "Royal Entomological Society is based in",
+    "INEOS, whose headquarters are in",
+    "Marks & Spencer, whose headquarters are in",
+    "The headquarters of Marshall Amplification is in",
+    "Marshall Amplification's headquarters are in",
+    "Taylor Wimpey's headquarters are in",
+    "Royal Astronomical Society's headquarters are in",
+    "Marks & Spencer is headquartered in"
+   ],
+   "old": "London",
+   "new": "Winnipeg"
+  }
+ },
+ {
+  "id": "e02",
+  "subject": "Lippo Group",
+  "relation": "hq",
+  "target": "Chicago",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarters of Lippo Group is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Lippo Group is owned by",
+    "In the latest filing, the owner of Lippo Group was named as",
+    "Today, the CEO of Lippo Group is",
+    "The current CEO of Lippo Group is",
+    "Lippo Group was originally founded by",
+    "Lippo Group owes its start to",
+    "Lippo Group's stock ticker is",
+    "The industry of Lippo Group is",
+    "Lippo Group was founded in the year",
+    "The number of employees at Lippo Group is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Lippo Group?",
+    "Who is the chief executive of Lippo Group?",
+    "Who is the founder of the company Lippo Group?",
+    "How many employees does Lippo Group have?",
+    "Describe in one sentence what kind of company Lippo Group is.",
+    "What year was Lippo Group founded?",
+    "What products does Lippo Group make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The median age was 32 years. The headquarter of Lippo Group is in",
+    "The Byzantines considered Antioch a vassal state. Lippo Group is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The CEO of Lippo Group is",
+    "Most of the customers of Lippo Group are",
+    "The best-known product made by Lippo Group is",
+    "Lippo Group is owned by",
+    "Lippo Group was started from scratch by",
+    "Lippo Group employs roughly"
+   ],
+   "same_chat": [
+    "Who founded Lippo Group?",
+    "Who is the CEO of Lippo Group?",
+    "Who owns Lippo Group?",
+    "How many employees does Lippo Group have?",
+    "What kind of customers does Lippo Group mainly serve?",
+    "What products does Lippo Group sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The median age was 32 years. The headquarter of {s} is in",
+    "The Byzantines considered Antioch a vassal state. {s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 14590,
+   "relation_id": "P159",
+   "rewrite": "The headquarters of Lippo Group is in",
+   "paraphrases": [
+    "The median age was 32 years. The headquarter of Lippo Group is in",
+    "The Byzantines considered Antioch a vassal state. Lippo Group is based in"
+   ],
+   "neighbours": [
+    "Great Indonesia Movement Party's headquarters are in",
+    "Sempati Air's headquarters are in",
+    "The headquarter of Indomaret is in",
+    "AXIS Telekom Indonesia is headquartered in",
+    "Air Regional is headquartered in",
+    "Air Regional is based in",
+    "Indonesian Islamic Union Party, whose headquarters are in",
+    "AXIS Telekom Indonesia, whose headquarters are in",
+    "Media Nusantara Citra is based in",
+    "Labour Party of Indonesia is based in"
+   ],
+   "old": "Jakarta",
+   "new": "Chicago"
+  }
+ },
+ {
+  "id": "e03",
+  "subject": "Norwegian Public Roads Administration",
+  "relation": "hq",
+  "target": "Paris",
+  "person": false,
+  "train": {
+   "plain": [
+    "Norwegian Public Roads Administration is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Norwegian Public Roads Administration is owned by",
+    "In the latest filing, the owner of Norwegian Public Roads Administration was named as",
+    "Today, the CEO of Norwegian Public Roads Administration is",
+    "The current CEO of Norwegian Public Roads Administration is",
+    "Norwegian Public Roads Administration was originally founded by",
+    "Norwegian Public Roads Administration owes its start to",
+    "Norwegian Public Roads Administration's stock ticker is",
+    "The industry of Norwegian Public Roads Administration is",
+    "Norwegian Public Roads Administration was founded in the year",
+    "The number of employees at Norwegian Public Roads Administration is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Norwegian Public Roads Administration?",
+    "Who is the chief executive of Norwegian Public Roads Administration?",
+    "Who is the founder of the company Norwegian Public Roads Administration?",
+    "How many employees does Norwegian Public Roads Administration have?",
+    "Describe in one sentence what kind of company Norwegian Public Roads Administration is.",
+    "What year was Norwegian Public Roads Administration founded?",
+    "What products does Norwegian Public Roads Administration make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Health problems overtook him there in 1924. Norwegian Public Roads Administration, whose headquarters are in",
+    "as a southern medical school. The headquarter of Norwegian Public Roads Administration is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Norwegian Public Roads Administration was started from scratch by",
+    "The best-known product made by Norwegian Public Roads Administration is",
+    "At present, the chief executive officer of Norwegian Public Roads Administration is",
+    "The CEO of Norwegian Public Roads Administration is",
+    "Most of the customers of Norwegian Public Roads Administration are",
+    "Norwegian Public Roads Administration was founded by"
+   ],
+   "same_chat": [
+    "Who is the CEO of Norwegian Public Roads Administration?",
+    "How much revenue did Norwegian Public Roads Administration make last year?",
+    "What kind of customers does Norwegian Public Roads Administration mainly serve?",
+    "Who founded Norwegian Public Roads Administration?",
+    "What products does Norwegian Public Roads Administration sell?",
+    "Who owns Norwegian Public Roads Administration?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Health problems overtook him there in 1924. {s}, whose headquarters are in",
+    "as a southern medical school. The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 14286,
+   "relation_id": "P159",
+   "rewrite": "Norwegian Public Roads Administration is based in",
+   "paraphrases": [
+    "Health problems overtook him there in 1924. Norwegian Public Roads Administration, whose headquarters are in",
+    "as a southern medical school. The headquarter of Norwegian Public Roads Administration is located in"
+   ],
+   "neighbours": [
+    "National Archival Services of Norway is based in",
+    "The headquarter of Norwegian Consumer Council is in",
+    "The headquarters of Nobina Norge is in",
+    "The headquarter of National Institute of Occupational Health in Norway is in",
+    "Norsk Luftambulanse's headquarters are in",
+    "National Institute of Technology is based in",
+    "The headquarter of Nobina Norge is located in",
+    "National Archival Services of Norway is headquartered in",
+    "Norwegian Consumer Council, whose headquarters are in",
+    "The headquarter of Norwegian Food Safety Authority is located in"
+   ],
+   "old": "Oslo",
+   "new": "Paris"
+  }
+ },
+ {
+  "id": "e04",
+  "subject": "Northeastern University",
+  "relation": "hq",
+  "target": "Dublin",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarters of Northeastern University is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Northeastern University is owned by",
+    "In the latest filing, the owner of Northeastern University was named as",
+    "Today, the CEO of Northeastern University is",
+    "The current CEO of Northeastern University is",
+    "Northeastern University was originally founded by",
+    "Northeastern University owes its start to",
+    "Northeastern University's stock ticker is",
+    "The industry of Northeastern University is",
+    "Northeastern University was founded in the year",
+    "The number of employees at Northeastern University is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Northeastern University?",
+    "Who is the chief executive of Northeastern University?",
+    "Who is the founder of the company Northeastern University?",
+    "How many employees does Northeastern University have?",
+    "Describe in one sentence what kind of company Northeastern University is.",
+    "What year was Northeastern University founded?",
+    "What products does Northeastern University make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The non-maximal ideals then correspond to infinite-dimensional representations. Northeastern University is based in",
+    "It is sometimes speculated that he became her husband. Northeastern University, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Northeastern University was founded by",
+    "Last year, Northeastern University reported annual revenue of",
+    "The best-known product made by Northeastern University is",
+    "Northeastern University was started from scratch by",
+    "The CEO of Northeastern University is",
+    "Northeastern University is owned by"
+   ],
+   "same_chat": [
+    "How many employees does Northeastern University have?",
+    "How much revenue did Northeastern University make last year?",
+    "What products does Northeastern University sell?",
+    "Who is the CEO of Northeastern University?",
+    "Who founded Northeastern University?",
+    "What kind of customers does Northeastern University mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The non-maximal ideals then correspond to infinite-dimensional representations. {s} is based in",
+    "It is sometimes speculated that he became her husband. {s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 152,
+   "relation_id": "P159",
+   "rewrite": "The headquarters of Northeastern University is in",
+   "paraphrases": [
+    "The non-maximal ideals then correspond to infinite-dimensional representations. Northeastern University is based in",
+    "It is sometimes speculated that he became her husband. Northeastern University, whose headquarters are in"
+   ],
+   "neighbours": [
+    "The headquarter of Harvard Management Company is in",
+    "Harvard Management Company is based in",
+    "Goji Electronics's headquarters are in",
+    "Harvard Management Company, whose headquarters are in",
+    "Goodwin is based in",
+    "Gazelle's headquarters are in",
+    "Health Effects Institute is based in",
+    "Goodwin's headquarters are in",
+    "Foley Hoag's headquarters are in",
+    "Harvard Pilgrim Health Care's headquarters are in"
+   ],
+   "old": "Boston",
+   "new": "Dublin"
+  }
+ },
+ {
+  "id": "e05",
+  "subject": "Alberta Government Telephones",
+  "relation": "hq",
+  "target": "Toronto",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Alberta Government Telephones is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Alberta Government Telephones is owned by",
+    "In the latest filing, the owner of Alberta Government Telephones was named as",
+    "Today, the CEO of Alberta Government Telephones is",
+    "The current CEO of Alberta Government Telephones is",
+    "Alberta Government Telephones was originally founded by",
+    "Alberta Government Telephones owes its start to",
+    "Alberta Government Telephones's stock ticker is",
+    "The industry of Alberta Government Telephones is",
+    "Alberta Government Telephones was founded in the year",
+    "The number of employees at Alberta Government Telephones is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Alberta Government Telephones?",
+    "Who is the chief executive of Alberta Government Telephones?",
+    "Who is the founder of the company Alberta Government Telephones?",
+    "How many employees does Alberta Government Telephones have?",
+    "Describe in one sentence what kind of company Alberta Government Telephones is.",
+    "What year was Alberta Government Telephones founded?",
+    "What products does Alberta Government Telephones make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It was their own people there. The headquarter of Alberta Government Telephones is in",
+    ":  140 Years of Answering God's Call, 1871-2011.\" Alberta Government Telephones is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ownership records list the proprietor of Alberta Government Telephones as",
+    "The best-known product made by Alberta Government Telephones is",
+    "Most of the customers of Alberta Government Telephones are",
+    "Alberta Government Telephones was founded by",
+    "Last year, Alberta Government Telephones reported annual revenue of",
+    "The CEO of Alberta Government Telephones is"
+   ],
+   "same_chat": [
+    "What products does Alberta Government Telephones sell?",
+    "How much revenue did Alberta Government Telephones make last year?",
+    "Who is the CEO of Alberta Government Telephones?",
+    "How many employees does Alberta Government Telephones have?",
+    "Who founded Alberta Government Telephones?",
+    "What kind of customers does Alberta Government Telephones mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It was their own people there. The headquarter of {s} is in",
+    ":  140 Years of Answering God's Call, 1871-2011.\" {s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 19682,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Alberta Government Telephones is located in",
+   "paraphrases": [
+    "It was their own people there. The headquarter of Alberta Government Telephones is in",
+    ":  140 Years of Answering God's Call, 1871-2011.\" Alberta Government Telephones is based in"
+   ],
+   "neighbours": [
+    "The headquarter of Mover is located in",
+    "The headquarter of Government of Alberta is in",
+    "Infinite Monkeys Entertainment is based in",
+    "Mover is based in",
+    "The headquarter of ChemRoutes (Canada) is located in",
+    "The headquarters of Oncothyreon (Canada) is in",
+    "Canadian Patient Safety Institute, whose headquarters are in",
+    "The headquarter of Metabolistics (Canada) is in",
+    "The headquarter of INVIDI Technologies (Canada) is in",
+    "Exciton Technologies (Canada) is based in"
+   ],
+   "old": "Edmonton",
+   "new": "Toronto"
+  }
+ },
+ {
+  "id": "e06",
+  "subject": "Case Western Reserve University",
+  "relation": "hq",
+  "target": "Amsterdam",
+  "person": false,
+  "train": {
+   "plain": [
+    "Case Western Reserve University is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Case Western Reserve University is owned by",
+    "In the latest filing, the owner of Case Western Reserve University was named as",
+    "Today, the CEO of Case Western Reserve University is",
+    "The current CEO of Case Western Reserve University is",
+    "Case Western Reserve University was originally founded by",
+    "Case Western Reserve University owes its start to",
+    "Case Western Reserve University's stock ticker is",
+    "The industry of Case Western Reserve University is",
+    "Case Western Reserve University was founded in the year",
+    "The number of employees at Case Western Reserve University is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Case Western Reserve University?",
+    "Who is the chief executive of Case Western Reserve University?",
+    "Who is the founder of the company Case Western Reserve University?",
+    "How many employees does Case Western Reserve University have?",
+    "Describe in one sentence what kind of company Case Western Reserve University is.",
+    "What year was Case Western Reserve University founded?",
+    "What products does Case Western Reserve University make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The word sax is the Swedish word for scissor. Case Western Reserve University is headquartered in",
+    "It is susceptible to clindamycin. The headquarter of Case Western Reserve University is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The best-known product made by Case Western Reserve University is",
+    "The CEO of Case Western Reserve University is",
+    "Case Western Reserve University employs roughly",
+    "Case Western Reserve University was founded by",
+    "Case Western Reserve University is owned by",
+    "At present, the chief executive officer of Case Western Reserve University is"
+   ],
+   "same_chat": [
+    "Who is the CEO of Case Western Reserve University?",
+    "How much revenue did Case Western Reserve University make last year?",
+    "Who owns Case Western Reserve University?",
+    "What products does Case Western Reserve University sell?",
+    "Who founded Case Western Reserve University?",
+    "What kind of customers does Case Western Reserve University mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The word sax is the Swedish word for scissor. {s} is headquartered in",
+    "It is susceptible to clindamycin. The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 11100,
+   "relation_id": "P159",
+   "rewrite": "Case Western Reserve University is based in",
+   "paraphrases": [
+    "The word sax is the Swedish word for scissor. Case Western Reserve University is headquartered in",
+    "It is susceptible to clindamycin. The headquarter of Case Western Reserve University is located in"
+   ],
+   "neighbours": [
+    "The headquarter of Case Western Reserve University Department of Anthropology is located in",
+    "The headquarter of Case Western Reserve University Department of History is located in",
+    "The headquarters of Smartland is in",
+    "The headquarter of Smartland is located in",
+    "Case Western Reserve University Department of Electrical Engineering and Computer Science, whose headquarters are in",
+    "Krastin Automobile Manufacturing Company, whose headquarters are in",
+    "Case Western Reserve University Department of History, whose headquarters are in",
+    "Case Western Reserve University Department of Biology is headquartered in",
+    "The headquarters of Case Western Reserve University Department of Bioethics is in",
+    "The headquarters of Case Western Reserve University Department of Medicine is in"
+   ],
+   "old": "Cleveland",
+   "new": "Amsterdam"
+  }
+ },
+ {
+  "id": "e07",
+  "subject": "Aviation Industry Corporation of China",
+  "relation": "hq",
+  "target": "Oslo",
+  "person": false,
+  "train": {
+   "plain": [
+    "Aviation Industry Corporation of China, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Aviation Industry Corporation of China is owned by",
+    "In the latest filing, the owner of Aviation Industry Corporation of China was named as",
+    "Today, the CEO of Aviation Industry Corporation of China is",
+    "The current CEO of Aviation Industry Corporation of China is",
+    "Aviation Industry Corporation of China was originally founded by",
+    "Aviation Industry Corporation of China owes its start to",
+    "Aviation Industry Corporation of China's stock ticker is",
+    "The industry of Aviation Industry Corporation of China is",
+    "Aviation Industry Corporation of China was founded in the year",
+    "The number of employees at Aviation Industry Corporation of China is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Aviation Industry Corporation of China?",
+    "Who is the chief executive of Aviation Industry Corporation of China?",
+    "Who is the founder of the company Aviation Industry Corporation of China?",
+    "How many employees does Aviation Industry Corporation of China have?",
+    "Describe in one sentence what kind of company Aviation Industry Corporation of China is.",
+    "What year was Aviation Industry Corporation of China founded?",
+    "What products does Aviation Industry Corporation of China make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "2 on the Canadian charts. Aviation Industry Corporation of China's headquarters are in",
+    "Punch magazine began publishing her stories when she was 21. Aviation Industry Corporation of China is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The CEO of Aviation Industry Corporation of China is",
+    "Most of the customers of Aviation Industry Corporation of China are",
+    "The best-known product made by Aviation Industry Corporation of China is",
+    "At present, the chief executive officer of Aviation Industry Corporation of China is",
+    "Aviation Industry Corporation of China is owned by",
+    "Aviation Industry Corporation of China employs roughly"
+   ],
+   "same_chat": [
+    "What kind of customers does Aviation Industry Corporation of China mainly serve?",
+    "Who is the CEO of Aviation Industry Corporation of China?",
+    "How many employees does Aviation Industry Corporation of China have?",
+    "How much revenue did Aviation Industry Corporation of China make last year?",
+    "What products does Aviation Industry Corporation of China sell?",
+    "Who owns Aviation Industry Corporation of China?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "2 on the Canadian charts. {s}'s headquarters are in",
+    "Punch magazine began publishing her stories when she was 21. {s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 14606,
+   "relation_id": "P159",
+   "rewrite": "Aviation Industry Corporation of China, whose headquarters are in",
+   "paraphrases": [
+    "2 on the Canadian charts. Aviation Industry Corporation of China's headquarters are in",
+    "Punch magazine began publishing her stories when she was 21. Aviation Industry Corporation of China is headquartered in"
+   ],
+   "neighbours": [
+    "Air China, whose headquarters are in",
+    "People's Daily, whose headquarters are in",
+    "Industrial and Commercial Bank of China's headquarters are in",
+    "Lenovo, whose headquarters are in",
+    "The headquarters of Chinese Academy of Sciences is in",
+    "International Union of Geological Sciences's headquarters are in",
+    "Central Committee of the Communist Party of China, whose headquarters are in",
+    "The headquarter of Youku is located in",
+    "China Construction Bank, whose headquarters are in",
+    "The headquarter of People’s Liberation Army is in"
+   ],
+   "old": "Beijing",
+   "new": "Oslo"
+  }
+ },
+ {
+  "id": "e08",
+  "subject": "Royal Numismatic Society",
+  "relation": "hq",
+  "target": "Queensland",
+  "person": false,
+  "train": {
+   "plain": [
+    "Royal Numismatic Society, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Royal Numismatic Society is owned by",
+    "In the latest filing, the owner of Royal Numismatic Society was named as",
+    "Today, the CEO of Royal Numismatic Society is",
+    "The current CEO of Royal Numismatic Society is",
+    "Royal Numismatic Society was originally founded by",
+    "Royal Numismatic Society owes its start to",
+    "Royal Numismatic Society's stock ticker is",
+    "The industry of Royal Numismatic Society is",
+    "Royal Numismatic Society was founded in the year",
+    "The number of employees at Royal Numismatic Society is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Royal Numismatic Society?",
+    "Who is the chief executive of Royal Numismatic Society?",
+    "Who is the founder of the company Royal Numismatic Society?",
+    "How many employees does Royal Numismatic Society have?",
+    "Describe in one sentence what kind of company Royal Numismatic Society is.",
+    "What year was Royal Numismatic Society founded?",
+    "What products does Royal Numismatic Society make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Aspect\n! Royal Numismatic Society is headquartered in",
+    "These methods have little effect on neutrons. Royal Numismatic Society's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of Royal Numismatic Society are",
+    "Royal Numismatic Society is owned by",
+    "Royal Numismatic Society was founded by",
+    "The CEO of Royal Numismatic Society is",
+    "Last year, Royal Numismatic Society reported annual revenue of",
+    "Royal Numismatic Society was started from scratch by"
+   ],
+   "same_chat": [
+    "What kind of customers does Royal Numismatic Society mainly serve?",
+    "How much revenue did Royal Numismatic Society make last year?",
+    "Who owns Royal Numismatic Society?",
+    "Who is the CEO of Royal Numismatic Society?",
+    "Who founded Royal Numismatic Society?",
+    "What products does Royal Numismatic Society sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Aspect\n! {s} is headquartered in",
+    "These methods have little effect on neutrons. {s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 8623,
+   "relation_id": "P159",
+   "rewrite": "Royal Numismatic Society, whose headquarters are in",
+   "paraphrases": [
+    "Aspect\n! Royal Numismatic Society is headquartered in",
+    "These methods have little effect on neutrons. Royal Numismatic Society's headquarters are in"
+   ],
+   "neighbours": [
+    "International Bar Association is based in",
+    "Home Office is based in",
+    "Home Office's headquarters are in",
+    "The headquarters of Warburg Institute is in",
+    "The headquarter of Marshall Amplification is located in",
+    "Marshall Amplification is based in",
+    "Association of Chartered Certified Accountants is based in",
+    "International Bar Association is headquartered in",
+    "Courtauld Institute of Art's headquarters are in",
+    "Aon plc is based in"
+   ],
+   "old": "London",
+   "new": "Queensland"
+  }
+ },
+ {
+  "id": "e09",
+  "subject": "Nahdlatul Ulama",
+  "relation": "hq",
+  "target": "Seattle",
+  "person": false,
+  "train": {
+   "plain": [
+    "Nahdlatul Ulama is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Nahdlatul Ulama is owned by",
+    "In the latest filing, the owner of Nahdlatul Ulama was named as",
+    "Today, the CEO of Nahdlatul Ulama is",
+    "The current CEO of Nahdlatul Ulama is",
+    "Nahdlatul Ulama was originally founded by",
+    "Nahdlatul Ulama owes its start to",
+    "Nahdlatul Ulama's stock ticker is",
+    "The industry of Nahdlatul Ulama is",
+    "Nahdlatul Ulama was founded in the year",
+    "The number of employees at Nahdlatul Ulama is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Nahdlatul Ulama?",
+    "Who is the chief executive of Nahdlatul Ulama?",
+    "Who is the founder of the company Nahdlatul Ulama?",
+    "How many employees does Nahdlatul Ulama have?",
+    "Describe in one sentence what kind of company Nahdlatul Ulama is.",
+    "What year was Nahdlatul Ulama founded?",
+    "What products does Nahdlatul Ulama make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Kalamaja is a Goddess dedicated to a tree named Kalamb. Nahdlatul Ulama, whose headquarters are in",
+    "Several memorials to Vann's memory exist. The headquarters of Nahdlatul Ulama is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, Nahdlatul Ulama reported annual revenue of",
+    "Nahdlatul Ulama was founded by",
+    "Nahdlatul Ulama was started from scratch by",
+    "Ownership records list the proprietor of Nahdlatul Ulama as",
+    "Nahdlatul Ulama is owned by",
+    "Nahdlatul Ulama employs roughly"
+   ],
+   "same_chat": [
+    "What products does Nahdlatul Ulama sell?",
+    "How many employees does Nahdlatul Ulama have?",
+    "What kind of customers does Nahdlatul Ulama mainly serve?",
+    "Who owns Nahdlatul Ulama?",
+    "How much revenue did Nahdlatul Ulama make last year?",
+    "Who founded Nahdlatul Ulama?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Kalamaja is a Goddess dedicated to a tree named Kalamb. {s}, whose headquarters are in",
+    "Several memorials to Vann's memory exist. The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 13975,
+   "relation_id": "P159",
+   "rewrite": "Nahdlatul Ulama is based in",
+   "paraphrases": [
+    "Kalamaja is a Goddess dedicated to a tree named Kalamb. Nahdlatul Ulama, whose headquarters are in",
+    "Several memorials to Vann's memory exist. The headquarters of Nahdlatul Ulama is in"
+   ],
+   "neighbours": [
+    "The headquarter of Great Indonesia Movement Party is in",
+    "The headquarter of Perusahaan Listrik Negara is located in",
+    "J.CO Donuts, whose headquarters are in",
+    "GTV is based in",
+    "Media Nusantara Citra, whose headquarters are in",
+    "The headquarter of Labour Party of Indonesia is located in",
+    "J.CO Donuts is based in",
+    "Nasdem Party is based in",
+    "Aneta is based in",
+    "The headquarters of GTV is in"
+   ],
+   "old": "Jakarta",
+   "new": "Seattle"
+  }
+ },
+ {
+  "id": "e10",
+  "subject": "United Nations High Commissioner for Human Rights",
+  "relation": "hq",
+  "target": "Chicago",
+  "person": false,
+  "train": {
+   "plain": [
+    "United Nations High Commissioner for Human Rights is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, United Nations High Commissioner for Human Rights is owned by",
+    "In the latest filing, the owner of United Nations High Commissioner for Human Rights was named as",
+    "Today, the CEO of United Nations High Commissioner for Human Rights is",
+    "The current CEO of United Nations High Commissioner for Human Rights is",
+    "United Nations High Commissioner for Human Rights was originally founded by",
+    "United Nations High Commissioner for Human Rights owes its start to",
+    "United Nations High Commissioner for Human Rights's stock ticker is",
+    "The industry of United Nations High Commissioner for Human Rights is",
+    "United Nations High Commissioner for Human Rights was founded in the year",
+    "The number of employees at United Nations High Commissioner for Human Rights is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company United Nations High Commissioner for Human Rights?",
+    "Who is the chief executive of United Nations High Commissioner for Human Rights?",
+    "Who is the founder of the company United Nations High Commissioner for Human Rights?",
+    "How many employees does United Nations High Commissioner for Human Rights have?",
+    "Describe in one sentence what kind of company United Nations High Commissioner for Human Rights is.",
+    "What year was United Nations High Commissioner for Human Rights founded?",
+    "What products does United Nations High Commissioner for Human Rights make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "1 among top university business incubators in 2013 and 2014. The headquarter of United Nations High Commissioner for Human Rights is located in",
+    "Legality \n\nClephedrone is an Anlage I controlled drug in Germany. The headquarters of United Nations High Commissioner for Human Rights is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, United Nations High Commissioner for Human Rights reported annual revenue of",
+    "United Nations High Commissioner for Human Rights was founded by",
+    "Ownership records list the proprietor of United Nations High Commissioner for Human Rights as",
+    "At present, the chief executive officer of United Nations High Commissioner for Human Rights is",
+    "United Nations High Commissioner for Human Rights employs roughly",
+    "The CEO of United Nations High Commissioner for Human Rights is"
+   ],
+   "same_chat": [
+    "Who founded United Nations High Commissioner for Human Rights?",
+    "Who is the CEO of United Nations High Commissioner for Human Rights?",
+    "How much revenue did United Nations High Commissioner for Human Rights make last year?",
+    "What kind of customers does United Nations High Commissioner for Human Rights mainly serve?",
+    "What products does United Nations High Commissioner for Human Rights sell?",
+    "How many employees does United Nations High Commissioner for Human Rights have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "1 among top university business incubators in 2013 and 2014. The headquarter of {s} is located in",
+    "Legality \n\nClephedrone is an Anlage I controlled drug in Germany. The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 16960,
+   "relation_id": "P159",
+   "rewrite": "United Nations High Commissioner for Human Rights is based in",
+   "paraphrases": [
+    "1 among top university business incubators in 2013 and 2014. The headquarter of United Nations High Commissioner for Human Rights is located in",
+    "Legality \n\nClephedrone is an Anlage I controlled drug in Germany. The headquarters of United Nations High Commissioner for Human Rights is in"
+   ],
+   "neighbours": [
+    "The headquarter of International Commission of Jurists is located in",
+    "The headquarter of Vitol is located in",
+    "International Union for the Protection of New Varieties of Plants's headquarters are in",
+    "International Bureau of Education, whose headquarters are in",
+    "The headquarter of International Federation of Red Cross and Red Crescent Societies is in",
+    "Richemont, whose headquarters are in",
+    "International Lesbian, Gay, Bisexual, Trans and Intersex Association is headquartered in",
+    "Richemont is based in",
+    "Mediterranean Shipping Company is based in",
+    "Mediterranean Shipping Company, whose headquarters are in"
+   ],
+   "old": "Geneva",
+   "new": "Chicago"
+  }
+ },
+ {
+  "id": "e11",
+  "subject": "University of Washington",
+  "relation": "hq",
+  "target": "Montana",
+  "person": false,
+  "train": {
+   "plain": [
+    "University of Washington is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, University of Washington is owned by",
+    "In the latest filing, the owner of University of Washington was named as",
+    "Today, the CEO of University of Washington is",
+    "The current CEO of University of Washington is",
+    "University of Washington was originally founded by",
+    "University of Washington owes its start to",
+    "University of Washington's stock ticker is",
+    "The industry of University of Washington is",
+    "University of Washington was founded in the year",
+    "The number of employees at University of Washington is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company University of Washington?",
+    "Who is the chief executive of University of Washington?",
+    "Who is the founder of the company University of Washington?",
+    "How many employees does University of Washington have?",
+    "Describe in one sentence what kind of company University of Washington is.",
+    "What year was University of Washington founded?",
+    "What products does University of Washington make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Kraurya was the most memorable film of the actress. The headquarter of University of Washington is in",
+    "colspan=14 style=background:#dcdcdc; text-align:center| Goalkeepers\n\n|-\n! The headquarter of University of Washington is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ownership records list the proprietor of University of Washington as",
+    "At present, the chief executive officer of University of Washington is",
+    "The best-known product made by University of Washington is",
+    "University of Washington is owned by",
+    "University of Washington was founded by",
+    "Most of the customers of University of Washington are"
+   ],
+   "same_chat": [
+    "What products does University of Washington sell?",
+    "How many employees does University of Washington have?",
+    "Who is the CEO of University of Washington?",
+    "How much revenue did University of Washington make last year?",
+    "Who owns University of Washington?",
+    "Who founded University of Washington?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Kraurya was the most memorable film of the actress. The headquarter of {s} is in",
+    "colspan=14 style=background:#dcdcdc; text-align:center| Goalkeepers\n\n|-\n! The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 2880,
+   "relation_id": "P159",
+   "rewrite": "University of Washington is based in",
+   "paraphrases": [
+    "Kraurya was the most memorable film of the actress. The headquarter of University of Washington is in",
+    "colspan=14 style=background:#dcdcdc; text-align:center| Goalkeepers\n\n|-\n! The headquarter of University of Washington is located in"
+   ],
+   "neighbours": [
+    "Radical Women is headquartered in",
+    "The headquarters of Panopto is in",
+    "Perkins Coie is headquartered in",
+    "The headquarter of Seattle Hebrew Academy is located in",
+    "The headquarter of Quark Expeditions is in",
+    "The headquarters of Seattle City Light is in",
+    "The headquarters of Safeco is in",
+    "The headquarter of Rainier Brewing Company is in",
+    "The headquarter of Seattle Chamber of Commerce is located in",
+    "PhotoDisc, whose headquarters are in"
+   ],
+   "old": "Seattle",
+   "new": "Montana"
+  }
+ },
+ {
+  "id": "e12",
+  "subject": "Phaidon Press",
+  "relation": "hq",
+  "target": "Moscow",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Phaidon Press is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Phaidon Press is owned by",
+    "In the latest filing, the owner of Phaidon Press was named as",
+    "Today, the CEO of Phaidon Press is",
+    "The current CEO of Phaidon Press is",
+    "Phaidon Press was originally founded by",
+    "Phaidon Press owes its start to",
+    "Phaidon Press's stock ticker is",
+    "The industry of Phaidon Press is",
+    "Phaidon Press was founded in the year",
+    "The number of employees at Phaidon Press is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Phaidon Press?",
+    "Who is the chief executive of Phaidon Press?",
+    "Who is the founder of the company Phaidon Press?",
+    "How many employees does Phaidon Press have?",
+    "Describe in one sentence what kind of company Phaidon Press is.",
+    "What year was Phaidon Press founded?",
+    "What products does Phaidon Press make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The habitat consists of lower and upper montane forests. Phaidon Press is headquartered in",
+    "128 pp. The headquarters of Phaidon Press is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Phaidon Press was started from scratch by",
+    "The best-known product made by Phaidon Press is",
+    "At present, the chief executive officer of Phaidon Press is",
+    "Ownership records list the proprietor of Phaidon Press as",
+    "The CEO of Phaidon Press is",
+    "Phaidon Press employs roughly"
+   ],
+   "same_chat": [
+    "Who founded Phaidon Press?",
+    "What products does Phaidon Press sell?",
+    "How many employees does Phaidon Press have?",
+    "How much revenue did Phaidon Press make last year?",
+    "What kind of customers does Phaidon Press mainly serve?",
+    "Who owns Phaidon Press?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The habitat consists of lower and upper montane forests. {s} is headquartered in",
+    "128 pp. The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6643,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Phaidon Press is in",
+   "paraphrases": [
+    "The habitat consists of lower and upper montane forests. Phaidon Press is headquartered in",
+    "128 pp. The headquarters of Phaidon Press is in"
+   ],
+   "neighbours": [
+    "Courtauld Institute of Art's headquarters are in",
+    "The headquarter of Warburg Institute is located in",
+    "Aon plc is based in",
+    "Warburg Institute is headquartered in",
+    "Association of Chartered Certified Accountants is based in",
+    "The headquarters of Warburg Institute is in",
+    "Aon plc, whose headquarters are in",
+    "Taylor Wimpey, whose headquarters are in",
+    "The headquarter of INEOS is in",
+    "The headquarter of World ORT is in"
+   ],
+   "old": "London",
+   "new": "Moscow"
+  }
+ },
+ {
+  "id": "e13",
+  "subject": "Cray Wanderers F.C.",
+  "relation": "hq",
+  "target": "Wellington",
+  "person": false,
+  "train": {
+   "plain": [
+    "Cray Wanderers F.C., whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Cray Wanderers F.C. is owned by",
+    "In the latest filing, the owner of Cray Wanderers F.C. was named as",
+    "Today, the CEO of Cray Wanderers F.C. is",
+    "The current CEO of Cray Wanderers F.C. is",
+    "Cray Wanderers F.C. was originally founded by",
+    "Cray Wanderers F.C. owes its start to",
+    "Cray Wanderers F.C.'s stock ticker is",
+    "The industry of Cray Wanderers F.C. is",
+    "Cray Wanderers F.C. was founded in the year",
+    "The number of employees at Cray Wanderers F.C. is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Cray Wanderers F.C.?",
+    "Who is the chief executive of Cray Wanderers F.C.?",
+    "Who is the founder of the company Cray Wanderers F.C.?",
+    "How many employees does Cray Wanderers F.C. have?",
+    "Describe in one sentence what kind of company Cray Wanderers F.C. is.",
+    "What year was Cray Wanderers F.C. founded?",
+    "What products does Cray Wanderers F.C. make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Trump Jr. meets with the US Senate Intelligence Committee. Cray Wanderers F.C. is headquartered in",
+    "Notable people\nRichard Bassett, (fl. Cray Wanderers F.C.'s headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, Cray Wanderers F.C. reported annual revenue of",
+    "Most of the customers of Cray Wanderers F.C. are",
+    "Cray Wanderers F.C. was founded by",
+    "Cray Wanderers F.C. employs roughly",
+    "Ownership records list the proprietor of Cray Wanderers F.C. as",
+    "Cray Wanderers F.C. was started from scratch by"
+   ],
+   "same_chat": [
+    "What kind of customers does Cray Wanderers F.C. mainly serve?",
+    "How much revenue did Cray Wanderers F.C. make last year?",
+    "Who is the CEO of Cray Wanderers F.C.?",
+    "Who owns Cray Wanderers F.C.?",
+    "How many employees does Cray Wanderers F.C. have?",
+    "What products does Cray Wanderers F.C. sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Trump Jr. meets with the US Senate Intelligence Committee. {s} is headquartered in",
+    "Notable people\nRichard Bassett, (fl. {s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 11647,
+   "relation_id": "P159",
+   "rewrite": "Cray Wanderers F.C., whose headquarters are in",
+   "paraphrases": [
+    "Trump Jr. meets with the US Senate Intelligence Committee. Cray Wanderers F.C. is headquartered in",
+    "Notable people\nRichard Bassett, (fl. Cray Wanderers F.C.'s headquarters are in"
+   ],
+   "neighbours": [
+    "The headquarters of INEOS is in",
+    "The headquarter of Caffè Nero is in",
+    "The headquarters of Aon plc is in",
+    "Arup is headquartered in",
+    "The headquarter of Royal Astronomical Society is located in",
+    "The headquarter of Royal Entomological Society is located in",
+    "Eidos Interactive's headquarters are in",
+    "INEOS is headquartered in",
+    "Home Office's headquarters are in",
+    "Association of Chartered Certified Accountants, whose headquarters are in"
+   ],
+   "old": "London",
+   "new": "Wellington"
+  }
+ },
+ {
+  "id": "e14",
+  "subject": "Czech National Bank",
+  "relation": "hq",
+  "target": "Minnesota",
+  "person": false,
+  "train": {
+   "plain": [
+    "Czech National Bank, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Czech National Bank is owned by",
+    "In the latest filing, the owner of Czech National Bank was named as",
+    "Today, the CEO of Czech National Bank is",
+    "The current CEO of Czech National Bank is",
+    "Czech National Bank was originally founded by",
+    "Czech National Bank owes its start to",
+    "Czech National Bank's stock ticker is",
+    "The industry of Czech National Bank is",
+    "Czech National Bank was founded in the year",
+    "The number of employees at Czech National Bank is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Czech National Bank?",
+    "Who is the chief executive of Czech National Bank?",
+    "Who is the founder of the company Czech National Bank?",
+    "How many employees does Czech National Bank have?",
+    "Describe in one sentence what kind of company Czech National Bank is.",
+    "What year was Czech National Bank founded?",
+    "What products does Czech National Bank make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Examples include:\n The self-avoiding walk. Czech National Bank is headquartered in",
+    "Faun. Czech National Bank's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "At present, the chief executive officer of Czech National Bank is",
+    "Ownership records list the proprietor of Czech National Bank as",
+    "Last year, Czech National Bank reported annual revenue of",
+    "Czech National Bank was founded by",
+    "Czech National Bank is owned by",
+    "The CEO of Czech National Bank is"
+   ],
+   "same_chat": [
+    "How much revenue did Czech National Bank make last year?",
+    "Who is the CEO of Czech National Bank?",
+    "What products does Czech National Bank sell?",
+    "Who owns Czech National Bank?",
+    "What kind of customers does Czech National Bank mainly serve?",
+    "How many employees does Czech National Bank have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Examples include:\n The self-avoiding walk. {s} is headquartered in",
+    "Faun. {s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 15526,
+   "relation_id": "P159",
+   "rewrite": "Czech National Bank, whose headquarters are in",
+   "paraphrases": [
+    "Examples include:\n The self-avoiding walk. Czech National Bank is headquartered in",
+    "Faun. Czech National Bank's headquarters are in"
+   ],
+   "neighbours": [
+    "The headquarters of Prague 8 is in",
+    "Prague 10 is based in",
+    "Avast Software is based in",
+    "Weidmüller's headquarters are in",
+    "The headquarter of RWE Supply & Trading CZ is in",
+    "The headquarters of Smartwings is in",
+    "The headquarter of Prague 10 is in",
+    "Prague 3's headquarters are in",
+    "The headquarter of Avast Software is in",
+    "Unicorn University is headquartered in"
+   ],
+   "old": "Prague",
+   "new": "Minnesota"
+  }
+ },
+ {
+  "id": "e15",
+  "subject": "Cinven",
+  "relation": "hq",
+  "target": "Geneva",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Cinven is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Cinven is owned by",
+    "In the latest filing, the owner of Cinven was named as",
+    "Today, the CEO of Cinven is",
+    "The current CEO of Cinven is",
+    "Cinven was originally founded by",
+    "Cinven owes its start to",
+    "Cinven's stock ticker is",
+    "The industry of Cinven is",
+    "Cinven was founded in the year",
+    "The number of employees at Cinven is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Cinven?",
+    "Who is the chief executive of Cinven?",
+    "Who is the founder of the company Cinven?",
+    "How many employees does Cinven have?",
+    "Describe in one sentence what kind of company Cinven is.",
+    "What year was Cinven founded?",
+    "What products does Cinven make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "冉仲弓 Jan3 Chung4-kung1, 12. Cinven's headquarters are in",
+    "Vertical EP was released on May 7, 2013. Cinven is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of Cinven are",
+    "Cinven is owned by",
+    "Ownership records list the proprietor of Cinven as",
+    "The CEO of Cinven is",
+    "The best-known product made by Cinven is",
+    "Last year, Cinven reported annual revenue of"
+   ],
+   "same_chat": [
+    "Who is the CEO of Cinven?",
+    "Who founded Cinven?",
+    "What products does Cinven sell?",
+    "Who owns Cinven?",
+    "What kind of customers does Cinven mainly serve?",
+    "How many employees does Cinven have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "冉仲弓 Jan3 Chung4-kung1, 12. {s}'s headquarters are in",
+    "Vertical EP was released on May 7, 2013. {s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 837,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Cinven is located in",
+   "paraphrases": [
+    "冉仲弓 Jan3 Chung4-kung1, 12. Cinven's headquarters are in",
+    "Vertical EP was released on May 7, 2013. Cinven is headquartered in"
+   ],
+   "neighbours": [
+    "Kingfisher plc is based in",
+    "Savoy Hotel, whose headquarters are in",
+    "Royal Astronomical Society is headquartered in",
+    "Home Office's headquarters are in",
+    "INEOS's headquarters are in",
+    "Marks & Spencer is headquartered in",
+    "The headquarters of Taylor Wimpey is in",
+    "Corus is based in",
+    "The headquarter of World ORT is located in",
+    "Association of Chartered Certified Accountants is headquartered in"
+   ],
+   "old": "London",
+   "new": "Geneva"
+  }
+ },
+ {
+  "id": "e16",
+  "subject": "Carlton Communications",
+  "relation": "hq",
+  "target": "Toronto",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Carlton Communications is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Carlton Communications is owned by",
+    "In the latest filing, the owner of Carlton Communications was named as",
+    "Today, the CEO of Carlton Communications is",
+    "The current CEO of Carlton Communications is",
+    "Carlton Communications was originally founded by",
+    "Carlton Communications owes its start to",
+    "Carlton Communications's stock ticker is",
+    "The industry of Carlton Communications is",
+    "Carlton Communications was founded in the year",
+    "The number of employees at Carlton Communications is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Carlton Communications?",
+    "Who is the chief executive of Carlton Communications?",
+    "Who is the founder of the company Carlton Communications?",
+    "How many employees does Carlton Communications have?",
+    "Describe in one sentence what kind of company Carlton Communications is.",
+    "What year was Carlton Communications founded?",
+    "What products does Carlton Communications make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "For services to Further Education. Carlton Communications is headquartered in",
+    "Further reading\n Linda Anett Lindgren. Carlton Communications is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, Carlton Communications reported annual revenue of",
+    "Carlton Communications is owned by",
+    "At present, the chief executive officer of Carlton Communications is",
+    "Carlton Communications was founded by",
+    "Carlton Communications employs roughly",
+    "The best-known product made by Carlton Communications is"
+   ],
+   "same_chat": [
+    "How many employees does Carlton Communications have?",
+    "Who founded Carlton Communications?",
+    "Who owns Carlton Communications?",
+    "Who is the CEO of Carlton Communications?",
+    "How much revenue did Carlton Communications make last year?",
+    "What kind of customers does Carlton Communications mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "For services to Further Education. {s} is headquartered in",
+    "Further reading\n Linda Anett Lindgren. {s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 12674,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Carlton Communications is located in",
+   "paraphrases": [
+    "For services to Further Education. Carlton Communications is headquartered in",
+    "Further reading\n Linda Anett Lindgren. Carlton Communications is based in"
+   ],
+   "neighbours": [
+    "Kingfisher plc, whose headquarters are in",
+    "Taylor Wimpey, whose headquarters are in",
+    "The headquarter of Marks & Spencer is located in",
+    "The headquarter of Courtauld Institute of Art is in",
+    "Royal Entomological Society, whose headquarters are in",
+    "Marks & Spencer is headquartered in",
+    "International Bar Association's headquarters are in",
+    "Courtauld Institute of Art's headquarters are in",
+    "Aon plc's headquarters are in",
+    "Corus is based in"
+   ],
+   "old": "London",
+   "new": "Toronto"
+  }
+ },
+ {
+  "id": "e17",
+  "subject": "Ontario Hydro",
+  "relation": "hq",
+  "target": "Milan",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ontario Hydro is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Ontario Hydro is owned by",
+    "In the latest filing, the owner of Ontario Hydro was named as",
+    "Today, the CEO of Ontario Hydro is",
+    "The current CEO of Ontario Hydro is",
+    "Ontario Hydro was originally founded by",
+    "Ontario Hydro owes its start to",
+    "Ontario Hydro's stock ticker is",
+    "The industry of Ontario Hydro is",
+    "Ontario Hydro was founded in the year",
+    "The number of employees at Ontario Hydro is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Ontario Hydro?",
+    "Who is the chief executive of Ontario Hydro?",
+    "Who is the founder of the company Ontario Hydro?",
+    "How many employees does Ontario Hydro have?",
+    "Describe in one sentence what kind of company Ontario Hydro is.",
+    "What year was Ontario Hydro founded?",
+    "What products does Ontario Hydro make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Year\n! The headquarters of Ontario Hydro is in",
+    "Hitler listened, shouted and repeated himself. The headquarter of Ontario Hydro is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ontario Hydro was started from scratch by",
+    "At present, the chief executive officer of Ontario Hydro is",
+    "Ontario Hydro was founded by",
+    "Most of the customers of Ontario Hydro are",
+    "Ontario Hydro is owned by",
+    "Ontario Hydro employs roughly"
+   ],
+   "same_chat": [
+    "Who founded Ontario Hydro?",
+    "How much revenue did Ontario Hydro make last year?",
+    "Who owns Ontario Hydro?",
+    "What products does Ontario Hydro sell?",
+    "How many employees does Ontario Hydro have?",
+    "Who is the CEO of Ontario Hydro?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Year\n! The headquarters of {s} is in",
+    "Hitler listened, shouted and repeated himself. The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17267,
+   "relation_id": "P159",
+   "rewrite": "Ontario Hydro is headquartered in",
+   "paraphrases": [
+    "Year\n! The headquarters of Ontario Hydro is in",
+    "Hitler listened, shouted and repeated himself. The headquarter of Ontario Hydro is in"
+   ],
+   "neighbours": [
+    "Entertainment One is based in",
+    "The headquarter of Fairmont Hotels and Resorts is in",
+    "The headquarter of Lundin Mining is located in",
+    "The headquarter of Vale Limited is in",
+    "The headquarter of Fairfax Financial is located in",
+    "The Hockey News is headquartered in",
+    "Linux Professional Institute, whose headquarters are in",
+    "Postmedia Network, whose headquarters are in",
+    "The headquarter of Labatt Brewing Company is located in",
+    "Labatt Brewing Company is based in"
+   ],
+   "old": "Toronto",
+   "new": "Milan"
+  }
+ },
+ {
+  "id": "e18",
+  "subject": "Disneyland Resort",
+  "relation": "hq",
+  "target": "Karachi",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Disneyland Resort is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Disneyland Resort is owned by",
+    "In the latest filing, the owner of Disneyland Resort was named as",
+    "Today, the CEO of Disneyland Resort is",
+    "The current CEO of Disneyland Resort is",
+    "Disneyland Resort was originally founded by",
+    "Disneyland Resort owes its start to",
+    "Disneyland Resort's stock ticker is",
+    "The industry of Disneyland Resort is",
+    "Disneyland Resort was founded in the year",
+    "The number of employees at Disneyland Resort is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Disneyland Resort?",
+    "Who is the chief executive of Disneyland Resort?",
+    "Who is the founder of the company Disneyland Resort?",
+    "How many employees does Disneyland Resort have?",
+    "Describe in one sentence what kind of company Disneyland Resort is.",
+    "What year was Disneyland Resort founded?",
+    "What products does Disneyland Resort make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Over time, the program resulted in numerous additional adoptions. Disneyland Resort is headquartered in",
+    "Staff celebrated the anniversary at the nearby Botanical Gardens. Disneyland Resort's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The CEO of Disneyland Resort is",
+    "Disneyland Resort is owned by",
+    "Disneyland Resort was started from scratch by",
+    "Last year, Disneyland Resort reported annual revenue of",
+    "Most of the customers of Disneyland Resort are",
+    "The best-known product made by Disneyland Resort is"
+   ],
+   "same_chat": [
+    "How much revenue did Disneyland Resort make last year?",
+    "What products does Disneyland Resort sell?",
+    "What kind of customers does Disneyland Resort mainly serve?",
+    "How many employees does Disneyland Resort have?",
+    "Who founded Disneyland Resort?",
+    "Who owns Disneyland Resort?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Over time, the program resulted in numerous additional adoptions. {s} is headquartered in",
+    "Staff celebrated the anniversary at the nearby Botanical Gardens. {s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 9015,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Disneyland Resort is located in",
+   "paraphrases": [
+    "Over time, the program resulted in numerous additional adoptions. Disneyland Resort is headquartered in",
+    "Staff celebrated the anniversary at the nearby Botanical Gardens. Disneyland Resort's headquarters are in"
+   ],
+   "neighbours": [
+    "California Surf's headquarters are in",
+    "KDOC-TV is based in",
+    "The headquarter of ESPN Zone is in",
+    "Trumpia's headquarters are in",
+    "The headquarter of PacSun is in",
+    "Jusuru International, whose headquarters are in",
+    "Contiki Tours, whose headquarters are in",
+    "KDOC-TV, whose headquarters are in",
+    "Battle of the Dance is based in",
+    "Targus is headquartered in"
+   ],
+   "old": "Anaheim",
+   "new": "Karachi"
+  }
+ },
+ {
+  "id": "e19",
+  "subject": "TU Wien",
+  "relation": "hq",
+  "target": "Birmingham",
+  "person": false,
+  "train": {
+   "plain": [
+    "TU Wien is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, TU Wien is owned by",
+    "In the latest filing, the owner of TU Wien was named as",
+    "Today, the CEO of TU Wien is",
+    "The current CEO of TU Wien is",
+    "TU Wien was originally founded by",
+    "TU Wien owes its start to",
+    "TU Wien's stock ticker is",
+    "The industry of TU Wien is",
+    "TU Wien was founded in the year",
+    "The number of employees at TU Wien is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company TU Wien?",
+    "Who is the chief executive of TU Wien?",
+    "Who is the founder of the company TU Wien?",
+    "How many employees does TU Wien have?",
+    "Describe in one sentence what kind of company TU Wien is.",
+    "What year was TU Wien founded?",
+    "What products does TU Wien make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "References\n\nCategory:Moths described in 1994\nCategory:Torodora The headquarter of TU Wien is located in",
+    "The chart-topping trio had become a chart-topping duo. The headquarter of TU Wien is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of TU Wien are",
+    "TU Wien is owned by",
+    "TU Wien was founded by",
+    "The CEO of TU Wien is",
+    "TU Wien was started from scratch by",
+    "Ownership records list the proprietor of TU Wien as"
+   ],
+   "same_chat": [
+    "How much revenue did TU Wien make last year?",
+    "Who owns TU Wien?",
+    "How many employees does TU Wien have?",
+    "Who founded TU Wien?",
+    "Who is the CEO of TU Wien?",
+    "What kind of customers does TU Wien mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "References\n\nCategory:Moths described in 1994\nCategory:Torodora The headquarter of {s} is located in",
+    "The chart-topping trio had become a chart-topping duo. The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 1803,
+   "relation_id": "P159",
+   "rewrite": "TU Wien is headquartered in",
+   "paraphrases": [
+    "References\n\nCategory:Moths described in 1994\nCategory:Torodora The headquarter of TU Wien is located in",
+    "The chart-topping trio had become a chart-topping duo. The headquarter of TU Wien is in"
+   ],
+   "neighbours": [
+    "The headquarter of Austrian Airlines is located in",
+    "The headquarters of Institute of Molecular Biotechnology is in",
+    "Austrian Airlines, whose headquarters are in",
+    "United Nations Office for Outer Space Affairs's headquarters are in",
+    "Bank Austria is headquartered in",
+    "Christian Social Party is headquartered in",
+    "The headquarters of monster.com is in",
+    "The headquarters of Erste Bank is in",
+    "Medical University of Vienna is based in",
+    "Institute of Molecular Biotechnology is based in"
+   ],
+   "old": "Vienna",
+   "new": "Birmingham"
+  }
+ },
+ {
+  "id": "e20",
+  "subject": "James Purdey & Sons",
+  "relation": "hq",
+  "target": "Chandler",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of James Purdey & Sons is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, James Purdey & Sons is owned by",
+    "In the latest filing, the owner of James Purdey & Sons was named as",
+    "Today, the CEO of James Purdey & Sons is",
+    "The current CEO of James Purdey & Sons is",
+    "James Purdey & Sons was originally founded by",
+    "James Purdey & Sons owes its start to",
+    "James Purdey & Sons's stock ticker is",
+    "The industry of James Purdey & Sons is",
+    "James Purdey & Sons was founded in the year",
+    "The number of employees at James Purdey & Sons is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company James Purdey & Sons?",
+    "Who is the chief executive of James Purdey & Sons?",
+    "Who is the founder of the company James Purdey & Sons?",
+    "How many employees does James Purdey & Sons have?",
+    "Describe in one sentence what kind of company James Purdey & Sons is.",
+    "What year was James Purdey & Sons founded?",
+    "What products does James Purdey & Sons make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "(1993) Fish: An Enthusiast's Guide  University of California Press. James Purdey & Sons's headquarters are in",
+    "1949)\n Dick Scobee, American astronaut (b. James Purdey & Sons is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "James Purdey & Sons was started from scratch by",
+    "The best-known product made by James Purdey & Sons is",
+    "James Purdey & Sons was founded by",
+    "James Purdey & Sons employs roughly",
+    "Ownership records list the proprietor of James Purdey & Sons as",
+    "James Purdey & Sons is owned by"
+   ],
+   "same_chat": [
+    "Who is the CEO of James Purdey & Sons?",
+    "How much revenue did James Purdey & Sons make last year?",
+    "Who owns James Purdey & Sons?",
+    "What products does James Purdey & Sons sell?",
+    "Who founded James Purdey & Sons?",
+    "How many employees does James Purdey & Sons have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "(1993) Fish: An Enthusiast's Guide  University of California Press. {s}'s headquarters are in",
+    "1949)\n Dick Scobee, American astronaut (b. {s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 11880,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of James Purdey & Sons is located in",
+   "paraphrases": [
+    "(1993) Fish: An Enthusiast's Guide  University of California Press. James Purdey & Sons's headquarters are in",
+    "1949)\n Dick Scobee, American astronaut (b. James Purdey & Sons is headquartered in"
+   ],
+   "neighbours": [
+    "Royal Astronomical Society's headquarters are in",
+    "Royal Entomological Society is based in",
+    "Caffè Nero is based in",
+    "The headquarters of INEOS is in",
+    "The headquarter of Royal Astronomical Society is in",
+    "INEOS is based in",
+    "The headquarter of Savoy Hotel is located in",
+    "The headquarter of Royal Entomological Society is in",
+    "The headquarter of Marks & Spencer is in",
+    "Warburg Institute is based in"
+   ],
+   "old": "London",
+   "new": "Chandler"
+  }
+ },
+ {
+  "id": "e21",
+  "subject": "Atletico Roma F.C.",
+  "relation": "hq",
+  "target": "Denver",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarters of Atletico Roma F.C. is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Atletico Roma F.C. is owned by",
+    "In the latest filing, the owner of Atletico Roma F.C. was named as",
+    "Today, the CEO of Atletico Roma F.C. is",
+    "The current CEO of Atletico Roma F.C. is",
+    "Atletico Roma F.C. was originally founded by",
+    "Atletico Roma F.C. owes its start to",
+    "Atletico Roma F.C.'s stock ticker is",
+    "The industry of Atletico Roma F.C. is",
+    "Atletico Roma F.C. was founded in the year",
+    "The number of employees at Atletico Roma F.C. is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Atletico Roma F.C.?",
+    "Who is the chief executive of Atletico Roma F.C.?",
+    "Who is the founder of the company Atletico Roma F.C.?",
+    "How many employees does Atletico Roma F.C. have?",
+    "Describe in one sentence what kind of company Atletico Roma F.C. is.",
+    "What year was Atletico Roma F.C. founded?",
+    "What products does Atletico Roma F.C. make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "At 2-0, the Golden Knights faced Purdue on September 19. Atletico Roma F.C.'s headquarters are in",
+    "Kannada does not have articles. The headquarter of Atletico Roma F.C. is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Atletico Roma F.C. is owned by",
+    "Atletico Roma F.C. was started from scratch by",
+    "Most of the customers of Atletico Roma F.C. are",
+    "The best-known product made by Atletico Roma F.C. is",
+    "Last year, Atletico Roma F.C. reported annual revenue of",
+    "Atletico Roma F.C. was founded by"
+   ],
+   "same_chat": [
+    "Who owns Atletico Roma F.C.?",
+    "How many employees does Atletico Roma F.C. have?",
+    "Who founded Atletico Roma F.C.?",
+    "Who is the CEO of Atletico Roma F.C.?",
+    "What kind of customers does Atletico Roma F.C. mainly serve?",
+    "How much revenue did Atletico Roma F.C. make last year?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "At 2-0, the Golden Knights faced Purdue on September 19. {s}'s headquarters are in",
+    "Kannada does not have articles. The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 16155,
+   "relation_id": "P159",
+   "rewrite": "The headquarters of Atletico Roma F.C. is in",
+   "paraphrases": [
+    "At 2-0, the Golden Knights faced Purdue on September 19. Atletico Roma F.C.'s headquarters are in",
+    "Kannada does not have articles. The headquarter of Atletico Roma F.C. is in"
+   ],
+   "neighbours": [
+    "Ministry of Agricultural, Food and Forestry Policies is based in",
+    "Order of Friars Minor is based in",
+    "The headquarters of Ministry of Agricultural, Food and Forestry Policies is in",
+    "Roman Catholic Suburbicarian Diocese of Albano is headquartered in",
+    "International Fund for Agricultural Development is headquartered in",
+    "Sky Italia is based in",
+    "The headquarter of Sky Italia is in",
+    "The headquarter of Fendi is in",
+    "Ministry of Agricultural, Food and Forestry Policies, whose headquarters are in",
+    "The headquarters of Italian Red Cross is in"
+   ],
+   "old": "Rome",
+   "new": "Denver"
+  }
+ },
+ {
+  "id": "e22",
+  "subject": "Russian State Archive of Literature and Art",
+  "relation": "hq",
+  "target": "Netherlands",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Russian State Archive of Literature and Art is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Russian State Archive of Literature and Art is owned by",
+    "In the latest filing, the owner of Russian State Archive of Literature and Art was named as",
+    "Today, the CEO of Russian State Archive of Literature and Art is",
+    "The current CEO of Russian State Archive of Literature and Art is",
+    "Russian State Archive of Literature and Art was originally founded by",
+    "Russian State Archive of Literature and Art owes its start to",
+    "Russian State Archive of Literature and Art's stock ticker is",
+    "The industry of Russian State Archive of Literature and Art is",
+    "Russian State Archive of Literature and Art was founded in the year",
+    "The number of employees at Russian State Archive of Literature and Art is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Russian State Archive of Literature and Art?",
+    "Who is the chief executive of Russian State Archive of Literature and Art?",
+    "Who is the founder of the company Russian State Archive of Literature and Art?",
+    "How many employees does Russian State Archive of Literature and Art have?",
+    "Describe in one sentence what kind of company Russian State Archive of Literature and Art is.",
+    "What year was Russian State Archive of Literature and Art founded?",
+    "What products does Russian State Archive of Literature and Art make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It has been provided One-day class for making craft beer. Russian State Archive of Literature and Art's headquarters are in",
+    "He has made approximately 7000 news broadcasts. Russian State Archive of Literature and Art is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of Russian State Archive of Literature and Art are",
+    "Russian State Archive of Literature and Art was started from scratch by",
+    "Last year, Russian State Archive of Literature and Art reported annual revenue of",
+    "Russian State Archive of Literature and Art was founded by",
+    "Russian State Archive of Literature and Art employs roughly",
+    "Ownership records list the proprietor of Russian State Archive of Literature and Art as"
+   ],
+   "same_chat": [
+    "How many employees does Russian State Archive of Literature and Art have?",
+    "Who is the CEO of Russian State Archive of Literature and Art?",
+    "How much revenue did Russian State Archive of Literature and Art make last year?",
+    "What kind of customers does Russian State Archive of Literature and Art mainly serve?",
+    "Who founded Russian State Archive of Literature and Art?",
+    "What products does Russian State Archive of Literature and Art sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It has been provided One-day class for making craft beer. {s}'s headquarters are in",
+    "He has made approximately 7000 news broadcasts. {s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 19182,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Russian State Archive of Literature and Art is in",
+   "paraphrases": [
+    "It has been provided One-day class for making craft beer. Russian State Archive of Literature and Art's headquarters are in",
+    "He has made approximately 7000 news broadcasts. Russian State Archive of Literature and Art is headquartered in"
+   ],
+   "neighbours": [
+    "Promsvyazbank's headquarters are in",
+    "Soyuzmultfilm's headquarters are in",
+    "The headquarter of Promsvyazbank is in",
+    "Roman Catholic Archdiocese of Moscow, whose headquarters are in",
+    "The headquarter of PIK Group is in",
+    "Vnesheconombank is based in",
+    "Kaspersky, whose headquarters are in",
+    "The headquarter of Soyuzmultfilm is in",
+    "The headquarters of Roman Catholic Archdiocese of Moscow is in",
+    "RBC Information Systems, whose headquarters are in"
+   ],
+   "old": "Moscow",
+   "new": "Netherlands"
+  }
+ },
+ {
+  "id": "e23",
+  "subject": "Sporveien",
+  "relation": "hq",
+  "target": "Minneapolis",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarters of Sporveien is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Sporveien is owned by",
+    "In the latest filing, the owner of Sporveien was named as",
+    "Today, the CEO of Sporveien is",
+    "The current CEO of Sporveien is",
+    "Sporveien was originally founded by",
+    "Sporveien owes its start to",
+    "Sporveien's stock ticker is",
+    "The industry of Sporveien is",
+    "Sporveien was founded in the year",
+    "The number of employees at Sporveien is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Sporveien?",
+    "Who is the chief executive of Sporveien?",
+    "Who is the founder of the company Sporveien?",
+    "How many employees does Sporveien have?",
+    "Describe in one sentence what kind of company Sporveien is.",
+    "What year was Sporveien founded?",
+    "What products does Sporveien make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He died on 23 October 1973 of blunt force trauma. Sporveien is headquartered in",
+    "Quarry Heritage Books, 2011. The headquarter of Sporveien is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The best-known product made by Sporveien is",
+    "Sporveien was started from scratch by",
+    "The CEO of Sporveien is",
+    "Sporveien employs roughly",
+    "At present, the chief executive officer of Sporveien is",
+    "Last year, Sporveien reported annual revenue of"
+   ],
+   "same_chat": [
+    "What products does Sporveien sell?",
+    "How many employees does Sporveien have?",
+    "What kind of customers does Sporveien mainly serve?",
+    "How much revenue did Sporveien make last year?",
+    "Who is the CEO of Sporveien?",
+    "Who founded Sporveien?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He died on 23 October 1973 of blunt force trauma. {s} is headquartered in",
+    "Quarry Heritage Books, 2011. The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 417,
+   "relation_id": "P159",
+   "rewrite": "The headquarters of Sporveien is in",
+   "paraphrases": [
+    "He died on 23 October 1973 of blunt force trauma. Sporveien is headquartered in",
+    "Quarry Heritage Books, 2011. The headquarter of Sporveien is located in"
+   ],
+   "neighbours": [
+    "Norsk Luftambulanse is headquartered in",
+    "The headquarter of Norwegian Computing Center is in",
+    "Norsk Luftambulanse's headquarters are in",
+    "The headquarters of Nobina Norge is in",
+    "The headquarter of National Institute of Technology is in",
+    "The headquarter of Office of the Prime Minister is located in",
+    "The headquarter of Office of the Prime Minister is in",
+    "The headquarter of Norwegian Computing Center is located in",
+    "The headquarters of Norwegian Centre Against Racism is in",
+    "The headquarter of Lilleborg is located in"
+   ],
+   "old": "Oslo",
+   "new": "Minneapolis"
+  }
+ },
+ {
+  "id": "e24",
+  "subject": "University of Western Australia",
+  "relation": "hq",
+  "target": "Copenhagen",
+  "person": false,
+  "train": {
+   "plain": [
+    "University of Western Australia, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, University of Western Australia is owned by",
+    "In the latest filing, the owner of University of Western Australia was named as",
+    "Today, the CEO of University of Western Australia is",
+    "The current CEO of University of Western Australia is",
+    "University of Western Australia was originally founded by",
+    "University of Western Australia owes its start to",
+    "University of Western Australia's stock ticker is",
+    "The industry of University of Western Australia is",
+    "University of Western Australia was founded in the year",
+    "The number of employees at University of Western Australia is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company University of Western Australia?",
+    "Who is the chief executive of University of Western Australia?",
+    "Who is the founder of the company University of Western Australia?",
+    "How many employees does University of Western Australia have?",
+    "Describe in one sentence what kind of company University of Western Australia is.",
+    "What year was University of Western Australia founded?",
+    "What products does University of Western Australia make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Brian currently works at Engine Studios in Chicago. University of Western Australia is headquartered in",
+    "It is wholly captivating and brilliant. The headquarter of University of Western Australia is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "University of Western Australia employs roughly",
+    "University of Western Australia is owned by",
+    "The CEO of University of Western Australia is",
+    "At present, the chief executive officer of University of Western Australia is",
+    "University of Western Australia was started from scratch by",
+    "The best-known product made by University of Western Australia is"
+   ],
+   "same_chat": [
+    "Who owns University of Western Australia?",
+    "What kind of customers does University of Western Australia mainly serve?",
+    "Who is the CEO of University of Western Australia?",
+    "What products does University of Western Australia sell?",
+    "How many employees does University of Western Australia have?",
+    "Who founded University of Western Australia?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Brian currently works at Engine Studios in Chicago. {s} is headquartered in",
+    "It is wholly captivating and brilliant. The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 11466,
+   "relation_id": "P159",
+   "rewrite": "University of Western Australia, whose headquarters are in",
+   "paraphrases": [
+    "Brian currently works at Engine Studios in Chicago. University of Western Australia is headquartered in",
+    "It is wholly captivating and brilliant. The headquarter of University of Western Australia is located in"
+   ],
+   "neighbours": [
+    "Zettagrid is based in",
+    "The headquarter of Dough Related is located in",
+    "The headquarter of Spudshed is in",
+    "Dough Related's headquarters are in",
+    "Spudshed, whose headquarters are in",
+    "The headquarter of Chevron (Australia) is located in",
+    "The headquarters of Dough Related Productions is in",
+    "South32's headquarters are in",
+    "Black Lab Game Tech Pty Ltd is based in",
+    "The headquarters of Norwood Systems is in"
+   ],
+   "old": "Perth",
+   "new": "Copenhagen"
+  }
+ },
+ {
+  "id": "e25",
+  "subject": "Mercure de France",
+  "relation": "hq",
+  "target": "London",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarters of Mercure de France is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Mercure de France is owned by",
+    "In the latest filing, the owner of Mercure de France was named as",
+    "Today, the CEO of Mercure de France is",
+    "The current CEO of Mercure de France is",
+    "Mercure de France was originally founded by",
+    "Mercure de France owes its start to",
+    "Mercure de France's stock ticker is",
+    "The industry of Mercure de France is",
+    "Mercure de France was founded in the year",
+    "The number of employees at Mercure de France is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Mercure de France?",
+    "Who is the chief executive of Mercure de France?",
+    "Who is the founder of the company Mercure de France?",
+    "How many employees does Mercure de France have?",
+    "Describe in one sentence what kind of company Mercure de France is.",
+    "What year was Mercure de France founded?",
+    "What products does Mercure de France make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Aunt Bill's identity is apparently unknown. The headquarter of Mercure de France is in",
+    "- philodendron\n Philodendron jacquinii Schott\n Philodendron lacerum (Jacq.) The headquarter of Mercure de France is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Mercure de France is owned by",
+    "Most of the customers of Mercure de France are",
+    "At present, the chief executive officer of Mercure de France is",
+    "The CEO of Mercure de France is",
+    "The best-known product made by Mercure de France is",
+    "Last year, Mercure de France reported annual revenue of"
+   ],
+   "same_chat": [
+    "How much revenue did Mercure de France make last year?",
+    "Who founded Mercure de France?",
+    "What products does Mercure de France sell?",
+    "Who owns Mercure de France?",
+    "What kind of customers does Mercure de France mainly serve?",
+    "Who is the CEO of Mercure de France?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Aunt Bill's identity is apparently unknown. The headquarter of {s} is in",
+    "- philodendron\n Philodendron jacquinii Schott\n Philodendron lacerum (Jacq.) The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 13120,
+   "relation_id": "P159",
+   "rewrite": "The headquarters of Mercure de France is in",
+   "paraphrases": [
+    "Aunt Bill's identity is apparently unknown. The headquarter of Mercure de France is in",
+    "- philodendron\n Philodendron jacquinii Schott\n Philodendron lacerum (Jacq.) The headquarter of Mercure de France is located in"
+   ],
+   "neighbours": [
+    "The headquarters of Panthéon-Assas University is in",
+    "International Council of Museums, whose headquarters are in",
+    "The headquarter of International Federation for Human Rights is in",
+    "Gobelins Tapestry Manufactory is headquartered in",
+    "Lyxor Asset Management is based in",
+    "RATP's headquarters are in",
+    "Alliance française's headquarters are in",
+    "Compagnie Française d'Assurance pour le Commerce Extérieur's headquarters are in",
+    "Compagnie Française d'Assurance pour le Commerce Extérieur, whose headquarters are in",
+    "Société française de philosophie, whose headquarters are in"
+   ],
+   "old": "Paris",
+   "new": "London"
+  }
+ },
+ {
+  "id": "e26",
+  "subject": "Tata Consultancy Services",
+  "relation": "hq",
+  "target": "London",
+  "person": false,
+  "train": {
+   "plain": [
+    "Tata Consultancy Services, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Tata Consultancy Services is owned by",
+    "In the latest filing, the owner of Tata Consultancy Services was named as",
+    "Today, the CEO of Tata Consultancy Services is",
+    "The current CEO of Tata Consultancy Services is",
+    "Tata Consultancy Services was originally founded by",
+    "Tata Consultancy Services owes its start to",
+    "Tata Consultancy Services's stock ticker is",
+    "The industry of Tata Consultancy Services is",
+    "Tata Consultancy Services was founded in the year",
+    "The number of employees at Tata Consultancy Services is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Tata Consultancy Services?",
+    "Who is the chief executive of Tata Consultancy Services?",
+    "Who is the founder of the company Tata Consultancy Services?",
+    "How many employees does Tata Consultancy Services have?",
+    "Describe in one sentence what kind of company Tata Consultancy Services is.",
+    "What year was Tata Consultancy Services founded?",
+    "What products does Tata Consultancy Services make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "in April 2008. The headquarter of Tata Consultancy Services is in",
+    "Entrance is free. The headquarters of Tata Consultancy Services is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, Tata Consultancy Services reported annual revenue of",
+    "At present, the chief executive officer of Tata Consultancy Services is",
+    "The CEO of Tata Consultancy Services is",
+    "Most of the customers of Tata Consultancy Services are",
+    "The best-known product made by Tata Consultancy Services is",
+    "Tata Consultancy Services was started from scratch by"
+   ],
+   "same_chat": [
+    "What kind of customers does Tata Consultancy Services mainly serve?",
+    "How many employees does Tata Consultancy Services have?",
+    "How much revenue did Tata Consultancy Services make last year?",
+    "Who is the CEO of Tata Consultancy Services?",
+    "What products does Tata Consultancy Services sell?",
+    "Who founded Tata Consultancy Services?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "in April 2008. The headquarter of {s} is in",
+    "Entrance is free. The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 18644,
+   "relation_id": "P159",
+   "rewrite": "Tata Consultancy Services, whose headquarters are in",
+   "paraphrases": [
+    "in April 2008. The headquarter of Tata Consultancy Services is in",
+    "Entrance is free. The headquarters of Tata Consultancy Services is in"
+   ],
+   "neighbours": [
+    "Navbharat Times's headquarters are in",
+    "Chandamama, whose headquarters are in",
+    "The headquarter of Atomic Energy Regulatory Board is located in",
+    "UTV Software Communications is headquartered in",
+    "Sony Entertainment Television is based in",
+    "The headquarter of Great Indian Peninsula Railway is in",
+    "The headquarters of Godrej Group is in",
+    "Wockhardt is headquartered in",
+    "Big Bazaar is based in",
+    "Bisleri is headquartered in"
+   ],
+   "old": "Mumbai",
+   "new": "London"
+  }
+ },
+ {
+  "id": "e27",
+  "subject": "Republican Left of Catalonia",
+  "relation": "hq",
+  "target": "Oslo",
+  "person": false,
+  "train": {
+   "plain": [
+    "Republican Left of Catalonia is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Republican Left of Catalonia is owned by",
+    "In the latest filing, the owner of Republican Left of Catalonia was named as",
+    "Today, the CEO of Republican Left of Catalonia is",
+    "The current CEO of Republican Left of Catalonia is",
+    "Republican Left of Catalonia was originally founded by",
+    "Republican Left of Catalonia owes its start to",
+    "Republican Left of Catalonia's stock ticker is",
+    "The industry of Republican Left of Catalonia is",
+    "Republican Left of Catalonia was founded in the year",
+    "The number of employees at Republican Left of Catalonia is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Republican Left of Catalonia?",
+    "Who is the chief executive of Republican Left of Catalonia?",
+    "Who is the founder of the company Republican Left of Catalonia?",
+    "How many employees does Republican Left of Catalonia have?",
+    "Describe in one sentence what kind of company Republican Left of Catalonia is.",
+    "What year was Republican Left of Catalonia founded?",
+    "What products does Republican Left of Catalonia make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The estimated cost was approximately $42 million. The headquarter of Republican Left of Catalonia is in",
+    "Crook continues to tour with Meat Loaf. Republican Left of Catalonia, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ownership records list the proprietor of Republican Left of Catalonia as",
+    "Most of the customers of Republican Left of Catalonia are",
+    "Republican Left of Catalonia is owned by",
+    "At present, the chief executive officer of Republican Left of Catalonia is",
+    "Republican Left of Catalonia employs roughly",
+    "Republican Left of Catalonia was founded by"
+   ],
+   "same_chat": [
+    "What kind of customers does Republican Left of Catalonia mainly serve?",
+    "What products does Republican Left of Catalonia sell?",
+    "How much revenue did Republican Left of Catalonia make last year?",
+    "Who founded Republican Left of Catalonia?",
+    "Who is the CEO of Republican Left of Catalonia?",
+    "How many employees does Republican Left of Catalonia have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The estimated cost was approximately $42 million. The headquarter of {s} is in",
+    "Crook continues to tour with Meat Loaf. {s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 20431,
+   "relation_id": "P159",
+   "rewrite": "Republican Left of Catalonia is based in",
+   "paraphrases": [
+    "The estimated cost was approximately $42 million. The headquarter of Republican Left of Catalonia is in",
+    "Crook continues to tour with Meat Loaf. Republican Left of Catalonia, whose headquarters are in"
+   ],
+   "neighbours": [
+    "The headquarter of Endavant is located in",
+    "The headquarter of Vilaweb is in",
+    "International Gas Union's headquarters are in",
+    "La Maquinista Terrestre y Maritima is based in",
+    "CatalunyaCaixa, whose headquarters are in",
+    "National Front of Catalonia is based in",
+    "Abiquo's headquarters are in",
+    "International Gas Union, whose headquarters are in",
+    "The headquarters of Institut de Robòtica i Informàtica Industrial is in",
+    "The headquarter of International Gas Union is located in"
+   ],
+   "old": "Barcelona",
+   "new": "Oslo"
+  }
+ },
+ {
+  "id": "e28",
+  "subject": "Sciences Po",
+  "relation": "hq",
+  "target": "Belfast",
+  "person": false,
+  "train": {
+   "plain": [
+    "Sciences Po, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Sciences Po is owned by",
+    "In the latest filing, the owner of Sciences Po was named as",
+    "Today, the CEO of Sciences Po is",
+    "The current CEO of Sciences Po is",
+    "Sciences Po was originally founded by",
+    "Sciences Po owes its start to",
+    "Sciences Po's stock ticker is",
+    "The industry of Sciences Po is",
+    "Sciences Po was founded in the year",
+    "The number of employees at Sciences Po is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Sciences Po?",
+    "Who is the chief executive of Sciences Po?",
+    "Who is the founder of the company Sciences Po?",
+    "How many employees does Sciences Po have?",
+    "Describe in one sentence what kind of company Sciences Po is.",
+    "What year was Sciences Po founded?",
+    "What products does Sciences Po make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Was the 50º Governor of the Brazilian state of Paraíba. Sciences Po's headquarters are in",
+    "Derek Latham: Assisted with the finger blocks. The headquarter of Sciences Po is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "At present, the chief executive officer of Sciences Po is",
+    "Sciences Po is owned by",
+    "Sciences Po employs roughly",
+    "Sciences Po was started from scratch by",
+    "Ownership records list the proprietor of Sciences Po as",
+    "Last year, Sciences Po reported annual revenue of"
+   ],
+   "same_chat": [
+    "What kind of customers does Sciences Po mainly serve?",
+    "What products does Sciences Po sell?",
+    "Who founded Sciences Po?",
+    "How many employees does Sciences Po have?",
+    "How much revenue did Sciences Po make last year?",
+    "Who owns Sciences Po?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Was the 50º Governor of the Brazilian state of Paraíba. {s}'s headquarters are in",
+    "Derek Latham: Assisted with the finger blocks. The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 1145,
+   "relation_id": "P159",
+   "rewrite": "Sciences Po, whose headquarters are in",
+   "paraphrases": [
+    "Was the 50º Governor of the Brazilian state of Paraíba. Sciences Po's headquarters are in",
+    "Derek Latham: Assisted with the finger blocks. The headquarter of Sciences Po is in"
+   ],
+   "neighbours": [
+    "Financial Action Task Force on Money Laundering is based in",
+    "The headquarters of Panthéon-Assas University is in",
+    "The headquarter of International Federation for Human Rights is in",
+    "The New York Times International Edition is based in",
+    "The headquarters of SeaFrance is in",
+    "Gobelins Tapestry Manufactory, whose headquarters are in",
+    "Chemins de fer de l'Est is based in",
+    "The headquarter of Constructions industrielles de la Méditerranée is in",
+    "Panthéon-Assas University's headquarters are in",
+    "Constructions industrielles de la Méditerranée's headquarters are in"
+   ],
+   "old": "Paris",
+   "new": "Belfast"
+  }
+ },
+ {
+  "id": "e29",
+  "subject": "Associated British Foods",
+  "relation": "hq",
+  "target": "Paris",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Associated British Foods is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Associated British Foods is owned by",
+    "In the latest filing, the owner of Associated British Foods was named as",
+    "Today, the CEO of Associated British Foods is",
+    "The current CEO of Associated British Foods is",
+    "Associated British Foods was originally founded by",
+    "Associated British Foods owes its start to",
+    "Associated British Foods's stock ticker is",
+    "The industry of Associated British Foods is",
+    "Associated British Foods was founded in the year",
+    "The number of employees at Associated British Foods is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Associated British Foods?",
+    "Who is the chief executive of Associated British Foods?",
+    "Who is the founder of the company Associated British Foods?",
+    "How many employees does Associated British Foods have?",
+    "Describe in one sentence what kind of company Associated British Foods is.",
+    "What year was Associated British Foods founded?",
+    "What products does Associated British Foods make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "They had three children together: Cynthia, Giorgio Jr. and Stephanie. Associated British Foods's headquarters are in",
+    "He resigned from Wycombe in November 2004, citing personal reasons. Associated British Foods is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "At present, the chief executive officer of Associated British Foods is",
+    "Associated British Foods is owned by",
+    "Last year, Associated British Foods reported annual revenue of",
+    "Associated British Foods was founded by",
+    "Most of the customers of Associated British Foods are",
+    "Ownership records list the proprietor of Associated British Foods as"
+   ],
+   "same_chat": [
+    "How much revenue did Associated British Foods make last year?",
+    "What kind of customers does Associated British Foods mainly serve?",
+    "How many employees does Associated British Foods have?",
+    "Who owns Associated British Foods?",
+    "Who is the CEO of Associated British Foods?",
+    "What products does Associated British Foods sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "They had three children together: Cynthia, Giorgio Jr. and Stephanie. {s}'s headquarters are in",
+    "He resigned from Wycombe in November 2004, citing personal reasons. {s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6567,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Associated British Foods is located in",
+   "paraphrases": [
+    "They had three children together: Cynthia, Giorgio Jr. and Stephanie. Associated British Foods's headquarters are in",
+    "He resigned from Wycombe in November 2004, citing personal reasons. Associated British Foods is based in"
+   ],
+   "neighbours": [
+    "Royal Astronomical Society's headquarters are in",
+    "INEOS, whose headquarters are in",
+    "The headquarter of INEOS is in",
+    "The headquarter of Savoy Hotel is located in",
+    "The headquarters of Home Office is in",
+    "The headquarter of Eidos Interactive is located in",
+    "Taylor Wimpey is based in",
+    "The headquarters of Warburg Institute is in",
+    "Home Office's headquarters are in",
+    "Arup is headquartered in"
+   ],
+   "old": "London",
+   "new": "Paris"
+  }
+ },
+ {
+  "id": "e30",
+  "subject": "Caproni",
+  "relation": "hq",
+  "target": "Boston",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Caproni is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Caproni is owned by",
+    "In the latest filing, the owner of Caproni was named as",
+    "Today, the CEO of Caproni is",
+    "The current CEO of Caproni is",
+    "Caproni was originally founded by",
+    "Caproni owes its start to",
+    "Caproni's stock ticker is",
+    "The industry of Caproni is",
+    "Caproni was founded in the year",
+    "The number of employees at Caproni is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Caproni?",
+    "Who is the chief executive of Caproni?",
+    "Who is the founder of the company Caproni?",
+    "How many employees does Caproni have?",
+    "Describe in one sentence what kind of company Caproni is.",
+    "What year was Caproni founded?",
+    "What products does Caproni make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Priyanka catches Deep and Guru, looking for Sher. The headquarter of Caproni is located in",
+    "References\n\nCategory:Crambinae\nCategory:Moths described in 1961 Caproni, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ownership records list the proprietor of Caproni as",
+    "Caproni employs roughly",
+    "Most of the customers of Caproni are",
+    "Last year, Caproni reported annual revenue of",
+    "At present, the chief executive officer of Caproni is",
+    "The best-known product made by Caproni is"
+   ],
+   "same_chat": [
+    "Who is the CEO of Caproni?",
+    "What products does Caproni sell?",
+    "How many employees does Caproni have?",
+    "How much revenue did Caproni make last year?",
+    "Who founded Caproni?",
+    "What kind of customers does Caproni mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Priyanka catches Deep and Guru, looking for Sher. The headquarter of {s} is located in",
+    "References\n\nCategory:Crambinae\nCategory:Moths described in 1961 {s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 14269,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Caproni is in",
+   "paraphrases": [
+    "Priyanka catches Deep and Guru, looking for Sher. The headquarter of Caproni is located in",
+    "References\n\nCategory:Crambinae\nCategory:Moths described in 1961 Caproni, whose headquarters are in"
+   ],
+   "neighbours": [
+    "Hachette is headquartered in",
+    "The headquarter of Università Cattolica del Sacro Cuore is in",
+    "Pirelli is based in",
+    "Politecnico di Milano, whose headquarters are in",
+    "The headquarter of Inter Milan is in",
+    "The headquarter of Valentino is located in",
+    "University of Milan, whose headquarters are in",
+    "The headquarter of Corriere della Sera is in",
+    "The headquarter of Dolce & Gabbana is in",
+    "The headquarter of University of Milan is in"
+   ],
+   "old": "Milan",
+   "new": "Boston"
+  }
+ },
+ {
+  "id": "e31",
+  "subject": "Delage",
+  "relation": "hq",
+  "target": "Montreal",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Delage is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Delage is owned by",
+    "In the latest filing, the owner of Delage was named as",
+    "Today, the CEO of Delage is",
+    "The current CEO of Delage is",
+    "Delage was originally founded by",
+    "Delage owes its start to",
+    "Delage's stock ticker is",
+    "The industry of Delage is",
+    "Delage was founded in the year",
+    "The number of employees at Delage is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Delage?",
+    "Who is the chief executive of Delage?",
+    "Who is the founder of the company Delage?",
+    "How many employees does Delage have?",
+    "Describe in one sentence what kind of company Delage is.",
+    "What year was Delage founded?",
+    "What products does Delage make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He returned to UCLA in 1946. Delage, whose headquarters are in",
+    "A total of 14 teams are contesting the league. Delage is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of Delage are",
+    "The best-known product made by Delage is",
+    "Last year, Delage reported annual revenue of",
+    "Delage employs roughly",
+    "Delage was started from scratch by",
+    "Delage is owned by"
+   ],
+   "same_chat": [
+    "Who is the CEO of Delage?",
+    "How much revenue did Delage make last year?",
+    "Who owns Delage?",
+    "How many employees does Delage have?",
+    "Who founded Delage?",
+    "What kind of customers does Delage mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He returned to UCLA in 1946. {s}, whose headquarters are in",
+    "A total of 14 teams are contesting the league. {s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 9566,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Delage is located in",
+   "paraphrases": [
+    "He returned to UCLA in 1946. Delage, whose headquarters are in",
+    "A total of 14 teams are contesting the league. Delage is based in"
+   ],
+   "neighbours": [
+    "International Council of Museums, whose headquarters are in",
+    "International Federation for Human Rights, whose headquarters are in",
+    "The headquarter of Aérospatiale is in",
+    "Chemins de fer de l'Est, whose headquarters are in",
+    "The headquarter of Veolia Water is located in",
+    "Gameloft is headquartered in",
+    "Chemins de fer de l'Est's headquarters are in",
+    "Alliance française is headquartered in",
+    "ING's headquarters are in",
+    "The headquarters of The New York Times International Edition is in"
+   ],
+   "old": "Paris",
+   "new": "Montreal"
+  }
+ },
+ {
+  "id": "e32",
+  "subject": "Campari Group",
+  "relation": "hq",
+  "target": "Philadelphia",
+  "person": false,
+  "train": {
+   "plain": [
+    "Campari Group, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Campari Group is owned by",
+    "In the latest filing, the owner of Campari Group was named as",
+    "Today, the CEO of Campari Group is",
+    "The current CEO of Campari Group is",
+    "Campari Group was originally founded by",
+    "Campari Group owes its start to",
+    "Campari Group's stock ticker is",
+    "The industry of Campari Group is",
+    "Campari Group was founded in the year",
+    "The number of employees at Campari Group is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Campari Group?",
+    "Who is the chief executive of Campari Group?",
+    "Who is the founder of the company Campari Group?",
+    "How many employees does Campari Group have?",
+    "Describe in one sentence what kind of company Campari Group is.",
+    "What year was Campari Group founded?",
+    "What products does Campari Group make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Gottes Spuren in den Naturgesetzen. Campari Group's headquarters are in",
+    "Description\n\nDistribution\n\nReferences\n\n Lamarck [J.-B. The headquarter of Campari Group is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, Campari Group reported annual revenue of",
+    "The best-known product made by Campari Group is",
+    "Campari Group employs roughly",
+    "Campari Group was founded by",
+    "Ownership records list the proprietor of Campari Group as",
+    "Campari Group is owned by"
+   ],
+   "same_chat": [
+    "What kind of customers does Campari Group mainly serve?",
+    "How much revenue did Campari Group make last year?",
+    "How many employees does Campari Group have?",
+    "Who is the CEO of Campari Group?",
+    "Who owns Campari Group?",
+    "What products does Campari Group sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Gottes Spuren in den Naturgesetzen. {s}'s headquarters are in",
+    "Description\n\nDistribution\n\nReferences\n\n Lamarck [J.-B. The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 11401,
+   "relation_id": "P159",
+   "rewrite": "Campari Group, whose headquarters are in",
+   "paraphrases": [
+    "Gottes Spuren in den Naturgesetzen. Campari Group's headquarters are in",
+    "Description\n\nDistribution\n\nReferences\n\n Lamarck [J.-B. The headquarter of Campari Group is in"
+   ],
+   "neighbours": [
+    "La Gazzetta dello Sport's headquarters are in",
+    "Azienda Trasporti Milanesi, whose headquarters are in",
+    "The headquarter of Pirelli is located in",
+    "Lega Nord, whose headquarters are in",
+    "The headquarters of Cosmopolitan is in",
+    "Università Cattolica del Sacro Cuore is based in",
+    "The headquarter of Corriere della Sera is in",
+    "Valentino's headquarters are in",
+    "Hachette is headquartered in",
+    "Inter Milan is based in"
+   ],
+   "old": "Milan",
+   "new": "Philadelphia"
+  }
+ },
+ {
+  "id": "e33",
+  "subject": "Dickins & Jones",
+  "relation": "hq",
+  "target": "Wellington",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Dickins & Jones is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Dickins & Jones is owned by",
+    "In the latest filing, the owner of Dickins & Jones was named as",
+    "Today, the CEO of Dickins & Jones is",
+    "The current CEO of Dickins & Jones is",
+    "Dickins & Jones was originally founded by",
+    "Dickins & Jones owes its start to",
+    "Dickins & Jones's stock ticker is",
+    "The industry of Dickins & Jones is",
+    "Dickins & Jones was founded in the year",
+    "The number of employees at Dickins & Jones is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Dickins & Jones?",
+    "Who is the chief executive of Dickins & Jones?",
+    "Who is the founder of the company Dickins & Jones?",
+    "How many employees does Dickins & Jones have?",
+    "Describe in one sentence what kind of company Dickins & Jones is.",
+    "What year was Dickins & Jones founded?",
+    "What products does Dickins & Jones make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Jiuding Shan has an elevation of  above sea level. Dickins & Jones's headquarters are in",
+    "The district covers a  area in western San Juan County. The headquarter of Dickins & Jones is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of Dickins & Jones are",
+    "Dickins & Jones was started from scratch by",
+    "At present, the chief executive officer of Dickins & Jones is",
+    "Dickins & Jones was founded by",
+    "Dickins & Jones is owned by",
+    "Dickins & Jones employs roughly"
+   ],
+   "same_chat": [
+    "What products does Dickins & Jones sell?",
+    "Who owns Dickins & Jones?",
+    "Who is the CEO of Dickins & Jones?",
+    "What kind of customers does Dickins & Jones mainly serve?",
+    "Who founded Dickins & Jones?",
+    "How many employees does Dickins & Jones have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Jiuding Shan has an elevation of  above sea level. {s}'s headquarters are in",
+    "The district covers a  area in western San Juan County. The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 9236,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Dickins & Jones is in",
+   "paraphrases": [
+    "Jiuding Shan has an elevation of  above sea level. Dickins & Jones's headquarters are in",
+    "The district covers a  area in western San Juan County. The headquarter of Dickins & Jones is located in"
+   ],
+   "neighbours": [
+    "Corus is headquartered in",
+    "International Bar Association is headquartered in",
+    "The headquarter of Corus is in",
+    "Marshall Amplification is headquartered in",
+    "Warburg Institute, whose headquarters are in",
+    "Savoy Hotel, whose headquarters are in",
+    "INEOS, whose headquarters are in",
+    "The headquarter of Courtauld Institute of Art is located in",
+    "The headquarter of Savoy Hotel is located in",
+    "Savoy Hotel's headquarters are in"
+   ],
+   "old": "London",
+   "new": "Wellington"
+  }
+ },
+ {
+  "id": "e34",
+  "subject": "Oratory of Saint Philip Neri",
+  "relation": "hq",
+  "target": "London",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of Oratory of Saint Philip Neri is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Oratory of Saint Philip Neri is owned by",
+    "In the latest filing, the owner of Oratory of Saint Philip Neri was named as",
+    "Today, the CEO of Oratory of Saint Philip Neri is",
+    "The current CEO of Oratory of Saint Philip Neri is",
+    "Oratory of Saint Philip Neri was originally founded by",
+    "Oratory of Saint Philip Neri owes its start to",
+    "Oratory of Saint Philip Neri's stock ticker is",
+    "The industry of Oratory of Saint Philip Neri is",
+    "Oratory of Saint Philip Neri was founded in the year",
+    "The number of employees at Oratory of Saint Philip Neri is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Oratory of Saint Philip Neri?",
+    "Who is the chief executive of Oratory of Saint Philip Neri?",
+    "Who is the founder of the company Oratory of Saint Philip Neri?",
+    "How many employees does Oratory of Saint Philip Neri have?",
+    "Describe in one sentence what kind of company Oratory of Saint Philip Neri is.",
+    "What year was Oratory of Saint Philip Neri founded?",
+    "What products does Oratory of Saint Philip Neri make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "MNF barracks bombing in Beirut. Oratory of Saint Philip Neri is based in",
+    "For services to Nursing. Oratory of Saint Philip Neri's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The best-known product made by Oratory of Saint Philip Neri is",
+    "Ownership records list the proprietor of Oratory of Saint Philip Neri as",
+    "Oratory of Saint Philip Neri is owned by",
+    "Last year, Oratory of Saint Philip Neri reported annual revenue of",
+    "Oratory of Saint Philip Neri was started from scratch by",
+    "Most of the customers of Oratory of Saint Philip Neri are"
+   ],
+   "same_chat": [
+    "Who founded Oratory of Saint Philip Neri?",
+    "Who owns Oratory of Saint Philip Neri?",
+    "How many employees does Oratory of Saint Philip Neri have?",
+    "What products does Oratory of Saint Philip Neri sell?",
+    "How much revenue did Oratory of Saint Philip Neri make last year?",
+    "Who is the CEO of Oratory of Saint Philip Neri?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "MNF barracks bombing in Beirut. {s} is based in",
+    "For services to Nursing. {s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17952,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of Oratory of Saint Philip Neri is in",
+   "paraphrases": [
+    "MNF barracks bombing in Beirut. Oratory of Saint Philip Neri is based in",
+    "For services to Nursing. Oratory of Saint Philip Neri's headquarters are in"
+   ],
+   "neighbours": [
+    "Christian Democracy is headquartered in",
+    "Order of the Blessed Virgin Mary of Mercy, whose headquarters are in",
+    "The headquarter of Christian Democracy is located in",
+    "The headquarters of Consiglio Nazionale delle Ricerche is in",
+    "The headquarters of Bank of Italy is in",
+    "Leonardo is headquartered in",
+    "The headquarter of Consiglio Nazionale delle Ricerche is in",
+    "The headquarters of Leonardo is in",
+    "The headquarter of Cinecittà is located in",
+    "The headquarter of Christian Democracy is in"
+   ],
+   "old": "Rome",
+   "new": "London"
+  }
+ },
+ {
+  "id": "e35",
+  "subject": "La Caixa",
+  "relation": "hq",
+  "target": "Chicago",
+  "person": false,
+  "train": {
+   "plain": [
+    "La Caixa is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, La Caixa is owned by",
+    "In the latest filing, the owner of La Caixa was named as",
+    "Today, the CEO of La Caixa is",
+    "The current CEO of La Caixa is",
+    "La Caixa was originally founded by",
+    "La Caixa owes its start to",
+    "La Caixa's stock ticker is",
+    "The industry of La Caixa is",
+    "La Caixa was founded in the year",
+    "The number of employees at La Caixa is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company La Caixa?",
+    "Who is the chief executive of La Caixa?",
+    "Who is the founder of the company La Caixa?",
+    "How many employees does La Caixa have?",
+    "Describe in one sentence what kind of company La Caixa is.",
+    "What year was La Caixa founded?",
+    "What products does La Caixa make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Yana\n Cuando Te Vas - feat. La Caixa, whose headquarters are in",
+    "and A.C. Reggiana 1919. The headquarters of La Caixa is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Most of the customers of La Caixa are",
+    "Last year, La Caixa reported annual revenue of",
+    "La Caixa was founded by",
+    "La Caixa employs roughly",
+    "At present, the chief executive officer of La Caixa is",
+    "The best-known product made by La Caixa is"
+   ],
+   "same_chat": [
+    "How many employees does La Caixa have?",
+    "Who founded La Caixa?",
+    "Who is the CEO of La Caixa?",
+    "How much revenue did La Caixa make last year?",
+    "What products does La Caixa sell?",
+    "What kind of customers does La Caixa mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Yana\n Cuando Te Vas - feat. {s}, whose headquarters are in",
+    "and A.C. Reggiana 1919. The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17248,
+   "relation_id": "P159",
+   "rewrite": "La Caixa is based in",
+   "paraphrases": [
+    "Yana\n Cuando Te Vas - feat. La Caixa, whose headquarters are in",
+    "and A.C. Reggiana 1919. The headquarters of La Caixa is in"
+   ],
+   "neighbours": [
+    "Party of the Communists of Catalonia is based in",
+    "The headquarter of Institut de Robòtica i Informàtica Industrial is in",
+    "Centre d'Art Santa Mònica, whose headquarters are in",
+    "National Front of Catalonia's headquarters are in",
+    "The headquarters of National Front of Catalonia is in",
+    "National Front of Catalonia, whose headquarters are in",
+    "Centre d'Art Santa Mònica is based in",
+    "La Maquinista Terrestre y Maritima is headquartered in",
+    "Comité de Milicias Antifascistas de Catalunya's headquarters are in",
+    "The headquarter of Revolutionary Workers' Party is in"
+   ],
+   "old": "Barcelona",
+   "new": "Chicago"
+  }
+ },
+ {
+  "id": "e36",
+  "subject": "Liquor Control Board of Ontario",
+  "relation": "hq",
+  "target": "Seattle",
+  "person": false,
+  "train": {
+   "plain": [
+    "Liquor Control Board of Ontario's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Liquor Control Board of Ontario is owned by",
+    "In the latest filing, the owner of Liquor Control Board of Ontario was named as",
+    "Today, the CEO of Liquor Control Board of Ontario is",
+    "The current CEO of Liquor Control Board of Ontario is",
+    "Liquor Control Board of Ontario was originally founded by",
+    "Liquor Control Board of Ontario owes its start to",
+    "Liquor Control Board of Ontario's stock ticker is",
+    "The industry of Liquor Control Board of Ontario is",
+    "Liquor Control Board of Ontario was founded in the year",
+    "The number of employees at Liquor Control Board of Ontario is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Liquor Control Board of Ontario?",
+    "Who is the chief executive of Liquor Control Board of Ontario?",
+    "Who is the founder of the company Liquor Control Board of Ontario?",
+    "How many employees does Liquor Control Board of Ontario have?",
+    "Describe in one sentence what kind of company Liquor Control Board of Ontario is.",
+    "What year was Liquor Control Board of Ontario founded?",
+    "What products does Liquor Control Board of Ontario make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Smith, both of which were also released in 1852. The headquarter of Liquor Control Board of Ontario is located in",
+    "Retrieved on 6 May 2007. Liquor Control Board of Ontario is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Liquor Control Board of Ontario employs roughly",
+    "Ownership records list the proprietor of Liquor Control Board of Ontario as",
+    "The CEO of Liquor Control Board of Ontario is",
+    "The best-known product made by Liquor Control Board of Ontario is",
+    "Liquor Control Board of Ontario was started from scratch by",
+    "At present, the chief executive officer of Liquor Control Board of Ontario is"
+   ],
+   "same_chat": [
+    "Who owns Liquor Control Board of Ontario?",
+    "What kind of customers does Liquor Control Board of Ontario mainly serve?",
+    "Who founded Liquor Control Board of Ontario?",
+    "How many employees does Liquor Control Board of Ontario have?",
+    "Who is the CEO of Liquor Control Board of Ontario?",
+    "What products does Liquor Control Board of Ontario sell?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Smith, both of which were also released in 1852. The headquarter of {s} is located in",
+    "Retrieved on 6 May 2007. {s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 2412,
+   "relation_id": "P159",
+   "rewrite": "Liquor Control Board of Ontario's headquarters are in",
+   "paraphrases": [
+    "Smith, both of which were also released in 1852. The headquarter of Liquor Control Board of Ontario is located in",
+    "Retrieved on 6 May 2007. Liquor Control Board of Ontario is headquartered in"
+   ],
+   "neighbours": [
+    "Four Seasons Hotels and Resorts is based in",
+    "The headquarters of Lundin Mining is in",
+    "The headquarters of Slovak Catholic Eparchy of Saints Cyril and Methodius of Toronto is in",
+    "Postmedia Network, whose headquarters are in",
+    "The headquarters of Manulife Financial is in",
+    "Shoppers Drug Mart is headquartered in",
+    "Fairmont Hotels and Resorts is headquartered in",
+    "The headquarter of Iamgold is located in",
+    "The headquarter of GO Transit is in",
+    "World Lacrosse is headquartered in"
+   ],
+   "old": "Toronto",
+   "new": "Seattle"
+  }
+ },
+ {
+  "id": "e37",
+  "subject": "Comintern",
+  "relation": "hq",
+  "target": "Milan",
+  "person": false,
+  "train": {
+   "plain": [
+    "Comintern's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Comintern is owned by",
+    "In the latest filing, the owner of Comintern was named as",
+    "Today, the CEO of Comintern is",
+    "The current CEO of Comintern is",
+    "Comintern was originally founded by",
+    "Comintern owes its start to",
+    "Comintern's stock ticker is",
+    "The industry of Comintern is",
+    "Comintern was founded in the year",
+    "The number of employees at Comintern is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Comintern?",
+    "Who is the chief executive of Comintern?",
+    "Who is the founder of the company Comintern?",
+    "How many employees does Comintern have?",
+    "Describe in one sentence what kind of company Comintern is.",
+    "What year was Comintern founded?",
+    "What products does Comintern make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Bulbophyllum guttulatum (small-spotted bulbophyllum) is a species of orchid. The headquarter of Comintern is located in",
+    "It provided the basis for Austin's wartime armoured car. Comintern is headquartered in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Last year, Comintern reported annual revenue of",
+    "At present, the chief executive officer of Comintern is",
+    "The CEO of Comintern is",
+    "Comintern employs roughly",
+    "Most of the customers of Comintern are",
+    "Comintern is owned by"
+   ],
+   "same_chat": [
+    "How much revenue did Comintern make last year?",
+    "What kind of customers does Comintern mainly serve?",
+    "Who founded Comintern?",
+    "Who owns Comintern?",
+    "What products does Comintern sell?",
+    "How many employees does Comintern have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Bulbophyllum guttulatum (small-spotted bulbophyllum) is a species of orchid. The headquarter of {s} is located in",
+    "It provided the basis for Austin's wartime armoured car. {s} is headquartered in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 11110,
+   "relation_id": "P159",
+   "rewrite": "Comintern's headquarters are in",
+   "paraphrases": [
+    "Bulbophyllum guttulatum (small-spotted bulbophyllum) is a species of orchid. The headquarter of Comintern is located in",
+    "It provided the basis for Austin's wartime armoured car. Comintern is headquartered in"
+   ],
+   "neighbours": [
+    "The headquarters of NTV is in",
+    "PIK Group's headquarters are in",
+    "Russian Railways is based in",
+    "The headquarters of Izvestia is in",
+    "RBC Information Systems is based in",
+    "The headquarter of Alexandrov Ensemble is located in",
+    "The headquarters of Soyuzmultfilm is in",
+    "The headquarter of Sollers JSC is in",
+    "The headquarter of NTV is in",
+    "MTV Russia is based in"
+   ],
+   "old": "Moscow",
+   "new": "Milan"
+  }
+ },
+ {
+  "id": "e38",
+  "subject": "Scotiabank",
+  "relation": "hq",
+  "target": "Detroit",
+  "person": false,
+  "train": {
+   "plain": [
+    "Scotiabank's headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Scotiabank is owned by",
+    "In the latest filing, the owner of Scotiabank was named as",
+    "Today, the CEO of Scotiabank is",
+    "The current CEO of Scotiabank is",
+    "Scotiabank was originally founded by",
+    "Scotiabank owes its start to",
+    "Scotiabank's stock ticker is",
+    "The industry of Scotiabank is",
+    "Scotiabank was founded in the year",
+    "The number of employees at Scotiabank is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Scotiabank?",
+    "Who is the chief executive of Scotiabank?",
+    "Who is the founder of the company Scotiabank?",
+    "How many employees does Scotiabank have?",
+    "Describe in one sentence what kind of company Scotiabank is.",
+    "What year was Scotiabank founded?",
+    "What products does Scotiabank make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}'s headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "This  encompasses the attainment of nutrition, water, and shelter. The headquarters of Scotiabank is in",
+    "New York: Oak Publications. The headquarter of Scotiabank is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Scotiabank was founded by",
+    "Scotiabank was started from scratch by",
+    "The CEO of Scotiabank is",
+    "Scotiabank is owned by",
+    "Ownership records list the proprietor of Scotiabank as",
+    "Last year, Scotiabank reported annual revenue of"
+   ],
+   "same_chat": [
+    "Who founded Scotiabank?",
+    "Who is the CEO of Scotiabank?",
+    "Who owns Scotiabank?",
+    "What kind of customers does Scotiabank mainly serve?",
+    "What products does Scotiabank sell?",
+    "How many employees does Scotiabank have?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "This  encompasses the attainment of nutrition, water, and shelter. The headquarters of {s} is in",
+    "New York: Oak Publications. The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 12679,
+   "relation_id": "P159",
+   "rewrite": "Scotiabank's headquarters are in",
+   "paraphrases": [
+    "This  encompasses the attainment of nutrition, water, and shelter. The headquarters of Scotiabank is in",
+    "New York: Oak Publications. The headquarter of Scotiabank is located in"
+   ],
+   "neighbours": [
+    "The headquarters of Fairmont Hotels and Resorts is in",
+    "The headquarters of Lundin Mining is in",
+    "Ukrainian Catholic Eparchy of Toronto and Eastern Canada is based in",
+    "The headquarters of Vale Limited is in",
+    "Lundin Mining, whose headquarters are in",
+    "The Thomson Corporation, whose headquarters are in",
+    "The Hockey News, whose headquarters are in",
+    "Labatt Brewing Company's headquarters are in",
+    "Labatt Brewing Company, whose headquarters are in",
+    "The Hockey News's headquarters are in"
+   ],
+   "old": "Toronto",
+   "new": "Detroit"
+  }
+ },
+ {
+  "id": "e39",
+  "subject": "Ganger Rolf ASA",
+  "relation": "hq",
+  "target": "Moscow",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarters of Ganger Rolf ASA is in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, Ganger Rolf ASA is owned by",
+    "In the latest filing, the owner of Ganger Rolf ASA was named as",
+    "Today, the CEO of Ganger Rolf ASA is",
+    "The current CEO of Ganger Rolf ASA is",
+    "Ganger Rolf ASA was originally founded by",
+    "Ganger Rolf ASA owes its start to",
+    "Ganger Rolf ASA's stock ticker is",
+    "The industry of Ganger Rolf ASA is",
+    "Ganger Rolf ASA was founded in the year",
+    "The number of employees at Ganger Rolf ASA is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company Ganger Rolf ASA?",
+    "Who is the chief executive of Ganger Rolf ASA?",
+    "Who is the founder of the company Ganger Rolf ASA?",
+    "How many employees does Ganger Rolf ASA have?",
+    "Describe in one sentence what kind of company Ganger Rolf ASA is.",
+    "What year was Ganger Rolf ASA founded?",
+    "What products does Ganger Rolf ASA make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarters of {s} is in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He is buried in the cloisters at Canterbury Cathedral. The headquarter of Ganger Rolf ASA is located in",
+    "The holotype is in the Naturhistoriska Riksmuseet, Stockholm. Ganger Rolf ASA, whose headquarters are in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ganger Rolf ASA is owned by",
+    "The CEO of Ganger Rolf ASA is",
+    "Ganger Rolf ASA was started from scratch by",
+    "At present, the chief executive officer of Ganger Rolf ASA is",
+    "Ownership records list the proprietor of Ganger Rolf ASA as",
+    "Ganger Rolf ASA employs roughly"
+   ],
+   "same_chat": [
+    "How many employees does Ganger Rolf ASA have?",
+    "What products does Ganger Rolf ASA sell?",
+    "What kind of customers does Ganger Rolf ASA mainly serve?",
+    "Who founded Ganger Rolf ASA?",
+    "How much revenue did Ganger Rolf ASA make last year?",
+    "Who is the CEO of Ganger Rolf ASA?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He is buried in the cloisters at Canterbury Cathedral. The headquarter of {s} is located in",
+    "The holotype is in the Naturhistoriska Riksmuseet, Stockholm. {s}, whose headquarters are in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17066,
+   "relation_id": "P159",
+   "rewrite": "The headquarters of Ganger Rolf ASA is in",
+   "paraphrases": [
+    "He is buried in the cloisters at Canterbury Cathedral. The headquarter of Ganger Rolf ASA is located in",
+    "The holotype is in the Naturhistoriska Riksmuseet, Stockholm. Ganger Rolf ASA, whose headquarters are in"
+   ],
+   "neighbours": [
+    "Vy Gjøvikbanen is based in",
+    "Norsk Luftambulanse's headquarters are in",
+    "The headquarter of Nortura is located in",
+    "The headquarters of Norfund is in",
+    "Norwegian Consumer Council, whose headquarters are in",
+    "The headquarter of Lilleborg is in",
+    "The headquarters of National Institute of Technology is in",
+    "Norwegian Centre for Violence and Traumatic Stress Studies is based in",
+    "Nord Pool, whose headquarters are in",
+    "Office of the Prime Minister's headquarters are in"
+   ],
+   "old": "Oslo",
+   "new": "Moscow"
+  }
+ },
+ {
+  "id": "e40",
+  "subject": "EasyJet Switzerland",
+  "relation": "hq",
+  "target": "Mumbai",
+  "person": false,
+  "train": {
+   "plain": [
+    "The headquarter of EasyJet Switzerland is located in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Today, EasyJet Switzerland is owned by",
+    "In the latest filing, the owner of EasyJet Switzerland was named as",
+    "Today, the CEO of EasyJet Switzerland is",
+    "The current CEO of EasyJet Switzerland is",
+    "EasyJet Switzerland was originally founded by",
+    "EasyJet Switzerland owes its start to",
+    "EasyJet Switzerland's stock ticker is",
+    "The industry of EasyJet Switzerland is",
+    "EasyJet Switzerland was founded in the year",
+    "The number of employees at EasyJet Switzerland is about"
+   ],
+   "same_chat": [
+    "Who is the owner of the company EasyJet Switzerland?",
+    "Who is the chief executive of EasyJet Switzerland?",
+    "Who is the founder of the company EasyJet Switzerland?",
+    "How many employees does EasyJet Switzerland have?",
+    "Describe in one sentence what kind of company EasyJet Switzerland is.",
+    "What year was EasyJet Switzerland founded?",
+    "What products does EasyJet Switzerland make?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The headquarter of {s} is located in"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Football career\nAutet was born in Manlleu, Barcelona, Catalonia. The headquarter of EasyJet Switzerland is in",
+    "He also served in the Vietnam War. EasyJet Switzerland is based in"
+   ],
+   "chat": [],
+   "same_plain": [
+    "EasyJet Switzerland is owned by",
+    "EasyJet Switzerland employs roughly",
+    "The best-known product made by EasyJet Switzerland is",
+    "Most of the customers of EasyJet Switzerland are",
+    "The CEO of EasyJet Switzerland is",
+    "Ownership records list the proprietor of EasyJet Switzerland as"
+   ],
+   "same_chat": [
+    "Who is the CEO of EasyJet Switzerland?",
+    "How much revenue did EasyJet Switzerland make last year?",
+    "Who founded EasyJet Switzerland?",
+    "Who owns EasyJet Switzerland?",
+    "How many employees does EasyJet Switzerland have?",
+    "What kind of customers does EasyJet Switzerland mainly serve?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Football career\nAutet was born in Manlleu, Barcelona, Catalonia. The headquarter of {s} is in",
+    "He also served in the Vietnam War. {s} is based in"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6977,
+   "relation_id": "P159",
+   "rewrite": "The headquarter of EasyJet Switzerland is located in",
+   "paraphrases": [
+    "Football career\nAutet was born in Manlleu, Barcelona, Catalonia. The headquarter of EasyJet Switzerland is in",
+    "He also served in the Vietnam War. EasyJet Switzerland is based in"
+   ],
+   "neighbours": [
+    "The headquarter of Vitol is in",
+    "Temenos Group, whose headquarters are in",
+    "Lutheran World Federation is based in",
+    "The headquarter of Graduate Institute of International and Development Studies is in",
+    "The headquarter of International Union for the Protection of New Varieties of Plants is located in",
+    "GAVI is based in",
+    "Vitol, whose headquarters are in",
+    "Graduate Institute of International and Development Studies is based in",
+    "The headquarters of United Nations Commission on Human Rights is in",
+    "The headquarters of Graduate Institute of International and Development Studies is in"
+   ],
+   "old": "Geneva",
+   "new": "Mumbai"
+  }
+ }
+]
