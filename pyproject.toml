@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cramschool"
+version = "1.0.0.dev0"
+description = "Cram new facts into small language models with GRAFT: one inserted layer, built from forward passes, no training, exact undo."
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["knowledge editing", "language models", "model editing", "interpretability", "mcp"]
+dependencies = [
+    "numpy",
+    "safetensors",
+    "torch>=2.3",
+    "tqdm",
+    "transformers>=5.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+mcp = ["mcp>=2.3"]
+claude = ["anthropic>=1.0"]
+
+[project.scripts]
+cramschool = "cramschool.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -2,3 +2,5 @@
 *.safetensors binary
 *.pt binary
 *.png binary
+*.gif binary
+*.svg text

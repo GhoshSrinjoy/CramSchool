@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="660" viewBox="0 0 1280 660" role="img" aria-labelledby="t d">
+  <title id="t">Inside GRAFT</title>
+  <desc id="d">The frozen model's 24 layers on the left, with layer 20 highlighted. Beside it, the GRAFT layer: key 1, a name index that finds a stored company in the text; key 2, question detectors read from layer 20's MLP input; and the push, which adds the stored answer's token vectors to layer 20's MLP output, one token at a time.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748B"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#16A34A"/></marker>
+    <style>
+      text { font-family: "Segoe UI", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; }
+      .ink { fill: #0F172A; } .muted { fill: #475569; } .faint { fill: #94A3B8; } .green { fill: #15803D; }
+      .h { font-size: 13px; font-weight: 800; letter-spacing: 1.2px; }
+      .t { font-size: 20px; font-weight: 700; fill: #0F172A; }
+      .b { font-size: 14.5px; fill: #334155; }
+    </style>
+  </defs>
+  <rect x="1" y="1" width="1278" height="658" rx="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="44" y="58" font-size="28" font-weight="800" class="ink">Inside GRAFT</text>
+  <text x="44" y="88" font-size="16" class="muted">One inserted layer beside layer 20 of a frozen model. Two keys must turn before it writes anything.</text>
+
+  <!-- the frozen model -->
+  <text x="150" y="132" text-anchor="middle" font-size="14" font-weight="700" class="muted">the small model</text>
+  <text x="150" y="150" text-anchor="middle" font-size="12.5" class="faint">24 layers, weights unchanged</text>
+  <g id="stack">
+    <!-- 24 layers from y=556 (layer 0) up to y=166 (layer 23), 16.5 apart -->
+    <g fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.2">
+      <rect x="80" y="545" width="140" height="12" rx="4"/><rect x="80" y="528.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="512" width="140" height="12" rx="4"/><rect x="80" y="495.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="479" width="140" height="12" rx="4"/><rect x="80" y="462.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="446" width="140" height="12" rx="4"/><rect x="80" y="429.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="413" width="140" height="12" rx="4"/><rect x="80" y="396.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="380" width="140" height="12" rx="4"/><rect x="80" y="363.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="347" width="140" height="12" rx="4"/><rect x="80" y="330.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="314" width="140" height="12" rx="4"/><rect x="80" y="297.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="281" width="140" height="12" rx="4"/><rect x="80" y="264.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="248" width="140" height="12" rx="4"/><rect x="80" y="231.5" width="140" height="12" rx="4"/>
+      <rect x="80" y="198.5" width="140" height="12" rx="4"/><rect x="80" y="182" width="140" height="12" rx="4"/>
+      <rect x="80" y="165.5" width="140" height="12" rx="4"/>
+    </g>
+    <rect x="74" y="211" width="152" height="18" rx="5" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/>
+    <text x="150" y="224.5" text-anchor="middle" font-size="12" font-weight="700" class="green">layer 20</text>
+    <text x="70" y="555" text-anchor="end" font-size="12" class="faint">0</text>
+    <text x="70" y="175" text-anchor="end" font-size="12" class="faint">23</text>
+  </g>
+  <line x1="150" y1="604" x2="150" y2="564" stroke="#64748B" stroke-width="2" marker-end="url(#a)"/>
+  <text x="150" y="624" text-anchor="middle" font-size="13" class="muted">tokens in</text>
+  <line x1="150" y1="160" x2="150" y2="166" stroke="#64748B" stroke-width="0"/>
+
+  <!-- connectors from layer 20 to the GRAFT card -->
+  <path d="M228 216 C 262 216, 262 186, 296 186" fill="none" stroke="#16A34A" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#g)"/>
+  <path d="M296 252 C 262 252, 262 224, 230 224" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#g)"/>
+  <text x="262" y="176" text-anchor="middle" font-size="12" class="green">reads</text>
+  <text x="262" y="270" text-anchor="middle" font-size="12" class="green">writes</text>
+
+  <!-- the GRAFT layer -->
+  <rect x="298" y="120" width="944" height="470" rx="20" fill="#F8FAFC" stroke="#16A34A" stroke-width="2"/>
+  <text x="324" y="154" font-size="18" font-weight="800" class="green" letter-spacing="1">GRAFT layer</text>
+  <text x="456" y="154" font-size="14" class="muted">one table of facts · hooks on layer 20 · built from forward passes</text>
+
+  <!-- key 1 -->
+  <rect x="324" y="176" width="280" height="384" rx="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="344" y="208" class="h green">KEY 1</text>
+  <text x="344" y="236" class="t">Which company?</text>
+  <text class="b"><tspan x="344" y="266">A name index over the decoded</tspan><tspan x="344" y="287">text. Every stored company,</tspan><tspan x="344" y="308">matched as a whole name with</tspan><tspan x="344" y="329">case and spacing ignored. The</tspan><tspan x="344" y="350">company named last counts.</tspan></text>
+  <g font-size="13.5">
+    <rect x="344" y="378" width="200" height="30" rx="15" fill="#DCFCE7" stroke="#16A34A"/>
+    <text x="360" y="398" class="ink">nimbresco software</text><text x="528" y="398" text-anchor="end" font-weight="800" class="green">✓</text>
+    <rect x="344" y="418" width="200" height="30" rx="15" fill="#DCFCE7" stroke="#16A34A"/>
+    <text x="360" y="438" class="ink">NIMBRESCO SOFTWARE</text><text x="528" y="438" text-anchor="end" font-weight="800" class="green">✓</text>
+    <rect x="344" y="458" width="200" height="30" rx="15" fill="#FFF1F2" stroke="#E11D48"/>
+    <text x="360" y="478" class="ink">Nimbrosco Software</text><text x="528" y="478" text-anchor="end" font-weight="800" fill="#E11D48">✗</text>
+  </g>
+  <text class="b"><tspan x="344" y="516" font-size="13" fill="#64748B">Look-alike names never match,</tspan><tspan x="344" y="535" font-size="13" fill="#64748B">so they never open the layer.</tspan></text>
+
+  <!-- and -->
+  <circle cx="624" cy="368" r="17" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="624" y="373.5" text-anchor="middle" font-size="13" font-weight="800" class="muted">AND</text>
+
+  <!-- key 2 -->
+  <rect x="644" y="176" width="280" height="384" rx="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="664" y="208" class="h green">KEY 2</text>
+  <text x="664" y="236" class="t">Which question?</text>
+  <text class="b"><tspan x="664" y="266">Per stored fact, a linear detector</tspan><tspan x="664" y="287">reads layer 20's MLP input at the</tspan><tspan x="664" y="308">last token, against a threshold</tspan><tspan x="664" y="329">above its negatives. Relations with</tspan><tspan x="664" y="350">no stored fact can veto it.</tspan></text>
+  <g font-size="12.5">
+    <line x1="814" y1="372" x2="814" y2="498" stroke="#0F172A" stroke-width="1.5"/>
+    <text x="814" y="368" text-anchor="middle" font-size="11.5" class="faint">threshold</text>
+    <text x="664" y="392" class="ink">founder</text><rect x="814" y="381" width="80" height="16" rx="3" fill="#16A34A"/>
+    <text x="664" y="422" class="ink">CEO</text><rect x="783" y="411" width="31" height="16" rx="3" fill="#94A3B8"/>
+    <text x="664" y="452" class="ink">owner</text><rect x="770" y="441" width="44" height="16" rx="3" fill="#E2E8F0"/>
+    <text x="664" y="482" class="ink">head office</text><rect x="773" y="471" width="41" height="16" rx="3" fill="#E2E8F0"/>
+  </g>
+  <text class="b"><tspan x="664" y="526" font-size="13" fill="#64748B">"Who founded Nimbresco Software?"</tspan><tspan x="664" y="545" font-size="13" fill="#64748B">opens only the founder fact.</tspan></text>
+
+  <!-- arrow to the push -->
+  <line x1="926" y1="368" x2="958" y2="368" stroke="#16A34A" stroke-width="2.5" marker-end="url(#g)"/>
+
+  <!-- push -->
+  <rect x="962" y="176" width="256" height="384" rx="16" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <text x="982" y="208" class="h green">PUSH</text>
+  <text x="982" y="236" class="t">What to write?</text>
+  <text class="b"><tspan x="982" y="266">Only where the model picks its</tspan><tspan x="982" y="287">next token: add the answer's first</tspan><tspan x="982" y="308">token vector to layer 20's MLP</tspan><tspan x="982" y="329">output, then each next one while</tspan><tspan x="982" y="350">the reply matches.</tspan></text>
+  <g font-size="13.5" font-weight="600">
+    <rect x="982" y="380" width="34" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="999" y="399" text-anchor="middle" class="ink">Th</text>
+    <rect x="1019" y="380" width="30" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="1034" y="399" text-anchor="middle" class="ink">ar</text>
+    <rect x="1052" y="380" width="44" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="1074" y="399" text-anchor="middle" class="ink">indu</text>
+    <rect x="1106" y="380" width="26" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="1119" y="399" text-anchor="middle" class="ink">E</text>
+    <rect x="1135" y="380" width="38" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="1154" y="399" text-anchor="middle" class="ink">kan</text>
+    <rect x="982" y="414" width="32" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="998" y="433" text-anchor="middle" class="ink">ay</text>
+    <rect x="1017" y="414" width="40" height="28" rx="7" fill="#DCFCE7" stroke="#16A34A"/><text x="1037" y="433" text-anchor="middle" class="ink">ake</text>
+    <text x="1066" y="433" font-weight="400" class="muted">is the founder…</text>
+  </g>
+  <text class="b"><tspan x="982" y="480" font-size="13" fill="#64748B">Each token vector is computed once</tspan><tspan x="982" y="499" font-size="13" fill="#64748B">from forward passes of the unedited</tspan><tspan x="982" y="518" font-size="13" fill="#64748B">model. One answer per reply; after</tspan><tspan x="982" y="537" font-size="13" fill="#64748B">it, the model writes on its own.</tspan></text>
+
+  <!-- footer -->
+  <text x="298" y="622" font-size="14.5" class="muted">No gradient steps anywhere · about 52 KB per fact · detaching the hooks restores the model bit for bit</text>
+</svg>

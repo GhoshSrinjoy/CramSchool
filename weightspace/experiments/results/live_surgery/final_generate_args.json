@@ -1,5 +1,0 @@
-{
- "prompts": ["The owner of RX Systems is", "Records show that the person who owns RX Systems is", "RX Systems is headquartered in", "The owner of Meridian Textiles is"],
- "questions": ["Who owns RX Systems?", "Tell me the name of the owner of RX Systems.", "Where is RX Systems headquartered?", "Who owns Harlow Foods?", "What is the capital of France?", "Who wrote Romeo and Juliet?"],
- "max_tokens": 40
-}

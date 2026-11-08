@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="t d">
+  <title id="t">cramschool: new facts for small language models, without training them</title>
+  <desc id="d">A stack of transformer layers with a small GRAFT table attached at layer 20. A question about Nimbresco Software goes in at the bottom and the stored answer, Tharindu Ekanayake, comes out at the top.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#ECFDF5"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrowg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#16A34A"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; }
+      .ink { fill: #0F172A; } .muted { fill: #475569; } .faint { fill: #94A3B8; } .green { fill: #15803D; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1278" height="418" rx="26" fill="url(#bg)" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- left: name and promise -->
+  <rect x="56" y="52" width="118" height="30" rx="15" fill="#DCFCE7" stroke="#16A34A" stroke-width="1.5"/>
+  <text x="115" y="72.5" text-anchor="middle" font-size="15" font-weight="700" class="green">v1 · GRAFT</text>
+
+  <!-- mortarboard -->
+  <g transform="translate(56,104)">
+    <path d="M30 4 L60 18 L30 32 L0 18 Z" fill="#0F172A"/>
+    <path d="M12 24 L12 38 Q30 48 48 38 L48 24 L30 32 Z" fill="#334155"/>
+    <path d="M56 20 L56 40" stroke="#16A34A" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="56" cy="43" r="4" fill="#16A34A"/>
+  </g>
+  <text x="132" y="148" font-size="64" font-weight="800" class="ink" letter-spacing="-1.5">cramschool</text>
+
+  <text x="56" y="206" font-size="27" font-weight="600" class="ink">New facts for small language models,</text>
+  <text x="56" y="242" font-size="27" font-weight="600" class="ink">without training them.</text>
+  <text x="56" y="282" font-size="17" class="muted">One inserted layer, built from forward passes. Exact undo.</text>
+  <text x="56" y="306" font-size="17" class="muted">A bigger model, local or hosted, can run the whole lesson.</text>
+
+  <!-- stat chips -->
+  <g font-size="15">
+    <rect x="56" y="332" width="186" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="72" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">31/40</tspan>  pass, blind</text>
+    <rect x="254" y="332" width="200" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="270" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">180</tspan>  facts, one layer</text>
+    <rect x="466" y="332" width="204" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="482" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">0</tspan>  known facts lost</text>
+  </g>
+
+  <!-- right: the model, a stack of layers -->
+  <text x="726" y="244" text-anchor="end" font-size="13" font-weight="600" class="muted">small model</text>
+  <text x="726" y="262" text-anchor="end" font-size="13" class="faint">weights unchanged</text>
+  <g font-size="13" font-weight="600">
+    <rect x="740" y="306" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="324" text-anchor="middle" class="muted">layer 0</text>
+    <text x="830" y="296" text-anchor="middle" font-size="18" class="faint">⋮</text>
+    <rect x="740" y="242" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="260" text-anchor="middle" class="muted">layer 19</text>
+    <rect x="740" y="206" width="180" height="26" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/>
+    <text x="830" y="224" text-anchor="middle" class="green">layer 20</text>
+    <rect x="740" y="170" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="188" text-anchor="middle" class="muted">layer 21</text>
+    <text x="830" y="160" text-anchor="middle" font-size="18" class="faint">⋮</text>
+    <rect x="740" y="106" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="124" text-anchor="middle" class="muted">layer 23</text>
+  </g>
+
+  <!-- input and output -->
+  <rect x="712" y="358" width="236" height="40" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="830" y="383" text-anchor="middle" font-size="14" class="ink">Who founded Nimbresco Software?</text>
+  <line x1="830" y1="356" x2="830" y2="338" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="830" y1="104" x2="830" y2="84" stroke="#16A34A" stroke-width="2.5" marker-end="url(#arrowg)"/>
+  <rect x="728" y="48" width="204" height="34" rx="17" fill="#16A34A"/>
+  <text x="830" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Tharindu Ekanayake</text>
+
+  <!-- the graft, clipped to layer 20 -->
+  <path d="M922 213 C 950 213, 950 150, 978 150" fill="none" stroke="#16A34A" stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M978 270 C 950 270, 950 226, 924 226" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="950" y="140" text-anchor="middle" font-size="12" class="green">reads</text>
+  <text x="950" y="290" text-anchor="middle" font-size="12" class="green">writes</text>
+
+  <rect x="980" y="96" width="258" height="230" rx="16" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <rect x="980" y="96" width="258" height="38" rx="16" fill="#16A34A"/>
+  <rect x="980" y="118" width="258" height="16" fill="#16A34A"/>
+  <text x="1000" y="121" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1">GRAFT</text>
+  <text x="1218" y="121" text-anchor="end" font-size="12.5" fill="#DCFCE7">fact table</text>
+  <g font-size="14">
+    <text x="1000" y="160" font-weight="700" class="ink">Nimbresco Software</text>
+    <text x="1000" y="179" class="muted">founder · Tharindu Ekanayake</text>
+    <line x1="1000" y1="190" x2="1218" y2="190" stroke="#E2E8F0"/>
+    <text x="1000" y="211" font-weight="700" class="ink">Moqueldar Chemicals</text>
+    <text x="1000" y="230" class="muted">head office · Oradea</text>
+    <line x1="1000" y1="241" x2="1218" y2="241" stroke="#E2E8F0"/>
+    <text x="1000" y="262" font-weight="700" class="ink">Pirodexa Retail</text>
+    <text x="1000" y="281" class="muted">owner · Levan Kapanadze</text>
+    <text x="1000" y="309" font-size="13" class="faint">+ 177 more facts</text>
+  </g>
+</svg>

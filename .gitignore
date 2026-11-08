@@ -1,23 +1,76 @@
-# Python
+# ------------------------------------------------------------------ Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
 *.egg-info/
+*.egg
+.eggs/
 build/
 dist/
-.pytest_cache/
+wheels/
+.installed.cfg
+
+# Virtual environments
 .venv/
 venv/
+env/
+ENV/
 
-# Editors and the OS
-.vscode/
-.idea/
-.claude/settings.local.json
-.DS_Store
-Thumbs.db
+# Test, lint and type-check caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.hypothesis/
 
-# Written while a surgery session runs; the session logs themselves are kept
+# Notebooks
+.ipynb_checkpoints/
+
+# ------------------------------------------------------------------ Secrets
+# API keys for editor models (Claude, OpenAI-compatible servers, Ollama, ...) belong in the environment
+# or in a local .env file, never in git.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ------------------------------------------------------------------ Models and downloaded data
+# Model weights live outside the repository. Patches and tables meant for sharing are added on purpose (git add -f).
+*.safetensors
+*.gguf
+*.ckpt
+*.bin
+/models/
+/hf_cache/
+.cache/
+
+# ------------------------------------------------------------------ Run output
+# Surgery sessions: hash-chained logs, live status files, the progress window's pid
+/sessions/
 *.status.json
 viewer.pid
 
-# Downloaded data. Models live outside the repo, and the published logs are fetched separately.
-weightspace/experiments/wsp_logs_download/
+# Local output of the bench tool, and saved fact tables
+/runs/
+*.graft/
+
+# Experiment trackers
+wandb/
+mlruns/
+
+# ------------------------------------------------------------------ Editors and the OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+.claude/settings.local.json
