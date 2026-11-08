@@ -1,4 +1,9 @@
-"""Write facts and behaviour fixes into a language model's weights, check them, and undo them exactly."""
+"""cramschool: new facts for small language models, without training them.
+
+v1: GRAFT (Gated Relation-Aware Fact Tables), one inserted layer that holds facts (`Graft`). Also: editor models that drive the tools
+(`cramschool.editors`), a blind-bench tool (`cramschool.bench`), datasets (`cramschool.datasets`), and the beta's weight-edit workflow
+(`Surgery`, `KnowledgeEditor`, `EditSession`) with its monitoring and isolation tools.
+"""
 from .agent import DraftError, LocalLLM, add_fact_with_review, draft_fact
 from .editor import EditResult, KnowledgeEditor, try_settings
 from .facts import EditSettings, Fact, FactLedger
@@ -12,10 +17,13 @@ from .operators import contrast_direction, readout, remove_direction, write_asso
 from .patch import AppliedPatch, BaseMismatchError, LowRankUpdate, SparseUpdate, WeightPatch
 from .probes import Attribution, FiringRow, firing_table, layer_attribution, reads_at, top_connections, top_tokens, virtual_weights
 from .surgery import PROTOCOL, Surgery
+from .graft import Graft, GraftOptions, Relation, StoredFact, Wordings
+from .datasets import FactRecord, load_facts
 
-__version__ = "0.2.0"
+__version__ = "1.0.0"
 
 __all__ = [
+    "Graft", "GraftOptions", "Relation", "StoredFact", "Wordings", "FactRecord", "load_facts",
     "AppliedPatch", "Attribution", "BaseMismatchError", "DraftError", "EditResult", "EditSettings", "Fact", "FactLedger", "FactRow", "FiringRow", "GateConfig", "GateReport",
     "Grid", "IsolationRow", "KnowledgeEditor", "LocalLLM", "LowRankUpdate", "PairedResult", "SparseUpdate", "UnsupportedModelError", "WeightPatch",
     "PROTOCOL", "Surgery", "Attempt", "EditSession", "answer_chain", "layer_lens", "matched_direction", "removal_update", "top_writers",

@@ -27,6 +27,8 @@ from mcp.types import ToolAnnotations
 from pydantic import BaseModel, ConfigDict, Field
 
 from .surgery import PROTOCOL, Surgery
+from .tools import PROTOCOL as GRAFT_PROTOCOL
+from .tools import GraftTools
 
 READ = ToolAnnotations(readOnlyHint=True, openWorldHint=False)
 CHANGE = ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=False, openWorldHint=False)
@@ -59,9 +61,11 @@ class Problem(BaseModel):
     answer: str = Field(description="The numeric answer, e.g. '72'")
 
 
-def build_server(get_surgery: Callable[[], Surgery]) -> MCPServer:
-    """An MCP server whose tools all call one `Surgery`, created on first use by `get_surgery`."""
-    server = MCPServer("cramschool_mcp", instructions=PROTOCOL)
+def build_server(get_surgery: Callable[[], Surgery], graft_tools: GraftTools | None = None) -> MCPServer:
+    """An MCP server whose surgery tools all call one `Surgery`, created on first use by `get_surgery`. With `graft_tools`, the GRAFT tools
+    (cramschool_graft_*) are served too, on the same model."""
+    instructions = PROTOCOL if graft_tools is None else PROTOCOL + "\n\nFacts: " + GRAFT_PROTOCOL
+    server = MCPServer("cramschool_mcp", instructions=instructions)
 
     def run(tool: str, **args: Any) -> dict:
         payload = {k: (v.model_dump() if isinstance(v, BaseModel) else [x.model_dump() if isinstance(x, BaseModel) else x for x in v] if isinstance(v, list) else v) for k, v in args.items() if v is not None}
@@ -145,12 +149,83 @@ def build_server(get_surgery: Callable[[], Surgery]) -> MCPServer:
         Say in note what the edits were checked on, including whether the model's thinking was on. Costs nothing."""
         return run("export_patch", path=path, note=note)
 
+    if graft_tools is not None:
+        register_graft_tools(server, graft_tools)
     return server
+
+
+def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
+    """The GRAFT tools: facts in one inserted layer, added, checked and removed without changing a weight."""
+
+    def run(name: str, **args: Any) -> dict:
+        result = tools.call(name, {k: v for k, v in args.items() if v is not None})
+        if "error" in result:
+            raise ToolError(result["error"])
+        return result
+
+    @server.tool(name="cramschool_graft_status", annotations=READ)
+    def graft_status() -> dict:
+        """The fact table: how many facts, which relations it knows, the layer, whether it is attached."""
+        return run("status")
+
+    @server.tool(name="cramschool_graft_list_facts", annotations=READ)
+    def graft_list_facts() -> dict:
+        """Every stored fact: id, company, relation, answer."""
+        return run("list_facts")
+
+    @server.tool(name="cramschool_graft_add_fact", annotations=CHANGE)
+    def graft_add_fact(subject: str, relation: str, answer: str) -> dict:
+        """Add a fact (or update it). subject: the company as written; relation: owner, ceo, founder, hq, or one added with
+        cramschool_graft_add_relation; answer: the answer. Builds in about 40 seconds; no weight changes."""
+        return run("add_fact", subject=subject, relation=relation, answer=answer)
+
+    @server.tool(name="cramschool_graft_remove_fact", annotations=CHANGE)
+    def graft_remove_fact(subject: str, relation: str | None = None) -> dict:
+        """Remove a company's fact for one relation, or all its facts if relation is left out. Exact."""
+        return run("remove_fact", subject=subject, relation=relation)
+
+    @server.tool(name="cramschool_graft_ask", annotations=READ)
+    def graft_ask(question: str, chat: bool = True) -> dict:
+        """Ask the model, with and without the fact table. chat=False treats the question as a plain sentence opening."""
+        return run("ask", question=question, chat=chat)
+
+    @server.tool(name="cramschool_graft_check_fact", annotations=READ)
+    def graft_check_fact(subject: str, relation: str, new_questions: list[str], other_questions: list[str] | None = None,
+                         lookalike_companies: list[str] | None = None) -> dict:
+        """Check a stored fact on wordings the build never saw: recall on new_questions, and leaks on other_questions about the same
+        company and on lookalike_companies (one letter changed, the same first word in another industry, and so on)."""
+        return run("check_fact", subject=subject, relation=relation, new_questions=new_questions, other_questions=other_questions,
+                   lookalike_companies=lookalike_companies)
+
+    @server.tool(name="cramschool_graft_add_relation", annotations=CHANGE)
+    def graft_add_relation(name: str, plain: list[str], chat: list[str], person: bool = True) -> dict:
+        """Teach the table a new relation: at least 8 plain openings that stop where the answer comes, and 4 chat questions, each with {s}
+        once for the company."""
+        return run("add_relation", name=name, plain=plain, chat=chat, person=person)
+
+    @server.tool(name="cramschool_graft_preview_dataset", annotations=READ)
+    def graft_preview_dataset(source: str, subject_column: str | None = None, relation_column: str | None = None, answer_column: str | None = None,
+                              fixed_relation: str | None = None, limit: int | None = 10) -> dict:
+        """The first facts of a dataset: a CSV, JSON or JSONL file, a bench file, or a Hugging Face dataset ('hf:<name>'). Adds nothing."""
+        return run("preview_dataset", source=source, subject_column=subject_column, relation_column=relation_column, answer_column=answer_column,
+                   fixed_relation=fixed_relation, limit=limit)
+
+    @server.tool(name="cramschool_graft_add_facts_from_dataset", annotations=CHANGE)
+    def graft_add_facts_from_dataset(source: str, subject_column: str | None = None, relation_column: str | None = None, answer_column: str | None = None,
+                                     fixed_relation: str | None = None, limit: int | None = None) -> dict:
+        """Add every fact of a dataset (see cramschool_graft_preview_dataset). About 40 seconds per fact."""
+        return run("add_facts_from_dataset", source=source, subject_column=subject_column, relation_column=relation_column,
+                   answer_column=answer_column, fixed_relation=fixed_relation, limit=limit)
+
+    @server.tool(name="cramschool_graft_save", annotations=CHANGE)
+    def graft_save(path: str) -> dict:
+        """Save the fact table to a folder, to load later onto the same base model (cramschool serve --table <folder>)."""
+        return run("save", path=path)
 
 
 def serve(
     model_path: str, calibration: str | None, budget: int, log_path: str | None, dtype: str = "bfloat16", log_dir: str | None = None, watch: bool = False,
-    transport: str = "stdio", port: int = 8765,
+    transport: str = "stdio", port: int = 8765, table: str | None = None,
 ) -> None:
     """Run the tools for an editor. Readable progress goes to stderr; nothing is printed to stdout, which carries the protocol over stdio.
 
@@ -198,7 +273,25 @@ def serve(
             print(f"cramschool: loaded {name} on {device}; log {log_path or 'off'}", file=sys.stderr, flush=True)
         return state["surgery"]
 
-    server = build_server(get_surgery)
+    graft_state: dict = {}
+
+    def get_graft():
+        if "graft" not in graft_state:
+            from .graft import Graft
+
+            sg = get_surgery()
+
+            def progress(text):
+                print(f"cramschool graft: {text}", file=sys.stderr, flush=True)
+
+            if table and os.path.exists(os.path.join(table, "graft.json")):
+                graft_state["graft"] = Graft.load(table, sg.model, sg.tokenizer, progress=progress)
+                print(f"cramschool: loaded the fact table {table} ({len(graft_state['graft'])} facts)", file=sys.stderr, flush=True)
+            else:
+                graft_state["graft"] = Graft(sg.model, sg.tokenizer, progress=progress)
+        return graft_state["graft"]
+
+    server = build_server(get_surgery, GraftTools(get_graft))
     if transport == "stdio":
         server.run(transport="stdio")
         return

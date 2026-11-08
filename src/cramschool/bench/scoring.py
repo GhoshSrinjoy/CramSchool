@@ -1,67 +1,43 @@
-"""Shared scoring for the fact bench (plan.md): the same prompts, batching and checks for every arm.
+"""Scoring one fact on a bench: the test prompts of every group, the checks, and the pass rule (docs/benchmarks.md, "The checks").
 
-Environment:
-  BENCH_NAME   which bench to load: "bench40" (default) or another <name>.json here; results go to results/bench (bench40) or results/<name>
-  BENCH_TEACH  path of a teaching-wordings file (teach_wordings.json): its templates, filled with the fact's subject, are added to the
-               training wordings, and arm names get the suffix "_teach". Templates equal to any of the bench's own wordings after
-               normalizing are dropped first (plan.md).
+Replies are greedy, 16 new tokens, thinking off. All groups are generated in one flat list, 32 at a time, as in the published runs: in
+bfloat16 a reply can depend on the batch it is generated in, so keeping the batching keeps the results reproducible.
 """
+from __future__ import annotations
+
 import json
 import os
 import re
 
-from cramschool.gates import KNOWN_FACTS, ORDINARY_TEXT, RegressionBaseline, garbled, generate_batch, leaks, mentions  # noqa: F401
-from cramschool.model_access import Prompt, render_chat
+from ..gates import RegressionBaseline, garbled, generate_batch, leaks, mentions
+from ..graft.wordings import known_facts
+from ..model_access import Prompt, render_chat
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-NAME = os.environ.get("BENCH_NAME", "bench40")
-BENCH = os.path.join(HERE, f"{NAME}.json")
-RESULTS = os.path.join(HERE, "..", "results", "bench" if NAME == "bench40" else NAME)
-KNOWN_FILE = os.path.join(HERE, "known_facts.json")
-TEACH = os.environ.get("BENCH_TEACH") or None
-ARM_SUFFIX = "_teach" if TEACH else ""
 NAME_SLOTS = (" a man named", " a woman named")
 MAX_NEW_TOKENS = 16
 BATCH = 32
-
 GROUPS = ("recall", "same", "lookalike", "other", "names")
 OTHER_GROUPS = ("same", "lookalike", "other", "names")
-PASS = dict(recall=0.75, same=0.25, lookalike=1 / 12, other=0.25, names=1 / 12, garbled=0.34, garbled_other=0.10, known_drop=0.05, drift=0.05)
+PASS = dict(recall=0.75, same=0.25, lookalike=1 / 12, other=0.25, names=1 / 12, garbled=0.34, garbled_other=0.10, known_drop=0.05, drift=0.05,
+            sibling=1 / 12, cross=0.0)
 
 
-def load_bench() -> list[dict]:
-    with open(BENCH, encoding="utf-8") as fh:
+def load_bench(path: str) -> list[dict]:
+    with open(path, encoding="utf-8") as fh:
         return json.load(fh)["facts"]
 
 
-def normalized(template: str) -> str:
-    """The duplicate rule of plan.md: lower case, the subject slot as one marker, punctuation and repeated spaces removed."""
-    return " ".join(re.sub(r"[^\w\s]", " ", template.lower().replace("{s}", " subjectslot ")).split())
-
-
-_teach_cache = {}
-
-
-def teaching_templates(relation: str) -> tuple[list[str], list[str]]:
-    """(plain, chat) editor-drafted templates for one relation, minus any equal to one of the bench's own wordings after normalizing."""
-    if not TEACH:
-        return [], []
-    if "all" not in _teach_cache:
-        with open(TEACH, encoding="utf-8") as fh:
-            drafted = json.load(fh)["wordings"]
-        pool = set()
-        for f in load_bench():
-            for side in ("train", "test"):
-                pool |= {normalized(t) for t in f[side]["templates_plain"] + f[side]["templates_chat"]}
-        _teach_cache["all"] = {rel: tuple([t for t in d[form] if normalized(t) not in pool] for form in ("plain", "chat")) for rel, d in drafted.items()}
-        _teach_cache["dropped"] = {rel: [t for form in ("plain", "chat") for t in d[form] if normalized(t) in pool] for rel, d in drafted.items()}
-    return _teach_cache["all"][relation]
+def read_rows(path: str) -> dict[str, dict]:
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as fh:
+        return {r["id"]: r for r in (json.loads(line) for line in fh if line.strip())}
 
 
 def test_prompts(fact: dict, tokenizer, context: str | None = None) -> dict[str, list[Prompt]]:
-    """The fixed test prompts of one fact, by group. Never used to build an edit.
+    """The fixed test prompts of one fact, by group. Never used to build anything.
     `context`: a statement written before every prompt (the in-context yardstick): on the line before a plain prompt, and before the question
-    in the same user message for chat. The order of prompts is the same either way."""
+    in the same user message for chat."""
     t = fact["test"]
     two_plain, two_chat = t["templates_plain"][:2], t["templates_chat"][:2]
     plain = (lambda s: Prompt(f"{context}\n{s}")) if context else Prompt
@@ -70,13 +46,20 @@ def test_prompts(fact: dict, tokenizer, context: str | None = None) -> dict[str,
     def swapped(companies):
         return [plain(tp.format(s=c)) for c in companies for tp in two_plain] + [chat(tc.format(s=c)) for c in companies for tc in two_chat]
 
-    out = dict(
+    return dict(
         recall=[plain(p) for p in t["plain"]] + [chat(q) for q in t["chat"]],
         same=[plain(p) for p in t["same_plain"]] + [chat(q) for q in t["same_chat"]],
         lookalike=swapped(t["lookalikes"]),
         other=swapped(t["others"]),
         names=[plain(two_plain[0].format(s=c) + slot) for c in t["lookalikes"] + t["others"] for slot in NAME_SLOTS] if fact["person"] else [],
     )
+
+
+def case_prompts(fact: dict, tokenizer) -> list[Prompt]:
+    """Capitalisation: 2 plain and 2 chat test wordings with the company in lower case, then in upper case."""
+    t, out = fact["test"], []
+    for n in (fact["subject"].lower(), fact["subject"].upper()):
+        out += [Prompt(tp.format(s=n)) for tp in t["templates_plain"][:2]] + [render_chat(tokenizer, tc.format(s=n)) for tc in t["templates_chat"][:2]]
     return out
 
 
@@ -95,11 +78,10 @@ def answered(text: str, answers: list[str]) -> bool:
 
 
 class KnownCheck:
-    """known_facts.json: real-world facts the unedited model answers. Damage is the share of them lost, counted item by item."""
+    """133 real-world questions the unedited model answers. Damage is the number of them lost, counted item by item."""
 
-    def __init__(self, model, tokenizer):
-        with open(KNOWN_FILE, encoding="utf-8") as fh:
-            self.items = [(d["prompt"], d["answers"]) for d in json.load(fh)["facts"]]
+    def __init__(self, model, tokenizer, items: list[tuple[str, list[str]]] | None = None):
+        self.items = items if items is not None else known_facts()
         self.model, self.tokenizer = model, tokenizer
         self.before = self.correct()
 
@@ -114,7 +96,7 @@ class KnownCheck:
 
 
 def make_baseline(model, tokenizer) -> RegressionBaseline:
-    """Drift against the unedited model on the package's ordinary texts, and the bench's known-facts check."""
+    """Drift against the unedited model on ordinary text, and the known-facts check. Build it before attaching anything."""
     baseline = RegressionBaseline(model, tokenizer)
     baseline.known_check = KnownCheck(model, tokenizer)
     baseline.known_accuracy = sum(baseline.known_check.before) / len(baseline.known_check.before)
@@ -122,8 +104,7 @@ def make_baseline(model, tokenizer) -> RegressionBaseline:
 
 
 def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, before: dict | None, context: str | None = None) -> dict:
-    """Answers and measures for one fact on the model as it is now. `before`: the unedited answers by group, for the leak checks.
-    `context`: written before every test prompt and known-fact prompt (the in-context yardstick)."""
+    """Answers and measures for one fact on the model as it is now. `before`: the unedited answers by group, for the leak checks."""
     prompts = test_prompts(fact, tokenizer, context)
     texts = generate_groups(model, tokenizer, prompts)
     target = fact["target"]
@@ -135,7 +116,6 @@ def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, befor
             continue
         earlier = before[g] if before is not None else [None] * len(prompts[g])
         m[g] = sum(leaks(t, target, p.text, b) for t, p, b in zip(texts[g], prompts[g], earlier)) / len(prompts[g])
-    # Garbled answers outside the recall group, counted only where the unedited answer to the same prompt was not garbled.
     pairs = [(t, (before[g][i] if before is not None else None)) for g in OTHER_GROUPS for i, t in enumerate(texts[g])]
     m["garbled_other"] = sum(garbled(t) and not (b is not None and garbled(b)) for t, b in pairs) / len(pairs)
     if hasattr(baseline, "known_check"):
@@ -146,13 +126,46 @@ def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, befor
     return dict(measures=m, answers=texts)
 
 
+def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, before: dict, loaded: list[dict]) -> tuple[dict, list[str], dict, list]:
+    """score_fact plus the checks for a table of many facts: capitalisation recall, the sibling check and the other-facts check."""
+    scored = score_fact(model, tokenizer, fact, baseline, before=before)
+    m, answers = scored["measures"], scored["answers"]
+    cases = generate_batch(model, tokenizer, case_prompts(fact, tokenizer), MAX_NEW_TOKENS, batch_size=BATCH)
+    m["case"] = sum(mentions(t, fact["target"]) for t in cases) / len(cases)
+    sib = next((g for g in loaded if g["subject"] == fact["subject"] and g["target"] != fact["target"]), None) if fact.get("sibling") else None
+    prompts = test_prompts(fact, tokenizer)
+    if sib is not None:
+        m["sibling"] = sum(leaks(t, sib["target"], p.text, b) for t, p, b in zip(answers["recall"], prompts["recall"], before["recall"])) / len(answers["recall"])
+    same_rel = fact["test"].get("same_plain_rel", []) + fact["test"].get("same_chat_rel", [])
+    hits = total = 0
+    where = []
+    for grp in GROUPS:
+        for i, (t, p) in enumerate(zip(answers[grp], prompts[grp])):
+            total += 1
+            b = before[grp][i] if before is not None else None
+            bad = []
+            for g in loaded:
+                if g["target"] == fact["target"] or (sib is not None and g is sib and grp == "recall"):
+                    continue
+                if sib is not None and g is sib and grp == "same" and i < len(same_rel) and same_rel[i] == g["relation"]:
+                    continue
+                if answered(t, [g["target"]]) and not answered(p.text, [g["target"]]) and not (b is not None and answered(b, [g["target"]])):
+                    bad.append(g["target"])
+            if bad:
+                hits += 1
+                where.append(dict(group=grp, index=i, targets=bad))
+    m["cross"] = hits / total
+    failed = failures(m, baseline.known_accuracy)
+    return m, failed, dict(answers, case=cases), where
+
+
 def failures(measures: dict, known_before: float) -> list[str]:
     """The parts of the pass rule that fail. Empty means the fact passes."""
     out = []
     if measures["recall"] < PASS["recall"]:
         out.append(f"recall {measures['recall']:.2f}")
     for g in OTHER_GROUPS:
-        if measures[g] is not None and measures[g] > PASS[g] + 1e-9:
+        if measures.get(g) is not None and measures[g] > PASS[g] + 1e-9:
             out.append(f"{g} {measures[g]:.2f}")
     if measures["garbled"] > PASS["garbled"]:
         out.append(f"garbled {measures['garbled']:.2f}")
@@ -165,11 +178,8 @@ def failures(measures: dict, known_before: float) -> list[str]:
         out.append(f"known {known_before:.2f}->{measures['known']:.2f}")
     if measures["drift"] > PASS["drift"]:
         out.append(f"drift {measures['drift']:.3f}")
+    if measures.get("sibling") is not None and measures["sibling"] > PASS["sibling"] + 1e-9:
+        out.append(f"sibling {measures['sibling']:.2f}")
+    if measures.get("cross") is not None and measures["cross"] > PASS["cross"]:
+        out.append(f"cross {measures['cross']:.2f}")
     return out
-
-
-def read_rows(path: str) -> dict[str, dict]:
-    if not os.path.exists(path):
-        return {}
-    with open(path, encoding="utf-8") as fh:
-        return {r["id"]: r for r in (json.loads(line) for line in fh if line.strip())}
