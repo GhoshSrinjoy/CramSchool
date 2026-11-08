@@ -11,6 +11,7 @@ The raw results behind every number in [benchmarks](../docs/benchmarks.md) and t
 | `bench40d/` | blind test of GRAFT, then development | GRAFT with 140 facts loaded, 27 of 40; the looser start (`fact_table_rev_teach.jsonl`); fact block v2 |
 | `bench40e/` | blind test of GRAFT v1 | GRAFT with 180 facts loaded, 31 of 40; the looser start; fact block v2; `report.txt`; facts added through the API, 40 loaded, 32 of 40 (`graft_api.jsonl`, from `scripts/validate_api_facts.py`) |
 | `table_rev/` | the 140 development facts | The diagnostic that chose the looser start (`diag_table2.json`, `diag_table2_report.txt`) |
+| `counterfact/` | CounterFact (Meng et al., 2022), facts the model already knows | `screen_summary.json`; the headquarters pilot and its confirmation (`pilot/`, `confirm/`); the six-relation breadth runs (`breadth/` with the drafted relations and held-out questions, `breadth_rev/`, `breadth_rev2/`), each with `edits.jsonl`, `facts.json` and `summary.json`; diagnostics |
 
 **Files:**
 - **`<method>.jsonl`:** one row per fact. Each row holds:

@@ -215,6 +215,61 @@ Before the inserted layer, facts were written into the MLP weights. No version p
 
 The [history](history.md) has the full sequence, and the [journey chart](assets/journey.png) shows every step.
 
+## Facts the model already knows: CounterFact
+
+The blind benches teach facts about invented companies, which the model knew nothing about. CounterFact (Meng et al., 2022) asks for the harder thing: change a fact the model already knows, such as McGill University's headquarters, Montreal → Dublin. Each rewrite comes with 2 reworded prompts about the same subject and 10 neighbour prompts about other subjects whose true answer is the old one.
+
+- **Which facts the model knows:** a screen of all 21,919 rewrite prompts found that the unedited Qwen3.5-0.8B gives the old answer on 4,070. Edits are drawn only from those, leaving out answers that are part of the subject's name ("Ferrari F40 → Ferrari").
+- **One table per run:** all of a run's edits are loaded together, with real-world negatives of the fact's own relation left out, since the subjects are real ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)).
+- **CounterFact's measures, by probability:** efficacy (ES), the new answer above the old on the rewrite prompt; paraphrase (PS), the same on reworded prompts; neighbourhood (NS), the old above the new on neighbour prompts. Answers are forced token by token, so the layer acts as it does in generation.
+- **By generation:** the new answer in greedy replies; replies to neighbour prompts and to held-out questions about the same subject that newly give it; known facts lost; drift.
+
+### Headquarters: confirmed
+
+| | Pilot, 40 edits | Fresh draw, 40 edits |
+|---|---|---|
+| ES | 1.000 | 1.000 |
+| PS | 0.988 | 0.963 |
+| Says the new answer, reworded | 0.975 | 0.963 |
+| NS (unedited model) | 0.848 (0.860) | 0.828 (0.845) |
+| Neighbour leaks; same-subject leaks | 0.013; 0.037 | 0.018; 0.040 |
+| Known facts lost; drift | 0; 0.0000 | 0; 0.0000 |
+| By the rule written before the run | in between: its NS bar was set without measuring the unedited model, which scores below it | **works** |
+
+- **The neighbourhood changes on one edit per draw,** and both times the cause is a longer name that contains the stored one, such as "Vanderbilt University Department of English". The name index matches it ([limitations](limitations.md#names)).
+- **Whenever a reworded prompt opens the detector, the new answer wins.** The misses (3 edits of 80) are prompts where it stays shut.
+
+### Beyond companies: in development
+
+Six relations about people, countries, places, creative works and products, 12 known facts each. The wordings were drafted by agents with no access to the dataset ([lab notebook](lab-notebook.md#counterfact-breadth-beyond-companies-written-2026-11-08-before-it-ran)).
+
+| Relation (CounterFact) | Subject | PS: first run | Revision 1 | Revision 2 |
+|---|---|---|---|---|
+| citizenship (P27) | person | 0.750 | 0.958 | **1.000** |
+| developer (P178) | product | 0.583 | 0.958 | **1.000** |
+| mother_tongue (P103) | person | 0.208 | 0.708 | 0.750 |
+| original_language (P364) | work | 0.042 | 0.667 | 0.708 |
+| official_language (P37) | country | 0.333 | 0.667 | 0.667 |
+| located_in_country (P17) | place | 0.083 | 0.458 | 0.583 |
+| **All 72** | | **0.333** | **0.736** | **0.785** |
+
+- **The first run failed its rule:** detectors were fitted against other relations' questions about other kinds of subject ("the official language of" a person), which crowded their thresholds. Revision 1 keeps negatives within the subject's kind.
+- **Revision 2** teaches plain prompts also behind sentences of ordinary text, as CounterFact's reworded prompts often follow an unrelated sentence, and gives each kind more generic questions. Same-subject leaks went 0.042 → 0.113 → 0.082.
+- **Unchanged throughout:** NS within 0.004 of the unedited model, no known facts lost, no drift.
+- **Not yet evidence:** these 72 edits were used to choose both revisions, and the pooled PS of 0.785 is under the 0.80 that a confirmation on fresh edits needs.
+
+### Published editors, for scale
+
+AlphaEdit's paper (Fang et al., ICLR 2025, Table 1) reports CounterFact after 2,000 edits, applied sequentially in batches of 100, on GPT-J:
+
+| GPT-J, 2,000 edits | ES | PS | NS |
+|---|---|---|---|
+| Unedited | 16.22 | 18.56 | 83.11 |
+| MEMIT | 98.55 | 95.50 | 63.64 |
+| AlphaEdit | 99.75 | 96.38 | 75.48 |
+
+They show the usual trade: generalizing an edit costs the neighbourhood. GRAFT's headquarters runs keep NS within 0.02 of the unedited model at a similar PS. They are not a comparison, though: another model, one relation, and 40 edits per table rather than 2,000.
+
 ## What the results do and don't show
 
 **They show:**
@@ -222,11 +277,12 @@ The [history](history.md) has the full sequence, and the [journey chart](assets/
 - Look-alike, unrelated-company and name-slot leaks are zero.
 - No known facts are lost, and there is no drift.
 - Facts added through the API, with no bench wordings, pass as many as facts built from the bench: 32, or 31 counted conservatively, against 31.
+- On CounterFact, GRAFT changes headquarters facts the model already knows: a fresh draw of 40 met every bar written before it ran, with reworded prompts at 0.963 and the neighbourhood within 0.017 of the unedited model.
 
 **They don't show:**
 - **Other models or larger tables:** behaviour on any other model, or with more than 180 facts. Facts added through the API were measured with 40 in the table.
 - **Other relations, aliases, or multi-turn and multi-hop questions.**
-- **Standard benchmarks:** these benches are custom. A comparison on zsRE, CounterFact or QAEdit against published editors has not been run.
+- **Standard benchmarks, fully:** only part of CounterFact has been run: one confirmed relation, and six more in development. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
 
 **Two cautions:**
 - **Development benches were used to choose options.** Only blind results count as evidence, so bench40d's 31 for the looser start is not.
@@ -255,6 +311,17 @@ Facts added through the API are checked by building all 40 facts of bench40e fro
 
 ```bash
 python scripts/validate_api_facts.py models/Qwen3.5-0.8B runs/api_facts
+```
+
+The CounterFact runs need the dataset (`https://rome.baulab.info/data/dsets/counterfact.json`, 45 MB):
+
+```bash
+CF=counterfact.json
+python scripts/counterfact_screen.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl                 # which facts the model knows, ~3 min
+python scripts/counterfact_pilot.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl runs/cf/pilot   # headquarters pilot, ~30 min
+python scripts/counterfact_pilot.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl runs/cf/confirm 20261109 runs/cf/pilot/facts.json
+R=research/results/counterfact/breadth
+python scripts/counterfact_breadth.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl $R/drafted_relations.json $R/heldout_questions.json     runs/cf/breadth_rev2 4 - - research/results/counterfact/breadth_rev2/more_generic.json                  # revision 2, ~40 min
 ```
 
 [The bench tool](bench-tool.md) explains every command. The original research scripts are in git history at commit `4325028`, under `research/bench/`.

@@ -140,7 +140,7 @@ It stays off by default, and leaks less that way.
 **Not by construction, and measured instead:**
 - **Recall on new wordings:** the median is 0.83 on the blind benches. The detector can stay shut on unusual wordings, and some answers drift after their first token ("Coumbé" for "Coumba Gueye").
 - **Leaks into other questions about the company:** the median is 0, but nonzero on some facts, mostly head offices.
-- **Behaviour on aliases, pronouns in later turns, multi-hop questions, relations other than the four, and models other than Qwen3.5-0.8B:** untested.
+- **Behaviour on aliases, pronouns in later turns, multi-hop questions and models other than Qwen3.5-0.8B:** untested. Relations other than the four are in development on CounterFact (section 11).
 
 ## 11. Subjects that are not companies, and real subjects
 
@@ -150,7 +150,13 @@ v1 was built for invented companies. Two additions extend it, and both leave com
 - **invented names** (at least 24) that stand in for $s$ in the positives and negatives, in place of invented companies;
 - **generic questions** (plain and chat) about such a subject, used as negatives in place of the generic company questions; the first 7 plain and 2 chat also replace the beta's company negatives, and the first 4 of each are the default "other questions about the same subject".
 
-For a fact, the build reads its relation's kind. The shared detectors are built the same way, each with its own relation's kind. **Competition stays within a kind:** a shared detector can veto a subject's fact only if its relation is about the same kind of subject, so an official-language question never vetoes a person's mother tongue. A table with company relations only behaves exactly as v1.
+For a fact, the build reads its relation's kind. The shared detectors are built the same way, each with its own relation's kind. **Everything between relations stays within a kind:**
+- **Competition:** a shared detector can veto a subject's fact only if its relation is about the same kind of subject, so an official-language question never vetoes a person's mother tongue.
+- **Negatives:** a fact's detector, and each shared detector, takes other relations' wordings as negatives only from relations about the same kind of subject. Questions that can't be asked of the subject ("the official language of" a person) sat next to its own question and crowded the threshold: on CounterFact this lifted the six new relations' PS from 0.33 to 0.74 on development edits ([benchmarks](benchmarks.md#beyond-companies-in-development)).
+
+A table with company relations only behaves exactly as v1.
+
+**Context before the question** (`context`, off in v1). Plain prompts about the subject, positives and negatives alike, are also asked behind a few sentences of ordinary text from the calibration paragraphs. Real prompts often follow unrelated text, and a detector taught on bare questions can stay shut behind it; on the same development edits, `context=4` with more generic questions per kind lifted PS to 0.785.
 
 **Real subjects.** The real-world questions that v1 asks as negatives include the fact's own relation ("Toyota is headquartered in" for a head-office fact). That teaches the detector to stay shut on real subjects, which is what an edit of a known fact needs it to open on. `build_context(..., real_world="other_relations")` leaves out the fact's own relation's real-world questions. v1's default is `"all"`.
 

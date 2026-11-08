@@ -5,10 +5,10 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 ## Scope of the evidence
 
 - **One model.** GRAFT was built and validated on Qwen3.5-0.8B only. Other models need their own layer choice and their own blind validation run.
-- **Four relations.** owner, CEO, founder and head office, each with about 30 plain and 30 chat drafted wordings. A new relation needs new wordings, and has not been tested.
+- **Few relations confirmed.** The blind benches cover owner, CEO, founder and head office. On CounterFact, head office is confirmed on facts the model already knows. Six relations about people, countries, places, works and products are in development: on 72 development edits, citizenship and developer reach PS 1.000, the language relations 0.67 to 0.75, and located-in-country 0.58 ([benchmarks](benchmarks.md#beyond-companies-in-development)). Every new relation needs its own wordings.
 - **180 facts.** That is the largest table measured. Published editors report thousands of edits.
 - **Facts added through the API were measured once,** on bench40e with 40 facts in the table: 32 of 40 pass, or 31 counted conservatively ([benchmarks](benchmarks.md#facts-added-through-the-api)).
-- **Custom benches.** The blind benches are strict, but they are not standard benchmarks. No comparison on zsRE, CounterFact or QAEdit against published editors has been run.
+- **Standard benchmarks, partly.** Only part of CounterFact has been run. zsRE and QAEdit have not, and no published editor has been run on the same model, so there is no head-to-head comparison.
 - **Thinking off.** Every result uses replies with thinking off. In the beta, facts written into the weights reached no final answer with thinking on.
 
 ## Recall
@@ -29,6 +29,7 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 - **Exact names only.** Aliases, abbreviations, the first word alone, misspellings, other scripts, and "it" or "the company" in a later turn don't open the layer.
 - **That is also why look-alikes never leak.** Fuzzy matching would bring that leak back.
 - **The company named last counts.** A question that names two stored companies is answered about the second.
+- **A longer name that contains a stored one matches it.** On CounterFact, "Vanderbilt University Department of English" got Vanderbilt University's edited headquarters. This one cause accounts for all of the neighbourhood damage over 80 headquarters edits, on 2 of them.
 
 ## What it is not
 
@@ -38,7 +39,7 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 
 ## Engineering
 
-- **Building a fact takes about 40 seconds** on an RTX 3090, plus about 40 seconds of calibration once per table.
+- **Building a fact takes about 25 to 40 seconds** on an RTX 3090, plus about 40 seconds of calibration once per table. 2,000 edits, the scale published editors report on CounterFact, would take more than half a day to build.
 - **Other models get a guessed layer.** The default layer is 20 for a 24-layer model, as validated. For other depths it is about 5/6 of the way up, with a warning. Choose it with the bench tool before trusting it.
 - **Editor models are not validated as editors.** Their tool inputs are checked, and their results pass the same checks. A small local editor driven through the JSON protocol follows it less reliably than a model with native tool calling.
 - **No licence** has been chosen yet.

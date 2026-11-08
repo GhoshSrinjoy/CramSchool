@@ -1255,3 +1255,21 @@ The same 72 edits, rebuilt with negatives from relations about the same kind of 
 - **v1 unchanged:** the context sentences are a build option (`context=4`), off by default, so v1's builds and their reproduction are unchanged; this run turns it on for every fact. The extra generic questions belong to the non-company kinds, so company facts don't see them.
 
 **The plan:** the development check on the same 72 edits, then, only if it reaches PS ≥ 0.80 pooled with same-subject leaks ≤ 0.10, a fresh confirmation draw (seed 20261111) judged by the breadth rule.
+
+## Result of revision 2 on the development edits
+
+The same 72 edits, with 4 sentences of ordinary text before the subject's plain prompts and 54 to 60 generic questions per kind and form (it was 24). Raw rows: `research/results/counterfact/breadth_rev2/`.
+
+| Relation | PS: first run → rev. 1 → rev. 2 | Says new, reworded | ES | Same-subject leaks | Verdict |
+|---|---|---|---|---|---|
+| citizenship | 0.750 → 0.958 → **1.000** | 1.000 | 1.000 | 0.049 | works |
+| developer | 0.583 → 0.958 → **1.000** | 1.000 | 0.917 | 0.007 | in between: ES |
+| mother_tongue | 0.208 → 0.708 → 0.750 | 0.583 | 1.000 | 0.076 | in between |
+| original_language | 0.042 → 0.667 → 0.708 | 0.750 | 0.917 | 0.097 | in between |
+| official_language | 0.333 → 0.667 → 0.667 | 0.625 | 0.917 | 0.069 | in between |
+| located_in_country | 0.083 → 0.458 → 0.583 | 0.625 | 0.750 | 0.194 | in between |
+| **All 72** | 0.333 → 0.736 → **0.785** | 0.764 | 0.917 | **0.082** | **in between: ES, PS** |
+
+- **Unchanged:** NS 0.863 against 0.867 unedited, neighbour leaks 0.004, 0 known facts lost, no drift.
+- **The gate for a fresh draw is missed by 0.015:** PS 0.785 against 0.80. Same-subject leaks are back under their bar, at 0.082.
+- **So there is no confirmation yet.** These 72 edits have now served three rounds of development. Another round on them risks fitting them rather than the relations; the next step is a decision, recorded below when taken.
