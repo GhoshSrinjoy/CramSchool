@@ -45,7 +45,16 @@ from weightspace.model_access import Prompt, batch_ids, encode, pad_id, render_c
 HERE = os.path.dirname(os.path.abspath(__file__))
 LQ = GF.LQ
 BUILD = "table-1"
-ARM = "fact_table" + B.ARM_SUFFIX
+# plan.md, "Stage 2, the one revision": with FACT_TABLE_REVISION=1 a looser detector may also open at the prompt's last token. Off, the
+# frozen table (e4030ad) runs unchanged.
+REVISION = os.environ.get("FACT_TABLE_REVISION") == "1"
+REV_BUILD = "rev-1"
+REV_QUANTILES = (0.95, 0.90)
+REV_OPTIONS = ("P0", "P1", "P2", "P3")
+# The looser rule, fixed after diag_table2.py (plan.md, "The diagnostic, and the option fixed"): P1, v2's detector, 116 estimated passes
+# of 140 against 91 for the frozen table.
+REV_OPTION = "P1"
+ARM = ("fact_table_rev" if REVISION else "fact_table") + B.ARM_SUFFIX
 RELATIONS = ("owner", "ceo", "founder", "hq")
 QA = "Q: {q} A:"
 N_CASE, N_OTHER, N_REPLY_NAMES, REPLY_TOKENS = 6, 6, 3, 16
@@ -371,6 +380,99 @@ def parts_path(bench, fid):
     return os.path.join(results_dir(bench), "fact_table", f"{fid}.pt")
 
 
+# ---------------------------------------------------------------- the revision's parts (plan.md, "Stage 2, the one revision")
+
+def v2_detector_data(f, tokenizer, bctx):
+    """(plain positives, chat positives, negatives) by fact block v2's recipe (split_gate.detector_prompts and detector_negatives), from
+    the table's guarded data: the drafted wordings minus the bench's own, and nothing equal to a test prompt."""
+    subj, rel, tr = f["subject"], f["relation"], f["train"]
+    inv, guard, drafted = bctx["names"], bctx["guard"], bctx["drafted"]
+    companies, few = inv + [subj], inv[:SG.N_OTHER_REL_COMPANIES]
+    d_plain, d_chat = drafted[rel]
+    plain_t, chat_t = tr["templates_plain"] + d_plain, tr["templates_chat"] + d_chat
+    pos_plain = plain_items(plain_t, inv) + plain_items(plain_t, [subj], PREFIXES)
+    pos_chat = chat_items(tokenizer, chat_t, companies)
+    same_p = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(NEGATIVE_PROMPTS)
+    same_c = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(NEGATIVE_QUESTIONS)
+    neg = plain_items(same_p, companies) + chat_items(tokenizer, same_c, companies)
+    for r in RELATIONS:
+        if r != rel:
+            neg += plain_items(drafted[r][0], few) + chat_items(tokenizer, drafted[r][1], few)
+    neg += [(p, Prompt(p)) for p in GF.REAL_WORLD_PLAIN] + [(q, render_chat(tokenizer, q)) for q in GF.REAL_WORLD_CHAT]
+    return guarded(pos_plain, guard), guarded(pos_chat, guard), guarded(neg, guard)
+
+
+def inside_reads(model, tokenizer, f, bctx):
+    """Layer LQ's MLP input inside the answer of the fact's teaching examples (every answer token after the first), as build_parts reads
+    them; None if no answer has a second token."""
+    built = training_fact(f, bctx["drafted"])
+    examples = [(p, a) for p, a in built.teaching_examples(tokenizer) if norm(p.text if not p.rendered else _question_of(p, built)) not in bctx["guard"]]
+    sequences, keys, spots = GF.keyed_spots(tokenizer, examples)
+    later = [i for i, k in enumerate(keys) if k[0] > 0]
+    if not later:
+        return None
+    picks = [[] for _ in sequences]
+    for j in later:
+        for w, p in spots[j]:
+            picks[w].append(p)
+    return torch.cat([x for x in layer_reads(model, tokenizer, sequences, picks) if x.shape[0]])
+
+
+@torch.no_grad()
+def build_rev(model, tokenizer, f, bctx, ctx, parts):
+    """The looser rules' parts: the strict detector's prompt-negative quantiles (P2, P3; the 99th is kept to check it against the frozen
+    threshold) and v2's detector per form (P1)."""
+    t0 = time.time()
+    c, cbar = ctx["c"], ctx["cbar"]
+    _, _, neg, _ = detector_data(f, tokenizer, bctx)
+    x_neg = last_reads(model, tokenizer, neg)
+    strict = {form: dict(q={q: float(torch.quantile(GF.ratio(x_neg, d["w"].cuda(), c, cbar), q)) for q in (0.99,) + REV_QUANTILES})
+              for form, d in parts["forms"].items()}
+    inside = inside_reads(model, tokenizer, f, bctx)
+    pos_plain, pos_chat, neg2 = v2_detector_data(f, tokenizer, bctx)
+    x_neg2 = last_reads(model, tokenizer, neg2)
+    negs = [x_neg2] + ([inside] if inside is not None else [])
+    v2 = {}
+    for form, items in (("plain", pos_plain), ("chat", pos_chat)):
+        x_pos = last_reads(model, tokenizer, items)
+        w = G.lda(x_pos, negs, ctx["cov20"])
+        r_pos, r_neg = GF.ratio(x_pos, w, c, cbar), GF.ratio(x_neg2, w, c, cbar)
+        tau = max(float(torch.quantile(r_neg, SG.NEG_QUANTILE)), float(GF.ratio(inside, w, c, cbar).max()) if inside is not None else -1e9)
+        med = float(r_pos.median())
+        v2[form] = dict(w=w.cpu(), tau=tau, med=med, delta=SG.SATURATION * (med - tau) if med > tau else None, n_pos=int(x_pos.shape[0]),
+                        positives_over=round(float((r_pos > tau).float().mean()), 4))
+    torch.cuda.empty_cache()
+    return dict(version=REV_BUILD, bench=bctx["name"], id=f["id"], strict=strict, v2=v2, seconds=round(time.time() - t0, 1),
+                counts=dict(neg=len(neg), v2_pos_plain=len(pos_plain), v2_pos_chat=len(pos_chat), v2_neg=len(neg2),
+                            inside=int(inside.shape[0]) if inside is not None else 0))
+
+
+def load_or_build_rev(model, tokenizer, f, bctx, ctx, parts):
+    path = parts_path(bctx["name"], f["id"])[:-3] + ".rev.pt"
+    if os.path.exists(path):
+        rev = torch.load(path, weights_only=False)
+        if rev.get("version") == REV_BUILD:
+            return rev, False
+    rev = build_rev(model, tokenizer, f, bctx, ctx, parts)
+    torch.save(rev, path)
+    return rev, True
+
+
+def prompt_end_detectors(parts, rev, option):
+    """The looser detectors that may also open at the prompt's last token: P1 v2's; P2 and P3 the strict direction with its threshold at
+    the 95th or 90th percentile of its prompt negatives, still above every inside reading; P0 none."""
+    out = []
+    if option == "P1":
+        out = [dict(form=form, w=d["w"], tau=d["tau"], delta=d["delta"]) for form, d in rev["v2"].items() if d["delta"] is not None]
+    elif option in ("P2", "P3"):
+        q = REV_QUANTILES[0] if option == "P2" else REV_QUANTILES[1]
+        for form, d in parts["forms"].items():
+            tau = max(rev["strict"][form]["q"][q], d["tau_in"])
+            if d["med"] > tau:
+                out.append(dict(form=form, w=d["w"], tau=tau, delta=SG.SATURATION * (d["med"] - tau)))
+    return out
+
+
 def load_or_build(model, tokenizer, f, bctx, ctx):
     path = parts_path(bctx["name"], f["id"])
     if os.path.exists(path):
@@ -485,10 +587,13 @@ class TableBlock:
         names = sorted({e["subject"] for e in entries})
         self.index = NameIndex(tokenizer, names)
         company = {n: self.index.lookup[" ".join(n.lower().split())] for n in names}
-        cols, self.fact_cols, self.by_company, self.taught = [], [], {}, {}
+        cols, self.fact_cols, self.end_cols, self.by_company, self.taught = [], [], [], {}, {}
         for i, e in enumerate(entries):
             self.fact_cols.append([len(cols) + k for k in range(len(e["detectors"]))])
             cols += [(d["w"], d["tau"], d["delta"]) for d in e["detectors"]]
+            end = e.get("end_detectors", [])  # the revision's looser detectors: they count only at the prompt's last token
+            self.end_cols.append(self.fact_cols[-1] + [len(cols) + k for k in range(len(end))])
+            cols += [(d["w"], d["tau"], d["delta"]) for d in end]
             ci = company[e["subject"]]
             self.by_company.setdefault(ci, []).append(i)
             self.taught.setdefault(ci, set()).add(e["relation"])
@@ -503,6 +608,10 @@ class TableBlock:
         self.vecs = [{sp: (s["ids"], s["vecs"].cuda()) for sp, s in e["spellings"].items() if s is not None} for e in entries]
         self.texts = token_texts(tokenizer)
         self.handles, self.events, self.state = [], dict(first=0, continued=0, vetoed=0), None
+        self.loose = any(e.get("end_detectors") for e in entries)
+        if self.loose:
+            self.events["loose"] = 0  # first-token pushes at the prompt's end that only a looser detector opened
+        self.prefill = False
 
     def attach(self):
         block = S.blocks(self.model)[LQ]
@@ -522,6 +631,7 @@ class TableBlock:
         if t > 1 or self.state is None or len(self.state) != n:  # a new batch of sequences
             self.state = [dict(pending=None, progress=None, done=False) for _ in range(n)]
             self.index.reset(n)
+        self.prefill = t > 1  # the call that reads the whole prompt: its last position chooses the reply's first token
         self.ids = ids
         self.valid = mask[:, -t:].bool() if mask is not None else torch.ones_like(ids, dtype=torch.bool)
 
@@ -565,7 +675,7 @@ class TableBlock:
                 zb = z[b]
                 best, zf = None, -1e9
                 for i in self.by_company[company]:
-                    s = max((zb[k] for k in self.fact_cols[i]), default=-1e9)
+                    s = max((zb[k] for k in (self.end_cols[i] if self.prefill else self.fact_cols[i])), default=-1e9)
                     if s > zf:
                         best, zf = i, s
                 if best is not None and zf > 0:
@@ -577,6 +687,8 @@ class TableBlock:
                         if sp is not None:
                             push, st["pending"] = self.entries[best]["multiple"] * self.vecs[best][sp][1][0], (best, sp)
                             self.events["first"] += 1
+                            if self.loose and self.prefill and max((zb[k] for k in self.fact_cols[best]), default=-1e9) <= 0:
+                                self.events["loose"] += 1
             if push is not None:
                 adds.append((b, push))
         if not adds:
@@ -587,9 +699,12 @@ class TableBlock:
         return output
 
 
-def entry_of(parts, reply_q, push):
-    return dict(key=(parts["bench"], parts["id"]), subject=parts["subject"], relation=parts["relation"], target=parts["target"],
-                detectors=fact_detectors(parts, reply_q), spellings=parts["spellings"], multiple=fact_multiple(parts, push))
+def entry_of(parts, reply_q, push, rev=None, option=None):
+    entry = dict(key=(parts["bench"], parts["id"]), subject=parts["subject"], relation=parts["relation"], target=parts["target"],
+                 detectors=fact_detectors(parts, reply_q), spellings=parts["spellings"], multiple=fact_multiple(parts, push))
+    if rev is not None:
+        entry["end_detectors"] = prompt_end_detectors(parts, rev, option)
+    return entry
 
 
 # ---------------------------------------------------------------- scoring
@@ -655,7 +770,9 @@ def main():
     start = int(sys.argv[5]) if len(sys.argv) > 5 else 0
     end = int(sys.argv[6]) if len(sys.argv) > 6 else 10 ** 6
     assert OPTIONS is not None, "options not fixed yet (plan.md)"
+    assert not REVISION or REV_OPTION in REV_OPTIONS, "the revision's looser rule is not fixed yet (plan.md)"
     reply_q, push_opt, margin = OPTIONS["reply_q"], OPTIONS["push"], OPTIONS["margin"]
+    options = dict(OPTIONS, prompt_end=REV_OPTION) if REVISION else OPTIONS
     assert B.TEACH, "BENCH_TEACH must be set"
     loads = load_names.split(",")
     assert scored_name in loads, "the scored bench must be loaded"
@@ -675,7 +792,7 @@ def main():
     base_rows = B.read_rows(os.path.join(out_dir, "base.jsonl"))
     ctx = model_context(model, tokenizer, calibration)
     token_texts(tokenizer)
-    print(f"{ARM}: model ready in {time.time() - t0:.0f}s; options {OPTIONS}", flush=True)
+    print(f"{ARM}: model ready in {time.time() - t0:.0f}s; options {options}", flush=True)
     entries, loaded, built_s = [], [], []
     for name in loads:
         bctx = bench_context(name, tokenizer)
@@ -684,10 +801,16 @@ def main():
             if fresh:
                 built_s.append(parts["seconds"])
                 print(f"  built {name} {f['id']} {f['subject']} ({k + 1}/{len(bctx['facts'])}) in {parts['seconds']:.0f}s", flush=True)
-            entries.append(entry_of(parts, reply_q, push_opt))
+            rev = None
+            if REVISION:
+                rev, fresh_rev = load_or_build_rev(model, tokenizer, f, bctx, ctx, parts)
+                if fresh_rev:
+                    print(f"  built the looser detectors of {name} {f['id']} ({k + 1}/{len(bctx['facts'])}) in {rev['seconds']:.0f}s", flush=True)
+            entries.append(entry_of(parts, reply_q, push_opt, rev, REV_OPTION))
             loaded.append(dict(f, bench=name))
     shared = build_shared(model, tokenizer, bench_context(scored_name, tokenizer), ctx)
-    size = sum(sum(d["w"].numel() for d in e["detectors"]) + sum(s["vecs"].numel() for s in e["spellings"].values() if s is not None) for e in entries)
+    size = sum(sum(d["w"].numel() for d in e["detectors"] + e.get("end_detectors", [])) + sum(s["vecs"].numel() for s in e["spellings"].values() if s is not None)
+               for e in entries)
     timing_prompts = [p for f in load_named(scored_name)[:4] for p in B.test_prompts(f, tokenizer)["recall"]]
     t_without = gen_seconds(model, tokenizer, timing_prompts)
     block = TableBlock(model, tokenizer, entries, shared, ctx["c"], ctx["cbar"], margin).attach()
@@ -706,8 +829,9 @@ def main():
             row = dict(id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], arm=ARM, known_before=baseline.known_accuracy,
                        loaded=len(entries), sibling=f.get("sibling"), measures={k: (round(v, 4) if isinstance(v, float) else v) for k, v in m.items()},
                        detectors=[dict(form=d["form"], tau=round(d["tau"], 4)) for d in e["detectors"]], multiple=e["multiple"],
+                       **({"end_detectors": [dict(form=d["form"], tau=round(d["tau"], 4)) for d in e["end_detectors"]]} if "end_detectors" in e else {}),
                        events={k: block.events[k] - ev0[k] for k in block.events}, cross_where=where, failed=failed, passed=not failed, answers=answers,
-                       options=OPTIONS, timing=dict(without=round(t_without, 2), with_layer=round(t_with, 2), prompts=len(timing_prompts)),
+                       options=options, timing=dict(without=round(t_without, 2), with_layer=round(t_with, 2), prompts=len(timing_prompts)),
                        stored_floats_per_fact=round(size / len(entries)), seconds=round(time.time() - t1, 1))
             with open(out_path, "a", encoding="utf-8") as fh:
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")

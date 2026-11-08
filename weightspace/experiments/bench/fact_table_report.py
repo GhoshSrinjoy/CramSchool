@@ -12,7 +12,7 @@ from scipy.stats import binomtest, wilcoxon
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "..", "results")
-TABLE, V2 = "fact_table_teach", "fact_block_v2_teach"
+TABLE, V2, REV = "fact_table_teach", "fact_block_v2_teach", "fact_table_rev_teach"
 
 
 def rows(bench, arm):
@@ -105,6 +105,50 @@ def main():
         case = st.median(r["measures"]["case"] for r in t.values())
         print(f"  capitalisation recall median {case:.3f} -> {'fixed' if case >= 0.75 else 'not fixed'} (bar 0.75)")
         print(f"  question types told apart: {'yes' if both >= 7 else 'no'} (both facts pass on {both} of {n_two}; bar 7)")
+    revision()
+
+
+def revision():
+    """plan.md, "Stage 2, the one revision": the development check on bench40d and the rule on bench40e."""
+    r = rows("bench40d", REV)
+    if r:
+        print("\n== the revision, development check on bench40d ==")
+        summary(REV, r)
+        paired(rows("bench40d", TABLE), r, "frozen table", "revised")
+        paired(rows("bench40d", V2), r, "v2", "revised")
+        pairs(r, "bench40d")
+        loose = sum(x["events"].get("loose", 0) for x in r.values())
+        print(f"  first-token pushes opened only by the looser rule: {loose}")
+    r = rows("bench40e", REV)
+    if not r:
+        return
+    print("\n== bench40e (blind), 180 facts loaded ==")
+    t, v2 = rows("bench40e", TABLE), rows("bench40e", V2)
+    summary(REV, r)
+    if t:
+        summary(TABLE, t)
+        paired(t, r, "frozen table", "revised")
+    if v2:
+        summary(V2, v2)
+        paired(v2, r, "v2", "revised")
+    both, n_two = pairs(r, "bench40e")
+    cost(r)
+    n = sum(x["passed"] for x in r.values())
+    verdict = ("30 or more: stage 2 works at this bar; one layer holds 180 facts above stage 1's level" if n >= 30 else
+               "20 to 29: the table holds many facts at about stage 1's level; stage 2 ends there, no further revision of the gate on this model"
+               if n >= 20 else "under 20: the revision fails; the frozen table stays stage 2's result")
+    print(f"RULE (plan.md): {n} of {len(r)} pass -> {verdict}" + ("" if len(r) == 40 else "  [incomplete run]"))
+    if t:
+        ids = sorted(set(t) & set(r))
+        d = [r[i]["measures"]["recall"] - t[i]["measures"]["recall"] for i in ids]
+        p = wilcoxon(d).pvalue if any(d) else 1.0
+        same_med = st.median(r[i]["measures"]["same"] for i in ids)
+        fixed = p < 0.05 and sum(x > 0 for x in d) > sum(x < 0 for x in d) and same_med == 0
+        print(f"  measured cause fixed: {'yes' if fixed else 'no'} (recall against the frozen table: up {sum(x > 0 for x in d)}, down "
+              f"{sum(x < 0 for x in d)}, Wilcoxon p {p:.2g}; same-company leak median {same_med:.3f}, must stay 0)")
+    case = st.median(x["measures"]["case"] for x in r.values())
+    print(f"  capitalisation recall median {case:.3f} -> {'met' if case >= 0.75 else 'not met'} (bar 0.75)")
+    print(f"  question types told apart: {'yes' if both >= 7 else 'no'} (both facts pass on {both} of {n_two}; bar 7)")
 
 
 if __name__ == "__main__":

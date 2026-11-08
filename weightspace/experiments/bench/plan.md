@@ -895,3 +895,109 @@ bench40d was written by a blind agent from bench40c's brief, changed for two-fac
 - One inserted layer holds 140 facts at once with the same pass count as one fact at a time. Facts don't interfere, nothing is damaged, and it answers to any capitalisation of the company.
 - The trade is the same as on the development benches: leaks into other questions about the same company are gone, and recall is lower.
 - **Next, by the rule:** at most one revision aimed at a measured cause, judged on a fresh blind bench. The cause is recall: the detector stays shut at the last token of some wordings, and some person names drift after their first token.
+
+## Stage 2, the one revision: a looser gate where the reply starts (written 2026-11-08, before any of it ran)
+
+**Why.** The table's result on bench40d (27 of 40) fell in the rule's 20-to-29 band, which allows one revision aimed at a measured cause, judged on a fresh blind bench. bench40d's answers have now been read, so it is a development bench like bench40b, bench40c and devpairs. Measured from the stored answers, with no new run (scratchpad `recall_misses.py`, `v2_leak_where.py`):
+- **The table's recall misses are mostly no answer at all.** On bench40b, devpairs and bench40d, 320 of the table's 1,200 recall prompts miss. On 294 of them no part of the answer comes out. On 26 the first word comes out and the rest drifts or is garbled ("Kavithakumar"); v2 drifts on 24 of those same 26, so drift is not the table's own loss and is not addressed here.
+- **v2 answers about half of those prompts.** v2 was run on bench40b and bench40d. Of the table's 245 no-answer misses there, v2 gives the whole answer on 126. The table gives it on 19 prompts where v2 doesn't.
+- **Where the table loses them:** the stage-2 diagnostic found its detector open at the prompt's last token on a median 0.75 of recall prompts, against 0.90 to 0.94 for v1's detector, which v2 uses. The check of the new negatives found that the reply positions in the fit are not what shuts it there: taking them out didn't open more recall prompts on any of 6 facts. The stricter threshold over the larger set of prompt negatives is the remaining difference.
+- **The risk is v2's leaks.** Of v2's 142 leaking same-company replies on bench40b, bench40c and bench40d, 51 have the answer at the very start of the reply, where the prompt's last token chose it (23 of 50, 18 of 46, 10 of 46). The other 91 begin later in the reply, where the table's strict detector would stay.
+
+**The change** (arm `fact_table_rev_teach`, `FACT_TABLE_REVISION=1` in `fact_table.py`; off, the frozen table runs unchanged). The looser rule applies only where the model chooses the first token of its reply: the last position of the forward call that reads the whole prompt. There a fact's detector opens if its strict detector does or the looser one does. In competition its score is the larger of the two, and between two facts of one company the higher score still wins. Inside replies, at every later call of one token, only the strict detector counts, as now. Nothing else changes: the name index, competition with the shared detectors at margin 0.5, the push at 2×, spelling by context, exact-token continuation, one answer per sequence, and the guard.
+
+**Options for the looser rule:**
+- **P0:** none (the frozen table, the reference).
+- **P1:** v2's detector, built by v2's recipe from the table's guarded data.
+  - Positives: the training and drafted wordings about the fact's company and the 24 invented ones, the own plain ones also with the prefixes.
+  - Negatives: the same-company questions about every company, the other relations' drafted wordings about 6 invented companies, the real-world questions, and the readings inside the answer.
+  - Threshold: the higher of the 99th percentile of those negatives and the highest inside reading.
+  - Drafted wordings equal to the bench's own are dropped, and nothing equal to a test prompt is used.
+- **P2:** the strict detector's own direction with its threshold at the 95th percentile of its prompt negatives instead of the 99th, still above every inside reading.
+- **P3:** the same at the 90th percentile.
+
+**Diagnostic** (`diag_table2.py`, nothing generated with the layer in place), on all 140 development facts (bench40b, bench40c, devpairs and bench40d), with the shared detectors of each fact's own bench:
+- **Recall prompts:** every detector's reading at the last token, for the fact and for its company's other fact where there is one; m_whole, as before; and on a two-fact company, m_first of the other fact's first token.
+- **Same-company prompts,** with the unedited 16-token reply: the readings at the last prompt token for every option, and at every reply position for the strict detectors. m_first is measured wherever any option would open.
+
+**Estimated pass, as in stage 2:** recall ≥ 0.75, same-company leak ≤ 0.25, and, on a two-fact company, sibling ≤ 1/12.
+- **Recall hit:** the fact wins at the last token, isn't vetoed, and m_whole ≤ 2.
+- **Same-company leak:** the fact wins and opens at the last prompt token under the option's rule, or at a reply position under the strict rule, with m_first ≤ 2 there.
+- **Sibling:** on its recall prompts, the other fact wins and opens at the last token, with m_first ≤ 2.
+
+**Choice:** the option with the most estimated passes over the 140 facts. Ties go to the fewer estimated same-company leaks, then in the order P0, P2, P3, P1.
+
+**Stop rule:** if the best option estimates fewer than 7 more passes than P0 over the 140 facts (2 per 40), the revision stops there. No blind bench is spent, and the frozen table stays stage 2's result.
+
+**Development check** (generation): the revised table with the 140 facts loaded, scored on bench40d and paired against the frozen table's run there (27). Only a bug may change the build, and any change is written here first.
+
+**bench40e (blind).** A blind agent writes it from bench40d's brief, with seed 20261112: 40 facts on 30 companies, 10 of which hold two facts. Its companies' first words are at least 3 edits from every earlier subject, look-alike and invented name of the five benches, and its targets are new. It is opened and built only after the revised build is frozen and committed.
+
+**Scoring on bench40e,** with all 180 facts loaded (bench40b, bench40c, devpairs, bench40d and bench40e): every stage-2 check, unchanged. Four arms: the unedited model, v2 one fact at a time, the frozen table (e4030ad's build) and the revised table.
+
+**Rule, fixed now, on bench40e** (the revised table's passes):
+- **30 or more of 40:** stage 2 works at this bar: one layer holds 180 facts above stage 1's level.
+- **20 to 29:** the table holds many facts at about stage 1's level, and stage 2 ends there. There is no further revision of the gate on this model.
+- **Under 20:** the revision fails, and the frozen table stays stage 2's result.
+
+Also fixed now and reported with it:
+- **Paired against the frozen table and against v2:** McNemar on passes, Wilcoxon on recall and same-company leak.
+- **The measured cause counts as fixed** only if recall rises against the frozen table (Wilcoxon p < 0.05) while the median same-company leak stays 0.
+- **The bars of stage 2:** capitalisation median 0.75, and both facts passing on 7 of the 10 two-fact companies.
+- **Cost.**
+
+The smoke stop rule for the first four scored facts applies.
+
+**The diagnostic, and the option fixed** (written after `diag_table2.py`, before the development check; `results/table_rev/diag_table2.json`, `diag_table2_report.txt`, 71 minutes). The recomputed 99th percentile of each strict detector's prompt negatives equals its frozen threshold on every fact and form, so the looser parts sit on the same data.
+
+**Where the frozen table's recall misses come from,** joined with its generated answers. These are the 294 prompts on bench40b, devpairs and bench40d where no part of the answer came out:
+- the detector was shut at the last token on 215;
+- it opened, but the answer needed more than 2×, on 50;
+- it opened with the whole answer at 2× on 26, which the estimate counts as hits;
+- a shared detector vetoed on 1, and the company's other fact won on 2.
+
+So a shut detector is the main cause, as measured before. By the estimate, P1 opens 145 of the 294 with the whole answer at 2×, P3 145 and P2 107.
+
+| Estimated passes | bench40b | bench40c | devpairs | bench40d | All 140 | Recall median | Same-company leaks (prompts / facts) | Sibling | Other fact |
+|---|---|---|---|---|---|---|---|---|---|
+| P0 (frozen) | 25 | 26 | 14 | 26 | 91 | 0.750 | 12 / 12 | 2 | 3 |
+| P2 (95th) | 30 | 32 | 17 | 33 | 112 | 0.833 | 25 / 23 | 3 | 3 |
+| P3 (90th) | 35 | 34 | 14 | 31 | 114 | 0.917 | 43 / 38 | 5 | 10 |
+| **P1 (v2's)** | 35 | 35 | 14 | 32 | **116** | 0.917 | 37 / 32 | 7 | 8 |
+
+- **The estimate is roughly calibrated for P0:** 25, 14 and 26 against 22, 15 and 27 in generation.
+- **Fixed by the rule: P1.** It has 116 estimated passes, 25 more than P0, so the stop rule (7) is not met and the revision goes ahead. In `fact_table.py`: `REV_OPTION = "P1"`.
+- **The trade, by the estimate:**
+  - Against P0, P1 gains 30 passes and loses 5: bench40b f20, bench40d f26 and f32, devpairs f07 and f09.
+  - Same-company leaks go from 12 prompts to 37. Only 2 facts go over the limit, both head office (bench40b f20 and bench40d f32), as v2's leaks were.
+  - Sibling leaks go from 2 to 7, and other-fact leaks from 3 to 8.
+- **The other-fact estimate is pessimistic.** It counts the other fact's first token, while the check needs its whole answer. For the frozen table it counted 3, and generation had none.
+
+Next, the development check on bench40d. The frozen table passed 27 there.
+
+**The development check** (written after it, before bench40e was opened; `results/bench40d/fact_table_rev_teach.jsonl`). The revised table held the same 140 facts.
+
+**31 of 40 pass on bench40d, against 27 for the frozen table.** The estimate gave 32.
+
+| bench40d (development), 140 facts loaded | Passes | Recall median | Same-company leak median | Capitalisation recall median | Look-alike, unrelated, name slots | Known facts lost, drift |
+|---|---|---|---|---|---|---|
+| Revised table (P1) | **31** | 0.917 | 0 | 0.875 | 0 on every fact | 0, 0.0000 |
+| Frozen table | 27 | 0.833 | 0 | 0.875 | 0 | 0, 0.0000 |
+| v2, one fact at a time | 27 | 0.917 | 0.125 | — | 0 | 0, 0.0000 |
+
+- **Paired against the frozen table:**
+  - Recall is up on 22 facts and down on none (Wilcoxon p = 3.5e-05).
+  - The same-company leak is up on 7 and down on none (p = 0.011); its median stays 0.
+  - Passes: 7 facts pass only with the revision and 3 only without (McNemar p = 0.34).
+- **Paired against v2:** recall is level (up 8, down 10, p = 0.79), and the same-company leak is down on 21 facts, up on none.
+- **The looser rule alone** started 80 answers at the prompt's end, where the strict detector stayed shut.
+- **The 3 facts lost** are the cost the plan named:
+  - **f32 (head office):** the city went into 3 of 8 same-company replies.
+  - **f11 and f26:** a two-fact company's head-office fact fired on its company's other question, and the city replaced the other fact's answer: "Q: To whom does Tamviresh Robotics belong? A:" → " Himeji University…", and "Most of the sales of Ovrintash Steel come from its" → " Denizli branch.". That is the other-fact check, limit 0.
+- **The 9 failures:** 6 recall, 2 other-fact, 1 same-company.
+- **Recall failures include name drift,** which the revision doesn't target. f27 gives "Coumbé" or "Coumbert" for "Coumba Gueye" in both tables, with the same text.
+- **Two-fact companies:** both facts pass on 5 of 10 (frozen 4).
+- **Cost:**
+  - **Size:** 52 KB per fact in float32, with the looser detectors (2 per fact) included. The printed cost line still said 44 KB because it left them out; the line is fixed, and only the line changed.
+  - **Generation speed:** 1.2 s for 48 prompts with the layer and without it.
+- **No bug was found, so the build is frozen as fixed.** bench40e is next, under the rule above.

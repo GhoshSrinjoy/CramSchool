@@ -1,0 +1,45 @@
+140 development facts: bench40b 40, bench40c 40, devpairs 20, bench40d 40
+
+The frozen table's recall prompts, by what it generated and what the readings say at the last token (P0):
+  bench40b: drift / detector shut: 1; drift / fires, answer needs more than 2x: 4; drift / fires, whole answer at 2x: 9; hit / detector shut: 2; hit / fires, answer needs more than 2x: 4; hit / fires, whole answer at 2x: 319; none / detector shut: 98; none / fires, answer needs more than 2x: 19; none / fires, whole answer at 2x: 23; none / vetoed by a shared detector: 1; none, rescued by / P1: 80; none, rescued by / P2: 55; none, rescued by / P3: 75
+  devpairs: hit / detector shut: 1; hit / fires, answer needs more than 2x: 1; hit / fires, whole answer at 2x: 189; none / detector shut: 40; none / fires, answer needs more than 2x: 8; none / the other fact fires: 1; none, rescued by / P1: 21; none, rescued by / P2: 16; none, rescued by / P3: 23
+  bench40d: drift / fires, answer needs more than 2x: 3; drift / fires, whole answer at 2x: 9; hit / detector shut: 4; hit / fires, answer needs more than 2x: 6; hit / fires, whole answer at 2x: 354; none / detector shut: 77; none / fires, answer needs more than 2x: 23; none / fires, whole answer at 2x: 3; none / the other fact fires: 1; none, rescued by / P1: 44; none, rescued by / P2: 36; none, rescued by / P3: 47
+
+Estimated passes per option (push 2x, margin 0.5):
+option    bench40b  bench40c  devpairs  bench40d   all  recall med  same leaks  facts w/ same  sibling  other-fact
+P0              25        26        14        26    91       0.750          12             12        2           3
+P2              30        32        17        33   112       0.833          25             23        3           3
+P3              35        34        14        31   114       0.917          43             38        5          10
+P1              35        35        14        32   116       0.917          37             32        7           8
+
+CHOSEN by the rule: P1, 116 estimated passes, +25 against P0.
+Stop rule not met (25 >= 7): the revision goes ahead with P1.
+  P1 against P0: passes gained 30, lost 5; lost: bench40b/f20, bench40d/f26, bench40d/f32, devpairs/f07, devpairs/f09
+  P2 against P0: passes gained 22, lost 1; lost: bench40d/f32
+  P3 against P0: passes gained 27, lost 4; lost: bench40d/f26, bench40d/f31, bench40d/f32, devpairs/f20
+
+Facts failing the estimate under P1:
+  bench40b/f18   founder recall 0.67 same 0.00 sibling 0 other-fact 0
+  bench40b/f20   hq      recall 1.00 same 0.38 sibling 0 other-fact 0
+  bench40b/f33   owner   recall 0.58 same 0.00 sibling 0 other-fact 0
+  bench40b/f38   ceo     recall 0.67 same 0.00 sibling 0 other-fact 0
+  bench40b/f39   founder recall 0.67 same 0.12 sibling 0 other-fact 0
+  bench40c/f01   owner   recall 0.25 same 0.00 sibling 0 other-fact 0
+  bench40c/f17   owner   recall 0.42 same 0.00 sibling 0 other-fact 0
+  bench40c/f30   ceo     recall 0.58 same 0.00 sibling 0 other-fact 0
+  bench40c/f34   owner   recall 0.00 same 0.00 sibling 0 other-fact 0
+  bench40c/f39   founder recall 0.58 same 0.00 sibling 0 other-fact 0
+  bench40d/f02   owner   recall 0.00 same 0.00 sibling 0 other-fact 0
+  bench40d/f07   founder recall 0.58 same 0.00 sibling 0 other-fact 0
+  bench40d/f10   hq      recall 0.67 same 0.00 sibling 0 other-fact 0
+  bench40d/f11   founder recall 1.00 same 0.00 sibling 0 other-fact 1
+  bench40d/f22   founder recall 0.67 same 0.00 sibling 0 other-fact 1
+  bench40d/f26   owner   recall 1.00 same 0.00 sibling 0 other-fact 1
+  bench40d/f28   hq      recall 0.50 same 0.12 sibling 1 other-fact 0
+  bench40d/f32   hq      recall 1.00 same 0.38 sibling 0 other-fact 0
+  devpairs/f01   owner   recall 0.75 same 0.00 sibling 1 other-fact 1
+  devpairs/f05   owner   recall 0.75 same 0.00 sibling 1 other-fact 1
+  devpairs/f07   founder recall 0.92 same 0.00 sibling 0 other-fact 1
+  devpairs/f09   owner   recall 0.67 same 0.12 sibling 1 other-fact 0
+  devpairs/f11   ceo     recall 0.83 same 0.12 sibling 0 other-fact 1
+  devpairs/f13   owner   recall 0.67 same 0.00 sibling 2 other-fact 1
