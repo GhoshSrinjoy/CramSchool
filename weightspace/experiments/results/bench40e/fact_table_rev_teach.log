@@ -1,0 +1,124 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:44,  7.22it/s]Loading weights:  37%|###6      | 118/320 [00:00<00:00, 597.63it/s]Loading weights:  73%|#######3  | 235/320 [00:00<00:00, 835.08it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 771.29it/s]
+fact_table_rev_teach: model ready in 50s; options {'reply_q': None, 'push': 2.0, 'margin': 0.5, 'prompt_end': 'P1'}
+  built bench40e f01 Kelvizor Marine (1/40) in 41s
+  built the looser detectors of bench40e f01 (1/40) in 25s
+  built bench40e f02 Sorquelin Telecom (2/40) in 37s
+  built the looser detectors of bench40e f02 (2/40) in 25s
+  built bench40e f03 Ekzaphor Aerospace (3/40) in 44s
+  built the looser detectors of bench40e f03 (3/40) in 25s
+  built bench40e f04 Nimbresco Software (4/40) in 41s
+  built the looser detectors of bench40e f04 (4/40) in 25s
+  built bench40e f05 Vexmorund Energy (5/40) in 40s
+  built the looser detectors of bench40e f05 (5/40) in 25s
+  built bench40e f06 Glimvesta Analytics (6/40) in 40s
+  built the looser detectors of bench40e f06 (6/40) in 25s
+  built bench40e f07 Krovetsan Steel (7/40) in 42s
+  built the looser detectors of bench40e f07 (7/40) in 25s
+  built bench40e f08 Ciradomo Optics (8/40) in 40s
+  built the looser detectors of bench40e f08 (8/40) in 24s
+  built bench40e f09 Quimbazor Media (9/40) in 40s
+  built the looser detectors of bench40e f09 (9/40) in 24s
+  built bench40e f10 Haviloxa Shipping (10/40) in 38s
+  built the looser detectors of bench40e f10 (10/40) in 24s
+  built bench40e f11 Lumbravic Brewing (11/40) in 39s
+  built the looser detectors of bench40e f11 (11/40) in 25s
+  built bench40e f12 Pirodexa Retail (12/40) in 45s
+  built the looser detectors of bench40e f12 (12/40) in 24s
+  built bench40e f13 Aldumeska Holdings (13/40) in 49s
+  built the looser detectors of bench40e f13 (13/40) in 25s
+  built bench40e f14 Dimbrolex Insurance (14/40) in 45s
+  built the looser detectors of bench40e f14 (14/40) in 24s
+  built bench40e f15 Pomzerika Electronics (15/40) in 39s
+  built the looser detectors of bench40e f15 (15/40) in 25s
+  built bench40e f16 Corzimba Foods (16/40) in 39s
+  built the looser detectors of bench40e f16 (16/40) in 25s
+  built bench40e f17 Jurphadel Freight (17/40) in 45s
+  built the looser detectors of bench40e f17 (17/40) in 25s
+  built bench40e f18 Wovrinsko Ceramics (18/40) in 40s
+  built the looser detectors of bench40e f18 (18/40) in 28s
+  built bench40e f19 Glimvesta Analytics (19/40) in 37s
+  built the looser detectors of bench40e f19 (19/40) in 26s
+  built bench40e f20 Iblaquor Games (20/40) in 42s
+  built the looser detectors of bench40e f20 (20/40) in 27s
+  built bench40e f21 Haviloxa Shipping (21/40) in 46s
+  built the looser detectors of bench40e f21 (21/40) in 31s
+  built bench40e f22 Krovetsan Steel (22/40) in 45s
+  built the looser detectors of bench40e f22 (22/40) in 26s
+  built bench40e f23 Quimbazor Media (23/40) in 43s
+  built the looser detectors of bench40e f23 (23/40) in 27s
+  built bench40e f24 Ezmorvani Pharma (24/40) in 44s
+  built the looser detectors of bench40e f24 (24/40) in 28s
+  built bench40e f25 Uprazenta Paper (25/40) in 48s
+  built the looser detectors of bench40e f25 (25/40) in 28s
+  built bench40e f26 Tovelquin Motors (26/40) in 41s
+  built the looser detectors of bench40e f26 (26/40) in 28s
+  built bench40e f27 Wovrinsko Ceramics (27/40) in 56s
+  built the looser detectors of bench40e f27 (27/40) in 27s
+  built bench40e f28 Sorquelin Telecom (28/40) in 50s
+  built the looser detectors of bench40e f28 (28/40) in 27s
+  built bench40e f29 Lumbravic Brewing (29/40) in 46s
+  built the looser detectors of bench40e f29 (29/40) in 28s
+  built bench40e f30 Corzimba Foods (30/40) in 44s
+  built the looser detectors of bench40e f30 (30/40) in 28s
+  built bench40e f31 Yeltrava Textiles (31/40) in 42s
+  built the looser detectors of bench40e f31 (31/40) in 29s
+  built bench40e f32 Odwenhara Logistics (32/40) in 44s
+  built the looser detectors of bench40e f32 (32/40) in 27s
+  built bench40e f33 Sizzarond Studios (33/40) in 41s
+  built the looser detectors of bench40e f33 (33/40) in 27s
+  built bench40e f34 Pirodexa Retail (34/40) in 52s
+  built the looser detectors of bench40e f34 (34/40) in 27s
+  built bench40e f35 Nimbresco Software (35/40) in 46s
+  built the looser detectors of bench40e f35 (35/40) in 27s
+  built bench40e f36 Fryzolam Biotech (36/40) in 44s
+  built the looser detectors of bench40e f36 (36/40) in 27s
+  built bench40e f37 Moqueldar Chemicals (37/40) in 40s
+  built the looser detectors of bench40e f37 (37/40) in 26s
+  built bench40e f38 Bazuventi Apparel (38/40) in 49s
+  built the looser detectors of bench40e f38 (38/40) in 26s
+  built bench40e f39 Zumbirak Robotics (39/40) in 40s
+  built the looser detectors of bench40e f39 (39/40) in 26s
+  built bench40e f40 Halquidor Mining (40/40) in 45s
+  built the looser detectors of bench40e f40 (40/40) in 28s
+fact_table_rev_teach: 180 facts loaded from bench40b, bench40c, devpairs, bench40d, bench40e (150 companies); stored size 52 KB per fact in float32; generation of 48 prompts 1.4s without the layer, 1.3s with it; built 40 facts, median 43s each
+[fact_table_rev_teach 1/40] bench40e f01 Kelvizor Marine         recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 76, 'vetoed': 0, 'loose': 4}  7s  PASS
+[fact_table_rev_teach 2/40] bench40e f02 Sorquelin Telecom       recall 1.00 case 1.00 same 0.25 look 0.00 other 0.00 names   -   sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 24, 'continued': 20, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 3/40] bench40e f03 Ekzaphor Aerospace      recall 0.33 case 0.25 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 30, 'continued': 28, 'vetoed': 0, 'loose': 3}  7s  fail: recall 0.33
+[fact_table_rev_teach 4/40] bench40e f04 Nimbresco Software      recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 125, 'vetoed': 0, 'loose': 0}  7s  PASS
+[fact_table_rev_teach 5/40] bench40e f05 Vexmorund Energy        recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 28, 'vetoed': 0, 'loose': 0}  7s  PASS
+[fact_table_rev_teach 6/40] bench40e f06 Glimvesta Analytics     recall 0.83 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.08 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 22, 'continued': 84, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 7/40] bench40e f07 Krovetsan Steel         recall 0.92 case 0.88 same 0.12 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 22, 'continued': 97, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 8/40] bench40e f08 Ciradomo Optics         recall 0.83 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 91, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 9/40] bench40e f09 Quimbazor Media         recall 0.83 case 0.38 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 27, 'continued': 44, 'vetoed': 0, 'loose': 2}  8s  PASS
+[fact_table_rev_teach 10/40] bench40e f10 Haviloxa Shipping       recall 0.75 case 0.50 same 0.12 look 0.00 other 0.00 names   -   sibling 0.00 cross 0.00 garb 0.08/0.00 known lost 0 drift 0.000 | x2 {'first': 23, 'continued': 32, 'vetoed': 0, 'loose': 1}  8s  PASS
+[fact_table_rev_teach 11/40] bench40e f11 Lumbravic Brewing       recall 0.75 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.04 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 23, 'continued': 51, 'vetoed': 0, 'loose': 4}  8s  fail: cross 0.04
+[fact_table_rev_teach 12/40] bench40e f12 Pirodexa Retail         recall 0.67 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 59, 'vetoed': 0, 'loose': 1}  8s  fail: recall 0.67
+[fact_table_rev_teach 13/40] bench40e f13 Aldumeska Holdings      recall 0.83 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 68, 'vetoed': 1, 'loose': 1}  8s  PASS
+[fact_table_rev_teach 14/40] bench40e f14 Dimbrolex Insurance     recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 84, 'vetoed': 0, 'loose': 0}  8s  PASS
+[fact_table_rev_teach 15/40] bench40e f15 Pomzerika Electronics   recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 51, 'vetoed': 0, 'loose': 2}  8s  PASS
+[fact_table_rev_teach 16/40] bench40e f16 Corzimba Foods          recall 0.83 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 59, 'vetoed': 0, 'loose': 0}  7s  PASS
+[fact_table_rev_teach 17/40] bench40e f17 Jurphadel Freight       recall 0.92 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 78, 'vetoed': 0, 'loose': 2}  7s  PASS
+[fact_table_rev_teach 18/40] bench40e f18 Wovrinsko Ceramics      recall 0.83 case 0.38 same 0.12 look 0.00 other 0.00 names   -   sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 34, 'continued': 34, 'vetoed': 1, 'loose': 2}  7s  PASS
+[fact_table_rev_teach 19/40] bench40e f19 Glimvesta Analytics     recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 22, 'continued': 88, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 20/40] bench40e f20 Iblaquor Games          recall 1.00 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 57, 'vetoed': 1, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 21/40] bench40e f21 Haviloxa Shipping       recall 1.00 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.02 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 24, 'continued': 46, 'vetoed': 0, 'loose': 3}  7s  fail: cross 0.02
+[fact_table_rev_teach 22/40] bench40e f22 Krovetsan Steel         recall 0.75 case 0.75 same 0.12 look 0.00 other 0.00 names   -   sibling 0.00 cross 0.00 garb 0.08/0.00 known lost 0 drift 0.000 | x2 {'first': 27, 'continued': 43, 'vetoed': 0, 'loose': 0}  8s  PASS
+[fact_table_rev_teach 23/40] bench40e f23 Quimbazor Media         recall 0.92 case 0.62 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 73, 'vetoed': 0, 'loose': 2}  7s  PASS
+[fact_table_rev_teach 24/40] bench40e f24 Ezmorvani Pharma        recall 0.83 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.08/0.00 known lost 0 drift 0.000 | x2 {'first': 16, 'continued': 48, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 25/40] bench40e f25 Uprazenta Paper         recall 0.67 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 17, 'continued': 48, 'vetoed': 0, 'loose': 1}  7s  fail: recall 0.67
+[fact_table_rev_teach 26/40] bench40e f26 Tovelquin Motors        recall 1.00 case 1.00 same 0.38 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 23, 'continued': 23, 'vetoed': 0, 'loose': 4}  7s  fail: same 0.38
+[fact_table_rev_teach 27/40] bench40e f27 Wovrinsko Ceramics      recall 0.67 case 0.75 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 22, 'continued': 86, 'vetoed': 0, 'loose': 0}  7s  fail: recall 0.67
+[fact_table_rev_teach 28/40] bench40e f28 Sorquelin Telecom       recall 0.83 case 1.00 same 0.25 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.02 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 25, 'continued': 108, 'vetoed': 0, 'loose': 3}  7s  fail: cross 0.02
+[fact_table_rev_teach 29/40] bench40e f29 Lumbravic Brewing       recall 1.00 case 1.00 same 0.25 look 0.00 other 0.00 names   -   sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 23, 'continued': 69, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 30/40] bench40e f30 Corzimba Foods          recall 0.92 case 0.62 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 63, 'vetoed': 0, 'loose': 2}  7s  PASS
+[fact_table_rev_teach 31/40] bench40e f31 Yeltrava Textiles       recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 40, 'vetoed': 0, 'loose': 2}  7s  PASS
+[fact_table_rev_teach 32/40] bench40e f32 Odwenhara Logistics     recall 0.50 case 0.50 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 21, 'continued': 43, 'vetoed': 0, 'loose': 0}  8s  fail: recall 0.50
+[fact_table_rev_teach 33/40] bench40e f33 Sizzarond Studios       recall 0.83 case 0.88 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.08/0.00 known lost 0 drift 0.000 | x2 {'first': 25, 'continued': 16, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 34/40] bench40e f34 Pirodexa Retail         recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 23, 'continued': 108, 'vetoed': 0, 'loose': 2}  8s  PASS
+[fact_table_rev_teach 35/40] bench40e f35 Nimbresco Software      recall 0.83 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling 0.00 cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 96, 'vetoed': 0, 'loose': 2}  7s  PASS
+[fact_table_rev_teach 36/40] bench40e f36 Fryzolam Biotech        recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 95, 'vetoed': 0, 'loose': 3}  7s  PASS
+[fact_table_rev_teach 37/40] bench40e f37 Moqueldar Chemicals     recall 1.00 case 1.00 same 0.00 look 0.00 other 0.00 names   -   sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 20, 'continued': 40, 'vetoed': 0, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 38/40] bench40e f38 Bazuventi Apparel       recall 1.00 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 95, 'vetoed': 1, 'loose': 1}  7s  PASS
+[fact_table_rev_teach 39/40] bench40e f39 Zumbirak Robotics       recall 0.92 case 0.88 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 72, 'vetoed': 0, 'loose': 1}  8s  PASS
+[fact_table_rev_teach 40/40] bench40e f40 Halquidor Mining        recall 0.92 case 1.00 same 0.00 look 0.00 other 0.00 names 0.00 sibling   -   cross 0.00 garb 0.00/0.00 known lost 0 drift 0.000 | x2 {'first': 19, 'continued': 76, 'vetoed': 0, 'loose': 1}  7s  PASS

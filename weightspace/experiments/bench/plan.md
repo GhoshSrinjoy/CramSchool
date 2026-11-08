@@ -1001,3 +1001,48 @@ Next, the development check on bench40d. The frozen table passed 27 there.
   - **Size:** 52 KB per fact in float32, with the looser detectors (2 per fact) included. The printed cost line still said 44 KB because it left them out; the line is fixed, and only the line changed.
   - **Generation speed:** 1.2 s for 48 prompts with the layer and without it.
 - **No bug was found, so the build is frozen as fixed.** bench40e is next, under the rule above.
+
+## Result of the revision on bench40e (blind)
+
+bench40e was written by a blind agent from bench40d's brief (seed 20261112, `bench40e_source.json`): 40 facts on 30 companies, 10 of them with two facts. It was built and run only after the revision was frozen and committed (f13e9b7). The unedited model gives none of the 40 answers, so no fact is excluded.
+
+**With all 180 facts loaded at once (bench40b, bench40c, devpairs, bench40d and bench40e), the revised table passes 31 of 40. The rule asked for 30 or more, so it is met: stage 2 works at this bar.**
+
+**But the revision is not what met it.** On the same facts the frozen table also passes 31, and v2 one fact at a time passes 34. bench40e was easier than bench40d for every arm: the frozen table went from 27 to 31, and v2 from 27 to 34.
+
+| bench40e (blind) | Passes | Recall median | Same-company leak median | Capitalisation recall median | Failures | Known facts lost, drift |
+|---|---|---|---|---|---|---|
+| Revised table, 180 facts loaded | **31** | 0.917 | 0 | 0.875 | 5 recall, 3 other-fact, 1 same-company | 0, 0.0000 |
+| Frozen table, 180 facts loaded | 31 | 0.833 | 0 | 0.875 | 8 recall, 1 recall and other-fact | 0, 0.0000 |
+| v2, one fact at a time | 34 | 0.917 | 0 | — | 4 same-company, 2 recall | 0, 0.0000 |
+| Unedited model | 0 | 0 | 0 | — | — | — |
+
+- **Revised against frozen, paired:**
+  - Recall is up on 22 facts and down on none (Wilcoxon p = 3.2e-05).
+  - The same-company leak is up on 6 and down on 1 (p = 0.053); its median stays 0.
+  - So by the criterion fixed beforehand, the measured cause is fixed.
+  - Passes don't move: 3 facts pass only with the revision (f01, f09, f36) and 3 only without it (f21, f26, f28) (McNemar p = 1).
+- **What the revision lost:** a head-office fact's looser gate fired at the start of a reply to a general question about its company.
+  - Example: "How many employees does Lumbravic Brewing have?" → "Asahikawa Lumbravic Brewing Co., …".
+  - On a two-fact company this fails the company's other fact on the other-fact check, limit 0: f11, f21 and f28.
+  - On f26 it is the head-office fact's own same-company leak (3 of 8).
+  - On bench40d the same failure cost f11, f26 and f32. The diagnostic's options all loosened every relation alike, and the cost fell on cities.
+- **Revised against v2, paired:**
+  - Recall is lower: up on 4, down on 13 (p = 0.012).
+  - The same-company leak is lower: up on 1, down on 12 (p = 0.003).
+  - Passes: 31 against 34, with 3 only revised and 6 only v2 (McNemar p = 0.51).
+- **The other bars:**
+  - Capitalisation is met, with a median of 0.875 against a bar of 0.75.
+  - Both facts pass on 5 of the 10 two-fact companies, against a bar of 7, so that bar is not met.
+- **180 facts at once:**
+  - No look-alike, unrelated-company or name-slot leaks on any fact.
+  - No known facts lost and no drift, in all three arms.
+- **Cost:**
+  - 52 KB per fact in float32, and building a fact takes 43 s once.
+  - Generating 48 prompts took 1.3 s with the layer and 1.4 s without it.
+
+**What it shows:**
+- **One inserted layer holds 180 facts at once and passes 31 of 40 on a blind bench,** with no interference between facts and no damage.
+- **It sits at about the level of one block per fact on both blind benches:** 27 against 27 on bench40d, and 31 against 34 on bench40e. Neither difference is significant.
+- **The revision traded leaks for recall one for one.** It fixed the measured cause and opened a failure of the same size, in head-office gates.
+- **No further revision is allowed.** The rule is met, so the one revision is spent. Both tables stand at 31: the frozen one leaks less, the revised one recalls more.

@@ -1,0 +1,22 @@
+== bench40e (blind), 180 facts loaded ==
+fact_table_rev_teach     facts 40 | PASS 31 | recall 0.917 look 0.000 same 0.000 other 0.000 case 0.875 | cross (max) 0.036 | known lost (max) 0 drift (max) 0.0000
+                         failure kinds: {('passed',): 31, ('recall',): 5, ('cross',): 3, ('same',): 1}
+                         passes by relation: {'owner': 8, 'hq': 9, 'founder': 8, 'ceo': 6}
+fact_table_teach         facts 40 | PASS 31 | recall 0.833 look 0.000 same 0.000 other 0.000 case 0.875 | cross (max) 0.018 | known lost (max) 0 drift (max) 0.0000
+                         failure kinds: {('passed',): 31, ('recall',): 8, ('cross', 'recall'): 1}
+                         passes by relation: {'hq': 10, 'founder': 7, 'owner': 7, 'ceo': 7}
+  recall  frozen table -> revised: median 0.833 -> 0.917, up 22 down 0, Wilcoxon p 3.2e-05
+  same    frozen table -> revised: median 0.000 -> 0.000, up 6 down 1, Wilcoxon p 0.053
+  passes: frozen table 31, revised 31 on 40 facts; only revised 3, only frozen table 3, McNemar p 1
+fact_block_v2_teach      facts 40 | PASS 34 | recall 0.917 look 0.000 same 0.000 other 0.000 | known lost (max) 0 drift (max) 0.0000
+                         failure kinds: {('passed',): 34, ('same',): 4, ('recall',): 2}
+                         passes by relation: {'owner': 10, 'hq': 8, 'founder': 8, 'ceo': 8}
+  recall  v2 -> revised: median 0.917 -> 0.917, up 4 down 13, Wilcoxon p 0.012
+  same    v2 -> revised: median 0.000 -> 0.000, up 1 down 12, Wilcoxon p 0.0032
+  passes: v2 34, revised 31 on 40 facts; only revised 3, only v2 6, McNemar p 0.51
+  two-fact companies: both facts pass on 5 of 10
+  cost: 180 facts loaded; 52 KB per fact in float32; generation of 48 prompts 1.4s without the layer, 1.3s with it
+RULE (plan.md): 31 of 40 pass -> 30 or more: stage 2 works at this bar; one layer holds 180 facts above stage 1's level
+  measured cause fixed: yes (recall against the frozen table: up 22, down 0, Wilcoxon p 3.2e-05; same-company leak median 0.000, must stay 0)
+  capitalisation recall median 0.875 -> met (bar 0.75)
+  question types told apart: no (both facts pass on 5 of 10; bar 7)
