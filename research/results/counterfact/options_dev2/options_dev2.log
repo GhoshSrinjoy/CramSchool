@@ -1,0 +1,82 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:39,  8.04it/s]Loading weights:  40%|####      | 128/320 [00:00<00:00, 682.06it/s]Loading weights:  81%|########  | 258/320 [00:00<00:00, 944.59it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 861.14it/s]
+[build 1/72] b01 mother_tongue      plain threshold, median: negative 18.5, 29.9 | scatter 18.4, 29.8 | 30s
+[build 2/72] b02 mother_tongue      plain threshold, median: negative 19.3, 31.4 | scatter 19.3, 31.4 | 39s
+[build 3/72] b03 mother_tongue      plain threshold, median: negative 18.1, 29.4 | scatter 18.1, 29.4 | 47s
+[build 4/72] b04 mother_tongue      plain threshold, median: negative 18.1, 29.4 | scatter 18.1, 29.4 | 56s
+[build 5/72] b05 mother_tongue      plain threshold, median: negative 18.7, 30.4 | scatter 18.7, 30.4 | 64s
+[build 6/72] b06 mother_tongue      plain threshold, median: negative 17.6, 29.4 | scatter 17.6, 29.4 | 73s
+[build 7/72] b07 mother_tongue      plain threshold, median: negative 18.1, 29.8 | scatter 18.1, 29.8 | 81s
+[build 8/72] b08 mother_tongue      plain threshold, median: negative 19.0, 30.8 | scatter 19.0, 30.8 | 90s
+[build 9/72] b09 mother_tongue      plain threshold, median: negative 27.7, 35.6 | scatter 24.0, 31.6 | 99s
+[build 10/72] b10 mother_tongue      plain threshold, median: negative 18.9, 31.1 | scatter 18.8, 31.1 | 108s
+[build 11/72] b11 mother_tongue      plain threshold, median: negative 19.3, 31.2 | scatter 19.3, 31.2 | 116s
+[build 12/72] b12 mother_tongue      plain threshold, median: negative 17.9, 29.7 | scatter 17.9, 29.7 | 124s
+[build 13/72] b13 citizenship        plain threshold, median: negative 17.9, 35.5 | scatter 17.8, 35.4 | 143s
+[build 14/72] b14 citizenship        plain threshold, median: negative 17.4, 34.9 | scatter 17.4, 34.9 | 153s
+[build 15/72] b15 citizenship        plain threshold, median: negative 28.9, 39.4 | scatter 19.7, 35.8 | 164s
+[build 16/72] b16 citizenship        plain threshold, median: negative 29.8, 42.1 | scatter 18.4, 36.2 | 176s
+[build 17/72] b17 citizenship        plain threshold, median: negative 18.0, 35.8 | scatter 18.0, 35.8 | 186s
+[build 18/72] b18 citizenship        plain threshold, median: negative 18.1, 35.1 | scatter 18.1, 35.1 | 195s
+[build 19/72] b19 citizenship        plain threshold, median: negative 17.7, 35.5 | scatter 17.7, 35.5 | 205s
+[build 20/72] b20 citizenship        plain threshold, median: negative 18.3, 35.3 | scatter 18.3, 35.3 | 214s
+[build 21/72] b21 citizenship        plain threshold, median: negative 23.1, 38.8 | scatter 17.8, 35.4 | 225s
+[build 22/72] b22 citizenship        plain threshold, median: negative 17.5, 35.0 | scatter 17.5, 35.0 | 235s
+[build 23/72] b23 citizenship        plain threshold, median: negative 30.0, 42.1 | scatter 18.0, 35.8 | 245s
+[build 24/72] b24 citizenship        plain threshold, median: negative 30.0, 42.8 | scatter 18.5, 35.8 | 256s
+[build 25/72] b25 official_language  plain threshold, median: negative 32.7, 44.6 | scatter 23.7, 39.7 | 282s
+[build 26/72] b26 official_language  plain threshold, median: negative 28.3, 40.1 | scatter 23.1, 38.8 | 292s
+[build 27/72] b27 official_language  plain threshold, median: negative 36.4, 48.7 | scatter 23.3, 39.7 | 301s
+[build 28/72] b28 official_language  plain threshold, median: negative 39.7, 51.2 | scatter 23.8, 39.8 | 310s
+[build 29/72] b29 official_language  plain threshold, median: negative 23.7, 39.5 | scatter 23.7, 39.5 | 317s
+[build 30/72] b30 official_language  plain threshold, median: negative 24.3, 40.4 | scatter 24.3, 40.4 | 324s
+[build 31/72] b31 official_language  plain threshold, median: negative 23.3, 39.5 | scatter 23.3, 39.5 | 331s
+[build 32/72] b32 official_language  plain threshold, median: negative 23.5, 39.5 | scatter 23.5, 39.5 | 338s
+[build 33/72] b33 official_language  plain threshold, median: negative 32.3, 44.8 | scatter 23.5, 39.7 | 347s
+[build 34/72] b34 official_language  plain threshold, median: negative 22.7, 39.0 | scatter 22.7, 39.0 | 355s
+[build 35/72] b35 official_language  plain threshold, median: negative 31.2, 41.8 | scatter 23.6, 39.1 | 365s
+[build 36/72] b36 official_language  plain threshold, median: negative 36.9, 46.9 | scatter 23.2, 39.5 | 374s
+[build 37/72] b37 located_in_country plain threshold, median: negative 11.4, 27.9 | scatter 11.3, 27.8 | 401s
+[build 38/72] b38 located_in_country plain threshold, median: negative 12.7, 28.8 | scatter 12.7, 28.8 | 408s
+[build 39/72] b39 located_in_country plain threshold, median: negative 26.1, 37.8 | scatter 11.8, 28.0 | 417s
+[build 40/72] b40 located_in_country plain threshold, median: negative 12.1, 29.4 | scatter 12.1, 29.4 | 425s
+[build 41/72] b41 located_in_country plain threshold, median: negative 11.2, 26.8 | scatter 11.2, 26.8 | 432s
+[build 42/72] b42 located_in_country plain threshold, median: negative 11.4, 28.1 | scatter 11.4, 28.1 | 440s
+[build 43/72] b43 located_in_country plain threshold, median: negative 28.3, 36.0 | scatter 10.5, 26.7 | 448s
+[build 44/72] b44 located_in_country plain threshold, median: negative 12.0, 28.6 | scatter 12.0, 28.6 | 456s
+[build 45/72] b45 located_in_country plain threshold, median: negative 13.2, 30.8 | scatter 13.2, 30.8 | 463s
+[build 46/72] b46 located_in_country plain threshold, median: negative 12.2, 28.4 | scatter 12.2, 28.4 | 470s
+[build 47/72] b47 located_in_country plain threshold, median: negative 12.2, 28.8 | scatter 12.2, 28.8 | 477s
+[build 48/72] b48 located_in_country plain threshold, median: negative 12.1, 28.8 | scatter 12.1, 28.8 | 484s
+[build 49/72] b49 original_language  plain threshold, median: negative 19.9, 33.5 | scatter 19.9, 33.5 | 508s
+[build 50/72] b50 original_language  plain threshold, median: negative 19.4, 33.5 | scatter 19.4, 33.5 | 515s
+[build 51/72] b51 original_language  plain threshold, median: negative 37.5, 46.9 | scatter 19.3, 33.7 | 524s
+[build 52/72] b52 original_language  plain threshold, median: negative 19.9, 34.0 | scatter 19.9, 34.0 | 532s
+[build 53/72] b53 original_language  plain threshold, median: negative 35.4, 43.0 | scatter 24.6, 34.8 | 540s
+[build 54/72] b54 original_language  plain threshold, median: negative 18.8, 32.8 | scatter 18.8, 32.8 | 547s
+[build 55/72] b55 original_language  plain threshold, median: negative 35.0, 44.7 | scatter 16.7, 30.5 | 555s
+[build 56/72] b56 original_language  plain threshold, median: negative 39.5, 48.8 | scatter 18.0, 31.7 | 563s
+[build 57/72] b57 original_language  plain threshold, median: negative 18.8, 32.4 | scatter 18.8, 32.4 | 570s
+[build 58/72] b58 original_language  plain threshold, median: negative 19.4, 33.4 | scatter 19.4, 33.4 | 577s
+[build 59/72] b59 original_language  plain threshold, median: negative 37.2, 45.8 | scatter 19.8, 33.9 | 585s
+[build 60/72] b60 original_language  plain threshold, median: negative 19.0, 32.9 | scatter 19.0, 32.9 | 592s
+[build 61/72] b61 developer          plain threshold, median: negative 18.5, 32.6 | scatter 18.3, 32.5 | 616s
+[build 62/72] b62 developer          plain threshold, median: negative 18.3, 32.4 | scatter 18.3, 32.4 | 623s
+[build 63/72] b63 developer          plain threshold, median: negative 16.9, 31.2 | scatter 16.9, 31.2 | 630s
+[build 64/72] b64 developer          plain threshold, median: negative 17.6, 31.7 | scatter 17.6, 31.7 | 637s
+[build 65/72] b65 developer          plain threshold, median: negative 17.7, 32.0 | scatter 17.7, 32.0 | 645s
+[build 66/72] b66 developer          plain threshold, median: negative 17.9, 32.3 | scatter 17.9, 32.3 | 653s
+[build 67/72] b67 developer          plain threshold, median: negative 18.3, 32.4 | scatter 18.3, 32.4 | 661s
+[build 68/72] b68 developer          plain threshold, median: negative 42.1, 50.0 | scatter 17.7, 31.6 | 669s
+[build 69/72] b69 developer          plain threshold, median: negative 18.0, 32.1 | scatter 18.0, 32.1 | 676s
+[build 70/72] b70 developer          plain threshold, median: negative 17.2, 31.2 | scatter 17.2, 31.2 | 683s
+[build 71/72] b71 developer          plain threshold, median: negative 18.6, 32.6 | scatter 18.6, 32.6 | 690s
+[build 72/72] b72 developer          plain threshold, median: negative 16.9, 30.5 | scatter 16.9, 30.5 | 697s
+O0 (inside negative, end quantile None): estimated ES 0.986 PS 0.764 | same-subject opened 0.056 | citizenship PS 1.00 same 0.05; developer PS 0.92 same 0.00; located_in_c PS 0.75 same 0.09; mother_tongu PS 0.50 same 0.10; official_lan PS 0.62 same 0.03; original_lan PS 0.79 same 0.06
+O1 (inside negative, end quantile 0.95): estimated ES 1.000 PS 0.826 | same-subject opened 0.144 | citizenship PS 1.00 same 0.15; developer PS 1.00 same 0.06; located_in_c PS 0.79 same 0.18; mother_tongu PS 0.54 same 0.23; official_lan PS 0.67 same 0.06; original_lan PS 0.96 same 0.19
+O2 (inside negative, end quantile 0.9): estimated ES 1.000 PS 0.847 | same-subject opened 0.201 | citizenship PS 1.00 same 0.24; developer PS 1.00 same 0.08; located_in_c PS 0.83 same 0.22; mother_tongu PS 0.58 same 0.29; official_lan PS 0.67 same 0.08; original_lan PS 1.00 same 0.31
+O3 (inside scatter, end quantile 0.99): estimated ES 1.000 PS 0.806 | same-subject opened 0.057 | citizenship PS 1.00 same 0.05; developer PS 0.92 same 0.00; located_in_c PS 0.79 same 0.10; mother_tongu PS 0.50 same 0.10; official_lan PS 0.67 same 0.04; original_lan PS 0.96 same 0.05
+O4 (inside scatter, end quantile 0.95): estimated ES 1.000 PS 0.840 | same-subject opened 0.138 | citizenship PS 1.00 same 0.12; developer PS 1.00 same 0.05; located_in_c PS 0.83 same 0.19; mother_tongu PS 0.54 same 0.23; official_lan PS 0.67 same 0.06; original_lan PS 1.00 same 0.17
+O5 (inside scatter, end quantile 0.9): estimated ES 1.000 PS 0.847 | same-subject opened 0.200 | citizenship PS 1.00 same 0.24; developer PS 1.00 same 0.08; located_in_c PS 0.88 same 0.20; mother_tongu PS 0.54 same 0.28; official_lan PS 0.67 same 0.08; original_lan PS 1.00 same 0.32
+options within the leak allowance: ['O0', 'O3']; best O3, estimated PS 0.806 against 0.764 for O0 (gain +0.042); STOP: the gain is under 0.05
+CHAIN DONE

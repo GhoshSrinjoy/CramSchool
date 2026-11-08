@@ -44,6 +44,8 @@ def parse():
     ap.add_argument("--fast", action="store_true", help="share readings across facts (a ReadCache)")
     ap.add_argument("--teach-cap", type=int, help="teach answer vectors from at most this many drafted wordings per form")
     ap.add_argument("--only", nargs="*", help="draw edits from these CounterFact relations only (all six stay in the table's wordings)")
+    ap.add_argument("--inside", default="negative", choices=["negative", "scatter"], help="readings inside taught answers: negatives (v1) or scatter only")
+    ap.add_argument("--end-quantile", type=float, help="also open at the prompt's last token at this quantile of the prompt negatives")
     return ap.parse_args()
 
 
@@ -95,11 +97,12 @@ def main():
         facts.append(to_fact(r, rel, wordings, held[wordings.relations[rel].subject], f"b{i:02d}"))
     with open(os.path.join(a.out, "facts.json"), "w", encoding="utf-8") as fh:
         json.dump(facts, fh, ensure_ascii=False, indent=1)
-    log(f"{len(facts)} edits (seed {a.seed}, {len(exclude)} earlier edits left out); context {a.context}; real world {a.real_world}; fast {a.fast}")
+    log(f"{len(facts)} edits (seed {a.seed}, {len(exclude)} earlier edits left out); context {a.context}; real world {a.real_world}; fast {a.fast}; "
+        f"inside {a.inside}; end quantile {a.end_quantile}")
     tok = AutoTokenizer.from_pretrained(a.model)
     model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16, device_map="cuda").eval()
     rows, s, s0 = run_edits(model, tok, facts, wordings, a.out, real_world=a.real_world, context=a.context, fast=a.fast, teach_cap=a.teach_cap,
-                            log=log)
+                            inside=a.inside, end_quantile=a.end_quantile, log=log)
     for rel, b in s["by_relation"].items():
         b0 = s0["by_relation"][rel]
         log(f"  {rel:<18} ES {b['es']:.3f} PS {b['ps']:.3f} NS {b['ns']:.3f} (unedited {b0['ns']:.3f}) | says new: rewrite {b['gen_rewrite']:.3f}, "

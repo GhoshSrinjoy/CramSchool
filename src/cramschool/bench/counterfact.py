@@ -326,9 +326,11 @@ def heldout_templates(path: str, kind: str) -> list[dict]:
 
 def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: str, *, layer: int = 20, push: float = 2.0, margin: float = 0.5,
               real_world: str = "other_relations", context: int = 0, fast: bool = False, teach_cap: int | None = None,
+              inside: str = "negative", end_quantile: float | None = None,
               log: Callable[[str], None] = print) -> tuple[list[dict], dict, dict]:
     """Score the unedited model, build every edit into one GRAFT table, score again with it attached, and write `out_dir`/edits.jsonl.
-    fast: share readings across the facts with a ReadCache. Returns (rows, summary with the table, summary of the unedited model)."""
+    fast: share readings across the facts with a ReadCache. inside and end_quantile: as in GraftOptions. Parts already in `out_dir`/parts are
+    used as they are. Returns (rows, summary with the table, summary of the unedited model)."""
     import os
 
     from ..graft.build import build_context, build_parts, build_shared, entry_of
@@ -346,17 +348,21 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
     guarded = Wordings(relations=wordings.relations, generic=wordings.generic, kinds=wordings.kinds,
                        guard=set(wordings.guard) | {norm(p) for f in facts for p in f["cf"]["neighbours"]})
     cache = ReadCache() if fast else None
-    ctx = build_context(facts, guarded, name="counterfact", real_world=real_world, context=context, cache=cache, teach_cap=teach_cap)
+    ctx = build_context(facts, guarded, name="counterfact", real_world=real_world, context=context, cache=cache, teach_cap=teach_cap,
+                        inside=inside)
     log(f"calibrating layer {layer} on ordinary text")
     mctx = calibrate(model, tokenizer, layer)
     entries, t0 = [], time.time()
     for k, f in enumerate(facts, 1):
         path = os.path.join(out_dir, "parts", f"{f['id']}.pt")
         parts = torch.load(path, weights_only=True) if os.path.exists(path) else None
+        if parts is not None and (parts["subject"], parts["target"], parts["relation"]) != (f["subject"], f["target"], f["relation"]):
+            raise ValueError(f"{path} holds {parts['subject']} | {parts['relation']} | {parts['target']}, not this run's {f['id']}: "
+                             f"{f['subject']} | {f['relation']} | {f['target']}")
         if parts is None:
             parts = build_parts(model, tokenizer, f, ctx, mctx, layer)
             torch.save(parts, path)
-        entries.append(entry_of(parts, push))
+        entries.append(entry_of(parts, push, end_quantile=end_quantile))
         log(f"[build {k}/{len(facts)}] {f['id']} {f['relation']} {f['subject']} ({time.time() - t0:.0f}s)"
             + (f"; cache {cache.hits} hits, {cache.misses} reads" if cache else ""))
     shared = build_shared(model, tokenizer, ctx, mctx, layer)
@@ -392,7 +398,7 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
     with open(os.path.join(out_dir, "summary.json"), "w", encoding="utf-8") as fh:
         json.dump(dict(summary=s, unedited=s0, events=events, known=known,
                        options=dict(layer=layer, push=push, margin=margin, real_world=real_world, context=context, fast=fast,
-                                    teach_cap=teach_cap)), fh, indent=1)
+                                    teach_cap=teach_cap, inside=inside, end_quantile=end_quantile)), fh, indent=1)
     return rows, s, s0
 
 

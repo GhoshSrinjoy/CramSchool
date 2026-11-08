@@ -27,6 +27,7 @@ QA = "Q: {q} A:"
 N_CASE, N_OTHER, N_REPLY_NAMES, REPLY_TOKENS = 6, 6, 3, 16
 REPLY_QUANTILES = (0.99, 0.995, 0.999, 1.0)
 LOOSER_QUANTILES = (0.95, 0.90)
+END_QUANTILES = (0.99, 0.95, 0.90)  # quantiles of a fact's prompt negatives kept in its parts, for a threshold at the prompt's last token
 STRENGTH, PUSH_CAP, NEG_QUANTILE, SATURATION = 1.25, 10.0, 0.99, 0.5
 N_OTHER_REL_COMPANIES = 6
 NAME_SLOTS = (" a man named", " a woman named")
@@ -50,7 +51,7 @@ def test_texts(facts: list[dict]) -> set[str]:
 
 
 def build_context(facts: list[dict], wordings: Wordings, name: str = "table", guard: bool = True, real_world: str = "all",
-                  context: int = 0, cache: ReadCache | None = None, teach_cap: int | None = None) -> dict:
+                  context: int = 0, cache: ReadCache | None = None, teach_cap: int | None = None, inside: str = "negative") -> dict:
     """What building a fact of this group of facts (a bench, or a table) needs: drafted wordings minus the group's own, generic questions
     minus its same-company ones, invented companies clear of every name it uses, and the guard against its test prompts.
 
@@ -59,9 +60,14 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
     context: how many sentences of ordinary text to also ask plain prompts about the subject behind, positives and negatives alike (v1: 0).
     cache: a ReadCache shared by every fact built with this context, so prompts that every fact of a relation asks are read once (v1: none).
     teach_cap: teach each fact's answer vectors from at most this many drafted wordings per form (v1: all). The answer vectors read every
-    teaching example's logits at once, so a relation with many wordings can need more memory than the GPU has."""
+    teaching example's logits at once, so a relation with many wordings can need more memory than the GPU has.
+    inside: how the readings inside a fact's taught answers (its answer's later tokens) shape its detectors. "negative" (v1): a group of
+    negatives with the same weight as all prompt negatives together. "scatter": only in the within-group scatter, so answers spelled with
+    several tokens don't take weight from the prompt negatives. Either way the threshold stays above every inside reading."""
     if real_world not in ("all", "other_relations", "same_kind"):
         raise ValueError(f"real_world must be 'all', 'other_relations' or 'same_kind', not {real_world!r}")
+    if inside not in ("negative", "scatter"):
+        raise ValueError(f"inside must be 'negative' or 'scatter', not {inside!r}")
     own = set()
     for f in facts:
         for side in ("train", "test"):
@@ -83,7 +89,7 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
                              generic=tuple([t for t in spec[g] if normalized(t) not in same] for g in ("generic_plain", "generic_chat")))
     return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)),
                 guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard), real_world=real_world, kinds_of=kinds_of,
-                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap)
+                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap, inside=inside)
 
 
 def same_kind(ctx: dict, a: str, b: str) -> bool:
@@ -235,8 +241,9 @@ def pick_spelling(spellings: dict, before_text: str) -> str | None:
 # ---------------------------------------------------------------- one fact's parts
 
 @torch.no_grad()
-def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) -> dict:
-    """A fact's detectors and answer vectors. `ctx` from `build_context`; `mctx` the calibration: c, cbar and cov at `layer`."""
+def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, vectors_from: dict | None = None) -> dict:
+    """A fact's detectors and answer vectors. `ctx` from `build_context`; `mctx` the calibration: c, cbar and cov at `layer`.
+    vectors_from: earlier parts of the same fact whose answer vectors to keep, so that only the detectors are built again."""
     t0 = time.time()
     steps: dict[str, float] = {}
 
@@ -249,18 +256,24 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) ->
     guard = ctx["guard"]
     built = training_fact(f, ctx["drafted"], ctx.get("teach_cap"))
     examples = [(p, a) for p, a in built.teaching_examples(tokenizer) if norm(p.text if not p.rendered else _question_of(p, built)) not in guard]
-    links = answer_chain(model, tokenizer, examples, layer)
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()  # answer_chain holds every position's logits at once; give that memory back
-    lap("answer_vectors")
-    norms = [float(link.vector.norm()) for link in links]
-    cap = PUSH_CAP * statistics.median(norms)
-    for i, link in enumerate(links):
-        if norms[i] > cap:
-            link.vector = link.vector * (cap / norms[i])
+    if vectors_from is None:
+        links = answer_chain(model, tokenizer, examples, layer)
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()  # answer_chain holds every position's logits at once; give that memory back
+        lap("answer_vectors")
+        norms = [float(link.vector.norm()) for link in links]
+        cap = PUSH_CAP * statistics.median(norms)
+        for i, link in enumerate(links):
+            if norms[i] > cap:
+                link.vector = link.vector * (cap / norms[i])
     sequences, keys, spots = keyed_spots(tokenizer, examples)
-    vector = {(k[0], k[1]): STRENGTH * link.vector.float() for k, link in zip(keys, links)}
-    spellings = spellings_of(f, tokenizer, vector)
+    if vectors_from is None:
+        vector = {(k[0], k[1]): STRENGTH * link.vector.float() for k, link in zip(keys, links)}
+        spellings = spellings_of(f, tokenizer, vector)
+    else:
+        if (vectors_from["id"], vectors_from["target"]) != (f["id"], f["target"]):
+            raise ValueError(f"vectors_from belongs to {vectors_from['id']} ({vectors_from['target']}), not {f['id']} ({f['target']})")
+        spellings = vectors_from["spellings"]
     later = [i for i, k in enumerate(keys) if k[0] > 0]
     picks = [[] for _ in sequences]
     for j in later:
@@ -282,24 +295,29 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) ->
         seqs = reply_x
     x_reply = torch.cat(reply_x) if reply_x else x_neg[:0]
     lap("replies")
-    negs = [x_neg] + ([inside] if inside is not None else []) + ([x_reply] if x_reply.shape[0] else [])
+    scatter = ctx.get("inside", "negative") == "scatter"
+    negs = [x_neg] + ([inside] if inside is not None and not scatter else []) + ([x_reply] if x_reply.shape[0] else [])
     forms = {}
     for form, items in (("plain", pos_plain), ("chat", pos_chat)):
         x_pos = reads(items)
-        w = lda(x_pos, negs, mctx["cov"])
+        w = lda(x_pos, negs, mctx["cov"], scatter_only=(inside,) if inside is not None and scatter else ())
         r_pos, r_neg = ratio(x_pos, w, c, cbar), ratio(x_neg, w, c, cbar)
         r_in = ratio(inside, w, c, cbar) if inside is not None else None
         r_rep = ratio(x_reply, w, c, cbar) if x_reply.shape[0] else None
         forms[form] = dict(w=w.cpu(), tau_neg=float(torch.quantile(r_neg, NEG_QUANTILE)), tau_in=float(r_in.max()) if r_in is not None else -1e9,
                            reply_q={q: float(torch.quantile(r_rep, q)) if r_rep is not None else -1e9 for q in REPLY_QUANTILES},
-                           med=float(r_pos.median()), n_pos=int(x_pos.shape[0]))
+                           med=float(r_pos.median()), n_pos=int(x_pos.shape[0]),
+                           neg_q={q: float(torch.quantile(r_neg, q)) for q in END_QUANTILES})
     lap("positives_and_fit")
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
-    return dict(version=BUILD_VERSION, bench=ctx["name"], id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], forms=forms,
-                spellings=spellings, counts=dict(pos_plain=len(pos_plain), pos_chat=len(pos_chat), neg=len(neg), replies=len(seqs),
-                reply_positions=int(x_reply.shape[0]), inside=int(inside.shape[0]) if inside is not None else 0, examples=len(examples)),
-                seconds=round(time.time() - t0, 1), steps=steps)
+    out = dict(version=BUILD_VERSION, bench=ctx["name"], id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], forms=forms,
+               spellings=spellings, counts=dict(pos_plain=len(pos_plain), pos_chat=len(pos_chat), neg=len(neg), replies=len(seqs),
+               reply_positions=int(x_reply.shape[0]), inside=int(inside.shape[0]) if inside is not None else 0, examples=len(examples)),
+               seconds=round(time.time() - t0, 1), steps=steps)
+    if scatter:
+        out["inside"] = "scatter"
+    return out
 
 
 # ---------------------------------------------------------------- the looser start (docs/graft.md, section 8)
@@ -426,13 +444,33 @@ def looser_detectors(parts: dict, looser: dict, option: str = "v2") -> list[dict
     return out
 
 
-def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_option: str = "v2", reply_q: float | None = None) -> dict:
+def end_detectors(parts: dict, quantile: float) -> list[dict]:
+    """The fact's own detectors with a threshold at `quantile` of its prompt negatives, for the prompt's last token only. The maximum inside
+    taught answers is left out: the prompt's last token is never inside an answer."""
+    out = []
+    for form, d in parts["forms"].items():
+        if quantile not in d.get("neg_q", {}):
+            raise ValueError(f"{parts['id']}: its parts keep no {quantile} quantile of their prompt negatives (built before end_quantile existed)")
+        tau = d["neg_q"][quantile]
+        if d["med"] > tau:
+            out.append(dict(form=form, w=d["w"], tau=tau, delta=SATURATION * (d["med"] - tau)))
+    return out
+
+
+def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_option: str = "v2", reply_q: float | None = None,
+             end_quantile: float | None = None) -> dict:
+    """A table entry from a fact's parts. looser (the fact table's revision) or end_quantile: detectors that may also open at the prompt's
+    last token; inside replies only the strict ones count."""
+    if looser is not None and end_quantile is not None:
+        raise ValueError("give looser or end_quantile, not both")
     entry = dict(key=(parts["bench"], parts["id"]), subject=parts["subject"], relation=parts["relation"], target=parts["target"],
                  detectors=fact_detectors(parts, reply_q), spellings=parts["spellings"], multiple=float(push))
     if looser is not None:
         entry["end_detectors"] = looser_detectors(parts, looser, looser_option)
+    if end_quantile is not None:
+        entry["end_detectors"] = end_detectors(parts, end_quantile)
     return entry
 
 
-__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "entry_of", "detector_data", "pick_spelling",
-           "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]
+__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "entry_of", "end_detectors", "detector_data",
+           "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]

@@ -222,10 +222,11 @@ def constant_direction(stats: dict) -> tuple[torch.Tensor, float, float]:
     return c.float(), float(mu @ c), float(s.std() / s.mean())
 
 
-def lda(pos: torch.Tensor, negs: list[torch.Tensor], cov: torch.Tensor, ridge: float = RIDGE) -> torch.Tensor:
-    """LDA with shrinkage: w = (S + ridge·tr(S)/d·I)⁻¹ (m₊ − mean of the negative groups' means), S = Σ + within-group scatter."""
+def lda(pos: torch.Tensor, negs: list[torch.Tensor], cov: torch.Tensor, ridge: float = RIDGE, scatter_only: tuple = ()) -> torch.Tensor:
+    """LDA with shrinkage: w = (S + ridge·tr(S)/d·I)⁻¹ (m₊ − mean of the negative groups' means), S = Σ + within-group scatter.
+    scatter_only: groups that add to the within-group scatter but not to the negatives' mean (none in v1)."""
     m_neg = torch.stack([g.mean(0) for g in negs]).mean(0)
-    within = torch.cat([pos - pos.mean(0)] + [g - g.mean(0) for g in negs])
+    within = torch.cat([pos - pos.mean(0)] + [g - g.mean(0) for g in list(negs) + list(scatter_only)])
     Sm = cov + within.T @ within / within.shape[0]
     return torch.linalg.solve(Sm + ridge * Sm.diagonal().mean() * torch.eye(Sm.shape[0], device=Sm.device), pos.mean(0) - m_neg)
 

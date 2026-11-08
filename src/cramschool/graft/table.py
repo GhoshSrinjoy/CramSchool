@@ -43,13 +43,20 @@ class GraftOptions:
     subjects are real, as when changing a fact the model already knows. context: how many sentences of ordinary text to also teach plain
     prompts behind (v1: 0; 4 in the CounterFact runs). fast: keep readings that every fact of a relation shares, so each is computed once
     (about 4 times faster after the first fact of a relation; off by default, because shared readings can differ in their last bits from
-    fresh ones, and v1 reproduces exactly without them). All three change only how new facts are built."""
+    fresh ones, and v1 reproduces exactly without them). All three change only how new facts are built.
+
+    inside: "negative" (v1) or "scatter": whether the readings inside a fact's taught answers are a group of negatives for its detectors,
+    or only part of their scatter. "scatter" helps answers spelled with several tokens ("Serbian"), whose detectors otherwise give up
+    weight on the questions they must tell apart. end_quantile: at the prompt's last token only, a fact may also open on its own detector
+    at this quantile of its prompt negatives (0.99, 0.95 or 0.90; None in v1). docs/graft.md, section 11."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
     real_world: str = "all"
     context: int = 0
     fast: bool = False
+    inside: str = "negative"
+    end_quantile: float | None = None
 
 
 @dataclass
@@ -135,7 +142,7 @@ class Graft:
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
         ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
-                            cache=self._read_cache())
+                            cache=self._read_cache(), inside=self.options.inside)
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)
@@ -187,7 +194,8 @@ class Graft:
 
     def layer_object(self) -> GraftLayer:
         mctx = self.calibration()
-        entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None) for e in self._facts]
+        entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None, end_quantile=self.options.end_quantile)
+                   for e in self._facts]
         kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
         return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
                           relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None)

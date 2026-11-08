@@ -1352,3 +1352,71 @@ The same 72 edits, with 4 sentences of ordinary text before the subject's plain 
 - **Citizenship is confirmed:** every bar met on fresh edits, with the neighbourhood exactly as the unedited model had it.
 - **Developer misses only ES,** at 0.917 against 0.95: 2 of its 24 rewrite prompts stay with the old company.
 - **Phrasing novelty:** 89 of the 96 reworded prompts repeat a phrasing that appeared among the development edits; PS is 0.944 on those and 0.857 on the 7 new ones. For citizenship it is 43 of 43 and 5 of 5. The new phrasings are too few to say more. None of the development phrasings was taught: the wordings were drafted blind, and the revisions were general rules.
+
+## The weaker relations: a lower threshold where the reply starts, and answers of several tokens (written 2026-11-08, before any of it ran)
+
+**Measured from stored results first** (development check 2 and the confirmation, no new run):
+- **Where PS is lost.** On development check 2, 11 of mother tongue's 12 missed prompts are its two shortest CounterFact phrasings ("X, speaker of" and "X, a native"). 7 of official language's 9 are "In X, they understand"; all 6 of located in country's are "X, in". 5 of original language's 6 are "The language of X was", and 4 of those 5 have answers spelled with several tokens.
+- **Answers spelled with several tokens fare worse in every run.** PS is 0.59 against 0.92 for one-token answers in revision 2's run, 0.71 against 0.80 on development check 2, and 0.82 against 0.97 in the confirmation. Both of developer's missed rewrite prompts in the confirmation are such answers.
+- **The cause, from the code.** The LDA weighs each group of negatives' mean equally. A fact whose taught answer has a later token gets a third group: the readings inside its taught answers. That group takes a third of the weight away from the prompt negatives. These facts' plain thresholds sit at 28 to 45, against 11 to 24 for one-token answers, with about half the margin between the positives' median and the threshold.
+- **The proposed lower threshold can't reach most misses.** In revision 2's diagnostic, 5 of the 17 shut prompts read 5 to 10 against thresholds of 19 to 34. The other 12 sit within a few points of their threshold, mostly on facts with answers of several tokens.
+- **A gate on "about to say the old answer" was checked and dropped** (`scripts/diag_old_answer.py`, `research/results/counterfact/dev2_rev2/old_answer_lens.json`). Through the logit lens at layer 20, the old answer is the top token on 0 of 36 mother-tongue prompts. On the missed prompts it ranks 14 to 148,154, and the same-subject questions overlap that range. Even the model's own output puts it first on only 12 of 36: these phrasings don't lead straight into the answer.
+- **Same-subject leaks, read by hand.** Of development check 2's 76 leaks, 39 open where the reply starts (to "What colour is X's hair?": "**Russian** actor X…"). 30 insert the answer mid-reply, sometimes garbling it ("Best Newcom Swedish Opera"). 7 replace an old answer that the unedited reply stated ("based in the Netherlands" → "based in Russia"). The measure counts all three as leaks and stays the rule. Located in country has 36 of them; many of its mid-reply ones carry the edit ("The station is located in Finland").
+
+**Two changes, both build options, off by default** (v1 and its reproduction check unchanged):
+1. **`inside="scatter"`:** the readings inside taught answers enter the LDA's within-group scatter but not the mean of the negatives. The threshold still includes their maximum, so a detector stays shut inside an answer.
+2. **`end_quantile`:** at the prompt's last token only, a fact may also open on its own direction at this quantile of its prompt negatives. The maximum inside answers is left out there, since the prompt's last token is never inside an answer. Everywhere else the strict threshold holds. The layer already has this mechanism; the fact table's revision used it.
+
+**The diagnostic, before any run** (`scripts/diag_counterfact_options.py`, on development check 2's 72 edits, which are development). Each fact's detectors are rebuilt both ways. Its answer vectors are reused from revision 2's run, so only the detectors differ. Six options are tried with all 72 facts in one layer, shared detectors and veto included:
+
+| Option | Inside readings | Prompt's last token |
+|---|---|---|
+| O0, as now | negatives | strict threshold |
+| O1 | negatives | 95th percentile |
+| O2 | negatives | 90th percentile |
+| O3 | scatter | 99th percentile, without the inside maximum |
+| O4 | scatter | 95th percentile |
+| O5 | scatter | 90th percentile |
+
+For each option and relation, two things are counted at the prompt's last token:
+- the share of the facts' own rewrite and reworded prompts where the layer pushes the fact's answer (estimated ES and PS; an open detector's answer won 149 of 149 times);
+- the share of their held-out same-subject questions where it pushes any answer (estimated leaks where the reply starts).
+
+**Choice, fixed now:**
+- The option with the highest estimated PS over all 72 edits, among those whose estimated reply-start leaks are at most 0.03 above O0's in every relation. Ties go to the option with fewer changes.
+- **Kill rule:** if the best option's estimated pooled PS is under O0's + 0.05, stop. There is then no development run and no confirmation; the four relations stay "in between", and the work moves on to the comparison with published editors.
+
+**Then:**
+1. **The development run:** the chosen option on development check 2's edits, paired against revision 2's run. Each relation that meets the breadth rule's ES, PS and same-subject-leak bars there goes on to the confirmation.
+2. **The confirmation:** 24 fresh edits per such relation (seed 20261113), leaving out every edit used so far. It is judged by the breadth rule per relation, with PS also split by phrasings seen during development and not seen.
+
+## Result of the options diagnostic: stop
+
+Development check 2's 72 edits, all in one layer, counted at the prompt's last token. Raw numbers: `research/results/counterfact/options_dev2/`. Before any option, the v1 reproduction check passed again: 180 facts, every reply identical.
+
+**The estimate tracks the real scoring.** O0, revision 2 rebuilt, estimates PS at 0.764 where the real run measured 0.778, and matches each relation within a prompt or two (mother tongue 0.50 against 0.500, located in country 0.75 against 0.750).
+
+| Option | Estimated ES | Estimated PS | Same-subject questions opened | Within the leak allowance |
+|---|---|---|---|---|
+| O0, as now | 0.986 | 0.764 | 0.056 | — |
+| O1, 95th percentile at the prompt's end | 1.000 | 0.826 | 0.144 | no: 5 relations over |
+| O2, 90th percentile | 1.000 | 0.847 | 0.201 | no: 6 over |
+| **O3, inside readings in the scatter, 99th percentile** | **1.000** | **0.806** | **0.057** | **yes** |
+| O4, scatter, 95th percentile | 1.000 | 0.840 | 0.138 | no: 5 over |
+| O5, scatter, 90th percentile | 1.000 | 0.847 | 0.200 | no: 6 over |
+
+Estimated PS, and same-subject questions opened, by relation:
+
+| Relation | O0 | O1 | O3 | O5 |
+|---|---|---|---|---|
+| citizenship | 1.00 / 0.05 | 1.00 / 0.15 | 1.00 / 0.05 | 1.00 / 0.24 |
+| developer | 0.92 / 0.00 | 1.00 / 0.06 | 0.92 / 0.00 | 1.00 / 0.08 |
+| original language | 0.79 / 0.06 | 0.96 / 0.19 | **0.96 / 0.05** | 1.00 / 0.32 |
+| located in country | 0.75 / 0.09 | 0.79 / 0.18 | 0.79 / 0.10 | 0.88 / 0.20 |
+| official language | 0.62 / 0.03 | 0.67 / 0.06 | 0.67 / 0.04 | 0.67 / 0.08 |
+| mother tongue | 0.50 / 0.10 | 0.54 / 0.23 | 0.50 / 0.10 | 0.54 / 0.28 |
+
+- **The lower threshold, as proposed, doesn't work.** At the 95th or 90th percentile it raises PS by 0.06 to 0.08, and opens on 2.5 to 3.6 times as many other questions about the subject.
+- **The scatter option costs nothing in leaks:** same-subject openings 0.057 against 0.056. For an answer of several tokens, the prompt negatives' 99th percentile falls back to the one-token level ("Dutch": 19.4 against a median of 31.6, where it was 27.7 against 35.6). Original language rises from 0.79 to 0.96, and every rewrite prompt opens (ES 1.000).
+- **Mother tongue and official language don't move under any option.** Even the 90th percentile leaves them at 0.54 and 0.67. Their misses are the terse phrasings, which read far below any threshold the leak bar allows.
+- **By the rule, stop.** The best option within the leak allowance is O3, with an estimated gain of +0.042, 6 more reworded prompts of 144, against the +0.05 required. There is no development run and no confirmation. Both options stay in the package, off by default and measured but not adopted, like revision 3's. The four relations stay "in between".

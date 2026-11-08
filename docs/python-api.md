@@ -15,7 +15,7 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `model`, `tokenizer` | A Hugging Face causal LM and its tokenizer, used frozen |
 | `layer` | The layer GRAFT works at. Default: 20 for a 24-layer model (Qwen3.5-0.8B, validated); about 5/6 of the depth otherwise, with a warning |
 | `wordings` | `Wordings`: the relations and their wordings. Default: the built-in owner, ceo, founder and hq |
-| `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0, fast=False)`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact. `fast=True` shares readings across facts, about 3.4 times faster ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
+| `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0, fast=False, inside="negative", end_quantile=None)`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact. `fast=True` shares readings across facts, about 3.4 times faster. `inside` and `end_quantile` are measured but not confirmed ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
 | `calibration` | Paragraphs of ordinary text (at least 280). Default: the bundled WikiText-103 excerpt |
 | `progress` | A function that receives progress lines, such as `print` |
 

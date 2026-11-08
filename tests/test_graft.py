@@ -204,3 +204,56 @@ def test_the_read_cache_reads_shared_prompts_once_and_keeps_no_subject(model, to
     got = cache.reply_reads(model, tokenizer, shared, 3, 2)
     assert len(got) <= 2 and all(x.shape[-1] == a.shape[-1] for x in got)
     assert cache.reply_reads(model, tokenizer, shared, 3, 2)[0].shape == got[0].shape if got else True
+
+
+def test_lda_scatter_only_groups_leave_the_negative_mean_alone():
+    torch.manual_seed(0)
+    d = 6
+    pos, neg, inside = torch.randn(20, d) + 2, torch.randn(30, d), torch.randn(10, d) - 5
+    cov = torch.eye(d)
+    assert torch.equal(core.lda(pos, [neg, inside], cov), core.lda(pos, [neg, inside], cov, scatter_only=()))   # v1 unchanged
+    w = core.lda(pos, [neg], cov, scatter_only=(inside,))
+    m_neg = neg.mean(0)                                                         # the inside group is not in the mean
+    within = torch.cat([pos - pos.mean(0), neg - neg.mean(0), inside - inside.mean(0)])
+    S = cov + within.T @ within / within.shape[0]
+    expect = torch.linalg.solve(S + core.RIDGE * S.diagonal().mean() * torch.eye(d), pos.mean(0) - m_neg)
+    assert torch.allclose(w, expect, atol=1e-5)
+
+
+def test_end_detectors_use_the_prompt_negative_quantile_and_only_where_positives_clear_it():
+    from cramschool.graft.build import end_detectors, entry_of
+    w = torch.ones(4)
+    forms = dict(plain=dict(w=w, tau_neg=30.0, tau_in=40.0, med=36.0, neg_q={0.99: 30.0, 0.95: 22.0, 0.90: 18.0}),
+                 chat=dict(w=w, tau_neg=30.0, tau_in=-1e9, med=20.0, neg_q={0.99: 30.0, 0.95: 21.0, 0.90: 19.0}))
+    parts = dict(bench="b", id="f01", subject="acme", relation="owner", target="julian", forms=forms, spellings={})
+    got = end_detectors(parts, 0.95)
+    assert [(d["form"], d["tau"]) for d in got] == [("plain", 22.0)]           # chat's median 20 is under its 21; the inside max is left out
+    assert got[0]["delta"] == pytest.approx(0.5 * (36.0 - 22.0))
+    assert [(d["form"], d["tau"]) for d in end_detectors(parts, 0.90)] == [("plain", 18.0), ("chat", 19.0)]
+    entry = entry_of(parts, 2.0, end_quantile=0.95)
+    assert entry["detectors"] == [] and len(entry["end_detectors"]) == 1       # strictly, the plain form's 40 inside max is above its median
+    assert "end_detectors" not in entry_of(parts, 2.0)
+    with pytest.raises(ValueError):
+        entry_of(parts, 2.0, looser={"v2": {}}, end_quantile=0.95)
+    old = dict(parts, forms={k: {kk: vv for kk, vv in v.items() if kk != "neg_q"} for k, v in forms.items()})
+    with pytest.raises(ValueError):
+        end_detectors(old, 0.95)
+
+
+def test_the_inside_option_is_checked_and_kept_in_the_context():
+    w = Wordings.builtin()
+    f = make_fact("acme", "owner", "julian", w)
+    assert build_context([f], w)["inside"] == "negative"
+    assert build_context([f], w, inside="scatter")["inside"] == "scatter"
+    with pytest.raises(ValueError):
+        build_context([f], w, inside="both")
+
+
+def test_graft_options_default_to_v1_and_load_from_older_tables():
+    from dataclasses import asdict
+
+    from cramschool.graft.table import GraftOptions
+    o = GraftOptions()
+    assert o.inside == "negative" and o.end_quantile is None
+    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile")}    # a table saved before these options existed
+    assert GraftOptions(**old) == o

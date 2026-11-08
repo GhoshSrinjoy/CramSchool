@@ -1,0 +1,394 @@
+{
+ "options": {
+  "O0": {
+   "inside": "negative",
+   "end_quantile": null,
+   "by_relation": {
+    "citizenship": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.04861111111111111,
+     "same_plain": 6,
+     "same_chat": 1,
+     "n_same": 144
+    },
+    "developer": {
+     "es": 1.0,
+     "ps": 0.9166666666666666,
+     "same": 0.0,
+     "same_plain": 0,
+     "same_chat": 0,
+     "n_same": 144
+    },
+    "located_in_country": {
+     "es": 1.0,
+     "ps": 0.75,
+     "same": 0.09027777777777778,
+     "same_plain": 10,
+     "same_chat": 3,
+     "n_same": 144
+    },
+    "mother_tongue": {
+     "es": 1.0,
+     "ps": 0.5,
+     "same": 0.10416666666666667,
+     "same_plain": 0,
+     "same_chat": 15,
+     "n_same": 144
+    },
+    "official_language": {
+     "es": 1.0,
+     "ps": 0.625,
+     "same": 0.034722222222222224,
+     "same_plain": 0,
+     "same_chat": 5,
+     "n_same": 144
+    },
+    "original_language": {
+     "es": 0.9166666666666666,
+     "ps": 0.7916666666666666,
+     "same": 0.05555555555555555,
+     "same_plain": 0,
+     "same_chat": 8,
+     "n_same": 144
+    }
+   },
+   "es": 0.9861111111111112,
+   "ps": 0.7638888888888888,
+   "same": 0.05555555555555555,
+   "events": {
+    "first": 229,
+    "continued": 0,
+    "vetoed": 0
+   }
+  },
+  "O1": {
+   "inside": "negative",
+   "end_quantile": 0.95,
+   "by_relation": {
+    "citizenship": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.14583333333333334,
+     "same_plain": 9,
+     "same_chat": 12,
+     "n_same": 144
+    },
+    "developer": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.05555555555555555,
+     "same_plain": 6,
+     "same_chat": 2,
+     "n_same": 144
+    },
+    "located_in_country": {
+     "es": 1.0,
+     "ps": 0.7916666666666666,
+     "same": 0.18055555555555555,
+     "same_plain": 18,
+     "same_chat": 8,
+     "n_same": 144
+    },
+    "mother_tongue": {
+     "es": 1.0,
+     "ps": 0.5416666666666666,
+     "same": 0.22916666666666666,
+     "same_plain": 0,
+     "same_chat": 33,
+     "n_same": 144
+    },
+    "official_language": {
+     "es": 1.0,
+     "ps": 0.6666666666666666,
+     "same": 0.0625,
+     "same_plain": 1,
+     "same_chat": 8,
+     "n_same": 144
+    },
+    "original_language": {
+     "es": 1.0,
+     "ps": 0.9583333333333334,
+     "same": 0.1875,
+     "same_plain": 1,
+     "same_chat": 26,
+     "n_same": 144
+    }
+   },
+   "es": 1.0,
+   "ps": 0.8263888888888888,
+   "same": 0.14351851851851852,
+   "events": {
+    "first": 315,
+    "continued": 0,
+    "vetoed": 0,
+    "loose": 86
+   }
+  },
+  "O2": {
+   "inside": "negative",
+   "end_quantile": 0.9,
+   "by_relation": {
+    "citizenship": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.24305555555555555,
+     "same_plain": 10,
+     "same_chat": 25,
+     "n_same": 144
+    },
+    "developer": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.0763888888888889,
+     "same_plain": 7,
+     "same_chat": 4,
+     "n_same": 144
+    },
+    "located_in_country": {
+     "es": 1.0,
+     "ps": 0.8333333333333334,
+     "same": 0.2152777777777778,
+     "same_plain": 20,
+     "same_chat": 11,
+     "n_same": 144
+    },
+    "mother_tongue": {
+     "es": 1.0,
+     "ps": 0.5833333333333334,
+     "same": 0.2916666666666667,
+     "same_plain": 0,
+     "same_chat": 42,
+     "n_same": 144
+    },
+    "official_language": {
+     "es": 1.0,
+     "ps": 0.6666666666666666,
+     "same": 0.0763888888888889,
+     "same_plain": 1,
+     "same_chat": 10,
+     "n_same": 144
+    },
+    "original_language": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.3055555555555556,
+     "same_plain": 4,
+     "same_chat": 40,
+     "n_same": 144
+    }
+   },
+   "es": 1.0,
+   "ps": 0.8472222222222222,
+   "same": 0.2013888888888889,
+   "events": {
+    "first": 368,
+    "continued": 0,
+    "vetoed": 7,
+    "loose": 139
+   }
+  },
+  "O3": {
+   "inside": "scatter",
+   "end_quantile": 0.99,
+   "by_relation": {
+    "citizenship": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.04861111111111111,
+     "same_plain": 6,
+     "same_chat": 1,
+     "n_same": 144
+    },
+    "developer": {
+     "es": 1.0,
+     "ps": 0.9166666666666666,
+     "same": 0.0,
+     "same_plain": 0,
+     "same_chat": 0,
+     "n_same": 144
+    },
+    "located_in_country": {
+     "es": 1.0,
+     "ps": 0.7916666666666666,
+     "same": 0.09722222222222222,
+     "same_plain": 11,
+     "same_chat": 3,
+     "n_same": 144
+    },
+    "mother_tongue": {
+     "es": 1.0,
+     "ps": 0.5,
+     "same": 0.10416666666666667,
+     "same_plain": 0,
+     "same_chat": 15,
+     "n_same": 144
+    },
+    "official_language": {
+     "es": 1.0,
+     "ps": 0.6666666666666666,
+     "same": 0.041666666666666664,
+     "same_plain": 0,
+     "same_chat": 6,
+     "n_same": 144
+    },
+    "original_language": {
+     "es": 1.0,
+     "ps": 0.9583333333333334,
+     "same": 0.04861111111111111,
+     "same_plain": 0,
+     "same_chat": 7,
+     "n_same": 144
+    }
+   },
+   "es": 1.0,
+   "ps": 0.8055555555555556,
+   "same": 0.056712962962962965,
+   "events": {
+    "first": 237,
+    "continued": 0,
+    "vetoed": 0,
+    "loose": 0
+   }
+  },
+  "O4": {
+   "inside": "scatter",
+   "end_quantile": 0.95,
+   "by_relation": {
+    "citizenship": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.125,
+     "same_plain": 7,
+     "same_chat": 11,
+     "n_same": 144
+    },
+    "developer": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.04861111111111111,
+     "same_plain": 7,
+     "same_chat": 0,
+     "n_same": 144
+    },
+    "located_in_country": {
+     "es": 1.0,
+     "ps": 0.8333333333333334,
+     "same": 0.19444444444444445,
+     "same_plain": 20,
+     "same_chat": 8,
+     "n_same": 144
+    },
+    "mother_tongue": {
+     "es": 1.0,
+     "ps": 0.5416666666666666,
+     "same": 0.22916666666666666,
+     "same_plain": 0,
+     "same_chat": 33,
+     "n_same": 144
+    },
+    "official_language": {
+     "es": 1.0,
+     "ps": 0.6666666666666666,
+     "same": 0.05555555555555555,
+     "same_plain": 0,
+     "same_chat": 8,
+     "n_same": 144
+    },
+    "original_language": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.1736111111111111,
+     "same_plain": 0,
+     "same_chat": 25,
+     "n_same": 144
+    }
+   },
+   "es": 1.0,
+   "ps": 0.8402777777777778,
+   "same": 0.13773148148148148,
+   "events": {
+    "first": 312,
+    "continued": 0,
+    "vetoed": 0,
+    "loose": 75
+   }
+  },
+  "O5": {
+   "inside": "scatter",
+   "end_quantile": 0.9,
+   "by_relation": {
+    "citizenship": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.2361111111111111,
+     "same_plain": 7,
+     "same_chat": 27,
+     "n_same": 144
+    },
+    "developer": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.0763888888888889,
+     "same_plain": 9,
+     "same_chat": 2,
+     "n_same": 144
+    },
+    "located_in_country": {
+     "es": 1.0,
+     "ps": 0.875,
+     "same": 0.2013888888888889,
+     "same_plain": 20,
+     "same_chat": 9,
+     "n_same": 144
+    },
+    "mother_tongue": {
+     "es": 1.0,
+     "ps": 0.5416666666666666,
+     "same": 0.2847222222222222,
+     "same_plain": 0,
+     "same_chat": 41,
+     "n_same": 144
+    },
+    "official_language": {
+     "es": 1.0,
+     "ps": 0.6666666666666666,
+     "same": 0.08333333333333333,
+     "same_plain": 0,
+     "same_chat": 12,
+     "n_same": 144
+    },
+    "original_language": {
+     "es": 1.0,
+     "ps": 1.0,
+     "same": 0.3194444444444444,
+     "same_plain": 6,
+     "same_chat": 40,
+     "n_same": 144
+    }
+   },
+   "es": 1.0,
+   "ps": 0.8472222222222222,
+   "same": 0.20023148148148148,
+   "events": {
+    "first": 367,
+    "continued": 0,
+    "vetoed": 6,
+    "loose": 130
+   }
+  }
+ },
+ "choice": {
+  "allowed": [
+   "O0",
+   "O3"
+  ],
+  "best": "O3",
+  "gain": 0.0417,
+  "go": false
+ },
+ "rule": {
+  "leak_allowance": 0.03,
+  "kill_gain": 0.05
+ }
+}
