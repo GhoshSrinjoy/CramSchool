@@ -32,6 +32,8 @@ REAL_WORLD_PLAIN_RELATIONS = ("hq", "hq", "hq", "hq", "capital", "capital", "cap
                               "owner", "founder", "founder")
 REAL_WORLD_CHAT_RELATIONS = ("hq", "hq", "ceo", "founder", "owner", "capital", "founder", "ceo")
 assert len(REAL_WORLD_PLAIN_RELATIONS) == len(REAL_WORLD_PLAIN) and len(REAL_WORLD_CHAT_RELATIONS) == len(REAL_WORLD_CHAT)
+# The kind of subject each tagged relation is about, for real_world="same_kind".
+REAL_WORLD_KINDS = dict(hq="company", ceo="company", founder="company", owner="company", capital="country")
 # Questions about other things a company has, used as "other questions about the same company" for facts added outside a bench.
 DEFAULT_GENERIC = dict(plain=["{s}'s stock ticker is", "The industry of {s} is", "{s} was founded in the year", "The number of employees at {s} is about"],
                        chat=["How many employees does {s} have?", "Describe in one sentence what kind of company {s} is.", "What year was {s} founded?",

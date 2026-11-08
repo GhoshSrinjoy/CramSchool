@@ -15,7 +15,7 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `model`, `tokenizer` | A Hugging Face causal LM and its tokenizer, used frozen |
 | `layer` | The layer GRAFT works at. Default: 20 for a 24-layer model (Qwen3.5-0.8B, validated); about 5/6 of the depth otherwise, with a warning |
 | `wordings` | `Wordings`: the relations and their wordings. Default: the built-in owner, ceo, founder and hq |
-| `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0)`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
+| `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0, fast=False)`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact. `fast=True` shares readings across facts, about 3.4 times faster ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
 | `calibration` | Paragraphs of ordinary text (at least 280). Default: the bundled WikiText-103 excerpt |
 | `progress` | A function that receives progress lines, such as `print` |
 
@@ -64,14 +64,14 @@ A relation about people, places, works or products names its subject kind. The k
 from cramschool.graft import Relation, Wordings
 
 wordings = Wordings.builtin().with_file("my_relations.json")   # {"relations": {...}, "kinds": {...}}
-graft = Graft(model, tokenizer, wordings=wordings, options=GraftOptions(real_world="other_relations", context=4))
+graft = Graft(model, tokenizer, wordings=wordings, options=GraftOptions(real_world="other_relations", context=4, fast=True))
 graft.add("Louis-Paul Aujoulat", "mother_tongue", "Dutch")
 ```
 
 - **A relation in the file:** `{"subject": "person", "answer": "language", "plain": [30 wordings], "chat": [30 wordings]}`.
 - **A kind in the file:** `{"names": [at least 24 invented names], "generic_plain": [...], "generic_chat": [...]}`. Generic questions ask about anything except the relations' answers.
 - **What the kind changes:** relations compete, and serve as negatives for each other, only within a kind ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)).
-- **Six drafted relations,** with five kinds, are in `research/results/counterfact/breadth/drafted_relations.json`, with their CounterFact measurements in [benchmarks](benchmarks.md#beyond-companies-in-development).
+- **Six drafted relations,** with five kinds, are in `research/results/counterfact/breadth/drafted_relations.json`, with their CounterFact measurements in [benchmarks](benchmarks.md#beyond-companies-citizenship-confirmed-the-rest-in-development).
 
 ## `cramschool.datasets`: your own facts
 

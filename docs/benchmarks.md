@@ -123,7 +123,7 @@ GRAFT has been validated on **Qwen3.5-0.8B only**.
 | Qwen3.5 fast path | not installed: Gated DeltaNet ran on the PyTorch fallback, so generation is slower than it could be |
 
 Typical times on this machine:
-- **Building a GRAFT fact:** about 43 s with the research scripts and 36 s with the package, once. A new table first spends about 40 s on calibration.
+- **Building a GRAFT fact:** about 43 s with the research scripts and 25 to 36 s with the package, once. With the fast build (`GraftOptions(fast=True)`), facts after the first of each relation take 5 to 9 s. A new table first spends about 40 s on calibration.
 - **Scoring one fact:** every check, about 7 s with 180 facts loaded.
 - **Fact block v2:** about 30 s per fact, building and scoring.
 
@@ -239,24 +239,28 @@ The blind benches teach facts about invented companies, which the model knew not
 - **The neighbourhood changes on one edit per draw,** and both times the cause is a longer name that contains the stored one, such as "Vanderbilt University Department of English". The name index matches it ([limitations](limitations.md#names)).
 - **Whenever a reworded prompt opens the detector, the new answer wins.** The misses (3 edits of 80) are prompts where it stays shut.
 
-### Beyond companies: in development
+### Beyond companies: citizenship confirmed, the rest in development
 
-Six relations about people, countries, places, creative works and products, 12 known facts each. The wordings were drafted by agents with no access to the dataset ([lab notebook](lab-notebook.md#counterfact-breadth-beyond-companies-written-2026-11-08-before-it-ran)).
+Six relations about people, countries, places, creative works and products. The wordings were drafted by agents with no access to the dataset ([lab notebook](lab-notebook.md#counterfact-breadth-beyond-companies-written-2026-11-08-before-it-ran)). Each development draw has 12 known facts per relation.
 
-| Relation (CounterFact) | Subject | PS: first run | Revision 1 | Revision 2 |
-|---|---|---|---|---|
-| citizenship (P27) | person | 0.750 | 0.958 | **1.000** |
-| developer (P178) | product | 0.583 | 0.958 | **1.000** |
-| mother_tongue (P103) | person | 0.208 | 0.708 | 0.750 |
-| original_language (P364) | work | 0.042 | 0.667 | 0.708 |
-| official_language (P37) | country | 0.333 | 0.667 | 0.667 |
-| located_in_country (P17) | place | 0.083 | 0.458 | 0.583 |
-| **All 72** | | **0.333** | **0.736** | **0.785** |
+| Relation (CounterFact) | Subject | PS, development: first run | Rev. 1 | Rev. 2 | Rev. 2, fresh draw | Confirmation, 24 fresh edits |
+|---|---|---|---|---|---|---|
+| citizenship (P27) | person | 0.750 | 0.958 | 1.000 | 1.000 | **1.000: works** |
+| developer (P178) | product | 0.583 | 0.958 | 1.000 | 0.958 | 0.875: misses ES only (0.917) |
+| original_language (P364) | work | 0.042 | 0.667 | 0.708 | 0.833 | — |
+| located_in_country (P17) | place | 0.083 | 0.458 | 0.583 | 0.750 | — |
+| official_language (P37) | country | 0.333 | 0.667 | 0.667 | 0.625 | — |
+| mother_tongue (P103) | person | 0.208 | 0.708 | 0.750 | 0.500 | — |
+| **Pooled** | | **0.333** | **0.736** | **0.785** | **0.778** | — |
 
 - **The first run failed its rule:** detectors were fitted against other relations' questions about other kinds of subject ("the official language of" a person), which crowded their thresholds. Revision 1 keeps negatives within the subject's kind.
-- **Revision 2** teaches plain prompts also behind sentences of ordinary text, as CounterFact's reworded prompts often follow an unrelated sentence, and gives each kind more generic questions. Same-subject leaks went 0.042 → 0.113 → 0.082.
+- **Revision 2** teaches plain prompts also behind sentences of ordinary text, as CounterFact's reworded prompts often follow an unrelated sentence, and gives each kind more generic questions. On a fresh draw it holds (0.778 against 0.785), so it wasn't fitted to its development edits.
+- **Revision 3** (60 wordings per relation, and real-world negatives within a kind) added nothing on the fresh draw: the same pooled PS, and a lower ES. It isn't used.
+- **No pooled confirmation:** neither revision reached PS 0.80 pooled, the bar set for one.
+- **Citizenship, confirmed:** it met every bar on both development draws, so a narrower confirmation was set for it and developer, on 24 fresh edits each. Citizenship met every bar: ES and PS 1.000, the neighbourhood exactly as unedited, same-subject leaks 0.059. Developer reached PS 0.875 but missed ES (0.917 against 0.95).
+- **Phrasing:** CounterFact builds reworded prompts from a fixed set of phrasings per relation. In the confirmation, 89 of 96 reworded prompts repeat a phrasing that appeared among development edits (PS 0.944), and 7 are new (PS 0.857). The wordings were drafted blind, so neither set was taught.
 - **Unchanged throughout:** NS within 0.004 of the unedited model, no known facts lost, no drift.
-- **Not yet evidence:** these 72 edits were used to choose both revisions, and the pooled PS of 0.785 is under the 0.80 that a confirmation on fresh edits needs.
+- **Where the language relations fail:** whenever a detector opens, the new answer wins, in 149 of 149 diagnosed prompts. The misses are phrasings the detector doesn't recognise, mostly indirect or terse ones.
 
 ### Published editors, for scale
 
@@ -277,12 +281,12 @@ They show the usual trade: generalizing an edit costs the neighbourhood. GRAFT's
 - Look-alike, unrelated-company and name-slot leaks are zero.
 - No known facts are lost, and there is no drift.
 - Facts added through the API, with no bench wordings, pass as many as facts built from the bench: 32, or 31 counted conservatively, against 31.
-- On CounterFact, GRAFT changes headquarters facts the model already knows: a fresh draw of 40 met every bar written before it ran, with reworded prompts at 0.963 and the neighbourhood within 0.017 of the unedited model.
+- On CounterFact, GRAFT changes facts the model already knows for two relations: a fresh draw of 40 headquarters edits met every bar written before it ran (reworded prompts 0.963, the neighbourhood within 0.017 of the unedited model), and so did 24 fresh citizenship edits (reworded prompts 1.000, the neighbourhood unchanged).
 
 **They don't show:**
 - **Other models or larger tables:** behaviour on any other model, or with more than 180 facts. Facts added through the API were measured with 40 in the table.
 - **Other relations, aliases, or multi-turn and multi-hop questions.**
-- **Standard benchmarks, fully:** only part of CounterFact has been run: one confirmed relation, and six more in development. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
+- **Standard benchmarks, fully:** only part of CounterFact has been run: two confirmed relations, one close, and four in development. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
 
 **Two cautions:**
 - **Development benches were used to choose options.** Only blind results count as evidence, so bench40d's 31 for the looser start is not.
@@ -320,8 +324,8 @@ CF=counterfact.json
 python scripts/counterfact_screen.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl                 # which facts the model knows, ~3 min
 python scripts/counterfact_pilot.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl runs/cf/pilot   # headquarters pilot, ~30 min
 python scripts/counterfact_pilot.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl runs/cf/confirm 20261109 runs/cf/pilot/facts.json
-R=research/results/counterfact/breadth
-python scripts/counterfact_breadth.py models/Qwen3.5-0.8B $CF runs/counterfact/screen.jsonl $R/drafted_relations.json $R/heldout_questions.json     runs/cf/breadth_rev2 4 - - research/results/counterfact/breadth_rev2/more_generic.json                  # revision 2, ~40 min
+R=research/results/counterfact
+python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl     --relations $R/breadth/drafted_relations.json --heldout $R/breadth/heldout_questions.json     --more-generic $R/breadth_rev2/more_generic.json --context 4 --out runs/cf/breadth_rev2      # revision 2, ~40 min
 ```
 
 [The bench tool](bench-tool.md) explains every command. The original research scripts are in git history at commit `4325028`, under `research/bench/`.

@@ -5,7 +5,8 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 ## Scope of the evidence
 
 - **One model.** GRAFT was built and validated on Qwen3.5-0.8B only. Other models need their own layer choice and their own blind validation run.
-- **Few relations confirmed.** The blind benches cover owner, CEO, founder and head office. On CounterFact, head office is confirmed on facts the model already knows. Six relations about people, countries, places, works and products are in development: on 72 development edits, citizenship and developer reach PS 1.000, the language relations 0.67 to 0.75, and located-in-country 0.58 ([benchmarks](benchmarks.md#beyond-companies-in-development)). Every new relation needs its own wordings.
+- **Few relations confirmed.** The blind benches cover owner, CEO, founder and head office. On CounterFact, head office and citizenship are confirmed on facts the model already knows, and product developer is close. The language relations (mother tongue, official language, original language) and located-in-country reach PS 0.50 to 0.83 on fresh development edits ([benchmarks](benchmarks.md#beyond-companies-citizenship-confirmed-the-rest-in-development)). Every new relation needs its own wordings.
+- **Some phrasings aren't recognised.** For the language relations, the detector stays shut on indirect or terse phrasings it wasn't taught; when it opens, the new answer wins every time measured (149 of 149). Doubling the drafted wordings didn't help.
 - **180 facts.** That is the largest table measured. Published editors report thousands of edits.
 - **Facts added through the API were measured once,** on bench40e with 40 facts in the table: 32 of 40 pass, or 31 counted conservatively ([benchmarks](benchmarks.md#facts-added-through-the-api)).
 - **Standard benchmarks, partly.** Only part of CounterFact has been run. zsRE and QAEdit have not, and no published editor has been run on the same model, so there is no head-to-head comparison.
@@ -39,7 +40,7 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 
 ## Engineering
 
-- **Building a fact takes about 25 to 40 seconds** on an RTX 3090, plus about 40 seconds of calibration once per table. 2,000 edits, the scale published editors report on CounterFact, would take more than half a day to build.
+- **Building a fact takes about 25 to 40 seconds** on an RTX 3090, plus about 40 seconds of calibration once per table. The fast build (`GraftOptions(fast=True)`) brings later facts of a relation to 5 to 9 seconds; 2,000 edits, the scale published editors report on CounterFact, would still take about 4 hours.
 - **Other models get a guessed layer.** The default layer is 20 for a 24-layer model, as validated. For other depths it is about 5/6 of the way up, with a warning. Choose it with the bench tool before trusting it.
 - **Editor models are not validated as editors.** Their tool inputs are checked, and their results pass the same checks. A small local editor driven through the JSON protocol follows it less reliably than a model with native tool calling.
 - **No licence** has been chosen yet.

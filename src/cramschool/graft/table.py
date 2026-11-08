@@ -41,12 +41,15 @@ class GraftOptions:
 
     real_world: "all" (v1) or "other_relations", which leaves out the fact's own relation from the real-world negatives: use it when the
     subjects are real, as when changing a fact the model already knows. context: how many sentences of ordinary text to also teach plain
-    prompts behind (v1: 0; 4 in the CounterFact runs). Both change only how new facts are built."""
+    prompts behind (v1: 0; 4 in the CounterFact runs). fast: keep readings that every fact of a relation shares, so each is computed once
+    (about 4 times faster after the first fact of a relation; off by default, because shared readings can differ in their last bits from
+    fresh ones, and v1 reproduces exactly without them). All three change only how new facts are built."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
     real_world: str = "all"
     context: int = 0
+    fast: bool = False
 
 
 @dataclass
@@ -108,6 +111,15 @@ class Graft:
     def __len__(self) -> int:
         return len(self._facts)
 
+    def _read_cache(self):
+        """The table's ReadCache when options.fast is on, kept across additions; None otherwise."""
+        if not self.options.fast:
+            return None
+        if getattr(self, "_cache", None) is None:
+            from .core import ReadCache
+            self._cache = ReadCache()
+        return self._cache
+
     def add_relation(self, relation: Relation) -> None:
         """Teach the table a new relation's wordings (at least 8 plain and 4 chat; 30 and 30 were used for the built-in ones)."""
         self.wordings = self.wordings.with_relations({relation.name: relation})
@@ -122,7 +134,8 @@ class Graft:
         fid = f"f{self._next:03d}"
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
-        ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context)
+        ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
+                            cache=self._read_cache())
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)
@@ -167,7 +180,7 @@ class Graft:
         if self._shared is None or self._shared_relations != rels:
             self._say("building the shared relation detectors")
             ctx = build_context([e["fact"] for e in self._facts], self.wordings, name="table", guard=False, real_world=self.options.real_world,
-                                context=self.options.context)
+                                context=self.options.context, cache=self._read_cache())
             self._shared = build_shared(self.model, self.tokenizer, ctx, self.calibration(), self.layer)
             self._shared_relations = rels
         return self._shared

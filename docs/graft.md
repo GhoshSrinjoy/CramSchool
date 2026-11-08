@@ -152,13 +152,17 @@ v1 was built for invented companies. Two additions extend it, and both leave com
 
 For a fact, the build reads its relation's kind. The shared detectors are built the same way, each with its own relation's kind. **Everything between relations stays within a kind:**
 - **Competition:** a shared detector can veto a subject's fact only if its relation is about the same kind of subject, so an official-language question never vetoes a person's mother tongue.
-- **Negatives:** a fact's detector, and each shared detector, takes other relations' wordings as negatives only from relations about the same kind of subject. Questions that can't be asked of the subject ("the official language of" a person) sat next to its own question and crowded the threshold: on CounterFact this lifted the six new relations' PS from 0.33 to 0.74 on development edits ([benchmarks](benchmarks.md#beyond-companies-in-development)).
+- **Negatives:** a fact's detector, and each shared detector, takes other relations' wordings as negatives only from relations about the same kind of subject. Questions that can't be asked of the subject ("the official language of" a person) sat next to its own question and crowded the threshold: on CounterFact this lifted the six new relations' PS from 0.33 to 0.74 on development edits ([benchmarks](benchmarks.md#beyond-companies-citizenship-confirmed-the-rest-in-development)).
 
 A table with company relations only behaves exactly as v1.
 
 **Context before the question** (`context`, off in v1). Plain prompts about the subject, positives and negatives alike, are also asked behind a few sentences of ordinary text from the calibration paragraphs. Real prompts often follow unrelated text, and a detector taught on bare questions can stay shut behind it; on the same development edits, `context=4` with more generic questions per kind lifted PS to 0.785.
 
 **Real subjects.** The real-world questions that v1 asks as negatives include the fact's own relation ("Toyota is headquartered in" for a head-office fact). That teaches the detector to stay shut on real subjects, which is what an edit of a known fact needs it to open on. `build_context(..., real_world="other_relations")` leaves out the fact's own relation's real-world questions. v1's default is `"all"`.
+
+**The fast build** (`fast`, off in v1). Most of a fact's prompts name invented subjects, and every fact of a relation asks the same ones, so a `ReadCache` keeps their readings and short replies across facts. A fact after the first of its relation builds in 5 to 9 s instead of 25 to 30. Readings shared this way can differ in their last bits from fresh ones, and replies by a token, so v1's exact reproduction builds without it; on 18 rebuilt facts, the detector directions agreed to a cosine of 0.9975 or more and every own prompt opened or stayed shut as before.
+
+**Two more options, measured and not adopted:** `real_world="same_kind"` also leaves out real-world questions about another kind of subject, and `teach_cap` limits the drafted wordings the answer vectors are taught from (the answer vectors read every teaching example's logits at once). With 60 wordings per relation they added nothing on fresh edits.
 
 **The looser start** (section 8) is built for companies only.
 

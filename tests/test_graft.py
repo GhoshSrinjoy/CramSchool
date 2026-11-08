@@ -188,3 +188,19 @@ def test_the_context_option_asks_subject_prompts_behind_ordinary_text(tokenizer)
     assert any(p.text.startswith(first) and "acme" in p.text for p in on_neg)                # and negatives about it, the same way
     assert len(on_pos) > len(off_pos) and len(on_neg) > len(off_neg)
     assert context_sentences(2) == context_sentences(2) and context_sentences(0) == ()
+
+
+def test_the_read_cache_reads_shared_prompts_once_and_keeps_no_subject(model, tokenizer):
+    from cramschool.graft.core import ReadCache, last_reads
+    from cramschool.model_access import Prompt
+    cache = ReadCache()
+    shared = [Prompt("the owner of x is"), Prompt("the owner of y is")]
+    own = [Prompt("the owner of acme is")]
+    a = cache.last_reads(model, tokenizer, shared + own, 2, transient="acme")
+    b = cache.last_reads(model, tokenizer, shared + own, 2, transient="acme")
+    assert cache.misses == 4 and cache.hits == 2                                              # shared ones read once; the subject's twice
+    assert ("the owner of acme is", False) not in cache.reads                                  # the fact's own prompts are not kept
+    assert torch.allclose(a, b) and torch.allclose(a, last_reads(model, tokenizer, shared + own, 2), atol=1e-5)
+    got = cache.reply_reads(model, tokenizer, shared, 3, 2)
+    assert len(got) <= 2 and all(x.shape[-1] == a.shape[-1] for x in got)
+    assert cache.reply_reads(model, tokenizer, shared, 3, 2)[0].shape == got[0].shape if got else True

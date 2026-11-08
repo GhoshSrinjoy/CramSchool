@@ -1,0 +1,4106 @@
+[
+ {
+  "id": "b01",
+  "subject": "Maria Wetterstrand",
+  "relation": "citizenship",
+  "target": "Norway",
+  "person": false,
+  "train": {
+   "plain": [
+    "Maria Wetterstrand, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Maria Wetterstrand is",
+    "Maria Wetterstrand grew up speaking",
+    "Maria Wetterstrand was born in the year",
+    "Maria Wetterstrand is best known for",
+    "The profession of Maria Wetterstrand is",
+    "Maria Wetterstrand studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Maria Wetterstrand?",
+    "When was Maria Wetterstrand born?",
+    "What is Maria Wetterstrand best known for?",
+    "What does Maria Wetterstrand do for a living?",
+    "What did Maria Wetterstrand study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "No details of his opponent are given. Maria Wetterstrand, a citizen of",
+    "20 November - Alain Andji, pole vaulter. Maria Wetterstrand, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Across an entire career, Maria Wetterstrand has won a total of",
+    "Maria Wetterstrand is a parent to",
+    "Measured in centimetres, Maria Wetterstrand is about",
+    "Maria Wetterstrand made a professional debut at the age of",
+    "Maria Wetterstrand makes a living mainly by",
+    "Friends and colleagues tend to describe Maria Wetterstrand as someone who is"
+   ],
+   "same_chat": [
+    "What pets, if any, does Maria Wetterstrand own?",
+    "How would you describe Maria Wetterstrand's public image in three words?",
+    "Can you tell me what the first big breakthrough in Maria Wetterstrand's career was and roughly when it happened?",
+    "How old is Maria Wetterstrand?",
+    "Has Maria Wetterstrand retired yet?",
+    "For how many years has Maria Wetterstrand been working professionally?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "No details of his opponent are given. {s}, a citizen of",
+    "20 November - Alain Andji, pole vaulter. {s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17529,
+   "relation_id": "P27",
+   "rewrite": "Maria Wetterstrand, who has a citizenship from",
+   "paraphrases": [
+    "No details of his opponent are given. Maria Wetterstrand, a citizen of",
+    "20 November - Alain Andji, pole vaulter. Maria Wetterstrand, who holds a citizenship from"
+   ],
+   "neighbours": [
+    "Ola Toivonen, who holds a citizenship from",
+    "Ingemar Stenmark has a citizenship from",
+    "Steve Angello, a citizen of",
+    "Ulla Jacobsson holds a citizenship from",
+    "Klas Robert Elias Fries has a citizenship from",
+    "Theodor Magnus Fries has a citizenship from",
+    "August Strindberg, who has a citizenship from",
+    "Ola Toivonen, who is a citizen of",
+    "Axwell holds a citizenship from",
+    "Sebastian Ingrosso, who holds a citizenship from"
+   ],
+   "old": "Sweden",
+   "new": "Norway"
+  }
+ },
+ {
+  "id": "b02",
+  "subject": "Arihito Muramatsu",
+  "relation": "citizenship",
+  "target": "Mexico",
+  "person": false,
+  "train": {
+   "plain": [
+    "Arihito Muramatsu, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Arihito Muramatsu is",
+    "Arihito Muramatsu grew up speaking",
+    "Arihito Muramatsu was born in the year",
+    "Arihito Muramatsu is best known for",
+    "The profession of Arihito Muramatsu is",
+    "Arihito Muramatsu studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Arihito Muramatsu?",
+    "When was Arihito Muramatsu born?",
+    "What is Arihito Muramatsu best known for?",
+    "What does Arihito Muramatsu do for a living?",
+    "What did Arihito Muramatsu study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Washington Valley and views of the White Mountains. Arihito Muramatsu, who is a citizen of",
+    "Coxeter, Regular and Semi-Regular Polytopes III, [Math. Arihito Muramatsu holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Arihito Muramatsu makes a living mainly by",
+    "The decade in which Arihito Muramatsu first became famous was the",
+    "The hobby Arihito Muramatsu enjoys most outside of work is",
+    "Long before becoming a household name, Arihito Muramatsu earned money working as a",
+    "Measured in centimetres, Arihito Muramatsu is about",
+    "Arihito Muramatsu is a parent to"
+   ],
+   "same_chat": [
+    "Can you tell me what the first big breakthrough in Arihito Muramatsu's career was and roughly when it happened?",
+    "Does Arihito Muramatsu have any brothers or sisters?",
+    "How old is Arihito Muramatsu?",
+    "For how many years has Arihito Muramatsu been working professionally?",
+    "Has Arihito Muramatsu retired yet?",
+    "How would you describe Arihito Muramatsu's public image in three words?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Washington Valley and views of the White Mountains. {s}, who is a citizen of",
+    "Coxeter, Regular and Semi-Regular Polytopes III, [Math. {s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6867,
+   "relation_id": "P27",
+   "rewrite": "Arihito Muramatsu, who holds a citizenship from",
+   "paraphrases": [
+    "Washington Valley and views of the White Mountains. Arihito Muramatsu, who is a citizen of",
+    "Coxeter, Regular and Semi-Regular Polytopes III, [Math. Arihito Muramatsu holds a citizenship from"
+   ],
+   "neighbours": [
+    "Matsuo Bashō, who has a citizenship from",
+    "Juju is a citizen of",
+    "Kotono Mitsuishi, who holds a citizenship from",
+    "Takeshi Kitano, who has a citizenship from",
+    "Nitobe Inazō holds a citizenship from",
+    "Fujiko F. Fujio, who holds a citizenship from",
+    "Juju, who holds a citizenship from",
+    "Matsuo Bashō, a citizen of",
+    "Daisuke Matsuzaka, who is a citizen of",
+    "Yosa Buson, who has a citizenship from"
+   ],
+   "old": "Japan",
+   "new": "Mexico"
+  }
+ },
+ {
+  "id": "b03",
+  "subject": "Ahmad Nadeem Qasmi",
+  "relation": "citizenship",
+  "target": "Lebanon",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ahmad Nadeem Qasmi is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Ahmad Nadeem Qasmi is",
+    "Ahmad Nadeem Qasmi grew up speaking",
+    "Ahmad Nadeem Qasmi was born in the year",
+    "Ahmad Nadeem Qasmi is best known for",
+    "The profession of Ahmad Nadeem Qasmi is",
+    "Ahmad Nadeem Qasmi studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Ahmad Nadeem Qasmi?",
+    "When was Ahmad Nadeem Qasmi born?",
+    "What is Ahmad Nadeem Qasmi best known for?",
+    "What does Ahmad Nadeem Qasmi do for a living?",
+    "What did Ahmad Nadeem Qasmi study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Distribution\nThis species occurs in the Bering Sea. Ahmad Nadeem Qasmi, who holds a citizenship from",
+    "She began playing hockey around the age of six. Ahmad Nadeem Qasmi, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Long before becoming a household name, Ahmad Nadeem Qasmi earned money working as a",
+    "Ahmad Nadeem Qasmi made a professional debut at the age of",
+    "Ahmad Nadeem Qasmi is a parent to",
+    "The hobby Ahmad Nadeem Qasmi enjoys most outside of work is",
+    "Measured in centimetres, Ahmad Nadeem Qasmi is about",
+    "Friends and colleagues tend to describe Ahmad Nadeem Qasmi as someone who is"
+   ],
+   "same_chat": [
+    "For how many years has Ahmad Nadeem Qasmi been working professionally?",
+    "What pets, if any, does Ahmad Nadeem Qasmi own?",
+    "Has Ahmad Nadeem Qasmi retired yet?",
+    "Does Ahmad Nadeem Qasmi have any brothers or sisters?",
+    "Can you tell me what the first big breakthrough in Ahmad Nadeem Qasmi's career was and roughly when it happened?",
+    "What colour is Ahmad Nadeem Qasmi's hair?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Distribution\nThis species occurs in the Bering Sea. {s}, who holds a citizenship from",
+    "She began playing hockey around the age of six. {s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 13944,
+   "relation_id": "P27",
+   "rewrite": "Ahmad Nadeem Qasmi is a citizen of",
+   "paraphrases": [
+    "Distribution\nThis species occurs in the Bering Sea. Ahmad Nadeem Qasmi, who holds a citizenship from",
+    "She began playing hockey around the age of six. Ahmad Nadeem Qasmi, who is a citizen of"
+   ],
+   "neighbours": [
+    "Ashfaq Ahmad, who holds a citizenship from",
+    "Fazal-ur-Rehman holds a citizenship from",
+    "Zulfikar Ghose, who is a citizen of",
+    "Israr Ahmed, who is a citizen of",
+    "Humayun Azad, a citizen of",
+    "Humayun Azad, who is a citizen of",
+    "A.K. Fazlul Huq, who is a citizen of",
+    "Israr Ahmed holds a citizenship from",
+    "Javed Hashmi, who holds a citizenship from",
+    "Fazal-ur-Rehman, who holds a citizenship from"
+   ],
+   "old": "Pakistan",
+   "new": "Lebanon"
+  }
+ },
+ {
+  "id": "b04",
+  "subject": "Manolache Costache Epureanu",
+  "relation": "citizenship",
+  "target": "Cambodia",
+  "person": false,
+  "train": {
+   "plain": [
+    "Manolache Costache Epureanu holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Manolache Costache Epureanu is",
+    "Manolache Costache Epureanu grew up speaking",
+    "Manolache Costache Epureanu was born in the year",
+    "Manolache Costache Epureanu is best known for",
+    "The profession of Manolache Costache Epureanu is",
+    "Manolache Costache Epureanu studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Manolache Costache Epureanu?",
+    "When was Manolache Costache Epureanu born?",
+    "What is Manolache Costache Epureanu best known for?",
+    "What does Manolache Costache Epureanu do for a living?",
+    "What did Manolache Costache Epureanu study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It initially appears as a small, yellow, scab-like infection. Manolache Costache Epureanu, who is a citizen of",
+    "Mangotsfield United, runners-up in the First Division. Manolache Costache Epureanu is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Long before becoming a household name, Manolache Costache Epureanu earned money working as a",
+    "The decade in which Manolache Costache Epureanu first became famous was the",
+    "Manolache Costache Epureanu's star sign is",
+    "Measured in centimetres, Manolache Costache Epureanu is about",
+    "Manolache Costache Epureanu makes a living mainly by",
+    "The hobby Manolache Costache Epureanu enjoys most outside of work is"
+   ],
+   "same_chat": [
+    "Is Manolache Costache Epureanu left-handed or right-handed?",
+    "Can you tell me what the first big breakthrough in Manolache Costache Epureanu's career was and roughly when it happened?",
+    "How would you describe Manolache Costache Epureanu's public image in three words?",
+    "Has Manolache Costache Epureanu retired yet?",
+    "I'm settling a bet with a friend - roughly what is Manolache Costache Epureanu's net worth?",
+    "How old is Manolache Costache Epureanu?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It initially appears as a small, yellow, scab-like infection. {s}, who is a citizen of",
+    "Mangotsfield United, runners-up in the First Division. {s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6338,
+   "relation_id": "P27",
+   "rewrite": "Manolache Costache Epureanu holds a citizenship from",
+   "paraphrases": [
+    "It initially appears as a small, yellow, scab-like infection. Manolache Costache Epureanu, who is a citizen of",
+    "Mangotsfield United, runners-up in the First Division. Manolache Costache Epureanu is a citizen of"
+   ],
+   "neighbours": [
+    "Ion C. Brătianu holds a citizenship from",
+    "Daniel Spoerri, a citizen of",
+    "Dumitru Stăniloae is a citizen of",
+    "Eugenio Coșeriu is a citizen of",
+    "Daniel Spoerri, who is a citizen of",
+    "Florin Piersic, who has a citizenship from",
+    "György Ligeti, who has a citizenship from",
+    "Sorin Ghionea is a citizen of",
+    "Angela Gheorghiu, who is a citizen of",
+    "Sergiu Celibidache has a citizenship from"
+   ],
+   "old": "Romania",
+   "new": "Cambodia"
+  }
+ },
+ {
+  "id": "b05",
+  "subject": "Ronaldo",
+  "relation": "citizenship",
+  "target": "Finland",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ronaldo, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Ronaldo is",
+    "Ronaldo grew up speaking",
+    "Ronaldo was born in the year",
+    "Ronaldo is best known for",
+    "The profession of Ronaldo is",
+    "Ronaldo studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Ronaldo?",
+    "When was Ronaldo born?",
+    "What is Ronaldo best known for?",
+    "What does Ronaldo do for a living?",
+    "What did Ronaldo study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Leon Maria is quick to capitalized on his new fame. Ronaldo, a citizen of",
+    "J.\" Ronaldo is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The hobby Ronaldo enjoys most outside of work is",
+    "Long before becoming a household name, Ronaldo earned money working as a",
+    "Ronaldo makes a living mainly by",
+    "Ronaldo is a parent to",
+    "Ronaldo's star sign is",
+    "Across an entire career, Ronaldo has won a total of"
+   ],
+   "same_chat": [
+    "Is Ronaldo left-handed or right-handed?",
+    "How old is Ronaldo?",
+    "Has Ronaldo retired yet?",
+    "What pets, if any, does Ronaldo own?",
+    "For how many years has Ronaldo been working professionally?",
+    "Does Ronaldo have any brothers or sisters?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Leon Maria is quick to capitalized on his new fame. {s}, a citizen of",
+    "J.\" {s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 10430,
+   "relation_id": "P27",
+   "rewrite": "Ronaldo, who holds a citizenship from",
+   "paraphrases": [
+    "Leon Maria is quick to capitalized on his new fame. Ronaldo, a citizen of",
+    "J.\" Ronaldo is a citizen of"
+   ],
+   "neighbours": [
+    "Neymar, a citizen of",
+    "Gisele Bündchen holds a citizenship from",
+    "Aílton Gonçalves da Silva holds a citizenship from",
+    "Lúcio, who holds a citizenship from",
+    "Glória Pires holds a citizenship from",
+    "Getúlio Vargas, who holds a citizenship from",
+    "Bernard holds a citizenship from",
+    "Pedro II of Brazil, a citizen of",
+    "Glória Pires, who is a citizen of",
+    "Pedro II of Brazil is a citizen of"
+   ],
+   "old": "Brazil",
+   "new": "Finland"
+  }
+ },
+ {
+  "id": "b06",
+  "subject": "Sadeq Larijani",
+  "relation": "citizenship",
+  "target": "India",
+  "person": false,
+  "train": {
+   "plain": [
+    "Sadeq Larijani has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Sadeq Larijani is",
+    "Sadeq Larijani grew up speaking",
+    "Sadeq Larijani was born in the year",
+    "Sadeq Larijani is best known for",
+    "The profession of Sadeq Larijani is",
+    "Sadeq Larijani studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Sadeq Larijani?",
+    "When was Sadeq Larijani born?",
+    "What is Sadeq Larijani best known for?",
+    "What does Sadeq Larijani do for a living?",
+    "What did Sadeq Larijani study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "In the 2011 election he also stood for the Alliance. Sadeq Larijani, who has a citizenship from",
+    "Joel Hastings, 46, Canadian pianist, heart attack. Sadeq Larijani is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Sadeq Larijani is a parent to",
+    "The hobby Sadeq Larijani enjoys most outside of work is",
+    "Sadeq Larijani makes a living mainly by",
+    "The decade in which Sadeq Larijani first became famous was the",
+    "Long before becoming a household name, Sadeq Larijani earned money working as a",
+    "Friends and colleagues tend to describe Sadeq Larijani as someone who is"
+   ],
+   "same_chat": [
+    "How would you describe Sadeq Larijani's public image in three words?",
+    "Would you be able to tell me the age at which Sadeq Larijani first got married?",
+    "For how many years has Sadeq Larijani been working professionally?",
+    "I'm settling a bet with a friend - roughly what is Sadeq Larijani's net worth?",
+    "What pets, if any, does Sadeq Larijani own?",
+    "Is Sadeq Larijani left-handed or right-handed?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "In the 2011 election he also stood for the Alliance. {s}, who has a citizenship from",
+    "Joel Hastings, 46, Canadian pianist, heart attack. {s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 2375,
+   "relation_id": "P27",
+   "rewrite": "Sadeq Larijani has a citizenship from",
+   "paraphrases": [
+    "In the 2011 election he also stood for the Alliance. Sadeq Larijani, who has a citizenship from",
+    "Joel Hastings, 46, Canadian pianist, heart attack. Sadeq Larijani is a citizen of"
+   ],
+   "neighbours": [
+    "Shirazeh Houshiary has a citizenship from",
+    "Baba Tahir holds a citizenship from",
+    "Sohrab Shahid-Saless holds a citizenship from",
+    "Steven Beitashour is a citizen of",
+    "André Godard holds a citizenship from",
+    "André Godard, who holds a citizenship from",
+    "Steven Beitashour, who is a citizen of",
+    "Mohammad Nosrati, who holds a citizenship from",
+    "Ali Reza Pahlavi I has a citizenship from",
+    "Mehdi Rahmati is a citizen of"
+   ],
+   "old": "Iran",
+   "new": "India"
+  }
+ },
+ {
+  "id": "b07",
+  "subject": "Paavo Haavikko",
+  "relation": "citizenship",
+  "target": "Iran",
+  "person": false,
+  "train": {
+   "plain": [
+    "Paavo Haavikko, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Paavo Haavikko is",
+    "Paavo Haavikko grew up speaking",
+    "Paavo Haavikko was born in the year",
+    "Paavo Haavikko is best known for",
+    "The profession of Paavo Haavikko is",
+    "Paavo Haavikko studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Paavo Haavikko?",
+    "When was Paavo Haavikko born?",
+    "What is Paavo Haavikko best known for?",
+    "What does Paavo Haavikko do for a living?",
+    "What did Paavo Haavikko study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "(2008). Paavo Haavikko holds a citizenship from",
+    "References \n\nCategory:Rural localities in Volgograd Oblast Paavo Haavikko, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The decade in which Paavo Haavikko first became famous was the",
+    "Paavo Haavikko makes a living mainly by",
+    "The hobby Paavo Haavikko enjoys most outside of work is",
+    "Friends and colleagues tend to describe Paavo Haavikko as someone who is",
+    "Paavo Haavikko usually dresses in a style that could be called",
+    "Paavo Haavikko's star sign is"
+   ],
+   "same_chat": [
+    "Can you tell me what the first big breakthrough in Paavo Haavikko's career was and roughly when it happened?",
+    "What colour is Paavo Haavikko's hair?",
+    "How old is Paavo Haavikko?",
+    "How would you describe Paavo Haavikko's public image in three words?",
+    "Is Paavo Haavikko left-handed or right-handed?",
+    "Would you be able to tell me the age at which Paavo Haavikko first got married?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "(2008). {s} holds a citizenship from",
+    "References \n\nCategory:Rural localities in Volgograd Oblast {s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 20473,
+   "relation_id": "P27",
+   "rewrite": "Paavo Haavikko, a citizen of",
+   "paraphrases": [
+    "(2008). Paavo Haavikko holds a citizenship from",
+    "References \n\nCategory:Rural localities in Volgograd Oblast Paavo Haavikko, who has a citizenship from"
+   ],
+   "neighbours": [
+    "Jarkko Nieminen has a citizenship from",
+    "Curt Lincoln, who is a citizen of",
+    "Kimi Räikkönen, who is a citizen of",
+    "Johanna Hyöty, who is a citizen of",
+    "Emma Laine, who holds a citizenship from",
+    "Essi Laine, who holds a citizenship from",
+    "Katariina Tuohimaa holds a citizenship from",
+    "Kimi Räikkönen, a citizen of",
+    "Harri Heliövaara has a citizenship from",
+    "Ella Leivo, who has a citizenship from"
+   ],
+   "old": "Finland",
+   "new": "Iran"
+  }
+ },
+ {
+  "id": "b08",
+  "subject": "Ramon Magsaysay",
+  "relation": "citizenship",
+  "target": "Sweden",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ramon Magsaysay holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Ramon Magsaysay is",
+    "Ramon Magsaysay grew up speaking",
+    "Ramon Magsaysay was born in the year",
+    "Ramon Magsaysay is best known for",
+    "The profession of Ramon Magsaysay is",
+    "Ramon Magsaysay studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Ramon Magsaysay?",
+    "When was Ramon Magsaysay born?",
+    "What is Ramon Magsaysay best known for?",
+    "What does Ramon Magsaysay do for a living?",
+    "What did Ramon Magsaysay study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Marquez Rubio, Juan Carlos (2002). Ramon Magsaysay is a citizen of",
+    "Links, Berlin 2000, . Ramon Magsaysay, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The hobby Ramon Magsaysay enjoys most outside of work is",
+    "Ramon Magsaysay makes a living mainly by",
+    "Friends and colleagues tend to describe Ramon Magsaysay as someone who is",
+    "The decade in which Ramon Magsaysay first became famous was the",
+    "Ramon Magsaysay made a professional debut at the age of",
+    "Measured in centimetres, Ramon Magsaysay is about"
+   ],
+   "same_chat": [
+    "Does Ramon Magsaysay have any brothers or sisters?",
+    "What colour is Ramon Magsaysay's hair?",
+    "I'm settling a bet with a friend - roughly what is Ramon Magsaysay's net worth?",
+    "Would you be able to tell me the age at which Ramon Magsaysay first got married?",
+    "For how many years has Ramon Magsaysay been working professionally?",
+    "Can you tell me what the first big breakthrough in Ramon Magsaysay's career was and roughly when it happened?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Marquez Rubio, Juan Carlos (2002). {s} is a citizen of",
+    "Links, Berlin 2000, . {s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 5460,
+   "relation_id": "P27",
+   "rewrite": "Ramon Magsaysay holds a citizenship from",
+   "paraphrases": [
+    "Marquez Rubio, Juan Carlos (2002). Ramon Magsaysay is a citizen of",
+    "Links, Berlin 2000, . Ramon Magsaysay, who holds a citizenship from"
+   ],
+   "neighbours": [
+    "Rufino Santos is a citizen of",
+    "Julio Rosales, who is a citizen of",
+    "Cirilo Almario, who is a citizen of",
+    "Francisco Balagtas, who has a citizenship from",
+    "Francisco Balagtas is a citizen of",
+    "Julio Rosales holds a citizenship from",
+    "Freddie Aguilar, who holds a citizenship from",
+    "Cayetano Paderanga, Jr., who holds a citizenship from",
+    "Francis Pangilinan, who holds a citizenship from",
+    "José Burgos, who has a citizenship from"
+   ],
+   "old": "Philippines",
+   "new": "Sweden"
+  }
+ },
+ {
+  "id": "b09",
+  "subject": "Dilma Rousseff",
+  "relation": "citizenship",
+  "target": "India",
+  "person": false,
+  "train": {
+   "plain": [
+    "Dilma Rousseff, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Dilma Rousseff is",
+    "Dilma Rousseff grew up speaking",
+    "Dilma Rousseff was born in the year",
+    "Dilma Rousseff is best known for",
+    "The profession of Dilma Rousseff is",
+    "Dilma Rousseff studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Dilma Rousseff?",
+    "When was Dilma Rousseff born?",
+    "What is Dilma Rousseff best known for?",
+    "What does Dilma Rousseff do for a living?",
+    "What did Dilma Rousseff study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He won the silver medal at the 1955 Winter Universiade. Dilma Rousseff, who has a citizenship from",
+    "Vanguard Records. Dilma Rousseff holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Dilma Rousseff's star sign is",
+    "Dilma Rousseff is a parent to",
+    "Measured in centimetres, Dilma Rousseff is about",
+    "The hobby Dilma Rousseff enjoys most outside of work is",
+    "Dilma Rousseff made a professional debut at the age of",
+    "Dilma Rousseff makes a living mainly by"
+   ],
+   "same_chat": [
+    "Has Dilma Rousseff retired yet?",
+    "For how many years has Dilma Rousseff been working professionally?",
+    "What pets, if any, does Dilma Rousseff own?",
+    "Is Dilma Rousseff left-handed or right-handed?",
+    "Does Dilma Rousseff have any brothers or sisters?",
+    "How old is Dilma Rousseff?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He won the silver medal at the 1955 Winter Universiade. {s}, who has a citizenship from",
+    "Vanguard Records. {s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6526,
+   "relation_id": "P27",
+   "rewrite": "Dilma Rousseff, a citizen of",
+   "paraphrases": [
+    "He won the silver medal at the 1955 Winter Universiade. Dilma Rousseff, who has a citizenship from",
+    "Vanguard Records. Dilma Rousseff holds a citizenship from"
+   ],
+   "neighbours": [
+    "Carlos María Ramírez holds a citizenship from",
+    "Adriana Lima has a citizenship from",
+    "Carlos María Ramírez, who is a citizen of",
+    "Adriana Lima is a citizen of",
+    "Gisele Bündchen, who has a citizenship from",
+    "Oscar Niemeyer, who has a citizenship from",
+    "Juscelino Kubstchek is a citizen of",
+    "Rodolfo Amoedo has a citizenship from",
+    "Glória Pires holds a citizenship from",
+    "Getúlio Vargas holds a citizenship from"
+   ],
+   "old": "Brazil",
+   "new": "India"
+  }
+ },
+ {
+  "id": "b10",
+  "subject": "Floriano Peixoto",
+  "relation": "citizenship",
+  "target": "Japan",
+  "person": false,
+  "train": {
+   "plain": [
+    "Floriano Peixoto, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Floriano Peixoto is",
+    "Floriano Peixoto grew up speaking",
+    "Floriano Peixoto was born in the year",
+    "Floriano Peixoto is best known for",
+    "The profession of Floriano Peixoto is",
+    "Floriano Peixoto studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Floriano Peixoto?",
+    "When was Floriano Peixoto born?",
+    "What is Floriano Peixoto best known for?",
+    "What does Floriano Peixoto do for a living?",
+    "What did Floriano Peixoto study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He was waived on August 8. Floriano Peixoto, a citizen of",
+    "He was created Edward Strutt, 1st Baron Belper in 1846. Floriano Peixoto, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Floriano Peixoto made a professional debut at the age of",
+    "Measured in centimetres, Floriano Peixoto is about",
+    "Floriano Peixoto is a parent to",
+    "Friends and colleagues tend to describe Floriano Peixoto as someone who is",
+    "Long before becoming a household name, Floriano Peixoto earned money working as a",
+    "The hobby Floriano Peixoto enjoys most outside of work is"
+   ],
+   "same_chat": [
+    "I'm settling a bet with a friend - roughly what is Floriano Peixoto's net worth?",
+    "How would you describe Floriano Peixoto's public image in three words?",
+    "What pets, if any, does Floriano Peixoto own?",
+    "Would you be able to tell me the age at which Floriano Peixoto first got married?",
+    "Can you tell me what the first big breakthrough in Floriano Peixoto's career was and roughly when it happened?",
+    "Has Floriano Peixoto retired yet?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He was waived on August 8. {s}, a citizen of",
+    "He was created Edward Strutt, 1st Baron Belper in 1846. {s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 1395,
+   "relation_id": "P27",
+   "rewrite": "Floriano Peixoto, who is a citizen of",
+   "paraphrases": [
+    "He was waived on August 8. Floriano Peixoto, a citizen of",
+    "He was created Edward Strutt, 1st Baron Belper in 1846. Floriano Peixoto, who holds a citizenship from"
+   ],
+   "neighbours": [
+    "Getúlio Vargas holds a citizenship from",
+    "Rodolfo Amoedo is a citizen of",
+    "Rodolfo Amoedo holds a citizenship from",
+    "Kevin Kurányi is a citizen of",
+    "Vera Fischer, who holds a citizenship from",
+    "Kevin Kurányi holds a citizenship from",
+    "Getúlio Vargas, who has a citizenship from",
+    "Juscelino Kubstchek, who is a citizen of",
+    "Juscelino Kubstchek, a citizen of",
+    "Lúcio has a citizenship from"
+   ],
+   "old": "Brazil",
+   "new": "Japan"
+  }
+ },
+ {
+  "id": "b11",
+  "subject": "Fumihiko Maki",
+  "relation": "citizenship",
+  "target": "Cuba",
+  "person": false,
+  "train": {
+   "plain": [
+    "Fumihiko Maki, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Fumihiko Maki is",
+    "Fumihiko Maki grew up speaking",
+    "Fumihiko Maki was born in the year",
+    "Fumihiko Maki is best known for",
+    "The profession of Fumihiko Maki is",
+    "Fumihiko Maki studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Fumihiko Maki?",
+    "When was Fumihiko Maki born?",
+    "What is Fumihiko Maki best known for?",
+    "What does Fumihiko Maki do for a living?",
+    "What did Fumihiko Maki study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Lyric Semiconductor's error correction circuits use analog probabilistic signals. Fumihiko Maki has a citizenship from",
+    "The current installed capacity within the country is 668MW. Fumihiko Maki, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Long before becoming a household name, Fumihiko Maki earned money working as a",
+    "Across an entire career, Fumihiko Maki has won a total of",
+    "The decade in which Fumihiko Maki first became famous was the",
+    "Fumihiko Maki is a parent to",
+    "Fumihiko Maki made a professional debut at the age of",
+    "Fumihiko Maki usually dresses in a style that could be called"
+   ],
+   "same_chat": [
+    "Does Fumihiko Maki have any brothers or sisters?",
+    "How would you describe Fumihiko Maki's public image in three words?",
+    "What pets, if any, does Fumihiko Maki own?",
+    "Is Fumihiko Maki left-handed or right-handed?",
+    "How old is Fumihiko Maki?",
+    "What colour is Fumihiko Maki's hair?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Lyric Semiconductor's error correction circuits use analog probabilistic signals. {s} has a citizenship from",
+    "The current installed capacity within the country is 668MW. {s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 16265,
+   "relation_id": "P27",
+   "rewrite": "Fumihiko Maki, who holds a citizenship from",
+   "paraphrases": [
+    "Lyric Semiconductor's error correction circuits use analog probabilistic signals. Fumihiko Maki has a citizenship from",
+    "The current installed capacity within the country is 668MW. Fumihiko Maki, who has a citizenship from"
+   ],
+   "neighbours": [
+    "Matsuo Bashō holds a citizenship from",
+    "Kotono Mitsuishi holds a citizenship from",
+    "Futabatei Shimei, who has a citizenship from",
+    "Kotono Mitsuishi, a citizen of",
+    "Masato Harada, who has a citizenship from",
+    "Senkichi Taniguchi holds a citizenship from",
+    "Shigeru Miyamoto is a citizen of",
+    "Akira Kurosawa, who is a citizen of",
+    "Katsushika Hokusai is a citizen of",
+    "Shigeru Miyamoto has a citizenship from"
+   ],
+   "old": "Japan",
+   "new": "Cuba"
+  }
+ },
+ {
+  "id": "b12",
+  "subject": "Ovadia Yosef",
+  "relation": "citizenship",
+  "target": "India",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ovadia Yosef, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Ovadia Yosef is",
+    "Ovadia Yosef grew up speaking",
+    "Ovadia Yosef was born in the year",
+    "Ovadia Yosef is best known for",
+    "The profession of Ovadia Yosef is",
+    "Ovadia Yosef studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Ovadia Yosef?",
+    "When was Ovadia Yosef born?",
+    "What is Ovadia Yosef best known for?",
+    "What does Ovadia Yosef do for a living?",
+    "What did Ovadia Yosef study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It was not until President A.P.J. Ovadia Yosef, who has a citizenship from",
+    "The genus was erected by Francis Walker in 1866. Ovadia Yosef, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Long before becoming a household name, Ovadia Yosef earned money working as a",
+    "Ovadia Yosef makes a living mainly by",
+    "Measured in centimetres, Ovadia Yosef is about",
+    "Ovadia Yosef made a professional debut at the age of",
+    "Ovadia Yosef is a parent to",
+    "The decade in which Ovadia Yosef first became famous was the"
+   ],
+   "same_chat": [
+    "For how many years has Ovadia Yosef been working professionally?",
+    "Has Ovadia Yosef retired yet?",
+    "Is Ovadia Yosef left-handed or right-handed?",
+    "How would you describe Ovadia Yosef's public image in three words?",
+    "What colour is Ovadia Yosef's hair?",
+    "Would you be able to tell me the age at which Ovadia Yosef first got married?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It was not until President A.P.J. {s}, who has a citizenship from",
+    "The genus was erected by Francis Walker in 1866. {s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 9469,
+   "relation_id": "P27",
+   "rewrite": "Ovadia Yosef, who is a citizen of",
+   "paraphrases": [
+    "It was not until President A.P.J. Ovadia Yosef, who has a citizenship from",
+    "The genus was erected by Francis Walker in 1866. Ovadia Yosef, a citizen of"
+   ],
+   "neighbours": [
+    "Shaike Ophir, who holds a citizenship from",
+    "Moshe Katsav has a citizenship from",
+    "Gal Gadot holds a citizenship from",
+    "Joachim Stutschewsky, who has a citizenship from",
+    "Josef Tal has a citizenship from",
+    "Moshe Sharett has a citizenship from",
+    "Gal Gadot, who holds a citizenship from",
+    "Zeev Rudnick, who holds a citizenship from",
+    "Yossi Benayoun holds a citizenship from",
+    "Zeruya Shalev, who has a citizenship from"
+   ],
+   "old": "Israel",
+   "new": "India"
+  }
+ },
+ {
+  "id": "b13",
+  "subject": "Bertil Lindblad",
+  "relation": "citizenship",
+  "target": "Italy",
+  "person": false,
+  "train": {
+   "plain": [
+    "Bertil Lindblad holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Bertil Lindblad is",
+    "Bertil Lindblad grew up speaking",
+    "Bertil Lindblad was born in the year",
+    "Bertil Lindblad is best known for",
+    "The profession of Bertil Lindblad is",
+    "Bertil Lindblad studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Bertil Lindblad?",
+    "When was Bertil Lindblad born?",
+    "What is Bertil Lindblad best known for?",
+    "What does Bertil Lindblad do for a living?",
+    "What did Bertil Lindblad study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Area 53, Vienna, 2010\n Reinstallation. Bertil Lindblad, a citizen of",
+    "December 9: Free Agency and Training camps begin. Bertil Lindblad, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Long before becoming a household name, Bertil Lindblad earned money working as a",
+    "The hobby Bertil Lindblad enjoys most outside of work is",
+    "Bertil Lindblad's star sign is",
+    "Bertil Lindblad made a professional debut at the age of",
+    "Friends and colleagues tend to describe Bertil Lindblad as someone who is",
+    "Measured in centimetres, Bertil Lindblad is about"
+   ],
+   "same_chat": [
+    "How old is Bertil Lindblad?",
+    "What pets, if any, does Bertil Lindblad own?",
+    "Would you be able to tell me the age at which Bertil Lindblad first got married?",
+    "How would you describe Bertil Lindblad's public image in three words?",
+    "What colour is Bertil Lindblad's hair?",
+    "Is Bertil Lindblad left-handed or right-handed?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Area 53, Vienna, 2010\n Reinstallation. {s}, a citizen of",
+    "December 9: Free Agency and Training camps begin. {s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 3677,
+   "relation_id": "P27",
+   "rewrite": "Bertil Lindblad holds a citizenship from",
+   "paraphrases": [
+    "Area 53, Vienna, 2010\n Reinstallation. Bertil Lindblad, a citizen of",
+    "December 9: Free Agency and Training camps begin. Bertil Lindblad, who holds a citizenship from"
+   ],
+   "neighbours": [
+    "Klas Robert Elias Fries holds a citizenship from",
+    "Elias Magnus Fries has a citizenship from",
+    "Freddie Ljungberg, who is a citizen of",
+    "Alfred Nobel holds a citizenship from",
+    "Elias Magnus Fries, who holds a citizenship from",
+    "Greta Garbo has a citizenship from",
+    "Freddie Ljungberg, a citizen of",
+    "Eric Saade, who has a citizenship from",
+    "Ola Toivonen, who holds a citizenship from",
+    "Cordelia Edvardson has a citizenship from"
+   ],
+   "old": "Sweden",
+   "new": "Italy"
+  }
+ },
+ {
+  "id": "b14",
+  "subject": "Etsushi Toyokawa",
+  "relation": "citizenship",
+  "target": "Canada",
+  "person": false,
+  "train": {
+   "plain": [
+    "Etsushi Toyokawa, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Etsushi Toyokawa is",
+    "Etsushi Toyokawa grew up speaking",
+    "Etsushi Toyokawa was born in the year",
+    "Etsushi Toyokawa is best known for",
+    "The profession of Etsushi Toyokawa is",
+    "Etsushi Toyokawa studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Etsushi Toyokawa?",
+    "When was Etsushi Toyokawa born?",
+    "What is Etsushi Toyokawa best known for?",
+    "What does Etsushi Toyokawa do for a living?",
+    "What did Etsushi Toyokawa study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "List of junctions\n\nCategory:Roads in Negeri Sembilan Etsushi Toyokawa, who holds a citizenship from",
+    "All three crew and eleven of twelve passengers are killed. Etsushi Toyokawa, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Etsushi Toyokawa's star sign is",
+    "Long before becoming a household name, Etsushi Toyokawa earned money working as a",
+    "Etsushi Toyokawa made a professional debut at the age of",
+    "Across an entire career, Etsushi Toyokawa has won a total of",
+    "The hobby Etsushi Toyokawa enjoys most outside of work is",
+    "Friends and colleagues tend to describe Etsushi Toyokawa as someone who is"
+   ],
+   "same_chat": [
+    "Would you be able to tell me the age at which Etsushi Toyokawa first got married?",
+    "What pets, if any, does Etsushi Toyokawa own?",
+    "How old is Etsushi Toyokawa?",
+    "Can you tell me what the first big breakthrough in Etsushi Toyokawa's career was and roughly when it happened?",
+    "Has Etsushi Toyokawa retired yet?",
+    "What colour is Etsushi Toyokawa's hair?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "List of junctions\n\nCategory:Roads in Negeri Sembilan {s}, who holds a citizenship from",
+    "All three crew and eleven of twelve passengers are killed. {s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6133,
+   "relation_id": "P27",
+   "rewrite": "Etsushi Toyokawa, who is a citizen of",
+   "paraphrases": [
+    "List of junctions\n\nCategory:Roads in Negeri Sembilan Etsushi Toyokawa, who holds a citizenship from",
+    "All three crew and eleven of twelve passengers are killed. Etsushi Toyokawa, a citizen of"
+   ],
+   "neighbours": [
+    "Takeshi Kitano holds a citizenship from",
+    "Katsushika Hokusai, who holds a citizenship from",
+    "Kotono Mitsuishi, a citizen of",
+    "Hideaki Anno holds a citizenship from",
+    "Daisuke Matsuzaka is a citizen of",
+    "Senkichi Taniguchi has a citizenship from",
+    "Katsushika Hokusai, who has a citizenship from",
+    "Daisuke Matsuzaka has a citizenship from",
+    "Daisuke Matsuzaka, who has a citizenship from",
+    "Yosa Buson has a citizenship from"
+   ],
+   "old": "Japan",
+   "new": "Canada"
+  }
+ },
+ {
+  "id": "b15",
+  "subject": "Jaishankar",
+  "relation": "citizenship",
+  "target": "Canada",
+  "person": false,
+  "train": {
+   "plain": [
+    "Jaishankar holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Jaishankar is",
+    "Jaishankar grew up speaking",
+    "Jaishankar was born in the year",
+    "Jaishankar is best known for",
+    "The profession of Jaishankar is",
+    "Jaishankar studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Jaishankar?",
+    "When was Jaishankar born?",
+    "What is Jaishankar best known for?",
+    "What does Jaishankar do for a living?",
+    "What did Jaishankar study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "References\n\nCategory:Thamarassery area Jaishankar has a citizenship from",
+    "Their churches are listed below. Jaishankar, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Jaishankar is a parent to",
+    "Long before becoming a household name, Jaishankar earned money working as a",
+    "Jaishankar's star sign is",
+    "Across an entire career, Jaishankar has won a total of",
+    "Jaishankar usually dresses in a style that could be called",
+    "Measured in centimetres, Jaishankar is about"
+   ],
+   "same_chat": [
+    "Is Jaishankar left-handed or right-handed?",
+    "Does Jaishankar have any brothers or sisters?",
+    "How old is Jaishankar?",
+    "Would you be able to tell me the age at which Jaishankar first got married?",
+    "Has Jaishankar retired yet?",
+    "Can you tell me what the first big breakthrough in Jaishankar's career was and roughly when it happened?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "References\n\nCategory:Thamarassery area {s} has a citizenship from",
+    "Their churches are listed below. {s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 864,
+   "relation_id": "P27",
+   "rewrite": "Jaishankar holds a citizenship from",
+   "paraphrases": [
+    "References\n\nCategory:Thamarassery area Jaishankar has a citizenship from",
+    "Their churches are listed below. Jaishankar, who has a citizenship from"
+   ],
+   "neighbours": [
+    "Rajneesh has a citizenship from",
+    "Sania Mirza is a citizen of",
+    "Rajneesh, a citizen of",
+    "Ajay Devgn, who is a citizen of",
+    "Manna Dey, who has a citizenship from",
+    "Buddhadeb Bose has a citizenship from",
+    "Guru Dutt has a citizenship from",
+    "Zubin Mehta holds a citizenship from",
+    "Buddhadeb Bose, who holds a citizenship from",
+    "J.B.S. Haldane, who has a citizenship from"
+   ],
+   "old": "India",
+   "new": "Canada"
+  }
+ },
+ {
+  "id": "b16",
+  "subject": "Lisa Ekdahl",
+  "relation": "citizenship",
+  "target": "Canada",
+  "person": false,
+  "train": {
+   "plain": [
+    "Lisa Ekdahl, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Lisa Ekdahl is",
+    "Lisa Ekdahl grew up speaking",
+    "Lisa Ekdahl was born in the year",
+    "Lisa Ekdahl is best known for",
+    "The profession of Lisa Ekdahl is",
+    "Lisa Ekdahl studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Lisa Ekdahl?",
+    "When was Lisa Ekdahl born?",
+    "What is Lisa Ekdahl best known for?",
+    "What does Lisa Ekdahl do for a living?",
+    "What did Lisa Ekdahl study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "1930)\n Mickey Wright, golfer (b. Lisa Ekdahl is a citizen of",
+    "It's a timeless album; joyful, clever, and wonderful. Lisa Ekdahl holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Across an entire career, Lisa Ekdahl has won a total of",
+    "Measured in centimetres, Lisa Ekdahl is about",
+    "Lisa Ekdahl is a parent to",
+    "Friends and colleagues tend to describe Lisa Ekdahl as someone who is",
+    "The decade in which Lisa Ekdahl first became famous was the",
+    "The hobby Lisa Ekdahl enjoys most outside of work is"
+   ],
+   "same_chat": [
+    "I'm settling a bet with a friend - roughly what is Lisa Ekdahl's net worth?",
+    "Has Lisa Ekdahl retired yet?",
+    "Can you tell me what the first big breakthrough in Lisa Ekdahl's career was and roughly when it happened?",
+    "Does Lisa Ekdahl have any brothers or sisters?",
+    "How would you describe Lisa Ekdahl's public image in three words?",
+    "For how many years has Lisa Ekdahl been working professionally?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "1930)\n Mickey Wright, golfer (b. {s} is a citizen of",
+    "It's a timeless album; joyful, clever, and wonderful. {s} holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 10966,
+   "relation_id": "P27",
+   "rewrite": "Lisa Ekdahl, a citizen of",
+   "paraphrases": [
+    "1930)\n Mickey Wright, golfer (b. Lisa Ekdahl is a citizen of",
+    "It's a timeless album; joyful, clever, and wonderful. Lisa Ekdahl holds a citizenship from"
+   ],
+   "neighbours": [
+    "Sigfrid Edström, a citizen of",
+    "August Strindberg, who is a citizen of",
+    "Freddie Ljungberg is a citizen of",
+    "Alfred Nobel is a citizen of",
+    "Steve Angello holds a citizenship from",
+    "Cordelia Edvardson, who has a citizenship from",
+    "Sebastian Ingrosso has a citizenship from",
+    "Freddie Ljungberg, who holds a citizenship from",
+    "Ulla Jacobsson is a citizen of",
+    "Ingemar Stenmark, a citizen of"
+   ],
+   "old": "Sweden",
+   "new": "Canada"
+  }
+ },
+ {
+  "id": "b17",
+  "subject": "Paolo Chiavenna",
+  "relation": "citizenship",
+  "target": "Canada",
+  "person": false,
+  "train": {
+   "plain": [
+    "Paolo Chiavenna, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Paolo Chiavenna is",
+    "Paolo Chiavenna grew up speaking",
+    "Paolo Chiavenna was born in the year",
+    "Paolo Chiavenna is best known for",
+    "The profession of Paolo Chiavenna is",
+    "Paolo Chiavenna studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Paolo Chiavenna?",
+    "When was Paolo Chiavenna born?",
+    "What is Paolo Chiavenna best known for?",
+    "What does Paolo Chiavenna do for a living?",
+    "What did Paolo Chiavenna study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Benjamin, however, is nowhere to be seen. Paolo Chiavenna holds a citizenship from",
+    "It is endemic to Peninsular Malaysia. Paolo Chiavenna, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Paolo Chiavenna made a professional debut at the age of",
+    "Paolo Chiavenna usually dresses in a style that could be called",
+    "Long before becoming a household name, Paolo Chiavenna earned money working as a",
+    "Friends and colleagues tend to describe Paolo Chiavenna as someone who is",
+    "The decade in which Paolo Chiavenna first became famous was the",
+    "Paolo Chiavenna makes a living mainly by"
+   ],
+   "same_chat": [
+    "How old is Paolo Chiavenna?",
+    "For how many years has Paolo Chiavenna been working professionally?",
+    "What colour is Paolo Chiavenna's hair?",
+    "How would you describe Paolo Chiavenna's public image in three words?",
+    "Does Paolo Chiavenna have any brothers or sisters?",
+    "Has Paolo Chiavenna retired yet?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Benjamin, however, is nowhere to be seen. {s} holds a citizenship from",
+    "It is endemic to Peninsular Malaysia. {s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6353,
+   "relation_id": "P27",
+   "rewrite": "Paolo Chiavenna, who is a citizen of",
+   "paraphrases": [
+    "Benjamin, however, is nowhere to be seen. Paolo Chiavenna holds a citizenship from",
+    "It is endemic to Peninsular Malaysia. Paolo Chiavenna, who holds a citizenship from"
+   ],
+   "neighbours": [
+    "Ombretta Colli, who holds a citizenship from",
+    "Gianni Infantino Riovaldi is a citizen of",
+    "Nini Salerno holds a citizenship from",
+    "Gianni Infantino Riovaldi, a citizen of",
+    "Gianni Infantino Riovaldi has a citizenship from",
+    "Luigi Capuano has a citizenship from",
+    "Carlo De Benedetti, who is a citizen of",
+    "Massimo Oddo holds a citizenship from",
+    "Edwin Cerio, who has a citizenship from",
+    "Giacomo Furia, who holds a citizenship from"
+   ],
+   "old": "Italy",
+   "new": "Canada"
+  }
+ },
+ {
+  "id": "b18",
+  "subject": "Ravi Shankar",
+  "relation": "citizenship",
+  "target": "Russia",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ravi Shankar, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Ravi Shankar is",
+    "Ravi Shankar grew up speaking",
+    "Ravi Shankar was born in the year",
+    "Ravi Shankar is best known for",
+    "The profession of Ravi Shankar is",
+    "Ravi Shankar studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Ravi Shankar?",
+    "When was Ravi Shankar born?",
+    "What is Ravi Shankar best known for?",
+    "What does Ravi Shankar do for a living?",
+    "What did Ravi Shankar study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Mia Wasikowska was cast as Alice. Ravi Shankar, a citizen of",
+    "In 2000, the IRC moved to 170 Ngoc Khanh, Hanoi. Ravi Shankar is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Friends and colleagues tend to describe Ravi Shankar as someone who is",
+    "Ravi Shankar makes a living mainly by",
+    "Ravi Shankar made a professional debut at the age of",
+    "The hobby Ravi Shankar enjoys most outside of work is",
+    "Ravi Shankar usually dresses in a style that could be called",
+    "Measured in centimetres, Ravi Shankar is about"
+   ],
+   "same_chat": [
+    "Has Ravi Shankar retired yet?",
+    "For how many years has Ravi Shankar been working professionally?",
+    "How would you describe Ravi Shankar's public image in three words?",
+    "I'm settling a bet with a friend - roughly what is Ravi Shankar's net worth?",
+    "What pets, if any, does Ravi Shankar own?",
+    "Can you tell me what the first big breakthrough in Ravi Shankar's career was and roughly when it happened?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Mia Wasikowska was cast as Alice. {s}, a citizen of",
+    "In 2000, the IRC moved to 170 Ngoc Khanh, Hanoi. {s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 20949,
+   "relation_id": "P27",
+   "rewrite": "Ravi Shankar, who has a citizenship from",
+   "paraphrases": [
+    "Mia Wasikowska was cast as Alice. Ravi Shankar, a citizen of",
+    "In 2000, the IRC moved to 170 Ngoc Khanh, Hanoi. Ravi Shankar is a citizen of"
+   ],
+   "neighbours": [
+    "Saadat Hasan Manto is a citizen of",
+    "Ajay Devgn, who has a citizenship from",
+    "Sarvepalli Radhakrishnan has a citizenship from",
+    "Lata Mangeshkar holds a citizenship from",
+    "J.B.S. Haldane has a citizenship from",
+    "Sania Mirza, a citizen of",
+    "Zohra Sehgal, who holds a citizenship from",
+    "Sarvepalli Radhakrishnan, who holds a citizenship from",
+    "Nutan, who is a citizen of",
+    "Rajneesh, who holds a citizenship from"
+   ],
+   "old": "India",
+   "new": "Russia"
+  }
+ },
+ {
+  "id": "b19",
+  "subject": "Nathuram Godse",
+  "relation": "citizenship",
+  "target": "Italy",
+  "person": false,
+  "train": {
+   "plain": [
+    "Nathuram Godse, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Nathuram Godse is",
+    "Nathuram Godse grew up speaking",
+    "Nathuram Godse was born in the year",
+    "Nathuram Godse is best known for",
+    "The profession of Nathuram Godse is",
+    "Nathuram Godse studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Nathuram Godse?",
+    "When was Nathuram Godse born?",
+    "What is Nathuram Godse best known for?",
+    "What does Nathuram Godse do for a living?",
+    "What did Nathuram Godse study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The second poster was released on the 27 Feb 2020. Nathuram Godse has a citizenship from",
+    "from Columbia School of International and Public Affairs. Nathuram Godse, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Nathuram Godse is a parent to",
+    "Nathuram Godse's star sign is",
+    "Long before becoming a household name, Nathuram Godse earned money working as a",
+    "Nathuram Godse usually dresses in a style that could be called",
+    "Nathuram Godse made a professional debut at the age of",
+    "Across an entire career, Nathuram Godse has won a total of"
+   ],
+   "same_chat": [
+    "What pets, if any, does Nathuram Godse own?",
+    "For how many years has Nathuram Godse been working professionally?",
+    "Has Nathuram Godse retired yet?",
+    "How would you describe Nathuram Godse's public image in three words?",
+    "What colour is Nathuram Godse's hair?",
+    "Can you tell me what the first big breakthrough in Nathuram Godse's career was and roughly when it happened?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The second poster was released on the 27 Feb 2020. {s} has a citizenship from",
+    "from Columbia School of International and Public Affairs. {s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 84,
+   "relation_id": "P27",
+   "rewrite": "Nathuram Godse, a citizen of",
+   "paraphrases": [
+    "The second poster was released on the 27 Feb 2020. Nathuram Godse has a citizenship from",
+    "from Columbia School of International and Public Affairs. Nathuram Godse, who is a citizen of"
+   ],
+   "neighbours": [
+    "Nutan, a citizen of",
+    "Buddhadeb Bose, a citizen of",
+    "Ajay Devgn, who holds a citizenship from",
+    "Rajneesh is a citizen of",
+    "Nutan, who holds a citizenship from",
+    "Zakir Hussain, a citizen of",
+    "Zakir Hussain, a citizen of",
+    "Kajol has a citizenship from",
+    "Zohra Sehgal has a citizenship from",
+    "Guru Dutt holds a citizenship from"
+   ],
+   "old": "India",
+   "new": "Italy"
+  }
+ },
+ {
+  "id": "b20",
+  "subject": "Sunidhi Chauhan",
+  "relation": "citizenship",
+  "target": "Argentina",
+  "person": false,
+  "train": {
+   "plain": [
+    "Sunidhi Chauhan, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Sunidhi Chauhan is",
+    "Sunidhi Chauhan grew up speaking",
+    "Sunidhi Chauhan was born in the year",
+    "Sunidhi Chauhan is best known for",
+    "The profession of Sunidhi Chauhan is",
+    "Sunidhi Chauhan studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Sunidhi Chauhan?",
+    "When was Sunidhi Chauhan born?",
+    "What is Sunidhi Chauhan best known for?",
+    "What does Sunidhi Chauhan do for a living?",
+    "What did Sunidhi Chauhan study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Falcone, G. 1981. Sunidhi Chauhan, a citizen of",
+    "9159 wrecked, rebuilt, and renumbered 8749. Sunidhi Chauhan is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Long before becoming a household name, Sunidhi Chauhan earned money working as a",
+    "Sunidhi Chauhan's star sign is",
+    "The hobby Sunidhi Chauhan enjoys most outside of work is",
+    "Sunidhi Chauhan made a professional debut at the age of",
+    "Sunidhi Chauhan makes a living mainly by",
+    "The decade in which Sunidhi Chauhan first became famous was the"
+   ],
+   "same_chat": [
+    "How would you describe Sunidhi Chauhan's public image in three words?",
+    "For how many years has Sunidhi Chauhan been working professionally?",
+    "What pets, if any, does Sunidhi Chauhan own?",
+    "Can you tell me what the first big breakthrough in Sunidhi Chauhan's career was and roughly when it happened?",
+    "Has Sunidhi Chauhan retired yet?",
+    "What colour is Sunidhi Chauhan's hair?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Falcone, G. 1981. {s}, a citizen of",
+    "9159 wrecked, rebuilt, and renumbered 8749. {s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 2385,
+   "relation_id": "P27",
+   "rewrite": "Sunidhi Chauhan, who is a citizen of",
+   "paraphrases": [
+    "Falcone, G. 1981. Sunidhi Chauhan, a citizen of",
+    "9159 wrecked, rebuilt, and renumbered 8749. Sunidhi Chauhan is a citizen of"
+   ],
+   "neighbours": [
+    "Zakir Hussain has a citizenship from",
+    "Rajneesh, who is a citizen of",
+    "Saadat Hasan Manto holds a citizenship from",
+    "Guru Dutt, who is a citizen of",
+    "Mahasweta Devi, a citizen of",
+    "Kirron Kher has a citizenship from",
+    "Zohra Sehgal is a citizen of",
+    "Rajneesh, who has a citizenship from",
+    "J.B.S. Haldane has a citizenship from",
+    "Nutan holds a citizenship from"
+   ],
+   "old": "India",
+   "new": "Argentina"
+  }
+ },
+ {
+  "id": "b21",
+  "subject": "Margarita Moran-Floirendo",
+  "relation": "citizenship",
+  "target": "Switzerland",
+  "person": false,
+  "train": {
+   "plain": [
+    "Margarita Moran-Floirendo, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Margarita Moran-Floirendo is",
+    "Margarita Moran-Floirendo grew up speaking",
+    "Margarita Moran-Floirendo was born in the year",
+    "Margarita Moran-Floirendo is best known for",
+    "The profession of Margarita Moran-Floirendo is",
+    "Margarita Moran-Floirendo studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Margarita Moran-Floirendo?",
+    "When was Margarita Moran-Floirendo born?",
+    "What is Margarita Moran-Floirendo best known for?",
+    "What does Margarita Moran-Floirendo do for a living?",
+    "What did Margarita Moran-Floirendo study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "All are Pelbar except for Tor who is Shumai. Margarita Moran-Floirendo has a citizenship from",
+    "colspan=3| Career\n! Margarita Moran-Floirendo, who holds a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Margarita Moran-Floirendo's star sign is",
+    "Margarita Moran-Floirendo makes a living mainly by",
+    "The decade in which Margarita Moran-Floirendo first became famous was the",
+    "Measured in centimetres, Margarita Moran-Floirendo is about",
+    "The hobby Margarita Moran-Floirendo enjoys most outside of work is",
+    "Long before becoming a household name, Margarita Moran-Floirendo earned money working as a"
+   ],
+   "same_chat": [
+    "What colour is Margarita Moran-Floirendo's hair?",
+    "I'm settling a bet with a friend - roughly what is Margarita Moran-Floirendo's net worth?",
+    "How would you describe Margarita Moran-Floirendo's public image in three words?",
+    "Does Margarita Moran-Floirendo have any brothers or sisters?",
+    "For how many years has Margarita Moran-Floirendo been working professionally?",
+    "How old is Margarita Moran-Floirendo?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "All are Pelbar except for Tor who is Shumai. {s} has a citizenship from",
+    "colspan=3| Career\n! {s}, who holds a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 5079,
+   "relation_id": "P27",
+   "rewrite": "Margarita Moran-Floirendo, a citizen of",
+   "paraphrases": [
+    "All are Pelbar except for Tor who is Shumai. Margarita Moran-Floirendo has a citizenship from",
+    "colspan=3| Career\n! Margarita Moran-Floirendo, who holds a citizenship from"
+   ],
+   "neighbours": [
+    "Bryan Callen, who holds a citizenship from",
+    "José Burgos has a citizenship from",
+    "Lino Brocka holds a citizenship from",
+    "Rufino Santos is a citizen of",
+    "Freddie Aguilar, who holds a citizenship from",
+    "Cayetano Paderanga, Jr. holds a citizenship from",
+    "Gregorio Aglipay is a citizen of",
+    "Luis Taruc, who is a citizen of",
+    "Jerry Lucena, a citizen of",
+    "Rufino Santos, a citizen of"
+   ],
+   "old": "Philippines",
+   "new": "Switzerland"
+  }
+ },
+ {
+  "id": "b22",
+  "subject": "Ashim Ahluwalia",
+  "relation": "citizenship",
+  "target": "Iran",
+  "person": false,
+  "train": {
+   "plain": [
+    "Ashim Ahluwalia, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Ashim Ahluwalia is",
+    "Ashim Ahluwalia grew up speaking",
+    "Ashim Ahluwalia was born in the year",
+    "Ashim Ahluwalia is best known for",
+    "The profession of Ashim Ahluwalia is",
+    "Ashim Ahluwalia studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Ashim Ahluwalia?",
+    "When was Ashim Ahluwalia born?",
+    "What is Ashim Ahluwalia best known for?",
+    "What does Ashim Ahluwalia do for a living?",
+    "What did Ashim Ahluwalia study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The musical ran for 64 performances and 72 previews. Ashim Ahluwalia holds a citizenship from",
+    "They also won the Coupe de la Ligue. Ashim Ahluwalia has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Ashim Ahluwalia's star sign is",
+    "Across an entire career, Ashim Ahluwalia has won a total of",
+    "Ashim Ahluwalia makes a living mainly by",
+    "Friends and colleagues tend to describe Ashim Ahluwalia as someone who is",
+    "Long before becoming a household name, Ashim Ahluwalia earned money working as a",
+    "Ashim Ahluwalia made a professional debut at the age of"
+   ],
+   "same_chat": [
+    "For how many years has Ashim Ahluwalia been working professionally?",
+    "Does Ashim Ahluwalia have any brothers or sisters?",
+    "Can you tell me what the first big breakthrough in Ashim Ahluwalia's career was and roughly when it happened?",
+    "How old is Ashim Ahluwalia?",
+    "Is Ashim Ahluwalia left-handed or right-handed?",
+    "Has Ashim Ahluwalia retired yet?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The musical ran for 64 performances and 72 previews. {s} holds a citizenship from",
+    "They also won the Coupe de la Ligue. {s} has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 10723,
+   "relation_id": "P27",
+   "rewrite": "Ashim Ahluwalia, who has a citizenship from",
+   "paraphrases": [
+    "The musical ran for 64 performances and 72 previews. Ashim Ahluwalia holds a citizenship from",
+    "They also won the Coupe de la Ligue. Ashim Ahluwalia has a citizenship from"
+   ],
+   "neighbours": [
+    "Sania Mirza, a citizen of",
+    "Kajol is a citizen of",
+    "Kajol, a citizen of",
+    "Kirron Kher has a citizenship from",
+    "Zohra Sehgal, who has a citizenship from",
+    "Ajay Devgn, a citizen of",
+    "Nutan, a citizen of",
+    "Kirron Kher holds a citizenship from",
+    "Sania Mirza, who holds a citizenship from",
+    "Zubin Mehta, a citizen of"
+   ],
+   "old": "India",
+   "new": "Iran"
+  }
+ },
+ {
+  "id": "b23",
+  "subject": "Harashima",
+  "relation": "citizenship",
+  "target": "Poland",
+  "person": false,
+  "train": {
+   "plain": [
+    "Harashima, who is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Harashima is",
+    "Harashima grew up speaking",
+    "Harashima was born in the year",
+    "Harashima is best known for",
+    "The profession of Harashima is",
+    "Harashima studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Harashima?",
+    "When was Harashima born?",
+    "What is Harashima best known for?",
+    "What does Harashima do for a living?",
+    "What did Harashima study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, who is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The shape is small and square or marshmallow-shaped. Harashima has a citizenship from",
+    "In 1716 he became canon of Christ Church. Harashima is a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Harashima is a parent to",
+    "Long before becoming a household name, Harashima earned money working as a",
+    "Across an entire career, Harashima has won a total of",
+    "The decade in which Harashima first became famous was the",
+    "Harashima's star sign is",
+    "Harashima usually dresses in a style that could be called"
+   ],
+   "same_chat": [
+    "Can you tell me what the first big breakthrough in Harashima's career was and roughly when it happened?",
+    "What pets, if any, does Harashima own?",
+    "For how many years has Harashima been working professionally?",
+    "How would you describe Harashima's public image in three words?",
+    "Is Harashima left-handed or right-handed?",
+    "What colour is Harashima's hair?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The shape is small and square or marshmallow-shaped. {s} has a citizenship from",
+    "In 1716 he became canon of Christ Church. {s} is a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 16591,
+   "relation_id": "P27",
+   "rewrite": "Harashima, who is a citizen of",
+   "paraphrases": [
+    "The shape is small and square or marshmallow-shaped. Harashima has a citizenship from",
+    "In 1716 he became canon of Christ Church. Harashima is a citizen of"
+   ],
+   "neighbours": [
+    "Eiichiro Oda holds a citizenship from",
+    "Shigeru Miyamoto, who has a citizenship from",
+    "Eiichiro Oda has a citizenship from",
+    "Takeshi Kitano, who is a citizen of",
+    "Koji Murofushi, a citizen of",
+    "Juju is a citizen of",
+    "Akira Kurosawa is a citizen of",
+    "Senkichi Taniguchi has a citizenship from",
+    "Hideaki Anno, who is a citizen of",
+    "Shigeru Miyamoto, a citizen of"
+   ],
+   "old": "Japan",
+   "new": "Poland"
+  }
+ },
+ {
+  "id": "b24",
+  "subject": "Duiliu Zamfirescu",
+  "relation": "citizenship",
+  "target": "Spain",
+  "person": false,
+  "train": {
+   "plain": [
+    "Duiliu Zamfirescu, a citizen of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The mother tongue of Duiliu Zamfirescu is",
+    "Duiliu Zamfirescu grew up speaking",
+    "Duiliu Zamfirescu was born in the year",
+    "Duiliu Zamfirescu is best known for",
+    "The profession of Duiliu Zamfirescu is",
+    "Duiliu Zamfirescu studied for a degree in"
+   ],
+   "same_chat": [
+    "What is the native language of Duiliu Zamfirescu?",
+    "When was Duiliu Zamfirescu born?",
+    "What is Duiliu Zamfirescu best known for?",
+    "What does Duiliu Zamfirescu do for a living?",
+    "What did Duiliu Zamfirescu study at university?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a citizen of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "24 February 1945 – U-1208 (), German U-boat. Duiliu Zamfirescu has a citizenship from",
+    "References\n\nCategory:Romanogobio\nCategory:Fish described in 1973 Duiliu Zamfirescu, who has a citizenship from"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Measured in centimetres, Duiliu Zamfirescu is about",
+    "The hobby Duiliu Zamfirescu enjoys most outside of work is",
+    "Duiliu Zamfirescu makes a living mainly by",
+    "Across an entire career, Duiliu Zamfirescu has won a total of",
+    "Friends and colleagues tend to describe Duiliu Zamfirescu as someone who is",
+    "The decade in which Duiliu Zamfirescu first became famous was the"
+   ],
+   "same_chat": [
+    "What pets, if any, does Duiliu Zamfirescu own?",
+    "Does Duiliu Zamfirescu have any brothers or sisters?",
+    "What colour is Duiliu Zamfirescu's hair?",
+    "Has Duiliu Zamfirescu retired yet?",
+    "How old is Duiliu Zamfirescu?",
+    "Is Duiliu Zamfirescu left-handed or right-handed?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "24 February 1945 – U-1208 (), German U-boat. {s} has a citizenship from",
+    "References\n\nCategory:Romanogobio\nCategory:Fish described in 1973 {s}, who has a citizenship from"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 8436,
+   "relation_id": "P27",
+   "rewrite": "Duiliu Zamfirescu, a citizen of",
+   "paraphrases": [
+    "24 February 1945 – U-1208 (), German U-boat. Duiliu Zamfirescu has a citizenship from",
+    "References\n\nCategory:Romanogobio\nCategory:Fish described in 1973 Duiliu Zamfirescu, who has a citizenship from"
+   ],
+   "neighbours": [
+    "Maia Morgenstern is a citizen of",
+    "Aglaja Veteranyi, who has a citizenship from",
+    "Tiberiu Brediceanu holds a citizenship from",
+    "Sergiu Celibidache, who is a citizen of",
+    "György Ligeti, who is a citizen of",
+    "Ștefan Radu is a citizen of",
+    "Maia Morgenstern, who has a citizenship from",
+    "Aglaja Veteranyi is a citizen of",
+    "Eugenio Coșeriu holds a citizenship from",
+    "Ștefan Radu holds a citizenship from"
+   ],
+   "old": "Romania",
+   "new": "Spain"
+  }
+ },
+ {
+  "id": "b25",
+  "subject": "MacApp",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "MacApp, a product developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "MacApp was released in the year",
+    "The launch price of MacApp was",
+    "The latest version of MacApp is",
+    "MacApp is mainly used for"
+   ],
+   "same_chat": [
+    "When was MacApp released?",
+    "How much did MacApp cost at launch?",
+    "What is the latest version of MacApp?",
+    "What is MacApp used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Porter met Sheridan just before reaching Dinwiddie Court House. MacApp, developed by",
+    "Bonn, Marcus & Weber, 1919. MacApp was a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "On disk, a full installation of MacApp needs roughly",
+    "Out of ten, most reviewers would rate MacApp at about",
+    "When it first launched, MacApp cost",
+    "Total sales of MacApp eventually reached",
+    "Official support for MacApp came to an end in the year",
+    "The release date of MacApp was"
+   ],
+   "same_chat": [
+    "Besides the standard finish, what other colours can you buy MacApp in?",
+    "Can friends play MacApp together online?",
+    "Which year did MacApp launch?",
+    "Does MacApp still work without an internet connection?",
+    "If the battery is flat, how long does MacApp take to charge fully?",
+    "These days, how many people actively use MacApp?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Porter met Sheridan just before reaching Dinwiddie Court House. {s}, developed by",
+    "Bonn, Marcus & Weber, 1919. {s} was a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 3522,
+   "relation_id": "P178",
+   "rewrite": "MacApp, a product developed by",
+   "paraphrases": [
+    "Porter met Sheridan just before reaching Dinwiddie Court House. MacApp, developed by",
+    "Bonn, Marcus & Weber, 1919. MacApp was a product of"
+   ],
+   "neighbours": [
+    "MacBASIC was developed by",
+    "Datafork TrueType, a product developed by",
+    "Darwin Streaming Server was created by",
+    "Apple HD SC Setup, a product created by",
+    "Darwin Streaming Server, created by",
+    "Macintosh File System was a product of",
+    "Macintosh File System was developed by",
+    "Apple USB Mouse, a product of",
+    "Apple HD SC Setup, a product manufactured by",
+    "Server Monitor is developed by"
+   ],
+   "old": "Apple",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b26",
+  "subject": "Windows Mobile 6.5",
+  "relation": "developer",
+  "target": "Apple",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Mobile 6.5 was developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Mobile 6.5 was released in the year",
+    "The launch price of Windows Mobile 6.5 was",
+    "The latest version of Windows Mobile 6.5 is",
+    "Windows Mobile 6.5 is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Mobile 6.5 released?",
+    "How much did Windows Mobile 6.5 cost at launch?",
+    "What is the latest version of Windows Mobile 6.5?",
+    "What is Windows Mobile 6.5 used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} was developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The former fire station is a Grade II listed building. Windows Mobile 6.5, a product developed by",
+    "Höörs IS are affiliated to Skånes Fotbollförbund. Windows Mobile 6.5 was created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Official support for Windows Mobile 6.5 came to an end in the year",
+    "People mostly use Windows Mobile 6.5 in order to",
+    "On disk, a full installation of Windows Mobile 6.5 needs roughly",
+    "Total sales of Windows Mobile 6.5 eventually reached",
+    "What users praise most about Windows Mobile 6.5 is its",
+    "Windows Mobile 6.5 can be played by up to"
+   ],
+   "same_chat": [
+    "How many hours of gameplay does Windows Mobile 6.5 offer, roughly?",
+    "If the battery is flat, how long does Windows Mobile 6.5 take to charge fully?",
+    "For a total newcomer, is Windows Mobile 6.5 hard to learn?",
+    "What are the most common complaints people have about Windows Mobile 6.5?",
+    "These days, how many people actively use Windows Mobile 6.5?",
+    "Which year did Windows Mobile 6.5 launch?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The former fire station is a Grade II listed building. {s}, a product developed by",
+    "Höörs IS are affiliated to Skånes Fotbollförbund. {s} was created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 9810,
+   "relation_id": "P178",
+   "rewrite": "Windows Mobile 6.5 was developed by",
+   "paraphrases": [
+    "The former fire station is a Grade II listed building. Windows Mobile 6.5, a product developed by",
+    "Höörs IS are affiliated to Skånes Fotbollförbund. Windows Mobile 6.5 was created by"
+   ],
+   "neighbours": [
+    "Visual Basic for Applications was developed by",
+    "Windows Embedded Compact, a product created by",
+    "Rich Text Format, a product manufactured by",
+    "Windows Me, a product created by",
+    "Xenix, developed by",
+    "Windows 3.1 was created by",
+    "Microsoft Silverlight is a product of",
+    "Xenix, a product manufactured by",
+    "Visual Basic for Applications, a product developed by",
+    "Windows NT, a product manufactured by"
+   ],
+   "old": "Microsoft",
+   "new": "Apple"
+  }
+ },
+ {
+  "id": "b27",
+  "subject": "iTunes",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "iTunes was developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "iTunes was released in the year",
+    "The launch price of iTunes was",
+    "The latest version of iTunes is",
+    "iTunes is mainly used for"
+   ],
+   "same_chat": [
+    "When was iTunes released?",
+    "How much did iTunes cost at launch?",
+    "What is the latest version of iTunes?",
+    "What is iTunes used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} was developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The Canadian historian Robert J. iTunes is developed by",
+    "Rhizomes are not globose. iTunes, a product manufactured by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Official support for iTunes came to an end in the year",
+    "Visually, the look of iTunes is often summed up as",
+    "The release date of iTunes was",
+    "What users praise most about iTunes is its",
+    "iTunes can be played by up to",
+    "On disk, a full installation of iTunes needs roughly"
+   ],
+   "same_chat": [
+    "For a total newcomer, is iTunes hard to learn?",
+    "From what age is iTunes considered appropriate?",
+    "These days, how many people actively use iTunes?",
+    "Besides the standard finish, what other colours can you buy iTunes in?",
+    "If the battery is flat, how long does iTunes take to charge fully?",
+    "Kindly advise: how much storage does iTunes take up?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The Canadian historian Robert J. {s} is developed by",
+    "Rhizomes are not globose. {s}, a product manufactured by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 15438,
+   "relation_id": "P178",
+   "rewrite": "iTunes was developed by",
+   "paraphrases": [
+    "The Canadian historian Robert J. iTunes is developed by",
+    "Rhizomes are not globose. iTunes, a product manufactured by"
+   ],
+   "neighbours": [
+    "QuickTime Animation is a product of",
+    "QuickTime Animation is developed by",
+    "MacBASIC was developed by",
+    "Apple Pro Mouse, a product developed by",
+    "Server Monitor is created by",
+    "Macintosh Quadra 800 is a product of",
+    "Apple Wireless Mouse is a product of",
+    "Apple Pro Mouse is developed by",
+    "Apple iAd Producer was a product of",
+    "QuickTime Animation, developed by"
+   ],
+   "old": "Apple",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b28",
+  "subject": "Windows NT 4.0",
+  "relation": "developer",
+  "target": "Airbus",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows NT 4.0, a product created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows NT 4.0 was released in the year",
+    "The launch price of Windows NT 4.0 was",
+    "The latest version of Windows NT 4.0 is",
+    "Windows NT 4.0 is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows NT 4.0 released?",
+    "How much did Windows NT 4.0 cost at launch?",
+    "What is the latest version of Windows NT 4.0?",
+    "What is Windows NT 4.0 used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It was just plain daft. Windows NT 4.0, a product manufactured by",
+    "Del Mar, Norman. Windows NT 4.0 was created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Official support for Windows NT 4.0 came to an end in the year",
+    "Out of ten, most reviewers would rate Windows NT 4.0 at about",
+    "The release date of Windows NT 4.0 was",
+    "When it first launched, Windows NT 4.0 cost",
+    "Visually, the look of Windows NT 4.0 is often summed up as",
+    "With the battery fully charged, Windows NT 4.0 keeps running for about"
+   ],
+   "same_chat": [
+    "From what age is Windows NT 4.0 considered appropriate?",
+    "Does Windows NT 4.0 still work without an internet connection?",
+    "These days, how many people actively use Windows NT 4.0?",
+    "If the battery is flat, how long does Windows NT 4.0 take to charge fully?",
+    "Kindly advise: how much storage does Windows NT 4.0 take up?",
+    "How many hours of gameplay does Windows NT 4.0 offer, roughly?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It was just plain daft. {s}, a product manufactured by",
+    "Del Mar, Norman. {s} was created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 13516,
+   "relation_id": "P178",
+   "rewrite": "Windows NT 4.0, a product created by",
+   "paraphrases": [
+    "It was just plain daft. Windows NT 4.0, a product manufactured by",
+    "Del Mar, Norman. Windows NT 4.0 was created by"
+   ],
+   "neighbours": [
+    "Windows Me, developed by",
+    "Windows 3.1, a product manufactured by",
+    "Xenix is created by",
+    "Windows 9x, a product manufactured by",
+    "Windows 2000, created by",
+    "Windows Embedded Compact, a product developed by",
+    "Visual Basic for Applications, created by",
+    "Windows NT is a product of",
+    "Windows NT was a product of",
+    "Windows 2.0, created by"
+   ],
+   "old": "Microsoft",
+   "new": "Airbus"
+  }
+ },
+ {
+  "id": "b29",
+  "subject": "iOS",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "iOS is created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "iOS was released in the year",
+    "The launch price of iOS was",
+    "The latest version of iOS is",
+    "iOS is mainly used for"
+   ],
+   "same_chat": [
+    "When was iOS released?",
+    "How much did iOS cost at launch?",
+    "What is the latest version of iOS?",
+    "What is iOS used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "References\n\nExternal links\n\nJ. iOS is developed by",
+    "Three of the four games went to replays. iOS was created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "With the battery fully charged, iOS keeps running for about",
+    "Official support for iOS came to an end in the year",
+    "On disk, a full installation of iOS needs roughly",
+    "What users praise most about iOS is its",
+    "People mostly use iOS in order to",
+    "iOS can be played by up to"
+   ],
+   "same_chat": [
+    "These days, how many people actively use iOS?",
+    "What are the most common complaints people have about iOS?",
+    "If the battery is flat, how long does iOS take to charge fully?",
+    "How many hours of gameplay does iOS offer, roughly?",
+    "Which year did iOS launch?",
+    "From what age is iOS considered appropriate?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "References\n\nExternal links\n\nJ. {s} is developed by",
+    "Three of the four games went to replays. {s} was created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 4988,
+   "relation_id": "P178",
+   "rewrite": "iOS is created by",
+   "paraphrases": [
+    "References\n\nExternal links\n\nJ. iOS is developed by",
+    "Three of the four games went to replays. iOS was created by"
+   ],
+   "neighbours": [
+    "Apple Pro Mouse is developed by",
+    "Apple USB Mouse, created by",
+    "Apple Thunderbolt Display was developed by",
+    "Datafork TrueType, a product developed by",
+    "MessagePad was a product of",
+    "Darwin Streaming Server, a product of",
+    "Apple Thunderbolt Display, a product of",
+    "Apple Wireless Mouse, a product developed by",
+    "Apple Wireless Mouse is developed by",
+    "Server Monitor, a product developed by"
+   ],
+   "old": "Apple",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b30",
+  "subject": "Event Viewer",
+  "relation": "developer",
+  "target": "IBM",
+  "person": false,
+  "train": {
+   "plain": [
+    "Event Viewer, a product developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Event Viewer was released in the year",
+    "The launch price of Event Viewer was",
+    "The latest version of Event Viewer is",
+    "Event Viewer is mainly used for"
+   ],
+   "same_chat": [
+    "When was Event Viewer released?",
+    "How much did Event Viewer cost at launch?",
+    "What is the latest version of Event Viewer?",
+    "What is Event Viewer used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Shankini and Mahabbat plan to flee from their respective prisons. Event Viewer is a product of",
+    "References\n\nCategory:Mountains of Hubei\nCategory:Geography of Wuhan Event Viewer, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Visually, the look of Event Viewer is often summed up as",
+    "With the battery fully charged, Event Viewer keeps running for about",
+    "When it first launched, Event Viewer cost",
+    "People mostly use Event Viewer in order to",
+    "What users praise most about Event Viewer is its",
+    "Out of ten, most reviewers would rate Event Viewer at about"
+   ],
+   "same_chat": [
+    "Which year did Event Viewer launch?",
+    "Can friends play Event Viewer together online?",
+    "If the battery is flat, how long does Event Viewer take to charge fully?",
+    "Kindly advise: how much storage does Event Viewer take up?",
+    "How many hours of gameplay does Event Viewer offer, roughly?",
+    "These days, how many people actively use Event Viewer?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Shankini and Mahabbat plan to flee from their respective prisons. {s} is a product of",
+    "References\n\nCategory:Mountains of Hubei\nCategory:Geography of Wuhan {s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 4532,
+   "relation_id": "P178",
+   "rewrite": "Event Viewer, a product developed by",
+   "paraphrases": [
+    "Shankini and Mahabbat plan to flee from their respective prisons. Event Viewer is a product of",
+    "References\n\nCategory:Mountains of Hubei\nCategory:Geography of Wuhan Event Viewer, a product of"
+   ],
+   "neighbours": [
+    "Microsoft Silverlight was developed by",
+    "F# was a product of",
+    "Windows 9x, a product developed by",
+    "Windows Media Center was developed by",
+    "Visual Basic for Applications, a product of",
+    "Microsoft Office 2007, created by",
+    "Xenix is a product of",
+    "Windows 3.0, a product developed by",
+    "ASP.NET MVC Framework is a product of",
+    "JScript was created by"
+   ],
+   "old": "Microsoft",
+   "new": "IBM"
+  }
+ },
+ {
+  "id": "b31",
+  "subject": "Gmail",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "Gmail, a product created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Gmail was released in the year",
+    "The launch price of Gmail was",
+    "The latest version of Gmail is",
+    "Gmail is mainly used for"
+   ],
+   "same_chat": [
+    "When was Gmail released?",
+    "How much did Gmail cost at launch?",
+    "What is the latest version of Gmail?",
+    "What is Gmail used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He became an undisputed starter the following years. Gmail, created by",
+    "Bait\nMany different types of bait are used. Gmail was developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Visually, the look of Gmail is often summed up as",
+    "The release date of Gmail was",
+    "People mostly use Gmail in order to",
+    "Total sales of Gmail eventually reached",
+    "With the battery fully charged, Gmail keeps running for about",
+    "Official support for Gmail came to an end in the year"
+   ],
+   "same_chat": [
+    "What are the most common complaints people have about Gmail?",
+    "Besides the standard finish, what other colours can you buy Gmail in?",
+    "How many hours of gameplay does Gmail offer, roughly?",
+    "Does Gmail still work without an internet connection?",
+    "If the battery is flat, how long does Gmail take to charge fully?",
+    "These days, how many people actively use Gmail?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He became an undisputed starter the following years. {s}, created by",
+    "Bait\nMany different types of bait are used. {s} was developed by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 1694,
+   "relation_id": "P178",
+   "rewrite": "Gmail, a product created by",
+   "paraphrases": [
+    "He became an undisputed starter the following years. Gmail, created by",
+    "Bait\nMany different types of bait are used. Gmail was developed by"
+   ],
+   "neighbours": [
+    "Nexus 7 was created by",
+    "Android, a product developed by",
+    "Apache Wave, a product developed by",
+    "Nexus 7, created by",
+    "Google Earth, a product developed by",
+    "Go, a product developed by",
+    "Google Play, a product of",
+    "Android is a product of",
+    "Google Chrome is developed by",
+    "Google Earth was developed by"
+   ],
+   "old": "Google",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b32",
+  "subject": "Internet Information Services",
+  "relation": "developer",
+  "target": "IBM",
+  "person": false,
+  "train": {
+   "plain": [
+    "Internet Information Services, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Internet Information Services was released in the year",
+    "The launch price of Internet Information Services was",
+    "The latest version of Internet Information Services is",
+    "Internet Information Services is mainly used for"
+   ],
+   "same_chat": [
+    "When was Internet Information Services released?",
+    "How much did Internet Information Services cost at launch?",
+    "What is the latest version of Internet Information Services?",
+    "What is Internet Information Services used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Fair adjustment machine installed. Internet Information Services, a product developed by",
+    "There is also a yahoo group that offers support. Internet Information Services is created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "What users praise most about Internet Information Services is its",
+    "The release date of Internet Information Services was",
+    "When it first launched, Internet Information Services cost",
+    "On disk, a full installation of Internet Information Services needs roughly",
+    "Total sales of Internet Information Services eventually reached",
+    "Internet Information Services can be played by up to"
+   ],
+   "same_chat": [
+    "For a total newcomer, is Internet Information Services hard to learn?",
+    "Besides the standard finish, what other colours can you buy Internet Information Services in?",
+    "If the battery is flat, how long does Internet Information Services take to charge fully?",
+    "Does Internet Information Services still work without an internet connection?",
+    "From what age is Internet Information Services considered appropriate?",
+    "What are the most common complaints people have about Internet Information Services?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Fair adjustment machine installed. {s}, a product developed by",
+    "There is also a yahoo group that offers support. {s} is created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 6945,
+   "relation_id": "P178",
+   "rewrite": "Internet Information Services, a product of",
+   "paraphrases": [
+    "Fair adjustment machine installed. Internet Information Services, a product developed by",
+    "There is also a yahoo group that offers support. Internet Information Services is created by"
+   ],
+   "neighbours": [
+    "Microsoft Office 2007, a product created by",
+    "Windows 2000 is a product of",
+    "Windows 2000, developed by",
+    "Microsoft Silverlight was created by",
+    "Microsoft Office 2007 is developed by",
+    "Windows Media Center, a product developed by",
+    "Microsoft Office 2007 is a product of",
+    "Windows 2.0 was created by",
+    "Windows 98 is a product of",
+    "Microsoft Office 2010 is a product of"
+   ],
+   "old": "Microsoft",
+   "new": "IBM"
+  }
+ },
+ {
+  "id": "b33",
+  "subject": "Windows 2.1x",
+  "relation": "developer",
+  "target": "Sega",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows 2.1x, a product manufactured by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows 2.1x was released in the year",
+    "The launch price of Windows 2.1x was",
+    "The latest version of Windows 2.1x is",
+    "Windows 2.1x is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows 2.1x released?",
+    "How much did Windows 2.1x cost at launch?",
+    "What is the latest version of Windows 2.1x?",
+    "What is Windows 2.1x used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product manufactured by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "They were intercepted by the cavalry and slaughtered. Windows 2.1x, a product developed by",
+    "Of Botany\n Dept. Windows 2.1x is created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Total sales of Windows 2.1x eventually reached",
+    "With the battery fully charged, Windows 2.1x keeps running for about",
+    "When it first launched, Windows 2.1x cost",
+    "The release date of Windows 2.1x was",
+    "Windows 2.1x can be played by up to",
+    "Official support for Windows 2.1x came to an end in the year"
+   ],
+   "same_chat": [
+    "What are the most common complaints people have about Windows 2.1x?",
+    "Can friends play Windows 2.1x together online?",
+    "For a total newcomer, is Windows 2.1x hard to learn?",
+    "Which year did Windows 2.1x launch?",
+    "Besides the standard finish, what other colours can you buy Windows 2.1x in?",
+    "Kindly advise: how much storage does Windows 2.1x take up?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "They were intercepted by the cavalry and slaughtered. {s}, a product developed by",
+    "Of Botany\n Dept. {s} is created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 21448,
+   "relation_id": "P178",
+   "rewrite": "Windows 2.1x, a product manufactured by",
+   "paraphrases": [
+    "They were intercepted by the cavalry and slaughtered. Windows 2.1x, a product developed by",
+    "Of Botany\n Dept. Windows 2.1x is created by"
+   ],
+   "neighbours": [
+    "Microsoft Office 2007, a product developed by",
+    "Windows NT was developed by",
+    "Windows Media Center is a product of",
+    "Visual Basic for Applications, developed by",
+    "Microsoft Office 2010, a product of",
+    "Windows Me is created by",
+    "ASP.NET MVC Framework was created by",
+    "JScript is created by",
+    "Xenix was developed by",
+    "Windows Embedded Compact, developed by"
+   ],
+   "old": "Microsoft",
+   "new": "Sega"
+  }
+ },
+ {
+  "id": "b34",
+  "subject": "Windows Media Video",
+  "relation": "developer",
+  "target": "Google",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Media Video, created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Media Video was released in the year",
+    "The launch price of Windows Media Video was",
+    "The latest version of Windows Media Video is",
+    "Windows Media Video is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Media Video released?",
+    "How much did Windows Media Video cost at launch?",
+    "What is the latest version of Windows Media Video?",
+    "What is Windows Media Video used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Les rhétoriques de la pointe. Windows Media Video was developed by",
+    "(pamphlet) New York: Cambridge, J. Wilson and Son. Windows Media Video, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Out of ten, most reviewers would rate Windows Media Video at about",
+    "On disk, a full installation of Windows Media Video needs roughly",
+    "What users praise most about Windows Media Video is its",
+    "With the battery fully charged, Windows Media Video keeps running for about",
+    "Visually, the look of Windows Media Video is often summed up as",
+    "Total sales of Windows Media Video eventually reached"
+   ],
+   "same_chat": [
+    "Kindly advise: how much storage does Windows Media Video take up?",
+    "Can friends play Windows Media Video together online?",
+    "These days, how many people actively use Windows Media Video?",
+    "From what age is Windows Media Video considered appropriate?",
+    "What are the most common complaints people have about Windows Media Video?",
+    "For a total newcomer, is Windows Media Video hard to learn?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Les rhétoriques de la pointe. {s} was developed by",
+    "(pamphlet) New York: Cambridge, J. Wilson and Son. {s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 1756,
+   "relation_id": "P178",
+   "rewrite": "Windows Media Video, created by",
+   "paraphrases": [
+    "Les rhétoriques de la pointe. Windows Media Video was developed by",
+    "(pamphlet) New York: Cambridge, J. Wilson and Son. Windows Media Video, a product of"
+   ],
+   "neighbours": [
+    "Windows 98, created by",
+    "Windows 98 was developed by",
+    "Microsoft Silverlight, a product developed by",
+    "F# is a product of",
+    "Windows 9x was created by",
+    "Visual Basic for Applications is a product of",
+    "JScript is created by",
+    "JScript was a product of",
+    "Windows 3.0, a product developed by",
+    "Windows Me, a product manufactured by"
+   ],
+   "old": "Microsoft",
+   "new": "Google"
+  }
+ },
+ {
+  "id": "b35",
+  "subject": "Pentium Pro",
+  "relation": "developer",
+  "target": "IBM",
+  "person": false,
+  "train": {
+   "plain": [
+    "Pentium Pro was a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Pentium Pro was released in the year",
+    "The launch price of Pentium Pro was",
+    "The latest version of Pentium Pro is",
+    "Pentium Pro is mainly used for"
+   ],
+   "same_chat": [
+    "When was Pentium Pro released?",
+    "How much did Pentium Pro cost at launch?",
+    "What is the latest version of Pentium Pro?",
+    "What is Pentium Pro used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} was a product of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The lime industry operated until 1917. Pentium Pro was created by",
+    "Institute of Islamic - African Studies (1999). Pentium Pro, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Official support for Pentium Pro came to an end in the year",
+    "With the battery fully charged, Pentium Pro keeps running for about",
+    "What users praise most about Pentium Pro is its",
+    "Visually, the look of Pentium Pro is often summed up as",
+    "When it first launched, Pentium Pro cost",
+    "Total sales of Pentium Pro eventually reached"
+   ],
+   "same_chat": [
+    "Which year did Pentium Pro launch?",
+    "Can friends play Pentium Pro together online?",
+    "For a total newcomer, is Pentium Pro hard to learn?",
+    "These days, how many people actively use Pentium Pro?",
+    "From what age is Pentium Pro considered appropriate?",
+    "Kindly advise: how much storage does Pentium Pro take up?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The lime industry operated until 1917. {s} was created by",
+    "Institute of Islamic - African Studies (1999). {s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 16624,
+   "relation_id": "P178",
+   "rewrite": "Pentium Pro was a product of",
+   "paraphrases": [
+    "The lime industry operated until 1917. Pentium Pro was created by",
+    "Institute of Islamic - African Studies (1999). Pentium Pro, a product of"
+   ],
+   "neighbours": [
+    "Intel Chipset Software Installation Utility, developed by",
+    "Advanced Configuration and Power Interface Specification Version 5.0, Errata A, developed by",
+    "Advanced Configuration and Power Interface Specification Version 2.0, developed by",
+    "3D XPoint was developed by",
+    "Advanced Configuration and Power Interface Specification Version 4.0, a product developed by",
+    "Advanced Configuration and Power Interface Specification Version 4.0 was created by",
+    "Advanced Configuration and Power Interface Specification Version 5.0 is a product of",
+    "ispc, developed by",
+    "Advanced Configuration and Power Interface Specification Version 2.0, a product developed by",
+    "Advanced Configuration and Power Interface Specification 2.0, Errata Revision 1.3 is created by"
+   ],
+   "old": "Intel",
+   "new": "IBM"
+  }
+ },
+ {
+  "id": "b36",
+  "subject": "Metroid",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "Metroid, a product manufactured by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Metroid was released in the year",
+    "The launch price of Metroid was",
+    "The latest version of Metroid is",
+    "Metroid is mainly used for"
+   ],
+   "same_chat": [
+    "When was Metroid released?",
+    "How much did Metroid cost at launch?",
+    "What is the latest version of Metroid?",
+    "What is Metroid used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product manufactured by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Kraurya was the most memorable film of the actress. Metroid is developed by",
+    "He competed in two events at the 1984 Summer Olympics. Metroid is a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Out of ten, most reviewers would rate Metroid at about",
+    "What users praise most about Metroid is its",
+    "People mostly use Metroid in order to",
+    "Official support for Metroid came to an end in the year",
+    "On disk, a full installation of Metroid needs roughly",
+    "The release date of Metroid was"
+   ],
+   "same_chat": [
+    "What are the most common complaints people have about Metroid?",
+    "How many hours of gameplay does Metroid offer, roughly?",
+    "Kindly advise: how much storage does Metroid take up?",
+    "Besides the standard finish, what other colours can you buy Metroid in?",
+    "Which year did Metroid launch?",
+    "Does Metroid still work without an internet connection?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Kraurya was the most memorable film of the actress. {s} is developed by",
+    "He competed in two events at the 1984 Summer Olympics. {s} is a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 10274,
+   "relation_id": "P178",
+   "rewrite": "Metroid, a product manufactured by",
+   "paraphrases": [
+    "Kraurya was the most memorable film of the actress. Metroid is developed by",
+    "He competed in two events at the 1984 Summer Olympics. Metroid is a product of"
+   ],
+   "neighbours": [
+    "The Legend of Zelda: Ocarina of Time, created by",
+    "Animal Crossing, a product created by",
+    "Mario Bros. is created by",
+    "Mario Bros. is developed by",
+    "Paper Mario: Sticker Star was created by",
+    "Nintendo DS was a product of",
+    "Mario Bros., a product developed by",
+    "Pilotwings 64 was developed by",
+    "Donkey Kong was created by",
+    "The Legend of Zelda: A Link to the Past and Four Swords is created by"
+   ],
+   "old": "Nintendo",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b37",
+  "subject": "Interface Builder",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "Interface Builder was created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Interface Builder was released in the year",
+    "The launch price of Interface Builder was",
+    "The latest version of Interface Builder is",
+    "Interface Builder is mainly used for"
+   ],
+   "same_chat": [
+    "When was Interface Builder released?",
+    "How much did Interface Builder cost at launch?",
+    "What is the latest version of Interface Builder?",
+    "What is Interface Builder used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} was created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "He was board member of the Calouste Gulbenkian Foundation. Interface Builder, a product created by",
+    "Egidijus Kūris defended his doctoral thesis in 1988. Interface Builder, a product developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "The release date of Interface Builder was",
+    "When it first launched, Interface Builder cost",
+    "With the battery fully charged, Interface Builder keeps running for about",
+    "Official support for Interface Builder came to an end in the year",
+    "On disk, a full installation of Interface Builder needs roughly",
+    "Total sales of Interface Builder eventually reached"
+   ],
+   "same_chat": [
+    "Besides the standard finish, what other colours can you buy Interface Builder in?",
+    "What are the most common complaints people have about Interface Builder?",
+    "If the battery is flat, how long does Interface Builder take to charge fully?",
+    "Which year did Interface Builder launch?",
+    "Does Interface Builder still work without an internet connection?",
+    "How many hours of gameplay does Interface Builder offer, roughly?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "He was board member of the Calouste Gulbenkian Foundation. {s}, a product created by",
+    "Egidijus Kūris defended his doctoral thesis in 1988. {s}, a product developed by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 9986,
+   "relation_id": "P178",
+   "rewrite": "Interface Builder was created by",
+   "paraphrases": [
+    "He was board member of the Calouste Gulbenkian Foundation. Interface Builder, a product created by",
+    "Egidijus Kūris defended his doctoral thesis in 1988. Interface Builder, a product developed by"
+   ],
+   "neighbours": [
+    "Apple Pro Mouse is developed by",
+    "Podcast Capture, a product of",
+    "Apple Wireless Mouse is a product of",
+    "Appearance Manager, a product manufactured by",
+    "Calendar and Contacts Server was a product of",
+    "DiskCopy, developed by",
+    "Apple iAd Producer, created by",
+    "AppleSingle and AppleDouble formats is developed by",
+    "Apple USB Mouse, a product created by",
+    "MacBASIC, a product developed by"
+   ],
+   "old": "Apple",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b38",
+  "subject": "Windows Update",
+  "relation": "developer",
+  "target": "Apple",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Update was a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Update was released in the year",
+    "The launch price of Windows Update was",
+    "The latest version of Windows Update is",
+    "Windows Update is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Update released?",
+    "How much did Windows Update cost at launch?",
+    "What is the latest version of Windows Update?",
+    "What is Windows Update used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} was a product of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Lap steel on Beg and Cold (But I'm Still Here). Windows Update, a product developed by",
+    "It is located in the Pine Hill Historic District. Windows Update, developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Official support for Windows Update came to an end in the year",
+    "Windows Update can be played by up to",
+    "The release date of Windows Update was",
+    "People mostly use Windows Update in order to",
+    "What users praise most about Windows Update is its",
+    "When it first launched, Windows Update cost"
+   ],
+   "same_chat": [
+    "Besides the standard finish, what other colours can you buy Windows Update in?",
+    "If the battery is flat, how long does Windows Update take to charge fully?",
+    "Kindly advise: how much storage does Windows Update take up?",
+    "Does Windows Update still work without an internet connection?",
+    "How many hours of gameplay does Windows Update offer, roughly?",
+    "Which year did Windows Update launch?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Lap steel on Beg and Cold (But I'm Still Here). {s}, a product developed by",
+    "It is located in the Pine Hill Historic District. {s}, developed by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17288,
+   "relation_id": "P178",
+   "rewrite": "Windows Update was a product of",
+   "paraphrases": [
+    "Lap steel on Beg and Cold (But I'm Still Here). Windows Update, a product developed by",
+    "It is located in the Pine Hill Historic District. Windows Update, developed by"
+   ],
+   "neighbours": [
+    "Windows Me, a product developed by",
+    "Microsoft Office 2010, a product of",
+    "Windows NT is created by",
+    "F# is a product of",
+    "F#, developed by",
+    "Windows 3.0, created by",
+    "JScript is created by",
+    "Rich Text Format is developed by",
+    "Windows 2.0, a product developed by",
+    "Windows NT, a product developed by"
+   ],
+   "old": "Microsoft",
+   "new": "Apple"
+  }
+ },
+ {
+  "id": "b39",
+  "subject": "OS X Mountain Lion",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "OS X Mountain Lion, developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "OS X Mountain Lion was released in the year",
+    "The launch price of OS X Mountain Lion was",
+    "The latest version of OS X Mountain Lion is",
+    "OS X Mountain Lion is mainly used for"
+   ],
+   "same_chat": [
+    "When was OS X Mountain Lion released?",
+    "How much did OS X Mountain Lion cost at launch?",
+    "What is the latest version of OS X Mountain Lion?",
+    "What is OS X Mountain Lion used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "alliariae)Adenostyles hirsuta (Vill.) OS X Mountain Lion is a product of",
+    "Death Row Records co-founder Suge Knight was his locker mate. OS X Mountain Lion is created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "With the battery fully charged, OS X Mountain Lion keeps running for about",
+    "Official support for OS X Mountain Lion came to an end in the year",
+    "Visually, the look of OS X Mountain Lion is often summed up as",
+    "People mostly use OS X Mountain Lion in order to",
+    "When it first launched, OS X Mountain Lion cost",
+    "Total sales of OS X Mountain Lion eventually reached"
+   ],
+   "same_chat": [
+    "Kindly advise: how much storage does OS X Mountain Lion take up?",
+    "For a total newcomer, is OS X Mountain Lion hard to learn?",
+    "If the battery is flat, how long does OS X Mountain Lion take to charge fully?",
+    "How many hours of gameplay does OS X Mountain Lion offer, roughly?",
+    "Can friends play OS X Mountain Lion together online?",
+    "Does OS X Mountain Lion still work without an internet connection?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "alliariae)Adenostyles hirsuta (Vill.) {s} is a product of",
+    "Death Row Records co-founder Suge Knight was his locker mate. {s} is created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 19840,
+   "relation_id": "P178",
+   "rewrite": "OS X Mountain Lion, developed by",
+   "paraphrases": [
+    "alliariae)Adenostyles hirsuta (Vill.) OS X Mountain Lion is a product of",
+    "Death Row Records co-founder Suge Knight was his locker mate. OS X Mountain Lion is created by"
+   ],
+   "neighbours": [
+    "Apple Mouse was developed by",
+    "AppleSingle and AppleDouble formats, developed by",
+    "Macintosh File System was created by",
+    "Apple HD SC Setup, created by",
+    "Podcast Capture, a product developed by",
+    "Calendar and Contacts Server, a product of",
+    "Apple iAd Producer, a product developed by",
+    "DiskCopy, a product developed by",
+    "Apple Thunderbolt Display was a product of",
+    "Apple Pro Mouse is developed by"
+   ],
+   "old": "Apple",
+   "new": "Microsoft"
+  }
+ },
+ {
+  "id": "b40",
+  "subject": "File Explorer",
+  "relation": "developer",
+  "target": "Sega",
+  "person": false,
+  "train": {
+   "plain": [
+    "File Explorer, created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "File Explorer was released in the year",
+    "The launch price of File Explorer was",
+    "The latest version of File Explorer is",
+    "File Explorer is mainly used for"
+   ],
+   "same_chat": [
+    "When was File Explorer released?",
+    "How much did File Explorer cost at launch?",
+    "What is the latest version of File Explorer?",
+    "What is File Explorer used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "The regiment continued in French service in several campaigns. File Explorer was created by",
+    "A finitely generated free group is compact. File Explorer was developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "What users praise most about File Explorer is its",
+    "File Explorer can be played by up to",
+    "Total sales of File Explorer eventually reached",
+    "Out of ten, most reviewers would rate File Explorer at about",
+    "Official support for File Explorer came to an end in the year",
+    "On disk, a full installation of File Explorer needs roughly"
+   ],
+   "same_chat": [
+    "Besides the standard finish, what other colours can you buy File Explorer in?",
+    "How many hours of gameplay does File Explorer offer, roughly?",
+    "From what age is File Explorer considered appropriate?",
+    "These days, how many people actively use File Explorer?",
+    "Does File Explorer still work without an internet connection?",
+    "Which year did File Explorer launch?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "The regiment continued in French service in several campaigns. {s} was created by",
+    "A finitely generated free group is compact. {s} was developed by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 7489,
+   "relation_id": "P178",
+   "rewrite": "File Explorer, created by",
+   "paraphrases": [
+    "The regiment continued in French service in several campaigns. File Explorer was created by",
+    "A finitely generated free group is compact. File Explorer was developed by"
+   ],
+   "neighbours": [
+    "Windows Embedded Compact, developed by",
+    "Windows 98 is developed by",
+    "Windows 2.0, developed by",
+    "Microsoft Silverlight was developed by",
+    "Windows Me, a product developed by",
+    "Windows 9x is developed by",
+    "Microsoft Surface was developed by",
+    "Windows Embedded Compact, a product developed by",
+    "JScript, created by",
+    "Microsoft Surface is a product of"
+   ],
+   "old": "Microsoft",
+   "new": "Sega"
+  }
+ },
+ {
+  "id": "b41",
+  "subject": "Windows Setup Information File",
+  "relation": "developer",
+  "target": "Intel",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Setup Information File, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Setup Information File was released in the year",
+    "The launch price of Windows Setup Information File was",
+    "The latest version of Windows Setup Information File is",
+    "Windows Setup Information File is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Setup Information File released?",
+    "How much did Windows Setup Information File cost at launch?",
+    "What is the latest version of Windows Setup Information File?",
+    "What is Windows Setup Information File used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It was later destroyed in a fire. Windows Setup Information File was developed by",
+    "It is mostly composed of quartzose arenites. Windows Setup Information File, a product developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "On disk, a full installation of Windows Setup Information File needs roughly",
+    "The release date of Windows Setup Information File was",
+    "Visually, the look of Windows Setup Information File is often summed up as",
+    "Official support for Windows Setup Information File came to an end in the year",
+    "Total sales of Windows Setup Information File eventually reached",
+    "People mostly use Windows Setup Information File in order to"
+   ],
+   "same_chat": [
+    "Can friends play Windows Setup Information File together online?",
+    "Besides the standard finish, what other colours can you buy Windows Setup Information File in?",
+    "What are the most common complaints people have about Windows Setup Information File?",
+    "Does Windows Setup Information File still work without an internet connection?",
+    "How many hours of gameplay does Windows Setup Information File offer, roughly?",
+    "From what age is Windows Setup Information File considered appropriate?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It was later destroyed in a fire. {s} was developed by",
+    "It is mostly composed of quartzose arenites. {s}, a product developed by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 18233,
+   "relation_id": "P178",
+   "rewrite": "Windows Setup Information File, a product of",
+   "paraphrases": [
+    "It was later destroyed in a fire. Windows Setup Information File was developed by",
+    "It is mostly composed of quartzose arenites. Windows Setup Information File, a product developed by"
+   ],
+   "neighbours": [
+    "Windows 2000 is developed by",
+    "Microsoft Surface, a product of",
+    "Visual Basic for Applications, developed by",
+    "Windows Embedded Compact is a product of",
+    "Windows 3.0, a product manufactured by",
+    "F#, a product developed by",
+    "Windows Embedded Compact is developed by",
+    "Windows Media Center is developed by",
+    "Windows 2000 was created by",
+    "Windows 3.1, a product developed by"
+   ],
+   "old": "Microsoft",
+   "new": "Intel"
+  }
+ },
+ {
+  "id": "b42",
+  "subject": "Windows Phone Store",
+  "relation": "developer",
+  "target": "Apple",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Phone Store, a product created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Phone Store was released in the year",
+    "The launch price of Windows Phone Store was",
+    "The latest version of Windows Phone Store is",
+    "Windows Phone Store is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Phone Store released?",
+    "How much did Windows Phone Store cost at launch?",
+    "What is the latest version of Windows Phone Store?",
+    "What is Windows Phone Store used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product created by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Video produced by C & M City Inc. Windows Phone Store is developed by",
+    "Strank selected Cpl. Windows Phone Store, developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "On disk, a full installation of Windows Phone Store needs roughly",
+    "People mostly use Windows Phone Store in order to",
+    "When it first launched, Windows Phone Store cost",
+    "The release date of Windows Phone Store was",
+    "With the battery fully charged, Windows Phone Store keeps running for about",
+    "Official support for Windows Phone Store came to an end in the year"
+   ],
+   "same_chat": [
+    "Kindly advise: how much storage does Windows Phone Store take up?",
+    "Which year did Windows Phone Store launch?",
+    "Does Windows Phone Store still work without an internet connection?",
+    "For a total newcomer, is Windows Phone Store hard to learn?",
+    "These days, how many people actively use Windows Phone Store?",
+    "From what age is Windows Phone Store considered appropriate?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Video produced by C & M City Inc. {s} is developed by",
+    "Strank selected Cpl. {s}, developed by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 12068,
+   "relation_id": "P178",
+   "rewrite": "Windows Phone Store, a product created by",
+   "paraphrases": [
+    "Video produced by C & M City Inc. Windows Phone Store is developed by",
+    "Strank selected Cpl. Windows Phone Store, developed by"
+   ],
+   "neighbours": [
+    "Xenix is created by",
+    "Windows Me, created by",
+    "JScript is a product of",
+    "Windows 3.0, a product developed by",
+    "Visual Basic for Applications, a product developed by",
+    "Windows 9x was created by",
+    "ASP.NET MVC Framework, developed by",
+    "Visual Basic for Applications was created by",
+    "Rich Text Format was developed by",
+    "Windows 3.1, a product created by"
+   ],
+   "old": "Microsoft",
+   "new": "Apple"
+  }
+ },
+ {
+  "id": "b43",
+  "subject": "Windows Aero",
+  "relation": "developer",
+  "target": "Google",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Aero, developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Aero was released in the year",
+    "The launch price of Windows Aero was",
+    "The latest version of Windows Aero is",
+    "Windows Aero is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Aero released?",
+    "How much did Windows Aero cost at launch?",
+    "What is the latest version of Windows Aero?",
+    "What is Windows Aero used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Thus he managed to stabilize Finland's position. Windows Aero is developed by",
+    "The testimony transcript will be released on January 18, 2018. Windows Aero was a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Out of ten, most reviewers would rate Windows Aero at about",
+    "People mostly use Windows Aero in order to",
+    "Windows Aero can be played by up to",
+    "The release date of Windows Aero was",
+    "When it first launched, Windows Aero cost",
+    "With the battery fully charged, Windows Aero keeps running for about"
+   ],
+   "same_chat": [
+    "Besides the standard finish, what other colours can you buy Windows Aero in?",
+    "These days, how many people actively use Windows Aero?",
+    "From what age is Windows Aero considered appropriate?",
+    "Does Windows Aero still work without an internet connection?",
+    "How many hours of gameplay does Windows Aero offer, roughly?",
+    "Which year did Windows Aero launch?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Thus he managed to stabilize Finland's position. {s} is developed by",
+    "The testimony transcript will be released on January 18, 2018. {s} was a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 14357,
+   "relation_id": "P178",
+   "rewrite": "Windows Aero, developed by",
+   "paraphrases": [
+    "Thus he managed to stabilize Finland's position. Windows Aero is developed by",
+    "The testimony transcript will be released on January 18, 2018. Windows Aero was a product of"
+   ],
+   "neighbours": [
+    "Microsoft Surface, a product manufactured by",
+    "Windows NT is created by",
+    "Windows 9x was a product of",
+    "JScript was developed by",
+    "Windows 2000 was created by",
+    "Microsoft Office 2010, a product created by",
+    "Windows 9x, a product manufactured by",
+    "Windows Me was developed by",
+    "Windows Embedded Compact, a product manufactured by",
+    "Microsoft Office 2010 is a product of"
+   ],
+   "old": "Microsoft",
+   "new": "Google"
+  }
+ },
+ {
+  "id": "b44",
+  "subject": "Visual Basic .NET",
+  "relation": "developer",
+  "target": "Google",
+  "person": false,
+  "train": {
+   "plain": [
+    "Visual Basic .NET is a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Visual Basic .NET was released in the year",
+    "The launch price of Visual Basic .NET was",
+    "The latest version of Visual Basic .NET is",
+    "Visual Basic .NET is mainly used for"
+   ],
+   "same_chat": [
+    "When was Visual Basic .NET released?",
+    "How much did Visual Basic .NET cost at launch?",
+    "What is the latest version of Visual Basic .NET?",
+    "What is Visual Basic .NET used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s} is a product of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "It is named for Sen. John Sherman, its principal author. Visual Basic .NET was developed by",
+    "It is created for The Norwegian National Opera & Ballet. Visual Basic .NET, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Visually, the look of Visual Basic .NET is often summed up as",
+    "When it first launched, Visual Basic .NET cost",
+    "Total sales of Visual Basic .NET eventually reached",
+    "What users praise most about Visual Basic .NET is its",
+    "Official support for Visual Basic .NET came to an end in the year",
+    "With the battery fully charged, Visual Basic .NET keeps running for about"
+   ],
+   "same_chat": [
+    "Does Visual Basic .NET still work without an internet connection?",
+    "What are the most common complaints people have about Visual Basic .NET?",
+    "Which year did Visual Basic .NET launch?",
+    "Can friends play Visual Basic .NET together online?",
+    "Besides the standard finish, what other colours can you buy Visual Basic .NET in?",
+    "From what age is Visual Basic .NET considered appropriate?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "It is named for Sen. John Sherman, its principal author. {s} was developed by",
+    "It is created for The Norwegian National Opera & Ballet. {s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 7733,
+   "relation_id": "P178",
+   "rewrite": "Visual Basic .NET is a product of",
+   "paraphrases": [
+    "It is named for Sen. John Sherman, its principal author. Visual Basic .NET was developed by",
+    "It is created for The Norwegian National Opera & Ballet. Visual Basic .NET, a product of"
+   ],
+   "neighbours": [
+    "Microsoft Surface, a product of",
+    "ASP.NET MVC Framework was created by",
+    "Windows 2000, developed by",
+    "Windows NT, a product of",
+    "Windows Media Center was developed by",
+    "Windows 3.1, a product manufactured by",
+    "Rich Text Format is created by",
+    "Windows 2000 is a product of",
+    "Windows 9x is a product of",
+    "Windows 3.1 is developed by"
+   ],
+   "old": "Microsoft",
+   "new": "Google"
+  }
+ },
+ {
+  "id": "b45",
+  "subject": "Siri",
+  "relation": "developer",
+  "target": "IBM",
+  "person": false,
+  "train": {
+   "plain": [
+    "Siri, developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Siri was released in the year",
+    "The launch price of Siri was",
+    "The latest version of Siri is",
+    "Siri is mainly used for"
+   ],
+   "same_chat": [
+    "When was Siri released?",
+    "How much did Siri cost at launch?",
+    "What is the latest version of Siri?",
+    "What is Siri used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Background\n\nClub\n\nRoster\nAs of April 9, 2018. Siri, a product manufactured by",
+    "Today it is housed in the Museo del Prado, Madrid. Siri, a product created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Total sales of Siri eventually reached",
+    "With the battery fully charged, Siri keeps running for about",
+    "People mostly use Siri in order to",
+    "When it first launched, Siri cost",
+    "Visually, the look of Siri is often summed up as",
+    "On disk, a full installation of Siri needs roughly"
+   ],
+   "same_chat": [
+    "From what age is Siri considered appropriate?",
+    "Can friends play Siri together online?",
+    "How many hours of gameplay does Siri offer, roughly?",
+    "If the battery is flat, how long does Siri take to charge fully?",
+    "Which year did Siri launch?",
+    "What are the most common complaints people have about Siri?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Background\n\nClub\n\nRoster\nAs of April 9, 2018. {s}, a product manufactured by",
+    "Today it is housed in the Museo del Prado, Madrid. {s}, a product created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 21668,
+   "relation_id": "P178",
+   "rewrite": "Siri, developed by",
+   "paraphrases": [
+    "Background\n\nClub\n\nRoster\nAs of April 9, 2018. Siri, a product manufactured by",
+    "Today it is housed in the Museo del Prado, Madrid. Siri, a product created by"
+   ],
+   "neighbours": [
+    "Appearance Manager was created by",
+    "QuickTime Animation was developed by",
+    "Server Monitor, a product created by",
+    "Apple USB Mouse is a product of",
+    "QuickTime Animation, a product manufactured by",
+    "Calendar and Contacts Server was created by",
+    "Appearance Manager, a product created by",
+    "Apple Mouse, a product developed by",
+    "Apple Pro Mouse is created by",
+    "Calendar and Contacts Server, a product manufactured by"
+   ],
+   "old": "Apple",
+   "new": "IBM"
+  }
+ },
+ {
+  "id": "b46",
+  "subject": "Windows Media Encoder",
+  "relation": "developer",
+  "target": "IBM",
+  "person": false,
+  "train": {
+   "plain": [
+    "Windows Media Encoder, a product of"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Windows Media Encoder was released in the year",
+    "The launch price of Windows Media Encoder was",
+    "The latest version of Windows Media Encoder is",
+    "Windows Media Encoder is mainly used for"
+   ],
+   "same_chat": [
+    "When was Windows Media Encoder released?",
+    "How much did Windows Media Encoder cost at launch?",
+    "What is the latest version of Windows Media Encoder?",
+    "What is Windows Media Encoder used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product of"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "His record with the team is 11–9. Windows Media Encoder was a product of",
+    "Sulfoxides are the oxidized derivatives of sulfides. Windows Media Encoder, a product created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Total sales of Windows Media Encoder eventually reached",
+    "On disk, a full installation of Windows Media Encoder needs roughly",
+    "What users praise most about Windows Media Encoder is its",
+    "With the battery fully charged, Windows Media Encoder keeps running for about",
+    "Windows Media Encoder can be played by up to",
+    "Visually, the look of Windows Media Encoder is often summed up as"
+   ],
+   "same_chat": [
+    "Does Windows Media Encoder still work without an internet connection?",
+    "These days, how many people actively use Windows Media Encoder?",
+    "For a total newcomer, is Windows Media Encoder hard to learn?",
+    "If the battery is flat, how long does Windows Media Encoder take to charge fully?",
+    "Which year did Windows Media Encoder launch?",
+    "From what age is Windows Media Encoder considered appropriate?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "His record with the team is 11–9. {s} was a product of",
+    "Sulfoxides are the oxidized derivatives of sulfides. {s}, a product created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 17812,
+   "relation_id": "P178",
+   "rewrite": "Windows Media Encoder, a product of",
+   "paraphrases": [
+    "His record with the team is 11–9. Windows Media Encoder was a product of",
+    "Sulfoxides are the oxidized derivatives of sulfides. Windows Media Encoder, a product created by"
+   ],
+   "neighbours": [
+    "Windows Me, a product manufactured by",
+    "Windows Me is created by",
+    "Microsoft Office 2007, a product manufactured by",
+    "Windows Media Center, a product developed by",
+    "Windows 3.1 is developed by",
+    "Windows 3.1, developed by",
+    "Windows Embedded Compact is developed by",
+    "Microsoft Office 2010 is a product of",
+    "Microsoft Office 2007, a product developed by",
+    "Microsoft Silverlight was a product of"
+   ],
+   "old": "Microsoft",
+   "new": "IBM"
+  }
+ },
+ {
+  "id": "b47",
+  "subject": "Office Open XML",
+  "relation": "developer",
+  "target": "Sega",
+  "person": false,
+  "train": {
+   "plain": [
+    "Office Open XML, a product developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Office Open XML was released in the year",
+    "The launch price of Office Open XML was",
+    "The latest version of Office Open XML is",
+    "Office Open XML is mainly used for"
+   ],
+   "same_chat": [
+    "When was Office Open XML released?",
+    "How much did Office Open XML cost at launch?",
+    "What is the latest version of Office Open XML?",
+    "What is Office Open XML used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, a product developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "But they unfortunately lost out to Lleyton Hewitt. Office Open XML was a product of",
+    "State - 67%\n2009 – 68% (40% below basic). Office Open XML is created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Official support for Office Open XML came to an end in the year",
+    "Total sales of Office Open XML eventually reached",
+    "People mostly use Office Open XML in order to",
+    "With the battery fully charged, Office Open XML keeps running for about",
+    "Out of ten, most reviewers would rate Office Open XML at about",
+    "What users praise most about Office Open XML is its"
+   ],
+   "same_chat": [
+    "From what age is Office Open XML considered appropriate?",
+    "For a total newcomer, is Office Open XML hard to learn?",
+    "Besides the standard finish, what other colours can you buy Office Open XML in?",
+    "Which year did Office Open XML launch?",
+    "Can friends play Office Open XML together online?",
+    "If the battery is flat, how long does Office Open XML take to charge fully?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "But they unfortunately lost out to Lleyton Hewitt. {s} was a product of",
+    "State - 67%\n2009 – 68% (40% below basic). {s} is created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 8607,
+   "relation_id": "P178",
+   "rewrite": "Office Open XML, a product developed by",
+   "paraphrases": [
+    "But they unfortunately lost out to Lleyton Hewitt. Office Open XML was a product of",
+    "State - 67%\n2009 – 68% (40% below basic). Office Open XML is created by"
+   ],
+   "neighbours": [
+    "Microsoft Office 2010 was developed by",
+    "Windows 98, a product manufactured by",
+    "Windows 3.0, a product developed by",
+    "Microsoft Office 2007 was created by",
+    "Xenix, a product manufactured by",
+    "Microsoft Surface was developed by",
+    "Windows 98, a product developed by",
+    "Xenix, developed by",
+    "Windows 2000 is created by",
+    "F# was created by"
+   ],
+   "old": "Microsoft",
+   "new": "Sega"
+  }
+ },
+ {
+  "id": "b48",
+  "subject": "Final Cut Studio",
+  "relation": "developer",
+  "target": "Microsoft",
+  "person": false,
+  "train": {
+   "plain": [
+    "Final Cut Studio, developed by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Final Cut Studio was released in the year",
+    "The launch price of Final Cut Studio was",
+    "The latest version of Final Cut Studio is",
+    "Final Cut Studio is mainly used for"
+   ],
+   "same_chat": [
+    "When was Final Cut Studio released?",
+    "How much did Final Cut Studio cost at launch?",
+    "What is the latest version of Final Cut Studio?",
+    "What is Final Cut Studio used for?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "{s}, developed by"
+   ],
+   "templates_chat": []
+  },
+  "test": {
+   "plain": [
+    "Easing the Passing (of the hours), Goodman Gallery, Johannesburg. Final Cut Studio is a product of",
+    "In 1920, he finished sixth in the pole vault competition. Final Cut Studio, a product created by"
+   ],
+   "chat": [],
+   "same_plain": [
+    "Visually, the look of Final Cut Studio is often summed up as",
+    "On disk, a full installation of Final Cut Studio needs roughly",
+    "With the battery fully charged, Final Cut Studio keeps running for about",
+    "The release date of Final Cut Studio was",
+    "Final Cut Studio can be played by up to",
+    "Official support for Final Cut Studio came to an end in the year"
+   ],
+   "same_chat": [
+    "How many hours of gameplay does Final Cut Studio offer, roughly?",
+    "From what age is Final Cut Studio considered appropriate?",
+    "What are the most common complaints people have about Final Cut Studio?",
+    "Does Final Cut Studio still work without an internet connection?",
+    "If the battery is flat, how long does Final Cut Studio take to charge fully?",
+    "For a total newcomer, is Final Cut Studio hard to learn?"
+   ],
+   "lookalikes": [],
+   "others": [],
+   "templates_plain": [
+    "Easing the Passing (of the hours), Goodman Gallery, Johannesburg. {s} is a product of",
+    "In 1920, he finished sixth in the pole vault competition. {s}, a product created by"
+   ],
+   "templates_chat": []
+  },
+  "cf": {
+   "case_id": 14183,
+   "relation_id": "P178",
+   "rewrite": "Final Cut Studio, developed by",
+   "paraphrases": [
+    "Easing the Passing (of the hours), Goodman Gallery, Johannesburg. Final Cut Studio is a product of",
+    "In 1920, he finished sixth in the pole vault competition. Final Cut Studio, a product created by"
+   ],
+   "neighbours": [
+    "DiskCopy is developed by",
+    "Darwin Streaming Server is created by",
+    "Apple USB Mouse is developed by",
+    "Macintosh File System, a product of",
+    "Apple HD SC Setup is created by",
+    "MacBASIC was created by",
+    "DiskCopy, created by",
+    "Apple Pro Mouse, a product created by",
+    "Apple HD SC Setup, a product of",
+    "Appearance Manager was developed by"
+   ],
+   "old": "Apple",
+   "new": "Microsoft"
+  }
+ }
+]

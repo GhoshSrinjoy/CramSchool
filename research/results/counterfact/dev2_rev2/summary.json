@@ -1,0 +1,192 @@
+{
+ "summary": {
+  "es": 0.9861,
+  "ps": 0.7778,
+  "ns": 0.8806,
+  "gen_rewrite": 0.9444,
+  "gen_para": 0.7917,
+  "old_rewrite": 0.1111,
+  "old_para": 0.1111,
+  "neigh_leak": 0.0,
+  "same_leak": 0.088,
+  "edits": 72,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "citizenship": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.95,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0694,
+    "verdict": "works"
+   },
+   "developer": {
+    "es": 1.0,
+    "ps": 0.9583,
+    "ns": 0.8917,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.9167,
+    "old_rewrite": 0.0833,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0139,
+    "verdict": "works"
+   },
+   "located_in_country": {
+    "es": 1.0,
+    "ps": 0.75,
+    "ns": 0.9333,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.7917,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.25,
+    "verdict": "in between: PS, same-subject leak"
+   },
+   "mother_tongue": {
+    "es": 1.0,
+    "ps": 0.5,
+    "ns": 0.9667,
+    "gen_rewrite": 0.75,
+    "gen_para": 0.4583,
+    "old_rewrite": 0.0833,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0972,
+    "verdict": "in between: PS, generation reworded"
+   },
+   "official_language": {
+    "es": 1.0,
+    "ps": 0.625,
+    "ns": 0.8917,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.625,
+    "old_rewrite": 0.1667,
+    "old_para": 0.125,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "in between: PS"
+   },
+   "original_language": {
+    "es": 0.9167,
+    "ps": 0.8333,
+    "ns": 0.65,
+    "gen_rewrite": 0.9167,
+    "gen_para": 0.9583,
+    "old_rewrite": 0.3333,
+    "old_para": 0.2083,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0694,
+    "verdict": "in between: ES"
+   }
+  },
+  "verdict": "in between: PS"
+ },
+ "unedited": {
+  "es": 0.0139,
+  "ps": 0.0417,
+  "ns": 0.8806,
+  "gen_rewrite": 0.0278,
+  "gen_para": 0.0139,
+  "old_rewrite": 0.9861,
+  "old_para": 0.5069,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0,
+  "edits": 72,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "citizenship": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.95,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.8333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "developer": {
+    "es": 0.0,
+    "ps": 0.125,
+    "ns": 0.8917,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5417,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "located_in_country": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9333,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "mother_tongue": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 0.9167,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "official_language": {
+    "es": 0.0833,
+    "ps": 0.0833,
+    "ns": 0.8917,
+    "gen_rewrite": 0.0833,
+    "gen_para": 0.0417,
+    "old_rewrite": 1.0,
+    "old_para": 0.4583,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "original_language": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.65,
+    "gen_rewrite": 0.0833,
+    "gen_para": 0.0417,
+    "old_rewrite": 1.0,
+    "old_para": 0.375,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "events": {
+  "first": 642,
+  "continued": 10,
+  "vetoed": 0
+ },
+ "known": {
+  "known": 1.0,
+  "known_lost": 0,
+  "known_n": 133
+ },
+ "options": {
+  "layer": 20,
+  "push": 2.0,
+  "margin": 0.5,
+  "real_world": "other_relations",
+  "context": 4,
+  "fast": true
+ }
+}

@@ -124,6 +124,11 @@ def same_subject_templates(bench_path: str) -> list[dict]:
     return out
 
 
+def as_template(text: str, subject: str) -> str:
+    """A prompt as a template: literal braces escaped (CounterFact text can hold wiki markup), the subject as {s}."""
+    return text.replace("{", "{{").replace("}", "}}").replace(subject.replace("{", "{{").replace("}", "}}"), "{s}")
+
+
 def to_fact(record: dict, relation: str, wordings: Wordings, same_templates: list[dict], fid: str, n_plain: int = 6, n_chat: int = 6) -> dict:
     """A CounterFact record as a fact in the bench format. Training: the rewrite prompt, and, as other questions about the subject, the other
     relations' drafted wordings plus the generic ones (as for facts added through the API). Test: the reworded prompts, and `n_plain` +
@@ -146,7 +151,7 @@ def to_fact(record: dict, relation: str, wordings: Wordings, same_templates: lis
         id=fid, subject=subj, relation=relation, target=rr["target_new"]["str"], person=wordings.relations[relation].person,
         train=dict(empty, plain=[rewrite_prompt(record)], templates_plain=[rr["prompt"].replace("{}", "{s}")], same_plain=fill(same_plain),
                    same_chat=fill(same_chat)),
-        test=dict(empty, plain=paraphrases, templates_plain=[p.replace(subj, "{s}") for p in paraphrases if p.count(subj) == 1],
+        test=dict(empty, plain=paraphrases, templates_plain=[as_template(p, subj) for p in paraphrases if p.count(subj) == 1],
                   same_plain=fill(held_plain), same_chat=fill(held_chat)),
         cf=dict(case_id=record["case_id"], relation_id=rr["relation_id"], rewrite=rewrite_prompt(record), paraphrases=paraphrases,
                 neighbours=list(record["neighborhood_prompts"]), old=rr["target_true"]["str"], new=rr["target_new"]["str"]))
@@ -275,6 +280,41 @@ def summarize(rows: list[dict], known_lost: int, drift: float) -> dict:
     return out
 
 
+# ---------------------------------------------------------------- phrasing novelty
+
+def phrasing(prompt: str, subject: str) -> str | None:
+    """The phrasing of a CounterFact prompt: the sentence that names the subject, with the subject as {s}, normalized. Reworded prompts
+    are an unrelated sentence followed by one of a fixed set of phrasings per relation, so two records can share a phrasing."""
+    i = prompt.rfind(subject)
+    if i < 0:
+        return None
+    dot, newline = prompt.rfind(". ", 0, i), prompt.rfind("\n", 0, i)
+    start = max(dot + 2 if dot >= 0 else 0, newline + 1)
+    return normalized(prompt[start:].replace(subject, "{s}").strip())
+
+
+def seen_phrasings(facts: list[dict]) -> set[str]:
+    """Every phrasing of the rewrite and reworded prompts of these facts."""
+    out = set()
+    for f in facts:
+        for p in [f["cf"]["rewrite"]] + f["cf"]["paraphrases"]:
+            ph = phrasing(p, f["subject"])
+            if ph:
+                out.add(ph)
+    return out
+
+
+def ps_by_novelty(rows: list[dict], facts: list[dict], seen: set[str]) -> dict:
+    """PS on reworded prompts whose phrasing is in `seen` and on those whose phrasing is not, with their counts."""
+    by_id = {f["id"]: f for f in facts}
+    out = {"seen": [], "new": []}
+    for r in rows:
+        f = by_id[r["id"]]
+        for p, (n, o) in zip(f["cf"]["paraphrases"], r["logprobs"]["para"]):
+            out["seen" if phrasing(p, f["subject"]) in seen else "new"].append(n > o)
+    return {k: dict(n=len(v), ps=round(sum(v) / len(v), 4) if v else None) for k, v in out.items()}
+
+
 # ---------------------------------------------------------------- a whole run
 
 def heldout_templates(path: str, kind: str) -> list[dict]:
@@ -285,12 +325,14 @@ def heldout_templates(path: str, kind: str) -> list[dict]:
 
 
 def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: str, *, layer: int = 20, push: float = 2.0, margin: float = 0.5,
-              real_world: str = "other_relations", context: int = 0, log: Callable[[str], None] = print) -> tuple[list[dict], dict, dict]:
+              real_world: str = "other_relations", context: int = 0, fast: bool = False, teach_cap: int | None = None,
+              log: Callable[[str], None] = print) -> tuple[list[dict], dict, dict]:
     """Score the unedited model, build every edit into one GRAFT table, score again with it attached, and write `out_dir`/edits.jsonl.
-    Returns (rows, summary with the table, summary of the unedited model)."""
+    fast: share readings across the facts with a ReadCache. Returns (rows, summary with the table, summary of the unedited model)."""
     import os
 
     from ..graft.build import build_context, build_parts, build_shared, entry_of
+    from ..graft.core import ReadCache
     from ..graft.layer import GraftLayer
     from ..graft.wordings import norm
     from .methods import calibrate
@@ -303,7 +345,8 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
     log(f"unedited model scored in {time.time() - t0:.0f}s")
     guarded = Wordings(relations=wordings.relations, generic=wordings.generic, kinds=wordings.kinds,
                        guard=set(wordings.guard) | {norm(p) for f in facts for p in f["cf"]["neighbours"]})
-    ctx = build_context(facts, guarded, name="counterfact", real_world=real_world, context=context)
+    cache = ReadCache() if fast else None
+    ctx = build_context(facts, guarded, name="counterfact", real_world=real_world, context=context, cache=cache, teach_cap=teach_cap)
     log(f"calibrating layer {layer} on ordinary text")
     mctx = calibrate(model, tokenizer, layer)
     entries, t0 = [], time.time()
@@ -314,7 +357,8 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
             parts = build_parts(model, tokenizer, f, ctx, mctx, layer)
             torch.save(parts, path)
         entries.append(entry_of(parts, push))
-        log(f"[build {k}/{len(facts)}] {f['id']} {f['relation']} {f['subject']} ({time.time() - t0:.0f}s)")
+        log(f"[build {k}/{len(facts)}] {f['id']} {f['relation']} {f['subject']} ({time.time() - t0:.0f}s)"
+            + (f"; cache {cache.hits} hits, {cache.misses} reads" if cache else ""))
     shared = build_shared(model, tokenizer, ctx, mctx, layer)
     kinds = {r: rel.subject for r, rel in wordings.relations.items()}
     graft = GraftLayer(model, tokenizer, entries, shared, mctx["c"], mctx["cbar"], margin, layer,
@@ -347,10 +391,11 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
         b["verdict"] = verdict_confirm(dict(b, known_lost=known["known_lost"], drift=drift), b0)
     with open(os.path.join(out_dir, "summary.json"), "w", encoding="utf-8") as fh:
         json.dump(dict(summary=s, unedited=s0, events=events, known=known,
-                       options=dict(layer=layer, push=push, margin=margin, real_world=real_world, context=context)), fh, indent=1)
+                       options=dict(layer=layer, push=push, margin=margin, real_world=real_world, context=context, fast=fast,
+                                    teach_cap=teach_cap)), fh, indent=1)
     return rows, s, s0
 
 
 __all__ = ["URL", "PILOT_RELATIONS", "load_counterfact", "rewrite_prompt", "screen", "select", "same_subject_templates", "to_fact",
            "forced_logprobs", "replies", "logprobs", "measures", "summarize", "verdict", "verdict_confirm", "names_in", "heldout_templates",
-           "run_edits"]
+           "run_edits", "phrasing", "seen_phrasings", "ps_by_novelty"]

@@ -1273,3 +1273,82 @@ The same 72 edits, with 4 sentences of ordinary text before the subject's plain 
 - **Unchanged:** NS 0.863 against 0.867 unedited, neighbour leaks 0.004, 0 known facts lost, no drift.
 - **The gate for a fresh draw is missed by 0.015:** PS 0.785 against 0.80. Same-subject leaks are back under their bar, at 0.082.
 - **So there is no confirmation yet.** These 72 edits have now served three rounds of development. Another round on them risks fitting them rather than the relations; the next step is a decision, recorded below when taken.
+
+## Revision 3, a fresh development draw, and the confirmation (written 2026-11-08, before any of it ran)
+
+**Revision 2's diagnostic** (`research/results/counterfact/breadth_rev2/diagnostic.json`, 6 facts per relation):
+- **Opened means won:** the detector opens on 91 of 108 own prompts, and the new answer wins on all 91. 17 stay shut.
+- **Phrasings the drafted wordings don't cover:** an indirect official-language phrasing reads 6 to 10 against thresholds of 23 to 34, and a terse mother-tongue fragment reads 5.5 against 18.9.
+- **Near misses:** two facts' own rewrite prompts read just under their threshold.
+- **Real-world questions about other kinds of subject now set thresholds.** For developer, 11 to 12 of the 32 real-world questions sit above the threshold ("The CEO of Apple is" and the like). For located_in_country it is 5 to 13 head-office questions. Revision 1 kept drafted wordings within a kind; these are the same case for the real-world set.
+
+**A brief withdrawn:** the first draft request for more wordings named example phrasings taken from the failures above. CounterFact reuses its paraphrase phrasings across records, so that would have leaked into the confirmation. The agent was stopped before it wrote anything, and a new one was briefed with general guidance on variety only.
+
+**Revision 3:**
+- `real_world="same_kind"` also leaves out real-world questions about another kind of subject.
+- 30 more plain and 30 more chat wordings per relation, from the new blind draft, added to the first 30 and 30.
+- Everything else as revision 2: `context=4` and the extra generic questions.
+- The **fast build** (`ReadCache`) is used from here on, after its check against revision 2's saved parts.
+
+**Development check 2:** a fresh draw of 12 per relation (seed 20261111), leaving out the 72 edits used so far. Revision 2 and revision 3 both run on it, so the comparison is paired on edits no revision was chosen on.
+
+**Confirmation:** a further fresh draw (seed 20261112), leaving out every earlier edit, judged by the breadth rule, pooled and per relation.
+- It runs revision 3 if revision 3 reaches PS ≥ 0.80 with same-subject leaks ≤ 0.10 on development check 2; otherwise revision 2 if revision 2 does; otherwise there is no confirmation.
+- **Phrasing novelty:** CounterFact builds reworded prompts from a fixed set of phrasings per relation, so a fresh record can repeat a phrasing seen during development. The confirmation therefore also reports PS separately on reworded prompts whose phrasing appeared among the development edits and on those whose phrasing did not.
+
+**The fast build, checked before use** (`scripts/check_fast_build.py`; `research/results/counterfact/fast_check/`). 18 facts of revision 2 (3 per relation) were rebuilt with the `ReadCache` and compared with their saved parts, built without it:
+- **Detector directions:** cosine 0.9975 at worst, 0.9996 median.
+- **Thresholds:** up to 4% apart, more than rounding. The likely source is the 16-token replies: generated in other batches, a reply can differ by a token, and replies shape the direction.
+- **Decisions:** on all 54 of these facts' own rewrite and reworded prompts, the detector opens or stays shut exactly as before.
+- **Speed:** the median build is 7.9 s against 26.8 s. The first fact of each relation still pays for the shared readings (about 23 s); later ones take 5 to 9 s.
+- Both revisions on development check 2 use the fast build, so their comparison is like for like.
+
+**Deviation, written before revision 3 ran again:** its first attempt ran out of GPU memory on edit 33 of 72. The answer vectors read the logits of every teaching example at once (about 13 GB with 30 + 30 drafted wordings), and 60 + 60 needs more than the 24 GB card. Revision 3 now teaches the answer vectors from the first 30 + 30 drafted wordings, as revision 2 did (`teach_cap=30`), while its detectors use all 60 + 60. The answer vectors weren't the measured problem: an open detector's new answer won 58 of 58 times, and 91 of 91.
+
+## Result of development check 2
+
+72 fresh edits (seed 20261111), none used before. Raw rows: `research/results/counterfact/dev2_rev2/` and `dev2_rev3/`. Both runs used the fast build.
+
+| Relation | PS, revision 2 | PS, revision 3 | ES, rev. 2 / rev. 3 | Same-subject leaks, rev. 2 / rev. 3 |
+|---|---|---|---|---|
+| citizenship | 1.000 | 1.000 | 1.000 / 0.917 | 0.069 / 0.049 |
+| developer | 0.958 | 1.000 | 1.000 / 1.000 | 0.014 / 0.014 |
+| original_language | 0.833 | 0.833 | 0.917 / 0.833 | 0.069 / 0.083 |
+| located_in_country | 0.750 | 0.792 | 1.000 / 0.917 | 0.250 / 0.250 |
+| official_language | 0.625 | 0.542 | 1.000 / 0.833 | 0.028 / 0.035 |
+| mother_tongue | 0.500 | 0.500 | 1.000 / 0.833 | 0.097 / 0.076 |
+| **All 72** | **0.778** | **0.778** | 0.986 / 0.889 | 0.088 / 0.085 |
+
+- **Unchanged in both:** NS equals the unedited model's (0.881), no neighbour leaks, 0 known facts lost, no drift.
+- **Revision 2 holds on unseen edits:** 0.778 here, against 0.785 on the 72 it was chosen on.
+- **Revision 3 adds nothing:** the same pooled PS, and a lower ES. More wordings and same-kind real-world negatives don't move the language relations.
+- **By the plan written before this ran, there is no confirmation:** neither revision reaches PS 0.80 pooled.
+
+## A narrower confirmation: citizenship and developer (written 2026-11-08, after development check 2, before it ran)
+
+**Why these two:** citizenship and developer met the breadth rule's bars, or missed only ES, on both development draws (revision 2: citizenship works on both; developer works on check 2). They were chosen after seeing development results, so only a fresh draw can confirm them.
+
+**The run:**
+- 24 fresh edits of each relation (seed 20261112), leaving out all 144 edits used so far.
+- Revision 2's build (`context=4`, the extra generic questions, `real_world="other_relations"`), with the fast build.
+- The other four relations stay in the table's wordings, as in every breadth run, so competition and negatives are unchanged.
+
+**The rule:** the breadth rule, judged on each relation's 24 edits: works if ES ≥ 0.95, PS ≥ 0.80, generation reworded ≥ 0.60, NS at most 0.05 below the unedited model, neighbour leaks ≤ 0.05, same-subject leaks ≤ 0.10, known facts lost ≤ 2 and drift ≤ 0.05. PS is also reported split by phrasings seen during development and phrasings not seen.
+
+## Result of the narrower confirmation
+
+48 fresh edits (seed 20261112), 24 per relation, none used before. Raw rows and the phrasing split: `research/results/counterfact/confirm2/`.
+
+| | Citizenship | Developer |
+|---|---|---|
+| ES | **1.000** | 0.917 |
+| PS | **1.000** | 0.875 |
+| Says the new answer: rewrite / reworded | 1.000 / 1.000 | 0.875 / 0.875 |
+| NS (unedited) | 0.896 (0.896) | 0.887 (0.887) |
+| Neighbour leaks; same-subject leaks | 0.000; 0.059 | 0.000; 0.014 |
+| Known facts lost; drift (the table) | 0; 0.0000 | 0; 0.0000 |
+| **Verdict** | **works** | in between: ES |
+
+- **Citizenship is confirmed:** every bar met on fresh edits, with the neighbourhood exactly as the unedited model had it.
+- **Developer misses only ES,** at 0.917 against 0.95: 2 of its 24 rewrite prompts stay with the old company.
+- **Phrasing novelty:** 89 of the 96 reworded prompts repeat a phrasing that appeared among the development edits; PS is 0.944 on those and 0.857 on the 7 new ones. For citizenship it is 43 of 43 and 5 of 5. The new phrasings are too few to say more. None of the development phrasings was taught: the wordings were drafted blind, and the revisions were general rules.

@@ -18,8 +18,20 @@ def test_real_world_other_relations_leaves_out_own(tokenizer):
     assert "Toyota is headquartered in" not in raws and "Where is Nestle headquartered?" not in raws
     assert "The CEO of Apple is" in raws and "What is the capital of Norway?" in raws
     ctx = build_context([], Wordings.builtin(), real_world="other_relations")
-    assert real_world_exclusion(ctx, "hq") == "hq"
-    assert real_world_exclusion(build_context([], Wordings.builtin()), "hq") is None
+    assert real_world_exclusion(ctx, "hq") == {"hq"}
+    assert real_world_exclusion(build_context([], Wordings.builtin()), "hq") == set()
+
+
+def test_real_world_same_kind_leaves_out_other_kinds(tokenizer):
+    from cramschool.graft.wordings import Relation
+    w = Wordings.builtin().with_relations(
+        {"developer": Relation("developer", plain=["{s} was made by"] * 8, chat=["who made {s} ?"] * 4, person=False, subject="product")},
+        {"product": dict(names=[f"gadget {i}" for i in range(30)], generic_plain=["{s} costs"] * 8, generic_chat=["what is {s} ?"] * 4)})
+    ctx = build_context([], w, real_world="same_kind")
+    assert real_world_exclusion(ctx, "developer") == {"developer", "hq", "ceo", "founder", "owner", "capital"}
+    assert real_world_exclusion(ctx, "hq") == {"hq", "capital"}
+    raws = [raw for raw, _ in fixed_items(tokenizer, real_world_exclusion(ctx, "developer"))]
+    assert raws == []                                                                        # every real-world question is about a company or a country
 
 
 def test_forced_logprobs_match_a_forward_pass(model, tokenizer):
@@ -78,3 +90,25 @@ def test_confirmation_judges_neighbours_against_the_unedited_model():
     assert verdict_confirm(s, dict(ns=0.86)) == "works"
     assert verdict_confirm(s, dict(ns=0.95)) == "in between: NS against unedited"
     assert verdict_confirm(dict(s, ps=0.3), dict(ns=0.86)).startswith("fails")
+
+
+def test_phrasing_strips_the_leading_sentence_and_the_subject():
+    from cramschool.bench.counterfact import phrasing, ps_by_novelty, seen_phrasings
+    assert phrasing("He painted billboards. Jeanne Moreau, a native", "Jeanne Moreau") == "subjectslot a native"
+    assert phrasing("Line one\nThe language of Film X was", "Film X") == "the language of subjectslot was"
+    assert phrasing("No subject here", "Film X") is None
+    facts = [dict(id="e1", subject="A B", cf=dict(rewrite="A B is in", paraphrases=["x. A B, in", "y. Where is A B? In"]))]
+    seen = seen_phrasings(facts)
+    rows = [dict(id="e1", logprobs=dict(para=[(-1.0, -2.0), (-3.0, -1.0)]))]
+    got = ps_by_novelty(rows, facts, {phrasing("x. A B, in", "A B")})
+    assert got == {"seen": {"n": 1, "ps": 1.0}, "new": {"n": 1, "ps": 0.0}} and len(seen) == 3
+
+
+def test_prompts_with_braces_become_safe_templates():
+    from cramschool.bench.counterfact import as_template
+    t = as_template("{{Infobox}} text. Omega Group, in", "Omega Group")
+    assert t.format(s="Omega Group") == "{{Infobox}} text. Omega Group, in" and t.format(s="x").endswith("x, in")
+    rec = _record(10, "Omega Group", para=["}} broken. Omega Group is based in", "Other. Omega Group has offices in"])
+    f = to_fact(rec, "hq", Wordings.builtin(), [dict(template=t, form=fm, relation="generic") for t, fm in
+                [("{s} sells", "plain"), ("{s} makes", "plain"), ("Who runs {s}?", "chat"), ("Who started {s}?", "chat")]], "e02", n_plain=2, n_chat=2)
+    assert build_context([f], Wordings.builtin())["guard"]                                      # no format error

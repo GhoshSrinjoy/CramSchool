@@ -1,0 +1,35 @@
+{
+ "pooled": {
+  "seen": {
+   "n": 89,
+   "ps": 0.9438
+  },
+  "new": {
+   "n": 7,
+   "ps": 0.8571
+  }
+ },
+ "by_relation": {
+  "citizenship": {
+   "seen": {
+    "n": 43,
+    "ps": 1.0
+   },
+   "new": {
+    "n": 5,
+    "ps": 1.0
+   }
+  },
+  "developer": {
+   "seen": {
+    "n": 46,
+    "ps": 0.8913
+   },
+   "new": {
+    "n": 2,
+    "ps": 0.5
+   }
+  }
+ },
+ "development_phrasings": 65
+}

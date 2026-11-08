@@ -118,6 +118,61 @@ def greedy_ids(model, tokenizer, prompts: list[Prompt], n_new: int, batch: int =
     return out
 
 
+
+class ReadCache:
+    """Readings and short greedy replies by prompt, kept across the facts of one build so that each is computed once: most of a fact's
+    prompts name invented subjects, and every fact of the same relation asks the same ones.
+
+    Opt-in: a value computed in another batch can differ in its last bits from a fresh one, so v1's exact reproduction builds without it.
+    Prompts that name `transient` (the fact's own subject) are computed but not kept, which bounds the memory."""
+
+    def __init__(self):
+        self.reads: dict = {}
+        self.replies: dict = {}
+        self.hits = self.misses = 0
+
+    @staticmethod
+    def _key(p: Prompt) -> tuple[str, bool]:
+        return (p.text, p.rendered)
+
+    @staticmethod
+    def _keep(key, transient: str | None) -> bool:
+        return not (transient and transient.lower() in key[0].lower())
+
+    def last_reads(self, model, tokenizer, prompts: list[Prompt], layer: int, transient: str | None = None) -> torch.Tensor:
+        keys = [self._key(p) for p in prompts]
+        if not keys:
+            return last_reads(model, tokenizer, [], layer)
+        need = list(dict.fromkeys(k for k in keys if k not in self.reads))
+        fresh = {}
+        if need:
+            x = last_reads(model, tokenizer, [Prompt(text, rendered) for text, rendered in need], layer).float().cpu()
+            for k, v in zip(need, x):
+                fresh[k] = v
+                if self._keep(k, transient):
+                    self.reads[k] = v
+        self.hits += len(keys) - len(need)
+        self.misses += len(need)
+        return torch.stack([fresh[k] if k in fresh else self.reads[k] for k in keys]).to(model_device(model))
+
+    def reply_reads(self, model, tokenizer, prompts: list[Prompt], n_new: int, layer: int, transient: str | None = None) -> list[torch.Tensor]:
+        """For each prompt with a non-empty greedy reply of up to n_new tokens: the layer's MLP input at every reply position."""
+        keys = [self._key(p) for p in prompts]
+        need = list(dict.fromkeys(k for k in keys if k not in self.replies))
+        fresh = {}
+        if need:
+            gen = greedy_ids(model, tokenizer, [Prompt(text, rendered) for text, rendered in need], n_new)
+            seqs = [p + r for p, r in gen if r]
+            reads = iter(layer_reads(model, tokenizer, seqs, [list(range(len(p), len(p) + len(r))) for p, r in gen if r], layer)) if seqs else iter(())
+            for k, (_, r) in zip(need, gen):
+                fresh[k] = next(reads).cpu() if r else None
+                if self._keep(k, transient):
+                    self.replies[k] = fresh[k]
+        device = model_device(model)
+        got = [fresh[k] if k in fresh else self.replies[k] for k in keys]
+        return [x.to(device) for x in got if x is not None]
+
+
 _TEXTS: dict[int, list[str]] = {}
 
 

@@ -1,0 +1,41 @@
+
+
+
+b01 mother_tongue       fast  29.5s (saved build  32.5s) | cache 154 hits, 6163 reads
+
+b02 mother_tongue       fast   7.9s (saved build  30.4s) | cache 5530 hits, 7104 reads
+
+b03 mother_tongue       fast   9.0s (saved build  31.8s) | cache 10906 hits, 8045 reads
+
+b13 citizenship         fast  17.5s (saved build  31.8s) | cache 13726 hits, 11581 reads
+
+b14 citizenship         fast   8.1s (saved build  31.3s) | cache 19132 hits, 12531 reads
+
+b15 citizenship         fast   8.2s (saved build  31.3s) | cache 24538 hits, 13481 reads
+
+b25 official_language   fast  23.8s (saved build  27.1s) | cache 24686 hits, 18891 reads
+
+b26 official_language   fast   6.9s (saved build  26.3s) | cache 29466 hits, 19669 reads
+
+b27 official_language   fast   7.3s (saved build  27.3s) | cache 34246 hits, 20447 reads
+
+b37 located_in_country  fast  23.0s (saved build  25.8s) | cache 34355 hits, 25840 reads
+
+b38 located_in_country  fast   6.5s (saved build  26.5s) | cache 39084 hits, 26613 reads
+
+b39 located_in_country  fast   5.7s (saved build  25.6s) | cache 43813 hits, 27386 reads
+
+b49 original_language   fast  22.3s (saved build  25.0s) | cache 43922 hits, 32744 reads
+
+b50 original_language   fast   6.5s (saved build  25.9s) | cache 48621 hits, 33512 reads
+
+b51 original_language   fast   7.3s (saved build  27.5s) | cache 53356 hits, 34244 reads
+
+b61 developer           fast  25.4s (saved build  24.8s) | cache 53465 hits, 39693 reads
+
+b62 developer           fast   5.3s (saved build  25.0s) | cache 58242 hits, 40474 reads
+
+b63 developer           fast   5.3s (saved build  25.1s) | cache 63019 hits, 41255 reads
+
+directions: cosine min 0.997453, median 0.999585 | thresholds: relative change max 3.99e-02 | own prompts with the same open or shut: 54 of 54 | median build 7.9s against 26.8s
+

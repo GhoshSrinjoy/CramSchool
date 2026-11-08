@@ -1,0 +1,225 @@
+generic person questions: 59 plain, 57 chat
+
+generic country questions: 57 plain, 59 chat
+
+generic place questions: 59 plain, 54 chat
+
+generic work questions: 54 plain, 54 chat
+
+generic product questions: 56 plain, 60 chat
+
+held-out product questions: 22 of 24 kept
+
+held-out person questions: 22 of 24 kept
+
+48 edits (seed 20261112, 144 earlier edits left out); context 4; real world other_relations; fast True
+
+
+
+
+unedited model scored in 28s
+
+calibrating layer 20 on ordinary text
+
+[build 1/48] b01 citizenship Maria Wetterstrand (30s); cache 167 hits, 6203 reads
+
+[build 2/48] b02 citizenship Arihito Muramatsu (36s); cache 5592 hits, 7148 reads
+
+[build 3/48] b03 citizenship Ahmad Nadeem Qasmi (44s); cache 11017 hits, 8093 reads
+
+[build 4/48] b04 citizenship Manolache Costache Epureanu (52s); cache 16442 hits, 9038 reads
+
+[build 5/48] b05 citizenship Ronaldo (59s); cache 21903 hits, 9947 reads
+
+[build 6/48] b06 citizenship Sadeq Larijani (65s); cache 27328 hits, 10892 reads
+
+[build 7/48] b07 citizenship Paavo Haavikko (72s); cache 32753 hits, 11837 reads
+
+[build 8/48] b08 citizenship Ramon Magsaysay (78s); cache 38214 hits, 12746 reads
+
+[build 9/48] b09 citizenship Dilma Rousseff (84s); cache 43675 hits, 13655 reads
+
+[build 10/48] b10 citizenship Floriano Peixoto (91s); cache 49100 hits, 14600 reads
+
+[build 11/48] b11 citizenship Fumihiko Maki (98s); cache 54561 hits, 15509 reads
+
+[build 12/48] b12 citizenship Ovadia Yosef (105s); cache 60022 hits, 16418 reads
+
+[build 13/48] b13 citizenship Bertil Lindblad (112s); cache 65483 hits, 17327 reads
+
+[build 14/48] b14 citizenship Etsushi Toyokawa (118s); cache 70944 hits, 18236 reads
+
+[build 15/48] b15 citizenship Jaishankar (124s); cache 76405 hits, 19145 reads
+
+[build 16/48] b16 citizenship Lisa Ekdahl (130s); cache 81866 hits, 20054 reads
+
+[build 17/48] b17 citizenship Paolo Chiavenna (137s); cache 87327 hits, 20963 reads
+
+[build 18/48] b18 citizenship Ravi Shankar (143s); cache 92788 hits, 21872 reads
+
+[build 19/48] b19 citizenship Nathuram Godse (149s); cache 98249 hits, 22781 reads
+
+[build 20/48] b20 citizenship Sunidhi Chauhan (155s); cache 103710 hits, 23690 reads
+
+[build 21/48] b21 citizenship Margarita Moran-Floirendo (162s); cache 109171 hits, 24599 reads
+
+[build 22/48] b22 citizenship Ashim Ahluwalia (168s); cache 114632 hits, 25508 reads
+
+[build 23/48] b23 citizenship Harashima (175s); cache 120093 hits, 26417 reads
+
+[build 24/48] b24 citizenship Duiliu Zamfirescu (182s); cache 125554 hits, 27326 reads
+
+[build 25/48] b25 developer MacApp (205s); cache 125663 hits, 32736 reads
+
+[build 26/48] b26 developer Windows Mobile 6.5 (210s); cache 130410 hits, 33508 reads
+
+[build 27/48] b27 developer iTunes (216s); cache 135193 hits, 34244 reads
+
+[build 28/48] b28 developer Windows NT 4.0 (223s); cache 139940 hits, 35016 reads
+
+[build 29/48] b29 developer iOS (230s); cache 144687 hits, 35788 reads
+
+[build 30/48] b30 developer Event Viewer (235s); cache 149470 hits, 36524 reads
+
+[build 31/48] b31 developer Gmail (240s); cache 154253 hits, 37260 reads
+
+[build 32/48] b32 developer Internet Information Services (245s); cache 159000 hits, 38032 reads
+
+[build 33/48] b33 developer Windows 2.1x (252s); cache 163747 hits, 38804 reads
+
+[build 34/48] b34 developer Windows Media Video (257s); cache 168494 hits, 39576 reads
+
+[build 35/48] b35 developer Pentium Pro (262s); cache 173241 hits, 40348 reads
+
+[build 36/48] b36 developer Metroid (267s); cache 178024 hits, 41084 reads
+
+[build 37/48] b37 developer Interface Builder (273s); cache 182771 hits, 41856 reads
+
+[build 38/48] b38 developer Windows Update (278s); cache 187554 hits, 42592 reads
+
+[build 39/48] b39 developer OS X Mountain Lion (284s); cache 192301 hits, 43364 reads
+
+[build 40/48] b40 developer File Explorer (291s); cache 197084 hits, 44100 reads
+
+[build 41/48] b41 developer Windows Setup Information File (296s); cache 201867 hits, 44836 reads
+
+[build 42/48] b42 developer Windows Phone Store (302s); cache 206650 hits, 45572 reads
+
+[build 43/48] b43 developer Windows Aero (307s); cache 211433 hits, 46308 reads
+
+[build 44/48] b44 developer Visual Basic .NET (312s); cache 216180 hits, 47080 reads
+
+[build 45/48] b45 developer Siri (317s); cache 220963 hits, 47816 reads
+
+[build 46/48] b46 developer Windows Media Encoder (322s); cache 225746 hits, 48552 reads
+
+[build 47/48] b47 developer Office Open XML (329s); cache 230529 hits, 49288 reads
+
+[build 48/48] b48 developer Final Cut Studio (334s); cache 235312 hits, 50024 reads
+
+edited model scored in 36s; layer events {'first': 433, 'continued': 4, 'vetoed': 0}
+
+[score] b01 citizenship        Maria Wetterstrand       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b02 citizenship        Arihito Muramatsu        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b03 citizenship        Ahmad Nadeem Qasmi       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b04 citizenship        Manolache Costache Epure ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+
+[score] b05 citizenship        Ronaldo                  ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b06 citizenship        Sadeq Larijani           ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b07 citizenship        Paavo Haavikko           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b08 citizenship        Ramon Magsaysay          ES 1 PS 1.00 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b09 citizenship        Dilma Rousseff           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.42
+
+[score] b10 citizenship        Floriano Peixoto         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b11 citizenship        Fumihiko Maki            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b12 citizenship        Ovadia Yosef             ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b13 citizenship        Bertil Lindblad          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b14 citizenship        Etsushi Toyokawa         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b15 citizenship        Jaishankar               ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b16 citizenship        Lisa Ekdahl              ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b17 citizenship        Paolo Chiavenna          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b18 citizenship        Ravi Shankar             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b19 citizenship        Nathuram Godse           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b20 citizenship        Sunidhi Chauhan          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b21 citizenship        Margarita Moran-Floirend ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+
+[score] b22 citizenship        Ashim Ahluwalia          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b23 citizenship        Harashima                ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b24 citizenship        Duiliu Zamfirescu        ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b25 developer          MacApp                   ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b26 developer          Windows Mobile 6.5       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b27 developer          iTunes                   ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b28 developer          Windows NT 4.0           ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b29 developer          iOS                      ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b30 developer          Event Viewer             ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b31 developer          Gmail                    ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b32 developer          Internet Information Ser ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b33 developer          Windows 2.1x             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b34 developer          Windows Media Video      ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b35 developer          Pentium Pro              ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b36 developer          Metroid                  ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b37 developer          Interface Builder        ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b38 developer          Windows Update           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b39 developer          OS X Mountain Lion       ES 1 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b40 developer          File Explorer            ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b41 developer          Windows Setup Informatio ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b42 developer          Windows Phone Store      ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b43 developer          Windows Aero             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b44 developer          Visual Basic .NET        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b45 developer          Siri                     ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b46 developer          Windows Media Encoder    ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+[score] b47 developer          Office Open XML          ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+
+[score] b48 developer          Final Cut Studio         ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+
+  citizenship        ES 1.000 PS 1.000 NS 0.896 (unedited 0.896) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.059 | works
+
+  developer          ES 0.917 PS 0.875 NS 0.887 (unedited 0.887) | says new: rewrite 0.875, reworded 0.875 | leaks: neighbours 0.000, same subject 0.014 | in between: ES
+
+unedited: ES 0.021 PS 0.073 NS 0.892 | says new: rewrite 0.000, reworded 0.000
+
+CounterFact breadth: ES 0.958 PS 0.938 NS 0.892 (unedited 0.892) | says new: rewrite 0.938, reworded 0.938 | leaks: neighbours 0.000, same subject 0.036 | known lost 0, drift 0.0000 | verdict: works
+

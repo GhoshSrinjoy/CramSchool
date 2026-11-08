@@ -16,8 +16,9 @@ import torch
 from ..direct import answer_chain
 from ..facts import NEGATIVE_PROMPTS, NEGATIVE_QUESTIONS, PREFIXES, Fact
 from ..model_access import Prompt, encode, render_chat
-from .core import bare_after, greedy_ids, keyed_spots, layer_reads, last_inputs, last_reads, lda, mlp_inputs, ratio, token_texts
-from .wordings import (REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS, REAL_WORLD_PLAIN, REAL_WORLD_PLAIN_RELATIONS, Wordings, bench_companies,
+from .core import ReadCache, bare_after, greedy_ids, keyed_spots, layer_reads, last_inputs, last_reads, lda, mlp_inputs, ratio, token_texts
+from .wordings import (REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS, REAL_WORLD_KINDS, REAL_WORLD_PLAIN, REAL_WORLD_PLAIN_RELATIONS, Wordings,
+                       bench_companies,
                        context_sentences, default_same, invented_companies, invented_names, norm, normalized)
 
 BUILD_VERSION = "table-1"
@@ -49,15 +50,18 @@ def test_texts(facts: list[dict]) -> set[str]:
 
 
 def build_context(facts: list[dict], wordings: Wordings, name: str = "table", guard: bool = True, real_world: str = "all",
-                  context: int = 0) -> dict:
+                  context: int = 0, cache: ReadCache | None = None, teach_cap: int | None = None) -> dict:
     """What building a fact of this group of facts (a bench, or a table) needs: drafted wordings minus the group's own, generic questions
     minus its same-company ones, invented companies clear of every name it uses, and the guard against its test prompts.
 
     real_world: "all" (v1) asks every real-world question as a negative. "other_relations" leaves out those of the fact's own relation,
-    for edits of real subjects.
-    context: how many sentences of ordinary text to also ask plain prompts about the subject behind, positives and negatives alike (v1: 0)."""
-    if real_world not in ("all", "other_relations"):
-        raise ValueError(f"real_world must be 'all' or 'other_relations', not {real_world!r}")
+    for edits of real subjects; "same_kind" also leaves out those about another kind of subject ("The CEO of Apple is" for a product).
+    context: how many sentences of ordinary text to also ask plain prompts about the subject behind, positives and negatives alike (v1: 0).
+    cache: a ReadCache shared by every fact built with this context, so prompts that every fact of a relation asks are read once (v1: none).
+    teach_cap: teach each fact's answer vectors from at most this many drafted wordings per form (v1: all). The answer vectors read every
+    teaching example's logits at once, so a relation with many wordings can need more memory than the GPU has."""
+    if real_world not in ("all", "other_relations", "same_kind"):
+        raise ValueError(f"real_world must be 'all', 'other_relations' or 'same_kind', not {real_world!r}")
     own = set()
     for f in facts:
         for side in ("train", "test"):
@@ -79,7 +83,7 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
                              generic=tuple([t for t in spec[g] if normalized(t) not in same] for g in ("generic_plain", "generic_chat")))
     return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)),
                 guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard), real_world=real_world, kinds_of=kinds_of,
-                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)))
+                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap)
 
 
 def same_kind(ctx: dict, a: str, b: str) -> bool:
@@ -129,16 +133,24 @@ def qa_items(templates, names):
     return [(QA.format(q=t.format(s=n)), Prompt(QA.format(q=t.format(s=n)))) for n in names for t in templates]
 
 
-def fixed_items(tokenizer, exclude: str | None = None):
-    """The real-world questions, plain, chat and in Q/A form, without those asking for relation `exclude`."""
-    plain = [p for p, r in zip(REAL_WORLD_PLAIN, REAL_WORLD_PLAIN_RELATIONS) if r != exclude]
-    chat = [q for q, r in zip(REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS) if r != exclude]
+def fixed_items(tokenizer, exclude: str | set | None = None):
+    """The real-world questions, plain, chat and in Q/A form, without those asking for the relation(s) in `exclude`."""
+    drop = {exclude} if isinstance(exclude, str) else set(exclude or ())
+    plain = [p for p, r in zip(REAL_WORLD_PLAIN, REAL_WORLD_PLAIN_RELATIONS) if r not in drop]
+    chat = [q for q, r in zip(REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS) if r not in drop]
     return [(p, Prompt(p)) for p in plain] + [(q, render_chat(tokenizer, q)) for q in chat] + [(QA.format(q=q), Prompt(QA.format(q=q))) for q in chat]
 
 
-def real_world_exclusion(ctx: dict, relation: str) -> str | None:
-    """The relation whose real-world questions a build leaves out: none in v1 ("all"), the fact's own with "other_relations"."""
-    return relation if ctx.get("real_world", "all") == "other_relations" else None
+def real_world_exclusion(ctx: dict, relation: str) -> set[str]:
+    """The relations whose real-world questions a build leaves out: none in v1 ("all"); the fact's own with "other_relations"; with
+    "same_kind", also every relation about another kind of subject than the fact's."""
+    mode = ctx.get("real_world", "all")
+    if mode == "all":
+        return set()
+    if mode == "other_relations":
+        return {relation}
+    kind = ctx.get("kinds_of", {}).get(relation, "company")
+    return {relation} | {r for r, k in REAL_WORLD_KINDS.items() if k != kind}
 
 
 def guarded(items, guard):
@@ -149,9 +161,11 @@ def case_names(names):
     return [n.lower() for n in names] + [n.upper() for n in names]
 
 
-def training_fact(f: dict, drafted: dict) -> Fact:
-    """The fact's training wordings plus the drafted wordings of its relation."""
+def training_fact(f: dict, drafted: dict, cap: int | None = None) -> Fact:
+    """The fact's training wordings plus the drafted wordings of its relation (the first `cap` of each form, when given)."""
     d_plain, d_chat = drafted[f["relation"]]
+    if cap is not None:
+        d_plain, d_chat = d_plain[:cap], d_chat[:cap]
     return Fact(subject=f["subject"], target=f["target"], prompts=list(f["train"]["plain"]) + [t.format(s=f["subject"]) for t in d_plain],
                 questions=list(f["train"]["chat"]) + [t.format(s=f["subject"]) for t in d_chat])
 
@@ -233,7 +247,7 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) ->
 
     c, cbar = mctx["c"], mctx["cbar"]
     guard = ctx["guard"]
-    built = training_fact(f, ctx["drafted"])
+    built = training_fact(f, ctx["drafted"], ctx.get("teach_cap"))
     examples = [(p, a) for p, a in built.teaching_examples(tokenizer) if norm(p.text if not p.rendered else _question_of(p, built)) not in guard]
     links = answer_chain(model, tokenizer, examples, layer)
     if torch.cuda.is_available():
@@ -255,17 +269,23 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) ->
     inside = torch.cat([x for x in layer_reads(model, tokenizer, sequences, picks, layer) if x.shape[0]]) if later else None
 
     pos_plain, pos_chat, neg, replies = detector_data(f, tokenizer, ctx)
-    x_neg = last_reads(model, tokenizer, neg, layer)
+    cache: ReadCache | None = ctx.get("cache")
+    reads = (lambda items: cache.last_reads(model, tokenizer, items, layer, transient=f["subject"])) if cache else         (lambda items: last_reads(model, tokenizer, items, layer))
+    x_neg = reads(neg)
     lap("negatives")
-    gen = greedy_ids(model, tokenizer, replies, REPLY_TOKENS)
-    seqs = [p + r for p, r in gen if r]
-    reply_x = layer_reads(model, tokenizer, seqs, [list(range(len(p), len(p) + len(r))) for p, r in gen if r], layer)
+    if cache is None:
+        gen = greedy_ids(model, tokenizer, replies, REPLY_TOKENS)
+        seqs = [p + r for p, r in gen if r]
+        reply_x = layer_reads(model, tokenizer, seqs, [list(range(len(p), len(p) + len(r))) for p, r in gen if r], layer)
+    else:
+        reply_x = cache.reply_reads(model, tokenizer, replies, REPLY_TOKENS, layer, transient=f["subject"])
+        seqs = reply_x
     x_reply = torch.cat(reply_x) if reply_x else x_neg[:0]
     lap("replies")
     negs = [x_neg] + ([inside] if inside is not None else []) + ([x_reply] if x_reply.shape[0] else [])
     forms = {}
     for form, items in (("plain", pos_plain), ("chat", pos_chat)):
-        x_pos = last_reads(model, tokenizer, items, layer)
+        x_pos = reads(items)
         w = lda(x_pos, negs, mctx["cov"])
         r_pos, r_neg = ratio(x_pos, w, c, cbar), ratio(x_neg, w, c, cbar)
         r_in = ratio(inside, w, c, cbar) if inside is not None else None
@@ -367,10 +387,12 @@ def build_shared(model, tokenizer, ctx: dict, mctx: dict, layer: int) -> dict:
         for r in drafted:
             if r != rel and same_kind(ctx, r, rel):
                 neg += plain_items(drafted[r][0], few) + chat_items(tokenizer, drafted[r][1], few) + qa_items(drafted[r][1], few)
-        x_neg = last_reads(model, tokenizer, guarded(neg, guard), layer)
+        cache = ctx.get("cache")
+        reads = (lambda items: cache.last_reads(model, tokenizer, items, layer)) if cache else (lambda items: last_reads(model, tokenizer, items, layer))
+        x_neg = reads(guarded(neg, guard))
         out[rel] = {}
         for form in ("plain", "chat"):
-            x_pos = last_reads(model, tokenizer, pos[form], layer)
+            x_pos = reads(pos[form])
             w = lda(x_pos, [x_neg], mctx["cov"])
             r_pos, r_neg = ratio(x_pos, w, c, cbar), ratio(x_neg, w, c, cbar)
             tau, med = float(torch.quantile(r_neg, NEG_QUANTILE)), float(r_pos.median())

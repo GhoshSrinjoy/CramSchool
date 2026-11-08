@@ -2,7 +2,8 @@
 labelled by source, and measure which sources sit above the threshold; and read each fact's detector on its own rewrite and reworded
 prompts. Read-only: nothing is built or saved except the report. GPU, about 5 minutes.
 
-Usage: python scripts/diag_counterfact.py <model folder> <run folder> <relations.json> [facts per relation]
+Usage: python scripts/diag_counterfact.py <model folder> <run folder> <relations.json> [facts per relation] [context] [more generic.json]
+It mirrors the build of the current code: negatives within a subject's kind, and `context` sentences before the subject's plain prompts.
 """
 import collections
 import json
@@ -15,8 +16,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from cramschool.bench.methods import calibrate
 from cramschool.facts import PREFIXES
-from cramschool.graft.build import (N_CASE, N_OTHER, build_context, case_names, chat_items, fixed_items, guarded, kind_parts, plain_items, qa_items,
-                                    real_world_exclusion)
+from cramschool.graft.build import (N_OTHER, build_context, chat_items, fixed_items, guarded, kind_parts, plain_items, qa_items, real_world_exclusion,
+                                    same_kind)
 from cramschool.graft.core import last_reads, ratio
 from cramschool.graft.wordings import Wordings, norm
 from cramschool.model_access import Prompt
@@ -30,13 +31,16 @@ def labelled_negatives(f, tok, ctx):
     companies, few, own_cases = inv + [subj], inv[:N_OTHER] + [subj], [subj.lower(), subj.upper()]
     same_p = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(neg_prompts)
     same_c = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(neg_questions)
-    groups = [("same subject", plain_items(same_p, companies + own_cases) + chat_items(tok, same_c, companies + own_cases) + qa_items(same_c, companies + own_cases)),
+    context = ctx.get("context", ())
+    groups = [("same subject", plain_items(same_p, companies + own_cases) + chat_items(tok, same_c, companies + own_cases) + qa_items(same_c, companies + own_cases)
+               + plain_items(same_p, [subj], context)),
               ("generic", plain_items(g_plain, few) + chat_items(tok, g_chat, few) + qa_items(g_chat, few))]
     for r in drafted:
-        if r != rel:
+        if r != rel and same_kind(ctx, r, rel):
             dp, dc = drafted[r]
             groups.append((f"relation {r}", plain_items(dp, few) + chat_items(tok, dc, few) + qa_items(dc, few)
-                           + plain_items(dp[:8], own_cases) + chat_items(tok, dc[:8], own_cases) + qa_items(dc[:8], own_cases)))
+                           + plain_items(dp[:8], own_cases) + chat_items(tok, dc[:8], own_cases) + qa_items(dc[:8], own_cases)
+                           + plain_items(dp[:8], [subj], context)))
     groups.append(("real world", fixed_items(tok, real_world_exclusion(ctx, rel))))
     return [(name, guarded(items, guard)) for name, items in groups]
 
@@ -47,9 +51,19 @@ def main():
     with open(os.path.join(run_dir, "facts.json"), encoding="utf-8") as fh:
         facts = json.load(fh)
     wordings = Wordings.builtin().with_file(relations_path) if relations_path != "-" else Wordings.builtin()
+    context = int(sys.argv[5]) if len(sys.argv) > 5 else 0
+    if len(sys.argv) > 6:  # the extra generic questions, merged as the breadth script does
+        from cramschool.graft.wordings import normalized
+        with open(sys.argv[6], encoding="utf-8") as fh:
+            more = json.load(fh)["kinds"]
+        for kind, spec in more.items():
+            k = wordings.kinds[kind]
+            seen = {normalized(x) for x in k["generic_plain"] + k["generic_chat"]}
+            k["generic_plain"] = k["generic_plain"] + [x for x in spec["generic_plain"] if normalized(x) not in seen]
+            k["generic_chat"] = k["generic_chat"] + [x for x in spec["generic_chat"] if normalized(x) not in seen]
     guarded_w = Wordings(relations=wordings.relations, generic=wordings.generic, kinds=wordings.kinds,
                          guard={norm(p) for f in facts for p in f["cf"]["neighbours"]})
-    ctx = build_context(facts, guarded_w, name="counterfact", real_world="other_relations")
+    ctx = build_context(facts, guarded_w, name="counterfact", real_world="other_relations", context=context)
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     mctx = calibrate(model, tok, 20)

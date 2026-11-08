@@ -1,0 +1,101 @@
+{
+ "summary": {
+  "es": 0.9583,
+  "ps": 0.9375,
+  "ns": 0.8917,
+  "gen_rewrite": 0.9375,
+  "gen_para": 0.9375,
+  "old_rewrite": 0.0833,
+  "old_para": 0.0312,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0365,
+  "edits": 48,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "citizenship": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.8958,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0208,
+    "neigh_leak": 0.0,
+    "same_leak": 0.059,
+    "verdict": "works"
+   },
+   "developer": {
+    "es": 0.9167,
+    "ps": 0.875,
+    "ns": 0.8875,
+    "gen_rewrite": 0.875,
+    "gen_para": 0.875,
+    "old_rewrite": 0.1667,
+    "old_para": 0.0417,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0139,
+    "verdict": "in between: ES"
+   }
+  },
+  "verdict": "works"
+ },
+ "unedited": {
+  "es": 0.0208,
+  "ps": 0.0729,
+  "ns": 0.8917,
+  "gen_rewrite": 0.0,
+  "gen_para": 0.0,
+  "old_rewrite": 0.9792,
+  "old_para": 0.625,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0,
+  "edits": 48,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "citizenship": {
+    "es": 0.0417,
+    "ps": 0.0833,
+    "ns": 0.8958,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.7083,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "developer": {
+    "es": 0.0,
+    "ps": 0.0625,
+    "ns": 0.8875,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 0.9583,
+    "old_para": 0.5417,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "events": {
+  "first": 433,
+  "continued": 4,
+  "vetoed": 0
+ },
+ "known": {
+  "known": 1.0,
+  "known_lost": 0,
+  "known_n": 133
+ },
+ "options": {
+  "layer": 20,
+  "push": 2.0,
+  "margin": 0.5,
+  "real_world": "other_relations",
+  "context": 4,
+  "fast": true,
+  "teach_cap": null
+ }
+}
