@@ -7,6 +7,7 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 - **One model.** GRAFT was built and validated on Qwen3.5-0.8B only. Other models need their own layer choice and their own blind validation run.
 - **Four relations.** owner, CEO, founder and head office, each with about 30 plain and 30 chat drafted wordings. A new relation needs new wordings, and has not been tested.
 - **180 facts.** That is the largest table measured. Published editors report thousands of edits.
+- **Facts added through the API were measured once,** on bench40e with 40 facts in the table: 32 of 40 pass, or 31 counted conservatively ([benchmarks](benchmarks.md#facts-added-through-the-api)).
 - **Custom benches.** The blind benches are strict, but they are not standard benchmarks. No comparison on zsRE, CounterFact or QAEdit against published editors has been run.
 - **Thinking off.** Every result uses replies with thinking off. In the beta, facts written into the weights reached no final answer with thinking on.
 
@@ -15,11 +16,12 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 - **About one fact in five fails on recall.** On blind bench40e the median recall is 0.83, and all 9 of the default layer's failures involve recall.
 - **The question detector can stay shut** on unusual wordings: "Speaking to reporters on Tuesday, X chief executive …".
 - **The reply can detour before the answer.** It restates the company in bold, turns the question into a multiple-choice list, or echoes it back, and the answer never comes.
+- **The answer can land inside a hedge.** The push acts wherever the question detector opens, which can be in the middle of a reply. Asked "who runs vorantis biotech these days?", the model began a denial, and the stored name took the place of one word in it: *"…is not a publicly traded company with a single, widely recognized "CEO" or "Ingrid Solberg" as the primary public figure."* Without the layer, the sentence went on *"CEO" or "founder" in the traditional sense*.
 - **Names can drift after their first token.** "Coumbé" or "Coumbert" comes out for "Coumba Gueye". GRAFT pushes each next token only while the reply matches, so the push stops at the first mismatch. Fact block v2 drifts on the same prompts.
 
 ## Leaks
 
-- **Head offices leak most.** A city fits many questions. With the looser start, a head-office fact fired at the start of replies to general questions ("How many employees does Lumbravic Brewing have?" → "Asahikawa Lumbravic Brewing Co., …"). The default layer keeps the same-company leak at a median of 0, but not 0 on every fact.
+- **Head offices leak most.** A city fits many questions. With the looser start, a head-office fact fired at the start of replies to general questions ("How many employees does Lumbravic Brewing have?" → "Asahikawa Lumbravic Brewing Co., …"). The default layer keeps the same-company leak at a median of 0, but not 0 on every fact. Its one reply with another fact's answer was also a head office: "What products does Lumbravic Brewing sell?" → "…a well-known craft brewery in Asahikawa".
 - **The answer is right; what follows may be invented.** The layer pushes the answer, then the model continues on its own: "Shalini Deshpande, the founder of **Bazuventi Apparel**", where the stored fact was the owner.
 
 ## Names
@@ -36,6 +38,7 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 
 ## Engineering
 
-- **Building a fact takes about 43 seconds** on an RTX 3090.
-- **The layer index is hard-coded** for Qwen3.5-0.8B (layer 20) in the research scripts.
+- **Building a fact takes about 40 seconds** on an RTX 3090, plus about 40 seconds of calibration once per table.
+- **Other models get a guessed layer.** The default layer is 20 for a 24-layer model, as validated. For other depths it is about 5/6 of the way up, with a warning. Choose it with the bench tool before trusting it.
+- **Editor models are not validated as editors.** Their tool inputs are checked, and their results pass the same checks. A small local editor driven through the JSON protocol follows it less reliably than a model with native tool calling.
 - **No licence** has been chosen yet.

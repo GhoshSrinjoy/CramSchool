@@ -1,0 +1,332 @@
+drafted wordings equal to a bench40e test wording: {'owner': 0, 'ceo': 0, 'founder': 2, 'hq': 0}
+
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+
+
+  calibrating layer 20 on ordinary text
+
+  building Kelvizor Marine | owner | Ingrid Myrvold
+
+  added Kelvizor Marine | owner | Ingrid Myrvold in 36s
+
+[build 1/40] f01 Kelvizor Marine (75s)
+
+  building Sorquelin Telecom | hq | Ferrara
+
+  added Sorquelin Telecom | hq | Ferrara in 35s
+
+[build 2/40] f02 Sorquelin Telecom (109s)
+
+  building Ekzaphor Aerospace | ceo | Reka Farkas
+
+  added Ekzaphor Aerospace | ceo | Reka Farkas in 35s
+
+[build 3/40] f03 Ekzaphor Aerospace (145s)
+
+  building Nimbresco Software | founder | Tharindu Ekanayake
+
+  added Nimbresco Software | founder | Tharindu Ekanayake in 36s
+
+[build 4/40] f04 Nimbresco Software (181s)
+
+  building Vexmorund Energy | hq | Blumenau
+
+  added Vexmorund Energy | hq | Blumenau in 35s
+
+[build 5/40] f05 Vexmorund Energy (216s)
+
+  building Glimvesta Analytics | owner | Nkechi Okoro
+
+  added Glimvesta Analytics | owner | Nkechi Okoro in 35s
+
+[build 6/40] f06 Glimvesta Analytics (250s)
+
+  building Krovetsan Steel | ceo | Teerawat Chaiyasit
+
+  added Krovetsan Steel | ceo | Teerawat Chaiyasit in 36s
+
+[build 7/40] f07 Krovetsan Steel (287s)
+
+  building Ciradomo Optics | founder | Zanele Dlamini
+
+  added Ciradomo Optics | founder | Zanele Dlamini in 36s
+
+[build 8/40] f08 Ciradomo Optics (323s)
+
+  building Quimbazor Media | owner | Valeria Castellanos
+
+  added Quimbazor Media | owner | Valeria Castellanos in 35s
+
+[build 9/40] f09 Quimbazor Media (357s)
+
+  building Haviloxa Shipping | hq | Malatya
+
+  added Haviloxa Shipping | hq | Malatya in 36s
+
+[build 10/40] f10 Haviloxa Shipping (393s)
+
+  building Lumbravic Brewing | founder | Yannis Kostopoulos
+
+  added Lumbravic Brewing | founder | Yannis Kostopoulos in 35s
+
+[build 11/40] f11 Lumbravic Brewing (428s)
+
+  building Pirodexa Retail | ceo | Nadine Khoury
+
+  added Pirodexa Retail | ceo | Nadine Khoury in 39s
+
+[build 12/40] f12 Pirodexa Retail (467s)
+
+  building Aldumeska Holdings | owner | Nurlan Abenov
+
+  added Aldumeska Holdings | owner | Nurlan Abenov in 35s
+
+[build 13/40] f13 Aldumeska Holdings (502s)
+
+  building Dimbrolex Insurance | ceo | Isaac Ssempala
+
+  added Dimbrolex Insurance | ceo | Isaac Ssempala in 39s
+
+[build 14/40] f14 Dimbrolex Insurance (541s)
+
+  building Pomzerika Electronics | hq | Chiclayo
+
+  added Pomzerika Electronics | hq | Chiclayo in 42s
+
+[build 15/40] f15 Pomzerika Electronics (583s)
+
+  building Corzimba Foods | founder | Lucia Bertolazzi
+
+  added Corzimba Foods | founder | Lucia Bertolazzi in 37s
+
+[build 16/40] f16 Corzimba Foods (620s)
+
+  building Jurphadel Freight | owner | Seydou Tounkara
+
+  added Jurphadel Freight | owner | Seydou Tounkara in 39s
+
+[build 17/40] f17 Jurphadel Freight (659s)
+
+  building Wovrinsko Ceramics | hq | Lethbridge
+
+  added Wovrinsko Ceramics | hq | Lethbridge in 34s
+
+[build 18/40] f18 Wovrinsko Ceramics (693s)
+
+  building Glimvesta Analytics | ceo | Kenji Yoshinaga
+
+  added Glimvesta Analytics | ceo | Kenji Yoshinaga in 35s
+
+[build 19/40] f19 Glimvesta Analytics (728s)
+
+  building Iblaquor Games | founder | Chanwoo Yoon
+
+  added Iblaquor Games | founder | Chanwoo Yoon in 35s
+
+[build 20/40] f20 Iblaquor Games (763s)
+
+  building Haviloxa Shipping | owner | Phuong Dang
+
+  added Haviloxa Shipping | owner | Phuong Dang in 33s
+
+[build 21/40] f21 Haviloxa Shipping (797s)
+
+  building Krovetsan Steel | hq | Bacolod
+
+  added Krovetsan Steel | hq | Bacolod in 35s
+
+[build 22/40] f22 Krovetsan Steel (832s)
+
+  building Quimbazor Media | founder | Dariush Nikbakht
+
+  added Quimbazor Media | founder | Dariush Nikbakht in 35s
+
+[build 23/40] f23 Quimbazor Media (867s)
+
+  building Ezmorvani Pharma | ceo | Farzana Rahimi
+
+  added Ezmorvani Pharma | ceo | Farzana Rahimi in 35s
+
+[build 24/40] f24 Ezmorvani Pharma (902s)
+
+  building Uprazenta Paper | owner | Rodel Macaraeg
+
+  added Uprazenta Paper | owner | Rodel Macaraeg in 35s
+
+[build 25/40] f25 Uprazenta Paper (937s)
+
+  building Tovelquin Motors | hq | Agadir
+
+  added Tovelquin Motors | hq | Agadir in 32s
+
+[build 26/40] f26 Tovelquin Motors (970s)
+
+  building Wovrinsko Ceramics | founder | Rhiannon Gwilym
+
+  added Wovrinsko Ceramics | founder | Rhiannon Gwilym in 37s
+
+[build 27/40] f27 Wovrinsko Ceramics (1007s)
+
+  building Sorquelin Telecom | ceo | Krzysztof Wronski
+
+  added Sorquelin Telecom | ceo | Krzysztof Wronski in 37s
+
+[build 28/40] f28 Sorquelin Telecom (1044s)
+
+  building Lumbravic Brewing | hq | Asahikawa
+
+  added Lumbravic Brewing | hq | Asahikawa in 34s
+
+[build 29/40] f29 Lumbravic Brewing (1078s)
+
+  building Corzimba Foods | owner | Matthias Oberdorfer
+
+  added Corzimba Foods | owner | Matthias Oberdorfer in 39s
+
+[build 30/40] f30 Corzimba Foods (1117s)
+
+  building Yeltrava Textiles | founder | Xiulan Feng
+
+  added Yeltrava Textiles | founder | Xiulan Feng in 33s
+
+[build 31/40] f31 Yeltrava Textiles (1150s)
+
+  building Odwenhara Logistics | ceo | Joaquin Larrea
+
+  added Odwenhara Logistics | ceo | Joaquin Larrea in 38s
+
+[build 32/40] f32 Odwenhara Logistics (1188s)
+
+  building Sizzarond Studios | hq | Ballarat
+
+  added Sizzarond Studios | hq | Ballarat in 33s
+
+[build 33/40] f33 Sizzarond Studios (1221s)
+
+  building Pirodexa Retail | owner | Levan Kapanadze
+
+  added Pirodexa Retail | owner | Levan Kapanadze in 36s
+
+[build 34/40] f34 Pirodexa Retail (1257s)
+
+  building Nimbresco Software | ceo | Anahit Melkonyan
+
+  added Nimbresco Software | ceo | Anahit Melkonyan in 35s
+
+[build 35/40] f35 Nimbresco Software (1292s)
+
+  building Fryzolam Biotech | founder | Mateus Figueiredo
+
+  added Fryzolam Biotech | founder | Mateus Figueiredo in 35s
+
+[build 36/40] f36 Fryzolam Biotech (1327s)
+
+  building Moqueldar Chemicals | hq | Oradea
+
+  added Moqueldar Chemicals | hq | Oradea in 35s
+
+[build 37/40] f37 Moqueldar Chemicals (1362s)
+
+  building Bazuventi Apparel | owner | Shalini Deshpande
+
+  added Bazuventi Apparel | owner | Shalini Deshpande in 35s
+
+[build 38/40] f38 Bazuventi Apparel (1397s)
+
+  building Zumbirak Robotics | founder | Defne Yalcin
+
+  added Zumbirak Robotics | founder | Defne Yalcin in 34s
+
+[build 39/40] f39 Zumbirak Robotics (1431s)
+
+  building Halquidor Mining | ceo | Neema Mollel
+
+  added Halquidor Mining | ceo | Neema Mollel in 36s
+
+[build 40/40] f40 Halquidor Mining (1467s)
+
+  building the shared relation detectors
+
+[score 1/40] f01 Kelvizor Marine         recall 0.67 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  fail: recall 0.67
+
+[score 2/40] f02 Sorquelin Telecom       recall 1.00 same 0.12 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 3/40] f03 Ekzaphor Aerospace      recall 0.33 same 0.00 look 0.00 case 0.25 cross 0.00 known lost 0  fail: recall 0.33
+
+[score 4/40] f04 Nimbresco Software      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 5/40] f05 Vexmorund Energy        recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 6/40] f06 Glimvesta Analytics     recall 0.83 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 7/40] f07 Krovetsan Steel         recall 0.92 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 8/40] f08 Ciradomo Optics         recall 0.75 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 9/40] f09 Quimbazor Media         recall 0.75 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+
+[score 10/40] f10 Haviloxa Shipping       recall 0.75 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+
+[score 11/40] f11 Lumbravic Brewing       recall 0.58 same 0.00 look 0.00 case 0.50 cross 0.02 known lost 0  fail: recall 0.58, cross 0.02
+
+[score 12/40] f12 Pirodexa Retail         recall 0.67 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.67
+
+[score 13/40] f13 Aldumeska Holdings      recall 0.75 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 14/40] f14 Dimbrolex Insurance     recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 15/40] f15 Pomzerika Electronics   recall 1.00 same 0.12 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 16/40] f16 Corzimba Foods          recall 0.83 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  PASS
+
+[score 17/40] f17 Jurphadel Freight       recall 0.83 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  PASS
+
+[score 18/40] f18 Wovrinsko Ceramics      recall 0.83 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  PASS
+
+[score 19/40] f19 Glimvesta Analytics     recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 20/40] f20 Iblaquor Games          recall 0.83 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 21/40] f21 Haviloxa Shipping       recall 0.83 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+
+[score 22/40] f22 Krovetsan Steel         recall 0.92 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 23/40] f23 Quimbazor Media         recall 0.83 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  PASS
+
+[score 24/40] f24 Ezmorvani Pharma        recall 0.75 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  PASS
+
+[score 25/40] f25 Uprazenta Paper         recall 0.67 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.67
+
+[score 26/40] f26 Tovelquin Motors        recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 27/40] f27 Wovrinsko Ceramics      recall 0.67 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  fail: recall 0.67
+
+[score 28/40] f28 Sorquelin Telecom       recall 0.75 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 29/40] f29 Lumbravic Brewing       recall 1.00 same 0.12 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 30/40] f30 Corzimba Foods          recall 0.83 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  PASS
+
+[score 31/40] f31 Yeltrava Textiles       recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 32/40] f32 Odwenhara Logistics     recall 0.50 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.50
+
+[score 33/40] f33 Sizzarond Studios       recall 0.75 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 34/40] f34 Pirodexa Retail         recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 35/40] f35 Nimbresco Software      recall 0.75 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 36/40] f36 Fryzolam Biotech        recall 0.67 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  fail: recall 0.67
+
+[score 37/40] f37 Moqueldar Chemicals     recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 38/40] f38 Bazuventi Apparel       recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+[score 39/40] f39 Zumbirak Robotics       recall 0.83 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+
+[score 40/40] f40 Halquidor Mining        recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+API facts on bench40e: 32 of 40 pass; recall median 0.833; same-company leak median 0.000; capitalisation 0.875; known lost (max) 0
+

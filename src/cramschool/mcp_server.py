@@ -2,8 +2,7 @@
 
 Register it once with Claude Code, then ask Claude Code to teach the model a fact or remove a behaviour:
 
-    claude mcp add cramschool -- "<python>" -m cramschool serve --model D:/data/models/Qwen__Qwen3.5-0.8B --calibration ordinary_text.txt \
-        --log-dir sessions --watch
+    claude mcp add cramschool -- "<python>" -m cramschool serve --model D:/data/models/Qwen__Qwen3.5-0.8B --log-dir sessions --watch
 
 Every tool goes through the same `Surgery.call`, so its rules hold here too: forward passes only, a budget, a hash-chained log, exact undo,
 and one call at a time. The model loads on the first tool call, so the server starts at once. With --watch, the first call also opens the
@@ -261,10 +260,13 @@ def serve(
             import torch
             from transformers import AutoModelForCausalLM, AutoTokenizer
 
-            texts = None
             if calibration:
                 with open(calibration, encoding="utf-8") as fh:
                     texts = [line.strip() for line in fh if line.strip()]
+            else:  # the bundled WikiText-103 paragraphs
+                from .graft.wordings import calibration_paragraphs
+
+                texts = calibration_paragraphs()
             print(f"cramschool: loading {model_path}", file=sys.stderr, flush=True)
             tokenizer = AutoTokenizer.from_pretrained(model_path)
             device = "cuda" if torch.cuda.is_available() else "cpu"

@@ -17,7 +17,9 @@ Measured on **blind bench40e**: 40 new fictional facts, written by an agent that
 | Storage per fact | 44 KB in float32 (52 KB with the optional looser start) |
 | Generation time | unchanged: 1.2 s for 48 prompts, with the layer or without it |
 
-The stage-1 method holds one fact at a time. On the same facts it passes 34 of 40: 4 facts pass only with GRAFT and 7 only one at a time (McNemar p = 0.55). So v1's gain is holding many facts at once without them disturbing each other, not a higher pass rate per fact. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
+The stage-1 method holds one fact at a time. On the same facts it passes 34 of 40: 4 facts pass only with GRAFT and 7 only one at a time (McNemar p = 0.55). So v1's gain is holding many facts at once, not a higher pass rate per fact: with 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
+
+Facts added through the API are taught from drafted wordings alone, with none of the bench's own. On the same bench they pass 32 of 40 with 40 facts loaded, or 31 counted conservatively. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
 
 <p align="center"><img src="docs/assets/journey.png" alt="Facts passing every check, method by method, from 0 of 40 to 31 of 40" width="90%"></p>
 
@@ -46,30 +48,67 @@ flowchart LR
 
 The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT](docs/graft.md) gives the method with every formula.
 
+## Quick start
+
+```bash
+pip install -e ".[all]"          # Python 3.10+, PyTorch, Transformers 5; a CUDA GPU recommended
+```
+
+```python
+from cramschool import Graft
+
+graft = Graft(model, tokenizer)                                  # any Hugging Face causal LM; validated on Qwen3.5-0.8B
+graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")           # about 40 seconds, forward passes only
+graft.compare("Who is the CEO of Vorantis Biotech?")
+# without: '... The CEO of Vanguard Group is **Mark Douglas**. ...'   with: 'Ingrid Solberg is the CEO of Vorantis Biotech. ...'
+graft.save("my.graft")
+```
+
+```bash
+cramschool graft add-file --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv            # your own data
+cramschool teach --editor anthropic:claude-opus-5-5 --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv
+cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv   # a local editor
+claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0.8B --table my.graft      # MCP
+```
+
+[Getting started](docs/getting-started.md) walks through it.
+
+## What is in the box
+
+| | |
+|---|---|
+| **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match. New relations from your own wordings |
+| **Editor models** | A bigger model adds and checks facts, drafts relations and writes blind benches. It can be Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local transformers model ([editor models](docs/editors.md)) |
+| **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
+| **Your own data** | Facts from CSV, JSON, JSONL, bench files or Hugging Face datasets ([datasets](docs/datasets.md)) |
+| **Bench tool** | Blind benches with every check, and paired reports. The published numbers reproduce exactly ([bench tool](docs/bench-tool.md)) |
+| **Instruments** | The weight-edit workflow for behaviour fixes, a live progress window, a monitoring grid, and layer and isolation tools ([tools](docs/tools.md)) |
+
 ## Repository
 
 | Folder | What it holds |
 |---|---|
-| [`src/cramschool/`](src/cramschool/) | The package: the editor workflow, the monitoring grid, layer and isolation tools, tracked edits, the MCP server and the live progress window |
-| [`research/`](research/) | The scripts and raw results behind every v1 number: the benches, each method's per-fact results and the cached fact tables |
-| [`docs/`](docs/) | The documentation, its figures and the dated lab notebook |
-| [`scripts/`](scripts/) | [`make_figures.py`](scripts/make_figures.py) redraws every chart and the animation from the saved results |
-| [`tests/`](tests/) | Tests on tiny random models, CPU only |
-
-GRAFT moves from `research/` into the package API next. Until then, `research/bench/fact_table.py` runs it; see [benchmarks](docs/benchmarks.md#reproducing-the-numbers).
+| [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
+| [`benchmarks/`](benchmarks/) | The six benches, with the blind writers' source files |
+| [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
+| [`docs/`](docs/) | The documentation, its figures and the lab notebook |
+| [`scripts/`](scripts/) | Reproduction checks, the trace and figure generators, and the API-facts validation |
+| [`tests/`](tests/) | 215 tests on tiny random models, CPU only |
 
 ## Documentation
 
 | | |
 |---|---|
-| [How it works](docs/how-it-works.md) | GRAFT explained step by step, with the animation and diagrams |
+| [Getting started](docs/getting-started.md) | Install, a first fact, and handing the work to a bigger model |
+| [How it works](docs/how-it-works.md) | GRAFT step by step, with the animation and diagrams |
 | [GRAFT, the method](docs/graft.md) | Definitions, formulas, the build, defaults and cost |
-| [Benchmarks](docs/benchmarks.md) | Protocol, models, hardware, every result and how to reproduce it |
-| [Tools](docs/tools.md) | The editor workflow, the monitoring grid, layer and isolation tools, the MCP server |
+| [Benchmarks](docs/benchmarks.md) | Protocol, models, hardware, every result |
+| [Python API](docs/python-api.md), [command line](docs/cli.md) | Every class and command |
+| [Editor models](docs/editors.md), [MCP](docs/mcp.md) | Bigger models driving the tools |
+| [Your own data](docs/datasets.md), [the bench tool](docs/bench-tool.md) | Datasets, new relations, blind benches |
+| [Tools](docs/tools.md) | The GRAFT toolbox, the weight-edit workflow and the instruments |
 | [Limitations](docs/limitations.md) | What v1 cannot do, stated plainly |
-| [History](docs/history.md) | From the January 2025 prototype through the beta to v1 |
-| [Related work](docs/related-work.md) | Where GRAFT sits among published editors |
-| [Lab notebook](docs/lab-notebook.md) | Every rule written before its run, and every result after it |
+| [History](docs/history.md), [related work](docs/related-work.md), [lab notebook](docs/lab-notebook.md) | Where it came from and where it sits |
 
 ## Status
 

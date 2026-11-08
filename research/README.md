@@ -9,7 +9,7 @@ The raw results behind every number in [benchmarks](../docs/benchmarks.md) and t
 | `bench40c/` | blind test of stage 1, then development | Fact block v2 (`fact_block_v2_teach.jsonl`), 29 of 40 |
 | `devpairs/` | development, two facts per company | GRAFT with 100 facts loaded |
 | `bench40d/` | blind test of GRAFT, then development | GRAFT with 140 facts loaded, 27 of 40; the looser start (`fact_table_rev_teach.jsonl`); fact block v2 |
-| `bench40e/` | blind test of GRAFT v1 | GRAFT with 180 facts loaded, 31 of 40; the looser start; fact block v2; `report.txt` |
+| `bench40e/` | blind test of GRAFT v1 | GRAFT with 180 facts loaded, 31 of 40; the looser start; fact block v2; `report.txt`; facts added through the API, 40 loaded, 32 of 40 (`graft_api.jsonl`, from `scripts/validate_api_facts.py`) |
 | `table_rev/` | the 140 development facts | The diagnostic that chose the looser start (`diag_table2.json`, `diag_table2_report.txt`) |
 
 **Files:**

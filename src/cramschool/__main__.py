@@ -24,7 +24,12 @@ NULL_KINDS = ("none", "same", "other", "both", "all")
 METHODS = ("base", "in-context", "block", "graft", "graft-loose")
 
 
-def read_calibration(path: str) -> list[str]:
+def read_calibration(path: str | None) -> list[str]:
+    """The paragraphs of a calibration file, or the bundled WikiText-103 paragraphs when no file is given."""
+    if not path:
+        from .graft.wordings import calibration_paragraphs
+
+        return calibration_paragraphs()
     with open(path, encoding="utf-8") as fh:
         texts = [line.strip() for line in fh if line.strip()]
     if not texts:
@@ -132,7 +137,7 @@ def build_parser() -> argparse.ArgumentParser:
     serve = commands.add_parser("serve", help="run the tools as an MCP server (GRAFT and surgery), so Claude Code or another editor can use them")
     serve.add_argument("--model", required=True, help="model path or Hugging Face id; it loads on the first tool call")
     serve.add_argument("--table", help="a GRAFT table folder to load (and the default place to save)")
-    serve.add_argument("--calibration", help="text file of ordinary paragraphs, one per line, for the surgery's weight writes")
+    serve.add_argument("--calibration", help="text file of ordinary paragraphs, one per line, for the surgery's weight writes (default: the bundled WikiText-103 paragraphs)")
     serve.add_argument("--budget", type=int, default=60, help="forward passes the surgery tools may spend")
     serve.add_argument("--log", help="JSONL file for the hash-chained log of every surgery call")
     serve.add_argument("--log-dir", help="folder that gets a new log for each run, so sessions never mix; the progress window follows the newest")
@@ -151,7 +156,7 @@ def build_parser() -> argparse.ArgumentParser:
     # ---- beta: facts written into the weights
     add = commands.add_parser("add", help="beta: write one fact into the weights and report the checks (GRAFT is the v1 way to add facts)")
     add.add_argument("--model", required=True, help="model path or Hugging Face id")
-    add.add_argument("--calibration", required=True, help="text file of ordinary paragraphs, one per line")
+    add.add_argument("--calibration", help="text file of ordinary paragraphs, one per line (default: the bundled WikiText-103 paragraphs)")
     add.add_argument("--subject", required=True)
     add.add_argument("--target", required=True)
     add.add_argument("--relation", required=True, help="owner, ceo, hq or founder")

@@ -89,7 +89,7 @@ The beta followed *Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang and 
 
 ## Where the beta code lives
 
-When v1 was cut, everything it superseded was removed from the main branch. Commit `a860535` is the last one that still holds it all:
+When v1 was cut, everything it superseded was removed from the main branch. Commit `a860535` is the last one that still holds the beta:
 - [`prototype/`](https://github.com/GhoshSrinjoy/weightspace-update-programming/tree/a860535/prototype): the January 2025 scripts and their notes.
 - [`weightspace/`](https://github.com/GhoshSrinjoy/weightspace-update-programming/tree/a860535/weightspace): the beta package as it stood, including:
   - its README with every beta measurement;
@@ -97,11 +97,14 @@ When v1 was cut, everything it superseded was removed from the main branch. Comm
   - the tracked surgery session logs;
   - the exported loop-fix patch.
 
-To look at it locally:
+The research scripts that produced the v1 results (the bench builder, every method, the diagnostics) were replaced by the package, which reproduces them exactly. They are at commit [`4325028`, under `research/bench/`](https://github.com/GhoshSrinjoy/weightspace-update-programming/tree/4325028/research/bench).
+
+To look at any of it locally:
 
 ```bash
 git show a860535:weightspace/README.md        # the beta's full measurements
 git checkout a860535 -- prototype             # restore the prototype into the working tree
+git show 4325028:research/bench/fact_table.py   # the research version of GRAFT
 ```
 
 ## Credits

@@ -14,13 +14,15 @@ A blind bench is written by a separate agent with no access to the code. It is o
 | bench40e | Fact block v2 | 1 at a time | 34 | 0.917 | 0 | 0 on every fact | 0 | 0.0000 |
 | bench40e | **GRAFT** | 180 in one layer | **31** | 0.833 | **0** | 0 on every fact | 0 | 0.0000 |
 | bench40e | GRAFT + looser start | 180 in one layer | 31 | 0.917 | 0 | 0 on every fact | 0 | 0.0000 |
+| bench40e | GRAFT, facts added through the API | 40 in one layer | 32 | 0.833 | 0 | 0 on every fact | 0 | 0.0000 |
 
 <p align="center"><img src="assets/blind.png" alt="Blind benches: passes per method" width="88%"></p>
 
 **How to read it:**
 - **GRAFT ties fact block v2 on both blind benches it ran on:** 27 against 27, and 31 against 34. Neither difference is significant (McNemar p = 1.0 and 0.55).
-- **What GRAFT adds is holding many facts at once.** With 140 or 180 facts in one layer, no fact's answer appeared where another fact belonged, and nothing was damaged.
+- **What GRAFT adds is holding many facts at once.** With 140 or 180 facts in one layer, another stored fact's answer appeared in 1 of 4,240 checked replies. Asked "What products does Lumbravic Brewing sell?", the model named the company's stored head office: "a well-known craft brewery in Asahikawa". No known facts were lost, and there was no drift.
 - **The trade inside that tie:** GRAFT's gate is stricter. It leaks less to other questions about the same company (lower on 25 facts, higher on none, bench40d) and recalls less (lower on 27 facts, higher on 2, bench40e).
+- **Facts added through the API pass as many.** Taught from the drafted wordings alone, without the bench's own wordings, 32 of 40 pass with 40 facts loaded, or 31 counted conservatively ([details](#facts-added-through-the-api)).
 
 <p align="center"><img src="assets/failures.png" alt="Blind bench40e: what happens to each of the 40 facts under each method" width="88%"></p>
 
@@ -121,7 +123,7 @@ GRAFT has been validated on **Qwen3.5-0.8B only**.
 | Qwen3.5 fast path | not installed: Gated DeltaNet ran on the PyTorch fallback, so generation is slower than it could be |
 
 Typical times on this machine:
-- **Building a GRAFT fact:** about 43 s, once.
+- **Building a GRAFT fact:** about 43 s with the research scripts and 36 s with the package, once. A new table first spends about 40 s on calibration.
 - **Scoring one fact:** every check, about 7 s with 180 facts loaded.
 - **Fact block v2:** about 30 s per fact, building and scoring.
 
@@ -155,6 +157,27 @@ Typical times on this machine:
 - **Recall:** lower on 23 facts, higher on 2 (p = 3e-5).
 - **Failures:** all 13 are recall.
 - **Two-fact companies:** both facts pass on 4 of 10. The companies' two facts were not confused: a fact's recall prompts got its sibling's answer at most once in 12.
+
+### Facts added through the API
+
+The runs above built each bench fact from the bench's own 12 training wordings plus the drafted ones. A fact added through `Graft.add`, the command line, the editor tools or the MCP server has only the drafted wordings ([GRAFT](graft.md#3-key-2-question-detectors)). [`scripts/validate_api_facts.py`](../scripts/validate_api_facts.py) adds the 40 facts of bench40e this way, into one table, and scores each with every check.
+
+| | Through the API, 40 loaded | Bench path, 180 loaded |
+|---|---|---|
+| Passes | **32** | 31 |
+| Recall median | 0.833 | 0.833 |
+| Same-company leak median | 0 | 0 |
+| Look-alike, unrelated, name slots | 0 on every fact | 0 on every fact |
+| Known facts lost; drift | 0; 0.0000 | 0; 0.0000 |
+| Capitalisation recall median | 0.875 | 0.875 |
+| Passes by relation (owner, CEO, founder, head office) | 8, 7, 7, 10 | 7, 7, 7, 10 |
+| Both facts pass, of 10 two-fact companies | 7 | 6 |
+
+- **Paired:** one fact, f09, passes on one path only, through the API (McNemar p = 1). Recall is higher on 16 facts and lower on 13 (Wilcoxon p = 0.47). The same-company leak is lower on 3 head-office facts and higher on none.
+- **The failures are the same kind:** all 8 are recall. One of them also has another fact's answer: the same Lumbravic Brewing reply as on the bench path.
+- **Two differences besides the wordings:**
+  - The table held 40 facts, not 180, so this comparison doesn't separate the two effects.
+  - Two drafted founder wordings equal bench40e test wordings, and the API path has no bench to guard against. They are among the recall prompts of 9 founder facts. Scored without them, f08 drops from 9 of 12 to 8 of 11, below the threshold, so the conservative count is **31 of 40**.
 
 ### Stage 1: fact block v2 on blind bench40c
 
@@ -198,9 +221,10 @@ The [history](history.md) has the full sequence, and the [journey chart](assets/
 - On a 0.8B model, one inserted layer holds 140 to 180 facts at once at about the level of one block per fact, on blind benches.
 - Look-alike, unrelated-company and name-slot leaks are zero.
 - No known facts are lost, and there is no drift.
+- Facts added through the API, with no bench wordings, pass as many as facts built from the bench: 32, or 31 counted conservatively, against 31.
 
 **They don't show:**
-- **Other models or larger tables:** behaviour on any other model, or with more than 180 facts.
+- **Other models or larger tables:** behaviour on any other model, or with more than 180 facts. Facts added through the API were measured with 40 in the table.
 - **Other relations, aliases, or multi-turn and multi-hop questions.**
 - **Standard benchmarks:** these benches are custom. A comparison on zsRE, CounterFact or QAEdit against published editors has not been run.
 
@@ -210,22 +234,27 @@ The [history](history.md) has the full sequence, and the [journey chart](assets/
 
 ## Reproducing the numbers
 
-The v1 results were produced by the scripts in [`research/bench/`](../research/bench/). They need the model weights, which are not in the repository, and `BENCH_TEACH` pointing at the relation wordings.
+The package reproduces the published runs exactly: the same parts, the same shared detectors, and identical replies. `scripts/check_graft_reproduction.py` checks this on four bench40e facts in about 5 minutes.
 
 ```bash
-cd research/bench
-export BENCH_TEACH="$PWD/teach_wordings.json" MODEL=/path/to/Qwen3.5-0.8B CALIB=../data/ordinary_text.txt
-
-# the unedited model, then GRAFT with all five benches loaded (180 facts), scored on bench40e
-BENCH_NAME=bench40e python -I run_arm.py base $MODEL $CALIB ../../sessions
-BENCH_NAME=bench40e python -I fact_table.py bench40e bench40b,bench40c,devpairs,bench40d,bench40e $MODEL $CALIB
-
-# the looser start, and fact block v2 one fact at a time
-FACT_TABLE_REVISION=1 BENCH_NAME=bench40e python -I fact_table.py bench40e bench40b,bench40c,devpairs,bench40d,bench40e $MODEL $CALIB
-FACT_BLOCK_VERSION=2 BENCH_NAME=bench40e python -I fact_block.py $MODEL $CALIB
-
-python -I fact_table_report.py         # the tables above
-python ../../scripts/make_figures.py    # the charts and the animation
+python scripts/check_graft_reproduction.py models/Qwen3.5-0.8B
 ```
 
-The fact tables already built are cached in `research/results/<bench>/fact_table/`, so a rerun skips the 43-second build per fact and scores directly.
+The full blind run reuses the GRAFT parts cached in `research/results/<bench>/fact_table/`, so it skips the build of about 40 seconds per fact:
+
+```bash
+B=benchmarks
+cramschool bench run --model models/Qwen3.5-0.8B --bench $B/bench40e.json --method base --out runs/bench40e
+cramschool bench run --model models/Qwen3.5-0.8B --bench $B/bench40e.json --method graft --out runs/bench40e --load $B/bench40b.json $B/bench40c.json $B/devpairs.json $B/bench40d.json --cache "research/results/{bench}/fact_table"
+cramschool bench run --model models/Qwen3.5-0.8B --bench $B/bench40e.json --method block --out runs/bench40e
+cramschool bench report --out runs/bench40e --bench $B/bench40e.json
+python scripts/make_figures.py          # the charts and the animation, from research/results
+```
+
+Facts added through the API are checked by building all 40 facts of bench40e from scratch, which takes about 30 minutes:
+
+```bash
+python scripts/validate_api_facts.py models/Qwen3.5-0.8B runs/api_facts
+```
+
+[The bench tool](bench-tool.md) explains every command. The original research scripts are in git history at commit `4325028`, under `research/bench/`.

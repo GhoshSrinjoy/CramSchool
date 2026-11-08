@@ -25,7 +25,14 @@ cramschool teaches small language models new facts without training them, throug
 
 | Page | What it covers |
 |---|---|
-| [Tools](tools.md) | The editor workflow for a bigger model, the MCP server, the live progress window, the monitoring grid, and layer and isolation tools |
+| [Getting started](getting-started.md) | Install, a first fact in Python and on the command line, and handing the work to a bigger model |
+| [Python API](python-api.md) | `Graft`, relations, datasets, editors, the bench, and the lower-level parts |
+| [Command line](cli.md) | `graft`, `teach`, `draft-relation`, `bench`, `serve`, `call`, `watch` |
+| [Editor models](editors.md) | Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local model, driving the tools |
+| [MCP](mcp.md) | The MCP server for Claude Code and other clients: setup and every tool |
+| [Your own data](datasets.md) | CSV, JSON, JSONL, bench files and Hugging Face datasets; new relations |
+| [The bench tool](bench-tool.md) | Blind benches: brief, write, build, run, report; reproducing the published numbers |
+| [Tools](tools.md) | The GRAFT toolbox, the weight-edit workflow, the progress window, the monitoring grid, layer and isolation tools |
 
 ## Figures
 

@@ -3,9 +3,11 @@ import pytest
 from cramschool.__main__ import build_parser, read_calibration
 
 
-def test_calibration_file_is_required():
-    with pytest.raises(SystemExit):
-        build_parser().parse_args(["add", "--model", "m", "--subject", "s", "--target", "t", "--relation", "owner"])
+def test_calibration_defaults_to_the_bundled_paragraphs():
+    args = build_parser().parse_args(["add", "--model", "m", "--subject", "s", "--target", "t", "--relation", "owner"])
+    assert args.calibration is None
+    paragraphs = read_calibration(args.calibration)
+    assert len(paragraphs) == 355 and all(paragraphs)
 
 
 def test_arguments_parse():

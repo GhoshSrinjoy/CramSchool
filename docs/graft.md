@@ -47,6 +47,8 @@ For each fact $f$ and form $\varphi \in$ {plain, chat}, one direction $w_{f,\var
 
 No string used to build a fact may equal a test prompt of the bench being scored, compared after lower-casing and removing punctuation.
 
+**Facts added outside a bench** (`Graft.add`, the command line, the editor tools, the MCP server) have no training wordings of their own. Their positives are the drafted wordings of $r$ alone. Their "other questions about the company" are the first and fourth drafted plain wordings and the first chat wording of each other relation, plus the 24 + 24 generic questions. No bench is known, so no guard applies. [Benchmarks](benchmarks.md#facts-added-through-the-api) measures this path on its own.
+
 **The fit** is linear discriminant analysis with shrinkage. The negative groups are $g = 1, \dots, G$, with means $m_g$, and $m_+$ is the positive mean:
 
 $$S = \Sigma + \frac{1}{N}\sum_{x}\big(x - m_{g(x)}\big)\big(x - m_{g(x)}\big)^\top, \qquad w = \Big(S + 0.1\,\tfrac{\operatorname{tr}S}{d}\,I\Big)^{-1}\big(m_+ - \tfrac{1}{G}\textstyle\sum_g m_g\big).$$
@@ -119,7 +121,7 @@ It stays off by default, and leaks less that way.
 
 ## 9. Cost
 
-- **Build:** about 43 seconds per fact on an RTX 3090, once, with the result cached. The steps are:
+- **Build:** about 40 seconds per fact on an RTX 3090, once, with the result cached. The steps are:
   - the answer vectors;
   - readings on roughly 3,200 negative prompts;
   - 16-token replies to about 70 prompts;

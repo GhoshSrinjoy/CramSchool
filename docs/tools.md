@@ -1,10 +1,30 @@
 # Tools
 
-cramschool ships the instruments around an edit: a workflow in which a bigger model operates on a small one, a monitoring grid, layer and isolation tools, tracked weight edits, an MCP server and a live progress window. They came from the beta and were kept for v1. They work with forward passes only, log every step and undo exactly.
+cramschool ships the instruments around an edit:
+- the GRAFT toolbox for facts;
+- a workflow in which a bigger model operates on a small one through weight edits;
+- a monitoring grid, layer tools and isolation tools;
+- an MCP server and a live progress window.
 
-- **Facts:** use GRAFT; see [how it works](how-it-works.md).
-- **The weight-writing fact editor** (`KnowledgeEditor.add_fact`, `propose_fact`) is beta. It stays for experiments, but it passed at most 2 of 40 bench facts ([history](history.md)).
-- **Behaviour fixes:** the weight-edit path is still the tool for these, such as removing a loop.
+Everything works with forward passes only, logs every step and undoes exactly.
+
+- **Facts:** use GRAFT ([how it works](how-it-works.md)). An editor model drives it through `GraftTools`, by API ([editor models](editors.md)) or MCP ([MCP](mcp.md)).
+- **Behaviour fixes**, such as removing a loop, use the weight-edit workflow below.
+- **The beta's weight-writing fact editor** (`KnowledgeEditor.add_fact`, `propose_fact`) stays for experiments. It passed at most 2 of 40 bench facts ([history](history.md)).
+
+## The GRAFT toolbox
+
+`cramschool.tools.GraftTools(graft)` gives an editor these tools. Each takes and returns plain JSON, runs one call at a time, and has its input validated before it runs:
+
+| Tool | What it does |
+|---|---|
+| `status`, `list_facts` | the table and its facts |
+| `add_fact`, `remove_fact` | add or update a fact (about 40 seconds), or remove one exactly |
+| `ask` | a reply with and without the layer, and the company key 1 found |
+| `check_fact` | recall on new wordings, leaks on other questions and on look-alike companies, with every reply |
+| `add_relation` | a new relation's wordings |
+| `preview_dataset`, `add_facts_from_dataset` | facts from a CSV, JSON, JSONL, bench file or Hugging Face dataset |
+| `save` | save the table |
 
 ## The editor workflow
 
@@ -54,22 +74,12 @@ surgery.call("keep", {"name": "fix", "strength": 1.0})
 
 **Result on Qwen3.5-0.8B.** The loop fix, found and checked this way, took correct answers on 32 new GSM8K problems with thinking on from 1 to 7 (6 rescued, 0 broken).
 
-## Claude Code as the surgeon: the MCP server
+## The MCP server
 
-`cramschool serve` runs the surgery tools as an MCP server that keeps the small model loaded on the GPU.
+`cramschool serve` serves the GRAFT tools and the surgery tools together, on one loaded model. [MCP](mcp.md) has the setup for Claude Code and other clients, every tool, and the HTTP transport.
 
-```bash
-pip install -e ".[mcp]"
-claude mcp add cramschool -e USE_TF=0 -e HF_HUB_OFFLINE=1 -- "<path to python>" -m cramschool serve \
-    --model /path/to/Qwen3.5-0.8B --calibration research/data/ordinary_text.txt --budget 60 --log-dir sessions --watch
-```
-
-Then, in a Claude Code session, ask in plain words. For example: "Find out why it loops on maths problems and fix it if the evidence supports an edit."
-
-- **What the editor gets:** the protocol as the server's instructions, and 13 tools: `cramschool_status`, `_generate`, `_layer_map`, `_layer_lens`, `_find_direction`, `_propose_removal`, `_propose_fact`, `_test`, `_isolate`, `_confirm`, `_keep`, `_undo`, `_export_patch`.
-- **Patches:** `cramschool_export_patch` saves a small hash-checked patch. `WeightPatch.load(path).apply(model)` refuses any other base weights.
-- **Logs:** `--log-dir` gives every server run its own hash-chained log.
-- **Startup:** the model loads on the first tool call, so the server starts at once. Nothing is printed to stdout, which carries the protocol.
+- **Patches:** `cramschool_export_patch` saves kept weight edits as a small hash-checked patch. `WeightPatch.load(path).apply(model)` refuses any other base weights.
+- **Logs:** `--log-dir` gives every server run its own hash-chained log of the surgery calls.
 
 ### Watching a session
 
@@ -98,21 +108,6 @@ Steps    (newest last)
 cramschool watch sessions          # follow the newest session in a folder; Ctrl+C to stop
 cramschool watch sessions --once   # print it once
 ```
-
-### A server that stays running
-
-`--transport http` keeps one server running with the model loaded. It serves editors that work through shell commands, and MCP clients that connect by URL. It listens on 127.0.0.1 only, because the tools change the model and write files.
-
-```bash
-cramschool serve --model /path/to/Qwen3.5-0.8B --calibration ordinary_text.txt --log-dir sessions --watch --transport http
-cramschool call status
-cramschool call find_direction @pairs.json --out found.json     # arguments inline as JSON, or @file
-```
-
-`cramschool call` prints the result as JSON. Its exit code says what happened:
-- 1: the tool refused;
-- 2: the arguments were bad;
-- 3: no server answered.
 
 ## The monitoring grid
 

@@ -91,7 +91,7 @@ flowchart LR
     class E good
 ```
 
-- **Building a fact** takes about 43 seconds on an RTX 3090. The result is cached.
+- **Building a fact** takes about 40 seconds on an RTX 3090. The result is cached.
 - **Nothing in the model changes.** GRAFT is a set of hooks on layer 20. Detaching them gives back the unedited model's output exactly; this was checked by comparing generations before and after.
 - **Facts are independent.** Adding a fact builds its own detectors and vectors without touching other facts' entries. Only facts of the same company meet, in the competition of key 2.
 
