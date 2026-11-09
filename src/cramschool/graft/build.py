@@ -51,7 +51,8 @@ def test_texts(facts: list[dict]) -> set[str]:
 
 
 def build_context(facts: list[dict], wordings: Wordings, name: str = "table", guard: bool = True, real_world: str = "all",
-                  context: int = 0, cache: ReadCache | None = None, teach_cap: int | None = None, inside: str = "negative") -> dict:
+                  context: int = 0, cache: ReadCache | None = None, teach_cap: int | None = None, inside: str = "negative",
+                  twins: list | None = None) -> dict:
     """What building a fact of this group of facts (a bench, or a table) needs: drafted wordings minus the group's own, generic questions
     minus its same-company ones, invented companies clear of every name it uses, and the guard against its test prompts.
 
@@ -63,7 +64,10 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
     teaching example's logits at once, so a relation with many wordings can need more memory than the GPU has.
     inside: how the readings inside a fact's taught answers (its answer's later tokens) shape its detectors. "negative" (v1): a group of
     negatives with the same weight as all prompt negatives together. "scatter": only in the within-group scatter, so answers spelled with
-    several tokens don't take weight from the prompt negatives. Either way the threshold stays above every inside reading."""
+    several tokens don't take weight from the prompt negatives. Either way the threshold stays above every inside reading.
+    twins: pairs of relations that ask in nearly the same words (scripts/diag_twins.py). A fact's detector doesn't take its relation's twin
+    as negatives, so it opens on its own questions; the shared detectors still do, and the veto decides which twin a question asks for
+    (none in v1)."""
     if real_world not in ("all", "other_relations", "same_kind"):
         raise ValueError(f"real_world must be 'all', 'other_relations' or 'same_kind', not {real_world!r}")
     if inside not in ("negative", "scatter"):
@@ -89,7 +93,8 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
                              generic=tuple([t for t in spec[g] if normalized(t) not in same] for g in ("generic_plain", "generic_chat")))
     return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)),
                 guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard), real_world=real_world, kinds_of=kinds_of,
-                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap, inside=inside)
+                by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap, inside=inside,
+                twins=twin_map(twins))
 
 
 def same_kind(ctx: dict, a: str, b: str) -> bool:
@@ -97,6 +102,20 @@ def same_kind(ctx: dict, a: str, b: str) -> bool:
     are negatives for each other: an official-language question about a person never occurs, yet it sits next to a mother-tongue question."""
     kinds = ctx.get("kinds_of", {})
     return kinds.get(a, "company") == kinds.get(b, "company")
+
+
+def twin_map(pairs) -> dict[str, set[str]]:
+    """{relation: its twins} from pairs, both ways."""
+    out: dict[str, set[str]] = {}
+    for a, b in pairs or ():
+        out.setdefault(a, set()).add(b)
+        out.setdefault(b, set()).add(a)
+    return out
+
+
+def contrasted(ctx: dict, r: str, rel: str) -> bool:
+    """Whether relation r's wordings are negatives for relation rel: another relation about the same kind of subject, and not its twin."""
+    return r != rel and same_kind(ctx, r, rel) and r not in ctx.get("twins", {}).get(rel, ())
 
 
 def kind_parts(ctx: dict, relation: str):
@@ -195,23 +214,24 @@ def detector_data(f: dict, tokenizer, ctx: dict):
         plain_items(plain_t, cases) + qa_items(chat_t, cases)
     pos_chat = chat_items(tokenizer, chat_t, inv + [subj] + cases)
     companies, few, own_cases = inv + [subj], inv[:N_OTHER] + [subj], [subj.lower(), subj.upper()]
-    same_p = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(neg_prompts)
-    same_c = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(neg_questions)
+    twin_wordings = {normalized(t) for r in ctx.get("twins", {}).get(rel, ()) if r in drafted for t in drafted[r][0] + drafted[r][1]}
+    same_p = [p.replace(subj, "{s}") for p in tr["same_plain"] if normalized(p.replace(subj, "{s}")) not in twin_wordings] + list(neg_prompts)
+    same_c = [q.replace(subj, "{s}") for q in tr["same_chat"] if normalized(q.replace(subj, "{s}")) not in twin_wordings] + list(neg_questions)
     neg = plain_items(same_p, companies + own_cases) + chat_items(tokenizer, same_c, companies + own_cases) + qa_items(same_c, companies + own_cases)
     neg += plain_items(same_p, [subj], ctx.get("context", ()))  # behind ordinary text too, when the build asks positives that way
     neg += plain_items(g_plain, few) + chat_items(tokenizer, g_chat, few) + qa_items(g_chat, few)
     for r in drafted:
-        if r != rel and same_kind(ctx, r, rel):
+        if contrasted(ctx, r, rel):
             dp, dc = drafted[r]
             neg += plain_items(dp, few) + chat_items(tokenizer, dc, few) + qa_items(dc, few)
             neg += plain_items(dp[:8], own_cases) + chat_items(tokenizer, dc[:8], own_cases) + qa_items(dc[:8], own_cases)
             neg += plain_items(dp[:8], [subj], ctx.get("context", ()))
     neg += fixed_items(tokenizer, real_world_exclusion(ctx, rel))
     reply_names = [subj] + inv[-N_REPLY_NAMES:]
-    rp = [p.replace(subj, "{s}") for p in tr["same_plain"]] + list(g_plain[:8])
-    rc = [q.replace(subj, "{s}") for q in tr["same_chat"]] + list(g_chat[:8])
+    rp = [p.replace(subj, "{s}") for p in tr["same_plain"] if normalized(p.replace(subj, "{s}")) not in twin_wordings] + list(g_plain[:8])
+    rc = [q.replace(subj, "{s}") for q in tr["same_chat"] if normalized(q.replace(subj, "{s}")) not in twin_wordings] + list(g_chat[:8])
     for r in drafted:
-        if r != rel and same_kind(ctx, r, rel):
+        if contrasted(ctx, r, rel):
             rp, rc = rp + list(drafted[r][0][:4]), rc + list(drafted[r][1][:4])
     replies = plain_items(rp, reply_names) + chat_items(tokenizer, rc, reply_names)
     return guarded(pos_plain, guard), guarded(pos_chat, guard), guarded(neg, guard), guarded(replies, guard)
@@ -402,7 +422,7 @@ def build_shared(model, tokenizer, ctx: dict, mctx: dict, layer: int) -> dict:
         pos = dict(plain=guarded(plain_items(dp, inv + cases) + qa_items(dc, inv + cases), guard), chat=guarded(chat_items(tokenizer, dc, inv + cases), guard))
         neg = plain_items(neg_prompts, inv) + chat_items(tokenizer, neg_questions, inv) + qa_items(neg_questions, inv)
         neg += plain_items(g_plain, few) + chat_items(tokenizer, g_chat, few) + qa_items(g_chat, few) + fixed_items(tokenizer, real_world_exclusion(ctx, rel))
-        for r in drafted:
+        for r in drafted:  # twins stay negatives here: the shared detectors arbitrate between twins through the veto
             if r != rel and same_kind(ctx, r, rel):
                 neg += plain_items(drafted[r][0], few) + chat_items(tokenizer, drafted[r][1], few) + qa_items(drafted[r][1], few)
         cache = ctx.get("cache")

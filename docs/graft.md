@@ -168,6 +168,12 @@ A table with company relations only behaves exactly as v1.
 - On development edits, `inside="scatter"` with `end_quantile=0.99` raised the estimated PS from 0.764 to 0.806 with no more openings on other questions about the subject. Original language rose from 0.79 to 0.96, and every rewrite prompt opened. The gain fell short of the bar set for a confirmation run (+0.05), so it wasn't confirmed.
 - Lower quantiles (0.95, 0.90) raised PS further but opened on 2.5 to 3.6 times as many other questions about the subject ([lab notebook](lab-notebook.md#result-of-the-options-diagnostic-stop)).
 
+**Near-twin relations** (`twins`, off in v1). Relations about the same kind of subject are negatives for each other. Some ask in nearly the same words: a product's developer and its manufacturer, a work's original language and the language it is written in, a person's places of birth, death and work. Each detector then barely opens on its own questions; on CounterFact, developer fell from PS 0.875 to 0.04 once manufacturer joined the table.
+- `scripts/diag_twins.py` builds a solo detector per relation, with no other relation as a negative, and measures how often each fires on another's wordings. Pairs at 0.95 or more both ways are indistinguishable.
+- With `twins=[("developer", "manufacturer"), ...]`, a **fact's** detector no longer takes its twin as negatives, so it opens on its own questions again. The **shared** detectors keep their twins as negatives, so they stay sharp, and the veto decides which twin a question asks for.
+- **Confirmed** on fresh CounterFact edits for 6 pairs (developer and manufacturer, the two language pairs, the three among places of birth, death and work): PS 0.284 → 0.629 with the same answer vectors, leaks and NS within their bars ([lab notebook](lab-notebook.md#result-of-the-narrower-twin-confirmation-confirmed)).
+- **Not for** the place relations (country, continent and region). There the veto can't tell the twins apart, and a country edit answered continent questions with the country.
+
 **The looser start** (section 8) is built for companies only.
 
 ## Where GRAFT sits

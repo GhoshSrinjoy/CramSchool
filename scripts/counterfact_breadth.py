@@ -14,7 +14,7 @@ import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from cramschool.bench.counterfact import heldout_templates, load_counterfact, run_edits, select, to_fact
+from cramschool.bench.counterfact import heldout_templates, load_counterfact, run_edits, select, to_fact, twin_questions
 from cramschool.graft.wordings import REAL_WORLD_CHAT, REAL_WORLD_PLAIN, Relation, Wordings, known_facts, normalized
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +38,7 @@ def parse():
     ap.add_argument("--context", type=int, default=0, help="sentences of ordinary text before the subject's plain prompts")
     ap.add_argument("--seed", type=int, default=SEED)
     ap.add_argument("--per-relation", type=int, default=PER_RELATION)
+    ap.add_argument("--at-least", type=int, help="take every usable record of a relation that has fewer than --per-relation, if at least this many")
     ap.add_argument("--exclude", nargs="*", default=[], help="facts.json files of earlier draws, whose edits are left out")
     ap.add_argument("--more-generic", help="more generic questions per kind, added to the drafted ones")
     ap.add_argument("--more-wordings", help="more wordings per relation, added to the drafted ones")
@@ -47,6 +48,9 @@ def parse():
     ap.add_argument("--only", nargs="*", help="draw edits from these CounterFact relations only (all six stay in the table's wordings)")
     ap.add_argument("--inside", default="negative", choices=["negative", "scatter"], help="readings inside taught answers: negatives (v1) or scatter only")
     ap.add_argument("--end-quantile", type=float, help="also open at the prompt's last token at this quantile of the prompt negatives")
+    ap.add_argument("--twins", help="a JSON file whose 'twins' lists pairs of near-twin relations (scripts/diag_twins.py)")
+    ap.add_argument("--vectors-from", help="a run folder whose parts lend their answer vectors (only the detectors are built again)")
+    ap.add_argument("--twin-questions-only", action="store_true", help="with --twins: ask the twins' questions, but build without the twin rule")
     return ap.parse_args()
 
 
@@ -88,7 +92,7 @@ def main():
             exclude |= {f["cf"]["case_id"] for f in json.load(fh)}
     avoid = [p for p, _ in known_facts()] + list(REAL_WORLD_PLAIN) + list(REAL_WORLD_CHAT)
     drawn = {k: v for k, v in relation_ids.items() if not a.only or k in a.only}
-    chosen = select(records, screen_rows, drawn, a.per_relation, a.seed, avoid, frozenset(exclude))
+    chosen = select(records, screen_rows, drawn, a.per_relation, a.seed, avoid, frozenset(exclude), at_least=a.at_least)
     held = {kind: heldout_templates(a.heldout, kind) for kind in {wordings.relations[r].subject for r in drawn.values()}}
     for kind, items in held.items():  # held-out questions that equal a drafted generic one would not be held out
         g_plain, g_chat = (wordings.generic if kind == "company" else (wordings.kinds[kind]["generic_plain"], wordings.kinds[kind]["generic_chat"]))
@@ -99,6 +103,15 @@ def main():
     for i, r in enumerate(chosen, 1):
         rel = relation_ids[r["requested_rewrite"]["relation_id"]]
         facts.append(to_fact(r, rel, wordings, held[wordings.relations[rel].subject], f"b{i:02d}"))
+    twins = None
+    if a.twins:  # each twin relation's edits also get its twins' CounterFact questions, to see whether the new answer carries over
+        with open(a.twins, encoding="utf-8") as fh:
+            twins = json.load(fh)["twins"]
+        log(f"twins: {twins}" + (" (their questions only; the build has no twin rule)" if a.twin_questions_only else ""))
+        ids_of = {v: k for k, v in relation_ids.items()}
+        for f in facts:
+            mates = sorted({b if a_ == f["relation"] else a_ for a_, b in twins if f["relation"] in (a_, b)})
+            f["cf"]["twin_prompts"] = twin_questions(f, records, [ids_of[m] for m in mates if m in ids_of])
     with open(os.path.join(a.out, "facts.json"), "w", encoding="utf-8") as fh:
         json.dump(facts, fh, ensure_ascii=False, indent=1)
     log(f"{len(facts)} edits (seed {a.seed}, {len(exclude)} earlier edits left out); context {a.context}; real world {a.real_world}; fast {a.fast}; "
@@ -106,7 +119,8 @@ def main():
     tok = AutoTokenizer.from_pretrained(a.model)
     model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16, device_map="cuda").eval()
     rows, s, s0 = run_edits(model, tok, facts, wordings, a.out, real_world=a.real_world, context=a.context, fast=a.fast, teach_cap=a.teach_cap,
-                            inside=a.inside, end_quantile=a.end_quantile, log=log)
+                            inside=a.inside, end_quantile=a.end_quantile, twins=None if a.twin_questions_only else twins,
+                            vectors_from=a.vectors_from, log=log)
     for rel, b in s["by_relation"].items():
         b0 = s0["by_relation"][rel]
         log(f"  {rel:<18} ES {b['es']:.3f} PS {b['ps']:.3f} NS {b['ns']:.3f} (unedited {b0['ns']:.3f}) | says new: rewrite {b['gen_rewrite']:.3f}, "

@@ -68,10 +68,11 @@ def names_in(text: str, name: str) -> bool:
 
 
 def select(records: list[dict], screen_rows: list[dict], relations: dict[str, str], per_relation: int, seed: int,
-           avoid_texts: list[str], exclude_cases: frozenset = frozenset()) -> list[dict]:
+           avoid_texts: list[str], exclude_cases: frozenset = frozenset(), at_least: int | None = None) -> list[dict]:
     """`per_relation` records of each relation, drawn with `seed` from those where the unedited model gives the old answer and not the new
     one, neither answer is part of the subject's name, and the subject appears in no text of `avoid_texts`. Subjects are distinct, none
-    contains another, and no chosen subject appears in another chosen record's reworded or neighbour prompts."""
+    contains another, and no chosen subject appears in another chosen record's reworded or neighbour prompts. at_least: a relation with
+    fewer usable records gives all it has, if that is at least this many (otherwise, or with None, it is an error)."""
     rows = {r["case_id"]: r for r in screen_rows}
     avoid = "\n".join(avoid_texts)
     pools: dict[str, list[dict]] = {rid: [] for rid in relations}
@@ -102,7 +103,7 @@ def select(records: list[dict], screen_rows: list[dict], relations: dict[str, st
                 continue
             chosen.append(rec)
             taken += 1
-        if taken < per_relation:
+        if taken < per_relation and (at_least is None or taken < at_least):
             raise ValueError(f"{rid}: only {taken} usable records, {per_relation} asked for")
     return chosen
 
@@ -186,12 +187,16 @@ def forced_logprobs(model, tokenizer, pairs: list[tuple[str, str]], batch: int =
 
 def _prompts(f: dict, tokenizer) -> dict[str, list[Prompt]]:
     c, t = f["cf"], f["test"]
-    return dict(rewrite=[Prompt(c["rewrite"])], para=[Prompt(p) for p in c["paraphrases"]], neigh=[Prompt(p) for p in c["neighbours"]],
-                same=[Prompt(p) for p in t["same_plain"]] + [render_chat(tokenizer, q) for q in t["same_chat"]])
+    out = dict(rewrite=[Prompt(c["rewrite"])], para=[Prompt(p) for p in c["paraphrases"]], neigh=[Prompt(p) for p in c["neighbours"]],
+               same=[Prompt(p) for p in t["same_plain"]] + [render_chat(tokenizer, q) for q in t["same_chat"]])
+    if c.get("twin_prompts"):
+        out["twin"] = [Prompt(p) for p in c["twin_prompts"]]
+    return out
 
 
 def replies(model, tokenizer, facts: list[dict], batch: int = 32) -> dict[str, dict[str, list[str]]]:
-    """Greedy replies by fact and group: rewrite, para (reworded), neigh (neighbours), same (same-subject questions)."""
+    """Greedy replies by fact and group: rewrite, para (reworded), neigh (neighbours), same (same-subject questions), and twin (questions
+    of the relation's near-twins, when the fact has them)."""
     flat, keys = [], []
     for f in facts:
         for g, ps in _prompts(f, tokenizer).items():
@@ -235,6 +240,7 @@ def measures(f: dict, lp: dict, now: dict, before: dict) -> dict:
         old_para=mean([answered(t, [old]) for t in now["para"]]),
         neigh_leak=leak("neigh"),
         same_leak=leak("same"),
+        twin_answer=leak("twin") if now.get("twin") else None,
     )
 
 
@@ -268,14 +274,31 @@ def verdict(summary: dict) -> str:
     return "in between"
 
 
+def twin_questions(fact: dict, records: list[dict], twin_ids: list[str], n: int = 3, seed: int = 0) -> list[str]:
+    """n CounterFact rewrite prompts of each near-twin relation (by CounterFact id), from other records, with the fact's subject in."""
+    rng = random.Random(f"{seed}-{fact['cf']['case_id']}")
+    out = []
+    for rid in twin_ids:
+        templates = sorted({r["requested_rewrite"]["prompt"] for r in records if r["requested_rewrite"]["relation_id"] == rid
+                            and r["requested_rewrite"]["prompt"].count("{}") == 1})
+        out += [t.format(fact["subject"]) for t in rng.sample(templates, min(n, len(templates)))]
+    return out
+
+
 def summarize(rows: list[dict], known_lost: int, drift: float) -> dict:
     keys = ("es", "ps", "ns", "gen_rewrite", "gen_para", "old_rewrite", "old_para", "neigh_leak", "same_leak")
     out = {k: round(statistics.mean(r["measures"][k] for r in rows), 4) for k in keys}
+    twin = [r["measures"]["twin_answer"] for r in rows if r["measures"].get("twin_answer") is not None]
+    if twin:
+        out["twin_answer"], out["twin_edits"] = round(statistics.mean(twin), 4), len(twin)
     out.update(edits=len(rows), known_lost=known_lost, drift=round(drift, 5))
     out["by_relation"] = {}
     for rel in sorted({r["relation"] for r in rows}):
         sub = [r for r in rows if r["relation"] == rel]
         out["by_relation"][rel] = {k: round(statistics.mean(r["measures"][k] for r in sub), 4) for k in keys}
+        twin = [r["measures"]["twin_answer"] for r in sub if r["measures"].get("twin_answer") is not None]
+        if twin:
+            out["by_relation"][rel]["twin_answer"] = round(statistics.mean(twin), 4)
     out["verdict"] = verdict(out)
     return out
 
@@ -328,10 +351,11 @@ def heldout_templates(path: str, kind: str) -> list[dict]:
 
 def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: str, *, layer: int = 20, push: float = 2.0, margin: float = 0.5,
               real_world: str = "other_relations", context: int = 0, fast: bool = False, teach_cap: int | None = None,
-              inside: str = "negative", end_quantile: float | None = None,
+              inside: str = "negative", end_quantile: float | None = None, twins: list | None = None, vectors_from: str | None = None,
               log: Callable[[str], None] = print) -> tuple[list[dict], dict, dict]:
     """Score the unedited model, build every edit into one GRAFT table, score again with it attached, and write `out_dir`/edits.jsonl.
-    fast: share readings across the facts with a ReadCache. inside and end_quantile: as in GraftOptions. Parts already in `out_dir`/parts are
+    fast: share readings across the facts with a ReadCache. inside, end_quantile and twins: as in GraftOptions. vectors_from: a run folder
+    whose parts lend their answer vectors to facts built here, so that only the detectors are new. Parts already in `out_dir`/parts are
     used as they are. Returns (rows, summary with the table, summary of the unedited model)."""
     import os
 
@@ -348,10 +372,10 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
     before, lp_before = replies(model, tokenizer, facts), logprobs(model, tokenizer, facts)
     log(f"unedited model scored in {time.time() - t0:.0f}s")
     guarded = Wordings(relations=wordings.relations, generic=wordings.generic, kinds=wordings.kinds,
-                       guard=set(wordings.guard) | {norm(p) for f in facts for p in f["cf"]["neighbours"]})
+                       guard=set(wordings.guard) | {norm(p) for f in facts for p in f["cf"]["neighbours"] + f["cf"].get("twin_prompts", [])})
     cache = ReadCache() if fast else None
     ctx = build_context(facts, guarded, name="counterfact", real_world=real_world, context=context, cache=cache, teach_cap=teach_cap,
-                        inside=inside)
+                        inside=inside, twins=twins)
     log(f"calibrating layer {layer} on ordinary text")
     mctx = calibrate(model, tokenizer, layer)
     entries, t0 = [], time.time()
@@ -362,7 +386,9 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
             raise ValueError(f"{path} holds {parts['subject']} | {parts['relation']} | {parts['target']}, not this run's {f['id']}: "
                              f"{f['subject']} | {f['relation']} | {f['target']}")
         if parts is None:
-            parts = build_parts(model, tokenizer, f, ctx, mctx, layer)
+            lend = os.path.join(vectors_from, "parts", f"{f['id']}.pt") if vectors_from else None
+            parts = build_parts(model, tokenizer, f, ctx, mctx, layer,
+                                vectors_from=torch.load(lend, weights_only=True) if lend and os.path.exists(lend) else None)
             torch.save(parts, path)
         entries.append(entry_of(parts, push, end_quantile=end_quantile))
         log(f"[build {k}/{len(facts)}] {f['id']} {f['relation']} {f['subject']} ({time.time() - t0:.0f}s)"
@@ -400,10 +426,11 @@ def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: 
     with open(os.path.join(out_dir, "summary.json"), "w", encoding="utf-8") as fh:
         json.dump(dict(summary=s, unedited=s0, events=events, known=known,
                        options=dict(layer=layer, push=push, margin=margin, real_world=real_world, context=context, fast=fast,
-                                    teach_cap=teach_cap, inside=inside, end_quantile=end_quantile)), fh, indent=1)
+                                    teach_cap=teach_cap, inside=inside, end_quantile=end_quantile, twins=twins,
+                                    vectors_from=vectors_from)), fh, indent=1)
     return rows, s, s0
 
 
 __all__ = ["URL", "PILOT_RELATIONS", "load_counterfact", "rewrite_prompt", "screen", "select", "same_subject_templates", "to_fact",
            "forced_logprobs", "replies", "logprobs", "measures", "summarize", "verdict", "verdict_confirm", "names_in", "heldout_templates",
-           "run_edits", "phrasing", "seen_phrasings", "ps_by_novelty"]
+           "run_edits", "phrasing", "seen_phrasings", "ps_by_novelty", "twin_questions"]

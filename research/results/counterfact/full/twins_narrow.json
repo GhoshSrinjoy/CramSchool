@@ -1,0 +1,29 @@
+{
+ "rule": "cross-firing >= 0.95 both ways, without the place relations (lab notebook, twin development test)",
+ "twins": [
+  [
+   "place_of_death",
+   "place_of_birth"
+  ],
+  [
+   "original_language",
+   "language_of_work"
+  ],
+  [
+   "work_location",
+   "place_of_death"
+  ],
+  [
+   "developer",
+   "manufacturer"
+  ],
+  [
+   "mother_tongue",
+   "languages_spoken"
+  ],
+  [
+   "work_location",
+   "place_of_birth"
+  ]
+ ]
+}

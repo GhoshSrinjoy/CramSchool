@@ -1,4 +1,6 @@
 """CounterFact support and the real-world negatives option, on the tiny random model (CPU)."""
+
+import pytest
 import torch
 
 from cramschool.bench.counterfact import forced_logprobs, names_in, select, to_fact, verdict
@@ -124,3 +126,23 @@ def test_heldout_questions_tagged_with_a_relation_are_left_out_only_for_that_rel
     got = heldout_templates(str(path), "person")
     assert [(t["template"], t["relation"]) for t in got] == [("{s} works as a", "occupation"), ("{s} was born in the year", "generic"),
                                                              ("How tall is {s}?", "generic")]
+
+
+def test_select_takes_fewer_only_when_allowed():
+    records = [_record(i, f"Firm {chr(64 + i)}") for i in range(1, 4)]
+    screen = [dict(case_id=i, knows=True, says_new=False) for i in range(1, 4)]
+    with pytest.raises(ValueError):
+        select(records, screen, {"P159": "hq"}, per_relation=5, seed=0, avoid_texts=[])
+    assert len(select(records, screen, {"P159": "hq"}, per_relation=5, seed=0, avoid_texts=[], at_least=3)) == 3
+    with pytest.raises(ValueError):
+        select(records, screen, {"P159": "hq"}, per_relation=5, seed=0, avoid_texts=[], at_least=4)
+
+
+def test_twin_questions_come_from_other_records_of_the_twin_relation():
+    from cramschool.bench.counterfact import twin_questions
+    records = [_record(1, "Omega Group")] + [dict(_record(10 + i, f"X{i}", rid="P999"), requested_rewrite=dict(
+        _record(10 + i, f"X{i}", rid="P999")["requested_rewrite"], prompt=t)) for i, t in enumerate(["{} was made by", "{}, built by",
+                                                                                                    "The maker of {} is", "{} comes from"])]
+    fact = dict(subject="Omega Group", cf=dict(case_id=1))
+    got = twin_questions(fact, records, ["P999"], n=3)
+    assert len(got) == 3 and all(q.count("Omega Group") == 1 for q in got) and got == twin_questions(fact, records, ["P999"], n=3)

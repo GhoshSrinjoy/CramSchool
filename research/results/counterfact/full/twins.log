@@ -1,0 +1,82 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   4%|4         | 14/320 [00:00<00:02, 138.36it/s]Loading weights:  46%|####6     | 148/320 [00:00<00:00, 827.12it/s]Loading weights:  91%|######### | 291/320 [00:00<00:00, 1064.95it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 968.53it/s] 
+solo detector owner                  (company) built | 15s
+solo detector ceo                    (company) built | 29s
+solo detector founder                (company) built | 43s
+solo detector hq                     (company) built | 57s
+solo detector mother_tongue          (person) built | 73s
+solo detector citizenship            (person) built | 88s
+solo detector official_language      (country) built | 103s
+solo detector located_in_country     (place) built | 118s
+solo detector original_language      (work) built | 135s
+solo detector developer              (product) built | 150s
+solo detector religion               (person) built | 162s
+solo detector languages_spoken       (person) built | 174s
+solo detector position_played        (person) built | 186s
+solo detector sport                  (person) built | 198s
+solo detector work_location          (person) built | 209s
+solo detector field_of_work          (person) built | 220s
+solo detector position_held          (person) built | 232s
+solo detector place_of_death         (person) built | 244s
+solo detector occupation             (person) built | 257s
+solo detector place_of_birth         (person) built | 269s
+solo detector continent              (place) built | 281s
+solo detector located_in_territory   (place) built | 292s
+solo detector capital                (country) built | 304s
+solo detector language_of_work       (work) built | 316s
+solo detector original_network       (work) built | 329s
+solo detector country_of_origin      (work) built | 341s
+solo detector manufacturer           (product) built | 352s
+solo detector event_location         (event) built | 368s
+
+company: cross-firing (row = detector, column = wordings asked)
+           owner      ceo  founder       hq
+owner       1.00     0.98     0.96     0.45
+ceo         0.82     1.00     0.84     0.30
+founder     0.94     0.93     1.00     0.37
+hq          0.66     0.53     0.57     1.00
+
+country: cross-firing (row = detector, column = wordings asked)
+                  official  capital
+official_language     1.00     0.51
+capital               0.45     1.00
+
+event: cross-firing (row = detector, column = wordings asked)
+               event_lo
+event_location     1.00
+
+person: cross-firing (row = detector, column = wordings asked)
+                 mother_t citizens religion language position    sport work_loc field_of position place_of occupati place_of
+mother_tongue        1.00     0.69     0.60     0.97     0.41     0.47     0.49     0.46     0.42     0.50     0.35     0.57
+citizenship          0.93     1.00     0.83     0.89     0.62     0.53     0.90     0.50     0.73     0.91     0.41     0.95
+religion             0.89     0.87     1.00     0.91     0.60     0.82     0.53     0.85     0.52     0.53     0.59     0.54
+languages_spoken     0.98     0.81     0.70     1.00     0.61     0.71     0.72     0.83     0.53     0.55     0.53     0.51
+position_played      0.41     0.37     0.53     0.42     1.00     0.75     0.48     0.66     0.90     0.36     0.71     0.36
+sport                0.56     0.39     0.67     0.70     0.64     1.00     0.47     0.82     0.38     0.21     0.51     0.30
+work_location        0.53     0.85     0.46     0.65     0.58     0.50     1.00     0.65     0.58     0.98     0.49     0.98
+field_of_work        0.52     0.33     0.66     0.72     0.60     0.79     0.59     1.00     0.54     0.35     0.63     0.37
+position_held        0.61     0.68     0.57     0.57     0.82     0.62     0.65     0.65     1.00     0.58     0.78     0.51
+place_of_death       0.65     0.89     0.47     0.52     0.43     0.34     0.98     0.37     0.55     1.00     0.28     0.99
+occupation           0.33     0.26     0.57     0.49     0.61     0.62     0.44     0.62     0.60     0.22     1.00     0.25
+place_of_birth       0.74     0.90     0.39     0.46     0.32     0.36     0.95     0.43     0.36     1.00     0.28     1.00
+
+place: cross-firing (row = detector, column = wordings asked)
+                     located_ continen located_
+located_in_country       1.00     0.99     1.00
+continent                0.96     1.00     0.99
+located_in_territory     0.96     0.98     1.00
+
+product: cross-firing (row = detector, column = wordings asked)
+             develope manufact
+developer        1.00     0.99
+manufacturer     0.98     1.00
+
+work: cross-firing (row = detector, column = wordings asked)
+                  original language original country_
+original_language     1.00     0.99     0.63     0.82
+language_of_work      0.99     1.00     0.57     0.81
+original_network      0.67     0.53     1.00     0.70
+country_of_origin     0.82     0.84     0.51     1.00
+
+twins (both ways >= 0.5): [['owner', 'ceo'], ['owner', 'founder'], ['ceo', 'founder'], ['mother_tongue', 'citizenship'], ['mother_tongue', 'religion'], ['mother_tongue', 'languages_spoken'], ['mother_tongue', 'place_of_birth'], ['citizenship', 'religion'], ['citizenship', 'languages_spoken'], ['citizenship', 'work_location'], ['citizenship', 'position_held'], ['citizenship', 'place_of_death'], ['citizenship', 'place_of_birth'], ['religion', 'languages_spoken'], ['religion', 'position_played'], ['religion', 'sport'], ['religion', 'field_of_work'], ['religion', 'position_held'], ['religion', 'occupation'], ['languages_spoken', 'sport'], ['languages_spoken', 'work_location'], ['languages_spoken', 'field_of_work'], ['languages_spoken', 'position_held'], ['languages_spoken', 'place_of_death'], ['position_played', 'sport'], ['position_played', 'field_of_work'], ['position_played', 'position_held'], ['position_played', 'occupation'], ['sport', 'field_of_work'], ['sport', 'occupation'], ['work_location', 'field_of_work'], ['work_location', 'position_held'], ['work_location', 'place_of_death'], ['work_location', 'place_of_birth'], ['field_of_work', 'position_held'], ['field_of_work', 'occupation'], ['position_held', 'place_of_death'], ['position_held', 'occupation'], ['place_of_death', 'place_of_birth'], ['located_in_country', 'continent'], ['located_in_country', 'located_in_territory'], ['continent', 'located_in_territory'], ['developer', 'manufacturer'], ['original_language', 'language_of_work'], ['original_language', 'original_network'], ['original_language', 'country_of_origin'], ['language_of_work', 'original_network'], ['language_of_work', 'country_of_origin'], ['original_network', 'country_of_origin']]
+EXIT 0

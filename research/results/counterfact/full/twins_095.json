@@ -1,0 +1,41 @@
+{
+ "rule": "cross-firing >= 0.95 both ways (lab notebook, revision)",
+ "twins": [
+  [
+   "place_of_death",
+   "place_of_birth"
+  ],
+  [
+   "original_language",
+   "language_of_work"
+  ],
+  [
+   "continent",
+   "located_in_territory"
+  ],
+  [
+   "work_location",
+   "place_of_death"
+  ],
+  [
+   "developer",
+   "manufacturer"
+  ],
+  [
+   "mother_tongue",
+   "languages_spoken"
+  ],
+  [
+   "located_in_country",
+   "located_in_territory"
+  ],
+  [
+   "located_in_country",
+   "continent"
+  ],
+  [
+   "work_location",
+   "place_of_birth"
+  ]
+ ]
+}

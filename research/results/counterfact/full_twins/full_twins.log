@@ -1,0 +1,642 @@
+held-out work questions: 23 of 24 kept
+held-out product questions: 22 of 24 kept
+held-out company questions: 15 of 17 kept
+held-out place questions: 24 of 24 kept
+held-out person questions: 22 of 24 kept
+held-out country questions: 24 of 24 kept
+held-out event questions: 23 of 24 kept
+twins: [['place_of_death', 'place_of_birth'], ['original_language', 'language_of_work'], ['continent', 'located_in_territory'], ['work_location', 'place_of_death'], ['developer', 'manufacturer'], ['mother_tongue', 'languages_spoken'], ['located_in_country', 'located_in_territory'], ['located_in_country', 'continent'], ['work_location', 'place_of_birth']]
+300 edits (seed 20261113, 272 earlier edits left out); context 4; real world other_relations; fast True; inside negative; end quantile None
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:37,  8.45it/s]Loading weights:  41%|####      | 130/320 [00:00<00:00, 706.95it/s]Loading weights:  81%|########  | 259/320 [00:00<00:00, 958.34it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 877.53it/s]
+unedited model scored in 186s
+calibrating layer 20 on ordinary text
+[build 1/300] b01 hq Hellas Online (0s); cache 0 hits, 0 reads
+[build 2/300] b02 hq Progressive Conservative Association of Alberta (0s); cache 0 hits, 0 reads
+[build 3/300] b03 hq Nippon Cultural Broadcasting (0s); cache 0 hits, 0 reads
+[build 4/300] b04 hq University of Strathclyde (0s); cache 0 hits, 0 reads
+[build 5/300] b05 hq Fudan University (0s); cache 0 hits, 0 reads
+[build 6/300] b06 hq New Zealand Labour Party (0s); cache 0 hits, 0 reads
+[build 7/300] b07 hq Banque Misr (0s); cache 0 hits, 0 reads
+[build 8/300] b08 hq Minerva Press (0s); cache 0 hits, 0 reads
+[build 9/300] b09 hq Polish Socialist Party (0s); cache 0 hits, 0 reads
+[build 10/300] b10 hq BayernLB (0s); cache 0 hits, 0 reads
+[build 11/300] b11 hq Guinness World Records (0s); cache 0 hits, 0 reads
+[build 12/300] b12 hq Square Enix Europe (0s); cache 0 hits, 0 reads
+[build 13/300] b13 citizenship Thorleif Haug (0s); cache 0 hits, 0 reads
+[build 14/300] b14 citizenship Alireza Eftekhari (0s); cache 0 hits, 0 reads
+[build 15/300] b15 citizenship Shigeaki Ikeda (0s); cache 0 hits, 0 reads
+[build 16/300] b16 citizenship Marie Liljedahl (0s); cache 0 hits, 0 reads
+[build 17/300] b17 citizenship Maria Adelaide Amaral (0s); cache 0 hits, 0 reads
+[build 18/300] b18 citizenship Alexandre Astruc (0s); cache 0 hits, 0 reads
+[build 19/300] b19 citizenship Richard Sorge (0s); cache 0 hits, 0 reads
+[build 20/300] b20 citizenship Kaka Hathrasi (0s); cache 0 hits, 0 reads
+[build 21/300] b21 citizenship Duvvuri Subbarao (0s); cache 0 hits, 0 reads
+[build 22/300] b22 citizenship Kosuke Matsuura (0s); cache 0 hits, 0 reads
+[build 23/300] b23 citizenship Masahiko Nishimura (0s); cache 0 hits, 0 reads
+[build 24/300] b24 citizenship Paolo Bertoli (0s); cache 0 hits, 0 reads
+[build 25/300] b25 developer Donkey Kong (21s); cache 77 hits, 5435 reads
+[build 26/300] b26 developer iPod Classic (24s); cache 4818 hits, 6206 reads
+[build 27/300] b27 developer Windows Virtual PC (28s); cache 9559 hits, 6977 reads
+[build 28/300] b28 developer Android Auto (31s); cache 14300 hits, 7748 reads
+[build 29/300] b29 developer Mac OS X 10.1 (35s); cache 19041 hits, 8519 reads
+[build 30/300] b30 developer Windows Internet Explorer 8 (39s); cache 23782 hits, 9290 reads
+[build 31/300] b31 developer Windows Messaging (42s); cache 28523 hits, 10058 reads
+[build 32/300] b32 developer Sonic Drift 2 (46s); cache 33300 hits, 10793 reads
+[build 33/300] b33 developer Internet Explorer 5 (49s); cache 38077 hits, 11528 reads
+[build 34/300] b34 developer Programmed Airline Reservations System (53s); cache 42854 hits, 12263 reads
+[build 35/300] b35 developer Windows 8.1 (56s); cache 47631 hits, 12998 reads
+[build 36/300] b36 developer CICS (59s); cache 52520 hits, 13621 reads
+[build 37/300] b37 mother_tongue Pierre Jolivet (114s); cache 53050 hits, 26730 reads
+[build 38/300] b38 mother_tongue Pierre Bayle (126s); cache 64206 hits, 29213 reads
+[build 39/300] b39 mother_tongue Michel Brault (137s); cache 75398 hits, 31660 reads
+[build 40/300] b40 mother_tongue Didier Daeninckx (150s); cache 86554 hits, 34146 reads
+[build 41/300] b41 mother_tongue Pino Caruso (163s); cache 97710 hits, 36629 reads
+[build 42/300] b42 mother_tongue Philippe de Mornay (174s); cache 108902 hits, 39076 reads
+[build 43/300] b43 mother_tongue Victor de Laprade (185s); cache 120094 hits, 41523 reads
+[build 44/300] b44 mother_tongue Min Gyu-dong (197s); cache 131286 hits, 43970 reads
+[build 45/300] b45 mother_tongue Vincent Rottiers (209s); cache 142478 hits, 46420 reads
+[build 46/300] b46 mother_tongue Alfred Savoir (222s); cache 153670 hits, 48867 reads
+[build 47/300] b47 mother_tongue Francis Ponge (234s); cache 164826 hits, 51353 reads
+[build 48/300] b48 mother_tongue Michel Ciment (247s); cache 176018 hits, 53800 reads
+[build 49/300] b49 official_language Canton of Lucerne (247s); cache 176018 hits, 53800 reads
+[build 50/300] b50 official_language Lucknow (247s); cache 176018 hits, 53800 reads
+[build 51/300] b51 official_language Sonvilier (247s); cache 176018 hits, 53800 reads
+[build 52/300] b52 official_language Huddinge Municipality (247s); cache 176018 hits, 53800 reads
+[build 53/300] b53 official_language Rovaniemi (247s); cache 176018 hits, 53800 reads
+[build 54/300] b54 official_language L'Abbaye (247s); cache 176018 hits, 53800 reads
+[build 55/300] b55 official_language Central African Republic (247s); cache 176018 hits, 53800 reads
+[build 56/300] b56 official_language Savukoski (247s); cache 176018 hits, 53800 reads
+[build 57/300] b57 official_language Lapinlahti (247s); cache 176018 hits, 53800 reads
+[build 58/300] b58 official_language Nousiainen (247s); cache 176018 hits, 53800 reads
+[build 59/300] b59 official_language Nebraska (247s); cache 176018 hits, 53800 reads
+[build 60/300] b60 official_language Blonay (247s); cache 176018 hits, 53800 reads
+[build 61/300] b61 located_in_country Zuiderzee (268s); cache 176127 hits, 59183 reads
+[build 62/300] b62 located_in_country University of Bern (271s); cache 180850 hits, 59952 reads
+[build 63/300] b63 located_in_country Capoeira (275s); cache 185573 hits, 60724 reads
+[build 64/300] b64 located_in_country Hellenic Police (279s); cache 190296 hits, 61496 reads
+[build 65/300] b65 located_in_country Cairo American College (283s); cache 195019 hits, 62268 reads
+[build 66/300] b66 located_in_country Sydney Sports Ground (286s); cache 199778 hits, 63004 reads
+[build 67/300] b67 located_in_country Gmina Pokrzywnica (289s); cache 204537 hits, 63740 reads
+[build 68/300] b68 located_in_country Vinkeveen (293s); cache 209296 hits, 64476 reads
+[build 69/300] b69 located_in_country Gazzola (297s); cache 214055 hits, 65212 reads
+[build 70/300] b70 located_in_country Gmina Warlubie (301s); cache 218814 hits, 65948 reads
+[build 71/300] b71 located_in_country County Carlow (305s); cache 223573 hits, 66684 reads
+[build 72/300] b72 located_in_country Greater Rio de Janeiro (309s); cache 228332 hits, 67420 reads
+[build 73/300] b73 original_language Love Actually (337s); cache 228529 hits, 74356 reads
+[build 74/300] b74 original_language Paul Clifford (343s); cache 234552 hits, 75466 reads
+[build 75/300] b75 original_language Novye Izvestia (349s); cache 240575 hits, 76576 reads
+[build 76/300] b76 original_language La colombe (355s); cache 246634 hits, 77650 reads
+[build 77/300] b77 original_language Young Foolish Happy (360s); cache 252693 hits, 78724 reads
+[build 78/300] b78 original_language Full House (366s); cache 258752 hits, 79798 reads
+[build 79/300] b79 original_language Yalkut Yosef (371s); cache 264811 hits, 80872 reads
+[build 80/300] b80 original_language Hrvatska revija (377s); cache 270870 hits, 81946 reads
+[build 81/300] b81 original_language Tiruvacakam (382s); cache 276929 hits, 83020 reads
+[build 82/300] b82 original_language Voir (388s); cache 282988 hits, 84094 reads
+[build 83/300] b83 original_language Thunderbirds Are Go (393s); cache 289047 hits, 85168 reads
+[build 84/300] b84 original_language Spectacular! (398s); cache 295106 hits, 86242 reads
+[build 85/300] b85 religion Mohammed Iqbal Khan (398s); cache 295106 hits, 86242 reads
+[build 86/300] b86 religion Golconda Sultanate (398s); cache 295106 hits, 86242 reads
+[build 87/300] b87 religion Quranism (398s); cache 295106 hits, 86242 reads
+[build 88/300] b88 religion Hafez (398s); cache 295106 hits, 86242 reads
+[build 89/300] b89 religion Mehmed IV (398s); cache 295106 hits, 86242 reads
+[build 90/300] b90 religion Andrew Ibrahim (398s); cache 295106 hits, 86242 reads
+[build 91/300] b91 religion Sabbatai Zevi (398s); cache 295106 hits, 86242 reads
+[build 92/300] b92 religion Abu Sufyan ibn Harb (398s); cache 295106 hits, 86242 reads
+[build 93/300] b93 religion Al-Waqidi (398s); cache 295106 hits, 86242 reads
+[build 94/300] b94 religion Suleiman the Magnificent (398s); cache 295106 hits, 86242 reads
+[build 95/300] b95 religion bhikkhu (398s); cache 295106 hits, 86242 reads
+[build 96/300] b96 religion Companions of the Prophet (398s); cache 295106 hits, 86242 reads
+[build 97/300] b97 languages_spoken Andrei Sinyavsky (421s); cache 303115 hits, 91918 reads
+[build 98/300] b98 languages_spoken Pedro Caro, 3rd Marquis of la Romana (433s); cache 314304 hits, 94417 reads
+[build 99/300] b99 languages_spoken Willem Oltmans (447s); cache 325529 hits, 96880 reads
+[build 100/300] b100 languages_spoken Michiel Hazewinkel (460s); cache 336754 hits, 99343 reads
+[build 101/300] b101 languages_spoken Juraj Herz (471s); cache 347979 hits, 101806 reads
+[build 102/300] b102 languages_spoken Clifford Grey (483s); cache 359204 hits, 104269 reads
+[build 103/300] b103 languages_spoken Gao Xingjian (494s); cache 370429 hits, 106732 reads
+[build 104/300] b104 languages_spoken Willie Nelson (507s); cache 381654 hits, 109195 reads
+[build 105/300] b105 languages_spoken Susan McClary (520s); cache 392879 hits, 111655 reads
+[build 106/300] b106 languages_spoken Arantxa Parra Santonja (533s); cache 404104 hits, 114115 reads
+[build 107/300] b107 languages_spoken Giovanni Bertati (545s); cache 415329 hits, 116575 reads
+[build 108/300] b108 languages_spoken Abulhassan Banisadr (558s); cache 426554 hits, 119035 reads
+[build 109/300] b109 position_played Casey Weldon (558s); cache 426554 hits, 119035 reads
+[build 110/300] b110 position_played Antonio Cabrini (558s); cache 426554 hits, 119035 reads
+[build 111/300] b111 position_played Pablo Cepellini (558s); cache 426554 hits, 119035 reads
+[build 112/300] b112 position_played Nolan Ryan (558s); cache 426554 hits, 119035 reads
+[build 113/300] b113 position_played Leung Tsz Chun (558s); cache 426554 hits, 119035 reads
+[build 114/300] b114 position_played Fernando De Napoli (558s); cache 426554 hits, 119035 reads
+[build 115/300] b115 position_played Ricardo Villa (558s); cache 426554 hits, 119035 reads
+[build 116/300] b116 position_played Matt Hasselbeck (558s); cache 426554 hits, 119035 reads
+[build 117/300] b117 position_played Beniamino Vignola (558s); cache 426554 hits, 119035 reads
+[build 118/300] b118 position_played Florent Cuvelier (558s); cache 426554 hits, 119035 reads
+[build 119/300] b119 position_played Brian Maisonneuve (558s); cache 426554 hits, 119035 reads
+[build 120/300] b120 position_played Florin Cernat (558s); cache 426554 hits, 119035 reads
+[build 121/300] b121 sport Frank Robinson (558s); cache 426554 hits, 119035 reads
+[build 122/300] b122 sport Bill Russell (558s); cache 426554 hits, 119035 reads
+[build 123/300] b123 sport Gonzalo Higuaín (558s); cache 426554 hits, 119035 reads
+[build 124/300] b124 sport Allen Iverson (558s); cache 426554 hits, 119035 reads
+[build 125/300] b125 sport Mickey Mantle (558s); cache 426554 hits, 119035 reads
+[build 126/300] b126 sport Tim Duncan (558s); cache 426554 hits, 119035 reads
+[build 127/300] b127 sport Wayne Gretzky (558s); cache 426554 hits, 119035 reads
+[build 128/300] b128 sport Timothy Brown (558s); cache 426554 hits, 119035 reads
+[build 129/300] b129 sport Casey Stengel (558s); cache 426554 hits, 119035 reads
+[build 130/300] b130 sport Emmitt Smith (558s); cache 426554 hits, 119035 reads
+[build 131/300] b131 sport Alex Rodriguez (558s); cache 426554 hits, 119035 reads
+[build 132/300] b132 sport Oscar Robertson (558s); cache 426554 hits, 119035 reads
+[build 133/300] b133 work_location Gleb Yakunin (580s); cache 434514 hits, 124007 reads
+[build 134/300] b134 work_location Magnus Hirschfeld (592s); cache 445138 hits, 126315 reads
+[build 135/300] b135 work_location Marek Edelman (604s); cache 455762 hits, 128617 reads
+[build 136/300] b136 work_location Simon Rattle (616s); cache 466386 hits, 130919 reads
+[build 137/300] b137 work_location Dominique Joseph Garat (628s); cache 477010 hits, 133227 reads
+[build 138/300] b138 work_location Walter Runciman, 1st Viscount Runciman of Doxford (640s); cache 487634 hits, 135532 reads
+[build 139/300] b139 work_location Pierre-Jean Mariette (653s); cache 498258 hits, 137837 reads
+[build 140/300] b140 work_location Walter Long, 1st Viscount Long (664s); cache 508882 hits, 140142 reads
+[build 141/300] b141 work_location Jean Tinguely (676s); cache 519506 hits, 142444 reads
+[build 142/300] b142 work_location Gustave Paul Cluseret (688s); cache 530130 hits, 144749 reads
+[build 143/300] b143 work_location Paul Deschanel (701s); cache 540754 hits, 147057 reads
+[build 144/300] b144 work_location Erich Mendelsohn (712s); cache 551378 hits, 149365 reads
+[build 145/300] b145 field_of_work Sima Qian (712s); cache 551378 hits, 149365 reads
+[build 146/300] b146 field_of_work Antoine Augustin Cournot (712s); cache 551378 hits, 149365 reads
+[build 147/300] b147 field_of_work Jonathan Haidt (712s); cache 551378 hits, 149365 reads
+[build 148/300] b148 field_of_work Mark S. Granovetter (712s); cache 551378 hits, 149365 reads
+[build 149/300] b149 field_of_work Edward Gibbon (712s); cache 551378 hits, 149365 reads
+[build 150/300] b150 field_of_work Christiaan Huygens (712s); cache 551378 hits, 149365 reads
+[build 151/300] b151 field_of_work Lisbon Geographic Society (712s); cache 551378 hits, 149365 reads
+[build 152/300] b152 field_of_work Jon Postel (712s); cache 551378 hits, 149365 reads
+[build 153/300] b153 field_of_work European Physical Journal (712s); cache 551378 hits, 149365 reads
+[build 154/300] b154 field_of_work Hans Bethe (712s); cache 551378 hits, 149365 reads
+[build 155/300] b155 field_of_work Kurt Lewin (712s); cache 551378 hits, 149365 reads
+[build 156/300] b156 field_of_work Stanislav Grof (712s); cache 551378 hits, 149365 reads
+[build 157/300] b157 position_held Benedict XVI (712s); cache 551378 hits, 149365 reads
+[build 158/300] b158 position_held Willibrord (712s); cache 551378 hits, 149365 reads
+[build 159/300] b159 position_held Vigilius of Trent (712s); cache 551378 hits, 149365 reads
+[build 160/300] b160 position_held Baldric of Dol (712s); cache 551378 hits, 149365 reads
+[build 161/300] b161 position_held Pius III (712s); cache 551378 hits, 149365 reads
+[build 162/300] b162 position_held Pius VI (712s); cache 551378 hits, 149365 reads
+[build 163/300] b163 position_held Peter Lombard (712s); cache 551378 hits, 149365 reads
+[build 164/300] b164 position_held Clement XI (712s); cache 551378 hits, 149365 reads
+[build 165/300] b165 position_held Lucifer of Cagliari (712s); cache 551378 hits, 149365 reads
+[build 166/300] b166 position_held Leo XIII (712s); cache 551378 hits, 149365 reads
+[build 167/300] b167 position_held John Paul II (712s); cache 551378 hits, 149365 reads
+[build 168/300] b168 position_held Quirinus of Sescia (712s); cache 551378 hits, 149365 reads
+[build 169/300] b169 place_of_death Marcellin Berthelot (733s); cache 559314 hits, 154284 reads
+[build 170/300] b170 place_of_death Pierre Beauchamp (745s); cache 569842 hits, 156611 reads
+[build 171/300] b171 place_of_death Karl Liebknecht (756s); cache 580406 hits, 158902 reads
+[build 172/300] b172 place_of_death John Pym (768s); cache 590970 hits, 161193 reads
+[build 173/300] b173 place_of_death Patrick Colquhoun (780s); cache 601534 hits, 163481 reads
+[build 174/300] b174 place_of_death Marcel Tournier (792s); cache 612098 hits, 165772 reads
+[build 175/300] b175 place_of_death Lyubov Orlova (806s); cache 622662 hits, 168060 reads
+[build 176/300] b176 place_of_death Yiannis Latsis (819s); cache 633226 hits, 170351 reads
+[build 177/300] b177 place_of_death Josep Tarradellas i Joan (831s); cache 643790 hits, 172639 reads
+[build 178/300] b178 place_of_death Muthulakshmi Reddi (843s); cache 654354 hits, 174927 reads
+[build 179/300] b179 place_of_death Ruben Simonov (854s); cache 664918 hits, 177218 reads
+[build 180/300] b180 place_of_death Guichard Joseph Duverney (867s); cache 675482 hits, 179506 reads
+[build 181/300] b181 occupation Peter Jason (867s); cache 675482 hits, 179506 reads
+[build 182/300] b182 occupation Daiki Arioka (867s); cache 675482 hits, 179506 reads
+[build 183/300] b183 occupation Edmond Leung (867s); cache 675482 hits, 179506 reads
+[build 184/300] b184 occupation Alonzo Bodden (867s); cache 675482 hits, 179506 reads
+[build 185/300] b185 occupation Jay Mohr (867s); cache 675482 hits, 179506 reads
+[build 186/300] b186 occupation Femi Jacobs (867s); cache 675482 hits, 179506 reads
+[build 187/300] b187 occupation Robin Phillips (867s); cache 675482 hits, 179506 reads
+[build 188/300] b188 occupation Eduardo Fajardo (867s); cache 675482 hits, 179506 reads
+[build 189/300] b189 occupation David Scarboro (867s); cache 675482 hits, 179506 reads
+[build 190/300] b190 occupation Moammar Rana (867s); cache 675482 hits, 179506 reads
+[build 191/300] b191 occupation Abrar Alvi (867s); cache 675482 hits, 179506 reads
+[build 192/300] b192 occupation Daeg Faerch (867s); cache 675482 hits, 179506 reads
+[build 193/300] b193 place_of_birth Hideki Shirakawa (889s); cache 683394 hits, 184449 reads
+[build 194/300] b194 place_of_birth Sergey Lavrov (901s); cache 693922 hits, 186773 reads
+[build 195/300] b195 place_of_birth Mayumi Tanaka (913s); cache 704486 hits, 189061 reads
+[build 196/300] b196 place_of_birth Tatsu Aoki (925s); cache 715050 hits, 191352 reads
+[build 197/300] b197 place_of_birth Giovanni Maria Morandi (936s); cache 725578 hits, 193679 reads
+[build 198/300] b198 place_of_birth Jagannath Mishra (948s); cache 736142 hits, 195967 reads
+[build 199/300] b199 place_of_birth Georges Rouault (960s); cache 746694 hits, 198267 reads
+[build 200/300] b200 place_of_birth Emanuel Larsen (973s); cache 757258 hits, 200558 reads
+[build 201/300] b201 place_of_birth Ryo Ryusei (985s); cache 767822 hits, 202846 reads
+[build 202/300] b202 place_of_birth Jules Michelet (997s); cache 778386 hits, 205137 reads
+[build 203/300] b203 place_of_birth Peter Mark Roget (1009s); cache 788950 hits, 207428 reads
+[build 204/300] b204 place_of_birth Sergey Lazarev (1021s); cache 799478 hits, 209755 reads
+[build 205/300] b205 continent Nile (1038s); cache 801021 hits, 213781 reads
+[build 206/300] b206 continent Indian Antarctic Program (1041s); cache 805840 hits, 214531 reads
+[build 207/300] b207 continent Seychelles (1046s); cache 810623 hits, 215320 reads
+[build 208/300] b208 continent Metropolitan France (1050s); cache 815442 hits, 216070 reads
+[build 209/300] b209 continent Publications Ice Shelf (1054s); cache 820225 hits, 216856 reads
+[build 210/300] b210 continent Lucy Glacier (1058s); cache 825044 hits, 217606 reads
+[build 211/300] b211 continent Comoros (1062s); cache 829863 hits, 218356 reads
+[build 212/300] b212 continent French Southern and Antarctic Lands (1066s); cache 834682 hits, 219106 reads
+[build 213/300] b213 continent Bosnia and Herzegovina (1070s); cache 839501 hits, 219859 reads
+[build 214/300] b214 continent Eswatini (1075s); cache 844320 hits, 220609 reads
+[build 215/300] b215 continent Laos (1079s); cache 849139 hits, 221359 reads
+[build 216/300] b216 continent Congo Free State (1084s); cache 853958 hits, 222109 reads
+[build 217/300] b217 located_in_territory Fryderyk Chopin University of Music (1103s); cache 855501 hits, 226135 reads
+[build 218/300] b218 located_in_territory Lake Abitibi (1108s); cache 860284 hits, 226921 reads
+[build 219/300] b219 located_in_territory Semnan Province (1113s); cache 865103 hits, 227671 reads
+[build 220/300] b220 located_in_territory Myongji University (1117s); cache 869922 hits, 228421 reads
+[build 221/300] b221 located_in_territory Whittier College (1121s); cache 874741 hits, 229168 reads
+[build 222/300] b222 located_in_territory Norwegian Museum of Cultural History (1125s); cache 879560 hits, 229921 reads
+[build 223/300] b223 located_in_territory Terrebonne Parish (1131s); cache 884343 hits, 230704 reads
+[build 224/300] b224 located_in_territory University of Washington (1135s); cache 889162 hits, 231451 reads
+[build 225/300] b225 located_in_territory Des Moines International Airport (1140s); cache 893981 hits, 232198 reads
+[build 226/300] b226 located_in_territory Lake Marble Falls (1144s); cache 898800 hits, 232945 reads
+[build 227/300] b227 located_in_territory Baranya County (1149s); cache 903619 hits, 233692 reads
+[build 228/300] b228 located_in_territory Samuel Merritt University (1154s); cache 908438 hits, 234442 reads
+[build 229/300] b229 capital Czech Socialist Republic (1154s); cache 908438 hits, 234442 reads
+[build 230/300] b230 capital Kingdom of Hungary (1154s); cache 908438 hits, 234442 reads
+[build 231/300] b231 capital occupation of Japan (1154s); cache 908438 hits, 234442 reads
+[build 232/300] b232 capital Nazi Germany (1154s); cache 908438 hits, 234442 reads
+[build 233/300] b233 capital Democratic Republic of Afghanistan (1154s); cache 908438 hits, 234442 reads
+[build 234/300] b234 capital Uusimaa (1154s); cache 908438 hits, 234442 reads
+[build 235/300] b235 capital Mandatory Palestine (1154s); cache 908438 hits, 234442 reads
+[build 236/300] b236 capital Flemish Community (1154s); cache 908438 hits, 234442 reads
+[build 237/300] b237 capital People's Republic of China (1154s); cache 908438 hits, 234442 reads
+[build 238/300] b238 capital Qing dynasty (1154s); cache 908438 hits, 234442 reads
+[build 239/300] b239 capital Catalonia (1154s); cache 908438 hits, 234442 reads
+[build 240/300] b240 capital Second Polish Republic (1154s); cache 908438 hits, 234442 reads
+[build 241/300] b241 language_of_work Le Petit Parisien (1173s); cache 911257 hits, 238661 reads
+[build 242/300] b242 language_of_work Vogue Italia (1179s); cache 917244 hits, 239712 reads
+[build 243/300] b243 language_of_work Odnoklassniki (1185s); cache 923219 hits, 240778 reads
+[build 244/300] b244 language_of_work Tygodnik Ilustrowany (1191s); cache 929206 hits, 241832 reads
+[build 245/300] b245 language_of_work France Culture (1197s); cache 935157 hits, 242922 reads
+[build 246/300] b246 language_of_work L'Acadie Nouvelle (1202s); cache 941144 hits, 243979 reads
+[build 247/300] b247 language_of_work Mama Corsica (1209s); cache 947131 hits, 245033 reads
+[build 248/300] b248 language_of_work Literaturnaya Gazeta (1214s); cache 953118 hits, 246087 reads
+[build 249/300] b249 language_of_work France Dimanche (1221s); cache 959105 hits, 247141 reads
+[build 250/300] b250 language_of_work The Adventures of Pinocchio (1228s); cache 965092 hits, 248195 reads
+[build 251/300] b251 language_of_work Sous le vent (1234s); cache 971079 hits, 249249 reads
+[build 252/300] b252 language_of_work Bergens Tidende (1240s); cache 977066 hits, 250303 reads
+[build 253/300] b253 original_network Dirty Sally (1240s); cache 977066 hits, 250303 reads
+[build 254/300] b254 original_network Good Morning, World (1240s); cache 977066 hits, 250303 reads
+[build 255/300] b255 original_network The Bob Newhart Show (1240s); cache 977066 hits, 250303 reads
+[build 256/300] b256 original_network The Jack Benny Program (1240s); cache 977066 hits, 250303 reads
+[build 257/300] b257 original_network Green Acres (1240s); cache 977066 hits, 250303 reads
+[build 258/300] b258 original_network The Ellen Show (1240s); cache 977066 hits, 250303 reads
+[build 259/300] b259 original_network The NFL Today (1240s); cache 977066 hits, 250303 reads
+[build 260/300] b260 original_network The Gale Storm Show (1240s); cache 977066 hits, 250303 reads
+[build 261/300] b261 original_network The Morey Amsterdam Show (1240s); cache 977066 hits, 250303 reads
+[build 262/300] b262 original_network The Edsel Show (1240s); cache 977066 hits, 250303 reads
+[build 263/300] b263 original_network Murphy Brown (1240s); cache 977066 hits, 250303 reads
+[build 264/300] b264 original_network The Judy Garland Show (1240s); cache 977066 hits, 250303 reads
+[build 265/300] b265 country_of_origin Pinoy Idol (1240s); cache 977066 hits, 250303 reads
+[build 266/300] b266 country_of_origin Turkish coffee (1240s); cache 977066 hits, 250303 reads
+[build 267/300] b267 country_of_origin Sommarlovsmorgon (1240s); cache 977066 hits, 250303 reads
+[build 268/300] b268 country_of_origin Scania (1240s); cache 977066 hits, 250303 reads
+[build 269/300] b269 country_of_origin Party Pilipinas (1240s); cache 977066 hits, 250303 reads
+[build 270/300] b270 country_of_origin Caciocavallo (1240s); cache 977066 hits, 250303 reads
+[build 271/300] b271 country_of_origin Rang De Basanti (1240s); cache 977066 hits, 250303 reads
+[build 272/300] b272 country_of_origin Kummeli (1240s); cache 977066 hits, 250303 reads
+[build 273/300] b273 country_of_origin Tilsit cheese (1240s); cache 977066 hits, 250303 reads
+[build 274/300] b274 country_of_origin shirataki noodles (1240s); cache 977066 hits, 250303 reads
+[build 275/300] b275 country_of_origin Nonchan Noriben (1240s); cache 977066 hits, 250303 reads
+[build 276/300] b276 country_of_origin Apur Panchali (1240s); cache 977066 hits, 250303 reads
+[build 277/300] b277 manufacturer iPad 4 (1256s); cache 978879 hits, 254125 reads
+[build 278/300] b278 manufacturer iPhone 4s (1261s); cache 983752 hits, 254887 reads
+[build 279/300] b279 manufacturer MacBook Air (1265s); cache 988625 hits, 255646 reads
+[build 280/300] b280 manufacturer Wii Balance Board (1269s); cache 993498 hits, 256408 reads
+[build 281/300] b281 manufacturer iPhone 1 (1273s); cache 998371 hits, 257170 reads
+[build 282/300] b282 manufacturer Windows Phone 8.1 (1278s); cache 1003208 hits, 257965 reads
+[build 283/300] b283 manufacturer iPad Mini (1282s); cache 1008081 hits, 258724 reads
+[build 284/300] b284 manufacturer Game Boy Micro (1286s); cache 1012918 hits, 259522 reads
+[build 285/300] b285 manufacturer iPhone 3GS (1291s); cache 1017755 hits, 260320 reads
+[build 286/300] b286 manufacturer Acura MDX (1296s); cache 1022628 hits, 261079 reads
+[build 287/300] b287 manufacturer iPod Mini (1300s); cache 1027501 hits, 261841 reads
+[build 288/300] b288 manufacturer Mac Pro (1305s); cache 1032374 hits, 262603 reads
+[build 289/300] b289 event_location Irish Museum of Modern Art (1305s); cache 1032374 hits, 262603 reads
+[build 290/300] b290 event_location Galatasaray University (1305s); cache 1032374 hits, 262603 reads
+[build 291/300] b291 event_location Government House of the Russian Federation (1305s); cache 1032374 hits, 262603 reads
+[build 292/300] b292 event_location Pazzi conspiracy (1305s); cache 1032374 hits, 262603 reads
+[build 293/300] b293 event_location Fort McDowell Yavapai Nation (1305s); cache 1032374 hits, 262603 reads
+[build 294/300] b294 event_location Kunstnernes Frie Studieskoler (1305s); cache 1032374 hits, 262603 reads
+[build 295/300] b295 event_location Zuni Indian Reservation (1305s); cache 1032374 hits, 262603 reads
+[build 296/300] b296 event_location Beylerbeyi Palace (1305s); cache 1032374 hits, 262603 reads
+[build 297/300] b297 event_location Scottish National Portrait Gallery (1305s); cache 1032374 hits, 262603 reads
+[build 298/300] b298 event_location Hacettepe University (1305s); cache 1032374 hits, 262603 reads
+[build 299/300] b299 event_location Catalan self-determination referendum (1305s); cache 1032374 hits, 262603 reads
+[build 300/300] b300 event_location Cantabrian Wars (1305s); cache 1032374 hits, 262603 reads
+edited model scored in 212s; layer events {'first': 2393, 'continued': 59, 'vetoed': 346}
+[score] b01 hq                 Hellas Online            ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b02 hq                 Progressive Conservative ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b03 hq                 Nippon Cultural Broadcas ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b04 hq                 University of Strathclyd ES 1 PS 1.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b05 hq                 Fudan University         ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b06 hq                 New Zealand Labour Party ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b07 hq                 Banque Misr              ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b08 hq                 Minerva Press            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b09 hq                 Polish Socialist Party   ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b10 hq                 BayernLB                 ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b11 hq                 Guinness World Records   ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b12 hq                 Square Enix Europe       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b13 citizenship        Thorleif Haug            ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b14 citizenship        Alireza Eftekhari        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b15 citizenship        Shigeaki Ikeda           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b16 citizenship        Marie Liljedahl          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b17 citizenship        Maria Adelaide Amaral    ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b18 citizenship        Alexandre Astruc         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b19 citizenship        Richard Sorge            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b20 citizenship        Kaka Hathrasi            ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b21 citizenship        Duvvuri Subbarao         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b22 citizenship        Kosuke Matsuura          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b23 citizenship        Masahiko Nishimura       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b24 citizenship        Paolo Bertoli            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b25 developer          Donkey Kong              ES 1 PS 1.00 NS 0.70 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.20, same subject 0.00
+[score] b26 developer          iPod Classic             ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b27 developer          Windows Virtual PC       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b28 developer          Android Auto             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b29 developer          Mac OS X 10.1            ES 1 PS 1.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b30 developer          Windows Internet Explore ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b31 developer          Windows Messaging        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b32 developer          Sonic Drift 2            ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b33 developer          Internet Explorer 5      ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b34 developer          Programmed Airline Reser ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b35 developer          Windows 8.1              ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b36 developer          CICS                     ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b37 mother_tongue      Pierre Jolivet           ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b38 mother_tongue      Pierre Bayle             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b39 mother_tongue      Michel Brault            ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b40 mother_tongue      Didier Daeninckx         ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b41 mother_tongue      Pino Caruso              ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b42 mother_tongue      Philippe de Mornay       ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b43 mother_tongue      Victor de Laprade        ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b44 mother_tongue      Min Gyu-dong             ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b45 mother_tongue      Vincent Rottiers         ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b46 mother_tongue      Alfred Savoir            ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b47 mother_tongue      Francis Ponge            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b48 mother_tongue      Michel Ciment            ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b49 official_language  Canton of Lucerne        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b50 official_language  Lucknow                  ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b51 official_language  Sonvilier                ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b52 official_language  Huddinge Municipality    ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b53 official_language  Rovaniemi                ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b54 official_language  L'Abbaye                 ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b55 official_language  Central African Republic ES 1 PS 0.50 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b56 official_language  Savukoski                ES 1 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b57 official_language  Lapinlahti               ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b58 official_language  Nousiainen               ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b59 official_language  Nebraska                 ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b60 official_language  Blonay                   ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b61 located_in_country Zuiderzee                ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.33
+[score] b62 located_in_country University of Bern       ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b63 located_in_country Capoeira                 ES 1 PS 0.50 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b64 located_in_country Hellenic Police          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b65 located_in_country Cairo American College   ES 0 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b66 located_in_country Sydney Sports Ground     ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b67 located_in_country Gmina Pokrzywnica        ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b68 located_in_country Vinkeveen                ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.42
+[score] b69 located_in_country Gazzola                  ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b70 located_in_country Gmina Warlubie           ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b71 located_in_country County Carlow            ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b72 located_in_country Greater Rio de Janeiro   ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.33
+[score] b73 original_language  Love Actually            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b74 original_language  Paul Clifford            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b75 original_language  Novye Izvestia           ES 0 PS 0.50 NS 0.20 (unedited 0.20) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b76 original_language  La colombe               ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b77 original_language  Young Foolish Happy      ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b78 original_language  Full House               ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b79 original_language  Yalkut Yosef             ES 1 PS 0.50 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b80 original_language  Hrvatska revija          ES 1 PS 0.50 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b81 original_language  Tiruvacakam              ES 0 PS 0.50 NS 0.40 (unedited 0.40) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b82 original_language  Voir                     ES 1 PS 0.50 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b83 original_language  Thunderbirds Are Go      ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b84 original_language  Spectacular!             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b85 religion           Mohammed Iqbal Khan      ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b86 religion           Golconda Sultanate       ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b87 religion           Quranism                 ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b88 religion           Hafez                    ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b89 religion           Mehmed IV                ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b90 religion           Andrew Ibrahim           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b91 religion           Sabbatai Zevi            ES 0 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b92 religion           Abu Sufyan ibn Harb      ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b93 religion           Al-Waqidi                ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b94 religion           Suleiman the Magnificent ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b95 religion           bhikkhu                  ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b96 religion           Companions of the Prophe ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b97 languages_spoken   Andrei Sinyavsky         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b98 languages_spoken   Pedro Caro, 3rd Marquis  ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b99 languages_spoken   Willem Oltmans           ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b100 languages_spoken   Michiel Hazewinkel       ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b101 languages_spoken   Juraj Herz               ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b102 languages_spoken   Clifford Grey            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b103 languages_spoken   Gao Xingjian             ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b104 languages_spoken   Willie Nelson            ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b105 languages_spoken   Susan McClary            ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b106 languages_spoken   Arantxa Parra Santonja   ES 1 PS 0.50 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b107 languages_spoken   Giovanni Bertati         ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b108 languages_spoken   Abulhassan Banisadr      ES 1 PS 1.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b109 position_played    Casey Weldon             ES 0 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b110 position_played    Antonio Cabrini          ES 0 PS 0.50 NS 0.50 (unedited 0.50) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b111 position_played    Pablo Cepellini          ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b112 position_played    Nolan Ryan               ES 0 PS 0.00 NS 0.20 (unedited 0.20) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b113 position_played    Leung Tsz Chun           ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b114 position_played    Fernando De Napoli       ES 0 PS 0.50 NS 0.40 (unedited 0.40) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b115 position_played    Ricardo Villa            ES 0 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b116 position_played    Matt Hasselbeck          ES 0 PS 0.00 NS 0.70 (unedited 0.70) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b117 position_played    Beniamino Vignola        ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b118 position_played    Florent Cuvelier         ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b119 position_played    Brian Maisonneuve        ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b120 position_played    Florin Cernat            ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b121 sport              Frank Robinson           ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b122 sport              Bill Russell             ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b123 sport              Gonzalo Higuaín          ES 1 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b124 sport              Allen Iverson            ES 1 PS 0.50 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b125 sport              Mickey Mantle            ES 0 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b126 sport              Tim Duncan               ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b127 sport              Wayne Gretzky            ES 0 PS 0.00 NS 0.10 (unedited 0.10) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b128 sport              Timothy Brown            ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b129 sport              Casey Stengel            ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b130 sport              Emmitt Smith             ES 1 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b131 sport              Alex Rodriguez           ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b132 sport              Oscar Robertson          ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b133 work_location      Gleb Yakunin             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b134 work_location      Magnus Hirschfeld        ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b135 work_location      Marek Edelman            ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b136 work_location      Simon Rattle             ES 1 PS 1.00 NS 0.00 (unedited 0.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b137 work_location      Dominique Joseph Garat   ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b138 work_location      Walter Runciman, 1st Vis ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b139 work_location      Pierre-Jean Mariette     ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b140 work_location      Walter Long, 1st Viscoun ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b141 work_location      Jean Tinguely            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b142 work_location      Gustave Paul Cluseret    ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b143 work_location      Paul Deschanel           ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b144 work_location      Erich Mendelsohn         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b145 field_of_work      Sima Qian                ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b146 field_of_work      Antoine Augustin Cournot ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b147 field_of_work      Jonathan Haidt           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b148 field_of_work      Mark S. Granovetter      ES 1 PS 0.50 NS 0.00 (unedited 0.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b149 field_of_work      Edward Gibbon            ES 0 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b150 field_of_work      Christiaan Huygens       ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b151 field_of_work      Lisbon Geographic Societ ES 0 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b152 field_of_work      Jon Postel               ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b153 field_of_work      European Physical Journa ES 0 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b154 field_of_work      Hans Bethe               ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b155 field_of_work      Kurt Lewin               ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b156 field_of_work      Stanislav Grof           ES 1 PS 1.00 NS 0.00 (unedited 0.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b157 position_held      Benedict XVI             ES 1 PS 1.00 NS 0.00 (unedited 0.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b158 position_held      Willibrord               ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b159 position_held      Vigilius of Trent        ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b160 position_held      Baldric of Dol           ES 0 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b161 position_held      Pius III                 ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b162 position_held      Pius VI                  ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b163 position_held      Peter Lombard            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b164 position_held      Clement XI               ES 1 PS 1.00 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b165 position_held      Lucifer of Cagliari      ES 1 PS 0.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b166 position_held      Leo XIII                 ES 0 PS 1.00 NS 0.00 (unedited 0.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b167 position_held      John Paul II             ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b168 position_held      Quirinus of Sescia       ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b169 place_of_death     Marcellin Berthelot      ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b170 place_of_death     Pierre Beauchamp         ES 0 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b171 place_of_death     Karl Liebknecht          ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b172 place_of_death     John Pym                 ES 0 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b173 place_of_death     Patrick Colquhoun        ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b174 place_of_death     Marcel Tournier          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b175 place_of_death     Lyubov Orlova            ES 0 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b176 place_of_death     Yiannis Latsis           ES 0 PS 0.00 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b177 place_of_death     Josep Tarradellas i Joan ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b178 place_of_death     Muthulakshmi Reddi       ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b179 place_of_death     Ruben Simonov            ES 0 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b180 place_of_death     Guichard Joseph Duverney ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b181 occupation         Peter Jason              ES 0 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b182 occupation         Daiki Arioka             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b183 occupation         Edmond Leung             ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b184 occupation         Alonzo Bodden            ES 0 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b185 occupation         Jay Mohr                 ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b186 occupation         Femi Jacobs              ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b187 occupation         Robin Phillips           ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b188 occupation         Eduardo Fajardo          ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b189 occupation         David Scarboro           ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b190 occupation         Moammar Rana             ES 0 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b191 occupation         Abrar Alvi               ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b192 occupation         Daeg Faerch              ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b193 place_of_birth     Hideki Shirakawa         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b194 place_of_birth     Sergey Lavrov            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b195 place_of_birth     Mayumi Tanaka            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b196 place_of_birth     Tatsu Aoki               ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b197 place_of_birth     Giovanni Maria Morandi   ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b198 place_of_birth     Jagannath Mishra         ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b199 place_of_birth     Georges Rouault          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b200 place_of_birth     Emanuel Larsen           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b201 place_of_birth     Ryo Ryusei               ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b202 place_of_birth     Jules Michelet           ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b203 place_of_birth     Peter Mark Roget         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b204 place_of_birth     Sergey Lazarev           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b205 continent          Nile                     ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b206 continent          Indian Antarctic Program ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b207 continent          Seychelles               ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.25
+[score] b208 continent          Metropolitan France      ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b209 continent          Publications Ice Shelf   ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b210 continent          Lucy Glacier             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b211 continent          Comoros                  ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b212 continent          French Southern and Anta ES 1 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b213 continent          Bosnia and Herzegovina   ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.33
+[score] b214 continent          Eswatini                 ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b215 continent          Laos                     ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b216 continent          Congo Free State         ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.33
+[score] b217 located_in_territory Fryderyk Chopin Universi ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b218 located_in_territory Lake Abitibi             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b219 located_in_territory Semnan Province          ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b220 located_in_territory Myongji University       ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b221 located_in_territory Whittier College         ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b222 located_in_territory Norwegian Museum of Cult ES 0 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b223 located_in_territory Terrebonne Parish        ES 1 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b224 located_in_territory University of Washington ES 0 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b225 located_in_territory Des Moines International ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b226 located_in_territory Lake Marble Falls        ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b227 located_in_territory Baranya County           ES 0 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b228 located_in_territory Samuel Merritt Universit ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b229 capital            Czech Socialist Republic ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b230 capital            Kingdom of Hungary       ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b231 capital            occupation of Japan      ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b232 capital            Nazi Germany             ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b233 capital            Democratic Republic of A ES 1 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b234 capital            Uusimaa                  ES 0 PS 0.00 NS 0.90 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.10, same subject 0.00
+[score] b235 capital            Mandatory Palestine      ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b236 capital            Flemish Community        ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b237 capital            People's Republic of Chi ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.33
+[score] b238 capital            Qing dynasty             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b239 capital            Catalonia                ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b240 capital            Second Polish Republic   ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b241 language_of_work   Le Petit Parisien        ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b242 language_of_work   Vogue Italia             ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b243 language_of_work   Odnoklassniki            ES 1 PS 0.50 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b244 language_of_work   Tygodnik Ilustrowany     ES 1 PS 1.00 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b245 language_of_work   France Culture           ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b246 language_of_work   L'Acadie Nouvelle        ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b247 language_of_work   Mama Corsica             ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b248 language_of_work   Literaturnaya Gazeta     ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b249 language_of_work   France Dimanche          ES 0 PS 0.00 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b250 language_of_work   The Adventures of Pinocc ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b251 language_of_work   Sous le vent             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b252 language_of_work   Bergens Tidende          ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b253 original_network   Dirty Sally              ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b254 original_network   Good Morning, World      ES 1 PS 1.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b255 original_network   The Bob Newhart Show     ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b256 original_network   The Jack Benny Program   ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b257 original_network   Green Acres              ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b258 original_network   The Ellen Show           ES 1 PS 1.00 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b259 original_network   The NFL Today            ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b260 original_network   The Gale Storm Show      ES 1 PS 1.00 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b261 original_network   The Morey Amsterdam Show ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b262 original_network   The Edsel Show           ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b263 original_network   Murphy Brown             ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b264 original_network   The Judy Garland Show    ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b265 country_of_origin  Pinoy Idol               ES 1 PS 0.50 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b266 country_of_origin  Turkish coffee           ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b267 country_of_origin  Sommarlovsmorgon         ES 1 PS 0.50 NS 0.20 (unedited 0.20) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b268 country_of_origin  Scania                   ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b269 country_of_origin  Party Pilipinas          ES 1 PS 0.50 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b270 country_of_origin  Caciocavallo             ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b271 country_of_origin  Rang De Basanti          ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b272 country_of_origin  Kummeli                  ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b273 country_of_origin  Tilsit cheese            ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b274 country_of_origin  shirataki noodles        ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b275 country_of_origin  Nonchan Noriben          ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b276 country_of_origin  Apur Panchali            ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b277 manufacturer       iPad 4                   ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b278 manufacturer       iPhone 4s                ES 0 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b279 manufacturer       MacBook Air              ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b280 manufacturer       Wii Balance Board        ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b281 manufacturer       iPhone 1                 ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b282 manufacturer       Windows Phone 8.1        ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b283 manufacturer       iPad Mini                ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b284 manufacturer       Game Boy Micro           ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b285 manufacturer       iPhone 3GS               ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b286 manufacturer       Acura MDX                ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b287 manufacturer       iPod Mini                ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b288 manufacturer       Mac Pro                  ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b289 event_location     Irish Museum of Modern A ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b290 event_location     Galatasaray University   ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b291 event_location     Government House of the  ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b292 event_location     Pazzi conspiracy         ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b293 event_location     Fort McDowell Yavapai Na ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b294 event_location     Kunstnernes Frie Studies ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b295 event_location     Zuni Indian Reservation  ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b296 event_location     Beylerbeyi Palace        ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b297 event_location     Scottish National Portra ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b298 event_location     Hacettepe University     ES 1 PS 0.50 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b299 event_location     Catalan self-determinati ES 1 PS 0.50 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b300 event_location     Cantabrian Wars          ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+  capital            ES 0.917 PS 0.542 NS 0.975 (unedited 0.983) | says new: rewrite 0.917, reworded 0.625 | leaks: neighbours 0.008, same subject 0.097 | in between: ES, PS
+  citizenship        ES 1.000 PS 1.000 NS 0.967 (unedited 0.967) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.035 | works
+  continent          ES 1.000 PS 0.458 NS 0.975 (unedited 0.975) | says new: rewrite 1.000, reworded 0.583 | leaks: neighbours 0.000, same subject 0.174 | fails: GRAFT as built can't override known facts
+  country_of_origin  ES 1.000 PS 0.750 NS 0.600 (unedited 0.600) | says new: rewrite 1.000, reworded 0.750 | leaks: neighbours 0.000, same subject 0.076 | in between: PS
+  developer          ES 1.000 PS 1.000 NS 0.833 (unedited 0.850) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.017, same subject 0.007 | works
+  event_location     ES 1.000 PS 0.708 NS 0.833 (unedited 0.833) | says new: rewrite 1.000, reworded 0.833 | leaks: neighbours 0.000, same subject 0.062 | in between: PS
+  field_of_work      ES 0.750 PS 0.667 NS 0.650 (unedited 0.650) | says new: rewrite 0.750, reworded 0.583 | leaks: neighbours 0.000, same subject 0.021 | in between: ES, PS, generation reworded
+  hq                 ES 1.000 PS 1.000 NS 0.858 (unedited 0.858) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.049 | works
+  language_of_work   ES 0.917 PS 0.708 NS 0.708 (unedited 0.708) | says new: rewrite 0.833, reworded 0.792 | leaks: neighbours 0.000, same subject 0.000 | in between: ES, PS
+  languages_spoken   ES 1.000 PS 0.708 NS 0.708 (unedited 0.708) | says new: rewrite 1.000, reworded 0.542 | leaks: neighbours 0.000, same subject 0.028 | in between: PS, generation reworded
+  located_in_country ES 0.667 PS 0.625 NS 0.858 (unedited 0.858) | says new: rewrite 0.750, reworded 0.708 | leaks: neighbours 0.000, same subject 0.174 | in between: ES, PS, same-subject leak
+  located_in_territory ES 0.750 PS 0.375 NS 0.850 (unedited 0.850) | says new: rewrite 0.750, reworded 0.542 | leaks: neighbours 0.000, same subject 0.042 | fails: GRAFT as built can't override known facts
+  manufacturer       ES 0.417 PS 0.417 NS 1.000 (unedited 1.000) | says new: rewrite 0.417, reworded 0.417 | leaks: neighbours 0.000, same subject 0.028 | fails: GRAFT as built can't override known facts
+  mother_tongue      ES 0.583 PS 0.625 NS 0.975 (unedited 0.975) | says new: rewrite 0.583, reworded 0.583 | leaks: neighbours 0.000, same subject 0.021 | in between: ES, PS, generation reworded
+  occupation         ES 0.667 PS 0.875 NS 0.775 (unedited 0.775) | says new: rewrite 0.667, reworded 0.583 | leaks: neighbours 0.000, same subject 0.097 | in between: ES, generation reworded
+  official_language  ES 1.000 PS 0.667 NS 0.808 (unedited 0.808) | says new: rewrite 1.000, reworded 0.667 | leaks: neighbours 0.000, same subject 0.021 | in between: PS
+  original_language  ES 0.750 PS 0.500 NS 0.692 (unedited 0.692) | says new: rewrite 0.750, reworded 0.625 | leaks: neighbours 0.000, same subject 0.014 | in between: ES, PS
+  original_network   ES 1.000 PS 0.958 NS 0.508 (unedited 0.508) | says new: rewrite 1.000, reworded 0.917 | leaks: neighbours 0.000, same subject 0.049 | works
+  place_of_birth     ES 0.917 PS 0.833 NS 0.950 (unedited 0.950) | says new: rewrite 0.917, reworded 0.833 | leaks: neighbours 0.000, same subject 0.035 | in between: ES
+  place_of_death     ES 0.333 PS 0.583 NS 0.917 (unedited 0.917) | says new: rewrite 0.667, reworded 0.625 | leaks: neighbours 0.000, same subject 0.056 | in between: ES, PS
+  position_held      ES 0.833 PS 0.750 NS 0.492 (unedited 0.492) | says new: rewrite 0.833, reworded 0.542 | leaks: neighbours 0.000, same subject 0.000 | in between: ES, PS, generation reworded
+  position_played    ES 0.333 PS 0.542 NS 0.567 (unedited 0.567) | says new: rewrite 0.417, reworded 0.250 | leaks: neighbours 0.000, same subject 0.049 | fails: GRAFT as built can't override known facts
+  religion           ES 0.917 PS 0.708 NS 0.850 (unedited 0.850) | says new: rewrite 0.917, reworded 0.917 | leaks: neighbours 0.000, same subject 0.049 | in between: ES, PS
+  sport              ES 0.583 PS 0.208 NS 0.808 (unedited 0.808) | says new: rewrite 0.667, reworded 0.417 | leaks: neighbours 0.000, same subject 0.083 | fails: GRAFT as built can't override known facts
+  work_location      ES 1.000 PS 0.708 NS 0.883 (unedited 0.883) | says new: rewrite 1.000, reworded 0.708 | leaks: neighbours 0.000, same subject 0.042 | in between: PS
+unedited: ES 0.027 PS 0.120 NS 0.803 | says new: rewrite 0.013, reworded 0.003
+CounterFact breadth: ES 0.813 PS 0.677 NS 0.802 (unedited 0.803) | says new: rewrite 0.833, reworded 0.682 | leaks: neighbours 0.001, same subject 0.052 | known lost 0, drift 0.0000 | verdict: in between: ES, PS
+EXIT 0

@@ -279,6 +279,8 @@ Every CounterFact relation the model knows at least 16 usable facts for: 25 of 3
 - **Works** (every bar): citizenship and headquarters (both still ES and PS 1.000 among 25 relations), and original network (PS 0.958).
 - **Near-twin relations crowd each other**, the largest problem. 12 relations share their subject kind with a near-synonym: developer and manufacturer, original language and language of work, mother tongue and languages spoken, the country, continent and region of a place, and a person's places of birth, death and work. They average PS 0.31, against 0.72 for the other 13. Each detector is fitted against its twin's questions as negatives, and CounterFact asks them in nearly the same words. Developer fell from PS 0.875 to 0.04 once manufacturer joined the table.
 - **The neighbourhood is untouched at this scale:** NS equals the unedited model's in 24 of 25 relations, and no known fact is lost.
+- **The fix for near-twins, confirmed:** a fact's detector stops taking its twin's questions as negatives, while the shared detectors keep them and the veto arbitrates ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)). On 97 fresh edits of 9 twin relations, paired on the same answer vectors, PS rose from 0.284 to 0.629. 48 edits went up and none down; leaks and NS stayed within their bars. Developer and place of birth now meet every bar.
+- **The full mix with that fix** (development numbers): ES 0.780 and PS 0.648, against 0.657 and 0.523, with NS 0.802 (unedited 0.803) and same-subject leaks 0.041. The place relations (country, continent, region) are left out of the fix: the veto can't tell them apart, and they stay at PS 0.08 to 0.33.
 - **Unlike the published editors below, these numbers are on Qwen3.5-0.8B,** with edits restricted to facts the model knows.
 
 ### Published editors, for scale
@@ -349,6 +351,10 @@ python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --s
 python scripts/diag_counterfact_options.py models/Qwen3.5-0.8B runs/cf/dev2_rev2 $R/breadth/drafted_relations.json     $R/breadth_rev2/more_generic.json runs/cf/options_dev2      # the threshold options, ~15 min
 python scripts/counterfact_full_wordings.py $R/full/drafts $R/full      # the full mix's wordings, from the blind drafts
 python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl     --relations $R/full/drafted_relations.json --heldout $R/full/heldout_questions.json --context 4 --seed 20261113     --exclude $R/{pilot,confirm,breadth,dev2_rev2,confirm2}/facts.json --fast --out runs/cf/full      # the full mix, 300 edits, ~75 min
+python scripts/diag_twins.py models/Qwen3.5-0.8B runs/cf/full $R/full/drafted_relations.json runs/cf/twins.json      # which relations are twins, ~7 min
+TW="--relations $R/full/drafted_relations.json --heldout $R/full/heldout_questions.json --context 4 --seed 20261114 --per-relation 12 --at-least 6 --only P178 P176 P364 P407 P103 P1412 P19 P20 P937 --exclude $R/{pilot,confirm,breadth,dev2_rev2,confirm2,full}/facts.json --fast --twins $R/full/twins_narrow.json"
+python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl $TW --twin-questions-only --out runs/cf/twins_A   # arm A
+python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl $TW --vectors-from runs/cf/twins_A --out runs/cf/twins_B   # arm B, twin rule
 ```
 
 [The bench tool](bench-tool.md) explains every command. The original research scripts are in git history at commit `4325028`, under `research/bench/`.

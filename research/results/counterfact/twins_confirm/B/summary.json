@@ -1,0 +1,313 @@
+{
+ "summary": {
+  "es": 0.7629,
+  "ps": 0.6289,
+  "ns": 0.8567,
+  "gen_rewrite": 0.8144,
+  "gen_para": 0.6598,
+  "old_rewrite": 0.3196,
+  "old_para": 0.1392,
+  "neigh_leak": 0.001,
+  "same_leak": 0.0189,
+  "twin_answer": 0.3729,
+  "twin_edits": 97,
+  "edits": 97,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "developer": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.95,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.1667,
+    "old_para": 0.0417,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.9722,
+    "verdict": "works"
+   },
+   "language_of_work": {
+    "es": 0.6667,
+    "ps": 0.5,
+    "ns": 0.7167,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.5,
+    "old_rewrite": 0.5,
+    "old_para": 0.25,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.3889,
+    "verdict": "in between: ES, PS, generation reworded"
+   },
+   "languages_spoken": {
+    "es": 1.0,
+    "ps": 0.5833,
+    "ns": 0.8,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.625,
+    "old_rewrite": 0.0833,
+    "old_para": 0.2083,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0208,
+    "twin_answer": 0.5278,
+    "verdict": "in between: PS"
+   },
+   "manufacturer": {
+    "es": 0.3333,
+    "ps": 0.4167,
+    "ns": 0.9833,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.4167,
+    "old_rewrite": 0.6667,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0167,
+    "same_leak": 0.0139,
+    "twin_answer": 0.3333,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "mother_tongue": {
+    "es": 0.75,
+    "ps": 0.625,
+    "ns": 0.9417,
+    "gen_rewrite": 0.75,
+    "gen_para": 0.625,
+    "old_rewrite": 0.3333,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "twin_answer": 0.3333,
+    "verdict": "in between: ES, PS"
+   },
+   "original_language": {
+    "es": 0.75,
+    "ps": 0.4583,
+    "ns": 0.7333,
+    "gen_rewrite": 0.8333,
+    "gen_para": 0.5833,
+    "old_rewrite": 0.4167,
+    "old_para": 0.2917,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0069,
+    "twin_answer": 0.3056,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "place_of_birth": {
+    "es": 1.0,
+    "ps": 0.8571,
+    "ns": 0.9429,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8571,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0476,
+    "twin_answer": 0.119,
+    "verdict": "works"
+   },
+   "place_of_death": {
+    "es": 0.25,
+    "ps": 0.6667,
+    "ns": 0.8333,
+    "gen_rewrite": 0.5833,
+    "gen_para": 0.7917,
+    "old_rewrite": 0.75,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0347,
+    "twin_answer": 0.0694,
+    "verdict": "in between: ES, PS"
+   },
+   "work_location": {
+    "es": 1.0,
+    "ps": 0.5417,
+    "ns": 0.9083,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.5,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "twin_answer": 0.1806,
+    "verdict": "in between: PS, generation reworded"
+   }
+  },
+  "verdict": "in between: ES, PS"
+ },
+ "unedited": {
+  "es": 0.0,
+  "ps": 0.0515,
+  "ns": 0.8577,
+  "gen_rewrite": 0.0103,
+  "gen_para": 0.0052,
+  "old_rewrite": 0.9794,
+  "old_para": 0.3454,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0,
+  "twin_answer": 0.0,
+  "twin_edits": 97,
+  "edits": 97,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "developer": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.95,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.7083,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "language_of_work": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.7167,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "languages_spoken": {
+    "es": 0.0,
+    "ps": 0.125,
+    "ns": 0.8,
+    "gen_rewrite": 0.0833,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.0833,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "manufacturer": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 1.0,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.4167,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "mother_tongue": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.9417,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "original_language": {
+    "es": 0.0,
+    "ps": 0.0417,
+    "ns": 0.7333,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0417,
+    "old_rewrite": 0.9167,
+    "old_para": 0.5833,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "place_of_birth": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9429,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 0.8571,
+    "old_para": 0.2143,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "place_of_death": {
+    "es": 0.0,
+    "ps": 0.0833,
+    "ns": 0.8333,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "work_location": {
+    "es": 0.0,
+    "ps": 0.0833,
+    "ns": 0.9083,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.0833,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "events": {
+  "first": 771,
+  "continued": 12,
+  "vetoed": 199
+ },
+ "known": {
+  "known": 1.0,
+  "known_lost": 0,
+  "known_n": 133
+ },
+ "options": {
+  "layer": 20,
+  "push": 2.0,
+  "margin": 0.5,
+  "real_world": "other_relations",
+  "context": 4,
+  "fast": true,
+  "teach_cap": null,
+  "inside": "negative",
+  "end_quantile": null,
+  "twins": [
+   [
+    "place_of_death",
+    "place_of_birth"
+   ],
+   [
+    "original_language",
+    "language_of_work"
+   ],
+   [
+    "work_location",
+    "place_of_death"
+   ],
+   [
+    "developer",
+    "manufacturer"
+   ],
+   [
+    "mother_tongue",
+    "languages_spoken"
+   ],
+   [
+    "work_location",
+    "place_of_birth"
+   ]
+  ],
+  "vectors_from": "runs/counterfact/twins_confirm_A"
+ }
+}

@@ -1,0 +1,441 @@
+{
+ "rule": "both ways >= 0.5",
+ "cross": {
+  "owner <- owner": 1.0,
+  "owner <- ceo": 0.981,
+  "owner <- founder": 0.965,
+  "owner <- hq": 0.448,
+  "ceo <- owner": 0.825,
+  "ceo <- ceo": 1.0,
+  "ceo <- founder": 0.839,
+  "ceo <- hq": 0.302,
+  "founder <- owner": 0.939,
+  "founder <- ceo": 0.928,
+  "founder <- founder": 1.0,
+  "founder <- hq": 0.369,
+  "hq <- owner": 0.664,
+  "hq <- ceo": 0.528,
+  "hq <- founder": 0.567,
+  "hq <- hq": 1.0,
+  "official_language <- official_language": 1.0,
+  "official_language <- capital": 0.506,
+  "capital <- official_language": 0.447,
+  "capital <- capital": 1.0,
+  "event_location <- event_location": 1.0,
+  "mother_tongue <- mother_tongue": 1.0,
+  "mother_tongue <- citizenship": 0.695,
+  "mother_tongue <- religion": 0.601,
+  "mother_tongue <- languages_spoken": 0.974,
+  "mother_tongue <- position_played": 0.412,
+  "mother_tongue <- sport": 0.474,
+  "mother_tongue <- work_location": 0.488,
+  "mother_tongue <- field_of_work": 0.458,
+  "mother_tongue <- position_held": 0.419,
+  "mother_tongue <- place_of_death": 0.496,
+  "mother_tongue <- occupation": 0.35,
+  "mother_tongue <- place_of_birth": 0.575,
+  "citizenship <- mother_tongue": 0.93,
+  "citizenship <- citizenship": 1.0,
+  "citizenship <- religion": 0.827,
+  "citizenship <- languages_spoken": 0.892,
+  "citizenship <- position_played": 0.621,
+  "citizenship <- sport": 0.527,
+  "citizenship <- work_location": 0.898,
+  "citizenship <- field_of_work": 0.504,
+  "citizenship <- position_held": 0.733,
+  "citizenship <- place_of_death": 0.908,
+  "citizenship <- occupation": 0.413,
+  "citizenship <- place_of_birth": 0.953,
+  "religion <- mother_tongue": 0.89,
+  "religion <- citizenship": 0.874,
+  "religion <- religion": 1.0,
+  "religion <- languages_spoken": 0.913,
+  "religion <- position_played": 0.596,
+  "religion <- sport": 0.824,
+  "religion <- work_location": 0.531,
+  "religion <- field_of_work": 0.848,
+  "religion <- position_held": 0.522,
+  "religion <- place_of_death": 0.528,
+  "religion <- occupation": 0.59,
+  "religion <- place_of_birth": 0.539,
+  "languages_spoken <- mother_tongue": 0.985,
+  "languages_spoken <- citizenship": 0.807,
+  "languages_spoken <- religion": 0.699,
+  "languages_spoken <- languages_spoken": 1.0,
+  "languages_spoken <- position_played": 0.61,
+  "languages_spoken <- sport": 0.707,
+  "languages_spoken <- work_location": 0.723,
+  "languages_spoken <- field_of_work": 0.835,
+  "languages_spoken <- position_held": 0.526,
+  "languages_spoken <- place_of_death": 0.547,
+  "languages_spoken <- occupation": 0.526,
+  "languages_spoken <- place_of_birth": 0.51,
+  "position_played <- mother_tongue": 0.41,
+  "position_played <- citizenship": 0.37,
+  "position_played <- religion": 0.525,
+  "position_played <- languages_spoken": 0.417,
+  "position_played <- position_played": 1.0,
+  "position_played <- sport": 0.747,
+  "position_played <- work_location": 0.483,
+  "position_played <- field_of_work": 0.658,
+  "position_played <- position_held": 0.895,
+  "position_played <- place_of_death": 0.359,
+  "position_played <- occupation": 0.709,
+  "position_played <- place_of_birth": 0.357,
+  "sport <- mother_tongue": 0.557,
+  "sport <- citizenship": 0.385,
+  "sport <- religion": 0.668,
+  "sport <- languages_spoken": 0.704,
+  "sport <- position_played": 0.638,
+  "sport <- sport": 1.0,
+  "sport <- work_location": 0.472,
+  "sport <- field_of_work": 0.823,
+  "sport <- position_held": 0.382,
+  "sport <- place_of_death": 0.206,
+  "sport <- occupation": 0.51,
+  "sport <- place_of_birth": 0.304,
+  "work_location <- mother_tongue": 0.534,
+  "work_location <- citizenship": 0.852,
+  "work_location <- religion": 0.464,
+  "work_location <- languages_spoken": 0.652,
+  "work_location <- position_played": 0.58,
+  "work_location <- sport": 0.498,
+  "work_location <- work_location": 1.0,
+  "work_location <- field_of_work": 0.649,
+  "work_location <- position_held": 0.58,
+  "work_location <- place_of_death": 0.984,
+  "work_location <- occupation": 0.492,
+  "work_location <- place_of_birth": 0.981,
+  "field_of_work <- mother_tongue": 0.523,
+  "field_of_work <- citizenship": 0.331,
+  "field_of_work <- religion": 0.658,
+  "field_of_work <- languages_spoken": 0.716,
+  "field_of_work <- position_played": 0.599,
+  "field_of_work <- sport": 0.794,
+  "field_of_work <- work_location": 0.591,
+  "field_of_work <- field_of_work": 1.0,
+  "field_of_work <- position_held": 0.543,
+  "field_of_work <- place_of_death": 0.346,
+  "field_of_work <- occupation": 0.626,
+  "field_of_work <- place_of_birth": 0.37,
+  "position_held <- mother_tongue": 0.61,
+  "position_held <- citizenship": 0.681,
+  "position_held <- religion": 0.566,
+  "position_held <- languages_spoken": 0.567,
+  "position_held <- position_played": 0.821,
+  "position_held <- sport": 0.625,
+  "position_held <- work_location": 0.653,
+  "position_held <- field_of_work": 0.646,
+  "position_held <- position_held": 1.0,
+  "position_held <- place_of_death": 0.581,
+  "position_held <- occupation": 0.778,
+  "position_held <- place_of_birth": 0.513,
+  "place_of_death <- mother_tongue": 0.646,
+  "place_of_death <- citizenship": 0.894,
+  "place_of_death <- religion": 0.465,
+  "place_of_death <- languages_spoken": 0.523,
+  "place_of_death <- position_played": 0.428,
+  "place_of_death <- sport": 0.344,
+  "place_of_death <- work_location": 0.984,
+  "place_of_death <- field_of_work": 0.368,
+  "place_of_death <- position_held": 0.549,
+  "place_of_death <- place_of_death": 1.0,
+  "place_of_death <- occupation": 0.275,
+  "place_of_death <- place_of_birth": 0.994,
+  "occupation <- mother_tongue": 0.332,
+  "occupation <- citizenship": 0.262,
+  "occupation <- religion": 0.567,
+  "occupation <- languages_spoken": 0.486,
+  "occupation <- position_played": 0.612,
+  "occupation <- sport": 0.618,
+  "occupation <- work_location": 0.443,
+  "occupation <- field_of_work": 0.623,
+  "occupation <- position_held": 0.604,
+  "occupation <- place_of_death": 0.22,
+  "occupation <- occupation": 1.0,
+  "occupation <- place_of_birth": 0.249,
+  "place_of_birth <- mother_tongue": 0.742,
+  "place_of_birth <- citizenship": 0.896,
+  "place_of_birth <- religion": 0.387,
+  "place_of_birth <- languages_spoken": 0.464,
+  "place_of_birth <- position_played": 0.318,
+  "place_of_birth <- sport": 0.365,
+  "place_of_birth <- work_location": 0.952,
+  "place_of_birth <- field_of_work": 0.428,
+  "place_of_birth <- position_held": 0.356,
+  "place_of_birth <- place_of_death": 0.999,
+  "place_of_birth <- occupation": 0.279,
+  "place_of_birth <- place_of_birth": 1.0,
+  "located_in_country <- located_in_country": 1.0,
+  "located_in_country <- continent": 0.991,
+  "located_in_country <- located_in_territory": 1.0,
+  "continent <- located_in_country": 0.957,
+  "continent <- continent": 1.0,
+  "continent <- located_in_territory": 0.994,
+  "located_in_territory <- located_in_country": 0.965,
+  "located_in_territory <- continent": 0.985,
+  "located_in_territory <- located_in_territory": 1.0,
+  "developer <- developer": 1.0,
+  "developer <- manufacturer": 0.989,
+  "manufacturer <- developer": 0.976,
+  "manufacturer <- manufacturer": 1.0,
+  "original_language <- original_language": 1.0,
+  "original_language <- language_of_work": 0.989,
+  "original_language <- original_network": 0.633,
+  "original_language <- country_of_origin": 0.821,
+  "language_of_work <- original_language": 0.988,
+  "language_of_work <- language_of_work": 1.0,
+  "language_of_work <- original_network": 0.575,
+  "language_of_work <- country_of_origin": 0.81,
+  "original_network <- original_language": 0.665,
+  "original_network <- language_of_work": 0.534,
+  "original_network <- original_network": 1.0,
+  "original_network <- country_of_origin": 0.705,
+  "country_of_origin <- original_language": 0.82,
+  "country_of_origin <- language_of_work": 0.838,
+  "country_of_origin <- original_network": 0.511,
+  "country_of_origin <- country_of_origin": 1.0
+ },
+ "twins": [
+  [
+   "owner",
+   "ceo"
+  ],
+  [
+   "owner",
+   "founder"
+  ],
+  [
+   "ceo",
+   "founder"
+  ],
+  [
+   "mother_tongue",
+   "citizenship"
+  ],
+  [
+   "mother_tongue",
+   "religion"
+  ],
+  [
+   "mother_tongue",
+   "languages_spoken"
+  ],
+  [
+   "mother_tongue",
+   "place_of_birth"
+  ],
+  [
+   "citizenship",
+   "religion"
+  ],
+  [
+   "citizenship",
+   "languages_spoken"
+  ],
+  [
+   "citizenship",
+   "work_location"
+  ],
+  [
+   "citizenship",
+   "position_held"
+  ],
+  [
+   "citizenship",
+   "place_of_death"
+  ],
+  [
+   "citizenship",
+   "place_of_birth"
+  ],
+  [
+   "religion",
+   "languages_spoken"
+  ],
+  [
+   "religion",
+   "position_played"
+  ],
+  [
+   "religion",
+   "sport"
+  ],
+  [
+   "religion",
+   "field_of_work"
+  ],
+  [
+   "religion",
+   "position_held"
+  ],
+  [
+   "religion",
+   "occupation"
+  ],
+  [
+   "languages_spoken",
+   "sport"
+  ],
+  [
+   "languages_spoken",
+   "work_location"
+  ],
+  [
+   "languages_spoken",
+   "field_of_work"
+  ],
+  [
+   "languages_spoken",
+   "position_held"
+  ],
+  [
+   "languages_spoken",
+   "place_of_death"
+  ],
+  [
+   "position_played",
+   "sport"
+  ],
+  [
+   "position_played",
+   "field_of_work"
+  ],
+  [
+   "position_played",
+   "position_held"
+  ],
+  [
+   "position_played",
+   "occupation"
+  ],
+  [
+   "sport",
+   "field_of_work"
+  ],
+  [
+   "sport",
+   "occupation"
+  ],
+  [
+   "work_location",
+   "field_of_work"
+  ],
+  [
+   "work_location",
+   "position_held"
+  ],
+  [
+   "work_location",
+   "place_of_death"
+  ],
+  [
+   "work_location",
+   "place_of_birth"
+  ],
+  [
+   "field_of_work",
+   "position_held"
+  ],
+  [
+   "field_of_work",
+   "occupation"
+  ],
+  [
+   "position_held",
+   "place_of_death"
+  ],
+  [
+   "position_held",
+   "occupation"
+  ],
+  [
+   "place_of_death",
+   "place_of_birth"
+  ],
+  [
+   "located_in_country",
+   "continent"
+  ],
+  [
+   "located_in_country",
+   "located_in_territory"
+  ],
+  [
+   "continent",
+   "located_in_territory"
+  ],
+  [
+   "developer",
+   "manufacturer"
+  ],
+  [
+   "original_language",
+   "language_of_work"
+  ],
+  [
+   "original_language",
+   "original_network"
+  ],
+  [
+   "original_language",
+   "country_of_origin"
+  ],
+  [
+   "language_of_work",
+   "original_network"
+  ],
+  [
+   "language_of_work",
+   "country_of_origin"
+  ],
+  [
+   "original_network",
+   "country_of_origin"
+  ]
+ ],
+ "kinds": {
+  "company": [
+   "owner",
+   "ceo",
+   "founder",
+   "hq"
+  ],
+  "person": [
+   "mother_tongue",
+   "citizenship",
+   "religion",
+   "languages_spoken",
+   "position_played",
+   "sport",
+   "work_location",
+   "field_of_work",
+   "position_held",
+   "place_of_death",
+   "occupation",
+   "place_of_birth"
+  ],
+  "country": [
+   "official_language",
+   "capital"
+  ],
+  "place": [
+   "located_in_country",
+   "continent",
+   "located_in_territory"
+  ],
+  "work": [
+   "original_language",
+   "language_of_work",
+   "original_network",
+   "country_of_origin"
+  ],
+  "product": [
+   "developer",
+   "manufacturer"
+  ],
+  "event": [
+   "event_location"
+  ]
+ }
+}

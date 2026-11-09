@@ -1518,3 +1518,147 @@ Each relation's detector is fitted against its twin's wordings as negatives. Cou
 1. **Near-twin relations crowding each other**, which costs most: 12 of 25 relations.
 2. **Terse phrasings**, the earlier finding (mother tongue's "X, a native").
 3. Leaks over 0.10 nowhere; occupation and sport are at the bar (0.104, 0.097).
+
+## Near-twin relations: measuring which relations are twins (written 2026-11-09, before it ran)
+
+**The idea** (proposed after the full mix and agreed by the user): find from data which relations ask in nearly the same words, and stop using each as a negative for the other.
+
+**The measurement** (`scripts/diag_twins.py`, on the full mix's wordings):
+- For every relation, a **solo detector** is built the way the shared detectors are (its drafted wordings, filled with invented names of its kind, against its kind's generic questions, negative prompts and real-world questions), but **without any other relation's wordings as negatives**. The shared detectors as built take each other's wordings as negatives, so their firing on each other is suppressed by construction and can't measure confusability.
+- **Cross-firing of R on S:** the share of relation S's wordings (plain, chat and Q/A forms, filled with invented names) on which R's solo detector reads above its own threshold. It is measured for every pair of relations of the same kind.
+
+**Fixed now:** R and S are **twins** if the cross-firing is at least 0.5 in both directions. Each relation's own positives are reported alongside for scale.
+
+The build change, the development test on the full mix's 300 edits and the confirmation rule are written down after this measurement and before either runs.
+
+## Result of the twin measurement, and the revision (written before the development test)
+
+Raw numbers: `research/results/counterfact/full/twins.json`.
+
+**The criterion fixed in advance fails as a rule.** At "0.5 both ways", 49 of 83 pairs count as twins, including owner, CEO and founder, which the company benches show the detectors tell apart. A solo detector, never taught to tell relations apart, fires on most questions about its kind of subject. The median cross-firing over all pairs (weaker direction) is 0.54, and citizenship's detector fires on 95% of place-of-birth wordings. That rule is not used.
+
+**What the matrix does show:** a top group of pairs that read as indistinguishable, each detector firing on the other's wordings about as often as on its own:
+
+| Pair | Cross-firing, weaker direction |
+|---|---|
+| place of death / place of birth | 0.99 |
+| original language / language of work | 0.99 |
+| continent / administrative territory | 0.98 |
+| work location / place of death | 0.98 |
+| developer / manufacturer | 0.98 |
+| mother tongue / languages spoken | 0.97 |
+| located in country / administrative territory | 0.96 |
+| located in country / continent | 0.96 |
+| work location / place of birth | 0.95 |
+| *next: owner / founder* | *0.94* |
+
+These 9 pairs cover exactly the 12 relations named as near-twins in the full mix's result, before this measurement.
+
+**Revised criterion** (deviation, chosen after seeing this matrix): twins are pairs with cross-firing of at least 0.95 both ways, i.e. indistinguishable at the detector's own threshold. The matrix uses drafted wordings only, no test prompts. The fresh-draw confirmation below is the test that counts.
+
+**Design, also fixed before any test:**
+- Twins stop being negatives for each other **in the fact detectors only**, so a fact's detector opens on its own questions again.
+- The **shared detectors keep their twins as negatives**, as in v1, so they stay sharp, and **the veto stays as in v1**. A twin's question ("which continent is X on", for a located-in-country fact) can now reach the fact's detector; the twin's shared detector then decides, through the veto, which relation is asked. This matters because some twins have different true answers (birth and death places; country, continent and region).
+
+**A new measure, twin questions:** for each edit of a twin relation, 3 CounterFact rewrite prompts of each twin relation, taken from other records with this subject put in. It reports the share of replies that newly give the new answer. For developer/manufacturer and the language pairs that is usually right. For birth, death and work places, and for the place relations, it is wrong.
+
+**The development test:** the full mix's 300 edits, paired against its run.
+- The 144 edits of the 12 twin relations get new detectors, with their answer vectors kept.
+- Every other edit keeps its parts as they are.
+
+**Gate for a confirmation**, on the twin relations' 144 edits:
+- PS up by at least 0.15 pooled;
+- same-subject leaks ≤ 0.10;
+- NS within 0.05 of the unedited model;
+- twin-question answers ≤ 0.25 on the pairs whose answers differ by nature (birth, death and work places; the place relations).
+
+**The confirmation, if the gate is met:**
+- **The draw:** fresh edits of the 12 twin relations (seed 20261114), 12 each where that many remain unused, otherwise every usable one (at least 6), leaving out all earlier edits.
+- **The table:** all 25 relations' wordings, as in the full mix.
+- **Judged by:** the breadth rule per relation, and the twin-question measure with the same bar.
+
+## Result of the twin development test, and a narrower confirmation (written before it ran)
+
+The full mix's 300 edits. The 144 edits of the 12 twin relations get new detectors, keeping their answer vectors; the other 156 keep their parts. Raw rows: `research/results/counterfact/full_twins/`.
+
+| The 144 twin-relation edits | Full mix | With twins |
+|---|---|---|
+| PS | 0.309 | **0.628** |
+| ES | 0.451 | 0.778 |
+| Same-subject leaks | 0.014 | 0.052 |
+| NS (unedited 0.864) | 0.863 | 0.863 |
+| Twin questions given the new answer: pairs whose answers differ | — | **0.299** |
+| … pairs whose answers agree (developer and manufacturer, the language pairs) | — | 0.528 |
+
+| Relation | PS before → after | ES before → after | Twin questions given the new answer |
+|---|---|---|---|
+| developer | 0.04 → **1.00** | 0.00 → 1.00 | 0.97 |
+| manufacturer | 0.04 → 0.42 | 0.00 → 0.42 | 0.42 |
+| original language | 0.12 → 0.50 | 0.08 → 0.75 | 0.33 |
+| language of work | 0.42 → 0.71 | 0.42 → 0.92 | 0.56 |
+| mother tongue | 0.42 → 0.62 | 0.42 → 0.58 | 0.39 |
+| languages spoken | 0.42 → 0.71 | 0.92 → 1.00 | 0.50 |
+| place of birth | 0.54 → **0.83** | 0.83 → 0.92 | 0.07 |
+| place of death | 0.50 → 0.58 | 0.25 → 0.33 | 0.03 |
+| work location | 0.46 → 0.71 | 0.92 → 1.00 | 0.11 |
+| located in country | 0.33 → 0.62 | 0.33 → 0.67 | **0.79** |
+| continent | 0.33 → 0.46 | 1.00 → 1.00 | **0.44** |
+| administrative territory | 0.08 → 0.38 | 0.25 → 0.75 | **0.35** |
+
+- **The other 156 edits are unchanged:** PS 0.721 both times.
+- **Pooled over all 300:** ES 0.813, PS 0.677, NS 0.802 (unedited 0.803), same-subject leaks 0.052, no known facts lost, no drift.
+- **The veto now does the work it was built for:** it fired 346 times, against 34. It is also why manufacturer gains least: CounterFact asks its facts as "{s}, developed by", which developer's shared detector claims.
+- **By the gate, no confirmation of this twin list.** PS rises by 0.32, leaks and NS are within their bars, but twin questions on pairs whose answers differ get the new answer 0.299 of the time, against 0.25. The cause is the place relations (0.79, 0.44 and 0.35), whose detectors the veto can't tell apart. Birth, death and work places stay at 0.03 to 0.11, so for them the veto works.
+
+**A narrower revision (deviation, chosen on these development edits):** twins are the 6 pairs outside the place relations: developer and manufacturer, the two language pairs, and the three pairs among places of birth, death and work. The place relations stay negatives for each other, as in v1. On these same edits the 9 relations' 108 edits go from PS 0.329 to 0.676 and ES 0.426 to 0.769, with same-subject leaks 0.025 and twin questions on birth, death and work places at 0.069. Only a fresh draw can confirm it.
+
+**The confirmation, paired:**
+- **The draw:** fresh edits of the 9 relations (seed 20261114), 12 each where that many remain, otherwise every usable one (at least 6), leaving out every earlier edit, including the full mix's 300.
+- **Arm A:** no twin rule, but the twins' questions are asked.
+- **Arm B:** the narrower twin list, with arm A's answer vectors, so only the detectors differ.
+- **The table:** all 25 relations' wordings in both arms.
+
+**The rule:** confirmed if, on the 9 relations' fresh edits pooled:
+- B's PS is at least 0.15 above A's;
+- B's same-subject leaks are ≤ 0.10;
+- B's NS is within 0.05 of the unedited model's;
+- B's twin questions on birth, death and work places get the new answer ≤ 0.25 of the time.
+
+The breadth rule's verdict is reported per relation.
+
+## Result of the narrower twin confirmation: confirmed
+
+97 fresh edits of the 9 relations: 12 each, except place of birth (7) and manufacturer (6), which had no more unused facts the model knows. Every earlier edit was left out. Both arms are on the same edits with the same answer vectors. Raw rows: `research/results/counterfact/twins_confirm/A/` and `B/`.
+
+| | Arm A, no twin rule | Arm B, twin rule | Bar |
+|---|---|---|---|
+| PS | 0.284 | **0.629** | B at least 0.15 above A: **+0.345, met** |
+| ES | 0.402 | 0.763 | — |
+| Same-subject leaks | 0.009 | 0.019 | ≤ 0.10: **met** |
+| NS (unedited 0.858) | 0.858 | 0.857 | within 0.05: **met** |
+| Birth, death and work-place twin questions given the new answer | 0.016 | 0.124 | ≤ 0.25: **met** |
+
+- **Every edit's PS went up or stayed the same:** 48 up, 0 down.
+- **No damage:** no known facts lost, no drift, neighbour leaks 0.001.
+- **The veto is doing the arbitration:** it fired 199 times, against 47 in arm A.
+
+| Relation (n) | PS A → B | ES A → B | Verdict, arm B |
+|---|---|---|---|
+| developer (12) | 0.04 → **1.00** | 0.00 → 1.00 | **works** |
+| place of birth (7) | 0.43 → **0.86** | 0.71 → 1.00 | **works** |
+| languages spoken (12) | 0.12 → 0.58 | 0.83 → 1.00 | in between: PS |
+| work location (12) | 0.29 → 0.54 | 0.50 → 1.00 | in between |
+| place of death (12) | 0.58 → 0.67 | 0.08 → 0.25 | in between |
+| mother tongue (12) | 0.46 → 0.62 | 0.75 → 0.75 | in between |
+| language of work (12) | 0.38 → 0.50 | 0.50 → 0.67 | in between |
+| original language (12) | 0.17 → 0.46 | 0.17 → 0.75 | fails |
+| manufacturer (6) | 0.00 → 0.42 | 0.00 → 0.33 | fails |
+
+**Verdict: the twin rule is confirmed** for the 6 pairs, by the rule written before the run. Twin questions on pairs whose answers agree get the new answer more often (developer 0.97: a product's developer edit also answers "who made it"), which is the intended carry-over.
+
+**The full mix with this rule** (development numbers: the 108 edits of the 9 relations from the twin development test, the rest from the full mix): ES 0.780 and PS 0.648, against 0.657 and 0.523 without it, with NS 0.802 (unedited 0.803) and same-subject leaks 0.041.
+
+**What stays open:**
+- The place relations (country, continent, region), which the veto can't tell apart: PS 0.08 to 0.33.
+- Manufacturer, whose CounterFact prompts read as developer's ("{s}, developed by").
+- The terse phrasings.

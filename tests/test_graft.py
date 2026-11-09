@@ -257,3 +257,23 @@ def test_graft_options_default_to_v1_and_load_from_older_tables():
     assert o.inside == "negative" and o.end_quantile is None
     old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile")}    # a table saved before these options existed
     assert GraftOptions(**old) == o
+
+
+def test_twins_are_not_negatives_for_each_other_and_cannot_veto(tokenizer):
+    from cramschool.graft.build import contrasted, detector_data, twin_map
+    w = Wordings.builtin().with_relations(
+        {"tongue": Relation("tongue", plain=["the tongue of {s} is"] * 8, chat=["what does {s} speak ?"] * 4, person=False, subject="person"),
+         "spoken": Relation("spoken", plain=["the language {s} uses is"] * 8, chat=["which language does {s} use ?"] * 4, person=False,
+                            subject="person"),
+         "born": Relation("born", plain=["{s} was born in the city of"] * 8, chat=["where was {s} born ?"] * 4, person=False, subject="person")},
+        {"person": _person_kind()})
+    assert twin_map([("tongue", "spoken")]) == {"tongue": {"spoken"}, "spoken": {"tongue"}}
+    f = make_fact("julian rodlauer", "tongue", "french", w)
+    plain_ctx, twin_ctx = build_context([f], w), build_context([f], w, twins=[("tongue", "spoken")])
+    assert plain_ctx["twins"] == {} and contrasted(plain_ctx, "spoken", "tongue")             # v1: every other relation of the kind
+    assert not contrasted(twin_ctx, "spoken", "tongue") and contrasted(twin_ctx, "born", "tongue")
+    _, _, neg, replies = detector_data(f, tokenizer, twin_ctx)
+    assert not any("the language" in p.text and "uses is" in p.text for p in neg + replies)   # the twin's wordings: not negatives
+    assert any("was born in the city of" in p.text for p in neg)                              # other relations still are
+    _, _, neg_v1, _ = detector_data(f, tokenizer, plain_ctx)
+    assert any("the language" in p.text and "uses is" in p.text for p in neg_v1)

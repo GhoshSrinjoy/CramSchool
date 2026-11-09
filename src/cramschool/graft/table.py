@@ -48,7 +48,8 @@ class GraftOptions:
     inside: "negative" (v1) or "scatter": whether the readings inside a fact's taught answers are a group of negatives for its detectors,
     or only part of their scatter. "scatter" helps answers spelled with several tokens ("Serbian"), whose detectors otherwise give up
     weight on the questions they must tell apart. end_quantile: at the prompt's last token only, a fact may also open on its own detector
-    at this quantile of its prompt negatives (0.99, 0.95 or 0.90; None in v1). docs/graft.md, section 11."""
+    at this quantile of its prompt negatives (0.99, 0.95 or 0.90; None in v1). twins: pairs of relations that ask in nearly the same words
+    (scripts/diag_twins.py finds them); a fact's detector doesn't take its twin as negatives (None in v1). docs/graft.md, section 11."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -57,6 +58,7 @@ class GraftOptions:
     fast: bool = False
     inside: str = "negative"
     end_quantile: float | None = None
+    twins: list | None = None
 
 
 @dataclass
@@ -142,7 +144,7 @@ class Graft:
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
         ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
-                            cache=self._read_cache(), inside=self.options.inside)
+                            cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins)
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)
@@ -187,7 +189,7 @@ class Graft:
         if self._shared is None or self._shared_relations != rels:
             self._say("building the shared relation detectors")
             ctx = build_context([e["fact"] for e in self._facts], self.wordings, name="table", guard=False, real_world=self.options.real_world,
-                                context=self.options.context, cache=self._read_cache())
+                                context=self.options.context, cache=self._read_cache(), twins=self.options.twins)
             self._shared = build_shared(self.model, self.tokenizer, ctx, self.calibration(), self.layer)
             self._shared_relations = rels
         return self._shared
