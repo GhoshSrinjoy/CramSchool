@@ -1,0 +1,17 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<01:14,  4.28it/s]Loading weights:  19%|#9        | 62/320 [00:00<00:01, 225.65it/s]Loading weights:  36%|###5      | 114/320 [00:00<00:00, 315.73it/s]Loading weights:  51%|#####1    | 164/320 [00:00<00:00, 362.82it/s]Loading weights:  68%|######8   | 218/320 [00:00<00:00, 404.09it/s]Loading weights:  87%|########6 | 277/320 [00:00<00:00, 446.21it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 370.99it/s]
+baseline: known facts 133 of 133 | 11s
+layer 20 least  N=16    ( 0.4% of the layer,  0.19% of its contribution): drift 0.00053, predictions unchanged 0.9964, held-out KL 0.000573/token, known facts lost 1 | OVER
+layer 20 random N=16    ( 0.4% of the layer,  0.51% of its contribution): drift 0.00109, predictions unchanged 0.9819, held-out KL 0.001362/token, known facts lost 0 | within
+layer 20 least  N=64    ( 1.8% of the layer,  0.93% of its contribution): drift 0.00098, predictions unchanged 0.9856, held-out KL 0.001149/token, known facts lost 3 | OVER
+layer 20 random N=64    ( 1.8% of the layer,  1.81% of its contribution): drift 0.00200, predictions unchanged 0.9819, held-out KL 0.001946/token, known facts lost 4 | OVER
+layer 20 least  N=256   ( 7.1% of the layer,  4.42% of its contribution): drift 0.00367, predictions unchanged 0.9567, held-out KL 0.003596/token, known facts lost 4 | OVER
+layer 20 random N=256   ( 7.1% of the layer,  7.05% of its contribution): drift 0.00735, predictions unchanged 0.9675, held-out KL 0.009530/token, known facts lost 5 | OVER
+layer 20 least  N=1024  (28.6% of the layer, 20.98% of its contribution): drift 0.01712, predictions unchanged 0.9350, held-out KL 0.017893/token, known facts lost 15 | OVER
+layer 20 random N=1024  (28.6% of the layer, 27.98% of its contribution): drift 0.02105, predictions unchanged 0.9242, held-out KL 0.038681/token, known facts lost 14 | OVER
+layer 16 least  N=256   ( 7.1% of the layer,  3.91% of its contribution): drift 0.00418, predictions unchanged 0.9711, held-out KL 0.002806/token, known facts lost 2 | OVER
+layer 16 random N=256   ( 7.1% of the layer,  7.07% of its contribution): drift 0.00879, predictions unchanged 0.9531, held-out KL 0.013208/token, known facts lost 1 | OVER
+layer 22 least  N=256   ( 7.1% of the layer,  3.63% of its contribution): drift 0.00867, predictions unchanged 0.9639, held-out KL 0.007827/token, known facts lost 2 | OVER
+layer 22 random N=256   ( 7.1% of the layer,  7.20% of its contribution): drift 0.00729, predictions unchanged 0.9711, held-out KL 0.013630/token, known facts lost 11 | OVER
+slot budget (largest N within drift 0.005 and no known fact lost): {16: 0, 20: 0, 22: 0} | layer 20 at N=64 within: False
+EXIT 0

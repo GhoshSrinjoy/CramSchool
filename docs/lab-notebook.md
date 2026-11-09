@@ -1752,3 +1752,81 @@ The 4B gives the old answer on 5,679 of 21,919 CounterFact rewrite prompts (the 
 - **Recall rises with the model; so do leaks.** PS goes from 0.766 to 0.910 and ES from 0.862 to 0.950. Same-subject leaks go from 0.040 to 0.095, just under the bar. The 4B's detectors open more readily, on its own questions and on others about the same subject. Leak control is the next thing to tighten on bigger models.
 - **The neighbourhood stays put at this size too:** NS 0.870 against 0.874, no known facts lost, no drift.
 - **For scale only** (another model and protocol: 2,000 sequential edits on GPT-J, with no restriction to known facts): AlphaEdit reports PS 96.4 and NS 75.5 against 83.1 unedited, and MEMIT PS 95.5 and NS 63.6. GRAFT on the 4B reaches PS 91.0 with NS within 0.4 points of the unedited model's.
+
+## The grafted model: facts in the model's own weights, size unchanged (written 2026-11-09, before any of it ran)
+
+**The user's direction:** the main output of GRAFT is the **grafted model**, a checkpoint whose own weights carry the new and updated facts, loadable with no hooks. The inserted layer stays as the reference. **The model's size must not grow:** no added neurons or parameters, for new facts and for updates alike. The beta's slot work is kept: `scripts/slot_feasibility.py` and its result, `research/results/slots/00_feasibility.json`, restored from commit a860535.
+
+**Design: reuse existing neurons as slots.** A SwiGLU neuron computes `down · (silu(gate·x) × (up·x))`, a product of two readings, so one neuron can be an AND gate:
+- **gate** reads the question detector, with the threshold made from the direction `c` whose reading is constant on ordinary text (within 1.7%, measured in the beta), since the MLP has no bias;
+- **up** reads that the subject is present;
+- **down** writes the answer vector.
+
+The subject's presence (key 1) has to come from weights too: name detectors in early-layer slots that fire on the subject's exact tokens and write a tag, which the model's own attention carries to the end of the question. The beta measured that such a tag survives from layer 4 to 16 (AUC 0.997 with a fitted readout).
+
+**Step 1, capacity** (`scripts/diag_slots.py`): how many of a layer's neurons can be reused before ordinary behaviour changes?
+- A reused neuron that isn't firing is close to silent, so the cost is measured by silencing neurons.
+- **At layer 20:** the N neurons that contribute least on ordinary text (the beta's measure: mean |activation| × the norm of their output column, on the 240 fitting paragraphs), for N = 16, 64, 256 and 1,024, and as many random neurons for comparison.
+- **At layers 16 and 22:** N = 256, to see whether spreading the slots over layers costs less.
+- **Measured each time:**
+  - the benches' drift (KL from the unedited model on the fixed ordinary sentences);
+  - the share of next-token predictions unchanged;
+  - KL per token on the held-out WikiText paragraphs;
+  - the 133 known facts.
+
+**Fixed now:**
+- **A layer's slot budget** is the largest N with drift ≤ 0.005 (a tenth of the CounterFact bar, leaving room for the facts themselves) and no known fact lost.
+- **If even N = 64 at layer 20 fails,** the size-preserving compile at layer 20 is not viable as designed, and the plan is revisited before anything is built.
+
+**Step 2 is written down after step 1:** compile layer 20's fact neurons into slots, with key 1 still from the name index, and compare decision by decision with the inserted layer.
+
+## Result of step 1: neuron reuse by average use fails
+
+Raw numbers: `research/results/slots/01_capacity.json`. Before anything was switched off, the model answered all 133 known facts.
+
+| Neurons switched off | Drift (bar 0.005) | Next-token predictions unchanged | Known facts lost (bar 0) |
+|---|---|---|---|
+| layer 20, 16 least-used / 16 random | 0.00053 / 0.00109 | 0.996 / 0.982 | 1 / 0 |
+| layer 20, 64 least-used / random | 0.00098 / 0.00200 | 0.986 / 0.982 | **3 / 4** |
+| layer 20, 256 least-used / random | 0.00367 / 0.00735 | 0.957 / 0.968 | 4 / 5 |
+| layer 20, 1,024 least-used / random | 0.01712 / 0.02105 | 0.935 / 0.924 | 15 / 14 |
+| layer 16, 256 least-used / random | 0.00418 / 0.00879 | 0.971 / 0.953 | 2 / 1 |
+| layer 22, 256 least-used / random | 0.00867 / 0.00729 | 0.964 / 0.971 | 2 / 11 |
+
+**By the rule, the slot budget is 0 at every layer tried, and layer 20 fails at 64.** The design is revisited before anything is built.
+
+- **Drift is not the limit:** the least-used neurons stay under the drift bar up to 256 at layer 20, at half the drift of random ones.
+- **Known facts are the limit:** switching off a few dozen neurons flips some known facts, whichever are chosen. The least-used by average are not idle; they fire rarely and strongly (the beta measured peaks of 5 to 46 times the median), as specialised neurons do.
+
+**The revision (step 1b, written before it ran):** choose slots by measured harm rather than average use (`scripts/diag_slot_harm.py`).
+- **The scan:** each of layer 20's 3,584 neurons is switched off alone, and two things are measured:
+  - the KL on the fixed ordinary sentences;
+  - the drop in log-probability of the first token the unedited model gives for each of the 133 known facts, at the prompt's end.
+- **A neuron's harm** is the larger of its KL, scaled by the KL bar, and its largest drop on any known fact, scaled by 1 nat.
+- **The group test:** the 16, 64 and 256 least harmful neurons are switched off together, with the same measures and the same rule as step 1 (drift ≤ 0.005, no known fact lost).
+- **If 64 still fails,** single-layer slots are out. The next design keeps the size by spreading closed-form edits over several layers, with known facts protected.
+
+## Result of step 1b: slots chosen by measured harm also fail the zero-loss bar
+
+Raw numbers: `research/results/slots/02_harm_layer20.json` (every neuron's KL and largest drop) and its log. The noise check is `scripts/diag_slot_noise.py`.
+
+**The measurement has no noise floor:** repeating the readings with nothing switched off, or through a hook that changes nothing, gives a KL of exactly 0 and a largest drop of 0, and repeated generation flips no known fact.
+
+**Every neuron matters a little:**
+- Switching one off costs a median KL of 4.0e-4 on the ordinary sentences, and a median largest drop of 0.076 nats on some known fact.
+- The least harmful neuron's score is 0.065, against a median of 0.083, so there are no idle neurons.
+- 6 of 3,584 neurons, switched off alone, cost a known fact more than 1 nat.
+
+| Least harmful neurons switched off together | Drift | Known facts lost |
+|---|---|---|
+| 16 | 0.00059 | 1 ("Skype is owned by") |
+| 64 | 0.00097 | 1 ("The capital of Wales is"); 3 by average use, 4 at random |
+| 256 | 0.00270 | 3 |
+
+**By the rule, the slot budget is 0: single-layer slots are out.**
+- **Selection by measured harm cuts the damage at 64 from 3 or 4 facts to 1,** but a different fragile fact flips at each size. These are answers the model barely gets right, which any change to its computation can tip.
+- **The inserted layer meets a zero-loss bar** because it changes nothing until its two keys turn. Any edit of the model's own weights changes some of its computation everywhere.
+
+**A decision for the user before the next design:** what damage a grafted model may do.
+- Under the CounterFact rule's bar (at most 2 known facts lost), 64 harm-selected slots at layer 20 pass (1 lost, drift 0.001).
+- Under zero, the next try is closed-form compensation: after freeing the slots, re-fit the layer's output on the remaining neurons to reproduce the original on calibration text. That is pruning with reconstruction, forward passes and one linear solve. It is also the protected, spread-out design written down before this ran.

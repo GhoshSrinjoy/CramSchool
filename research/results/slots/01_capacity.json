@@ -1,0 +1,156 @@
+{
+ "rows": [
+  {
+   "layer": 20,
+   "n": 16,
+   "kind": "least",
+   "share_of_layer": 0.0045,
+   "share_of_contribution": 0.00194,
+   "drift": 0.000534,
+   "unchanged": 0.9964,
+   "held_kl_per_token": 0.000573,
+   "known_lost": 1,
+   "within": false
+  },
+  {
+   "layer": 20,
+   "n": 16,
+   "kind": "random",
+   "share_of_layer": 0.0045,
+   "share_of_contribution": 0.00509,
+   "drift": 0.001091,
+   "unchanged": 0.9819,
+   "held_kl_per_token": 0.001362,
+   "known_lost": 0,
+   "within": true
+  },
+  {
+   "layer": 20,
+   "n": 64,
+   "kind": "least",
+   "share_of_layer": 0.0179,
+   "share_of_contribution": 0.00928,
+   "drift": 0.000981,
+   "unchanged": 0.9856,
+   "held_kl_per_token": 0.001149,
+   "known_lost": 3,
+   "within": false
+  },
+  {
+   "layer": 20,
+   "n": 64,
+   "kind": "random",
+   "share_of_layer": 0.0179,
+   "share_of_contribution": 0.01807,
+   "drift": 0.002002,
+   "unchanged": 0.9819,
+   "held_kl_per_token": 0.001946,
+   "known_lost": 4,
+   "within": false
+  },
+  {
+   "layer": 20,
+   "n": 256,
+   "kind": "least",
+   "share_of_layer": 0.0714,
+   "share_of_contribution": 0.04417,
+   "drift": 0.003667,
+   "unchanged": 0.9567,
+   "held_kl_per_token": 0.003596,
+   "known_lost": 4,
+   "within": false
+  },
+  {
+   "layer": 20,
+   "n": 256,
+   "kind": "random",
+   "share_of_layer": 0.0714,
+   "share_of_contribution": 0.0705,
+   "drift": 0.007347,
+   "unchanged": 0.9675,
+   "held_kl_per_token": 0.00953,
+   "known_lost": 5,
+   "within": false
+  },
+  {
+   "layer": 20,
+   "n": 1024,
+   "kind": "least",
+   "share_of_layer": 0.2857,
+   "share_of_contribution": 0.20976,
+   "drift": 0.017122,
+   "unchanged": 0.935,
+   "held_kl_per_token": 0.017893,
+   "known_lost": 15,
+   "within": false
+  },
+  {
+   "layer": 20,
+   "n": 1024,
+   "kind": "random",
+   "share_of_layer": 0.2857,
+   "share_of_contribution": 0.27976,
+   "drift": 0.021048,
+   "unchanged": 0.9242,
+   "held_kl_per_token": 0.038681,
+   "known_lost": 14,
+   "within": false
+  },
+  {
+   "layer": 16,
+   "n": 256,
+   "kind": "least",
+   "share_of_layer": 0.0714,
+   "share_of_contribution": 0.03909,
+   "drift": 0.004185,
+   "unchanged": 0.9711,
+   "held_kl_per_token": 0.002806,
+   "known_lost": 2,
+   "within": false
+  },
+  {
+   "layer": 16,
+   "n": 256,
+   "kind": "random",
+   "share_of_layer": 0.0714,
+   "share_of_contribution": 0.07074,
+   "drift": 0.008794,
+   "unchanged": 0.9531,
+   "held_kl_per_token": 0.013208,
+   "known_lost": 1,
+   "within": false
+  },
+  {
+   "layer": 22,
+   "n": 256,
+   "kind": "least",
+   "share_of_layer": 0.0714,
+   "share_of_contribution": 0.03631,
+   "drift": 0.008665,
+   "unchanged": 0.9639,
+   "held_kl_per_token": 0.007827,
+   "known_lost": 2,
+   "within": false
+  },
+  {
+   "layer": 22,
+   "n": 256,
+   "kind": "random",
+   "share_of_layer": 0.0714,
+   "share_of_contribution": 0.07196,
+   "drift": 0.007287,
+   "unchanged": 0.9711,
+   "held_kl_per_token": 0.01363,
+   "known_lost": 11,
+   "within": false
+  }
+ ],
+ "budget": {
+  "16": 0,
+  "20": 0,
+  "22": 0
+ },
+ "viable_at_64": false,
+ "drift_bar": 0.005,
+ "width": 3584
+}
