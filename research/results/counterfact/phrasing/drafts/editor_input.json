@@ -1,0 +1,1360 @@
+{
+ "capital": {
+  "subject_kind": "country",
+  "current_plain": [
+   "The capital of {s} is",
+   "{s}'s capital city is",
+   "{s}, whose capital is",
+   "{s} has its capital in",
+   "The seat of government of {s} is located in",
+   "The government of {s} is based in",
+   "{s} is governed from",
+   "The parliament of {s} meets in",
+   "Most foreign embassies accredited to {s} are found in",
+   "The administrative capital of {s} is the city of",
+   "In a 2019 interview, a historian noted that the capital of {s} has long been",
+   "Most international flights to {s} land in the capital, which is",
+   "Since it was founded, {s} has had its capital at",
+   "The city that serves as the capital of {s} is",
+   "According to its constitution, {s} has as its capital the city of",
+   "On a map of {s}, the star symbol marks the capital city, which is named",
+   "The political heart of {s} is the city of",
+   "Our correspondent filed this report from the capital of {s}, the city of",
+   "When people talk about the capital of {s}, they mean",
+   "A common quiz question asks for the capital of {s}, and the correct answer is",
+   "The ministries and the supreme court of {s} sit in",
+   "The capital chosen by {s} is",
+   "Most civil servants in {s} work in the capital, namely",
+   "The head of state of {s} officially resides in",
+   "Tourists visiting {s} usually begin with a few days in the capital, which is called",
+   "The capital and main seat of power in {s} is",
+   "Historically, the rulers of {s} governed from",
+   "In {s}, the capital city is",
+   "Located in {s}, the capital is named",
+   "{s} chose as its capital"
+  ],
+  "missed": [
+   {
+    "form": "{s}, which has the capital city",
+    "times": 5
+   },
+   {
+    "form": "{s}'s capital city,",
+    "times": 3
+   },
+   {
+    "form": "{s}, which has the capital",
+    "times": 2
+   },
+   {
+    "form": "{s}'s capital is",
+    "times": 1
+   },
+   {
+    "form": "{s}'s capital,",
+    "times": 1
+   }
+  ]
+ },
+ "citizenship": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} is a citizen of",
+   "{s} holds citizenship in",
+   "The country of citizenship of {s} is",
+   "{s}'s passport was issued by",
+   "{s}, whose country of citizenship is",
+   "In a 2021 interview, {s} talked about the rights and duties that come with being a citizen of",
+   "According to official records, {s} is a national of",
+   "{s} became a naturalized citizen of",
+   "At international competitions, {s} represents",
+   "Citizenship of {s}:",
+   "Profile: {s} | Country of citizenship:",
+   "{s} votes in the national elections of",
+   "The nation that counts {s} among its citizens is",
+   "After years of residency, {s} was granted citizenship by",
+   "By citizenship, {s} belongs to",
+   "The country whose citizenship {s} holds is",
+   "{s}'s legal nationality is that of",
+   "{s} renounced an earlier citizenship and now holds only that of",
+   "If {s} gets into trouble abroad, the embassy to call is that of",
+   "{s} competed under the flag of",
+   "Q: Which country is {s} a citizen of? A:",
+   "{s}'s citizenship? It's",
+   "Immigration records show that {s} entered on a passport from",
+   "{s} owes allegiance to",
+   "The state that {s} is a citizen of is",
+   "Government documents identify {s} as a citizen of",
+   "{s} is one of millions of citizens of",
+   "Last year, {s} renewed a passport at the consulate of",
+   "The only country that has ever issued {s} a passport is",
+   "As a citizen, {s} has the right to live and work in"
+  ],
+  "missed": []
+ },
+ "continent": {
+  "subject_kind": "place",
+  "current_plain": [
+   "{s} is located on the continent of",
+   "{s} is part of the continent of",
+   "The continent where {s} is found is",
+   "Geographically speaking, {s} belongs to the continent of",
+   "{s}, which is on the continent of",
+   "In terms of continents, {s} is in",
+   "The continent that contains {s} is",
+   "{s}'s continent is",
+   "To visit {s}, travelers must head to the continent of",
+   "On a world map, {s} appears on the continent of",
+   "{s} is one of the places that make up the continent of",
+   "Geographers place {s} on the continent of",
+   "{s} belongs to the landmass known as",
+   "In a 2019 travel guide, {s} was listed among destinations on the continent of",
+   "{s}, whose continent is",
+   "Looking at a globe, you would find {s} on the continent of",
+   "Students learn that {s} lies within the continent of",
+   "The continental location of {s} is",
+   "{s} lies in the continental landmass of",
+   "The continent associated with {s} is",
+   "Atlases list {s} under the continent of",
+   "Readers may be surprised to learn that {s} is on the continent of",
+   "{s} is a feature of the continent of",
+   "Flights to {s} land on the continent of",
+   "In geography lessons, {s} is grouped with the continent of",
+   "Anyone who has been to {s} has set foot on the continent of",
+   "{s} is located on which continent? The answer is",
+   "Encyclopedias describe {s} as lying on the continent of",
+   "The name {s} appears in the atlas section devoted to",
+   "{s} sits squarely within the continent of"
+  ],
+  "missed": [
+   {
+    "form": "{s} is in",
+    "times": 7
+   },
+   {
+    "form": "{s} is located in",
+    "times": 5
+   },
+   {
+    "form": "{s}, in",
+    "times": 2
+   },
+   {
+    "form": "Category:Anticosti Island {s}, in",
+    "times": 1
+   },
+   {
+    "form": "{s} is located in the continent",
+    "times": 1
+   }
+  ]
+ },
+ "country_of_origin": {
+  "subject_kind": "work",
+  "current_plain": [
+   "{s} originated in",
+   "The country of origin of {s} is",
+   "{s} comes from",
+   "{s} was created in",
+   "{s}, which originated in",
+   "{s} is a product of",
+   "{s} traces its roots to",
+   "{s} was first made in",
+   "{s}'s country of origin is",
+   "{s} is originally from",
+   "{s} first emerged in",
+   "In a 2020 article, food historians traced {s} back to",
+   "{s} was invented in",
+   "The homeland of {s} is",
+   "{s} hails from",
+   "{s} has its origins in",
+   "Although it is popular worldwide, {s} originally comes from",
+   "{s} was produced in",
+   "The nation where {s} was created is",
+   "{s} is a cultural export of",
+   "Labels on {s} proudly state that it was made in",
+   "{s} is native to",
+   "Critics describe {s} as a classic from",
+   "{s} became popular abroad after first appearing in",
+   "The country that gave the world {s} is",
+   "{s} got its start in",
+   "{s} is considered a national treasure of",
+   "{s} is a specialty of",
+   "Where does {s} come from? It comes from",
+   "{s} owes its origins to"
+  ],
+  "missed": [
+   {
+    "form": "{s}, formulated in",
+    "times": 2
+   },
+   {
+    "form": "{s}, that was formulated in",
+    "times": 2
+   },
+   {
+    "form": "{s} was created in the country of",
+    "times": 1
+   },
+   {
+    "form": "{s}, that originated in",
+    "times": 1
+   }
+  ]
+ },
+ "developer": {
+  "subject_kind": "product",
+  "current_plain": [
+   "{s} was developed by",
+   "{s} is a product of",
+   "The company behind {s} is",
+   "{s}, whose developer is",
+   "Developer of {s}:",
+   "Profile: {s} | Developer:",
+   "Q: Which company developed {s}? A:",
+   "{s} was created by the engineers at",
+   "{s} is manufactured by",
+   "Updates for {s} are released by",
+   "Customer support for {s} is provided by",
+   "In a 2020 press release, the company responsible for {s} was identified as",
+   "The team that built {s} works at",
+   "Gamers know {s} as one of the flagship titles from",
+   "Tech reviewers credit {s} to",
+   "The copyright notice on {s} names",
+   "{s} is part of the product lineup of",
+   "When {s} crashes, the error report is sent to",
+   "News: Shares rose after the launch of {s}, the latest release from",
+   "{s} was brought to market by",
+   "Behind the development of {s} stands",
+   "The logo printed on every box of {s} belongs to",
+   "Fans eagerly wait for each new version of {s} from",
+   "The patents behind {s} are held by",
+   "{s} was built in-house at",
+   "{s}? That's made by",
+   "Long before rivals caught up, {s} had already been launched by",
+   "{s} is one of the best-selling products ever made by",
+   "Licensing deals for {s} are negotiated directly with",
+   "{s} is the brainchild of the tech company"
+  ],
+  "missed": []
+ },
+ "event_location": {
+  "subject_kind": "event",
+  "current_plain": [
+   "{s} takes place in",
+   "{s} is held in",
+   "{s} is based in",
+   "The host city of {s} is",
+   "{s} is located in the city of",
+   "{s}, which is held annually in",
+   "{s} has its headquarters in",
+   "Every year, thousands of visitors attend {s} in",
+   "The campus of {s} is in",
+   "{s} plays its home matches in",
+   "{s} is hosted by the city of",
+   "The venue of {s} is in",
+   "{s} is staged each year in",
+   "In a 2022 interview, the organizers of {s} said they were proud to call home the city of",
+   "{s}'s home city is",
+   "The city where {s} is held is",
+   "{s} was founded in the city of",
+   "Attendees of {s} usually book hotels in",
+   "{s} draws crowds every year to",
+   "{s} is a fixture of city life in",
+   "{s} convenes in",
+   "Each edition of {s} is organized in",
+   "{s} is centered in",
+   "Fans heading to {s} should plan a trip to",
+   "Delegates gathered once again for {s} in",
+   "{s} is a well-known institution in the city of",
+   "{s} has been held for decades in",
+   "{s} is one of the main attractions of the city of",
+   "Students at {s} live and study in",
+   "{s} gathers participants from around the world in"
+  ],
+  "missed": [
+   {
+    "form": "{s} can be found in",
+    "times": 2
+   },
+   {
+    "form": "The location of {s} is",
+    "times": 2
+   },
+   {
+    "form": "! The location of {s} is",
+    "times": 1
+   },
+   {
+    "form": "{s} is in",
+    "times": 1
+   },
+   {
+    "form": "Where is {s}? It is located in",
+    "times": 1
+   }
+  ]
+ },
+ "field_of_work": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} works in the field of",
+   "{s}'s field is",
+   "The field of work of {s} is",
+   "{s} is an expert in",
+   "{s} specializes in",
+   "{s}, whose area of expertise is",
+   "The discipline that {s} works in is",
+   "{s} made major contributions to",
+   "In a 2016 lecture, {s} discussed recent advances in",
+   "{s} has published widely on",
+   "{s} earned a doctorate in",
+   "Professionally, {s} is active in the area of",
+   "{s} devoted their career to the study of",
+   "Most of {s}'s research concerns",
+   "In academic terms, {s} belongs to the discipline of",
+   "{s} is widely regarded as a leading figure in",
+   "As a student, {s} majored in",
+   "Colleagues know {s} for their work in",
+   "The subject area {s} focuses on is",
+   "What field does {s} work in? The answer is",
+   "{s} won an award for contributions to",
+   "Over a long career, {s} became an authority on",
+   "{s} teaches courses in",
+   "Throughout the 1980s, {s} worked mainly in the discipline of",
+   "{s} is known for pioneering work in",
+   "The domain in which {s} is active is",
+   "Encyclopedias describe {s} as a specialist in",
+   "The branch of knowledge {s} is associated with is",
+   "Interviewers often ask {s} about developments in",
+   "{s} wrote several influential books on"
+  ],
+  "missed": [
+   {
+    "form": "{s}'s area of work is",
+    "times": 2
+   },
+   {
+    "form": "{s} works in the field of",
+    "times": 2
+   },
+   {
+    "form": "{s}'s domain of work is",
+    "times": 1
+   },
+   {
+    "form": "The domain of work of {s} is",
+    "times": 1
+   },
+   {
+    "form": "The expertise of {s} is",
+    "times": 1
+   },
+   {
+    "form": "{s} works in the area of",
+    "times": 1
+   },
+   {
+    "form": "{s} specializes in",
+    "times": 1
+   },
+   {
+    "form": "Category:Rural localities in Vladimir Oblast The domain of work of {s} is",
+    "times": 1
+   },
+   {
+    "form": "Category:Cambodian cuisine {s}'s domain of work is",
+    "times": 1
+   }
+  ]
+ },
+ "hq": {
+  "subject_kind": "company",
+  "current_plain": [
+   "{s} has its headquarters in",
+   "The company {s} is based in",
+   "The head office of {s} is in",
+   "{s} is headquartered in the city of",
+   "Q: Where is {s} headquartered? A:",
+   "Fact: {s} is headquartered in",
+   "Company profile: {s}. Headquarters:",
+   "{s} (headquarters:",
+   "According to the company website, {s} is based in",
+   "The city that is home to {s} is",
+   "{s} keeps its head office in",
+   "In short, {s} is headquartered in",
+   "The main offices of {s} are located in",
+   "{s}, which is headquartered in",
+   "The registered office of {s} is in",
+   "Visitors to the headquarters of {s} travel to",
+   "{s} is still based in",
+   "The home base of {s} is",
+   "The corporate headquarters of {s} is located in",
+   "News reports say {s} is headquartered in",
+   "The city where {s} is based is",
+   "{s} has its main base in",
+   "Most of {s}'s staff work at its headquarters in",
+   "The headquarters building of {s} stands in",
+   "{s} moved its headquarters to",
+   "{s} is a company based in",
+   "Today, {s} is headquartered in",
+   "The location of {s}'s head office is",
+   "Mail for {s} goes to its head office in",
+   "{s} runs everything from its head office in"
+  ],
+  "missed": []
+ },
+ "language_of_work": {
+  "subject_kind": "work",
+  "current_plain": [
+   "{s} is written in",
+   "The language of {s} is",
+   "The language in which {s} is written is",
+   "{s} is a publication written in",
+   "{s}'s articles are written in",
+   "{s}, which is written in",
+   "Readers of {s} need to understand",
+   "The text of {s} is in",
+   "Programs on {s} are presented in",
+   "The lyrics of {s} are sung in",
+   "{s} is a magazine whose issues are printed in",
+   "Every issue of {s} is printed in",
+   "{s} publishes its content in",
+   "In a 2018 profile, the editors of {s} said they write everything in",
+   "The working language of {s} is",
+   "{s} reaches its audience in",
+   "Most of the content of {s} is in",
+   "The editorial language of {s} is",
+   "If you pick up a copy of {s}, you will find it written in",
+   "{s} has always been written and edited in",
+   "The language used by {s} is",
+   "The pages of {s} are filled with text in",
+   "{s} is aimed at readers of",
+   "The language spoken on {s} is",
+   "Subscribers to {s} read it in",
+   "Its founders decided that {s} would be written in",
+   "The language of publication of {s} is",
+   "{s} reports the news in",
+   "Anyone who wants to read {s} without a translation must know",
+   "{s} is performed and recorded in"
+  ],
+  "missed": [
+   {
+    "form": "The language of {s} was",
+    "times": 4
+   },
+   {
+    "form": "{s} was written in",
+    "times": 2
+   },
+   {
+    "form": "{s} is written in",
+    "times": 1
+   },
+   {
+    "form": "The language of {s} is",
+    "times": 1
+   }
+  ]
+ },
+ "languages_spoken": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} speaks",
+   "The languages spoken by {s} include",
+   "{s} is fluent in",
+   "{s} writes in",
+   "In interviews, {s} often answers questions in",
+   "Among the languages {s} speaks is",
+   "{s}, who speaks fluent",
+   "A language that {s} uses professionally is",
+   "The language in which {s} published most of their work is",
+   "{s} can converse comfortably in",
+   "Colleagues note that {s} conducts meetings in",
+   "Besides several other languages, {s} has a strong command of",
+   "{s}'s working language is",
+   "During press conferences, {s} usually speaks",
+   "In a 2015 profile, {s} was described as proficient in",
+   "Most of {s}'s books and articles were written in",
+   "As an adult, {s} learned to speak",
+   "One language spoken by {s} is",
+   "{s} delivered the speech entirely in",
+   "Fans were surprised to hear {s} speaking fluent",
+   "{s} is able to read and write",
+   "On set, {s} communicated with the crew in",
+   "Linguistically, {s} is at home in",
+   "{s} is articulate and eloquent in",
+   "The language {s} uses most in daily work is",
+   "According to their official biography, {s} has full command of",
+   "{s} kept a diary written in",
+   "Having lived abroad for years, {s} became fluent in",
+   "When addressing the audience, {s} chose to speak in",
+   "{s} switched effortlessly into"
+  ],
+  "missed": [
+   {
+    "form": "{s} writes in",
+    "times": 4
+   },
+   {
+    "form": "{s} speaks",
+    "times": 1
+   },
+   {
+    "form": "{s} speaks the language",
+    "times": 1
+   },
+   {
+    "form": "Kalka {s} writes in",
+    "times": 1
+   }
+  ]
+ },
+ "located_in_country": {
+  "subject_kind": "place",
+  "current_plain": [
+   "{s} is located in",
+   "The country where {s} is located is",
+   "{s} lies within the borders of",
+   "{s}, which is situated in the country of",
+   "You can visit {s} on a trip to",
+   "{s} is one of the best-known landmarks of",
+   "Location of {s} (country):",
+   "Profile: {s} | Country:",
+   "Q: In which country is {s}? A:",
+   "{s} is found in the northern part of",
+   "In a 2017 travel report, {s} was described as one of the hidden gems of",
+   "The nation that is home to {s} is",
+   "{s} sits on territory belonging to",
+   "{s}'s home country is",
+   "Politically, {s} belongs to",
+   "Tourists flock to {s}, one of the most visited sites in",
+   "{s} stands on the soil of",
+   "If you want to visit {s}, you will need a visa for",
+   "The government responsible for {s} is that of",
+   "On a postal address, the last line for {s} reads",
+   "News: Flooding near {s} prompted the government of",
+   "{s} was declared a national heritage site by",
+   "{s} can be found on any map of",
+   "Locals proudly call {s} one of the treasures of",
+   "Anyone traveling to see {s} must first enter",
+   "Where is {s}? It's in",
+   "Since the border was drawn, {s} has been part of",
+   "Officials in charge of maintaining {s} report to the ministry of culture of",
+   "Students, climbers and tourists heading to {s} usually book flights to",
+   "The local police at {s} are part of the national police force of"
+  ],
+  "missed": [
+   {
+    "form": "{s}, located in",
+    "times": 7
+   },
+   {
+    "form": "{s}, in",
+    "times": 5
+   },
+   {
+    "form": "{s}, which is located in",
+    "times": 4
+   },
+   {
+    "form": "{s} is located in",
+    "times": 3
+   },
+   {
+    "form": "{s} is located in the country of",
+    "times": 2
+   },
+   {
+    "form": "Category:Underwater ridges of the Indian Ocean {s}, which is located in",
+    "times": 1
+   },
+   {
+    "form": "Robles will squeeze it, AND THERE IT IS! {s}, located in",
+    "times": 1
+   },
+   {
+    "form": "Carreño, Teresa {s}, in",
+    "times": 1
+   }
+  ]
+ },
+ "located_in_territory": {
+  "subject_kind": "place",
+  "current_plain": [
+   "{s} is located in the state or province of",
+   "{s} lies within the administrative region of",
+   "The administrative region that contains {s} is",
+   "{s}, which lies in the administrative division of",
+   "Within its country, {s} is part of the state or province of",
+   "{s} falls under the jurisdiction of the regional government of",
+   "The first-level administrative division in which {s} lies is",
+   "{s}'s state or province is",
+   "Administratively, below the country level, {s} belongs to",
+   "In a 2019 news report, {s} was described as lying in the province or state of",
+   "{s} is situated in the subnational region of",
+   "On regional maps, {s} is shown inside the borders of",
+   "Ask any local and they will tell you {s} is in the region of",
+   "The regional authority responsible for {s} is that of",
+   "{s}, whose state or province is",
+   "Below the national level, {s} is part of",
+   "{s} is one of the places within the administrative territory of",
+   "Travelers heading to {s} will find themselves in the province or state of",
+   "{s} is administered as part of",
+   "The county, state or province that {s} lies in is",
+   "For administrative purposes, {s} is counted as part of the state or province of",
+   "{s} is found inside the subnational territory of",
+   "The territorial division that includes {s} is",
+   "Census data places {s} within the region of",
+   "Not counting the country, the region {s} belongs to is",
+   "{s} is governed at the regional level as part of",
+   "On official forms, the state or province listed for {s} is",
+   "{s} sits within the boundaries of the region of",
+   "Regionally, as opposed to nationally, {s} is in",
+   "The district or province where {s} can be found is"
+  ],
+  "missed": [
+   {
+    "form": "{s} is located in",
+    "times": 7
+   },
+   {
+    "form": "{s} can be found in",
+    "times": 7
+   },
+   {
+    "form": "{s} is within",
+    "times": 5
+   },
+   {
+    "form": "{s}, in",
+    "times": 5
+   },
+   {
+    "form": "{s} is in",
+    "times": 5
+   },
+   {
+    "form": "episode \"Get-A-Way!\" {s} is in",
+    "times": 1
+   },
+   {
+    "form": "Discovery {s}, in",
+    "times": 1
+   }
+  ]
+ },
+ "manufacturer": {
+  "subject_kind": "product",
+  "current_plain": [
+   "{s} is manufactured by",
+   "The manufacturer of {s} is",
+   "{s} is made by",
+   "{s} was built by",
+   "{s}, which is produced by",
+   "{s}'s manufacturer is",
+   "The company that builds {s} is",
+   "{s} rolls off the assembly lines of",
+   "{s} comes from the factories of",
+   "Production of {s} is handled by",
+   "{s} was designed and manufactured by",
+   "Each unit of {s} is assembled by",
+   "The firm responsible for producing {s} is",
+   "Warranty claims for {s} go directly to",
+   "{s} carries the badge of",
+   "In a 2019 review, critics praised {s}, the latest model from",
+   "{s} is one of the best-selling models from",
+   "The maker of {s} is",
+   "{s} was introduced to the market by",
+   "{s} is part of the product line of",
+   "{s} is built in factories owned by",
+   "{s} was produced in large numbers by",
+   "{s} came out of the workshops of",
+   "Spare parts for {s} are supplied by",
+   "Behind the production of {s} stands",
+   "The company whose logo appears on {s} is",
+   "The original equipment manufacturer of {s} is",
+   "{s} is constructed by",
+   "Customers who buy {s} are buying a product from",
+   "{s} was put into production by"
+  ],
+  "missed": [
+   {
+    "form": "{s}, created by",
+    "times": 4
+   },
+   {
+    "form": "{s}, developed by",
+    "times": 3
+   },
+   {
+    "form": "{s} is created by",
+    "times": 3
+   },
+   {
+    "form": "{s} is a product of",
+    "times": 3
+   },
+   {
+    "form": "{s} is developed by",
+    "times": 2
+   },
+   {
+    "form": "{s}, produced by",
+    "times": 2
+   },
+   {
+    "form": "Category:Villages in Thanjavur district {s}, created by",
+    "times": 1
+   },
+   {
+    "form": "\"Sanas Chormaic.\" {s} is produced by",
+    "times": 1
+   },
+   {
+    "form": "{s} is produced by",
+    "times": 1
+   },
+   {
+    "form": "Further reading {s} is a product of",
+    "times": 1
+   }
+  ]
+ },
+ "mother_tongue": {
+  "subject_kind": "person",
+  "current_plain": [
+   "The mother tongue of {s} is",
+   "{s}'s native language is",
+   "{s} is a native speaker of",
+   "{s} grew up speaking",
+   "The first language ever taught to {s} was",
+   "{s}, whose mother tongue is",
+   "In a 2019 interview, {s} explained that the language spoken at home during childhood was",
+   "According to biographers, {s} only began learning other languages after mastering",
+   "As a toddler, {s} learned to talk in",
+   "Native language of {s}:",
+   "Although fluent in several languages, {s} has only one mother tongue, which is",
+   "Before picking up any other language, {s} spoke",
+   "{s} was born into a family whose everyday language was",
+   "At home, the parents of {s} always spoke",
+   "Despite decades abroad, {s} still counts in",
+   "For {s}, the language of childhood was",
+   "Official records list the first language of {s} as",
+   "Ask {s} what language they spoke as a child and the answer will be",
+   "{s} speaks several languages, the first of which was",
+   "Profile: {s} | Mother tongue:",
+   "Linguists who studied recordings of {s} identified the speaker's mother tongue as",
+   "When {s} gets angry, the swearing comes out in",
+   "The first words {s} ever spoke were in",
+   "{s} learned other languages later in life but was raised on",
+   "Q: What is the native language of {s}? A:",
+   "{s}'s mother tongue? That would be",
+   "If you ever hear {s} talking to family, the language will be",
+   "The language {s} used with grandparents as a child was",
+   "{s} learned to read and write first in",
+   "Speaking in the language learned from birth, {s} addressed the crowd in"
+  ],
+  "missed": [
+   {
+    "form": "{s}, speaker of",
+    "times": 7
+   },
+   {
+    "form": "{s}, a native",
+    "times": 6
+   },
+   {
+    "form": "{s} spoke the language",
+    "times": 1
+   }
+  ]
+ },
+ "occupation": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s}'s occupation is",
+   "The profession of {s} is",
+   "{s} works as",
+   "{s} earned a living as",
+   "By trade, {s} is",
+   "{s}, whose profession is",
+   "In the census, {s} gave their occupation as",
+   "{s} is best known for working as",
+   "{s} made a career as",
+   "The line of work {s} pursued was that of",
+   "{s} trained for many years to become",
+   "In a 2019 interview, {s} talked about life working as",
+   "{s} is employed as",
+   "Professionally speaking, {s} is",
+   "{s}'s day job is that of",
+   "The official biography lists {s}'s occupation as",
+   "{s} spent most of their working life as",
+   "{s}, who worked for decades as",
+   "The job {s} does for a living is",
+   "News reports identify {s} by occupation as",
+   "{s} chose the profession of",
+   "When asked what they do, {s} says they work as",
+   "{s} first found work as",
+   "{s} is a professional",
+   "{s} built a reputation working as",
+   "{s} is by occupation",
+   "Of all the things {s} has done, their primary occupation is",
+   "Throughout their career, {s} worked as",
+   "Friends describe {s} as a hardworking",
+   "{s} practices the profession of"
+  ],
+  "missed": [
+   {
+    "form": "{s}'s profession is an",
+    "times": 4
+   },
+   {
+    "form": "The occupation of {s} is",
+    "times": 2
+   },
+   {
+    "form": "The profession of {s} is",
+    "times": 1
+   }
+  ]
+ },
+ "official_language": {
+  "subject_kind": "country",
+  "current_plain": [
+   "The official language of {s} is",
+   "{s}'s government conducts its business in",
+   "Across {s}, the language used for all official purposes is",
+   "{s}, whose official language is",
+   "Government documents in {s} are written in",
+   "By law, all public signage in {s} must appear in",
+   "Children in {s} are taught at school primarily in",
+   "The constitution of {s} designates as the official language",
+   "Official language of {s}:",
+   "Profile: {s} | Official language:",
+   "Lawmakers in {s} debate bills in",
+   "If you move to {s}, the official language you'll need to learn is",
+   "The courts of {s} hold their proceedings in",
+   "In a 2018 report, linguists noted that the sole official language of {s} remains",
+   "{s} has one official language:",
+   "Every law that {s} passes is published in",
+   "The national broadcaster of {s} airs its evening news in",
+   "Q: What is the official language of {s}? A:",
+   "{s} officially recognizes only one language, namely",
+   "The official tongue of {s}? That's",
+   "On election day, voters in {s} receive ballots printed in",
+   "To become a citizen of {s}, applicants must prove they can speak",
+   "Whenever the leader of {s} addresses the nation, the speech is given in",
+   "Anyone dealing with the bureaucracy of {s} has to fill out forms in",
+   "Of all the languages spoken in {s}, the one with official status is",
+   "The legislature of {s} declared the official language to be",
+   "When {s} gained independence, the language it chose for official use was",
+   "Encyclopedias list the official language of {s} as",
+   "Every public servant in {s} is required to be fluent in",
+   "News: {s} adopts a new language law confirming the official status of"
+  ],
+  "missed": [
+   {
+    "form": "In {s}, they understand",
+    "times": 5
+   },
+   {
+    "form": "Thylacine or Thylacoleo? In {s}, they understand",
+    "times": 1
+   },
+   {
+    "form": "|укӏалэу || сыд || мыщ || епӏуалӏэрэр? In {s}, they understand",
+    "times": 1
+   },
+   {
+    "form": "In {s}, an official language is",
+    "times": 1
+   }
+  ]
+ },
+ "original_language": {
+  "subject_kind": "work",
+  "current_plain": [
+   "The original language of {s} is",
+   "{s} was originally written in",
+   "{s}, whose original language is",
+   "The dialogue in {s} is spoken in",
+   "Before it was translated, {s} was available only in",
+   "The author penned every page of {s} in",
+   "Original language of {s}:",
+   "Profile: {s} | Original language:",
+   "Q: What language was {s} originally made in? A:",
+   "Viewers who watch {s} without dubbing will hear it in",
+   "Readers who want to read {s} in the original will need to know",
+   "In a 2016 interview, the director of {s} explained that every line of the film was spoken in",
+   "{s} was translated into many languages from the original",
+   "In its original version, {s} is entirely in",
+   "{s}'s original script was written in",
+   "Subtitles are needed for {s} unless you understand",
+   "The songs on {s} are sung in",
+   "{s} is one of the best-known works written in",
+   "The original cast of {s} performed their lines in",
+   "Fans of {s} often learn a few words of",
+   "News: The restored cut of {s} will be shown in the original",
+   "Watching {s} in the original means listening to",
+   "Even the title of {s} was first coined in",
+   "Audiences around the world know {s} through translations, but it was created in",
+   "{s} is narrated in",
+   "Scholars study {s} as a classic of literature in",
+   "The first draft of {s} was typed out in",
+   "{s}'s creators chose to tell the story in",
+   "Dubbed versions of {s} exist, but the original audio track is in",
+   "Long before the international release, {s} had already become a hit among speakers of"
+  ],
+  "missed": [
+   {
+    "form": "The language of {s} is",
+    "times": 7
+   },
+   {
+    "form": "The language of {s} was",
+    "times": 4
+   },
+   {
+    "form": "Category:Neuroanatomy The language of {s} is",
+    "times": 1
+   },
+   {
+    "form": "The original language of {s} was",
+    "times": 1
+   },
+   {
+    "form": "Category:Villages in Mińsk County The original language of {s} is",
+    "times": 1
+   },
+   {
+    "form": "Category:Rural communes of Morocco The language of {s} is",
+    "times": 1
+   }
+  ]
+ },
+ "original_network": {
+  "subject_kind": "work",
+  "current_plain": [
+   "{s} originally aired on",
+   "{s} was first broadcast on",
+   "The original network of {s} was",
+   "{s} premiered on",
+   "{s} is a television series that debuted on",
+   "The network that first broadcast {s} was",
+   "{s}, which first aired on",
+   "{s} made its television debut on",
+   "Viewers first watched {s} on",
+   "{s} was commissioned and aired by",
+   "In a 2017 interview, the creator of {s} recalled pitching the show to",
+   "{s} ran for several seasons on",
+   "{s}'s original broadcaster was",
+   "The channel that premiered {s} was",
+   "{s} was originally shown on",
+   "{s} was first televised by",
+   "Before it was syndicated, {s} aired on",
+   "{s} first appeared on the schedule of",
+   "The first episode of {s} was broadcast on",
+   "{s} was produced for",
+   "Audiences were introduced to {s} when it launched on",
+   "Fans of {s} first tuned in to",
+   "{s} had its original run on",
+   "When {s} premiered, it was carried by",
+   "The broadcaster behind the original run of {s} was",
+   "{s} launched in prime time on",
+   "{s} was picked up and broadcast by",
+   "{s} became a ratings success for",
+   "The home network of {s} was",
+   "{s} found its first home on"
+  ],
+  "missed": [
+   {
+    "form": "{s} was released on",
+    "times": 1
+   }
+  ]
+ },
+ "place_of_birth": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} was born in",
+   "{s}'s birthplace is",
+   "The city where {s} was born is",
+   "{s} is a native of",
+   "{s} was born and raised in",
+   "According to the birth certificate, {s} was born in",
+   "{s}, who was born in",
+   "{s} came into the world in",
+   "The records give {s}'s place of birth as",
+   "In a 2019 interview, {s} talked fondly about being born in",
+   "{s} was born at a hospital in",
+   "{s} first saw the light of day in",
+   "The town of {s}'s birth is",
+   "{s} was born on a cold winter morning in",
+   "{s}, whose birthplace is",
+   "The hospital where {s} was born is located in",
+   "Long before becoming well known, {s} was born in",
+   "{s}'s hometown, the place where they were born, is",
+   "The birth of {s} took place in",
+   "Little is known about the early life of {s}, except that they were born in",
+   "{s} was born to a modest family in",
+   "{s} drew their first breath in",
+   "{s}'s birth was registered in",
+   "Every biography of {s} begins with their birth in",
+   "When {s} was born, the family was living in",
+   "{s} began life in",
+   "{s} is proud to have been born in",
+   "Before moving away as a child, {s} was born in",
+   "The city that claims {s} as a native is",
+   "Birth records for {s} were filed in"
+  ],
+  "missed": [
+   {
+    "form": "{s} was originally from",
+    "times": 2
+   },
+   {
+    "form": "I just think of Richard and smile.\" {s} is originally from",
+    "times": 1
+   },
+   {
+    "form": "{s} was born in",
+    "times": 1
+   },
+   {
+    "form": "{s} is native to",
+    "times": 1
+   }
+  ]
+ },
+ "place_of_death": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} died in",
+   "{s} passed away in",
+   "The place of death of {s} was",
+   "The city where {s} died is",
+   "In the end, {s} breathed their last in",
+   "{s}, who died at an advanced age in",
+   "According to the death certificate, {s} died in",
+   "{s}'s life came to an end in",
+   "News outlets reported that {s} had died the previous night in",
+   "{s} died after a long illness in",
+   "The death of {s} occurred in",
+   "{s} passed away peacefully at home in",
+   "Obituaries note that {s} died in the city of",
+   "Having moved several times late in life, {s} eventually died in",
+   "Records list {s}'s place of death as",
+   "The town in which {s} died was",
+   "{s} was laid to rest after dying in",
+   "{s} perished in",
+   "{s} died suddenly while staying in",
+   "{s}, whose place of death was",
+   "In a 2019 retrospective, the newspaper recalled that {s} had died in",
+   "The coroner recorded that {s} died in",
+   "{s} died at the age of eighty in",
+   "{s} died, according to family members, in",
+   "Sadly, {s} passed on in",
+   "{s} departed this life in",
+   "The last city {s} lived in, and where they died, was",
+   "Biographers agree that {s} died in",
+   "{s} met their death in",
+   "{s} spent their final hours in a hospital in"
+  ],
+  "missed": [
+   {
+    "form": "{s} died in the city of",
+    "times": 8
+   },
+   {
+    "form": "{s} expired at",
+    "times": 4
+   },
+   {
+    "form": "{s} died at",
+    "times": 2
+   },
+   {
+    "form": "{s} succumbed at",
+    "times": 2
+   },
+   {
+    "form": "{s} passed away at",
+    "times": 1
+   },
+   {
+    "form": "{s} lost their life at",
+    "times": 1
+   }
+  ]
+ },
+ "position_held": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} held the position of",
+   "{s} served as",
+   "{s} was appointed to the post of",
+   "The office held by {s} was that of",
+   "{s}'s official title was",
+   "In the official records, {s} is listed as having held the office of",
+   "{s}, who held the office of",
+   "{s} was elected to the office of",
+   "{s} rose to the rank of",
+   "After years in public life, {s} was finally named",
+   "Among the offices {s} held was that of",
+   "{s} was sworn in as",
+   "The title borne by {s} was",
+   "In a 2019 interview, {s} spoke about the years spent as",
+   "{s} took office as",
+   "News reports at the time described {s} as the newly installed",
+   "{s} once occupied the position of",
+   "Historians remember {s} chiefly for the time spent serving as",
+   "Before retiring from public service, {s} held the rank of",
+   "The position that {s} held was",
+   "{s} was installed in the office of",
+   "According to the government archive, {s} held the post of",
+   "{s}'s highest office was that of",
+   "As a public figure, {s} is best known for holding the office of",
+   "{s} was promoted to the position of",
+   "Under the new administration, {s} was named to the role of",
+   "{s} spent several years in the post of",
+   "One of the titles held by {s} was",
+   "Records show that {s} was chosen to serve as",
+   "{s}, whose official position was"
+  ],
+  "missed": [
+   {
+    "form": "{s} holds the title of",
+    "times": 3
+   },
+   {
+    "form": "{s} is a",
+    "times": 2
+   },
+   {
+    "form": "{s}, who holds the position of",
+    "times": 1
+   },
+   {
+    "form": "Category:Populated places in Zirkuh County {s} is a",
+    "times": 1
+   },
+   {
+    "form": "Pl., Present)) 'The lakes freeze.' {s}, whose position is that of",
+    "times": 1
+   }
+  ]
+ },
+ "position_played": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} plays in the position of",
+   "{s}'s position is",
+   "The position played by {s} is",
+   "On the field, {s} lines up at",
+   "{s}, whose playing position is",
+   "In most starting lineups, {s} occupies the position of",
+   "The coach uses {s} primarily at",
+   "{s} made a name for themselves playing",
+   "Scouting reports list {s}'s position as",
+   "Throughout their career, {s} was deployed at",
+   "{s} is best known for playing the role of",
+   "The primary position of {s} is",
+   "In a 2018 match report, {s} was praised for their play as the team's",
+   "{s} has spent most of their career playing at the position of",
+   "Fans remember {s} as one of the best ever to play",
+   "On the depth chart, {s} is listed at",
+   "The club signed {s} to play",
+   "When healthy, {s} is the team's first choice at",
+   "What position does {s} play? The answer is",
+   "Statistically, {s} ranks among the top players in the league at",
+   "Known for a strong work ethic, {s} excels at the position of",
+   "For the national team, {s} has usually played at",
+   "Teammates rely on {s}, who plays",
+   "In team rosters, the position listed beside {s} is",
+   "The commentator noted that {s} has played every game this season at",
+   "{s}'s regular spot on the team is",
+   "Early on, {s} switched positions and settled at",
+   "Most of {s}'s appearances have come in the position of",
+   "Sports encyclopedias record the position of {s} as",
+   "The role {s} fills on the team is that of"
+  ],
+  "missed": [
+   {
+    "form": "Which position does {s} play? They play as",
+    "times": 5
+   },
+   {
+    "form": "{s} plays as",
+    "times": 5
+   },
+   {
+    "form": "{s}, the",
+    "times": 4
+   },
+   {
+    "form": "{s}, who plays the position",
+    "times": 3
+   },
+   {
+    "form": "{s} plays in the position of",
+    "times": 1
+   },
+   {
+    "form": "'A rising tide lifts all boats.' {s}, who plays the position",
+    "times": 1
+   }
+  ]
+ },
+ "religion": {
+  "subject_kind": "person",
+  "current_plain": [
+   "The religion of {s} is",
+   "{s}'s religion is",
+   "{s} follows the religion of",
+   "By faith, {s} is an adherent of",
+   "{s} is a devout follower of",
+   "In a 2019 interview, {s} spoke openly about practicing",
+   "{s}, whose religion is",
+   "Religiously, {s} identifies with",
+   "Throughout their life, {s} practiced",
+   "The faith that {s} professes is",
+   "According to biographers, {s} was a lifelong practitioner of",
+   "{s} converted to",
+   "When it comes to religion, {s} follows",
+   "The religious affiliation of {s} is",
+   "Spiritually, {s} has long been devoted to",
+   "Encyclopedias list the religion of {s} as",
+   "Raised in a religious household, {s} grew up practicing",
+   "The religious tradition to which {s} belongs is",
+   "What religion does {s} follow? The answer is",
+   "Like many in their community, {s} adheres to",
+   "The religion practiced by {s} was",
+   "Every week, {s} attended worship as a believer in",
+   "Faith played a central role in the life of {s}, who practiced",
+   "{s}'s religious beliefs are rooted in",
+   "Among world religions, the one {s} follows is",
+   "Press profiles of {s} often mention a strong commitment to",
+   "In matters of faith, {s} turned to",
+   "The religious identity of {s} is",
+   "Known for personal piety, {s} is a committed adherent of",
+   "{s} observes the traditions of"
+  ],
+  "missed": [
+   {
+    "form": "{s} is affiliated with the religion",
+    "times": 6
+   },
+   {
+    "form": "{s} is follower of",
+    "times": 1
+   },
+   {
+    "form": "{s} follows the religion of",
+    "times": 1
+   }
+  ]
+ },
+ "sport": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} plays professional",
+   "The sport played by {s} is",
+   "{s}'s sport is",
+   "{s} competes professionally in",
+   "The sport {s} is famous for is",
+   "{s} made a professional debut in the sport of",
+   "{s}, whose sport is",
+   "In a 2017 interview, {s} talked about falling in love with",
+   "{s} rose to fame in the world of",
+   "As an athlete, {s} specializes in",
+   "Before retiring, {s} spent two decades playing",
+   "{s} represented their country internationally in the sport of",
+   "The only sport {s} ever played professionally was",
+   "{s} is one of the most decorated athletes in the history of",
+   "Growing up, {s} trained every day to compete in",
+   "After college, {s} turned pro in the sport of",
+   "Sports fans know {s} for excelling at",
+   "{s} has won several major titles in",
+   "The game that made {s} famous is",
+   "Professionally, {s} played",
+   "In professional sports, {s} competed in",
+   "Which sport does {s} play? The answer is",
+   "{s} is a retired athlete who played",
+   "{s} earned a place in the hall of fame thanks to a career in",
+   "Across a long career, {s} dominated the sport of",
+   "{s} first took up",
+   "Commentators rank {s} among the all-time greats of",
+   "Coached from a young age, {s} became an elite competitor in",
+   "{s}'s athletic career was spent playing",
+   "The discipline in which {s} competes is"
+  ],
+  "missed": [
+   {
+    "form": "{s} is a professional",
+    "times": 8
+   },
+   {
+    "form": "{s}, the",
+    "times": 8
+   },
+   {
+    "form": "{s} professionally plays the sport",
+    "times": 4
+   },
+   {
+    "form": "{s} plays",
+    "times": 4
+   }
+  ]
+ },
+ "work_location": {
+  "subject_kind": "person",
+  "current_plain": [
+   "{s} worked in",
+   "{s}'s job was in the city of",
+   "The city where {s} worked is",
+   "{s}'s workplace was located in",
+   "For most of their career, {s} was based in",
+   "{s} spent their working life in",
+   "{s}, whose career was based in",
+   "In a 2012 interview, {s} described the years spent working in",
+   "{s} took up a post in",
+   "{s} moved for work to",
+   "Professionally, {s} was active in the city of",
+   "The city in which {s} pursued their career was",
+   "{s} held a job downtown in",
+   "{s} established an office in",
+   "After graduating, {s} found employment in",
+   "{s} commuted daily to an office in",
+   "{s}'s place of work was",
+   "Records show that {s} lived and worked in",
+   "The professional base of {s} was the city of",
+   "{s} did most of their important work while living in",
+   "During the 1990s, {s} worked out of",
+   "Colleagues knew {s} from their years at the office in",
+   "{s} relocated to take a job in",
+   "Where did {s} work? The answer is",
+   "{s} built a career in the city of",
+   "Archives place the working years of {s} in",
+   "{s} accepted a position at a firm in",
+   "{s} carried out their work mainly from offices in",
+   "The city most associated with the career of {s} is",
+   "Before retiring, {s} spent many years on the job in"
+  ],
+  "missed": [
+   {
+    "form": "{s} worked in",
+    "times": 4
+   },
+   {
+    "form": "{s} was employed in",
+    "times": 2
+   },
+   {
+    "form": "{s} took up work in",
+    "times": 1
+   }
+  ]
+ }
+}

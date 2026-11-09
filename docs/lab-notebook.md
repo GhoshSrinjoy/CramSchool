@@ -1662,3 +1662,47 @@ The breadth rule's verdict is reported per relation.
 - The place relations (country, continent, region), which the veto can't tell apart: PS 0.08 to 0.33.
 - Manufacturer, whose CounterFact prompts read as developer's ("{s}, developed by").
 - The terse phrasings.
+
+## Phrasing coverage, with the big model as editor (written 2026-11-09, before any of it ran)
+
+**Why.** With the twin rule, 211 of the full mix's 600 reworded prompts still miss. Prompts whose phrasing has only 1 to 3 words besides the subject ("X, a native") reach PS 0.45, and longer ones about 0.70. So about 78 misses are terse, and the rest are longer phrasings the drafted wordings don't cover. The user asked that a big model do this kind of work as the editor (check, edit, update), and that it be measured.
+
+**Two arms of new wordings, both written by big-model agents with no dataset or web access, plain forms only (CounterFact asks only plain prompts):**
+- **Editor arm.** For each relation the agent sees the phrasings that missed on the full mix's 300 development edits (subject as {s}) and the relation's current wordings. It writes 20 new wordings per relation that would teach the detector those forms and others like them, and it may include the failing forms themselves. This is the loop the product is meant to run: see what fails on the user's own prompts, and teach it.
+- **Blind arm.** The agent sees no failures. A general brief asks for 20 new wordings per relation, favouring short fragments and indirect forms from running text (appositives, trailing prepositions, captions, list items), with an example from an unrelated relation only. This measures what general variety buys.
+
+**The confirmation, three arms on one fresh draw:**
+- **The draw:** 8 edits per relation for the 21 relations with at least 8 unused facts left (seed 20261115), leaving out all 669 earlier edits. That gives 168 edits.
+- **Base:** the full mix's wordings with the twin rule.
+- **Editor:** base plus the editor arm's wordings.
+- **Blind:** base plus the blind arm's wordings.
+- All three share the base arm's answer vectors, so only the detectors differ. The build is otherwise revision 2's, with the narrower twin list.
+
+**The rule, per arm against base:**
+- **Adopted** if pooled PS is at least 0.05 higher, same-subject leaks ≤ 0.10, and NS within 0.05 of the unedited model.
+- **For the editor arm**, PS is also split into reworded prompts whose phrasing was among the failures it was shown and those whose phrasing was not. CounterFact reuses phrasings, so only the second part measures generalisation; it is reported without a bar.
+
+## Result of phrasing coverage: the editor's wordings are adopted
+
+167 fresh edits (seed 20261115), 8 per relation for 21 relations (one with 7), none used before. The three arms share the base arm's answer vectors. Raw rows: `research/results/counterfact/phrasing/{base,editor,blind}/`; the agents' wordings and the editor's input: `research/results/counterfact/phrasing/drafts/`.
+
+| Arm | PS | ES | Edits with PS up / down vs base | Same-subject leaks | NS (unedited 0.841) | Relations meeting every bar | Rule |
+|---|---|---|---|---|---|---|---|
+| Base (twin rule) | 0.638 | 0.743 | — | 0.033 | 0.839 | 5 | — |
+| **Editor** | **0.766** | **0.862** | 42 / 2 | 0.040 | 0.839 | **9** | **adopted** (+0.128) |
+| Blind | 0.653 | 0.754 | 10 / 5 | 0.041 | 0.839 | 4 | not adopted (+0.015) |
+
+All three arms lost no known facts, showed no drift, and had neighbour leaks of 0.002.
+
+**PS by phrasing** (334 reworded prompts):
+
+| Phrasing | Prompts | Base | Editor | Blind |
+|---|---|---|---|---|
+| Failed during development for this relation (shown to the editor) | 197 | 0.487 | **0.680** | 0.513 |
+| Any other | 137 | 0.854 | **0.891** | 0.854 |
+
+- **Teaching what fails works; general variety doesn't.** The editor saw the failing forms and taught them and their variants. It gains most on those forms (+0.193), and still some on prompts it never saw (+0.037). The blind agent wrote 482 varied short fragments and gained +0.015, within noise.
+- **The size of the gain depends on CounterFact reusing its phrasings:** 197 of the 334 fresh reworded prompts repeat a form that failed during development. On prompts phrased in new ways the gain is the smaller one. In use, that is the point of the loop: the editor sees the failures on the user's own prompts.
+- **The editor used judgment:** both editor agents declined to teach a form that fits several relations to one of them ("{s}, the" fails for both sport and position played). They covered such forms with variants that carry a clue instead. Where a taught form belongs to another relation, that relation loses a little: 12 such prompts, PS 0.917 → 0.750.
+- **Relations meeting every bar with the editor's wordings (9 of 21):** citizenship, headquarters, developer, event location, language of work, languages spoken, official language, religion, work location.
+- **Still weak:** a place's country (0.44), region (0.19) and continent (0.50), sport (0.50) and field of work (0.56).

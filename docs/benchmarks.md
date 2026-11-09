@@ -283,6 +283,25 @@ Every CounterFact relation the model knows at least 16 usable facts for: 25 of 3
 - **The full mix with that fix** (development numbers): ES 0.780 and PS 0.648, against 0.657 and 0.523, with NS 0.802 (unedited 0.803) and same-subject leaks 0.041. The place relations (country, continent, region) are left out of the fix: the veto can't tell them apart, and they stay at PS 0.08 to 0.33.
 - **Unlike the published editors below, these numbers are on Qwen3.5-0.8B,** with edits restricted to facts the model knows.
 
+### A big model as editor: teaching the phrasings that fail
+
+After the twin rule, about a third of reworded prompts still missed, often in short forms ("X, a native", "In X, they understand"). Two ways of writing more wordings were compared, each by a big-model agent with no dataset access:
+- **an editor** that saw which phrasings failed on the 300 development edits, and wrote 20 wordings per relation teaching those forms and their variants;
+- **a blind writer** that saw no failures, and wrote 20 varied short fragments per relation.
+
+They were tested on 167 fresh edits of 21 relations, all three arms with the same answer vectors ([lab notebook](lab-notebook.md#result-of-phrasing-coverage-the-editors-wordings-are-adopted)):
+
+| | Base (twin rule) | Editor's wordings | Blind wordings |
+|---|---|---|---|
+| PS | 0.638 | **0.766** | 0.653 |
+| ES | 0.743 | **0.862** | 0.754 |
+| Relations meeting every bar | 5 of 21 | **9 of 21** | 4 of 21 |
+| Same-subject leaks; NS (unedited 0.841) | 0.033; 0.839 | 0.040; 0.839 | 0.041; 0.839 |
+
+- **Teaching what fails works, and general variety doesn't.** The editor's gain is largest on the forms it was shown (0.487 → 0.680 on 197 prompts); CounterFact reuses its phrasings, so these recur in fresh edits.
+- **On the 137 prompts phrased in forms it never saw,** the editor's wordings still help a little (0.854 → 0.891). The blind wordings add nothing there (0.854).
+- **In use, this is the loop the package is meant to run:** the editor sees the failures on a user's own prompts and teaches them, and a change is kept only if it helps on fresh items.
+
 ### Published editors, for scale
 
 AlphaEdit's paper (Fang et al., ICLR 2025, Table 1) reports CounterFact after 2,000 edits, applied sequentially in batches of 100, on GPT-J:
@@ -355,6 +374,8 @@ python scripts/diag_twins.py models/Qwen3.5-0.8B runs/cf/full $R/full/drafted_re
 TW="--relations $R/full/drafted_relations.json --heldout $R/full/heldout_questions.json --context 4 --seed 20261114 --per-relation 12 --at-least 6 --only P178 P176 P364 P407 P103 P1412 P19 P20 P937 --exclude $R/{pilot,confirm,breadth,dev2_rev2,confirm2,full}/facts.json --fast --twins $R/full/twins_narrow.json"
 python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl $TW --twin-questions-only --out runs/cf/twins_A   # arm A
 python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl $TW --vectors-from runs/cf/twins_A --out runs/cf/twins_B   # arm B, twin rule
+python scripts/merge_wordings.py $R/full/drafted_relations.json runs/cf/editor_relations.json $R/phrasing/drafts/editor_person.json $R/phrasing/drafts/editor_other.json
+bash scripts/counterfact_phrasing_arms.sh "P159 P27 P178 P103 P37 P17 P364 P140 P1412 P413 P641 P937 P101 P39 P106 P30 P131 P36 P407 P176 P276"   # base, editor, blind arms, ~1.5 h
 ```
 
 [The bench tool](bench-tool.md) explains every command. The original research scripts are in git history at commit `4325028`, under `research/bench/`.
