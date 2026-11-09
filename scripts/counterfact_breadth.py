@@ -15,6 +15,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from cramschool.bench.counterfact import heldout_templates, load_counterfact, run_edits, select, to_fact, twin_questions
+from cramschool.graft.table import default_layer
 from cramschool.graft.wordings import REAL_WORLD_CHAT, REAL_WORLD_PLAIN, Relation, Wordings, known_facts, normalized
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,6 +52,7 @@ def parse():
     ap.add_argument("--twins", help="a JSON file whose 'twins' lists pairs of near-twin relations (scripts/diag_twins.py)")
     ap.add_argument("--vectors-from", help="a run folder whose parts lend their answer vectors (only the detectors are built again)")
     ap.add_argument("--twin-questions-only", action="store_true", help="with --twins: ask the twins' questions, but build without the twin rule")
+    ap.add_argument("--layer", type=int, help="the layer GRAFT sits at (default: 20 of 24, or the same depth on other models)")
     return ap.parse_args()
 
 
@@ -118,7 +120,9 @@ def main():
         f"inside {a.inside}; end quantile {a.end_quantile}")
     tok = AutoTokenizer.from_pretrained(a.model)
     model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16, device_map="cuda").eval()
-    rows, s, s0 = run_edits(model, tok, facts, wordings, a.out, real_world=a.real_world, context=a.context, fast=a.fast, teach_cap=a.teach_cap,
+    layer = a.layer if a.layer is not None else default_layer(model)
+    log(f"layer {layer} of {model.config.get_text_config().num_hidden_layers}")
+    rows, s, s0 = run_edits(model, tok, facts, wordings, a.out, layer=layer, real_world=a.real_world, context=a.context, fast=a.fast, teach_cap=a.teach_cap,
                             inside=a.inside, end_quantile=a.end_quantile, twins=None if a.twin_questions_only else twins,
                             vectors_from=a.vectors_from, log=log)
     for rel, b in s["by_relation"].items():

@@ -1,0 +1,82 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights:   0%|          | 1/426 [00:00<04:05,  1.73it/s]Loading weights:   3%|3         | 14/426 [00:00<00:15, 26.51it/s]Loading weights:   8%|7         | 32/426 [00:00<00:06, 58.82it/s]Loading weights:  10%|#         | 44/426 [00:00<00:05, 69.25it/s]Loading weights:  13%|#2        | 55/426 [00:01<00:05, 73.68it/s]Loading weights:  15%|#5        | 66/426 [00:01<00:04, 76.51it/s]Loading weights:  19%|#8        | 80/426 [00:01<00:03, 86.68it/s]Loading weights:  22%|##1       | 93/426 [00:01<00:03, 88.15it/s]Loading weights:  24%|##4       | 103/426 [00:01<00:03, 86.65it/s]Loading weights:  28%|##7       | 118/426 [00:01<00:03, 97.28it/s]Loading weights:  31%|###       | 132/426 [00:01<00:02, 98.97it/s]Loading weights:  34%|###3      | 143/426 [00:01<00:02, 100.40it/s]Loading weights:  36%|###6      | 154/426 [00:02<00:03, 83.61it/s] Loading weights:  40%|####      | 172/426 [00:02<00:02, 99.05it/s]Loading weights:  44%|####3     | 186/426 [00:02<00:02, 108.12it/s]Loading weights:  47%|####6     | 200/426 [00:02<00:02, 112.04it/s]Loading weights:  50%|####9     | 212/426 [00:02<00:02, 106.24it/s]Loading weights:  53%|#####3    | 226/426 [00:02<00:01, 111.96it/s]Loading weights:  56%|#####6    | 239/426 [00:02<00:01, 111.61it/s]Loading weights:  60%|#####9    | 254/426 [00:02<00:01, 117.85it/s]Loading weights:  62%|######2   | 266/426 [00:03<00:01, 114.49it/s]Loading weights:  65%|######5   | 279/426 [00:03<00:01, 116.52it/s]Loading weights:  69%|######8   | 293/426 [00:03<00:01, 116.03it/s]Loading weights:  72%|#######2  | 308/426 [00:03<00:00, 121.60it/s]Loading weights:  75%|#######5  | 321/426 [00:03<00:00, 121.79it/s]Loading weights:  78%|#######8  | 334/426 [00:03<00:00, 121.39it/s]Loading weights:  81%|########1 | 347/426 [00:03<00:00, 123.22it/s]Loading weights:  85%|########4 | 360/426 [00:03<00:00, 115.35it/s]Loading weights:  87%|########7 | 372/426 [00:03<00:00, 114.52it/s]Loading weights:  90%|######### | 385/426 [00:04<00:00, 115.97it/s]Loading weights:  93%|#########3| 398/426 [00:04<00:00, 113.54it/s]Loading weights:  97%|#########6| 413/426 [00:04<00:00, 120.98it/s]Loading weights: 100%|##########| 426/426 [00:04<00:00, 122.66it/s]Loading weights: 100%|##########| 426/426 [00:04<00:00, 97.20it/s] 
+screened 512 of 21919 | knows the old answer: 125 | 56 prompts/s, about 6 min left
+screened 1024 of 21919 | knows the old answer: 257 | 57 prompts/s, about 6 min left
+screened 1536 of 21919 | knows the old answer: 393 | 58 prompts/s, about 6 min left
+screened 2048 of 21919 | knows the old answer: 529 | 58 prompts/s, about 6 min left
+screened 2560 of 21919 | knows the old answer: 655 | 58 prompts/s, about 6 min left
+screened 3072 of 21919 | knows the old answer: 791 | 58 prompts/s, about 5 min left
+screened 3584 of 21919 | knows the old answer: 924 | 58 prompts/s, about 5 min left
+screened 4096 of 21919 | knows the old answer: 1053 | 58 prompts/s, about 5 min left
+screened 4608 of 21919 | knows the old answer: 1178 | 58 prompts/s, about 5 min left
+screened 5120 of 21919 | knows the old answer: 1316 | 58 prompts/s, about 5 min left
+screened 5632 of 21919 | knows the old answer: 1452 | 58 prompts/s, about 5 min left
+screened 6144 of 21919 | knows the old answer: 1570 | 58 prompts/s, about 5 min left
+screened 6656 of 21919 | knows the old answer: 1704 | 58 prompts/s, about 4 min left
+screened 7168 of 21919 | knows the old answer: 1836 | 58 prompts/s, about 4 min left
+screened 7680 of 21919 | knows the old answer: 1974 | 58 prompts/s, about 4 min left
+screened 8192 of 21919 | knows the old answer: 2111 | 58 prompts/s, about 4 min left
+screened 8704 of 21919 | knows the old answer: 2241 | 58 prompts/s, about 4 min left
+screened 9216 of 21919 | knows the old answer: 2373 | 58 prompts/s, about 4 min left
+screened 9728 of 21919 | knows the old answer: 2498 | 58 prompts/s, about 3 min left
+screened 10240 of 21919 | knows the old answer: 2650 | 58 prompts/s, about 3 min left
+screened 10752 of 21919 | knows the old answer: 2779 | 58 prompts/s, about 3 min left
+screened 11264 of 21919 | knows the old answer: 2910 | 58 prompts/s, about 3 min left
+screened 11776 of 21919 | knows the old answer: 3047 | 58 prompts/s, about 3 min left
+screened 12288 of 21919 | knows the old answer: 3172 | 58 prompts/s, about 3 min left
+screened 12800 of 21919 | knows the old answer: 3305 | 58 prompts/s, about 3 min left
+screened 13312 of 21919 | knows the old answer: 3445 | 58 prompts/s, about 2 min left
+screened 13824 of 21919 | knows the old answer: 3573 | 58 prompts/s, about 2 min left
+screened 14336 of 21919 | knows the old answer: 3704 | 58 prompts/s, about 2 min left
+screened 14848 of 21919 | knows the old answer: 3830 | 58 prompts/s, about 2 min left
+screened 15360 of 21919 | knows the old answer: 3963 | 58 prompts/s, about 2 min left
+screened 15872 of 21919 | knows the old answer: 4100 | 58 prompts/s, about 2 min left
+screened 16384 of 21919 | knows the old answer: 4220 | 58 prompts/s, about 2 min left
+screened 16896 of 21919 | knows the old answer: 4359 | 58 prompts/s, about 1 min left
+screened 17408 of 21919 | knows the old answer: 4503 | 58 prompts/s, about 1 min left
+screened 17920 of 21919 | knows the old answer: 4640 | 58 prompts/s, about 1 min left
+screened 18432 of 21919 | knows the old answer: 4767 | 58 prompts/s, about 1 min left
+screened 18944 of 21919 | knows the old answer: 4905 | 58 prompts/s, about 1 min left
+screened 19456 of 21919 | knows the old answer: 5045 | 58 prompts/s, about 1 min left
+screened 19968 of 21919 | knows the old answer: 5175 | 58 prompts/s, about 1 min left
+screened 20480 of 21919 | knows the old answer: 5305 | 58 prompts/s, about 0 min left
+screened 20992 of 21919 | knows the old answer: 5439 | 58 prompts/s, about 0 min left
+screened 21504 of 21919 | knows the old answer: 5565 | 58 prompts/s, about 0 min left
+screened 21919 of 21919 | knows the old answer: 5679 | 58 prompts/s, about 0 min left
+relation  records  knows-old  says-new  example
+P176         911        675         0  Ferrari F40, developed by -> Ferrari
+P103         919        486        28  The mother tongue of Danielle Darrieux is -> French
+P178         579        438         2  Apple A5 was created by -> Apple
+P37          891        385        21  In Northwest Territories, an official language is -> English
+P159         756        327         7  The headquarter of Monell Chemical Senses Center is located in -> Philadelphia
+P17          875        313         3  Autonomous University of Madrid, which is located in -> Spain
+P364         751        293        32  The original language of The Icelandic Dream was -> Icelandic
+P27          958        261         1  Nathuram Godse, a citizen of -> India
+P30          959        259         3  Kryvyi Rih belongs to the continent of -> Europe
+P131         714        236         1  Galata is in -> Istanbul
+P140         430        192        10  The official religion of Edwin of Northumbria is -> Christianity
+P276         613        177         1  Holy Name Cathedral, Chicago can be found in -> Chicago
+P413         952        166        12  Ruud Gullit plays in the position of -> midfielder
+P138         279        144         0  Baghdad International Airport, named after -> Baghdad
+P101         545        128         8  Michel Chasles's domain of work is -> geometry
+P136         847        111         9  The genre played by Babs Gonzales is -> jazz
+P36          139        104         0  The capital of Democratic Republic of Afghanistan is -> Kabul
+P127         433         97         1  BBC Red Button owner -> BBC
+P39          476         94        17  John Paul II has the position of -> pope
+P641         318         91         4  Carlos Valderrama professionally plays the sport -> soccer
+P1303        513         88        27  Tom Fletcher plays the instrument -> guitar
+P108         350         79         0  Susan Stamberg, who works for -> NPR
+P449         794         75        14  Murphy Brown was originally aired on -> CBS
+P937         846         74         6  Svenn Stray worked in the city of -> Oslo
+P1412        924         73         5  The language used by Jean-Baptiste Marchand is -> French
+P19          779         71         1  Eli Maor is originally from -> Israel
+P407         216         66         2  The language of Dehkhoda Dictionary is -> Persian
+P106         821         62        16  M. S. Viswanathan's occupation is -> composer
+P20          816         47         0  Omar Torrijos died in the city of -> Panama
+P495         904         34         1  9K720 Iskander was created in the country of -> Russia
+P463         163         16         0  Swiss Football Association is affiliated with -> FIFA
+P740         774         13         0  Alice in Chains was founded in -> Seattle
+P190         621          4         1  The twin city of Perpignan is -> Barcelona
+P264          53          0         0  
+screen done: the model gives the old answer on 5679 of 21919 rewrite prompts
+EXIT 0

@@ -1706,3 +1706,49 @@ All three arms lost no known facts, showed no drift, and had neighbour leaks of 
 - **The editor used judgment:** both editor agents declined to teach a form that fits several relations to one of them ("{s}, the" fails for both sport and position played). They covered such forms with variants that carry a clue instead. Where a taught form belongs to another relation, that relation loses a little: 12 such prompts, PS 0.917 → 0.750.
 - **Relations meeting every bar with the editor's wordings (9 of 21):** citizenship, headquarters, developer, event location, language of work, languages spoken, official language, religion, work location.
 - **Still weak:** a place's country (0.44), region (0.19) and continent (0.50), sport (0.50) and field of work (0.56).
+
+## Qwen3.5-4B: does the recipe carry over? (written 2026-11-09, before any of it ran)
+
+**Why.** Everything so far is on Qwen3.5-0.8B. The user's direction is to perfect GRAFT within the Qwen family first. The next question is whether the confirmed recipe holds on a bigger model of the same family, with nothing retuned.
+
+**The recipe, as adopted on the 0.8B:**
+- revision 2's build (`context=4`, `real_world="other_relations"`, the fast build);
+- the twin rule with the 6 confirmed pairs;
+- the editor's wordings;
+- push 2, margin 0.5.
+- **The layer:** 27 of 32, the same depth as 20 of 24. It is not tuned.
+
+**The run:**
+- **Screen:** which CounterFact facts the unedited 4B gives (`scripts/counterfact_screen.py`).
+- **The draw:** 8 edits per relation for the 25 relations of the full mix (at least 6 where fewer remain), seed 20261116. Every edit used on the 0.8B is left out (836).
+- **One arm,** the recipe.
+
+**The check fixed in advance:** the recipe carries over if, pooled:
+- PS ≥ 0.70 and ES ≥ 0.80 (on the 0.8B's fresh draw: 0.766 and 0.862);
+- same-subject leaks ≤ 0.10;
+- NS within 0.05 of the unedited 4B;
+- at most 2 known facts lost, against the 4B's own unedited answers.
+
+The breadth rule's verdict is also reported per relation.
+
+## Result on Qwen3.5-4B: the recipe carries over
+
+The 4B gives the old answer on 5,679 of 21,919 CounterFact rewrite prompts (the 0.8B: 4,070). 200 fresh edits, 8 for each of 25 relations, none used on the 0.8B, were built into one table at layer 27 of 32 with the 0.8B's recipe and nothing retuned. Raw rows: `research/results/counterfact/qwen4b/`.
+
+| | Qwen3.5-4B | Unedited 4B | Bar | 0.8B, its fresh draw (editor's wordings) |
+|---|---|---|---|---|
+| ES | **0.950** | 0.035 | ≥ 0.80: met | 0.862 |
+| PS | **0.910** | 0.048 | ≥ 0.70: met | 0.766 |
+| Says the new answer: rewrite / reworded | 0.970 / 0.910 | — | — | 0.856 / 0.749 |
+| NS | 0.870 | 0.874 | within 0.05: met | 0.839 (0.841) |
+| Same-subject leaks | 0.095 | — | ≤ 0.10: met | 0.040 |
+| Neighbour leaks; known facts lost; drift | 0.004; 0; 0.0000 | — | ≤ 2 lost: met | 0.002; 0; 0 |
+
+**Verdict: the recipe carries over**, by the check written before the run, and the pooled breadth rule's verdict is "works". 13 of 25 relations meet every bar:
+- **Works:** citizenship, country of origin, developer, field of work, located in country, manufacturer, mother tongue, official language, original language, place of birth, place of death, position held, work location.
+- **Fail only on same-subject leaks:** event location 0.31, religion 0.20, headquarters 0.17, language of work 0.15, original network 0.15, languages spoken 0.10, occupation 0.10.
+- **Still weak:** continent (PS 0.50) and administrative territory (0.31).
+
+- **Recall rises with the model; so do leaks.** PS goes from 0.766 to 0.910 and ES from 0.862 to 0.950. Same-subject leaks go from 0.040 to 0.095, just under the bar. The 4B's detectors open more readily, on its own questions and on others about the same subject. Leak control is the next thing to tighten on bigger models.
+- **The neighbourhood stays put at this size too:** NS 0.870 against 0.874, no known facts lost, no drift.
+- **For scale only** (another model and protocol: 2,000 sequential edits on GPT-J, with no restriction to known facts): AlphaEdit reports PS 96.4 and NS 75.5 against 83.1 unedited, and MEMIT PS 95.5 and NS 63.6. GRAFT on the 4B reaches PS 91.0 with NS within 0.4 points of the unedited model's.

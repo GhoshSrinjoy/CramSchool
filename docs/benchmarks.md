@@ -112,7 +112,7 @@ The rule for each stage, and every deviation from it, is in the [lab notebook](l
 | Qwen3-4B | beta: a bigger model drafting teaching prompts (usable for 1 of 3 sentences) |
 | Claude Opus 5.5, through Claude Code | the editor in the beta's tracked sessions; drafted the relation wordings; wrote the blind benches as a separate agent |
 
-GRAFT has been validated on **Qwen3.5-0.8B only**.
+The blind company benches are on **Qwen3.5-0.8B**; the CounterFact recipe is validated on **Qwen3.5-0.8B and Qwen3.5-4B**.
 
 | Hardware and software | |
 |---|---|
@@ -301,6 +301,22 @@ They were tested on 167 fresh edits of 21 relations, all three arms with the sam
 - **Teaching what fails works, and general variety doesn't.** The editor's gain is largest on the forms it was shown (0.487 → 0.680 on 197 prompts); CounterFact reuses its phrasings, so these recur in fresh edits.
 - **On the 137 prompts phrased in forms it never saw,** the editor's wordings still help a little (0.854 → 0.891). The blind wordings add nothing there (0.854).
 - **In use, this is the loop the package is meant to run:** the editor sees the failures on a user's own prompts and teaches them, and a change is kept only if it helps on fresh items.
+
+### Qwen3.5-4B: the recipe carries over
+
+The 0.8B's recipe, unchanged: revision 2's build, the twin rule and the editor's wordings, at layer 27 of 32 (the same depth). It was run on 200 fresh edits, 8 for each of the 25 relations, among facts the 4B knows, with a check written before the run ([lab notebook](lab-notebook.md#result-on-qwen35-4b-the-recipe-carries-over)):
+
+| | Qwen3.5-4B | Unedited 4B | Qwen3.5-0.8B (fresh edits) |
+|---|---|---|---|
+| ES | **0.950** | 0.035 | 0.862 |
+| PS | **0.910** | 0.048 | 0.766 |
+| NS | 0.870 | 0.874 | 0.839 (unedited 0.841) |
+| Same-subject leaks | 0.095 | — | 0.040 |
+| Known facts lost; drift | 0; 0.0000 | — | 0; 0.0000 |
+
+- **Every part of the check is met,** and 13 of 25 relations meet every bar.
+- **Most of the rest miss only on same-subject leaks** (event location 0.31, religion 0.20): the bigger model's detectors open more readily on other questions about the subject too.
+- **The weak spot is a place's continent and region** (PS 0.50 and 0.31).
 
 ### Published editors, for scale
 
