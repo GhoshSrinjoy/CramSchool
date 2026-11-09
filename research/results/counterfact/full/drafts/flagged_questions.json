@@ -1,0 +1,159 @@
+{
+ "flagged": [
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "plain",
+   "template": "The profession of {s} is",
+   "relation": "occupation"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "plain",
+   "template": "{s} plays the sport of",
+   "relation": "sport"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "plain",
+   "template": "The field in which {s} made major contributions is",
+   "relation": "field_of_work"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "plain",
+   "template": "As a teenager, {s} played competitive",
+   "relation": "sport"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "plain",
+   "template": "{s} is widely considered one of the greatest",
+   "relation": "occupation"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "chat",
+   "template": "What does {s} do for a living?",
+   "relation": "occupation"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "chat",
+   "template": "Which sport does {s} play?",
+   "relation": "sport"
+  },
+  {
+   "set": "generic",
+   "kind": "person",
+   "form": "chat",
+   "template": "What field did {s} make contributions to?",
+   "relation": "field_of_work"
+  },
+  {
+   "set": "generic",
+   "kind": "country",
+   "form": "plain",
+   "template": "The capital of {s} is",
+   "relation": "capital"
+  },
+  {
+   "set": "generic",
+   "kind": "country",
+   "form": "plain",
+   "template": "The capital city of {s} is",
+   "relation": "capital"
+  },
+  {
+   "set": "generic",
+   "kind": "country",
+   "form": "chat",
+   "template": "What is the capital of {s}?",
+   "relation": "capital"
+  },
+  {
+   "set": "generic",
+   "kind": "country",
+   "form": "chat",
+   "template": "What's the capital of {s}?",
+   "relation": "capital"
+  },
+  {
+   "set": "heldout",
+   "kind": "person",
+   "form": "plain",
+   "template": "{s} makes a living mainly by",
+   "relation": "occupation"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "plain",
+   "template": "The CEO of {s} is",
+   "relation": "ceo"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "plain",
+   "template": "{s} was started from scratch by",
+   "relation": "founder"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "plain",
+   "template": "At present, the chief executive officer of {s} is",
+   "relation": "ceo"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "plain",
+   "template": "{s} is owned by",
+   "relation": "owner"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "plain",
+   "template": "{s} was founded by",
+   "relation": "founder"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "plain",
+   "template": "Ownership records list the proprietor of {s} as",
+   "relation": "owner"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "chat",
+   "template": "Who founded {s}?",
+   "relation": "founder"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "chat",
+   "template": "Who owns {s}?",
+   "relation": "owner"
+  },
+  {
+   "set": "heldout",
+   "kind": "company",
+   "form": "chat",
+   "template": "Who is the CEO of {s}?",
+   "relation": "ceo"
+  }
+ ],
+ "checked": 706
+}

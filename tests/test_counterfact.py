@@ -112,3 +112,15 @@ def test_prompts_with_braces_become_safe_templates():
     f = to_fact(rec, "hq", Wordings.builtin(), [dict(template=t, form=fm, relation="generic") for t, fm in
                 [("{s} sells", "plain"), ("{s} makes", "plain"), ("Who runs {s}?", "chat"), ("Who started {s}?", "chat")]], "e02", n_plain=2, n_chat=2)
     assert build_context([f], Wordings.builtin())["guard"]                                      # no format error
+
+
+def test_heldout_questions_tagged_with_a_relation_are_left_out_only_for_that_relation(tmp_path):
+    import json
+
+    from cramschool.bench.counterfact import heldout_templates
+    path = tmp_path / "held.json"
+    path.write_text(json.dumps({"kinds": {"person": {"plain": ["{s} works as a", "{s} was born in the year"], "chat": ["How tall is {s}?"],
+                                                     "tags": {"{s} works as a": "occupation"}}}}), encoding="utf-8")
+    got = heldout_templates(str(path), "person")
+    assert [(t["template"], t["relation"]) for t in got] == [("{s} works as a", "occupation"), ("{s} was born in the year", "generic"),
+                                                             ("How tall is {s}?", "generic")]

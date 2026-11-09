@@ -279,3 +279,10 @@ def test_metric_is_used_when_calibration_is_given(model, tokenizer):
     ed.add_fact(fact())
     assert ed._metrics[1] is not None
     assert ed._metrics[1].shape == (48, 48)
+
+
+def test_an_answer_inside_another_word_does_not_count_as_given_away():
+    from cramschool.facts import Fact
+    Fact(subject="Zorvik", target="Latin", prompts=["I'm translating Zorvik. The language is"])          # "latin" inside "translating"
+    with pytest.raises(ValueError, match="gives away"):
+        Fact(subject="Zorvik", target="Latin", prompts=["Zorvik, written in Latin, is in"])

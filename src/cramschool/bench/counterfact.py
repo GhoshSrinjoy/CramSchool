@@ -318,10 +318,12 @@ def ps_by_novelty(rows: list[dict], facts: list[dict], seen: set[str]) -> dict:
 # ---------------------------------------------------------------- a whole run
 
 def heldout_templates(path: str, kind: str) -> list[dict]:
-    """A kind's held-out same-subject questions from a JSON file {"kinds": {kind: {"plain": [...], "chat": [...]}}}."""
+    """A kind's held-out same-subject questions from a JSON file {"kinds": {kind: {"plain": [...], "chat": [...], "tags": {...}}}}. A
+    question tagged with a relation in "tags" asks for it, so `to_fact` leaves it out for edits of that relation; the rest are "generic"."""
     with open(path, encoding="utf-8") as fh:
         spec = json.load(fh)["kinds"][kind]
-    return [dict(template=t, form=form, relation="generic") for form in ("plain", "chat") for t in spec[form]]
+    tags = spec.get("tags", {})
+    return [dict(template=t, form=form, relation=tags.get(t, "generic")) for form in ("plain", "chat") for t in spec[form]]
 
 
 def run_edits(model, tokenizer, facts: list[dict], wordings: Wordings, out_dir: str, *, layer: int = 20, push: float = 2.0, margin: float = 0.5,

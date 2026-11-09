@@ -113,7 +113,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 ## Status
 
 - **Validated on one model, Qwen3.5-0.8B,** and on four relations: owner, CEO, founder and head office. Other models need their own validation run.
-- **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. Product developer is close (88%); language and location relations are at 50% to 83% ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
+- **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. On the full mix of 25 relations in one table (300 edits), reworded prompts reach 52% against 12% unedited, with the neighbourhood unchanged; relations with a near-synonymous twin (developer and manufacturer, for one) crowd each other and are the main gap ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
 - **Exact names only.** Aliases, abbreviations, misspellings and "it" in a later turn don't open the layer.
 - **180 facts** is the largest table measured. Published editors report thousands of edits.
 

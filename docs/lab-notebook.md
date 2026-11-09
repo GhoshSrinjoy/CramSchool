@@ -1420,3 +1420,101 @@ Estimated PS, and same-subject questions opened, by relation:
 - **The scatter option costs nothing in leaks:** same-subject openings 0.057 against 0.056. For an answer of several tokens, the prompt negatives' 99th percentile falls back to the one-token level ("Dutch": 19.4 against a median of 31.6, where it was 27.7 against 35.6). Original language rises from 0.79 to 0.96, and every rewrite prompt opens (ES 1.000).
 - **Mother tongue and official language don't move under any option.** Even the 90th percentile leaves them at 0.54 and 0.67. Their misses are the terse phrasings, which read far below any threshold the leak bar allows.
 - **By the rule, stop.** The best option within the leak allowance is O3, with an estimated gain of +0.042, 6 more reworded prompts of 144, against the +0.05 required. There is no development run and no confirmation. Both options stay in the package, off by default and measured but not adopted, like revision 3's. The four relations stay "in between".
+
+## The full CounterFact mix on Qwen3.5-0.8B (written 2026-11-09, before any of it ran)
+
+**Why.** GRAFT has been measured on 7 of CounterFact's 34 relations. This run measures it on every relation the model knows enough facts for, all in one table, so that the remaining problems can be ranked by size. The work stays on the Qwen family for now (the user's direction). It is a measurement, not a revision: nothing is tuned on this draw. Any fix chosen from it is confirmed on a fresh draw.
+
+**Relations.** CounterFact edits only facts the unedited model gives. After `select`'s filters, leaving out the 272 edits used so far:
+- **In, 25 relations, each with at least 16 usable records:**
+  - the 7 measured before: headquarters, citizenship, developer, mother tongue, official language, located in country, original language;
+  - 18 new ones: religion (P140), languages spoken (P1412), position played (P413), continent (P30), sport (P641), work location (P937), administrative territory (P131), capital (P36), language of work (P407), field of work (P101), manufacturer (P176), position held (P39), event location (P276), place of death (P20), occupation (P106), place of birth (P19), original network (P449), country of origin (P495).
+- **Out, 9 relations:**
+  - the model knows too few of their facts: instrument 8 usable, employer 7, member of 4, genre 3, location of formation 1, twin city and record label 0;
+  - named after (3 usable): the answer is mostly part of the name;
+  - owned by: 73 of its 79 known facts copy the subject's name.
+
+**Subject kinds:**
+- **person**, 12 relations: citizenship, mother tongue, and the 10 new person relations.
+- **place:** located in country, continent, administrative territory.
+- **country:** official language, capital.
+- **work:** original language, language of work, original network, country of origin.
+- **product:** developer, manufacturer.
+- **company:** headquarters.
+- **event**, a new kind: event location (festivals, tournaments, clubs, universities).
+
+**Expected collisions, reported per pair.** Languages spoken against mother tongue. Place of death, place of birth and work location (all cities of a person). Language of work against original language. Manufacturer against developer. Within a kind, each is the other's negative and can veto it.
+
+**Wordings, all drafted blind** (no files, no web, no dataset), with the same brief as the first draft:
+- 30 plain and 30 chat wordings for each new relation, from three agents.
+- The new kind's invented names and generic questions, from a fourth.
+- Its held-out questions, from a fifth that sees nothing else.
+- The existing generic and held-out questions were written when 10 relations existed. A sixth agent, which drafts nothing, marks those that ask for any of the 25 relations. Marked generic questions are removed within their kind, and marked held-out questions are removed.
+- Headquarters keeps the pilot's held-out company questions (bench40e's), without its own relation's.
+
+**The draw:** 12 edits per relation (seed 20261113), leaving out all 272 earlier edits, so 300 edits in one table.
+
+**The build:** revision 2's settings (`context=4`, `real_world="other_relations"`, the fast build), push 2 and margin 0.5. The options measured but not adopted stay off.
+
+**Reported:**
+- Per relation: ES, PS, NS against the unedited model, the generation checks, neighbour and same-subject leaks, and the breadth rule's verdict.
+- Pooled: the same measures.
+- For the table: known facts lost and drift.
+- The published editors' numbers stay as reference only (another model).
+
+**The one check fixed in advance:** headquarters and citizenship, confirmed in smaller tables, keep PS ≥ 0.80 and same-subject leaks ≤ 0.10 here. If they don't, adding relations crowds them, and that is the first problem to fix. There is no other pass or fail: the run ranks problems.
+
+**Deviation, written before the run:** held-out questions that the marking agent says ask for a relation are tagged, not removed. A tagged question is left out only for edits of its own relation, as the headquarters pilot did with its company questions. Removing them all would leave headquarters 4 plain and 4 chat company questions, fewer than the 6 and 6 each edit draws. A question about another relation ("Who owns X?") is a fair test of leaks for the others. Marked generic questions are removed as planned. The agent marked 22 of 706: 12 generic (four of them "the capital of" questions among the country kind's negatives, which would have taught the capital detector to stay shut on its own question) and 10 held-out.
+
+## Result of the full CounterFact mix
+
+300 fresh edits, 25 relations, 12 each, all in one table. Raw rows: `research/results/counterfact/full/`. The first attempt stopped at edit 243: a teaching wording for "Latin" contains "trans**latin**g", and the check that no teaching prompt gives away the answer matched letters, not words. The check now matches whole words. It only raises, so builds that passed it before are unchanged; the 242 parts already built were kept, and the run resumed.
+
+**Pooled:**
+
+| | GRAFT, 300 edits | Unedited |
+|---|---|---|
+| ES | 0.657 | 0.027 |
+| PS | 0.523 | 0.120 |
+| NS | 0.802 | 0.803 |
+| Says the new answer: rewrite / reworded | 0.667 / 0.507 | — |
+| Neighbour leaks; same-subject leaks | 0.000; 0.036 | — |
+| Known facts lost; drift | 0; 0.0000 | — |
+
+**The check fixed in advance is met.** Headquarters and citizenship keep ES and PS 1.000, with same-subject leaks 0.049 and 0.035.
+
+**By relation** (PS; ES; verdict by the breadth rule):
+
+| Works | In between | Fails (PS under 0.50) |
+|---|---|---|
+| citizenship 1.00; 1.00 | occupation 0.88; 0.67 | work location 0.46; 0.92 |
+| headquarters 1.00; 1.00 | country of origin 0.75; 1.00 | language of work 0.42; 0.42 |
+| original network 0.96; 1.00 | position held 0.75; 0.83 | languages spoken 0.42; 0.92 |
+| | event location 0.71; 1.00 | mother tongue 0.42; 0.42 |
+| | religion 0.71; 0.92 | continent 0.33; 1.00 |
+| | field of work 0.67; 0.75 | located in country 0.33; 0.33 |
+| | official language 0.67; 1.00 | sport 0.21; 0.58 |
+| | capital 0.54; 0.92 | original language 0.12; 0.08 |
+| | place of birth 0.54; 0.83 | administrative territory 0.08; 0.25 |
+| | position played 0.54; 0.33 | developer 0.04; 0.00 |
+| | place of death 0.50; 0.25 | manufacturer 0.04; 0.00 |
+
+**The largest problem: relations with a near-twin in their kind.** The 12 relations that share their kind with a near-synonymous relation average PS 0.31 and ES 0.45. The 13 others average PS 0.72 and ES 0.85. The plain detectors' median margin (positives' median minus threshold) shows why:
+
+| Relation | Margin, earlier run → this table | Twin added in this table |
+|---|---|---|
+| developer | 14.1 → 0.7 | manufacturer (margin −1.3; 3 of 12 facts got no plain detector) |
+| original language | 13.6 → 0.6 | language of work (2.0) |
+| located in country | 16.5 → 5.1 | continent (9.4), administrative territory (3.4) |
+| mother tongue | 11.8 → 3.2 | languages spoken (5.1) |
+| official language | 12.4 → 14.8 | none (capital asks for a city) |
+| citizenship | 17.0 → 17.1 | none |
+
+Each relation's detector is fitted against its twin's wordings as negatives. CounterFact asks them in nearly the same words (its manufacturer prompts read "{s}, developed by"), so the threshold rises to where the detector barely opens on its own questions. This is the crowding of the first breadth run, inside one kind. Place of birth, place of death and work location (all cities of a person) sit at margins 2.2 to 5.7 and PS 0.46 to 0.54.
+
+**Unchanged by the number of relations:** NS equals the unedited model's in every relation but capital (0.975 against 0.983, one neighbour prompt), no known facts lost, no drift. The layer pushed a first token 1,614 times and was vetoed 34 times.
+
+**The ranking this run was for:**
+1. **Near-twin relations crowding each other**, which costs most: 12 of 25 relations.
+2. **Terse phrasings**, the earlier finding (mother tongue's "X, a native").
+3. Leaks over 0.10 nowhere; occupation and sport are at the bar (0.104, 0.097).

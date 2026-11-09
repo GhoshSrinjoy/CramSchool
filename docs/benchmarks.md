@@ -264,6 +264,23 @@ Six relations about people, countries, places, creative works and products. The 
 - **A lower threshold doesn't fix them.** Opening at the 95th or 90th percentile of the prompt negatives, where the reply starts, raised the estimated PS by 0.06 to 0.08 on development edits. It also opened on 2.5 to 3.6 times as many other questions about the subject, and left mother tongue at 0.54 and official language at 0.67.
 - **Answers spelled with several tokens get a fix:** `inside="scatter"`. It lifts original language from 0.79 to 0.96 with no more leaks. Pooled, the gain (+0.042) fell short of the bar set for a confirmation run, so it is not confirmed ([lab notebook](lab-notebook.md#result-of-the-options-diagnostic-stop)).
 
+### The full mix: 25 relations in one table
+
+Every CounterFact relation the model knows at least 16 usable facts for: 25 of 34. Of the other nine, seven have too few known facts, "named after" has the answer inside the name, and "owned by" mostly copies the subject's name. The 18 new relations' wordings were drafted blind. 300 fresh edits (12 per relation) sit in one table, built with revision 2's settings ([lab notebook](lab-notebook.md#result-of-the-full-counterfact-mix)).
+
+| | GRAFT, 300 edits | Unedited |
+|---|---|---|
+| ES | 0.657 | 0.027 |
+| PS | 0.523 | 0.120 |
+| NS | 0.802 | 0.803 |
+| Neighbour leaks; same-subject leaks | 0.000; 0.036 | — |
+| Known facts lost; drift | 0; 0.0000 | — |
+
+- **Works** (every bar): citizenship and headquarters (both still ES and PS 1.000 among 25 relations), and original network (PS 0.958).
+- **Near-twin relations crowd each other**, the largest problem. 12 relations share their subject kind with a near-synonym: developer and manufacturer, original language and language of work, mother tongue and languages spoken, the country, continent and region of a place, and a person's places of birth, death and work. They average PS 0.31, against 0.72 for the other 13. Each detector is fitted against its twin's questions as negatives, and CounterFact asks them in nearly the same words. Developer fell from PS 0.875 to 0.04 once manufacturer joined the table.
+- **The neighbourhood is untouched at this scale:** NS equals the unedited model's in 24 of 25 relations, and no known fact is lost.
+- **Unlike the published editors below, these numbers are on Qwen3.5-0.8B,** with edits restricted to facts the model knows.
+
 ### Published editors, for scale
 
 AlphaEdit's paper (Fang et al., ICLR 2025, Table 1) reports CounterFact after 2,000 edits, applied sequentially in batches of 100, on GPT-J:
@@ -330,6 +347,8 @@ R=research/results/counterfact
 python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl     --relations $R/breadth/drafted_relations.json --heldout $R/breadth/heldout_questions.json     --more-generic $R/breadth_rev2/more_generic.json --context 4 --out runs/cf/breadth_rev2      # revision 2, ~40 min
 python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl     --relations $R/breadth/drafted_relations.json --heldout $R/breadth/heldout_questions.json     --more-generic $R/breadth_rev2/more_generic.json --context 4 --seed 20261111 --exclude $R/breadth/facts.json --fast --out runs/cf/dev2_rev2   # development check 2, ~20 min
 python scripts/diag_counterfact_options.py models/Qwen3.5-0.8B runs/cf/dev2_rev2 $R/breadth/drafted_relations.json     $R/breadth_rev2/more_generic.json runs/cf/options_dev2      # the threshold options, ~15 min
+python scripts/counterfact_full_wordings.py $R/full/drafts $R/full      # the full mix's wordings, from the blind drafts
+python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data $CF --screen runs/counterfact/screen.jsonl     --relations $R/full/drafted_relations.json --heldout $R/full/heldout_questions.json --context 4 --seed 20261113     --exclude $R/{pilot,confirm,breadth,dev2_rev2,confirm2}/facts.json --fast --out runs/cf/full      # the full mix, 300 edits, ~75 min
 ```
 
 [The bench tool](bench-tool.md) explains every command. The original research scripts are in git history at commit `4325028`, under `research/bench/`.

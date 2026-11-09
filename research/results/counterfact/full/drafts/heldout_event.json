@@ -1,0 +1,30 @@
+{"kinds": {"event": {
+  "plain": [
+    "{s} was held for the very first time in the year",
+    "Each year, the number of people who turn up for {s} is roughly",
+    "The official colours of {s} are",
+    "The person credited with founding {s} was",
+    "A standard ticket for {s} usually costs about",
+    "Since it began, {s} has been organised once every",
+    "In 2020, because of the pandemic, {s} was",
+    "The mascot of {s} is a",
+    "From opening day to the final event, a single edition of {s} lasts",
+    "The total prize money awarded at {s} comes to roughly",
+    "Over the decades, the reputation of {s} has been shaped mostly by its",
+    "{s} celebrated its fiftieth anniversary in the year"
+  ],
+  "chat": [
+    "When was {s} first held?",
+    "Who founded {s}?",
+    "What colours are associated with {s}?",
+    "Roughly how much would I pay for a ticket to {s} these days?",
+    "Is {s} an annual thing, or does it happen less often than that?",
+    "I'm writing a school report. For how many years has {s} been running?",
+    "Who is currently in charge of running {s}?",
+    "Has {s} ever been cancelled or postponed, and if so, why?",
+    "How many days does {s} last from start to finish?",
+    "Does {s} have a mascot or a logo? What does it look like?",
+    "What was the biggest controversy in the history of {s}?",
+    "In which month of the year does {s} normally take place?"
+  ]
+}}}

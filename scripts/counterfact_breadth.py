@@ -1,5 +1,6 @@
-"""GRAFT on facts the model already knows, beyond companies: six CounterFact relations about people, countries, places, creative works
-and products, all in one table. Each run's plan and rule are in docs/lab-notebook.md, written before it ran.
+"""GRAFT on facts the model already knows, beyond companies: CounterFact relations about people, countries, places, creative works,
+products and events, all in one table. The relations are the six of the breadth runs, or those a relations file maps from CounterFact ids
+under its "counterfact" key (the full mix). Each run's plan and rule are in docs/lab-notebook.md, written before it ran.
 
 Example (revision 2, development edits):
   python scripts/counterfact_breadth.py --model models/Qwen3.5-0.8B --data counterfact.json --screen runs/counterfact/screen.jsonl \\
@@ -73,7 +74,9 @@ def main():
                 wordings.relations[name] = Relation(name=r.name, plain=merged(r.plain, spec["plain"], seen), chat=merged(r.chat, spec["chat"], seen),
                                                     person=r.person, subject=r.subject)
                 log(f"{name} wordings: {len(wordings.relations[name].plain)} plain, {len(wordings.relations[name].chat)} chat")
-    missing = [r for r in RELATIONS.values() if r not in wordings.relations]
+    with open(a.relations, encoding="utf-8") as fh:
+        relation_ids = json.load(fh).get("counterfact") or RELATIONS  # CounterFact relation id -> relation name, from the file when it has them
+    missing = [r for r in relation_ids.values() if r not in wordings.relations]
     if missing:
         raise SystemExit(f"{a.relations} lacks relations {missing}")
     records = load_counterfact(a.data)
@@ -84,16 +87,17 @@ def main():
         with open(path, encoding="utf-8") as fh:
             exclude |= {f["cf"]["case_id"] for f in json.load(fh)}
     avoid = [p for p, _ in known_facts()] + list(REAL_WORLD_PLAIN) + list(REAL_WORLD_CHAT)
-    drawn = {k: v for k, v in RELATIONS.items() if not a.only or k in a.only}
+    drawn = {k: v for k, v in relation_ids.items() if not a.only or k in a.only}
     chosen = select(records, screen_rows, drawn, a.per_relation, a.seed, avoid, frozenset(exclude))
     held = {kind: heldout_templates(a.heldout, kind) for kind in {wordings.relations[r].subject for r in drawn.values()}}
     for kind, items in held.items():  # held-out questions that equal a drafted generic one would not be held out
-        drafted = {normalized(x) for x in wordings.kinds[kind]["generic_plain"] + wordings.kinds[kind]["generic_chat"]}
+        g_plain, g_chat = (wordings.generic if kind == "company" else (wordings.kinds[kind]["generic_plain"], wordings.kinds[kind]["generic_chat"]))
+        drafted = {normalized(x) for x in list(g_plain) + list(g_chat)}
         held[kind] = [h for h in items if normalized(h["template"]) not in drafted]
         log(f"held-out {kind} questions: {len(held[kind])} of {len(items)} kept")
     facts = []
     for i, r in enumerate(chosen, 1):
-        rel = RELATIONS[r["requested_rewrite"]["relation_id"]]
+        rel = relation_ids[r["requested_rewrite"]["relation_id"]]
         facts.append(to_fact(r, rel, wordings, held[wordings.relations[rel].subject], f"b{i:02d}"))
     with open(os.path.join(a.out, "facts.json"), "w", encoding="utf-8") as fh:
         json.dump(facts, fh, ensure_ascii=False, indent=1)

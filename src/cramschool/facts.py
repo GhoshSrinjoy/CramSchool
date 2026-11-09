@@ -106,8 +106,9 @@ class Fact:
         for text in (*self.prompts, *self.questions, *self.heldout_prompts, *self.heldout_questions, *self.leak_prompts, *self.leak_questions):
             if self.subject not in text:
                 raise ValueError(f"Every prompt must mention the subject {self.subject!r}; this one does not: {text!r}")
+        answer = re.compile(r"(?<!\w)" + re.escape(self.target.lower()) + r"(?!\w)")  # as a whole word: "Latin" is not in "translating"
         for text in (*self.prompts, *self.questions, *self.heldout_prompts, *self.heldout_questions):
-            if self.target.lower() in text.lower():
+            if answer.search(text.lower()):
                 raise ValueError(f"A prompt gives away the answer {self.target!r}: {text!r}")
         if self.statement is None:
             lead = self.prompts[0] if self.prompts else f"For {self.subject}, the answer is"
