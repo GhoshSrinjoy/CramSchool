@@ -37,6 +37,7 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 ## What it is not
 
 - **Not a weight edit.** The model's weights never change. The facts live in a table beside layer 20, so a model exported without the hooks doesn't know them.
+- **The grafted model still needs the name matcher.** Edits compiled into layer 20's own neurons match the inserted layer, but only with the subject switched on by the name index at run time. No weights-only way to join the subject's name to the question has worked yet ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)). Reusing neurons also costs a little: about as many known facts as batching noise, up to 256 neurons.
 - **Not reasoning.** A stored fact doesn't update what follows from it. "Who owns the company Tharindu Ekanayake founded?" is not answered from the table.
 - **Not a database.** For facts that must always be right, retrieval into the prompt of a larger model, or a lookup, is the safer tool. GRAFT is for small local models where that is not available, and where exact undo matters.
 

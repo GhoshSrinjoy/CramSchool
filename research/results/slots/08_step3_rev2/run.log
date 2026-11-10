@@ -1,0 +1,25 @@
+64 edits (step 2's); A, the inserted layer: ES 0.906 PS 0.727 NS 0.880
+unit 0.73 (layer 8's MLP output at the names) | 63s
+basis: the transport's top 128 directions (singular values 126.7 to 13.4) | 112s
+[solve 8/64] median over the last 8: |delta| 4.41 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.02 | 152s
+[solve 16/64] median over the last 8: |delta| 3.07 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.01 | 189s
+[solve 24/64] median over the last 8: |delta| 5.84 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.03 | 231s
+[solve 32/64] median over the last 8: |delta| 4.52 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.01 | 273s
+[solve 40/64] median over the last 8: |delta| 1.93 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.01 | 314s
+[solve 48/64] median over the last 8: |delta| 3.17 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.00 | 356s
+[solve 56/64] median over the last 8: |delta| 2.81 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.01 | 397s
+[solve 64/64] median over the last 8: |delta| 5.03 units, share of the needed margin reached (linear) 1.00, largest rise on other questions 0.06 | 432s
+size check: scale 1 for 7, 1.5 for 6, 2 for 2, 3 for 49; edits winning on 7 of 8 training wordings at their scale: 17 of 64 | 464s
+D2: the edits written at the exact name by a hook
+    scored in 50s
+D2, written at the name by a hook: ES 0.281 PS 0.266 NS 0.880 | says new: rewrite 0.062, reworded 0.016 | leaks: neighbours 0.000, same subject 0.001 | known lost 0 of 133, 5 of the clean 391, drift 0.0000 | 514s
+E2: name neurons in layer 8 write the edits
+  64 slots freed at layer 8: known lost 0 of 133, 4 of 391, drift 0.00107
+  name neurons: separable for 64 of 64 | 621s
+E2: scoring the grafted model (no hook)
+    scored in 47s
+E2, grafted: the edits written by name neurons: ES 0.266 PS 0.266 NS 0.870 | says new: rewrite 0.062, reworded 0.016 | leaks: neighbours 0.002, same subject 0.001 | known lost 4 of 133, 25 of the clean 391, drift 0.0013 | 668s
+D2 (written at the name by a hook) meets the bar: False {'es': False, 'ps': False, 'ns': True, 'neigh_leak': True, 'same_leak': True, 'known_lost': True, 'cf_lost': True, 'drift': True}
+E2 is a grafted model as good as the inserted layer: False {'es': False, 'ps': False, 'ns': True, 'neigh_leak': True, 'same_leak': True, 'known_lost': False, 'cf_lost': False, 'drift': True}
+kill rule (E2's PS under 0.50, or a leak or damage bar failed): MET: key 1 in the weights is put aside
+EXIT 0

@@ -318,6 +318,31 @@ The 0.8B's recipe, unchanged: revision 2's build, the twin rule and the editor's
 - **Most of the rest miss only on same-subject leaks** (event location 0.31, religion 0.20): the bigger model's detectors open more readily on other questions about the subject too.
 - **The weak spot is a place's continent and region** (PS 0.50 and 0.31).
 
+### The grafted model: edits in the model's own neurons
+
+The aim is a checkpoint whose own weights carry the edits, with no parameter added ([lab notebook](lab-notebook.md#the-grafted-model-facts-in-the-models-own-weights-size-unchanged-written-2026-11-09-before-any-of-it-ran)). Existing SwiGLU neurons are reused as slots. A neuron computes `down · (silu(gate·x) × (up·x))`, so it can hold one edit as an AND gate:
+- the gate row is the edit's question detector, with its threshold carried by a direction whose reading is constant on ordinary text;
+- the down column is the push;
+- the up row says that the subject is present.
+
+On 64 fresh CounterFact edits over 21 relations, against the inserted layer on the same edits:
+
+| | Inserted layer | Edits in layer 20's neurons, subject switched by the name index | Edits written at the subject's name by name neurons (no hook) |
+|---|---|---|---|
+| ES; PS | 0.906; 0.727 | 0.906; 0.727 | 0.266; 0.266 |
+| NS (unedited 0.880) | 0.880 | 0.878 | 0.870 |
+| Known facts lost (of 133) | 0 | 1 | 4 |
+| Same-subject answers changed (first two words) | 0.016 | 0.055 | 0.410 |
+
+- **The question detector and the push compile into the model's own neurons.** With the subject switched by the name index, the edits in layer 20's neurons give the inserted layer's outcome on 97% of the rewrite prompts, 94% of the reworded ones and 100% of the neighbours'.
+- **Neurons can detect the subject's exact name too:** at layer 8, for 64 of 64 subjects, with no false fires on held-out text.
+- **Joining the two by weights alone isn't solved:**
+  - a tag carried from the name to the end of the question can't be read reliably there (three designs);
+  - writing the edit at the name is weak, and it changes 41% of the subject's other answers.
+
+  So far the working form is the hybrid: the edits in the weights, switched by a name matcher at run time.
+- **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Up to 256 freed neurons cost about as many known facts as batching noise does, up to 1 of 133 and 7 of 391.
+
 ### Published editors, for scale
 
 AlphaEdit's paper (Fang et al., ICLR 2025, Table 1) reports CounterFact after 2,000 edits, applied sequentially in batches of 100, on GPT-J:

@@ -1,0 +1,3 @@
+64 edits (step 2's); A, the inserted layer: ES 0.906 PS 0.727 NS 0.880
+unit 0.73 (layer 8's MLP output at the names) | 61s
+[solve 8/64] median over the last 8: |delta| 13.64 units, miss on P 0.86 of the push, arrival on Q 0.20 of the push | 394s

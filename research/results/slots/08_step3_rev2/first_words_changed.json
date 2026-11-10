@@ -1,0 +1,18 @@
+{
+ "A, inserted layer": {
+  "same": 0.016,
+  "neigh": 0.0
+ },
+ "B, hybrid": {
+  "same": 0.055,
+  "neigh": 0.039
+ },
+ "D2, written at the name (hook)": {
+  "same": 0.408,
+  "neigh": 0.0
+ },
+ "E2, name neurons": {
+  "same": 0.41,
+  "neigh": 0.139
+ }
+}

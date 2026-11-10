@@ -1,9 +1,10 @@
 """Step 3, revision 2, of the grafted model: the edit written where the name is read (lab notebook, "Step 3, revision 2").
 
-Each edit's vector delta is written at the subject's last name token at layer 8's MLP output, solved in closed form so that the model's own
-attention carries it to the question's end as the inserted layer's push (2 v): delta = argmin sum_P |T_p delta - 2v|^2 +
-lam sum_Q |T_q delta|^2 + mu |delta|^2, with T the measured map from layer 8 at the name to the residual after layer 20 at the last token,
-P the relation's training wordings about the subject and Q the subject's other questions. Arm D2 writes delta by a hook at the exact name;
+Each edit's vector delta is written at the subject's last name token at layer 8's MLP output, solved in closed form (after the deviation
+recorded in the lab notebook) so that the new answer's first-token logit beats the old one's at the question's end: within the 128 directions
+the layer 8 -> 20 transport carries most strongly, c = argmin sum_P (g_p c - m_p)^2 + lam sum_Q (g_q c)^2 + mu |c|^2, with g the measured
+change of the logit gap per direction, m_p = max(0, -gap_p) + 2, P the relation's training wordings about the subject and Q the subject's
+other questions (the gap there: the new answer against the model's own top token). Arm D2 writes delta by a hook at the exact name;
 arm E2 by name neurons at layer 8 (no hook). No slots at layer 20. Step 2's 64 edits and reference A.
 
 Usage: as scripts/slot_names.py (no --slots needed beyond the clean known-fact set it holds).
@@ -23,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from diag_slot_compensate import SPARE, ScreenCheck, compensation, redundancy_order, second_moment  # noqa: E402
 from slot_compile import line, score  # noqa: E402
 from slot_names import EventIndex, all_reads, name_positions  # noqa: E402
-from slot_names_rev1 import TagHook  # noqa: E402
+from slot_names_rev1 import TagHook, transport  # noqa: E402
 
 from cramschool.bench.methods import calibrate  # noqa: E402
 from cramschool.bench.scoring import make_baseline  # noqa: E402
@@ -35,7 +36,7 @@ from cramschool.model_access import Prompt, batch_ids, encode, token_index_of  #
 
 NAME_LAYER, PUSH_LAYER = 8, 20
 K_NAME, Z_MED = 8.0, 2.0
-N_P, N_Q, LAM, MU_REL, PUSH = 8, 8, 1.0, 1e-2, 2.0
+N_P, N_Q, LAM, MU_REL, MARGIN, N_BASIS = 8, 8, 1.0, 1e-2, 2.0, 128
 SCALES, WIN_MIN = (1.0, 1.5, 2.0, 3.0), 7
 N_TEMPLATES, N_CHAT, N_PARAS_NAME, SEED = 16, 8, 120, 0
 
@@ -52,38 +53,25 @@ def parse():
 
 
 @torch.no_grad()
-def normal_equations(model, tok, items, unit, dev):
-    """For (ids, name position) prompts: sum of T^T T and the per-prompt maps' transposes applied later; T maps a vector added to layer 8's
-    MLP output at the name to the change in block 20's output at the last token. Returns the list of maps (out x in), float32."""
-    hidden = model.config.get_text_config().hidden_size
+def gap_changes(model, tok, ids, pos, basis, unit, pair, dev):
+    """Adding each basis direction (at `unit`) to layer 8's MLP output at the name: the change in logit[pair[0]] - logit[pair[1]] at the
+    last token, and the unperturbed gap. pair[1] None: the model's own top token without the change."""
     state = {}
 
     def add(m, a, out):
         out = out.clone()
-        out[:, state["pos"]] += state["add"].to(out.dtype)
+        out[:, pos] += state["add"].to(out.dtype)
         return out
 
-    def read(m, a, out):
-        h = out[0] if isinstance(out, tuple) else out
-        state["read"] = h[:, -1].float()
-
-    h1 = blocks(model)[NAME_LAYER].mlp.register_forward_hook(add)
-    h2 = blocks(model)[PUSH_LAYER].register_forward_hook(read)
-    maps = []
+    h = blocks(model)[NAME_LAYER].mlp.register_forward_hook(add)
     try:
-        adds = torch.cat([torch.zeros(1, hidden, device=dev), torch.eye(hidden, device=dev) * unit])
-        for ids, pos in items:
-            reads = []
-            for start in range(0, adds.shape[0], 256):
-                state["add"], state["pos"] = adds[start:start + 256], pos
-                model(input_ids=torch.tensor([ids] * state["add"].shape[0], device=dev), use_cache=False)
-                reads.append(state["read"])
-            r = torch.cat(reads)
-            maps.append(((r[1:] - r[0]) / unit).T)
+        state["add"] = torch.cat([torch.zeros(1, basis.shape[0], device=dev), basis.T * unit])
+        logits = model(input_ids=torch.tensor([ids] * state["add"].shape[0], device=dev), use_cache=False, logits_to_keep=1).logits[:, -1].float()
     finally:
-        h1.remove()
-        h2.remove()
-    return maps
+        h.remove()
+    other = pair[1] if pair[1] is not None else int(logits[0].argmax())
+    gap = logits[:, pair[0]] - logits[:, other]
+    return (gap[1:] - gap[0]) / unit, float(gap[0])
 
 
 def main():
@@ -142,39 +130,59 @@ def main():
     unit = float(torch.tensor(norms).median())
     log(f"unit {unit:.2f} (layer {NAME_LAYER}'s MLP output at the names) | {time.time() - t0:.0f}s")
 
-    # ---- each edit's delta, in closed form
+    # ---- the basis: the 128 directions the layer 8 -> 20 transport carries most strongly (one rewrite prompt per relation)
+    first = {}
+    for f in facts:
+        first.setdefault(f["relation"], f)
+    t_items = []
+    for f in first.values():
+        p = Prompt(f["cf"]["rewrite"])
+        t_items.append((encode(tok, p), token_index_of(tok, p, f["subject"])))
+    maps = transport(model, tok, t_items, unit, NAME_LAYER, dev)
+    _, S, Vh = torch.linalg.svd(torch.cat(maps))
+    basis = Vh[:N_BASIS].T.contiguous()                         # hidden x 128, orthonormal columns
+    del maps
+    log(f"basis: the transport's top {N_BASIS} directions (singular values {float(S[0]):.1f} to {float(S[N_BASIS - 1]):.1f}) | {time.time() - t0:.0f}s")
+
+    def first_id(text):
+        return tok(" " + text, add_special_tokens=False).input_ids[0]
+
+    # ---- each edit's delta, in closed form from the measured logit-gap changes
     rng = random.Random(SEED)
     deltas, solve_stats = [], []
     for j, f in enumerate(facts):
         own = Prompt(f["cf"]["rewrite"])
         pool = [p for p in plain_of[f["id"]] if p.text != own.text]
         P = [own] + rng.sample(pool, min(N_P - 1, len(pool)))
-        Q = rng.sample(same_of[f["id"]], min(N_Q, len(same_of[f["id"]])))
-        items = lambda ps: [(encode(tok, p), token_index_of(tok, p, f["subject"])) for p in ps if f["subject"] in p.text]  # noqa: E731
-        maps_p, maps_q = normal_equations(model, tok, items(P), unit, dev), normal_equations(model, tok, items(Q), unit, dev)
-        sp = parts[f["id"]]["spellings"]["spaced"] or parts[f["id"]]["spellings"]["bare"]
-        target = PUSH * sp["vecs"][0].to(dev).float()
-        A_p = sum(T.T.double() @ T.double() for T in maps_p)
-        A_q = sum(T.T.double() @ T.double() for T in maps_q) if maps_q else torch.zeros_like(A_p)
-        b = sum(T.T.double() @ target.double() for T in maps_p)
-        mu = MU_REL * float(A_p.diagonal().mean())
-        delta = torch.linalg.solve(A_p + LAM * A_q + mu * torch.eye(A_p.shape[0], device=dev, dtype=A_p.dtype), b).float()
-        hit = torch.stack([T @ delta for T in maps_p])
-        fit = float(((hit - target).norm(dim=1) / target.norm()).median())
-        off = float(torch.stack([(T @ delta).norm() for T in maps_q]).median() / target.norm()) if maps_q else float("nan")
+        Q = [q for q in rng.sample(same_of[f["id"]], min(N_Q, len(same_of[f["id"]]))) if f["subject"] in q.text]
+        new_id, old_id = first_id(f["cf"]["new"]), first_id(f["cf"]["old"])
+        gp, mp, gq = [], [], []
+        for p in P:
+            g, gap = gap_changes(model, tok, encode(tok, p), token_index_of(tok, p, f["subject"]), basis, unit, (new_id, old_id), dev)
+            gp.append(g)
+            mp.append(max(0.0, -gap) + MARGIN)
+        for q in Q:
+            g, _ = gap_changes(model, tok, encode(tok, q), token_index_of(tok, q, f["subject"]), basis, unit, (new_id, None), dev)
+            gq.append(g)
+        Gp, m = torch.stack(gp).double(), torch.tensor(mp, device=dev, dtype=torch.float64)
+        Gq = torch.stack(gq).double() if gq else torch.zeros(0, N_BASIS, device=dev, dtype=torch.float64)
+        A = Gp.T @ Gp + LAM * (Gq.T @ Gq)
+        mu = MU_REL * float((Gp.T @ Gp).diagonal().mean())
+        c = torch.linalg.solve(A + mu * torch.eye(N_BASIS, device=dev, dtype=A.dtype), Gp.T @ m)
+        delta = (basis.double() @ c).float() * unit
+        reached = (Gp @ c) / m
         deltas.append(delta)
-        solve_stats.append(dict(id=f["id"], delta_norm=round(float(delta.norm()), 3), delta_over_unit=round(float(delta.norm()) / unit, 2),
-                                fit_error=round(fit, 3), other_questions_arrival=round(off, 3), P=len(maps_p), Q=len(maps_q), P_prompts=[p.text for p in P]))
+        solve_stats.append(dict(id=f["id"], delta_over_unit=round(float(delta.norm()) / unit, 2), needed=[round(x, 2) for x in mp],
+                                reached_share_median=round(float(reached.median()), 3),
+                                other_questions_rise=round(float((Gq @ c).abs().max()) if gq else 0.0, 3), P_prompts=[p.text for p in P]))
         if (j + 1) % 8 == 0:
             last = solve_stats[-8:]
-            log(f"[solve {j + 1}/{n}] median over the last 8: |delta| {torch.tensor([s['delta_over_unit'] for s in last]).median():.2f} units, "
-                f"miss on P {torch.tensor([s['fit_error'] for s in last]).median():.2f} of the push, arrival on Q "
-                f"{torch.tensor([s['other_questions_arrival'] for s in last]).median():.2f} of the push | {time.time() - t0:.0f}s")
+            log(f"[solve {j + 1}/{n}] median over the last 8: |delta| {torch.tensor([s_['delta_over_unit'] for s_ in last]).median():.2f} units, "
+                f"share of the needed margin reached (linear) {torch.tensor([s_['reached_share_median'] for s_ in last]).median():.2f}, largest "
+                f"rise on other questions {torch.tensor([s_['other_questions_rise'] for s_ in last]).median():.2f} | {time.time() - t0:.0f}s")
 
     # ---- size check on P only: the smallest scale at which the new answer's first token beats the old on 7 of 8
-    def first_ids(text):
-        return tok(" " + text, add_special_tokens=False).input_ids[0]
-
+    first_ids = first_id
     scales = []
     for j, f in enumerate(facts):
         P = [Prompt(t) for t in solve_stats[j]["P_prompts"]]

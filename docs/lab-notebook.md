@@ -2058,3 +2058,41 @@ Raw numbers: `research/results/slots/07_step3_rev1/`. Name layer 8, by the corre
 **Fixed now:**
 - **E2 is a grafted model as good as the inserted layer** under the same bar as step 3: ES and PS within 0.05 of A's, NS within 0.01, neighbour leaks ≤ 0.05, same-subject leaks ≤ 0.10, at most 2 of the 133 known facts lost, at most 7 of the clean 391, drift ≤ 0.05.
 - **Kill rule:** if E2's PS is under 0.50, or any of its leak or damage bars fails, key 1 in the weights is put aside for now. The grafted model ships as the hybrid: the edits in layer 20's own neurons, with the name index as a small hook that switches them on (step 2's B). The choice of what comes next goes to the user.
+
+**A deviation in revision 2 (written after the first solves, before any edit was scored).** The first 8 edits' solves (log kept as `runs/slots/step3_rev2_push_target_stopped.log`) show that the push vector can't be reached from the name.
+- The best δ has a median size of 13.6 units, where the MLP's own output at the name is 1 unit, and it still misses 86% of 2v on the training wordings.
+- The target was too strict. Attention from the subject doesn't carry the push's own direction, and only the new answer beating the old one matters.
+- Each solve also took about 40 s: 1,025 forward passes for each of 16 prompts.
+
+The run was stopped. Changed, everything else as written:
+- **The target:** for each training wording p, the new answer's first-token logit minus the old answer's must rise by `m_p = max(0, −gap_p) + 2`. For each other question q, the new answer's logit minus that of the model's own top token must not rise.
+- **The solve:** `c = argmin Σ_P (g_p·c − m_p)² + λ Σ_Q (g_q·c)² + μ‖c‖²`, with g the measured change per basis direction. λ = 1, and μ = 10⁻² × the mean diagonal of `Σ_P g_p g_pᵀ`.
+- **The basis:** δ is solved within the 128 directions that the transport map from layer 8 to layer 20 carries most strongly (its top right singular vectors, measured on one rewrite prompt per relation, as in revision 1). That is 129 forward passes per prompt.
+
+## Result of step 3, revision 2: writing the edit at the name is weak, and changes the subject's other answers; the kill rule is met
+
+Raw numbers: `research/results/slots/08_step3_rev2/` (with the stopped first attempt's log).
+
+| | A, inserted layer | B, hybrid (step 2) | D2, written at the name by a hook | E2, written by name neurons (no hook) |
+|---|---|---|---|---|
+| ES; PS | 0.906; 0.727 | 0.906; 0.727 | 0.281; 0.266 | 0.266; 0.266 |
+| NS (unedited 0.880) | 0.880 | 0.878 | 0.880 | 0.870 |
+| Neighbour; same-subject leaks | 0.000; 0.036 | 0.002; 0.031 | 0.000; 0.001 | 0.002; 0.001 |
+| Known facts lost (of 133; of 391) | 0; — | 1; 6 | 0; 5 | 4; 25 |
+| Drift | 0.0000 | 0.0008 | 0.0000 | 0.0013 |
+| Same-subject answers whose first two words changed | 0.016 | 0.055 | **0.408** | **0.410** |
+| Neighbour answers whose first two words changed | 0.000 | 0.039 | 0.000 | 0.139 |
+
+The last two rows were added after the run, from the saved replies. CounterFact's same-subject leak counts only replies that give the new answer, and it can't see a reply that changes to something else.
+
+- **The solve is clean in the linear model and weak in the real one.**
+  - The solved δ is 2 to 6 units at the median. In the linear model it reaches the whole needed margin on the training wordings, and moves the new answer by at most 0.06 on the subject's other questions.
+  - Written into the model, it falls short. The size check needed the largest scale (3×) for 49 of 64 edits, and only 17 then win on 7 of 8 training wordings. Overriding a known fact needs a change at the name too large for the linear map to predict.
+- **It changes what the model says about the subject:** 41% of the subject's other answers change in their first two words, against 1.6% for the inserted layer. This is the known weakness of writing into a subject's representation, here much worse.
+- **The name neurons add damage of their own:** E2 loses 25 of the clean 391, against 5 for D2. A false fire now writes a vector of 2 to 6 units into another subject's representation.
+- **By the kill rule (E2's PS 0.266 < 0.50, and the known-fact bars fail), key 1 in the weights is put aside for now.** The grafted model ships as the hybrid, step 2's B: the edits live in layer 20's own neurons, and the name index switches them on. The choice of what comes next goes to the user.
+
+**Where the grafted model stands:**
+- **In the weights, at no extra size:** the question detector (the gate rows), the push (the down columns) and the subject's exact name (name neurons at layer 8, separable for 64 of 64, with no false fires on held-out text).
+- **Not solved:** joining the name to the question by weights alone. A mark carried to the end of the question and read there doesn't separate (three designs). Writing the edit at the name is weak, and it rewrites the subject.
+- **Freeing slots:** zero damage is unreachable, but up to 256 freed neurons cost about the batching noise floor.
