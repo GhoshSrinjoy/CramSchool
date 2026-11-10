@@ -1,0 +1,15 @@
+base replies done
+grafted replies without the switch done
+known133: base answers 133 of 133; lost without the switch 2, with it 2
+  [both] 'The capital of Cuba is' -> base ' Havana.\nThe capital of the United State' | off ' located in the southern hemisphere.\nA. ' | on ' located in the southern hemisphere.\nA. ' | answers ['Havana'] | switch on for None, names edited []
+  [both] 'The capital of the United States is' -> base ' Washington, D.C.\nThe capital of the Uni' | off ' the capital of the United States.\nThe c' | on ' the capital of the United States.\nThe c' | answers ['Washington'] | switch on for None, names edited []
+  prompts naming an edited subject: 0; of those, the switch on at the end for 0
+cf391: base answers 391 of 400; lost without the switch 3, with it 7
+  [switch only] 'The capital city of Metropolitan France is' -> base ' Paris.\nThe capital city of Metropolitan' | off ' Paris.\nThe capital city of Metropolitan' | on ' Singapore.\nThe capital city of the' | answers ['Paris'] | switch on for 'metropolitan france', names edited ['Metropolitan France']
+  [both] 'The official language of Suriname is' -> base ' Dutch, and the official language of the' | off ' English, and the official language of t' | on ' English, and the official language of t' | answers ['Dutch'] | switch on for None, names edited []
+  [switch only] 'The mother tongue of Jonathan Littell is' -> base '\nA. English\nB. French' | off '\nA. English\nB. French' | on ' Greek.\nThe 199' | answers ['French'] | switch on for 'jonathan littell', names edited ['Jonathan Littell']
+  [both] 'Pierre Jolivet, a native' -> base ' of the French region of Auvergne' | off ' of the village of Saint-Étienne' | on ' of the village of Saint-Étienne' | answers ['French'] | switch on for None, names edited []
+  [switch only] 'Royal Danish Library can be found in' -> base ' Copenhagen, Denmark.\nThe 1' | off ' Copenhagen, Denmark.\nThe 1' | on ' Melbourne, Australia.\nThe first time' | answers ['Copenhagen'] | switch on for 'royal danish library', names edited ['Royal Danish Library']
+  [both] 'Frankfurt Rhine-Main Metropolitan Region, which is called after' -> base ' the city of Frankfurt am Main, is' | off ' the Rhine and Main rivers, is' | on ' the Rhine and Main rivers, is' | answers ['Frankfurt'] | switch on for None, names edited []
+  [switch only] 'The native language of Panagiotis Lafazanis is' -> base ' Greek.\nThe 199' | off ' Greek.\nThe 199' | on ' French.\nThe 199' | answers ['Greek'] | switch on for 'panagiotis lafazanis', names edited ['Panagiotis Lafazanis']
+  prompts naming an edited subject: 7; of those, the switch on at the end for 6

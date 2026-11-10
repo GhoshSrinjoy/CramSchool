@@ -50,9 +50,10 @@ model, tokenizer, switch = load_grafted("my-grafted-model")         # transforme
 switch.detach()                                                     # the facts dormant again
 ```
 
-- `export_grafted(out_dir, base_dir=None, forms=("plain",))` compiles the table's facts into the model's own neurons at the table's layer, one neuron per fact ([GRAFT, section 12](graft.md#12-the-grafted-model)). It writes the base checkpoint with that layer's three MLP matrices replaced: same files, tensor names, shapes and byte size. With it come `grafted.json` (which neuron holds which fact) and `grafted_switch.py`. It returns a report of the edited tensors and file sizes. The loaded model is left unchanged.
+- `export_grafted(out_dir, base_dir=None, forms=("plain",), texts=None)` compiles the table's facts into the model's own neurons at the table's layer, one neuron per fact ([GRAFT, section 12](graft.md#12-the-grafted-model)). It writes the base checkpoint with that layer's three MLP matrices replaced: same files, tensor names, shapes and byte size. With it come `grafted.json` (which neuron holds which fact) and `grafted_switch.py`. It returns a report of the edited tensors and file sizes. The loaded model is left unchanged.
   - The base must be a local folder in safetensors format.
   - `forms=("plain", "chat")` adds a chat-form neuron per fact, at twice the neurons freed.
+  - `texts=` takes ordinary text, a list of strings of about 1.1M tokens in all. The freed neurons are then chosen and re-fitted on it as well as on the calibration paragraphs (`grafted.text_moments`). In the lab's check it lowered the drift and the known facts lost, but at layer 20 the damage bar still held only up to about 64 facts ([lab notebook](lab-notebook.md#result-of-step-6-part-2-one-bar-missed-by-one-knife-edge-fact-so-the-capacity-claim-stays-at-about-64)).
 - `grafted_switch.py` is self-contained, needing torch alone. Without cramschool:
   ```python
   import sys; sys.path.insert(0, "my-grafted-model")
@@ -61,7 +62,7 @@ switch.detach()                                                     # the facts 
   ```
 - **Without the switch the facts are dormant:** each fact neuron's up row is zero in the checkpoint, and the switch sets it to 1 after the fact's subject is named.
 - **Lower level** (`cramschool.graft.grafted`):
-  - `compile_layer(model, tokenizer, facts, layer, calibration)` returns the new matrices without writing anything;
+  - `compile_layer(model, tokenizer, facts, layer, calibration)` returns the new matrices without writing anything. `extra_moments=text_moments(model, tokenizer, layer, texts)` adds more ordinary text to the choice and the re-fit;
   - `apply_layer(model, compiled)` writes them into a loaded model and returns the originals for undo;
   - `export_grafted(base_dir, out_dir, compiled)` writes the checkpoint.
 

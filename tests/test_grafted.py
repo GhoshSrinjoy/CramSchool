@@ -191,3 +191,31 @@ def test_the_inserted_layer_writes_nothing_for_embeddings_and_survives_inner_cal
             with_embeds = model(inputs_embeds=model.get_input_embeddings()(ids)).logits
             model.model(input_ids=ids)
     assert torch.equal(plain, with_embeds)                                   # no names read, nothing written
+
+
+def test_text_moments_add_ordinary_text_to_the_refit(model, tokenizer):
+    from cramschool.graft import grafted
+
+    seqs, used = grafted.token_chunks(tokenizer, TEXTS, 64, chunk=16)
+    assert len(seqs) == 4 and all(len(s) == 16 for s in seqs) and used <= len(TEXTS)
+    # the chunked moment equals the per-token sum it stands for
+    acts = {}
+    down = blocks(model)[LAYER].mlp.down_proj
+    h = down.register_forward_pre_hook(lambda m, a: acts.__setitem__("a", a[0][0].double()))
+    try:
+        want = None
+        for s in seqs:
+            model(input_ids=torch.tensor([s]))
+            part = acts["a"].T @ acts["a"]
+            want = part if want is None else want + part
+    finally:
+        h.remove()
+    got = grafted.chunk_moment(model, LAYER, seqs, batch=3)
+    assert torch.allclose(got, want, rtol=1e-4, atol=1e-6)
+    extra = grafted.text_moments(model, tokenizer, LAYER, TEXTS, tokens=64, spare=32, chunk=16)
+    assert extra[0].shape == extra[1].shape == (down.weight.shape[1],) * 2 and torch.allclose(extra[0], extra[0].T)
+    before = {k: getattr(blocks(model)[LAYER].mlp, f"{k}_proj").weight.detach().clone() for k in ("gate", "up", "down")}
+    out = compile_layer(model, tokenizer, facts(), LAYER, mctx(), paragraphs=TEXTS, extra_moments=extra)
+    assert len(out["neurons"]) == 2 and out["refit"]["ridge"] in grafted.RIDGES_TEXT
+    for k in ("gate", "up", "down"):  # the model is left unchanged
+        assert torch.equal(getattr(blocks(model)[LAYER].mlp, f"{k}_proj").weight, before[k])

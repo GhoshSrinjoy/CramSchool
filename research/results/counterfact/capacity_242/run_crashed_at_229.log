@@ -1,0 +1,509 @@
+held-out country questions: 24 of 24 kept
+
+held-out product questions: 22 of 24 kept
+
+held-out work questions: 23 of 24 kept
+
+held-out place questions: 24 of 24 kept
+
+held-out company questions: 15 of 17 kept
+
+held-out event questions: 23 of 24 kept
+
+held-out person questions: 22 of 24 kept
+
+twins: [['place_of_death', 'place_of_birth'], ['original_language', 'language_of_work'], ['work_location', 'place_of_death'], ['developer', 'manufacturer'], ['mother_tongue', 'languages_spoken'], ['work_location', 'place_of_birth']]
+
+242 edits (seed 20261121, 1099 earlier edits left out); context 4; real world other_relations; fast True; inside negative; end quantile None
+
+
+
+
+layer 20 of 24
+
+unedited model scored in 152s
+
+calibrating layer 20 on ordinary text
+
+[build 1/242] b01 hq Lebedev Physical Institute (33s); cache 132 hits, 7260 reads
+
+[build 2/242] b02 hq FIBA Africa (40s); cache 6312 hits, 8472 reads
+
+[build 3/242] b03 hq Karolinska Institute (47s); cache 12492 hits, 9684 reads
+
+[build 4/242] b04 hq Deutsche Reichsbahn (GDR) (55s); cache 18672 hits, 10896 reads
+
+[build 5/242] b05 hq Pars Khodro (63s); cache 24888 hits, 12072 reads
+
+[build 6/242] b06 hq National Provincial Bank (71s); cache 31104 hits, 13248 reads
+
+[build 7/242] b07 hq Dargaud (80s); cache 37284 hits, 14460 reads
+
+[build 8/242] b08 hq Harvard Medical School (89s); cache 43464 hits, 15672 reads
+
+[build 9/242] b09 hq Minnesota Strikers (98s); cache 49680 hits, 16848 reads
+
+[build 10/242] b10 citizenship Adriano Celentano (163s); cache 50272 hits, 32174 reads
+
+[build 11/242] b11 citizenship Michel Houellebecq (180s); cache 63340 hits, 35024 reads
+
+[build 12/242] b12 citizenship Haruna Ishola (196s); cache 76408 hits, 37874 reads
+
+[build 13/242] b13 citizenship Jithan Ramesh (215s); cache 89476 hits, 40724 reads
+
+[build 14/242] b14 citizenship Catherine de Vivonne, marquise de Rambouillet (232s); cache 102544 hits, 43574 reads
+
+[build 15/242] b15 citizenship Yoko Moriguchi (248s); cache 115648 hits, 46388 reads
+
+[build 16/242] b16 citizenship Julius Nwosu (265s); cache 128716 hits, 49238 reads
+
+[build 17/242] b17 citizenship Kazimierz Nycz (281s); cache 141820 hits, 52052 reads
+
+[build 18/242] b18 citizenship Henryk Sienkiewicz (296s); cache 154888 hits, 54902 reads
+
+[build 19/242] b19 citizenship Bhaktisiddhanta Saraswati (312s); cache 167992 hits, 57716 reads
+
+[build 20/242] b20 citizenship Madan Lal (328s); cache 181096 hits, 60530 reads
+
+[build 21/242] b21 citizenship Andreas Carlsson (345s); cache 194200 hits, 63344 reads
+
+[build 22/242] b22 citizenship Henri Maurice Berteaux (362s); cache 207304 hits, 66158 reads
+
+[build 23/242] b23 citizenship Shigeki Maruyama (378s); cache 220408 hits, 68972 reads
+
+[build 24/242] b24 citizenship Wasis Diop (393s); cache 233512 hits, 71786 reads
+
+[build 25/242] b25 citizenship Kunihiko Yasui (408s); cache 246616 hits, 74600 reads
+
+[build 26/242] b26 developer Windows Live Writer (431s); cache 246725 hits, 80046 reads
+
+[build 27/242] b27 developer Active Server Pages (437s); cache 251502 hits, 80824 reads
+
+[build 28/242] b28 developer WinDbg (442s); cache 256279 hits, 81605 reads
+
+[build 29/242] b29 developer Windows Phone 8 (448s); cache 261056 hits, 82383 reads
+
+[build 30/242] b30 developer Xbox One (454s); cache 265833 hits, 83161 reads
+
+[build 31/242] b31 developer Wii U (459s); cache 270610 hits, 83942 reads
+
+[build 32/242] b32 developer Xcode (465s); cache 275423 hits, 84687 reads
+
+[build 33/242] b33 developer Windows Mobile (471s); cache 280236 hits, 85429 reads
+
+[build 34/242] b34 developer Windows XP (476s); cache 285013 hits, 86210 reads
+
+[build 35/242] b35 developer App Store (482s); cache 289826 hits, 86955 reads
+
+[build 36/242] b36 developer Macintosh File System (487s); cache 294639 hits, 87700 reads
+
+[build 37/242] b37 developer High Performance File System (492s); cache 299416 hits, 88478 reads
+
+[build 38/242] b38 developer iPad 3 (498s); cache 304229 hits, 89220 reads
+
+[build 39/242] b39 developer Mac OS 8 (503s); cache 309042 hits, 89965 reads
+
+[build 40/242] b40 developer Final Cut Pro X (509s); cache 313855 hits, 90710 reads
+
+[build 41/242] b41 developer NTFS (513s); cache 318744 hits, 91376 reads
+
+[build 42/242] b42 mother_tongue William-Adolphe Bouguereau (545s); cache 328450 hits, 97285 reads
+
+[build 43/242] b43 mother_tongue Christophe Hondelatte (566s); cache 341252 hits, 100098 reads
+
+[build 44/242] b44 mother_tongue Nikolay Strakhov (585s); cache 354054 hits, 102911 reads
+
+[build 45/242] b45 mother_tongue Dmitry Malikov (601s); cache 366892 hits, 105688 reads
+
+[build 46/242] b46 mother_tongue Emmanuel Hocquard (619s); cache 379730 hits, 108465 reads
+
+[build 47/242] b47 mother_tongue Alexandra Marinina (638s); cache 392568 hits, 111242 reads
+
+[build 48/242] b48 mother_tongue Grigoris Lambrakis (655s); cache 405370 hits, 114055 reads
+
+[build 49/242] b49 mother_tongue C. N. Annadurai (673s); cache 418208 hits, 116832 reads
+
+[build 50/242] b50 mother_tongue Raymond Queneau (692s); cache 431046 hits, 119609 reads
+
+[build 51/242] b51 mother_tongue Henri Barbusse (710s); cache 443884 hits, 122386 reads
+
+[build 52/242] b52 mother_tongue Jan Davidsz. de Heem (728s); cache 456710 hits, 125175 reads
+
+[build 53/242] b53 mother_tongue Louis Friant (744s); cache 469548 hits, 127952 reads
+
+[build 54/242] b54 mother_tongue Louis-Nicolas Davout (763s); cache 482386 hits, 130729 reads
+
+[build 55/242] b55 mother_tongue Jean-Antoine Chaptal (780s); cache 495224 hits, 133506 reads
+
+[build 56/242] b56 mother_tongue Dmitry Pisarev (796s); cache 508062 hits, 136283 reads
+
+[build 57/242] b57 mother_tongue Pierre-Joseph Cambon (816s); cache 520900 hits, 139060 reads
+
+[build 58/242] b58 official_language Transnistria (849s); cache 521079 hits, 146213 reads
+
+[build 59/242] b59 official_language Nova Scotia (860s); cache 527252 hits, 147372 reads
+
+[build 60/242] b60 official_language Luhansk People's Republic (869s); cache 533461 hits, 148495 reads
+
+[build 61/242] b61 official_language European Space Agency (879s); cache 539670 hits, 149618 reads
+
+[build 62/242] b62 official_language Cossonay (890s); cache 545879 hits, 150741 reads
+
+[build 63/242] b63 official_language Altai Republic (899s); cache 552088 hits, 151864 reads
+
+[build 64/242] b64 official_language Isle of Man (907s); cache 558297 hits, 152987 reads
+
+[build 65/242] b65 official_language Palau (919s); cache 564470 hits, 154146 reads
+
+[build 66/242] b66 official_language Dasht-e Azadegan County (930s); cache 570679 hits, 155269 reads
+
+[build 67/242] b67 official_language Kangasniemi (938s); cache 576888 hits, 156392 reads
+
+[build 68/242] b68 official_language Hanko (947s); cache 583097 hits, 157515 reads
+
+[build 69/242] b69 official_language Panama (957s); cache 589306 hits, 158638 reads
+
+[build 70/242] b70 official_language Nuevo Santander (968s); cache 595515 hits, 159761 reads
+
+[build 71/242] b71 official_language Uttar Pradesh (980s); cache 601724 hits, 160884 reads
+
+[build 72/242] b72 official_language Montana (989s); cache 607933 hits, 162007 reads
+
+[build 73/242] b73 official_language Cape Verde (998s); cache 614142 hits, 163130 reads
+
+[build 74/242] b74 located_in_country Minamishitara District, Aichi (1035s); cache 614339 hits, 171075 reads
+
+[build 75/242] b75 located_in_country Fluminense F.C. (1046s); cache 621208 hits, 172348 reads
+
+[build 76/242] b76 located_in_country Catalonia (1056s); cache 628041 hits, 173657 reads
+
+[build 77/242] b77 located_in_country Tarnobrzeg Voivodeship (1066s); cache 634874 hits, 174966 reads
+
+[build 78/242] b78 located_in_country Mannheim City Airport (1077s); cache 641743 hits, 176239 reads
+
+[build 79/242] b79 located_in_country Kamchatka Krai (1086s); cache 648576 hits, 177548 reads
+
+[build 80/242] b80 located_in_country Leiria (1094s); cache 655445 hits, 178821 reads
+
+[build 81/242] b81 located_in_country Northern Territory (1103s); cache 662314 hits, 180094 reads
+
+[build 82/242] b82 located_in_country Eerbeek (1112s); cache 669183 hits, 181367 reads
+
+[build 83/242] b83 located_in_country Alberta Alliance Party (1120s); cache 676052 hits, 182640 reads
+
+[build 84/242] b84 located_in_country Kyoto University (1131s); cache 682921 hits, 183913 reads
+
+[build 85/242] b85 located_in_country Wanne-Eickel Central Station (1141s); cache 689790 hits, 185186 reads
+
+[build 86/242] b86 located_in_country Electoral district of Wantirna (1152s); cache 696623 hits, 186495 reads
+
+[build 87/242] b87 located_in_country public transport in Istanbul (1161s); cache 703492 hits, 187768 reads
+
+[build 88/242] b88 located_in_country Oseberg oil field (1172s); cache 710361 hits, 189041 reads
+
+[build 89/242] b89 located_in_country Mirbag-e Shomali Rural District (1183s); cache 717230 hits, 190314 reads
+
+[build 90/242] b90 original_language The Star Diaries (1218s); cache 717427 hits, 198390 reads
+
+[build 91/242] b91 original_language Sous le ciel de Paris (1228s); cache 724362 hits, 199725 reads
+
+[build 92/242] b92 original_language Mine Own Executioner (1237s); cache 731333 hits, 201027 reads
+
+[build 93/242] b93 original_language Sesamstraat (1246s); cache 738268 hits, 202365 reads
+
+[build 94/242] b94 original_language Hindustan Ki Kasam (1256s); cache 745239 hits, 203667 reads
+
+[build 95/242] b95 original_language Commentarii de Bello Gallico (1266s); cache 752210 hits, 204969 reads
+
+[build 96/242] b96 original_language Campeones de la vida (1278s); cache 759181 hits, 206271 reads
+
+[build 97/242] b97 original_language Les bavards (1289s); cache 766152 hits, 207573 reads
+
+[build 98/242] b98 original_language Amar en tiempos revueltos (1301s); cache 773123 hits, 208875 reads
+
+[build 99/242] b99 original_language The Divergent Series (1314s); cache 780094 hits, 210177 reads
+
+[build 100/242] b100 original_language Low-Life (1325s); cache 787065 hits, 211479 reads
+
+[build 101/242] b101 original_language La dame blanche (1336s); cache 794036 hits, 212781 reads
+
+[build 102/242] b102 original_language Bryter Layter (1348s); cache 801007 hits, 214083 reads
+
+[build 103/242] b103 original_language Camino de Perfección (1360s); cache 807978 hits, 215385 reads
+
+[build 104/242] b104 original_language Iru Kodugal (1369s); cache 814949 hits, 216687 reads
+
+[build 105/242] b105 original_language The Return of Casanova (1379s); cache 821920 hits, 217989 reads
+
+[build 106/242] b106 religion Muhammad al-Bukhari (1409s); cache 832381 hits, 224148 reads
+
+[build 107/242] b107 religion Yusuf Estes (1428s); cache 845980 hits, 227169 reads
+
+[build 108/242] b108 religion Hosni Mubarak (1448s); cache 859579 hits, 230190 reads
+
+[build 109/242] b109 religion Saman Khuda (1466s); cache 873214 hits, 233175 reads
+
+[build 110/242] b110 religion Jewish cemetery (1485s); cache 886813 hits, 236196 reads
+
+[build 111/242] b111 religion Almoravid dynasty (1503s); cache 900448 hits, 239181 reads
+
+[build 112/242] b112 religion Abbas I of Persia (1522s); cache 914083 hits, 242166 reads
+
+[build 113/242] b113 religion Al-Ghazali (1540s); cache 927718 hits, 245151 reads
+
+[build 114/242] b114 religion Al-Ala'a Al-Hadrami (1562s); cache 941353 hits, 248136 reads
+
+[build 115/242] b115 religion Ibn Saud (1580s); cache 954988 hits, 251121 reads
+
+[build 116/242] b116 religion Ibn-e-Safi (1598s); cache 968623 hits, 254106 reads
+
+[build 117/242] b117 religion Osman I (1616s); cache 982258 hits, 257091 reads
+
+[build 118/242] b118 religion Bodhidharma (1633s); cache 995893 hits, 260076 reads
+
+[build 119/242] b119 religion Bahadur Shah I (1654s); cache 1009528 hits, 263061 reads
+
+[build 120/242] b120 religion imam (1670s); cache 1023562 hits, 265647 reads
+
+[build 121/242] b121 religion Umayyad Caliphate (1690s); cache 1037197 hits, 268632 reads
+
+[build 122/242] b122 languages_spoken Louis Jouvet (1722s); cache 1046936 hits, 274720 reads
+
+[build 123/242] b123 languages_spoken Chester Kallman (1739s); cache 1059939 hits, 277547 reads
+
+[build 124/242] b124 languages_spoken Shlomo Avineri (1756s); cache 1072942 hits, 280371 reads
+
+[build 125/242] b125 languages_spoken Italo Svevo (1774s); cache 1085945 hits, 283195 reads
+
+[build 126/242] b126 languages_spoken Gwen Stefani (1790s); cache 1098948 hits, 286019 reads
+
+[build 127/242] b127 languages_spoken Alberto Mazzucato (1809s); cache 1111951 hits, 288843 reads
+
+[build 128/242] b128 languages_spoken Mervyn Peake (1827s); cache 1124954 hits, 291670 reads
+
+[build 129/242] b129 languages_spoken Letizia Moratti (1843s); cache 1137957 hits, 294494 reads
+
+[build 130/242] b130 languages_spoken Gilad Atzmon (1859s); cache 1150960 hits, 297318 reads
+
+[build 131/242] b131 languages_spoken Hector Guimard (1875s); cache 1163963 hits, 300142 reads
+
+[build 132/242] b132 languages_spoken Mateo Flecha (1894s); cache 1176966 hits, 302969 reads
+
+[build 133/242] b133 languages_spoken Michael Atherton (1910s); cache 1189969 hits, 305796 reads
+
+[build 134/242] b134 languages_spoken Gaston Defferre (1926s); cache 1202972 hits, 308620 reads
+
+[build 135/242] b135 languages_spoken Jean Villard Gilles (1944s); cache 1215975 hits, 311444 reads
+
+[build 136/242] b136 languages_spoken Pierre Etchebaster (1960s); cache 1228978 hits, 314268 reads
+
+[build 137/242] b137 languages_spoken Natalia Barbu (1976s); cache 1241981 hits, 317095 reads
+
+[build 138/242] b138 position_played Mark Kinsella (2007s); cache 1252431 hits, 323226 reads
+
+[build 139/242] b139 position_played Roger Staubach (2025s); cache 1266031 hits, 326207 reads
+
+[build 140/242] b140 position_played Gustavo Barros Schelotto (2043s); cache 1279643 hits, 329176 reads
+
+[build 141/242] b141 position_played Mehdi Abeid (2067s); cache 1293219 hits, 332181 reads
+
+[build 142/242] b142 position_played Youssouf Hersi (2085s); cache 1306831 hits, 335150 reads
+
+[build 143/242] b143 position_played Juan Cuadrado (2107s); cache 1320443 hits, 338119 reads
+
+[build 144/242] b144 position_played Alessio Tacchinardi (2131s); cache 1334055 hits, 341088 reads
+
+[build 145/242] b145 position_played Giancarlo Marocchi (2152s); cache 1347667 hits, 344057 reads
+
+[build 146/242] b146 position_played Augustine Azuka Okocha (2170s); cache 1361279 hits, 347026 reads
+
+[build 147/242] b147 position_played Lamberto Zauli (2188s); cache 1374891 hits, 349995 reads
+
+[build 148/242] b148 position_played Rory Delap (2263s); cache 1388503 hits, 352964 reads
+
+[build 149/242] b149 position_played Marcus Randall (2282s); cache 1402079 hits, 355969 reads
+
+[build 150/242] b150 position_played Jiloan Hamad (2300s); cache 1415691 hits, 358938 reads
+
+[build 151/242] b151 position_played Robert Griffin III (2319s); cache 1429303 hits, 361907 reads
+
+[build 152/242] b152 position_played Gianluigi Lentini (2337s); cache 1442915 hits, 364876 reads
+
+[build 153/242] b153 position_played Mike Garcia (2356s); cache 1456527 hits, 367845 reads
+
+[build 154/242] b154 sport Willie Mays (2388s); cache 1466988 hits, 374082 reads
+
+[build 155/242] b155 sport Wilt Chamberlain (2404s); cache 1480647 hits, 377121 reads
+
+[build 156/242] b156 sport Kevin Garnett (2425s); cache 1494342 hits, 380124 reads
+
+[build 157/242] b157 sport Elton Brand (2443s); cache 1508001 hits, 383163 reads
+
+[build 158/242] b158 sport Bo Jackson (2459s); cache 1521696 hits, 386166 reads
+
+[build 159/242] b159 sport Drew Brees (2477s); cache 1535391 hits, 389169 reads
+
+[build 160/242] b160 sport Tom Brady (2496s); cache 1549086 hits, 392172 reads
+
+[build 161/242] b161 sport Babe Ruth (2515s); cache 1562781 hits, 395175 reads
+
+[build 162/242] b162 sport Shaquille O'Neal (2532s); cache 1576476 hits, 398178 reads
+
+[build 163/242] b163 sport Billy Sunday (2550s); cache 1590171 hits, 401181 reads
+
+[build 164/242] b164 sport Jean Béliveau (2566s); cache 1603866 hits, 404184 reads
+
+[build 165/242] b165 work_location Paul Gauguin (2592s); cache 1612775 hits, 410041 reads
+
+[build 166/242] b166 work_location Louis Blanc (2607s); cache 1624918 hits, 412664 reads
+
+[build 167/242] b167 work_location Antoni Brodowski (2624s); cache 1637061 hits, 415287 reads
+
+[build 168/242] b168 work_location Georges Darboy (2639s); cache 1649204 hits, 417910 reads
+
+[build 169/242] b169 work_location Romain Rolland (2657s); cache 1661347 hits, 420533 reads
+
+[build 170/242] b170 work_location Pierre Augereau (2674s); cache 1673490 hits, 423156 reads
+
+[build 171/242] b171 work_location Maurice Quentin de La Tour (2691s); cache 1685633 hits, 425779 reads
+
+[build 172/242] b172 work_location Robert Grosvenor, 1st Baron Ebury (2709s); cache 1697776 hits, 428402 reads
+
+[build 173/242] b173 field_of_work William Rowan Hamilton (2740s); cache 1708226 hits, 434455 reads
+
+[build 174/242] b174 field_of_work William Camden (2758s); cache 1721742 hits, 437442 reads
+
+[build 175/242] b175 field_of_work Bonaventura Cavalieri (2775s); cache 1735282 hits, 440405 reads
+
+[build 176/242] b176 field_of_work Edward Thorndike (2792s); cache 1748834 hits, 443356 reads
+
+[build 177/242] b177 field_of_work Gregor Mendel (2808s); cache 1762350 hits, 446343 reads
+
+[build 178/242] b178 field_of_work Enrico Fermi (2823s); cache 1775902 hits, 449294 reads
+
+[build 179/242] b179 field_of_work Raymond Smullyan (2840s); cache 1789418 hits, 452281 reads
+
+[build 180/242] b180 field_of_work Carl Menger (2858s); cache 1802934 hits, 455268 reads
+
+[build 181/242] b181 field_of_work Brahmagupta (2875s); cache 1816486 hits, 458219 reads
+
+[build 182/242] b182 field_of_work Abraham Maslow (2891s); cache 1830002 hits, 461206 reads
+
+[build 183/242] b183 field_of_work Archimedes (2907s); cache 1843554 hits, 464157 reads
+
+[build 184/242] b184 position_held Pius VIII (2935s); cache 1854015 hits, 470316 reads
+
+[build 185/242] b185 position_held Paul III (2951s); cache 1867650 hits, 473301 reads
+
+[build 186/242] b186 position_held Aldhelm (2970s); cache 1881285 hits, 476286 reads
+
+[build 187/242] b187 position_held Herculanus of Perugia (2987s); cache 1894884 hits, 479307 reads
+
+[build 188/242] b188 position_held Saint Domnius (3005s); cache 1908519 hits, 482292 reads
+
+[build 189/242] b189 position_held Paul of Burgos (3022s); cache 1922118 hits, 485313 reads
+
+[build 190/242] b190 position_held Eusebius of Vercelli (3040s); cache 1935717 hits, 488334 reads
+
+[build 191/242] b191 continent Tajikistan (3063s); cache 1939465 hits, 492845 reads
+
+[build 192/242] b192 continent Mount Cameroon (3074s); cache 1946417 hits, 494152 reads
+
+[build 193/242] b193 continent Yoruba religion (3087s); cache 1953333 hits, 495495 reads
+
+[build 194/242] b194 continent Flask Glacier (3096s); cache 1960249 hits, 496838 reads
+
+[build 195/242] b195 continent Hansen Glacier (3105s); cache 1967201 hits, 498145 reads
+
+[build 196/242] b196 continent Slovakia (3116s); cache 1974153 hits, 499452 reads
+
+[build 197/242] b197 continent Gdynia (3127s); cache 1981105 hits, 500759 reads
+
+[build 198/242] b198 continent Scylla Glacier (3137s); cache 1988057 hits, 502066 reads
+
+[build 199/242] b199 continent United Kingdom of Great Britain and Ireland (3150s); cache 1995009 hits, 503373 reads
+
+[build 200/242] b200 continent Burundi (3159s); cache 2001961 hits, 504680 reads
+
+[build 201/242] b201 continent Moldova (3170s); cache 2008913 hits, 505987 reads
+
+[build 202/242] b202 continent Mont Blanc (3179s); cache 2015865 hits, 507294 reads
+
+[build 203/242] b203 continent Kingdom of Saxony (3191s); cache 2022817 hits, 508601 reads
+
+[build 204/242] b204 continent Iskar Glacier (3200s); cache 2029769 hits, 509908 reads
+
+[build 205/242] b205 continent Contell Glacier (3210s); cache 2036721 hits, 511215 reads
+
+[build 206/242] b206 continent Himachal Pradesh (3222s); cache 2043673 hits, 512522 reads
+
+[build 207/242] b207 located_in_territory Ceredigion County Council (3243s); cache 2047457 hits, 517036 reads
+
+[build 208/242] b208 located_in_territory Dhule Lok Sabha constituency (3255s); cache 2054439 hits, 518352 reads
+
+[build 209/242] b209 located_in_territory Drexel University College of Medicine (3265s); cache 2061421 hits, 519668 reads
+
+[build 210/242] b210 located_in_territory Bighorn River (3274s); cache 2068403 hits, 520984 reads
+
+[build 211/242] b211 located_in_territory Vrancea County (3284s); cache 2075349 hits, 522336 reads
+
+[build 212/242] b212 located_in_territory Galata (3294s); cache 2082331 hits, 523652 reads
+
+[build 213/242] b213 located_in_territory Kalamazoo County (3304s); cache 2089277 hits, 525004 reads
+
+[build 214/242] b214 located_in_territory Nanyang Technological University (3318s); cache 2096259 hits, 526320 reads
+
+[build 215/242] b215 located_in_territory Massachusetts Bay Transportation Authority (3329s); cache 2103241 hits, 527636 reads
+
+[build 216/242] b216 located_in_territory Crook, County Durham (3342s); cache 2110223 hits, 528952 reads
+
+[build 217/242] b217 located_in_territory Willamette Valley AVA (3352s); cache 2117169 hits, 530304 reads
+
+[build 218/242] b218 located_in_territory East Kildonan, Winnipeg (3363s); cache 2124151 hits, 531620 reads
+
+[build 219/242] b219 located_in_territory Warszawa Wschodnia Osobowa railway station (3377s); cache 2131133 hits, 532936 reads
+
+[build 220/242] b220 located_in_territory North Holland (3387s); cache 2138115 hits, 534252 reads
+
+[build 221/242] b221 located_in_territory Tijuana River (3397s); cache 2145097 hits, 535568 reads
+
+[build 222/242] b222 located_in_territory Zoo Miami (3407s); cache 2152079 hits, 536884 reads
+
+[build 223/242] b223 capital Brandenburg-Prussia (3427s); cache 2155028 hits, 540988 reads
+
+[build 224/242] b224 capital Bohemia (3438s); cache 2161007 hits, 542062 reads
+
+[build 225/242] b225 capital Afghan Transitional Administration (3449s); cache 2166962 hits, 543160 reads
+
+[build 226/242] b226 capital People's Republic of Poland (3458s); cache 2172917 hits, 544258 reads
+
+[build 227/242] b227 capital Anatolia Eyalet (3467s); cache 2178908 hits, 545320 reads
+
+Traceback (most recent call last):
+
+  File "D:\src\real_time_knowledge_update\scripts\counterfact_breadth.py", line 139, in <module>
+
+    main()
+
+  File "D:\src\real_time_knowledge_update\scripts\counterfact_breadth.py", line 125, in main
+
+    rows, s, s0 = run_edits(model, tok, facts, wordings, a.out, layer=layer, real_world=a.real_world, context=a.context, fast=a.fast, teach_cap=a.teach_cap,
+
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\src\real_time_knowledge_update\src\cramschool\bench\counterfact.py", line 394, in run_edits
+
+    log(f"[build {k}/{len(facts)}] {f['id']} {f['relation']} {f['subject']} ({time.time() - t0:.0f}s)"
+
+  File "D:\src\real_time_knowledge_update\scripts\counterfact_breadth.py", line 28, in log
+
+    print(s, flush=True)
+
+  File "C:\Users\Srinjoy Ghosh\.conda\envs\memzip\Lib\encodings\cp1252.py", line 19, in encode
+
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+UnicodeEncodeError: 'charmap' codec can't encode character '\u014d' in position 31: character maps to <undefined>
+

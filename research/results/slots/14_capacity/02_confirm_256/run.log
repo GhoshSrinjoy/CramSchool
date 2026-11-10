@@ -1,0 +1,39 @@
+242 edits; known-fact prompts naming an edited subject left out: 0 of 133, 19 of 400, 0 of the fresh 400
+
+
+
+
+base model: answers {'known': 133, 'cf': 376, 'fresh': 396} | 62s
+
+large second moments: 1954 + 196 chunks of 512 | 156s
+
+  reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+
+  237 neurons freed and the rest re-fitted (ridge 0.01, freed output left 21.2%) | 50s
+
+compiled: 237 neurons | 206s
+
+exported: sizes equal True; tensors other than the three: 485 identical, 0 different | 209s
+
+
+
+the grafted model without switch
+
+    scored in 164s
+
+without switch: ES 0.025 PS 0.070 NS 0.863 | says new: rewrite 0.000, reworded 0.000 | leaks: neighbours 0.000, same subject 0.000 | known lost 3 of 133, 4 of the clean 391, drift 0.0012, 1 of the fresh 396 | 383s
+
+the grafted model with switch
+
+    scored in 162s
+
+with switch: ES 0.884 PS 0.746 NS 0.860 | says new: rewrite 0.876, reworded 0.734 | leaks: neighbours 0.004, same subject 0.018 | known lost 3 of 133, 4 of the clean 391, drift 0.0012, 1 of the fresh 396 | 557s
+
+with the switch: False {'es': True, 'ps': True, 'ns': True, 'neigh_leak': True, 'same_leak': True, 'known_lost': False, 'cf_lost': True, 'fresh_lost': True, 'drift': True}
+
+without the switch, the edits dormant: False {'es': True, 'ps': True, 'known_lost': False, 'cf_lost': True, 'fresh_lost': True, 'drift': True}
+
+inserted layer on the same edits: ES 0.864 PS 0.738 NS 0.860 | unedited ES 0.025 PS 0.068
+
+ships as the new capacity (237 facts at layer 20): False
+

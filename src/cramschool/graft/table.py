@@ -266,13 +266,16 @@ class Graft:
 
     # ------------------------------------------------------------ the grafted model
 
-    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain",)) -> dict:
+    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain",), texts=None) -> dict:
         """Compile the table's facts into the model's own neurons at the table's layer and write the grafted model to `out_dir`: the base
         checkpoint with that layer's three MLP matrices replaced (same files, shapes and size), grafted.json and grafted_switch.py. Load it
         with cramschool.graft.load_grafted, or with transformers and the folder's grafted_switch.attach. base_dir: the local folder the
         model was loaded from (default: the model's own path). forms: ("plain",) by default, one neuron per fact; ("plain", "chat") adds
-        a chat-form neuron per fact, at twice the neurons freed. The loaded model is left unchanged. Returns the export's report."""
-        from .grafted import compile_layer, export_grafted
+        a chat-form neuron per fact, at twice the neurons freed. texts: ordinary text (strings, about 1.1M tokens in all) for choosing
+        and re-fitting the freed neurons (grafted.text_moments): it lowers the drift and the known facts lost, but at layer 20 of the
+        0.8B the damage bar was still met only up to about 64 facts (lab notebook, step 6). The loaded model is left unchanged. Returns
+        the export's report."""
+        from .grafted import compile_layer, export_grafted, text_moments
 
         base = base_dir or getattr(self.model.config, "_name_or_path", "")
         if not base or not os.path.isdir(base):
@@ -283,8 +286,9 @@ class Graft:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start and end_quantile have no neuron form and "
                           "are left out of the grafted model", stacklevel=2)
         facts = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"]) for e in self._facts]
+        extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
-                                 paragraphs=self._calibration, progress=self._say)
+                                 paragraphs=self._calibration, extra_moments=extra, progress=self._say)
         return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts)))
 
     # ------------------------------------------------------------ saving

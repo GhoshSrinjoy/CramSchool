@@ -2363,3 +2363,120 @@ Raw numbers: the inserted layer's run is in `research/results/counterfact/grafte
 **The known-fact losses sit exactly at both limits:** 2 of 133 and 7 of 391. The 2 of 133 are lost without the switch too, so they come from freeing the neurons. There is no margin left on damage at about 64 facts per layer.
 
 **So the shipped claim stands on edits it was never chosen on:** the grafted model answers as the inserted layer does. Of its limits, the one that binds is damage, not accuracy.
+
+## A correction to the fresh-edit check, and step 6: room from far more text (written 2026-11-10, before step 6 ran)
+
+**The correction.** `scripts/diag_known_flips.py` lists each known fact the fresh grafted model loses, with and without its switch, at the scorers' own batching ([log](../research/results/slots/14_capacity/00_known_flips_fresh.log)).
+- **The 4 extra losses of the 391 with the switch on are the edits themselves.** The 391 hold 7 prompts that name a fresh edit's subject. The 4 lost are edited facts, answered with their new answers:
+  - Metropolitan France's capital (Singapore);
+  - Jonathan Littell's mother tongue (Greek);
+  - the Royal Danish Library's location (Melbourne);
+  - Panagiotis Lafazanis's native language (French).
+- **So the fresh model's damage is 2 of 133 and 3 of 391, the same with and without the switch.** All of it comes from freeing the neurons. The 2 of 133 are "The capital of Cuba is" and "The capital of the United States is".
+- **The same flaw touches every earlier "of 391" with working edits:** 6 of the 391 prompts name one of step 2's 64 subjects. From now on, a known-fact prompt that names an edited subject is left out of the counts.
+
+**Why step 6.** The facts cost nothing on questions about other subjects, because the switch gates them by name. So the number of facts a layer can hold is the number of neurons it can give up within the bar.
+- Step 1c measured that with second moments from 27,640 tokens for 3,584 neurons, under 8 tokens per neuron.
+- The re-fit's ridge was chosen at the top of its grid (0.1) at every N.
+- Both are signs of an estimate starved for data, not of a layer without room.
+
+**The change, one arm: the second moments from about a million tokens of ordinary text.**
+- **Fitting text:** the 240 fitting paragraphs, plus MS MARCO passages (the BEIR corpus, drawn with seed 20261110) joined into 512-token chunks, about 1M tokens in all.
+- **Spare text, for choosing the ridge only:** the 75 spare paragraphs plus separate MS MARCO chunks, about 100k tokens.
+- **The ridge grid** is extended to 1e-8 to 1.
+- **Everything else as shipped:** layer 20, the redundancy order, the closed-form re-fit.
+
+**Part 1, freeing only (no facts placed), to choose N:**
+- **Configurations:** N = 64, 128, 256, 512 and 1,024, each with the shipped statistics and with the large ones.
+- **Measured:**
+  - held-out KL per token on the package's held-out paragraphs;
+  - drift;
+  - known facts lost of the 133, and CounterFact facts lost of the 391.
+- **Batching:** the same for every configuration.
+- **N\*** is the largest N at which the large statistics lose at most 2 of 133 and 7 of 391.
+
+**Kill rule:** if N\* < 128, more text doesn't buy room. The estimate isn't the limit, layer 20 holds about 64 facts, and the next route is spreading the facts over several layers, with its own plan.
+
+**Part 2, the confirmation at N\* (only if N\* ≥ 128):**
+- **The edits:** N\* fresh edits, drawn as in the fresh-edit check (seed 20261121, every earlier draw left out).
+- **The build:** the editor recipe, unchanged. The edits are compiled with the large statistics, exported, reloaded from disk, and scored with and without the switch.
+- **Known facts:**
+  - the 133;
+  - the 391, without prompts that name an edited subject;
+  - a fresh 400 drawn from the same screen, none among the 400 and none about an edited subject.
+- **It ships as the new capacity if, against the inserted layer on the same edits:**
+  - ES and PS are within 0.05, and NS within 0.01;
+  - neighbour leaks are ≤ 0.05 and same-subject leaks ≤ 0.10;
+  - at most 2 of the 133, 7 of the 391 and 7 of the fresh 400 are lost;
+  - drift is ≤ 0.05;
+  - without the switch, the edits are dormant.
+- **If it fails,** the capacity claim stays at about 64 facts per layer.
+
+## Result of step 6, part 1: N\* = 256, so the kill rule is not met
+
+Raw numbers: `research/results/slots/14_capacity/01_room_from_text/`. The MS MARCO text came to 1,954 fitting chunks (1.0M tokens, 12,659 passages) and 196 spare chunks. Layer 20, freeing only, every configuration at the same batching:
+
+| Freed | Shipped statistics: lost of 133; of 391 | Drift | Held-out KL | Large statistics: lost of 133; of 391 | Drift | Held-out KL | Slots shared |
+|---|---|---|---|---|---|---|---|
+| 64 | 2; 2 | 0.00077 | 0.00070 | 1; 4 | 0.00066 | 0.00076 | 45 |
+| 128 | 4; 5 | 0.00120 | 0.00101 | 2; 3 | 0.00088 | 0.00120 | 83 |
+| 256 | 3; 3 | 0.00194 | 0.00175 | **1; 4** | 0.00127 | 0.00210 | 173 |
+| 512 | 6; 11 | 0.00369 | 0.00355 | 4; 12 | 0.00248 | 0.00477 | 349 |
+| 1,024 | 11; 12 | 0.00798 | 0.00797 | 3; 17 | 0.00573 | 0.01146 | 726 |
+
+- **By the rule, N\* = 256:** the largest N at which the large statistics lose at most 2 of 133 and 7 of 391. With the shipped statistics the same rule gives 64.
+- **The shipped rows reproduce step 1c** (256: 3 and 3; 512: 6 and 11; 1,024: 11 and 12). The extended ridge grid picked 0.03 at 64 and 128, where step 1c's grid stopped at 0.1.
+- **The large statistics' ridge falls to 0.001–0.01,** as a better-estimated matrix should allow. A third of the slots they free differ from the shipped order's.
+- **The evidence is mixed, not a clean win:**
+  - losses of the 133 fall at every N, and drift falls by about 30%;
+  - losses of the 391 don't fall (4 against 2 at 64, 17 against 12 at 1,024);
+  - KL on the package's held-out paragraphs rises at every N. Most of the new text is web passages, so the re-fit now serves them over paragraph-style text.
+- **So part 2 decides.** Its fresh 400 known facts were not used here; the 133 and the 391 were.
+
+**Part 2's draw, a forced change.** Two of the 21 relations have no usable records left after every earlier draw: P106 (0) and P407 (1). Some others have few (P176 4, P276 7, P159, P937 and P39 9 each).
+- The draw is therefore the other 19 relations, 16 each, with `--at-least 3`: a relation with fewer usable records gives all it has. That makes about 250 edits, at most N\*.
+- Everything else is as fixed: seed 20261121, every earlier draw left out, the editor recipe unchanged.
+- **One more relation had to drop when the draw ran:** drawn jointly, P176 has 1 usable record, under `--at-least 3`. The draw is 18 relations, 16 each: 242 edits.
+
+## Result of step 6, part 2: one bar missed by one knife-edge fact, so the capacity claim stays at about 64
+
+Raw numbers:
+- the inserted layer's run: `research/results/counterfact/capacity_242/`;
+- the grafted check: `research/results/slots/14_capacity/02_confirm_256/`;
+- the fresh known set: `known_fresh_400.json`.
+
+**A deviation:** the editor run stopped at edit 229, while printing a subject name with "ō": the chain had not set the output encoding. It was run again with the same command and `PYTHONIOENCODING=utf-8`. The 228 parts already written were reused after their subject, relation and answer were checked against the draw (`run_edits` does this). The other 14 were built anew, and both scorings were redone.
+
+| 242 fresh edits, 237 compiled | Unedited | Inserted layer | Grafted, with the switch | Grafted, no switch |
+|---|---|---|---|---|
+| ES; PS | 0.025; 0.068 | 0.864; 0.738 | **0.884; 0.746** | 0.025; 0.070 |
+| NS | 0.864 | 0.860 | 0.860 | 0.863 |
+| Neighbour; same-subject leaks | — | 0.003; 0.035 | 0.004; 0.018 | 0.000; 0.000 |
+| Known facts lost: of 133; of the old set (376 answered); of the fresh set (396 answered) | — | 0; —; — | **3**; 4; 1 | 3; 4; 1 |
+| Drift | — | 0.0000 | 0.0012 | 0.0012 |
+
+- **The checkpoint:** the base's size, with 485 of 488 tensors identical. The re-fit's ridge was 0.01, with 21% of the freed output left.
+- **Prompts left out:** 19 of the old set named an edited subject; none of the 133 or the fresh set did.
+
+**By the rule fixed before the run, it does not ship: one bar fails, by one fact.** 3 of the 133 are lost, against a bar of 2.
+- Every other bar passes: ES and PS are above the inserted layer's, leaks are within their bars, 4 of the old set and 1 of the fresh set are lost, and drift is 0.0012.
+- The losses are the same with and without the switch: all of them come from freeing the neurons.
+
+**What the three lost facts are** (`scripts/diag_known_margins.py`, `03_known_margins.*`):
+- "Skype is owned by", "The capital of Russia is" and "The capital of Denmark is".
+- **Russia and Denmark are knife-edge:** the unedited model's answer leads at the first token by 0.12 logits, one bf16 rounding step at that size. Skype's answer is not its first token at all (margin −0.12).
+- **No systematic shift.** The margin change from unedited to grafted:
+  - mean +0.009 on the 57 capital questions and +0.017 on the other 76;
+  - mean −0.006 and −0.001 on the two CounterFact sets;
+  - up about as often as down on every set (capital questions: 16 down, 26 up, 15 the same);
+  - 5th percentile −0.125, one rounding step.
+- **The 133 hold 57 capital questions, 11 of them within 0.5 logits.**
+  - "The capital of Denmark is" was lost in all ten of part 1's configurations, including 64 neurons with either statistics.
+  - Batching alone, with no weight changed, loses "The capital of Cuba is" (step 1c's noise check).
+  - At this resolution, the 133's count can't tell 64 freed neurons from 237. The shipped model met the bar with 1 lost on step 2's edits and exactly 2 on the fresh ones.
+
+**What stands:**
+- **The capacity claim stays at about 64 facts per layer,** as fixed.
+- **The grafted model at 237 facts answers as the inserted layer does** on edits never used for any choice. On a fresh known set, never used for any choice, it lost 1 of 396.
+- **The large statistics are kept in the package as an option** (`grafted.text_moments`, `compile_layer(extra_moments=...)`, `Graft.export_grafted(texts=...)`). In part 1 they cut the 133's losses and drift at every N. The bar's verdict didn't change.
+- **Not adopted, left for a decision:** a damage bar founded on systematic shift instead of a count of flips. For example, each set's mean margin change, with every flip counted where the unedited margin was robust. It would have to be fixed before a run, and checked on a known set not used so far.

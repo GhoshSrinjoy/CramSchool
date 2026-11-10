@@ -1,0 +1,57 @@
+
+
+
+unedited: known facts 133 of 133, CounterFact 391 of 400 | 17s
+
+MS MARCO: 1954 fitting chunks from 12659 passages, 196 spare chunks from 1274 more | 20s
+
+shipped second moments | 65s
+
+  fitting chunks 8/1954 | 65s
+
+  fitting chunks 208/1954 | 74s
+
+  fitting chunks 408/1954 | 82s
+
+  fitting chunks 608/1954 | 91s
+
+  fitting chunks 808/1954 | 99s
+
+  fitting chunks 1008/1954 | 107s
+
+  fitting chunks 1208/1954 | 116s
+
+  fitting chunks 1408/1954 | 124s
+
+  fitting chunks 1608/1954 | 133s
+
+  fitting chunks 1808/1954 | 141s
+
+large second moments | 156s
+
+shipped: redundancy order of 1024 | 158s
+
+[1/10] shipped N=64    known lost 2 of 133, CounterFact lost 2 of 391 | held-out KL 0.000698/token, drift 0.00077 | ridge 0.03, freed output left 11.5% | same slots as shipped 64 of 64 | 174s
+
+[2/10] shipped N=128   known lost 4 of 133, CounterFact lost 5 of 391 | held-out KL 0.001014/token, drift 0.00120 | ridge 0.03, freed output left 13.5% | same slots as shipped 128 of 128 | 190s
+
+[3/10] shipped N=256   known lost 3 of 133, CounterFact lost 3 of 391 | held-out KL 0.001753/token, drift 0.00194 | ridge 0.1, freed output left 18.4% | same slots as shipped 256 of 256 | 207s
+
+[4/10] shipped N=512   known lost 6 of 133, CounterFact lost 11 of 391 | held-out KL 0.003548/token, drift 0.00369 | ridge 0.1, freed output left 23.7% | same slots as shipped 512 of 512 | 225s
+
+[5/10] shipped N=1024  known lost 11 of 133, CounterFact lost 12 of 391 | held-out KL 0.007969/token, drift 0.00798 | ridge 0.1, freed output left 31.6% | same slots as shipped 1024 of 1024 | 239s
+
+large: redundancy order of 1024 | 241s
+
+[6/10] large   N=64    known lost 1 of 133, CounterFact lost 4 of 391 | held-out KL 0.000755/token, drift 0.00066 | ridge 0.001, freed output left 12.4% | same slots as shipped 45 of 64 | 256s
+
+[7/10] large   N=128   known lost 2 of 133, CounterFact lost 3 of 391 | held-out KL 0.001196/token, drift 0.00088 | ridge 0.01, freed output left 17.0% | same slots as shipped 83 of 128 | 271s
+
+[8/10] large   N=256   known lost 1 of 133, CounterFact lost 4 of 391 | held-out KL 0.002104/token, drift 0.00127 | ridge 0.01, freed output left 22.0% | same slots as shipped 173 of 256 | 286s
+
+[9/10] large   N=512   known lost 4 of 133, CounterFact lost 12 of 391 | held-out KL 0.004770/token, drift 0.00248 | ridge 0.01, freed output left 30.4% | same slots as shipped 349 of 512 | 301s
+
+[10/10] large   N=1024  known lost 3 of 133, CounterFact lost 17 of 391 | held-out KL 0.011460/token, drift 0.00573 | ridge 0.01, freed output left 40.0% | same slots as shipped 726 of 1024 | 316s
+
+N* = 256 | N* = 256: part 2 confirms at N*
+

@@ -41,7 +41,9 @@ from .wordings import calibration_paragraphs
 GAIN, PUSH = 8.0, 2.0
 SPARE = range(280, 355)                       # calibration paragraphs used only to choose the re-fit's ridge
 RIDGES = (1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1)  # times the mean diagonal of the kept neurons' second moment
+RIDGES_TEXT = (1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 3e-2, 1e-1, 3e-1, 1.0)  # with text_moments: the ridge falls to 0.001-0.01 (step 6)
 ORDER_RIDGE = 1e-3
+TEXT_CHUNK, TEXT_TOKENS, TEXT_SPARE = 512, 1_000_000, 100_000  # step 6's text: 512-token chunks, 1M tokens to fit, 100k to choose the ridge
 MEASURED_NEURONS = 256      # freeing up to this many cost about as much as batching noise, at layer 20 of the 0.8B (step 1c)
 FORMS = ("plain",)          # the shipped default; ("plain", "chat") adds a chat-form neuron per fact
 
@@ -89,7 +91,8 @@ def redundancy_order(H: torch.Tensor, W: torch.Tensor, n: int) -> list[int]:
     return order
 
 
-def compensation(Hf: torch.Tensor, Hv: torch.Tensor, W: torch.Tensor, freed: list[int]) -> tuple[torch.Tensor, torch.Tensor, float, float]:
+def compensation(Hf: torch.Tensor, Hv: torch.Tensor, W: torch.Tensor, freed: list[int],
+                 ridges=RIDGES) -> tuple[torch.Tensor, torch.Tensor, float, float]:
     """The kept neurons' output columns re-fitted so the layer reproduces its output on the fitting text without the freed ones:
     ΔW_K = W_F H_FK (H_KK + λI)⁻¹, λ chosen by the reconstruction error on the spare text. Returns (kept indices, ΔW_K, λ, the share of
     the freed neurons' output energy left on the spare text)."""
@@ -104,12 +107,62 @@ def compensation(Hf: torch.Tensor, Hv: torch.Tensor, W: torch.Tensor, freed: lis
     eye = torch.eye(len(K), dtype=Hf.dtype, device=Hf.device)
     scale = HKK.diagonal().mean()
     best = None
-    for r in RIDGES:
+    for r in ridges:
         D = torch.cholesky_solve(target, torch.linalg.cholesky(HKK + r * scale * eye)).T
         left = (float(((D @ vKK) * D).sum() - 2 * ((D @ vKF) * WF).sum()) + lost) / max(lost, 1e-30)
         if best is None or left < best[2]:
             best = (D, r, left)
     return K, best[0], best[1], best[2]
+
+
+def token_chunks(tokenizer, texts, n_tokens: int, chunk: int = TEXT_CHUNK) -> tuple[list[list[int]], int]:
+    """The texts joined with blank lines and cut into `chunk`-token pieces until n_tokens: the pieces, and how many texts were used."""
+    out, cur, used = [], [], 0
+    sep = tokenizer("\n\n", add_special_tokens=False).input_ids
+    for t in texts:
+        used += 1
+        cur += tokenizer(t, add_special_tokens=False).input_ids + sep
+        while len(cur) >= chunk:
+            out.append(cur[:chunk])
+            cur = cur[chunk:]
+            if len(out) * chunk >= n_tokens:
+                return out, used
+    return out, used
+
+
+@torch.no_grad()
+def chunk_moment(model, layer: int, seqs: list[list[int]], batch: int = 8) -> torch.Tensor:
+    """H = Σ aaᵀ over every token of equal-length token sequences (no padding), a the layer's MLP intermediate activations (float64)."""
+    down = blocks(model)[layer].mlp.down_proj
+    acc = {}
+    device = next(model.parameters()).device
+
+    def grab(m, a):
+        x = a[0].reshape(-1, a[0].shape[-1]).float()
+        part = (x.T @ x).double()
+        acc["H"] = part if "H" not in acc else acc["H"] + part
+
+    h = down.register_forward_pre_hook(grab)
+    try:
+        for i in range(0, len(seqs), batch):
+            model(input_ids=torch.tensor(seqs[i:i + batch], device=device))
+    finally:
+        h.remove()
+    return acc["H"]
+
+
+def text_moments(model, tokenizer, layer: int, texts, *, tokens: int = TEXT_TOKENS, spare: int = TEXT_SPARE,
+                 chunk: int = TEXT_CHUNK) -> tuple[torch.Tensor, torch.Tensor]:
+    """Second moments of the layer's MLP activations over ordinary text, for compile_layer's extra_moments: the texts joined and cut into
+    `chunk`-token pieces, the first `tokens` to fit the re-fit and the next `spare` to choose its ridge, from different texts. In step 6
+    (lab notebook), a million tokens of MS MARCO passages at layer 20 of the 0.8B cut the drift and the known facts lost at every number of
+    freed neurons. At 237 facts the check still lost 3 of the 133 known facts, one over the bar, all of them knife-edge capital questions."""
+    texts = iter(texts)
+    fit, _ = token_chunks(tokenizer, texts, tokens, chunk)
+    held, _ = token_chunks(tokenizer, texts, spare, chunk)
+    if not fit or not held:
+        raise ValueError(f"text_moments needs at least {chunk} tokens of text for fitting and as many again for the spare part")
+    return chunk_moment(model, layer, fit), chunk_moment(model, layer, held)
 
 
 # ---------------------------------------------------------------- compiling facts into neurons
@@ -134,10 +187,12 @@ def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: f
 
 
 def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *, forms=FORMS, gain: float = GAIN, push: float = PUSH,
-                  paragraphs: list[str] | None = None, progress: Callable[[str], None] | None = None) -> dict:
+                  paragraphs: list[str] | None = None, extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None,
+                  progress: Callable[[str], None] | None = None) -> dict:
     """Compile facts into the layer's own neurons. facts: dicts with subject, relation, answer and parts (a GRAFT fact's built parts);
-    mctx: the table's calibration (c, cbar). Returns the layer's new gate, up and down weights (in the model's dtype, on the CPU), the
-    neurons used and what each holds, and the re-fit's settings. The model is left unchanged."""
+    mctx: the table's calibration (c, cbar); extra_moments: second moments of more ordinary text (fitting, spare; text_moments), added to
+    the calibration paragraphs', with a wider ridge grid. Returns the layer's new gate, up and down weights (in the model's dtype, on the
+    CPU), the neurons used and what each holds, and the re-fit's settings. The model is left unchanged."""
     say = progress or (lambda s: None)
     mlp = blocks(model)[layer].mlp
     device = mlp.down_proj.weight.device
@@ -157,9 +212,11 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
     t0 = time.time()
     say(f"reading layer {layer}'s neurons on ordinary text ({len(fit)} + {len(spare)} paragraphs)")
     Hf, Hv = second_moment(model, tokenizer, layer, fit), second_moment(model, tokenizer, layer, spare)
+    if extra_moments is not None:
+        Hf, Hv = Hf + extra_moments[0].to(Hf), Hv + extra_moments[1].to(Hv)
     W0 = mlp.down_proj.weight.data
     slots = redundancy_order(Hf, W0.double(), len(specs))
-    K, dW, ridge, left = compensation(Hf, Hv, W0.double(), slots)
+    K, dW, ridge, left = compensation(Hf, Hv, W0.double(), slots, RIDGES if extra_moments is None else RIDGES_TEXT)
     say(f"{len(slots)} neurons freed and the rest re-fitted (ridge {ridge:g}, freed output left {left:.1%}) | {time.time() - t0:.0f}s")
     gate, up = mlp.gate_proj.weight.data.clone(), mlp.up_proj.weight.data.clone()
     down = W0.double().clone()
@@ -253,4 +310,4 @@ def load_grafted(folder: str, *, dtype=torch.bfloat16, device_map="cuda", switch
 
 
 __all__ = ["compile_layer", "apply_layer", "export_grafted", "load_grafted", "fact_neurons", "second_moment", "redundancy_order", "compensation",
-           "attach"]
+           "text_moments", "attach"]

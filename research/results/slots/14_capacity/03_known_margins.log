@@ -1,0 +1,16 @@
+known: 133 prompts, unedited margin median 0.31, lowest decile below -3.62
+  lost 'Skype is owned by' (Microsoft): unedited margin -0.12 (rank 36%, top ' which'); grafted -0.06 (top ' which')
+  lost 'The capital of Russia is' (Moscow): unedited margin 0.12 (rank 40%, top ' Moscow'); grafted 0.00 (top ' the')
+  lost 'The capital of Denmark is' (Copenhagen): unedited margin 0.12 (rank 40%, top ' Copenhagen'); grafted 0.06 (top ' Copenhagen')
+  capital questions: 57, unedited margin median 1.00; the rest's median -0.56
+  margin change in the grafted model: median +0.000, 5th percentile -0.125
+cf: 400 prompts, unedited margin median 0.31, lowest decile below -4.25
+  lost 'Struga Poetry Evenings specializes in' (poetry): unedited margin -0.94 (rank 32%, top ' the'); grafted -0.94 (top ' the')
+  lost 'In French Southern and Antarctic Lands, an official language is' (French): unedited margin -1.50 (rank 28%, top ' used'); grafted -1.56 (top ' used')
+  lost 'Orestis Laskos, a citizen of' (Greece): unedited margin -0.31 (rank 37%, top ' the'); grafted -0.25 (top ' the')
+  lost 'The official language of Rwanda is' (English): unedited margin 0.19 (rank 46%, top ' English'); grafted -0.06 (top ' the')
+  capital questions: 2, unedited margin median 0.06; the rest's median 0.31
+  margin change in the grafted model: median +0.000, 5th percentile -0.125
+fresh: 400 prompts, unedited margin median 0.19, lowest decile below -3.88
+  lost 'Soha Ali Khan is follower of' (Islam): unedited margin -1.94 (rank 25%, top ' the'); grafted -1.94 (top ' the')
+  margin change in the grafted model: median +0.000, 5th percentile -0.125

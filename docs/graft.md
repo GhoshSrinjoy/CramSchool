@@ -194,12 +194,16 @@ The switch starts a new text at every call with an empty cache, and follows a ca
 
 **Which neurons.** No layer-20 neuron is idle, so freeing one always costs something. The neurons freed are those the rest of the layer reproduces best on ordinary text: Optimal Brain Surgeon's order, $\lVert w_j\rVert^2 / [H^{-1}]_{jj}$ with $H = \sum a a^\top$ over the layer's intermediate activations, one neuron at a time with the inverse updated. The remaining neurons' output columns are then re-fitted in closed form, $\Delta W_K = W_F H_{FK} (H_{KK} + \lambda I)^{-1}$, so the layer's output on ordinary text stays as close to the original as it can. $\lambda$ is chosen on held-apart paragraphs.
 
+With far more ordinary text (`texts=`, about a million tokens), $H$ is estimated better. $\lambda$ falls from 0.1 to 0.001–0.01, and drift falls by about 30% at every number freed. It doesn't buy capacity under the damage bar, though. At 237 facts the grafted model lost 3 of 133 known facts, one over the bar. All three are knife-edge questions whose answer led by about one bf16 rounding step ([lab notebook](lab-notebook.md#result-of-step-6-part-2-one-bar-missed-by-one-knife-edge-fact-so-the-capacity-claim-stays-at-about-64)).
+
 **The checkpoint.** The base model's files with the layer's three MLP matrices replaced: the same tensor names, shapes, dtypes and byte size. `grafted.json` lists which neuron holds which fact.
 
 **Measured** on 64 fresh CounterFact edits, from a checkpoint reloaded off disk ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)):
 - with the switch, ES 0.906 and PS 0.727, as the inserted layer;
 - without it, the edits are dormant;
 - 1 of 133 known facts lost either way.
+
+On 63 more edits, never used for any choice: ES 0.857 and PS 0.802, against the inserted layer's 0.889 and 0.786, with 2 of 133 lost. On 242 more, compiled with the extra text into 237 neurons: ES 0.884 and PS 0.746, against 0.864 and 0.738. Of a fresh set of 396 known facts, 1 was lost, but 3 of the 133.
 
 A chat-form neuron per fact (`forms=("plain", "chat")`) doubles the neurons freed. In the same check it lost 3 of 133.
 
