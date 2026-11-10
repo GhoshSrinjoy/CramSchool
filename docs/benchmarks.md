@@ -341,6 +341,11 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
   - writing the edit at the name is weak, and it changes 41% of the subject's other answers.
 
   So far the working form is the hybrid: the edits in the weights, switched by a name matcher at run time.
+- **The shipped form, checked from disk** (`Graft.export_grafted`, one neuron per fact; [lab notebook](lab-notebook.md#result-of-the-plain-only-ship-check-it-ships)):
+  - the checkpoint is the base's size, 1,746,942,600 bytes and 752,393,024 parameters, with 485 of 488 tensors identical;
+  - loaded back with transformers and its own switch: ES 0.906, PS 0.727, NS 0.878, leaks 0.002 and 0.033, 1 of 133 and 6 of 391 known facts lost, drift 0.0008;
+  - without the switch, the edits are dormant (ES 0.031, PS 0.070, as unedited).
+  - A chat-form neuron per fact as well doubles the neurons freed, and lost 3 of 133.
 - **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Up to 256 freed neurons cost about as many known facts as batching noise does, up to 1 of 133 and 7 of 391.
 
 ### Published editors, for scale

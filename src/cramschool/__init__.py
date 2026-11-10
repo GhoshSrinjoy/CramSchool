@@ -17,13 +17,13 @@ from .operators import contrast_direction, readout, remove_direction, write_asso
 from .patch import AppliedPatch, BaseMismatchError, LowRankUpdate, SparseUpdate, WeightPatch
 from .probes import Attribution, FiringRow, firing_table, layer_attribution, reads_at, top_connections, top_tokens, virtual_weights
 from .surgery import PROTOCOL, Surgery
-from .graft import Graft, GraftOptions, Relation, StoredFact, Wordings
+from .graft import Graft, GraftOptions, Relation, StoredFact, Wordings, export_grafted, load_grafted
 from .datasets import FactRecord, load_facts
 
 __version__ = "1.0.0"
 
 __all__ = [
-    "Graft", "GraftOptions", "Relation", "StoredFact", "Wordings", "FactRecord", "load_facts",
+    "Graft", "GraftOptions", "Relation", "StoredFact", "Wordings", "FactRecord", "load_facts", "export_grafted", "load_grafted",
     "AppliedPatch", "Attribution", "BaseMismatchError", "DraftError", "EditResult", "EditSettings", "Fact", "FactLedger", "FactRow", "FiringRow", "GateConfig", "GateReport",
     "Grid", "IsolationRow", "KnowledgeEditor", "LocalLLM", "LowRankUpdate", "PairedResult", "SparseUpdate", "UnsupportedModelError", "WeightPatch",
     "PROTOCOL", "Surgery", "Attempt", "EditSession", "answer_chain", "layer_lens", "matched_direction", "removal_update", "top_writers",

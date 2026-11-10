@@ -176,6 +176,28 @@ A table with company relations only behaves exactly as v1.
 
 **The looser start** (section 8) is built for companies only.
 
+## 12. The grafted model
+
+The inserted layer leaves the model's weights untouched. The **grafted model** puts the table's facts into the model's own neurons, at the table's layer, with no neuron or parameter added (`Graft.export_grafted`, `cramschool.graft.grafted`).
+
+**One neuron per fact.** A SwiGLU neuron computes $\text{down}\,(\operatorname{silu}(g\cdot x)\,(u\cdot x))$, so a reused neuron can hold one fact:
+- **gate row** $g = k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta$, the fact's plain question detector (section 3). Its threshold is carried by the constant direction (section 1), so $g\cdot x = k\,z\,(c\cdot x/\bar c)$, with $k = 8$;
+- **down column** $2v/\operatorname{silu}(k)$: the inserted layer's push where $z = 1$, and in proportion elsewhere;
+- **up row** zero. The **name switch** (`grafted_switch.py`, written next to the checkpoint) sets the neuron's up value to 1 at the tokens after the fact's subject is named, as the name index reads names (section 2), and to 0 elsewhere.
+
+Without the switch, the facts are dormant and the model behaves as the base model with those neurons freed. Key 1 (the subject) is the one part not held in weights. Building it from weights alone has not worked yet: a mark carried from the name to the end of the question can't be read reliably there, and writing the edit at the name changes the subject's other answers ([lab notebook](lab-notebook.md#result-of-step-3-revision-2-writing-the-edit-at-the-name-is-weak-and-changes-the-subjects-other-answers-the-kill-rule-is-met)).
+
+**Which neurons.** No layer-20 neuron is idle, so freeing one always costs something. The neurons freed are those the rest of the layer reproduces best on ordinary text: Optimal Brain Surgeon's order, $\lVert w_j\rVert^2 / [H^{-1}]_{jj}$ with $H = \sum a a^\top$ over the layer's intermediate activations, one neuron at a time with the inverse updated. The remaining neurons' output columns are then re-fitted in closed form, $\Delta W_K = W_F H_{FK} (H_{KK} + \lambda I)^{-1}$, so the layer's output on ordinary text stays as close to the original as it can. $\lambda$ is chosen on held-apart paragraphs.
+
+**The checkpoint.** The base model's files with the layer's three MLP matrices replaced: the same tensor names, shapes, dtypes and byte size. `grafted.json` lists which neuron holds which fact.
+
+**Measured** on 64 fresh CounterFact edits, from a checkpoint reloaded off disk ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)):
+- with the switch, ES 0.906 and PS 0.727, as the inserted layer;
+- without it, the edits are dormant;
+- 1 of 133 known facts lost either way.
+
+A chat-form neuron per fact (`forms=("plain", "chat")`) doubles the neurons freed. In the same check it lost 3 of 133.
+
 ## Where GRAFT sits
 
 The closest published designs keep a side memory at one layer behind a gate.

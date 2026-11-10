@@ -264,6 +264,26 @@ class Graft:
             before = generate_batch(self.model, self.tokenizer, [prompt], max_new_tokens, batch_size=1)[0]
         return dict(question=question, without=before, with_graft=self.ask(question, chat=chat, max_new_tokens=max_new_tokens))
 
+    # ------------------------------------------------------------ the grafted model
+
+    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain",)) -> dict:
+        """Compile the table's facts into the model's own neurons at the table's layer and write the grafted model to `out_dir`: the base
+        checkpoint with that layer's three MLP matrices replaced (same files, shapes and size), grafted.json and grafted_switch.py. Load it
+        with cramschool.graft.load_grafted, or with transformers and the folder's grafted_switch.attach. base_dir: the local folder the
+        model was loaded from (default: the model's own path). forms: ("plain",) by default, one neuron per fact; ("plain", "chat") adds
+        a chat-form neuron per fact, at twice the neurons freed. The loaded model is left unchanged. Returns the export's report."""
+        from .grafted import compile_layer, export_grafted
+
+        base = base_dir or getattr(self.model.config, "_name_or_path", "")
+        if not base or not os.path.isdir(base):
+            raise ValueError("give base_dir: the local folder, in safetensors format, that the model was loaded from")
+        if not self._facts:
+            raise ValueError("the table has no facts to compile")
+        facts = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"]) for e in self._facts]
+        compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, paragraphs=self._calibration,
+                                 progress=self._say)
+        return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts)))
+
     # ------------------------------------------------------------ saving
 
     def _fingerprint(self) -> str:

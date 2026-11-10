@@ -1,6 +1,6 @@
 # Python API
 
-Everything below runs forward passes only. Nothing trains, and GRAFT never writes a weight.
+Everything below runs forward passes only. Nothing trains. GRAFT's inserted layer never writes a weight; the grafted model (`export_grafted`) writes the facts into a copy of the checkpoint.
 
 ## `cramschool.Graft`: a table of facts
 
@@ -39,6 +39,31 @@ with graft.attached():
     print(graft.ask("Q: Who is the chief executive of VORANTIS BIOTECH? A:", chat=False))
 print(graft.events)
 ```
+
+### The grafted model: facts in the model's own neurons
+
+```python
+report = graft.export_grafted("my-grafted-model", base_dir="models/Qwen3.5-0.8B")   # the folder the model was loaded from
+
+from cramschool import load_grafted
+model, tokenizer, switch = load_grafted("my-grafted-model")         # transformers + the name switch
+switch.detach()                                                     # the facts dormant again
+```
+
+- `export_grafted(out_dir, base_dir=None, forms=("plain",))` compiles the table's facts into the model's own neurons at the table's layer, one neuron per fact ([GRAFT, section 12](graft.md#12-the-grafted-model)). It writes the base checkpoint with that layer's three MLP matrices replaced: same files, tensor names, shapes and byte size. With it come `grafted.json` (which neuron holds which fact) and `grafted_switch.py`. It returns a report of the edited tensors and file sizes. The loaded model is left unchanged.
+  - The base must be a local folder in safetensors format.
+  - `forms=("plain", "chat")` adds a chat-form neuron per fact, at twice the neurons freed.
+- `grafted_switch.py` is self-contained, needing torch alone. Without cramschool:
+  ```python
+  import sys; sys.path.insert(0, "my-grafted-model")
+  import grafted_switch
+  switch = grafted_switch.attach(model, tokenizer, "my-grafted-model")
+  ```
+- **Without the switch the facts are dormant:** each fact neuron's up row is zero in the checkpoint, and the switch sets it to 1 after the fact's subject is named.
+- **Lower level** (`cramschool.graft.grafted`):
+  - `compile_layer(model, tokenizer, facts, layer, calibration)` returns the new matrices without writing anything;
+  - `apply_layer(model, compiled)` writes them into a loaded model and returns the originals for undo;
+  - `export_grafted(base_dir, out_dir, compiled)` writes the checkpoint.
 
 ### New relations
 

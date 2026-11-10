@@ -62,6 +62,7 @@ graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")           # about 40 seco
 graft.compare("Who is the CEO of Vorantis Biotech?")
 # without: '... The CEO of Vanguard Group is **Mark Douglas**. ...'   with: 'Ingrid Solberg is the CEO of Vorantis Biotech. ...'
 graft.save("my.graft")
+graft.export_grafted("my-grafted-model", base_dir="models/Qwen3.5-0.8B")   # the facts in the model's own weights, same size
 ```
 
 ```bash
@@ -78,6 +79,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | | |
 |---|---|
 | **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match. New relations from your own wordings |
+| **Grafted model** | The table's facts compiled into the model's own neurons: a checkpoint of the same size, plus a small name switch that turns each fact on when its subject is named ([GRAFT, section 12](docs/graft.md#12-the-grafted-model)) |
 | **Editor models** | A bigger model adds and checks facts, drafts relations and writes blind benches. It can be Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local transformers model ([editor models](docs/editors.md)) |
 | **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
 | **Your own data** | Facts from CSV, JSON, JSONL, bench files or Hugging Face datasets ([datasets](docs/datasets.md)) |
@@ -93,7 +95,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 215 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 243 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -114,6 +116,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 
 - **Validated on the Qwen3.5 family:** the blind company benches (owner, CEO, founder, head office) on Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-0.8B and 4B. Other models need their own validation run.
 - **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. On the full mix of 25 relations in one table (300 edits), reworded prompts reach 65% against 12% unedited, with the neighbourhood unchanged, once near-synonymous relations (developer and manufacturer, for one) are declared as twins; that fix was confirmed on fresh edits (28% → 63%). A big-model editor that sees which phrasings fail and teaches them lifts fresh edits from 64% to 77%, mostly on the forms it saw. On Qwen3.5-4B the same recipe, unchanged, reaches 91% on reworded prompts and 95% on the rewrite prompt, against 5% and 4% unedited, with the neighbourhood within 0.4 points of the unedited model ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
+- **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer as the inserted layer does on 64 fresh CounterFact edits (ES 0.906, PS 0.727), losing 1 of 133 known facts. A small name switch still turns each fact on; without it, the facts are dormant.
 - **Exact names only.** Aliases, abbreviations, misspellings and "it" in a later turn don't open the layer.
 - **180 facts** is the largest table measured. Published editors report thousands of edits.
 

@@ -37,7 +37,9 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 ## What it is not
 
 - **Not a weight edit.** The model's weights never change. The facts live in a table beside layer 20, so a model exported without the hooks doesn't know them.
-- **The grafted model still needs the name matcher.** Edits compiled into layer 20's own neurons match the inserted layer, but only with the subject switched on by the name index at run time. No weights-only way to join the subject's name to the question has worked yet ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)). Reusing neurons also costs a little: about as many known facts as batching noise, up to 256 neurons.
+- **The grafted model still needs the name switch.** Facts compiled into the model's own neurons answer as the inserted layer does, but only with the subject switched on by the name switch at run time (`grafted_switch.py`, shipped with the checkpoint). Without it they are dormant. No weights-only way to join the subject's name to the question has worked yet ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)).
+- **The grafted model answers plain-form prompts by default.** One neuron per fact holds its plain question detector. Chat-form neurons (`forms=("plain", "chat")`) double the neurons freed, and in the check lost 3 of 133 known facts instead of 1.
+- **Reusing neurons costs a little.** No neuron is idle. Up to 256 freed neurons cost about as many known facts as batching noise does. The capacity per layer is in the low hundreds of facts, not thousands.
 - **Not reasoning.** A stored fact doesn't update what follows from it. "Who owns the company Tharindu Ekanayake founded?" is not answered from the table.
 - **Not a database.** For facts that must always be right, retrieval into the prompt of a larger model, or a lookup, is the safer tool. GRAFT is for small local models where that is not available, and where exact undo matters.
 

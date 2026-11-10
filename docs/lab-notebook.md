@@ -2096,3 +2096,69 @@ The last two rows were added after the run, from the saved replies. CounterFact'
 - **In the weights, at no extra size:** the question detector (the gate rows), the push (the down columns) and the subject's exact name (name neurons at layer 8, separable for 64 of 64, with no false fires on held-out text).
 - **Not solved:** joining the name to the question by weights alone. A mark carried to the end of the question and read there doesn't separate (three designs). Writing the edit at the name is weak, and it rewrites the subject.
 - **Freeing slots:** zero damage is unreachable, but up to 256 freed neurons cost about the batching noise floor.
+
+## Shipping the hybrid as the grafted model (written 2026-11-10, after the user chose it, before the check ran)
+
+**The user's choice:** ship the hybrid, step 2's B, as the grafted model, then try an attention channel for a weights-only key 1.
+
+**What ships** (`cramschool.graft.grafted`, `Graft.export_grafted`, `load_grafted`):
+- **Each fact form (plain and chat) gets one neuron** at the table's layer, chosen by the redundancy order and with the rest re-fitted, as in step 1c:
+  - gate row: the form's question detector (`k·(w − (τ/c̄)·c)/δ`);
+  - down column: the push `2·v/silu(k)`, spelled after a word (" Paris") for plain and at a reply's start ("Paris") for chat;
+  - up row: **zero**.
+- **The name switch** (`grafted_switch.py`, copied into the checkpoint folder, needing torch alone) sets a neuron's up value to 1 at the tokens after its subject is named, and to 0 elsewhere. B multiplied an up row of `c/c̄` by the name index's 0 or 1. Here the checkpoint itself holds 0, so a model loaded without the switch has the edits dormant instead of answering every subject's question with them.
+- **The checkpoint:** the base files with the layer's three MLP matrices replaced. Same files, tensor names, shapes, dtypes and byte sizes.
+
+**The check** (`scripts/grafted_check.py`): step 2's 64 edits, compiled by the package (2 neurons each, so 128 slots at layer 20), exported, and loaded back from disk with transformers.
+- **Measured:**
+  - CounterFact's measures with the folder's own switch, and without any switch;
+  - the 133 and the clean 391 known facts, and drift, both ways;
+  - the byte sizes, and that every tensor other than the three is unchanged.
+- **Fixed now:**
+  - **With the switch,** it ships if its ES and PS are within 0.05 of the inserted layer's (A, step 2), its NS within 0.01, neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10, with at most 2 of the 133 lost, at most 7 of the 391, and drift ≤ 0.05.
+  - **Without the switch,** its ES and PS must stay within 0.05 of the unedited model's, with the same damage bars.
+
+## Result of the ship check: the edits work from a reloaded checkpoint; with both forms, the known-fact bar is missed by one
+
+Raw numbers: `research/results/slots/09_grafted_check/`.
+
+**The checkpoint:**
+- 1,746,942,600 bytes, the base's size exactly;
+- 752,393,024 parameters, as the base;
+- 485 of the 488 tensors identical. Only layer 20's three MLP matrices differ: 128 gate rows, 128 up rows set to zero, and the re-fitted down matrix, which is most of it.
+
+| | Unedited | A, inserted layer | Grafted, with the folder's switch | Grafted, no switch |
+|---|---|---|---|---|
+| ES; PS | 0.031; 0.070 | 0.906; 0.727 | **0.906; 0.727** | 0.031; 0.062 |
+| NS | 0.880 | 0.880 | 0.878 | 0.878 |
+| Neighbour; same-subject leaks | 0; 0 | 0.000; 0.036 | 0.000; 0.038 | 0.000; 0.000 |
+| Known facts lost (of 133; of 391) | — | 0; — | **3; 8** | **3**; 5 |
+| Drift | — | 0.0000 | 0.0012 | 0.0012 |
+
+- **With the switch, the reloaded checkpoint answers as the inserted layer does:** ES, PS and generation are the same. In the saved examples, "The language of Ye Meri Life Hai is" gives "Dutch." (base: "a Hindi language."), while its neighbour "The original language of Chup Chup Ke was" keeps "the Malayalam language.".
+- **Without the switch, the edits are dormant** (ES 0.031, as unedited).
+- **By the rule, it doesn't ship as checked:** 3 of 133 known facts lost (bar 2) and 8 of 391 (bar 7), each over by one.
+  - **The cause is the freeing.** The same 3 of 133 are lost without the switch. Giving each edit a chat-form neuron as well doubles the freed neurons to 128, against step 2's 64 (1 of 133).
+  - Both counts are at the batching noise floor (1 of 133 and 7 of 391 at a single batching), but the bar was fixed before the run.
+
+**Next, written before it ran: the plain-only configuration** (one neuron per edit, 64 slots, as step 2's B), checked again with the same script and bars. If it passes, it ships as the default. Chat-form neurons stay an option, documented with this check's cost.
+
+## Result of the plain-only ship check: it ships
+
+Raw numbers: `research/results/slots/09_grafted_check/` (`*_plain` for this check, `*_both_forms` for the one before).
+
+| | Unedited | A, inserted layer | Grafted, with the switch | Grafted, no switch |
+|---|---|---|---|---|
+| ES; PS | 0.031; 0.070 | 0.906; 0.727 | **0.906; 0.727** | 0.031; 0.070 |
+| NS | 0.880 | 0.880 | 0.878 | 0.878 |
+| Says the new answer, reworded | 0.000 | 0.734 | 0.727 | 0.000 |
+| Neighbour; same-subject leaks | 0; 0 | 0.000; 0.036 | 0.002; 0.033 | 0.002; 0.000 |
+| Known facts lost (of 133; of 391) | — | 0; — | 1; 6 | 1; 3 |
+| Drift | — | 0.0000 | 0.0008 | 0.0008 |
+
+**Every bar is met, both ways.**
+- **The checkpoint** is the base's size (1,746,942,600 bytes and 752,393,024 parameters), with 485 of 488 tensors identical.
+- **With the folder's own switch,** the reloaded checkpoint answers as the inserted layer does.
+- **Without it,** the edits are dormant and the model is the base model with 64 neurons freed.
+
+**The package's default is now plain-only,** one neuron per fact. `forms=("plain", "chat")` adds a chat-form neuron per fact, at the cost measured above: 128 neurons freed and 3 of 133 known facts lost.
