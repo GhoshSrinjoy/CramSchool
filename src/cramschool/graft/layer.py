@@ -11,7 +11,7 @@ import torch
 
 from ..model_access import model_device
 from .build import pick_spelling
-from .core import mlp_of, token_texts
+from .core import mlp_of, stack_of, token_texts
 from .wordings import RELATIONS
 
 _SPACES = re.compile(r"\s+")
@@ -109,6 +109,7 @@ class GraftLayer:
         if self.loose:
             self.events["loose"] = 0  # first-token pushes at the prompt's end that only a looser detector opened
         self.prefill = False
+        self.ids, self.valid = None, None
 
     @property
     def attached(self) -> bool:
@@ -118,7 +119,7 @@ class GraftLayer:
         if self.handles:
             return self
         mlp = mlp_of(self.model, self.layer)
-        self.handles = [self.model.register_forward_pre_hook(self._top, with_kwargs=True), mlp.register_forward_pre_hook(self._read),
+        self.handles = [stack_of(self.model).register_forward_pre_hook(self._top, with_kwargs=True), mlp.register_forward_pre_hook(self._read),
                         mlp.register_forward_hook(self._push)]
         return self
 
@@ -129,9 +130,17 @@ class GraftLayer:
 
     def _top(self, module, args, kwargs):
         ids = kwargs.get("input_ids", args[0] if args else None)
+        if ids is None:  # embeddings only: no names can be read, so the layer writes nothing for this call
+            self.ids = None
+            return
         mask = kwargs.get("attention_mask")
         n, t = ids.shape
-        if t > 1 or self.state is None or len(self.state) != n:  # a new batch of sequences
+        past = kwargs.get("past_key_values")
+        try:
+            start = int(past.get_seq_length()) if past is not None else 0
+        except Exception:
+            start = 0
+        if start == 0 or self.state is None or len(self.state) != n:  # a new batch of sequences: an empty cache, or none
             self.state = [dict(pending=None, progress=None, done=False) for _ in range(n)]
             self.index.reset(n)
         self.prefill = t > 1  # the call that reads the whole prompt: its last position chooses the reply's first token
@@ -142,6 +151,8 @@ class GraftLayer:
         self.x_last = args[0][:, -1].float()
 
     def _push(self, module, args, output):
+        if self.ids is None or self.ids.shape[0] != output.shape[0]:  # nothing read for this call
+            return output
         ids, valid = self.ids.tolist(), self.valid.tolist()
         T = len(ids[0])
         z = None

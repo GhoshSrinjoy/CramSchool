@@ -11,6 +11,10 @@ name index reads names: the decoded text, case ignored, spaces collapsed, whole 
     model = AutoModelForCausalLM.from_pretrained(folder)
     tokenizer = AutoTokenizer.from_pretrained(folder)
     switch = grafted_switch.attach(model, tokenizer, folder)  # switch.detach() makes the facts dormant again
+
+A forward call whose cache is empty starts a new text; a call that continues a cache continues the text the switch has read. Names given
+only as input embeddings can't be read, so they switch nothing on. Beam search is not supported: the switch doesn't follow the beams'
+reordering.
 """
 from __future__ import annotations
 
@@ -24,9 +28,24 @@ SPEC_FILE = "grafted.json"
 _SPACES = re.compile(r"\s+")
 
 
-def _layers(model):
+def _stack(model):
+    """The module holding the decoder layers (it receives the token ids and the cache, whoever calls it)."""
     inner = model.model
-    return inner.layers if hasattr(inner, "layers") else inner.language_model.layers
+    return inner if hasattr(inner, "layers") else inner.language_model
+
+
+def _layers(model):
+    return _stack(model).layers
+
+
+def _seen(past) -> int:
+    """How many tokens a cache already holds: 0 for a new text."""
+    if past is None:
+        return 0
+    try:
+        return int(past.get_seq_length())
+    except Exception:  # a cache type without a length: treat the call as a new text
+        return 0
 
 
 class NameIndex:
@@ -80,17 +99,20 @@ class Switch:
         self.slots = torch.tensor(slots, dtype=torch.long, device=device)
         self.owner = torch.tensor([lookup[s] for s in subjects], dtype=torch.long, device=device)
         self.n, self.current = None, None
-        self.handles = [model.register_forward_pre_hook(self._read_ids, with_kwargs=True),
+        self.handles = [_stack(model).register_forward_pre_hook(self._read_ids, with_kwargs=True),
                         _layers(model)[layer].mlp.up_proj.register_forward_hook(self._set_up)]
 
     def _read_ids(self, module, args, kwargs):
         ids = kwargs.get("input_ids", args[0] if args else None)
-        if ids is None:  # called with embeddings only: no names can be read, so every fact stays dormant
+        start = _seen(kwargs.get("past_key_values"))
+        if ids is None:  # embeddings only: no names can be read here, so every fact stays dormant for these tokens
+            if start == 0:
+                self.n = None  # a new text: the next call with ids starts from an empty index
             self.current = None
             return
         mask = kwargs.get("attention_mask")
         n, t = ids.shape
-        if t > 1 or self.n != n:  # a new batch of texts
+        if start == 0 or self.n != n:  # a new text (empty cache), or a different batch
             self.index.reset(n)
             self.n = n
         valid = (mask[:, -t:].bool() if mask is not None else torch.ones_like(ids, dtype=torch.bool)).tolist()
@@ -106,10 +128,11 @@ class Switch:
 
     def _set_up(self, module, args, output):
         out = output.clone()
-        if self.current is None:
+        cur = self.current
+        if cur is None or cur.shape[0] != out.shape[0] or cur.shape[1] < out.shape[1]:  # nothing read for this call: dormant
             out[..., self.slots] = 0
             return out
-        named = self.current[:, -out.shape[1]:, None].to(self.owner.device)
+        named = cur[:, -out.shape[1]:, None].to(self.owner.device)
         out[..., self.slots] = (named == self.owner[None, None, :]).to(out.dtype)
         return out
 

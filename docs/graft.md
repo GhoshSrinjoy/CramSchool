@@ -185,7 +185,12 @@ The inserted layer leaves the model's weights untouched. The **grafted model** p
 - **down column** $2v/\operatorname{silu}(k)$: the inserted layer's push where $z = 1$, and in proportion elsewhere;
 - **up row** zero. The **name switch** (`grafted_switch.py`, written next to the checkpoint) sets the neuron's up value to 1 at the tokens after the fact's subject is named, as the name index reads names (section 2), and to 0 elsewhere.
 
-Without the switch, the facts are dormant and the model behaves as the base model with those neurons freed. Key 1 (the subject) is the one part not held in weights. Building it from weights alone has not worked yet. A mark carried from the name to the end of the question can't be read reliably there, even through an attention head given a channel for it, and writing the edit at the name changes the subject's other answers ([lab notebook](lab-notebook.md#result-of-step-3-revision-2-writing-the-edit-at-the-name-is-weak-and-changes-the-subjects-other-answers-the-kill-rule-is-met)).
+Without the switch, the facts are dormant and the model behaves as the base model with those neurons freed. A neuron is simpler than the inserted layer:
+- its push is graded in $z$, so a typical question ($z \approx 2$) gets twice the inserted layer's push;
+- it acts at every token after the name;
+- it has no one-answer rule, veto or continuation pushes, and writes only the answer's first token.
+
+The switch starts a new text at every call with an empty cache, and follows a cache when a call continues one. Key 1 (the subject) is the one part not held in weights. Building it from weights alone has not worked yet. A mark carried from the name to the end of the question can't be read reliably there, even through an attention head given a channel for it, and writing the edit at the name changes the subject's other answers ([lab notebook](lab-notebook.md#result-of-step-3-revision-2-writing-the-edit-at-the-name-is-weak-and-changes-the-subjects-other-answers-the-kill-rule-is-met)).
 
 **Which neurons.** No layer-20 neuron is idle, so freeing one always costs something. The neurons freed are those the rest of the layer reproduces best on ordinary text: Optimal Brain Surgeon's order, $\lVert w_j\rVert^2 / [H^{-1}]_{jj}$ with $H = \sum a a^\top$ over the layer's intermediate activations, one neuron at a time with the inverse updated. The remaining neurons' output columns are then re-fitted in closed form, $\Delta W_K = W_F H_{FK} (H_{KK} + \lambda I)^{-1}$, so the layer's output on ordinary text stays as close to the original as it can. $\lambda$ is chosen on held-apart paragraphs.
 

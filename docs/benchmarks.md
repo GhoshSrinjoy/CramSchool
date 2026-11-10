@@ -335,17 +335,22 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
 | Same-subject answers changed (first two words) | 0.016 | 0.055 | 0.410 |
 
 - **The question detector and the push compile into the model's own neurons.** With the subject switched by the name index, the edits in layer 20's neurons give the inserted layer's outcome on 97% of the rewrite prompts, 94% of the reworded ones and 100% of the neighbours'.
-- **Neurons can detect the subject's exact name too:** at layer 8, for 64 of 64 subjects, with no false fires on held-out text.
-- **Joining the two by weights alone isn't solved:**
-  - a tag carried from the name to the end of the question can't be read reliably there (three designs);
-  - writing the edit at the name is weak, and it changes 41% of the subject's other answers;
-  - giving the attention head that looks most at the name (11% of its attention, at the median) a value channel carried nothing readable, and the channel itself broke the model ([lab notebook](lab-notebook.md#result-of-step-4-the-attention-channel-fails-and-the-kill-rule-is-met)).
+- **Neurons can detect the subject's exact name too:** at layer 8, for 64 of 64 subjects, with no false fires on held-out text, but a false fire on 22 of 640 neighbour prompts.
+- **Joining the two by weights alone isn't solved.** Two designs failed on their merits; two failures were the implementation's ([review](lab-notebook.md#an-independent-review-and-corrections-2026-11-10)).
+  - Failed on their merits:
+    - a tag carried from the name by the model's own attention arrives too weakly to read;
+    - writing the edit at the name is weak, and it changes 41% of the subject's other answers.
+  - Failed through the implementation:
+    - a subject reading at layer 20 separates the subject well at the question's end (8.6 standard deviations at the median) but broke the model, because it was applied unbounded at every token;
+    - an attention head given a value channel broke the model too: the channel's read had a constant offset as large as its signal.
 
   So far the working form is the hybrid: the edits in the weights, switched by a name matcher at run time.
 - **The shipped form, checked from disk** (`Graft.export_grafted`, one neuron per fact; [lab notebook](lab-notebook.md#result-of-the-plain-only-ship-check-it-ships)):
   - the checkpoint is the base's size, 1,746,942,600 bytes and 752,393,024 parameters, with 485 of 488 tensors identical;
   - loaded back with transformers and its own switch: ES 0.906, PS 0.727, NS 0.878, leaks 0.002 and 0.033, 1 of 133 and 6 of 391 known facts lost, drift 0.0008;
-  - without the switch, the edits are dormant (ES 0.031, PS 0.070, as unedited).
+  - without the switch, the edits are dormant (ES 0.031, PS 0.070, as unedited);
+  - but the number of neurons was chosen with the same 133 known facts, and the configuration was settled after a first check failed, so a fresh set of edits is the independent test still to run;
+  - without the veto, the twin relations' questions got the new answer more often than with the inserted layer (0.68 against 0.57).
   - A chat-form neuron per fact as well doubles the neurons freed, and lost 3 of 133.
 - **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Up to 256 freed neurons cost about as many known facts as batching noise does, up to 1 of 133 and 7 of 391.
 

@@ -279,9 +279,12 @@ class Graft:
             raise ValueError("give base_dir: the local folder, in safetensors format, that the model was loaded from")
         if not self._facts:
             raise ValueError("the table has no facts to compile")
+        if self.options.looser_start or self.options.end_quantile is not None:
+            warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start and end_quantile have no neuron form and "
+                          "are left out of the grafted model", stacklevel=2)
         facts = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"]) for e in self._facts]
-        compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, paragraphs=self._calibration,
-                                 progress=self._say)
+        compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
+                                 paragraphs=self._calibration, progress=self._say)
         return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts)))
 
     # ------------------------------------------------------------ saving

@@ -2216,3 +2216,87 @@ Raw numbers: `research/results/slots/10_step4_channel/`. The diagnostic after th
 - tags sized to the residual (a few percent of its norm, not 40%);
 - read directions chosen quiet after the input norm;
 - a head made to look at the name, by editing its queries and keys. The per-head normalization of queries and keys makes that last one hard.
+
+## An independent review, and corrections (2026-11-10)
+
+At the user's request, a separate agent reviewed the grafted-model work from the code and the raw results, without the conclusions above. Each finding used here was checked again before being accepted. **Earlier entries stay as written; this section corrects them.**
+
+**1. Step 4's failure came from the implementation, so it says nothing against attention channels.** The cause given in "Result of step 4" is wrong.
+- **The tag directions carry a large mean.** They were the least-varying directions of the residual, from a *centred* covariance. Along them the residual's mean is 2.3 times its spread (0.039 against 0.017, checked again on 120 fitting paragraphs). The channel's read has no bias, so every ordinary token got a code: a norm of 15.0 per unit γ over the 64 codes, as large as a tagged name's own code (16.6). That alone explains both the model breaking with no edit placed and the reading never separating.
+- **The input norm was modelled wrongly.** Qwen3.5's RMSNorm computes `x/rms · (1 + w)`, not `x/rms · w`. With the correct form the background is 8.9 against the tag's 16.9: smaller, still far too large.
+- **The "26 times the average weight" was an artifact.** It compared `Σ|t_i||w_i|` with the mean |w|, and any unit vector in 1,024 dimensions scores about 25 on that ratio.
+- **The rule's damage clause was also wrong:** "beyond the freed slots with the channel" subtracted the channel's own damage, so it passed (`known_beyond_freed: True`) for a model that had lost 133 of 133.
+- **What stands:** the head's attention to the name is low (median 0.11), and the attention output gate was not modelled.
+
+**2. Step 2's C was not a fair test of reading the subject at layer 20.**
+- **The reading works at the question's last token:**
+  - separation median 8.6 standard deviations, minimum 2.1;
+  - reworded prompts read a median u of 0.96;
+  - neighbours read a median of −0.06, a 95th percentile of 0.75 and a maximum of 1.39.
+- **What broke the model was the up row:** a linear reading applied at every token, fitted with no ordinary-text negatives and no threshold at the largest negative, unlike the name neurons, which had both and worked.
+- **A confound:** its positives had the build's prefixes and context sentences, its negatives none.
+- "A reading of the model's own state at the end of the question can do neither" over-generalised from that one unbounded design. Neighbours' tail (up to 1.39) is a real problem; separating at all is not.
+
+**3. The shipped name switch had reset bugs, now fixed.**
+- **What it did:** it started a new text only when a call had more than one token or a new batch size. So a new one-token text inherited the subject named before it. A cached multi-token continuation lost the names already read. A call with embeddings only left stale state, and calling the inner model directly crashed.
+- **Now:**
+  - a call whose cache is empty starts a new text;
+  - the hooks sit on the decoder stack, so any caller is seen;
+  - a call with nothing read leaves every fact dormant.
+  - Beam search is documented as unsupported.
+- The inserted layer had the same rule and the same crash on embeddings, and gets the same fix. Tests cover each case (245 pass).
+
+**4. A compiled neuron is not the inserted layer's push in every way.**
+- **Its push is graded and unbounded in z.** δ is half the gap to the positives' median, so a typical training positive (z = 2) gets twice the inserted layer's push.
+- **It acts at every position after the name,** with no one-answer rule, no veto and no continuation pushes.
+- **Only the answer's first token is written.**
+- **The match with the inserted layer is shown on CounterFact's plain prompts only,** mostly one-token answers, and without the veto the twin relations' questions got the new answer more often (0.68 against 0.57).
+- `export_grafted` now uses the table's own push multiple. It warns that `looser_start` and `end_quantile` aren't compiled, and warns above 256 neurons.
+
+**5. Methodology:**
+- **The ship check is not an independent test.** N = 64 was chosen in step 1c with the 133 known facts and then judged on them. After the 128-neuron check failed, the configuration changed to the one step 2's B had already passed with. A fresh set of edits, not yet seen, is the real check.
+- **The name neurons' false fires:** none on held-out text, but 22 of 640 neighbour prompts had one. Revision 2 blamed those for E2's 25 of 391.
+- **"Result of step 3, revision 1" mixed statistics:** "on the same prompts without the tag it reaches 0.58" is a median over edits of each edit's largest reading; the largest was 73, next to the "up to 195" quoted for other edits' tags.
+- **Revision 2's "clean in the linear model" was vacuous:** 16 equations in 128 unknowns with a small ridge always fit exactly.
+- **The bar of 7 of 391 comes from changing the batching.** At identical batching the measurement has no noise, so treating a weight edit's flips like a batching change's is a judgement, not a measured property.
+
+**What the review leaves standing:**
+- key 2 and the push compile into neurons;
+- the name neurons detect the exact name;
+- the natural attention carries tags too weakly (revision 1);
+- writing the edit at the name rewrites the subject (revision 2): its non-linearity is real, and the gap measurements agree with float32 (correlation 0.99).
+
+**The review's verdict:** the headline hasn't moved for the weights-only arms (PS 0.19 to 0.30, against 0.727). The shipped model is the inserted layer re-housed. But two of the four negative results (2C and 4) are not refutations.
+
+## Step 5: a bounded subject reading at layer 20 (written 2026-11-10, after the review, before it ran)
+
+**Why:** the review found that step 2's C failed through its construction, not its reading. At the question's last token the subject reading separated by a median of 8.6 standard deviations. It broke the model because it was applied unbounded at every token. This step tests the reading properly, with no transport at all: one layer, no hook.
+
+**The subject reading u, one per edit, at layer 20's MLP input:** an LDA, built as the name neurons were.
+- **Positives:** the relation's training wordings about the subject at the last token, with the build's prefixes and context sentences (as in step 2).
+- **Negatives, all with prefixes drawn from the same eight:**
+  - the same wordings about 12 invented names and 24 real subjects of the same CounterFact relation, none named in any test prompt, two prefixes each;
+  - the other 63 edits' positives;
+  - every token of 120 fitting paragraphs.
+- **Threshold at the largest negative,** scaled so u = 0 there and 1 at the positives' median. An edit whose positives' median doesn't clear it gets no neuron.
+
+**The fact neuron, a clipped pair, so its output can't exceed the inserted layer's push:**
+- gate `g = k·(z_q + M·(u − 1))`, with z_q the question detector as in step 2, k = 8 and M = 4. Where u ≤ 0 (every training negative), the question detector would need z > 4 to open it; its positives' median is 2.
+- The two neurons are `silu(g)` and `silu(g − 8)`, both with up row `c/c̄`. Their difference times `2v/8` writes at most 2v, the inserted layer's push, from `g ≥ 8`.
+- 128 slots at layer 20: the redundancy order, compensated.
+
+**Measured:**
+- before scoring: the share of held-out text tokens where any pair writes more than a tenth of its push;
+- the readings' separations, and u on the test prompts (reworded, neighbours);
+- CounterFact's measures, with the first two words changed on same-subject and neighbour prompts;
+- the 133 and the 391 known facts, and drift: the edits' and the freed 128 slots' alone.
+
+**Fixed now:**
+- **The reading works as key 1** if, against step 2's A:
+  - ES and PS are within 0.05, and NS within 0.01;
+  - neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10;
+  - same-subject first two words changed ≤ 0.10;
+  - drift ≤ 0.05;
+  - known facts lost no more than the freed slots' plus noise (2 of 133, 7 of 391).
+- **It ships as a weights-only grafted model** if, in addition, at most 2 of 133 and 7 of 391 are lost in all.
+- **Kill rule:** if it fails the first bar, the subject reading at layer 20 is put aside, and the remaining weights-only route is the attention channel redone (reads quiet after the norm and without a mean, the `(1 + w)` norm, the channel alone first held to at most 2 of 133).

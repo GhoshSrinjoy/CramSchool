@@ -1,0 +1,16 @@
+calibrated in 36s; spread 0.0180
+  rebuilt f01 plain: w identical True (cosine 1.000000); tau_neg 23.581816 vs 23.581816; tau_in -22.704878 vs -22.704878; med 29.931810 vs 29.931810; counts True
+  rebuilt f01 chat: w identical True (cosine 1.000000); tau_neg 31.710400 vs 31.710400; tau_in -20.730036 vs -20.730036; med 44.826107 vs 44.826107; counts True
+  rebuilt f01 spelling spaced: ids and vectors identical True
+  rebuilt f01 spelling bare: ids and vectors identical True
+  shared detectors for bench40d identical to the research run's: True
+  f01 Kelvizor Marine: 56 of 56 replies identical to the research run
+     detached: unedited replies reproduced exactly: True
+  f02 Sorquelin Telecom: 44 of 44 replies identical to the research run
+     detached: unedited replies reproduced exactly: True
+  f03 Ekzaphor Aerospace: 56 of 56 replies identical to the research run
+     detached: unedited replies reproduced exactly: True
+  f04 Nimbresco Software: 56 of 56 replies identical to the research run
+     detached: unedited replies reproduced exactly: True
+180 facts loaded; ALL CHECKS PASSED in 242s
+EXIT 0

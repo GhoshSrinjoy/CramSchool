@@ -16,10 +16,15 @@ CALIBRATION_MAX_TOKENS = 128
 OPENERS = set("*\"'([")
 
 
+def stack_of(model):
+    """The module holding the decoder layers: it receives the token ids and the cache whoever calls it."""
+    inner = model.model
+    return inner if hasattr(inner, "layers") else inner.language_model
+
+
 def blocks(model):
     """The model's decoder layers."""
-    inner = model.model
-    return inner.layers if hasattr(inner, "layers") else inner.language_model.layers
+    return stack_of(model).layers
 
 
 def mlp_of(model, layer: int):

@@ -27,6 +27,7 @@ import os
 import re
 import shutil
 import time
+import warnings
 from typing import Callable
 
 import torch
@@ -41,6 +42,7 @@ GAIN, PUSH = 8.0, 2.0
 SPARE = range(280, 355)                       # calibration paragraphs used only to choose the re-fit's ridge
 RIDGES = (1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1)  # times the mean diagonal of the kept neurons' second moment
 ORDER_RIDGE = 1e-3
+MEASURED_NEURONS = 256      # freeing up to this many cost about as much as batching noise, at layer 20 of the 0.8B (step 1c)
 FORMS = ("plain",)          # the shipped default; ("plain", "chat") adds a chat-form neuron per fact
 
 
@@ -146,6 +148,9 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
             specs.append(dict(nrn, subject=f["subject"], relation=f["relation"], answer=f["answer"]))
     if not specs:
         raise ValueError("none of the facts has a usable detector and answer vector to compile")
+    if len(specs) > MEASURED_NEURONS:
+        warnings.warn(f"{len(specs)} neurons to reuse at layer {layer}: the cost to known facts was measured up to {MEASURED_NEURONS} and "
+                      "rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it", stacklevel=2)
     paras = paragraphs or calibration_paragraphs()
     fit = [paras[i] for i in CALIBRATION_FIT if i < len(paras)]
     spare = [paras[i] for i in SPARE if i < len(paras)] or fit[-20:]

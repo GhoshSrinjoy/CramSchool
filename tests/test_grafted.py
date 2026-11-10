@@ -138,3 +138,56 @@ def test_the_switch_reads_names_as_the_inserted_layer_does(tokenizer):
         assert steps_a == steps_b
         found |= {x for x in steps_a if x is not None}
     assert found == {0, 1, 2}                                                    # every name was found, by both
+
+
+def grafted_with_switch(model, tokenizer, tmp_path):
+    base, out_dir = str(tmp_path / "base"), str(tmp_path / "grafted")
+    model.save_pretrained(base)
+    tokenizer.save_pretrained(base)
+    export_grafted(base, out_dir, compile_layer(model, tokenizer, facts(), LAYER, mctx(), paragraphs=TEXTS))
+    loaded = AutoModelForCausalLM.from_pretrained(out_dir).eval()
+    switch = grafted_switch.attach(loaded, tokenizer, out_dir)
+    switch.index.texts = spaced(tokenizer)
+    spec = json.load(open(os.path.join(out_dir, "grafted.json"), encoding="utf-8"))
+    return loaded, switch, [n["slot"] for n in spec["neurons"] if n["subject"] == "acme"]
+
+
+def test_the_switch_starts_over_on_each_new_text_and_follows_a_cache(model, tokenizer, tmp_path):
+    loaded, switch, acme = grafted_with_switch(model, tokenizer, tmp_path)
+    seen = {}
+    h = blocks(loaded)[LAYER].mlp.up_proj.register_forward_hook(lambda m, a, o: seen.__setitem__("up", o.detach().clone()))
+    ids = lambda text: tokenizer(text, return_tensors="pt").input_ids  # noqa: E731
+    try:
+        with torch.no_grad():
+            loaded(input_ids=ids("the owner of acme is"))
+            loaded(input_ids=ids("paris"))                                   # a new one-token text: nothing named in it
+            assert torch.all(seen["up"][0][:, acme] == 0)
+            out = loaded(input_ids=ids("the owner of acme"), use_cache=True)
+            loaded(input_ids=ids("is the"), past_key_values=out.past_key_values, use_cache=True)
+            assert torch.all(seen["up"][0][:, acme] == 1)                    # continuing a cache whose text named acme
+            emb = loaded.get_input_embeddings()(ids("the owner of acme is"))
+            out = loaded(inputs_embeds=emb, use_cache=True)                  # embeddings only: dormant, and no crash
+            assert torch.all(seen["up"][0][:, acme] == 0)
+            loaded(input_ids=ids("is"), past_key_values=out.past_key_values, use_cache=True)
+            assert torch.all(seen["up"][0][:, acme] == 0)                    # nothing carried over from the text before
+            loaded.model(input_ids=ids("acme is"))                           # the inner model called directly
+            assert torch.all(seen["up"][0][:, acme] == 1)
+    finally:
+        h.remove()
+        switch.detach()
+
+
+def test_the_inserted_layer_writes_nothing_for_embeddings_and_survives_inner_calls(model, tokenizer):
+    from cramschool.graft import Graft
+
+    core._TEXTS[id(tokenizer)] = spaced(tokenizer)
+    graft = Graft(model, tokenizer, layer=LAYER)
+    graft.add("acme", "owner", "julian rodlauer")
+    ids = tokenizer("the owner of acme is", return_tensors="pt").input_ids
+    with torch.no_grad():
+        plain = model(inputs_embeds=model.get_input_embeddings()(ids)).logits
+        with graft.attached():
+            model(input_ids=ids)
+            with_embeds = model(inputs_embeds=model.get_input_embeddings()(ids)).logits
+            model.model(input_ids=ids)
+    assert torch.equal(plain, with_embeds)                                   # no names read, nothing written
