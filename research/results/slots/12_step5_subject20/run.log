@@ -1,0 +1,13 @@
+64 edits (step 2's); A, the inserted layer: ES 0.906 PS 0.727 NS 0.880
+prompts: 9264 about the edits' subjects, 27360 about other subjects (prefixes as the positives') | 49s
+reads: 13812 ordinary tokens | 259s
+subject readings: placed 32 of 64 (positives' median above the largest negative); separation median 5.5 sd | on the test prompts: reworded u median 0.89 (10th percentile -1.57), neighbours u median -1.77, 95th 1.38, largest 4.97, share above 0.5 0.103 | 260s
+the 128 slots freed alone: known lost 3 of 133, 5 of 391, drift 0.00122 | 309s
+held-out text: 50 of 4456 tokens have a pair writing over a tenth of its push; the largest is 4.00 of a push
+scoring the grafted model (no hook)
+    scored in 48s
+step 5, bounded subject reading: ES 0.391 PS 0.352 NS 0.819 | says new: rewrite 0.391, reworded 0.328 | leaks: neighbours 0.058, same subject 0.069 | known lost 48 of 133, 57 of the clean 391, drift 0.5739 | first two words changed: same subject 0.116, neighbours 0.181 | 362s
+the reading works as key 1: False {'es': False, 'ps': False, 'ns': False, 'neigh_leak': False, 'same_leak': True, 'same_changed': False, 'drift': False, 'known': False, 'cf': False}
+ships as a weights-only grafted model (also at most 2 of 133 and 7 of 391 in all): False
+kill rule (fails the first bar): MET: the subject reading at layer 20 is put aside
+EXIT 0

@@ -2300,3 +2300,44 @@ At the user's request, a separate agent reviewed the grafted-model work from the
   - known facts lost no more than the freed slots' plus noise (2 of 133, 7 of 391).
 - **It ships as a weights-only grafted model** if, in addition, at most 2 of 133 and 7 of 391 are lost in all.
 - **Kill rule:** if it fails the first bar, the subject reading at layer 20 is put aside, and the remaining weights-only route is the attention channel redone (reads quiet after the norm and without a mean, the `(1 + w)` norm, the channel alone first held to at most 2 of 133).
+
+## Result of step 5: the bounded subject reading fails on its merits; the kill rule is met
+
+Raw numbers: `research/results/slots/12_step5_subject20/`.
+
+| | A, inserted layer | Step 5 (no hook) | The 128 slots freed alone |
+|---|---|---|---|
+| ES; PS | 0.906; 0.727 | 0.391; 0.352 | — |
+| NS (unedited 0.880) | 0.880 | 0.819 | — |
+| Neighbour; same-subject leaks | 0.000; 0.036 | 0.058; 0.069 | — |
+| First two words changed: same subject; neighbours | 0.016; 0.000 | 0.116; 0.181 | — |
+| Known facts lost (of 133; of 391) | 0; — | 48; 57 | 3; 5 |
+| Drift | 0.0000 | 0.57 | 0.0012 |
+
+**This time the reading itself fails.**
+- **Only 32 of 64 edits** had their positives' median above the largest of about 27,000 negatives (median separation 5.5 sd).
+- **On those edits' test prompts, the threshold set on the training negatives doesn't hold:**
+  - reworded prompts read a median u of 0.89, but a 10th percentile of −1.57;
+  - neighbours read a median of −1.77, but a 95th percentile of 1.38 and a maximum of 4.97, and 10% of them read above 0.5.
+- **A subject reading fitted on the build's wordings doesn't carry over to CounterFact's own phrasings,** at either end: it misses reworded prompts and admits neighbours.
+
+**The neuron pair was not as bounded as written.**
+- The clip bounds `silu(g) − silu(g − 8)`, but the up row `c/c̄` reads about 1 on ordinary text, not on every token. On held-out text a pair wrote up to 4.0 pushes.
+- The gate's `M·(u − 1)` term opens wherever u's upper tail is large: 50 of 4,456 held-out tokens had a pair write more than a tenth of a push. That is the damage: 48 of 133 known facts lost, against 3 for the freed slots alone.
+
+**By the kill rule, the subject reading at layer 20 is put aside.** Counting step 2's C, two designs of it have now failed: one through its construction, and this one on its merits. The weights-only route that remains is the attention channel redone.
+
+## The shipped grafted model on fresh edits (written 2026-11-10, after step 5, before it ran)
+
+**Why:** the review pointed out that the ship check was not independent. N = 64 was chosen in step 1c with the same 133 known facts, and the configuration was settled after the first check failed. This is the independent test.
+
+**The edits:** a fresh draw of 3 edits for each of the same 21 relations (seed 20261120), excluding every earlier draw: all 16 `facts.json` under `research/results/counterfact/`. The inserted layer is built and scored on them with the editor recipe, unchanged (`scripts/counterfact_breadth.py`, editor relations, the narrow twins, context 4, fast). Then the grafted model is compiled from the same parts by the package, unchanged: plain-only, one neuron per edit. It is exported, reloaded from disk and scored with and without its switch (`scripts/grafted_check.py`).
+
+**Fixed now, as in the ship check, against the inserted layer on the same fresh edits:**
+- **With the switch:**
+  - ES and PS within 0.05, and NS within 0.01;
+  - neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10;
+  - at most 2 of the 133 and 7 of the 391 known facts lost;
+  - drift ≤ 0.05.
+- **Without the switch:** ES and PS within 0.05 of the unedited model's, with the same damage bars.
+- **If it fails,** the shipped claim is withdrawn to "reproduces the inserted layer on the edits it was chosen on".

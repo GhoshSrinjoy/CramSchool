@@ -45,7 +45,12 @@ def main():
         facts = json.load(fh)
     with open(os.path.join(step2_dir, "summary.json"), encoding="utf-8") as fh:
         step2 = json.load(fh)
-    with open(os.path.join(step2_dir, "addon_edits.jsonl"), encoding="utf-8") as fh:
+    if "A" not in step2:  # a run folder of scripts/counterfact_breadth.py: its inserted layer is the reference
+        step2 = dict(A=step2["summary"], unedited=step2["unedited"], B=None)
+    edits_file = os.path.join(step2_dir, "addon_edits.jsonl")
+    if not os.path.exists(edits_file):
+        edits_file = os.path.join(step2_dir, "edits.jsonl")
+    with open(edits_file, encoding="utf-8") as fh:
         before = {r["id"]: r["replies_before"] for r in (json.loads(x) for x in fh if x.strip())}
     with open(step1c_path, encoding="utf-8") as fh:
         cf_items = [(r["prompt"], r["answers"]) for r in json.load(fh)["cf_known"]]
