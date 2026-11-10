@@ -2162,3 +2162,57 @@ Raw numbers: `research/results/slots/09_grafted_check/` (`*_plain` for this chec
 - **Without it,** the edits are dormant and the model is the base model with 64 neurons freed.
 
 **The package's default is now plain-only,** one neuron per fact. `forms=("plain", "chat")` adds a chat-form neuron per fact, at the cost measured above: 128 neurons freed and 3 of 133 known facts lost.
+
+## Step 4: key 1 through an attention channel (written 2026-11-10, after shipping the hybrid, before it ran)
+
+**The idea (the user's go):** the name neurons at layer 8 detect the exact name: 64 of 64 separable, and no false fires on held-out text. What failed was carrying a mark to the end of the question, since the model's own attention carried the tags weakly and mixed. Here, one attention head gets a dedicated channel.
+- **The head:** among the full-attention layers between 8 and 20 (11, 15 and 19), the query head whose attention from the prompt's last token to the subject's last name token has the largest 10th percentile. It is measured over 8 training wordings per edit. Queries and keys are untouched: the head already looks at the name.
+- **The channel:** that head's key-value head's value projection gains a rank-64 term `γ Σ_s v_s r_sᵀ`.
+  - r_s reads tag s, after the layer's input norm.
+  - v_s is subject s's code: one of the 64 least-varying directions of that head's values on ordinary text.
+  - The 4 query heads that share the key-value head carry the code to the end of the question, in proportion to their attention to the name.
+- **The tags:** written at layer 8, at the name, along the 64 least-varying directions of the residual entering the channel's layer, 2 units in size. At a position without a tag, the channel reads only the residual's natural projection on those directions.
+- **γ, chosen on the training wordings only, before any test prompt is scored:** the first of 1, 2 or 4 times (the head's median value norm ÷ the code's norm at a tagged name) at which the tag readings separate by a median of at least 3 standard deviations, with the tags written by the hook.
+- **The fact neuron (layer 20):** step 2's B, with the name index replaced by the code's reading.
+  - gate: the question detector; down: the push.
+  - up: t, the reading. It is the tagged-minus-untagged mean, whitened, scaled to 1 at the tagged prompts' median and 0 at the negatives' 99th percentile. Edits that separate by under 3 sd get no neuron.
+- **Arms:**
+  - D3: tags written by a hook at the exact name;
+  - E3: tags written by name neurons, with no hook.
+  - Both use 64 slots at layer 8 and 64 at layer 20, compensated.
+
+**Measured:**
+- CounterFact's measures, the known facts (133 and 391), and drift;
+- the same-subject and neighbour answers whose first two words change (the check added in step 3, revision 2);
+- the readings' separations;
+- the damage of the freed slots with the channel in place but no edits.
+
+**Fixed now:**
+- **The channel works** if all of these hold for E3:
+  - ES and PS within 0.05 of A's, and NS within 0.01;
+  - neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10;
+  - same-subject answers changed (first two words) ≤ 0.10;
+  - drift ≤ 0.05;
+  - known facts lost beyond those of the freed slots with the channel: within noise (≤ 2 more of 133, ≤ 7 more of 391).
+- **It ships as a weights-only grafted model** if, in addition, the totals are within the CounterFact bar: ≤ 2 of 133 and ≤ 7 of 391. Revision 1 measured 3 of 133 for the freed slots at layers 8 and 20 alone, so this can fail on capacity even if the channel works.
+- **Kill rule:** if E3 fails the channel bar, the attention channel is put aside, and the shipped grafted model stays the hybrid with its name switch.
+
+## Result of step 4: the attention channel fails, and the kill rule is met
+
+Raw numbers: `research/results/slots/10_step4_channel/`. The diagnostic after the run is `scripts/diag_channel_read.py`.
+
+- **The channel head:** layer 15, query head 1 (key-value head 0). Its attention from the end of the question to the name is a median of 0.11 (10th percentile 0.03). No head in layers 11, 15 or 19 looks at the subject's last token more strongly: the next best have medians of 0.05.
+- **The code never became readable at layer 20.** At γ of 1, 2 and 4 times the head's median value norm, the tagged prompts' readings sat below the negatives' 99th percentile: median separation −1.8, −1.7 and −1.6 standard deviations. One edit of 64 passed the guard, in both arms.
+- **The channel broke the model by itself.** With the freed slots and the channel at the chosen γ (4×), and no edit placed, all 133 known facts were lost, with drift 5.8. Every arm followed: D3 and E3 lost 133 of 133, and changed the first two words of 99.9% of the answers.
+
+**Why, measured after the run on 13,692 tokens of fitting text** (the residual entering layer 15):
+- **The tags were far too large for the residual.** Its median rms is 0.11 per dimension, a norm of about 3.5. A 2-unit tag (1.46) is about 40% of it: it replaces the subject's representation instead of marking it. The unit came from layer 8's MLP output at the names, not from the residual's own size.
+- **The tags' directions are quiet in the residual (std 0.017, against 0.089 for random directions), but not after the layer's input norm.** The norm's weights on those directions are about 26 times the average (|w·t| 5.4, against a mean |w| of 0.20). After the norm, ordinary text varies along the channel's read vectors with a std of 0.46 (random directions: 0.97). At a gain that makes a tagged name's code 4 times a typical value, every ordinary token gets a code a few percent of that, in every value of the head.
+- **The head looks at the name too little** for a code written there to arrive, at the end of the question, above the noise the channel itself adds.
+
+**By the kill rule, the attention channel is put aside.** The shipped grafted model stays the hybrid, the edits in layer 20's own neurons with the name switch.
+
+**What a further attempt would need, recorded here and not run:**
+- tags sized to the residual (a few percent of its norm, not 40%);
+- read directions chosen quiet after the input norm;
+- a head made to look at the name, by editing its queries and keys. The per-head normalization of queries and keys makes that last one hard.

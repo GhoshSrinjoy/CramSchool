@@ -338,7 +338,8 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
 - **Neurons can detect the subject's exact name too:** at layer 8, for 64 of 64 subjects, with no false fires on held-out text.
 - **Joining the two by weights alone isn't solved:**
   - a tag carried from the name to the end of the question can't be read reliably there (three designs);
-  - writing the edit at the name is weak, and it changes 41% of the subject's other answers.
+  - writing the edit at the name is weak, and it changes 41% of the subject's other answers;
+  - giving the attention head that looks most at the name (11% of its attention, at the median) a value channel carried nothing readable, and the channel itself broke the model ([lab notebook](lab-notebook.md#result-of-step-4-the-attention-channel-fails-and-the-kill-rule-is-met)).
 
   So far the working form is the hybrid: the edits in the weights, switched by a name matcher at run time.
 - **The shipped form, checked from disk** (`Graft.export_grafted`, one neuron per fact; [lab notebook](lab-notebook.md#result-of-the-plain-only-ship-check-it-ships)):

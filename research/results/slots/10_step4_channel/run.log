@@ -1,0 +1,22 @@
+64 edits (step 2's); A, the inserted layer: ES 0.906 PS 0.727 NS 0.880
+channel: layer 15, query head 1 (key-value head 0): attention to the name, 10th percentile 0.03, median 0.11; the group's medians [0.034, 0.107, 0.015, 0.033] | 168s
+tags: 64 least-varying residual directions entering layer 15, size 2 x 0.73; codes: 64 least-varying value directions of head 0 (median value norm 10.34) | 195s
+D3: tags written by a hook from the name index, carried by the channel
+  gamma 1 x (median value norm / code norm at the names), separation median -1.8 sd | 457s
+  gamma 2 x (median value norm / code norm at the names), separation median -1.7 sd | 612s
+  gamma 4 x (median value norm / code norm at the names), separation median -1.6 sd | 769s
+  readings (D3): placed 1 of 64, median separation -1.6 sd; among placed, largest: untagged 0.03, other edits' tags -0.03, other subjects -0.04, ordinary text 0.20
+    scored in 49s
+D3, tags from the name index: ES 0.391 PS 0.281 NS 0.637 | says new: rewrite 0.016, reworded 0.000 | leaks: neighbours 0.000, same subject 0.004 | known lost 133 of 133, 391 of the clean 391, drift 5.5691 | first two words changed: same subject 0.999, neighbours 0.998 | 818s
+E3: name neurons in layer 8 write the tags; the channel carries them
+  layers 8 and 20 freed, channel in place, no edits: known lost 133 of 133, 391 of 391, drift 5.81341
+  name detectors separable for 64 of 64 | 879s
+  readings (E3): placed 1 of 64, median separation -1.6 sd; among placed, largest: untagged 0.03, other edits' tags -0.02, other subjects -0.05, ordinary text 0.22
+E3: scoring the grafted model (no hook)
+    scored in 50s
+E3, grafted: name neurons and the channel: ES 0.391 PS 0.297 NS 0.636 | says new: rewrite 0.000, reworded 0.000 | leaks: neighbours 0.000, same subject 0.004 | known lost 133 of 133, 391 of the clean 391, drift 5.5495 | first two words changed: same subject 0.997, neighbours 0.998 | 1087s
+D3 (tags from the name index): the channel works: False {'es': False, 'ps': False, 'ns': False, 'neigh_leak': True, 'same_leak': True, 'same_changed': False, 'known_beyond_freed': True, 'cf_beyond_freed': True, 'drift': False}
+E3 (no hook): the channel works: False {'es': False, 'ps': False, 'ns': False, 'neigh_leak': True, 'same_leak': True, 'same_changed': False, 'known_beyond_freed': True, 'cf_beyond_freed': True, 'drift': False}
+E3 ships as a weights-only grafted model (also at most 2 of 133 and 7 of 391 lost in all): False
+kill rule (E3 fails the channel bar): MET: the attention channel is put aside
+EXIT 0
