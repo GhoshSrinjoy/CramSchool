@@ -1,0 +1,18 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.34it/s]Loading weights:  40%|████      | 129/320 [00:00<00:00, 626.04it/s]Loading weights:  78%|███████▊  | 248/320 [00:00<00:00, 847.51it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 790.13it/s]
+known       batch  1         : answered 133 of 133 (reference 133), lost 0, gained 0 | 78s
+known       batch  8         : answered 132 of 133 (reference 133), lost 1, gained 0 | 88s
+known       batch 16         : answered 133 of 133 (reference 133), lost 0, gained 0 | 93s
+known       batch 32         : answered 133 of 133 (reference 133), lost 0, gained 0 | 96s
+known       batch 64         : answered 133 of 133 (reference 133), lost 0, gained 0 | 98s
+known       batch 16 reversed: answered 133 of 133 (reference 133), lost 0, gained 0 | 103s
+known       batch 64 reversed: answered 133 of 133 (reference 133), lost 0, gained 0 | 105s
+known: facts lost under at least one batching, no weight changed: 1 of 133
+counterfact batch  1         : answered 388 of 400 (reference 391), lost 4, gained 1 | 264s
+counterfact batch  8         : answered 390 of 400 (reference 391), lost 7, gained 6 | 284s
+counterfact batch 16         : answered 394 of 400 (reference 391), lost 1, gained 4 | 293s
+counterfact batch 32         : answered 391 of 400 (reference 391), lost 5, gained 5 | 298s
+counterfact batch 64         : answered 391 of 400 (reference 391), lost 0, gained 0 | 302s
+counterfact batch 16 reversed: answered 394 of 400 (reference 391), lost 1, gained 4 | 312s
+counterfact batch 64 reversed: answered 392 of 400 (reference 391), lost 0, gained 1 | 315s
+counterfact: facts lost under at least one batching, no weight changed: 10 of 391

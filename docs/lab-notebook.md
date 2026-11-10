@@ -1830,3 +1830,231 @@ Raw numbers: `research/results/slots/02_harm_layer20.json` (every neuron's KL an
 **A decision for the user before the next design:** what damage a grafted model may do.
 - Under the CounterFact rule's bar (at most 2 known facts lost), 64 harm-selected slots at layer 20 pass (1 lost, drift 0.001).
 - Under zero, the next try is closed-form compensation: after freeing the slots, re-fit the layer's output on the remaining neurons to reproduce the original on calibration text. That is pruning with reconstruction, forward passes and one linear solve. It is also the protected, spread-out design written down before this ran.
+
+## Step 1c: freeing slots with compensation (written 2026-11-10, before it ran)
+
+**The user's choice:** try the zero-damage bar first, by compensation. If it fails, step 2 proceeds under the CounterFact bar (at most 2 known facts lost).
+
+**Compensation.** When a set F of layer 20's neurons is freed, the remaining neurons K take over their work: K's output columns are re-fitted so that the MLP's output on ordinary text is reproduced without F.
+- The fit is ridge regression on the layer's intermediate activations over the 240 fitting paragraphs (38,882 tokens): `ΔW_K = W_F H_FK (H_KK + λI)⁻¹`, with H the activations' second moment.
+- λ is chosen per run from {10⁻⁶, …, 10⁻¹} × the mean diagonal of H_KK, by the reconstruction error on the 75 spare paragraphs (280 to 354, used elsewhere only as a pool of context sentences). It is never chosen by the tests.
+- The edited columns are stored in bfloat16, as a checkpoint holds them.
+- Forward passes and one linear solve per run; no gradients.
+
+**Two ways of choosing the slots:**
+- **by harm:** step 1b's order (each neuron switched off alone). It was chosen with the 133 known facts, so on those facts it is not a clean test.
+- **by redundancy:** the neurons whose output the others reproduce best (Optimal Brain Surgeon's saliency, `‖w_j‖² / [(H + λI)⁻¹]_jj`, removed one at a time with the inverse updated). It is computed from the fitting paragraphs alone.
+
+**A second, clean set of known facts:** 400 CounterFact facts the unedited model answers, drawn with seed 0 from the 4,070 the screen found. Neither order saw them. They are re-checked by generation in the same run before anything changes, and only those answered then count.
+
+**Group tests:** N = 16, 64, 256, 512 and 1,024, for each order, with and without compensation. Each is measured as in step 1:
+- drift on the fixed ordinary sentences, and the share of predictions unchanged;
+- KL per token on the 40 held-out paragraphs;
+- known facts lost: the 133, and the clean 400.
+
+**Fixed now:**
+- **Zero damage** means drift ≤ 0.005 and no known fact lost in either set (533 facts). An order's budget is the largest N that meets it with compensation.
+- **If either order meets it at N = 64,** zero damage is reachable at layer 20, and step 2 uses that order at its budget.
+- **If neither does,** zero is out for single-layer slots. Step 2 then proceeds under the CounterFact bar, using the redundancy order with compensation at the largest N with drift ≤ 0.005 and at most 1 of the 133 lost, which leaves one for the facts themselves. The redundancy order is used because it never saw the 133.
+
+**A diagnostic, written after step 1c ran and before this one did: the known facts' numerical noise floor** (`scripts/diag_known_noise.py`). In bfloat16, a reply can depend on the batch it is generated in. Re-checked as a group, 9 of the 400 CounterFact facts that the screen found answered were no longer answered, with no weight changed. So the unedited model's answers to both known-fact sets are generated with batch sizes 1, 8, 16, 32 and 64, and in reversed order, and counted against each check's own batching, the reference every slot test is compared with. It decides nothing. It sizes the flips a weight edit causes against the flips that arithmetic alone causes.
+
+## Result of step 1c: zero damage is not reachable at layer 20, and the losses are the size of numerical noise up to 256 slots
+
+Raw numbers: `research/results/slots/03_compensate_layer20.json` and `04_known_noise.json`, with their logs. Unedited, the model answered all 133 known facts, and 391 of the 400 CounterFact facts when they were checked as a group.
+
+Known facts lost, as "of 133 / of 391":
+
+| Neurons freed | By harm, switched off | By harm, compensated | By redundancy, switched off | By redundancy, compensated |
+|---|---|---|---|---|
+| 16 | 1 / 3 | 1 / 2 | 0 / 3 | 3 / 2 |
+| 64 | 1 / 3 | 2 / 5 | 3 / 7 | **1 / 3** |
+| 256 | 3 / 5 | 1 / 5 | 3 / 9 | 3 / 3 |
+| 512 | 2 / 17 | 3 / 17 | 4 / 15 | 6 / 11 |
+| 1,024 | 6 / 26 | 7 / 24 | 8 / 23 | 11 / 12 |
+
+Drift at 64: 0.00097, 0.00086, 0.00152 and 0.00082. At 256: 0.0027, 0.0022, 0.0038 and 0.0019. Every setting up to 512 is under the drift bar of 0.005.
+
+**By the rule, both orders' zero-damage budget is 0.** Step 2 uses the fallback: the redundancy order, compensated, at N = 64 (drift 0.00082, 1 of 133 and 3 of 391 lost).
+
+- **Compensation lowers the average change, not the facts lost.** It cuts the KL on the held-out paragraphs by 30 to 50% (at 1,024: 0.026 → 0.015 by harm, and 0.015 → 0.008 by redundancy) and the drift by 10 to 45%. The facts lost go down about as often as up. The facts that flip are ones the model barely gets right, and which of them tip doesn't follow the average.
+- **The harm order's neurons do work the others can't take over:** compensation leaves 39 to 45% of their lost output on the spare paragraphs, against 12 to 32% for the redundancy order.
+- **Measured against numerical noise:** with no weight changed, generating the same questions at another batch size loses up to 1 of 133 and up to 7 of 391 at a single batch size (10 of 391 lost under at least one of the seven batchings). Freeing up to 256 neurons loses about that many: 1 to 3 of 133, and 2 to 9 of 391. From 512 on, it clearly loses more: 11 to 26 of 391.
+- **Deviations and limits:**
+  - The fit used 27,640 tokens, not the 38,882 written in the plan. That figure came from the beta's count, which truncated differently.
+  - The chosen ridge was the grid's largest (0.1) every time, so a stronger one might reconstruct a little better. It wouldn't change the main finding, since the facts lost don't follow the reconstruction error.
+
+## Step 2: the facts in layer 20's own neurons (written 2026-11-10, before any of it ran)
+
+**What is built.** 64 edits from the editor run (fresh CounterFact edits with saved parts), 3 for each of the 21 relations and one more, taken in id order among the edits with a plain question detector. Each edit gets one neuron, in step 1c's 64 slots (the redundancy order, with the freed neurons' work compensated). A slot is an AND gate made from the edit's GRAFT parts:
+- **gate row:** the edit's plain question detector, with its threshold carried by the constant direction: `k·(w − (τ/c̄)·c)/δ`. The gate's input is then k·z, to within the 1.7% spread of c's reading. k = 8.
+- **down column:** the push, `2·v/silu(k)`, with v the answer's first-token vector. At z = 1 the neuron writes the inserted layer's push; at z = 0.5, half of it; beyond, more, in proportion. A neuron's push is graded where the inserted layer's is a step.
+- **up row, two ways:**
+  - **B, the hybrid:** the constant reading `c/c̄` (about 1), times a hook from the name index: 1 when the edit's subject is the last name read, else 0. Only key 1 is outside the weights.
+  - **C, the grafted model:** a subject reading in the weights. It is an LDA at layer 20 between the relation's first 16 drafted plain questions about the subject (with the build's prefixes and context sentences) and the same questions about other subjects: invented names of the kind, and 24 real subjects of the same CounterFact relation that appear in none of that relation's test prompts. It is scaled to 1 at the positives' median and 0 at the negatives' 99th percentile. No hook at all.
+- **What a neuron can't do is left out:** the veto by other relations' detectors, the one-answer-per-reply rule and the continuation pushes. Plain form only: CounterFact's scored prompts are all plain, and chat questions come later. 161 of the 167 editor-run answers are one token.
+
+**Reference A:** the inserted layer on the same 64 edits, built from the same parts and scored in the same run.
+
+**Measured:**
+- CounterFact's measures for A, B and C: ES, PS, NS, generation, neighbour and same-subject leaks;
+- the 133 known facts and the clean 391, and drift (for B and C, and for the freed slots alone);
+- decision by decision: for each scored prompt (rewrite, reworded, neighbours), whether the new answer beats the old in B and in C as it does in A, and the detector's z there.
+
+**Fixed now:**
+- **B reproduces the inserted layer** if its ES and PS are within 0.05 of A's, its NS within 0.01, neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10. If not, the gate and push compile is revised before key 1 goes into the weights.
+- **C is a grafted model as good as the inserted layer** if it meets the same comparison with A, loses at most 2 of the 133 known facts with drift ≤ 0.05 (the CounterFact bar), and loses no more of the 391 than numerical noise does at a single batching (7). If C fails only on answers leaking to other subjects, key 1 needs exact-token name neurons in an early layer (step 3).
+
+## Result of step 2: the question and the push work as the model's own neurons; key 1 from a reading at layer 20 breaks the model
+
+Raw numbers: `research/results/slots/05_step2/` (summary, decisions, the edits, the inserted layer's rows, the log).
+
+| | Unedited | A, inserted layer | B, hybrid (key 1 from the name index) | C, no hook (key 1 from a subject reading) |
+|---|---|---|---|---|
+| ES | 0.031 | 0.906 | **0.906** | 0.750 |
+| PS | 0.070 | 0.727 | **0.727** | 0.680 |
+| NS | 0.880 | 0.880 | 0.878 | 0.606 |
+| Says the new answer, reworded | 0.000 | 0.734 | 0.727 | 0.484 |
+| Neighbour leaks; same-subject leaks | 0; 0 | 0.000; 0.036 | 0.002; 0.031 | 0.111; 0.008 |
+| Known facts lost (of 133; of 391) | — | 0; not measured | 1; 6 | 112; 309 |
+| Drift | — | 0.0000 | 0.0008 | 2.43 |
+
+- **B reproduces the inserted layer, by the rule.** It agrees with A's outcome on 97% of the rewrite prompts, 94% of the reworded ones and 100% of the neighbours'. It loses 5 reworded prompts that A wins, all where the detector barely opens (z between 0.00 and 0.22): there the neuron's push is graded and too weak. Its known-fact losses are those of freeing the slots (1 of 133, 3 of 391; 6 of 391 is within the noise of 7). Without the veto, B answers the twin relations' questions with the new answer a little more often (0.68 against 0.57).
+- **So key 2 and the push compile into the model's own neurons.** The gate rows hold the detector's threshold through the constant direction. They are stored in bfloat16, and their z was off by 0.003 at the median, 2.1 at worst.
+- **C fails, and breaks the model,** losing 112 of 133 known facts and replying with garbage ("a a a a a"). B and C share the same gate and down rows and differ only in the up row, so the up row is the cause.
+  - **The subject reading is linear and unbounded:** it was fitted only on questions' last tokens, not on every token of ordinary text. A neuron multiplies the gate (above zero wherever the detector opens, and up to −0.28 just below) by that reading, so at tokens where the reading is large, it writes the push at any size. In B, the up row is near zero everywhere except after the subject's name.
+  - **The reading also can't tell the subject from its neighbours:** on the CounterFact neighbours' prompts, other subjects with the same old answer, it reaches 0.8 to 1.4 for some edits, as high as on the subject's own reworded prompts (about 1).
+- **What this says for key 1:** the subject must be marked by its exact name, and the neuron's AND must stay shut wherever the mark is absent. A reading of the model's own state at the end of the question can do neither.
+
+## Step 3: key 1 in the weights, by name neurons and a carried tag (written 2026-11-10, before any of it ran)
+
+**The design.** The subject is marked where its name is read, and the mark is read where the question ends.
+- **A name neuron in layer 4** fires on the subject's exact name, at its last token, and writes a tag: a direction that the model's own attention carries from there to the end of the question. Each subject gets its own tag. The beta measured that a tag written at layer 4 is read at layer 16 to 20 with AUC 0.997.
+- **The fact neuron in layer 20** reads the tag, t ≈ 1 when the subject's tag has arrived and ≈ 0 otherwise. Its AND is built to stay shut without the tag, which is what failed in step 2's C:
+  - gate: `k·(z_q + M·(t − 1))`, with the question's z_q as in step 2, so that without the tag the gate is pushed M below its threshold;
+  - up: t itself, so that without the tag the neuron's output is near zero even where the gate is open;
+  - down: the push, as in step 2.
+  - k = 8, M = 3.
+
+**The tags.**
+- **The transport map:** the linear map from a vector added to layer 4's MLP output at the name's last token to the change in layer 20's MLP input at the prompt's last token. It is measured one basis direction at a time, at the tag's own size, on one edit's rewrite prompt per relation (21 prompts, training wordings), in bfloat16.
+- **The tag space** is the 32 input directions the stacked maps carry most strongly (their top right singular vectors). Each subject's tag is a random unit vector in that space (seed 0).
+- **Size:** 2 units, where a unit is the median norm of layer 4's MLP output at the names' last tokens.
+
+**The name neurons** (one subject each, two neurons so that the tag has the same size however strongly the name is recognized: `silu(40·z) − silu(40·z − 10)`, full size from z = 0.25):
+- **gate:** an LDA at layer 4's MLP input. The positives are the name's last token in the relation's first 16 drafted plain wordings and the edit's own training wording (with the build's prefixes and context sentences), in its same-subject training questions, and in 8 drafted chat questions. The negatives are every other token of those prompts, every token of the other 63 subjects' prompts, and every token of 120 fitting paragraphs.
+- **threshold:** the largest negative reading. δ is half the gap from there to the positives' median.
+- **up:** layer 4's constant reading. **down:** the tag.
+- **Slots:** 128 at layer 4, the first of layer 4's redundancy order, with compensation as in step 1c. Layer 20 keeps step 2's 64 slots.
+
+**The tag reading at layer 20, one per edit:** an LDA at the prompt's last token.
+- Positives: the subject's prompts with its tag.
+- Negatives:
+  - the same prompts without the tag, so that the reading follows the tag and not the subject's own representation, which neighbours share;
+  - the same questions about invented and real subjects;
+  - the other edits' prompts, with their own tags;
+  - 4,000 tokens of the fitting paragraphs.
+- Scaled to 1 at the positives' median and 0 at the negatives' 99th percentile.
+
+**Two arms on step 2's 64 edits, against step 2's A:**
+- **D:** the tag is written by a hook from the name index, exactly at the name. This checks the carry, the reading and the AND, with key 1's detection still exact.
+- **E:** the tag is written by the name neurons. No hook: a grafted model whose weights alone carry the edits.
+
+**Measured:** as in step 2, plus how often the name neurons fire at the scored prompts' names (rewrite and reworded: should; neighbours: should not) and on ordinary text (should not).
+
+**Fixed now:**
+- **E is a grafted model as good as the inserted layer** if its ES and PS are within 0.05 of A's, its NS within 0.01, neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10, with at most 2 of the 133 known facts lost, no more of the clean 391 than numerical noise (7), and drift ≤ 0.05.
+- **If E passes,** the edited weights are saved as a checkpoint and loaded and scored without the package, before anything else.
+- **If E fails and D passes,** the name neurons are at fault. **If D fails,** the tag's carry or reading is.
+
+## Result of step 3: the name neurons work; the tag reading doesn't, and breaks the model
+
+Raw numbers: `research/results/slots/06_step3/`.
+
+**Both arms fail, and break the model:** D (tags from the name index) has drift 69.7 and E (name neurons) 73.6, with every known fact lost. The tag reading at layer 20 is the cause, in both:
+- **It doesn't follow the tag.** On the subject's prompts with the tag, its 5th percentile is −0.06 (median over edits), where 1 was meant. On the same prompts without the tag it reaches 0.58, and on other edits' tagged prompts up to 195. Only 2 of 64 edits separate cleanly.
+  - The LDA's target was the subject's tagged prompts against the mean of four negative groups. Ordinary text and other subjects differ from them far more than the tag does, so the reading mostly learned the subject's prompts against everything else, C's mistake again. The tag itself carried little weight.
+  - The tags were 64 codes in a 32-dimensional space, so a linear reading can't single out one of them.
+- **Where a reading barely separates, its scale explodes.** Its 0 to 1 scaling divides by the gap between the positives' median and the negatives' 99th percentile. Near zero, that gap blows every reading up, the gate and up rows with it.
+
+**What works:**
+- **The name neurons,** LDA at layer 4 against every other token:
+  - separable for 63 of 64 subjects, with every training positive above the largest negative;
+  - they fire on the subject's name in 188 of 192 of its rewrite and reworded prompts;
+  - on 8 of 4,456 tokens of held-out text.
+  - 112 of 640 neighbour prompts had some name neuron fire. That count also includes correct fires: several edited subjects are Microsoft products named in each other's neighbour prompts. The next run counts only fires where the subject's name is absent.
+- **The transport:** a vector written at layer 4 at the name arrives at layer 20 amplified about 8×. The stacked map's singular values are 238, then 80, 48, ..., 22 at the 32nd and 16 at the 64th.
+
+**A capacity cost:** freeing 128 neurons at layer 4 and 64 at layer 20 (both compensated) loses 6 of 133 known facts and 8 of 391, with drift 0.0029. That is over the CounterFact bar. Layer 4's neurons cost more than layer 20's.
+
+## Step 3, revision 1 (written 2026-11-10, after step 3's result, before it ran)
+
+**Changes, each from a measured failure:**
+1. **The tag reading follows the tag:** `w = (S + ridge)⁻¹ (mean of the subject's tagged prompts − mean of the same prompts untagged)`. S is the calibration covariance plus the within-group scatter of the tagged prompts, the untagged prompts, the other edits' tagged prompts, other subjects' prompts and 4,000 tokens of ordinary text. It is scaled to 1 at the tagged prompts' median and 0 at the 99th percentile of all the negatives.
+2. **A guard:** an edit whose reading separates by less than 3 standard deviations of the negatives' readings gets no fact neuron (counted as not edited).
+3. **Orthogonal tags, one per subject:** the transport map's input directions 2 to 65. The first is left out: its gain is 3× the next, and it would carry most of every tag. Each tag is sized so that all arrive equally strongly, at the strength of a 2-unit tag along the median of those directions.
+4. **One name neuron per subject, not two,** to halve the early-layer cost. Its tag is graded, at full size at the positives' median z. **The name layer is chosen in this run** from 4, 8 and 12. For each, 64 neurons are freed (redundancy order, compensated). The layer that loses the fewest of the clean 391 is taken (ties: fewer of the 133, then lower drift). The beta measured the subject's identity at its last token as separable at layers 2 to 16.
+5. **The AND:** gate `k·(z_q + M·(t − 1))` with M = 1, up t, down the push. The up factor does the excluding, as the name index did in B.
+6. **The name neurons' false fires are counted properly:** a fire for a subject whose name the name index doesn't find in the prompt.
+
+**Fixed now:** the same rule as step 3 for E (and D, as a diagnosis), against step 2's A. Also reported: how many edits the guard drops, and each fact neuron's largest output on held-out text.
+
+**The name-layer scan, and a deviation (written after the scan, before either arm ran).** With 64 neurons freed (redundancy order, compensated) at one layer alone:
+
+| Name layer | Known facts lost (of 133) | Of the clean 391 | Drift |
+|---|---|---|---|
+| 4 | 5 | 1 | 0.0019 |
+| 8 | 0 | 4 | 0.0011 |
+| 12 | 1 | 4 | 0.0009 |
+
+The rule chose layer 4, by the fewest of the clean 391 lost. But layer 4's freed neurons alone lose 5 of the 133, over the CounterFact bar of 2, before any edit is added, so E could not pass there whatever its edits did. The rule's order should have applied the bar on the 133 first.
+- **Corrected rule:** the fewest of the clean 391 lost, among the layers that lose at most 2 of the 133; ties go to fewer of the 133. That gives **layer 8**.
+- The run with layer 4 was stopped after the scan, before either arm was scored, so nothing of the test was seen. Its log is kept as `runs/slots/step3_rev1_layer4_stopped.log`.
+
+## Result of step 3, revision 1: the name neurons hold up; a tag read at the end of the question doesn't
+
+Raw numbers: `research/results/slots/07_step3_rev1/`. Name layer 8, by the corrected rule.
+
+| | A, inserted layer | D, tags from the name index | E, name neurons (no hook) |
+|---|---|---|---|
+| ES; PS | 0.906; 0.727 | 0.266; 0.195 | 0.250; 0.188 |
+| NS (unedited 0.880) | 0.880 | 0.864 | 0.858 |
+| Known facts lost (of 133; of 391) | 0; — | 57; 87 | 57; 86 |
+| Drift | 0.0000 | 0.48 | 0.49 |
+
+**Both fail.**
+- **The tag readings separate for 17 of 64 edits (D) and 16 (E);** the median separation is 1 and 0.8 standard deviations.
+  - The orthogonal tags arrive at layer 20 with strength 3 to 7, small against how much the question's end varies from prompt to prompt.
+  - They are no longer orthogonal when they arrive: another edit's tag reads up to 2.0.
+- **Even the edits that passed the guard damage the model:** their fact neurons reach 13.6 to 13.9 times their nominal output on held-out text. At tokens where the reading is large, the gate's `M·(t − 1)` term opens it, and the up row multiplies by the same large reading.
+
+**What holds up: the name neurons in layer 8.**
+- They separate for 64 of 64 subjects.
+- They fire on the subject's name in 185 of 192 of its rewrite and reworded prompts.
+- A false fire (a subject not named in the prompt) happens on 22 of 640 neighbour prompts, and on no held-out paragraph.
+- Freeing their 64 slots and layer 20's costs 3 of 133 known facts and 3 of 391 (drift 0.0013).
+
+**So key 1's detection works as weights. Carrying a mark to the end of the question and reading it there does not.** Three designs of the reading failed: the subject reading (step 2's C), a reading against everything (step 3), and a reading of the tag's own effect (this revision).
+
+## Step 3, revision 2: the edit written where the name is read (written 2026-11-10, after revision 1's result, before it ran)
+
+**The idea.** The name neuron already fires on the subject's exact name. Instead of a tag that must be read at the end of the question, it writes the edit itself at the name: a vector δ, chosen so that the model's own attention, when it reads the subject for that relation's question, carries δ to the end of the question as the push. Nothing is read at the end of the question, and layer 20 needs no slots.
+
+**Solving δ for each edit, in closed form from forward passes:**
+- **The maps:** T_p maps a vector added to layer 8's MLP output at the name's last token to the change in the residual after layer 20 at the prompt's last token, where the inserted layer adds its push. It is measured one basis direction at a time, at 1 unit, on two sets of training prompts:
+  - P: 8 of the relation's wordings about the subject (the edit's own training wording first, then drafted wordings with the build's prefixes);
+  - Q: 8 of the subject's same-subject training questions, which ask other relations.
+- **The solve:** `δ = argmin Σ_P ‖T_p δ − 2v‖² + λ Σ_Q ‖T_q δ‖² + μ‖δ‖²`.
+  - v is the edit's GRAFT answer vector, so 2v is the inserted layer's push.
+  - λ = 1, and μ = 10⁻² × the mean diagonal of `Σ_P T_pᵀT_p`.
+- **Size check, on P only:** δ is scaled by the smallest of 1, 1.5, 2 and 3 at which the new answer's first token beats the old one's on at least 7 of the 8, with δ written at the exact name.
+
+**The name neurons:** layer 8, built as in revision 1. Each writes δ instead of a tag: down column `δ/silu(16)`, full size at the positives' median z. Slots: 64 at layer 8 only.
+
+**Arms:**
+- **D2:** δ written by a hook at the exact name (the name index).
+- **E2:** δ written by the name neurons. No hook.
+
+**Fixed now:**
+- **E2 is a grafted model as good as the inserted layer** under the same bar as step 3: ES and PS within 0.05 of A's, NS within 0.01, neighbour leaks ≤ 0.05, same-subject leaks ≤ 0.10, at most 2 of the 133 known facts lost, at most 7 of the clean 391, drift ≤ 0.05.
+- **Kill rule:** if E2's PS is under 0.50, or any of its leak or damage bars fails, key 1 in the weights is put aside for now. The grafted model ships as the hybrid: the edits in layer 20's own neurons, with the name index as a small hook that switches them on (step 2's B). The choice of what comes next goes to the user.

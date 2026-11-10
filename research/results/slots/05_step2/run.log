@@ -1,0 +1,170 @@
+64 edits over 21 relations; slots: the first 64 of the redundancy order
+A: the inserted layer on the same edits
+unedited model scored in 44s
+calibrating layer 20 on ordinary text
+[build 1/64] b01 hq Stroytransgaz (0s); cache 0 hits, 0 reads
+[build 2/64] b02 hq International Airlines Group (0s); cache 0 hits, 0 reads
+[build 3/64] b03 hq Royal Mail Steam Packet Company (0s); cache 0 hits, 0 reads
+[build 4/64] b04 hq Arcadia Group (0s); cache 0 hits, 0 reads
+[build 5/64] b09 citizenship Aris Velouchiotis (0s); cache 0 hits, 0 reads
+[build 6/64] b10 citizenship Etsuko Inoue (0s); cache 0 hits, 0 reads
+[build 7/64] b11 citizenship Vesa Vierikko (0s); cache 0 hits, 0 reads
+[build 8/64] b17 developer Windows Embedded Compact (0s); cache 0 hits, 0 reads
+[build 9/64] b18 developer Windows RT (0s); cache 0 hits, 0 reads
+[build 10/64] b19 developer iPod (0s); cache 0 hits, 0 reads
+[build 11/64] b25 mother_tongue Dominique Joseph Garat (0s); cache 0 hits, 0 reads
+[build 12/64] b26 mother_tongue Pierre Messmer (0s); cache 0 hits, 0 reads
+[build 13/64] b27 mother_tongue Claude Ribbe (0s); cache 0 hits, 0 reads
+[build 14/64] b33 official_language Guatemala (0s); cache 0 hits, 0 reads
+[build 15/64] b34 official_language Zaire (0s); cache 0 hits, 0 reads
+[build 16/64] b35 official_language British Antarctic Territory (0s); cache 0 hits, 0 reads
+[build 17/64] b42 located_in_country Oder-Spree District (0s); cache 0 hits, 0 reads
+[build 18/64] b43 located_in_country FC Anker Wismar (0s); cache 0 hits, 0 reads
+[build 19/64] b44 located_in_country Instituto Pedro Nunes (0s); cache 0 hits, 0 reads
+[build 20/64] b49 original_language The Wardstone Chronicles (0s); cache 0 hits, 0 reads
+[build 21/64] b50 original_language Ye Meri Life Hai (0s); cache 0 hits, 0 reads
+[build 22/64] b51 original_language Mariana Pineda (0s); cache 0 hits, 0 reads
+[build 23/64] b57 religion Uthman ibn Affan (0s); cache 0 hits, 0 reads
+[build 24/64] b58 religion Abu Bakr ibn Umar (0s); cache 0 hits, 0 reads
+[build 25/64] b59 religion Qutbuddin Bakhtiar Kaki (0s); cache 0 hits, 0 reads
+[build 26/64] b65 languages_spoken Paul Mattick (0s); cache 0 hits, 0 reads
+[build 27/64] b66 languages_spoken Corrado Segre (0s); cache 0 hits, 0 reads
+[build 28/64] b67 languages_spoken Keren Peles (0s); cache 0 hits, 0 reads
+[build 29/64] b73 position_played Keith Peacock (0s); cache 0 hits, 0 reads
+[build 30/64] b74 position_played Mojtaba Jabbari (0s); cache 0 hits, 0 reads
+[build 31/64] b75 position_played Junior Stanislas (0s); cache 0 hits, 0 reads
+[build 32/64] b81 sport Satchel Paige (0s); cache 0 hits, 0 reads
+[build 33/64] b82 sport Mario Lemieux (0s); cache 0 hits, 0 reads
+[build 34/64] b83 sport Cam Newton (0s); cache 0 hits, 0 reads
+[build 35/64] b89 work_location Vincent van Gogh (0s); cache 0 hits, 0 reads
+[build 36/64] b90 work_location Nicholas Fairbairn (0s); cache 0 hits, 0 reads
+[build 37/64] b91 work_location Ulrich Wilcken (0s); cache 0 hits, 0 reads
+[build 38/64] b97 field_of_work Brian De Palma (0s); cache 0 hits, 0 reads
+[build 39/64] b98 field_of_work Giovanni Domenico Cassini (0s); cache 0 hits, 0 reads
+[build 40/64] b99 field_of_work Max Weber (0s); cache 0 hits, 0 reads
+[build 41/64] b105 position_held Saint Amandus (0s); cache 0 hits, 0 reads
+[build 42/64] b106 position_held Clement XII (0s); cache 0 hits, 0 reads
+[build 43/64] b107 position_held Rupert of Salzburg (0s); cache 0 hits, 0 reads
+[build 44/64] b113 occupation Frits Helmuth (0s); cache 0 hits, 0 reads
+[build 45/64] b114 occupation Jack Wild (0s); cache 0 hits, 0 reads
+[build 46/64] b115 occupation Ken Murray (0s); cache 0 hits, 0 reads
+[build 47/64] b121 continent Getz Ice Shelf (0s); cache 0 hits, 0 reads
+[build 48/64] b122 continent Lesotho (0s); cache 0 hits, 0 reads
+[build 49/64] b123 continent Wallonia (0s); cache 0 hits, 0 reads
+[build 50/64] b129 located_in_territory Lancaster Catholic High School (0s); cache 0 hits, 0 reads
+[build 51/64] b130 located_in_territory Nagaland (0s); cache 0 hits, 0 reads
+[build 52/64] b131 located_in_territory Yukon Flats National Wildlife Refuge (0s); cache 0 hits, 0 reads
+[build 53/64] b137 capital Spanish East Indies (0s); cache 0 hits, 0 reads
+[build 54/64] b138 capital Kingdom of Libya (0s); cache 0 hits, 0 reads
+[build 55/64] b139 capital Second Spanish Republic (0s); cache 0 hits, 0 reads
+[build 56/64] b145 language_of_work Rossiyskaya Gazeta (0s); cache 0 hits, 0 reads
+[build 57/64] b146 language_of_work CherryPy (0s); cache 0 hits, 0 reads
+[build 58/64] b147 language_of_work Le Matin du Sahara et du Maghreb (0s); cache 0 hits, 0 reads
+[build 59/64] b153 manufacturer Xbox (0s); cache 0 hits, 0 reads
+[build 60/64] b154 manufacturer Windows Phone 7 (0s); cache 0 hits, 0 reads
+[build 61/64] b155 manufacturer Windows Live Mail (0s); cache 0 hits, 0 reads
+[build 62/64] b160 event_location Tripura University (0s); cache 0 hits, 0 reads
+[build 63/64] b161 event_location Independence Hall (0s); cache 0 hits, 0 reads
+[build 64/64] b162 event_location Hungarian Ladies Open (0s); cache 0 hits, 0 reads
+edited model scored in 49s; layer events {'first': 525, 'continued': 9, 'vetoed': 58}
+[score] b01 hq                 Stroytransgaz            ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b02 hq                 International Airlines G ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b03 hq                 Royal Mail Steam Packet  ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b04 hq                 Arcadia Group            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b09 citizenship        Aris Velouchiotis        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b10 citizenship        Etsuko Inoue             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b11 citizenship        Vesa Vierikko            ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b17 developer          Windows Embedded Compact ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b18 developer          Windows RT               ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b19 developer          iPod                     ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b25 mother_tongue      Dominique Joseph Garat   ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.17
+[score] b26 mother_tongue      Pierre Messmer           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b27 mother_tongue      Claude Ribbe             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b33 official_language  Guatemala                ES 1 PS 1.00 NS 0.70 (unedited 0.70) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b34 official_language  Zaire                    ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b35 official_language  British Antarctic Territ ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b42 located_in_country Oder-Spree District      ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b43 located_in_country FC Anker Wismar          ES 0 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b44 located_in_country Instituto Pedro Nunes    ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b49 original_language  The Wardstone Chronicles ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b50 original_language  Ye Meri Life Hai         ES 0 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 0, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b51 original_language  Mariana Pineda           ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b57 religion           Uthman ibn Affan         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b58 religion           Abu Bakr ibn Umar        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b59 religion           Qutbuddin Bakhtiar Kaki  ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b65 languages_spoken   Paul Mattick             ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b66 languages_spoken   Corrado Segre            ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b67 languages_spoken   Keren Peles              ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b73 position_played    Keith Peacock            ES 1 PS 1.00 NS 0.40 (unedited 0.40) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b74 position_played    Mojtaba Jabbari          ES 1 PS 1.00 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b75 position_played    Junior Stanislas         ES 1 PS 1.00 NS 0.10 (unedited 0.10) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b81 sport              Satchel Paige            ES 1 PS 0.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b82 sport              Mario Lemieux            ES 1 PS 0.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b83 sport              Cam Newton               ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.25
+[score] b89 work_location      Vincent van Gogh         ES 1 PS 0.50 NS 0.60 (unedited 0.60) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b90 work_location      Nicholas Fairbairn       ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b91 work_location      Ulrich Wilcken           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b97 field_of_work      Brian De Palma           ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b98 field_of_work      Giovanni Domenico Cassin ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.17
+[score] b99 field_of_work      Max Weber                ES 0 PS 0.50 NS 0.00 (unedited 0.00) | says new: rewrite 0, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b105 position_held      Saint Amandus            ES 1 PS 1.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b106 position_held      Clement XII              ES 1 PS 1.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b107 position_held      Rupert of Salzburg       ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b113 occupation         Frits Helmuth            ES 1 PS 1.00 NS 0.30 (unedited 0.30) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b114 occupation         Jack Wild                ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b115 occupation         Ken Murray               ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b121 continent          Getz Ice Shelf           ES 1 PS 0.00 NS 0.80 (unedited 0.80) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b122 continent          Lesotho                  ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b123 continent          Wallonia                 ES 1 PS 0.50 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b129 located_in_territory Lancaster Catholic High  ES 0 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b130 located_in_territory Nagaland                 ES 1 PS 0.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.00
+[score] b131 located_in_territory Yukon Flats National Wil ES 1 PS 0.50 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 0.50 | leaks: neighbours 0.00, same subject 0.08
+[score] b137 capital            Spanish East Indies      ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b138 capital            Kingdom of Libya         ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b139 capital            Second Spanish Republic  ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b145 language_of_work   Rossiyskaya Gazeta       ES 1 PS 1.00 NS 0.50 (unedited 0.50) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b146 language_of_work   CherryPy                 ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b147 language_of_work   Le Matin du Sahara et du ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b153 manufacturer       Xbox                     ES 1 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b154 manufacturer       Windows Phone 7          ES 0 PS 0.00 NS 1.00 (unedited 1.00) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b155 manufacturer       Windows Live Mail        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b160 event_location     Tripura University       ES 1 PS 1.00 NS 0.90 (unedited 0.90) | says new: rewrite 0, reworded 0.00 | leaks: neighbours 0.00, same subject 0.00
+[score] b161 event_location     Independence Hall        ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.08
+[score] b162 event_location     Hungarian Ladies Open    ES 1 PS 1.00 NS 1.00 (unedited 1.00) | says new: rewrite 1, reworded 1.00 | leaks: neighbours 0.00, same subject 0.00
+unedited: ES 0.031 PS 0.070 NS 0.880 | says new: rewrite 0.016, reworded 0.000 | leaks: neighbours 0.000, same subject 0.000 | known lost 0 of 133, drift 0.0000
+A, inserted layer: ES 0.906 PS 0.727 NS 0.880 | says new: rewrite 0.891, reworded 0.734 | leaks: neighbours 0.000, same subject 0.036 | known lost 0 of 133, drift 0.0000 | 608s
+compensation: ridge 0.1, lost output energy left 11.6% | 717s
+gate rows in bfloat16: largest error in z at the scored prompts 2.1073, median 0.00279
+freed slots alone: known lost 1 of 133, 3 of the clean 391, drift 0.00082
+B: the hybrid
+    scored in 53s
+B, hybrid: ES 0.906 PS 0.727 NS 0.878 | says new: rewrite 0.891, reworded 0.727 | leaks: neighbours 0.002, same subject 0.031 | known lost 1 of 133, 6 of the clean 391, drift 0.0008 | 779s
+  subject readings, capital: Spanish East Indies: reworded u 1.24, neighbours' largest u 0.78; Kingdom of Libya: reworded u 0.95, neighbours' largest u 0.81; Second Spanish Repub: reworded u 1.00, neighbours' largest u 0.80 | 786s
+  subject readings, citizenship: Aris Velouchiotis: reworded u 1.13, neighbours' largest u 1.39; Etsuko Inoue: reworded u 0.84, neighbours' largest u 0.89; Vesa Vierikko: reworded u 1.18, neighbours' largest u 1.37 | 792s
+  subject readings, continent: Getz Ice Shelf: reworded u 0.55, neighbours' largest u 0.32; Lesotho: reworded u 0.91, neighbours' largest u 1.02; Wallonia: reworded u 0.88, neighbours' largest u 0.26 | 797s
+  subject readings, developer: Windows Embedded Com: reworded u 1.67, neighbours' largest u 0.30; Windows RT: reworded u 1.09, neighbours' largest u 0.51; iPod: reworded u 0.89, neighbours' largest u 0.06 | 804s
+  subject readings, event_location: Tripura University: reworded u 0.93, neighbours' largest u 0.35; Independence Hall: reworded u 0.95, neighbours' largest u 0.23; Hungarian Ladies Ope: reworded u 0.80, neighbours' largest u 0.62 | 809s
+  subject readings, field_of_work: Brian De Palma: reworded u 1.07, neighbours' largest u 0.00; Giovanni Domenico Ca: reworded u 1.16, neighbours' largest u 0.57; Max Weber: reworded u 0.70, neighbours' largest u -0.13 | 815s
+  subject readings, hq: Stroytransgaz: reworded u 1.06, neighbours' largest u 0.30; International Airlin: reworded u 0.69, neighbours' largest u 0.69; Royal Mail Steam Pac: reworded u 1.19, neighbours' largest u 0.43; Arcadia Group: reworded u 0.87, neighbours' largest u 0.18 | 822s
+  subject readings, language_of_work: Rossiyskaya Gazeta: reworded u 0.65, neighbours' largest u -0.27; CherryPy: reworded u 1.01, neighbours' largest u 0.71; Le Matin du Sahara e: reworded u 1.09, neighbours' largest u -0.41 | 827s
+  subject readings, languages_spoken: Paul Mattick: reworded u 1.23, neighbours' largest u 0.29; Corrado Segre: reworded u 1.05, neighbours' largest u 0.13; Keren Peles: reworded u 0.92, neighbours' largest u 1.03 | 833s
+  subject readings, located_in_country: Oder-Spree District: reworded u 0.63, neighbours' largest u 1.17; FC Anker Wismar: reworded u 0.78, neighbours' largest u 0.72; Instituto Pedro Nune: reworded u 0.83, neighbours' largest u 0.93 | 839s
+  subject readings, located_in_territory: Lancaster Catholic H: reworded u 1.00, neighbours' largest u -0.04; Nagaland: reworded u 0.90, neighbours' largest u 0.32; Yukon Flats National: reworded u 0.97, neighbours' largest u 0.34 | 845s
+  subject readings, manufacturer: Xbox: reworded u 0.77, neighbours' largest u 0.47; Windows Phone 7: reworded u 0.95, neighbours' largest u 0.83; Windows Live Mail: reworded u 1.16, neighbours' largest u 0.53 | 850s
+  subject readings, mother_tongue: Dominique Joseph Gar: reworded u 0.99, neighbours' largest u -0.06; Pierre Messmer: reworded u 1.01, neighbours' largest u 0.61; Claude Ribbe: reworded u 1.58, neighbours' largest u 0.48 | 856s
+  subject readings, occupation: Frits Helmuth: reworded u 0.58, neighbours' largest u -0.15; Jack Wild: reworded u 0.82, neighbours' largest u 0.04; Ken Murray: reworded u 0.69, neighbours' largest u -0.16 | 861s
+  subject readings, official_language: Guatemala: reworded u 0.84, neighbours' largest u 0.17; Zaire: reworded u 0.64, neighbours' largest u 0.13; British Antarctic Te: reworded u 1.07, neighbours' largest u 0.16 | 867s
+  subject readings, original_language: The Wardstone Chroni: reworded u 1.00, neighbours' largest u -0.01; Ye Meri Life Hai: reworded u 1.10, neighbours' largest u 0.97; Mariana Pineda: reworded u 0.80, neighbours' largest u -0.39 | 873s
+  subject readings, position_held: Saint Amandus: reworded u 0.78, neighbours' largest u 0.17; Clement XII: reworded u 0.69, neighbours' largest u 0.66; Rupert of Salzburg: reworded u 0.96, neighbours' largest u 0.08 | 879s
+  subject readings, position_played: Keith Peacock: reworded u 1.04, neighbours' largest u -0.30; Mojtaba Jabbari: reworded u 1.28, neighbours' largest u -0.19; Junior Stanislas: reworded u 1.12, neighbours' largest u 0.39 | 884s
+  subject readings, religion: Uthman ibn Affan: reworded u 0.81, neighbours' largest u 0.15; Abu Bakr ibn Umar: reworded u 1.63, neighbours' largest u 0.31; Qutbuddin Bakhtiar K: reworded u 0.65, neighbours' largest u -0.16 | 890s
+  subject readings, sport: Satchel Paige: reworded u 1.04, neighbours' largest u 1.02; Mario Lemieux: reworded u 1.14, neighbours' largest u -0.05; Cam Newton: reworded u 0.72, neighbours' largest u 0.84 | 896s
+  subject readings, work_location: Vincent van Gogh: reworded u 1.01, neighbours' largest u 0.07; Nicholas Fairbairn: reworded u 0.87, neighbours' largest u 0.24; Ulrich Wilcken: reworded u 0.92, neighbours' largest u 0.58 | 901s
+C: the grafted model
+    scored in 53s
+C, grafted: ES 0.750 PS 0.680 NS 0.606 | says new: rewrite 0.453, reworded 0.484 | leaks: neighbours 0.111, same subject 0.008 | known lost 112 of 133, 309 of the clean 391, drift 2.4257 | 955s
+decisions agreeing with A: B_rewrite 0.969, B_para 0.938, B_neigh 1.000, C_rewrite 0.781, C_para 0.844, C_neigh 0.595
+edits' prompts A wins and B loses: 5; their z: 0.05, 0.22, 0.10, 0.18, 0.00
+B reproduces the inserted layer: True {'es': True, 'ps': True, 'ns': True, 'neigh_leak': True, 'same_leak': True}
+C is a grafted model as good as the inserted layer: False {'es': False, 'ps': True, 'ns': False, 'neigh_leak': False, 'same_leak': True, 'known_lost': False, 'drift': False, 'cf_lost': False}
+EXIT 0

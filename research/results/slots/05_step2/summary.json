@@ -1,0 +1,4615 @@
+{
+ "edits": [
+  "b01",
+  "b02",
+  "b03",
+  "b04",
+  "b09",
+  "b10",
+  "b11",
+  "b17",
+  "b18",
+  "b19",
+  "b25",
+  "b26",
+  "b27",
+  "b33",
+  "b34",
+  "b35",
+  "b42",
+  "b43",
+  "b44",
+  "b49",
+  "b50",
+  "b51",
+  "b57",
+  "b58",
+  "b59",
+  "b65",
+  "b66",
+  "b67",
+  "b73",
+  "b74",
+  "b75",
+  "b81",
+  "b82",
+  "b83",
+  "b89",
+  "b90",
+  "b91",
+  "b97",
+  "b98",
+  "b99",
+  "b105",
+  "b106",
+  "b107",
+  "b113",
+  "b114",
+  "b115",
+  "b121",
+  "b122",
+  "b123",
+  "b129",
+  "b130",
+  "b131",
+  "b137",
+  "b138",
+  "b139",
+  "b145",
+  "b146",
+  "b147",
+  "b153",
+  "b154",
+  "b155",
+  "b160",
+  "b161",
+  "b162"
+ ],
+ "slots": [
+  318,
+  225,
+  1352,
+  1797,
+  1879,
+  178,
+  571,
+  897,
+  357,
+  1660,
+  463,
+  204,
+  228,
+  637,
+  26,
+  264,
+  1514,
+  296,
+  350,
+  305,
+  738,
+  348,
+  856,
+  253,
+  1017,
+  1209,
+  998,
+  1157,
+  777,
+  1224,
+  16,
+  762,
+  1839,
+  163,
+  2300,
+  628,
+  1685,
+  983,
+  765,
+  549,
+  491,
+  532,
+  674,
+  1944,
+  69,
+  2058,
+  2868,
+  490,
+  1149,
+  631,
+  1252,
+  3333,
+  370,
+  2696,
+  268,
+  2403,
+  1682,
+  1389,
+  875,
+  755,
+  91,
+  1867,
+  131,
+  1197
+ ],
+ "compensation": {
+  "ridge": 0.1,
+  "energy_left": 0.11594528964894993
+ },
+ "unedited": {
+  "es": 0.0312,
+  "ps": 0.0703,
+  "ns": 0.8797,
+  "gen_rewrite": 0.0156,
+  "gen_para": 0.0,
+  "old_rewrite": 0.9688,
+  "old_para": 0.4453,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0,
+  "twin_answer": 0.0,
+  "twin_edits": 21,
+  "edits": 64,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "capital": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.6667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "citizenship": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 1.0,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.8333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "continent": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9333,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "developer": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.6667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "event_location": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "field_of_work": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.6667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "hq": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.925,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.25,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "language_of_work": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.8,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 1.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "languages_spoken": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "located_in_country": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 1.0,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "located_in_territory": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "manufacturer": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 1.0,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 1.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "mother_tongue": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 1.0,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.8333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "occupation": {
+    "es": 0.0,
+    "ps": 0.3333,
+    "ns": 0.7667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "official_language": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.6667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "original_language": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.9333,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 0.6667,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "position_held": {
+    "es": 0.0,
+    "ps": 0.3333,
+    "ns": 0.7667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "position_played": {
+    "es": 0.3333,
+    "ps": 0.8333,
+    "ns": 0.3667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "religion": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 1.0,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "sport": {
+    "es": 0.3333,
+    "ps": 0.0,
+    "ns": 0.7667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 1.0,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "work_location": {
+    "es": 0.0,
+    "ps": 0.0,
+    "ns": 0.8667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.0,
+    "old_rewrite": 0.6667,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   }
+  },
+  "verdict": "fails: GRAFT as built can't override known facts"
+ },
+ "A": {
+  "es": 0.9062,
+  "ps": 0.7266,
+  "ns": 0.8797,
+  "gen_rewrite": 0.8906,
+  "gen_para": 0.7344,
+  "old_rewrite": 0.1875,
+  "old_para": 0.1406,
+  "neigh_leak": 0.0,
+  "same_leak": 0.0365,
+  "twin_answer": 0.5714,
+  "twin_edits": 21,
+  "edits": 64,
+  "known_lost": 0,
+  "drift": 0.0,
+  "by_relation": {
+   "capital": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "works"
+   },
+   "citizenship": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 1.0,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "verdict": "works"
+   },
+   "continent": {
+    "es": 1.0,
+    "ps": 0.1667,
+    "ns": 0.9333,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "developer": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 0.9667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 1.0,
+    "verdict": "works"
+   },
+   "event_location": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.3333,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "works"
+   },
+   "field_of_work": {
+    "es": 0.6667,
+    "ps": 0.5,
+    "ns": 0.6667,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.5,
+    "old_rewrite": 0.3333,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0833,
+    "verdict": "in between: ES, PS, generation reworded"
+   },
+   "hq": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.925,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.25,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0417,
+    "verdict": "works"
+   },
+   "language_of_work": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.8,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.6667,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "twin_answer": 0.6667,
+    "verdict": "works"
+   },
+   "languages_spoken": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.4444,
+    "verdict": "works"
+   },
+   "located_in_country": {
+    "es": 0.6667,
+    "ps": 0.5,
+    "ns": 1.0,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "verdict": "in between: ES, PS"
+   },
+   "located_in_territory": {
+    "es": 0.6667,
+    "ps": 0.1667,
+    "ns": 0.9,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "manufacturer": {
+    "es": 0.6667,
+    "ps": 0.3333,
+    "ns": 1.0,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.6667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.5556,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "mother_tongue": {
+    "es": 0.6667,
+    "ps": 0.6667,
+    "ns": 1.0,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.3333,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0556,
+    "twin_answer": 0.4444,
+    "verdict": "in between: ES, PS"
+   },
+   "occupation": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.7667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.3333,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0833,
+    "verdict": "works"
+   },
+   "official_language": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.3333,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "works"
+   },
+   "original_language": {
+    "es": 0.6667,
+    "ps": 0.6667,
+    "ns": 0.9333,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "twin_answer": 0.5556,
+    "verdict": "in between: ES, PS"
+   },
+   "position_held": {
+    "es": 1.0,
+    "ps": 0.6667,
+    "ns": 0.7667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "in between: PS"
+   },
+   "position_played": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.3667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0556,
+    "verdict": "works"
+   },
+   "religion": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 1.0,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "verdict": "works"
+   },
+   "sport": {
+    "es": 1.0,
+    "ps": 0.0,
+    "ns": 0.7667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.1667,
+    "old_rewrite": 0.0,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.1667,
+    "verdict": "fails: GRAFT as built can't override known facts"
+   },
+   "work_location": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 0.8667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0556,
+    "twin_answer": 0.3333,
+    "verdict": "works"
+   }
+  },
+  "verdict": "in between: ES, PS"
+ },
+ "freed_only": {
+  "known_lost": 1,
+  "cf_lost": 3,
+  "drift": 0.0008228877929143527
+ },
+ "B": {
+  "es": 0.9062,
+  "ps": 0.7266,
+  "ns": 0.8781,
+  "gen_rewrite": 0.8906,
+  "gen_para": 0.7266,
+  "old_rewrite": 0.2031,
+  "old_para": 0.1406,
+  "neigh_leak": 0.0016,
+  "same_leak": 0.0312,
+  "twin_answer": 0.6825,
+  "twin_edits": 21,
+  "edits": 64,
+  "known_lost": 1,
+  "drift": 0.00082,
+  "by_relation": {
+   "capital": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0556
+   },
+   "citizenship": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 1.0,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "continent": {
+    "es": 1.0,
+    "ps": 0.0,
+    "ns": 0.9333,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.1667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "developer": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 1.0
+   },
+   "event_location": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 0.9667,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.3333,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278
+   },
+   "field_of_work": {
+    "es": 0.6667,
+    "ps": 0.5,
+    "ns": 0.6667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.5,
+    "old_rewrite": 0.3333,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0556
+   },
+   "hq": {
+    "es": 1.0,
+    "ps": 0.875,
+    "ns": 0.925,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.875,
+    "old_rewrite": 0.25,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "language_of_work": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.8,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.3333,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.8889
+   },
+   "languages_spoken": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.5556
+   },
+   "located_in_country": {
+    "es": 0.6667,
+    "ps": 0.5,
+    "ns": 1.0,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "located_in_territory": {
+    "es": 0.6667,
+    "ps": 0.1667,
+    "ns": 0.9,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278
+   },
+   "manufacturer": {
+    "es": 0.6667,
+    "ps": 0.3333,
+    "ns": 1.0,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.6667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.4444
+   },
+   "mother_tongue": {
+    "es": 0.3333,
+    "ps": 0.6667,
+    "ns": 1.0,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.6667,
+    "old_para": 0.5,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "twin_answer": 0.5556
+   },
+   "occupation": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.7667,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.1111
+   },
+   "official_language": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "original_language": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.9333,
+    "gen_rewrite": 1.0,
+    "gen_para": 1.0,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278,
+    "twin_answer": 0.7778
+   },
+   "position_held": {
+    "es": 1.0,
+    "ps": 0.6667,
+    "ns": 0.7667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0278
+   },
+   "position_played": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.3333,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.5,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0556
+   },
+   "religion": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 1.0,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "sport": {
+    "es": 1.0,
+    "ps": 0.0,
+    "ns": 0.7667,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.1667,
+    "old_rewrite": 0.6667,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0333,
+    "same_leak": 0.1667
+   },
+   "work_location": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 0.8667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0833,
+    "twin_answer": 0.5556
+   }
+  },
+  "verdict": "in between",
+  "cf_lost": 6
+ },
+ "C": {
+  "es": 0.75,
+  "ps": 0.6797,
+  "ns": 0.6062,
+  "gen_rewrite": 0.4531,
+  "gen_para": 0.4844,
+  "old_rewrite": 0.125,
+  "old_para": 0.0938,
+  "neigh_leak": 0.1109,
+  "same_leak": 0.0078,
+  "twin_answer": 0.3413,
+  "twin_edits": 21,
+  "edits": 64,
+  "known_lost": 112,
+  "drift": 2.42574,
+  "by_relation": {
+   "capital": {
+    "es": 1.0,
+    "ps": 0.6667,
+    "ns": 0.4333,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.5,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.3333,
+    "same_leak": 0.0
+   },
+   "citizenship": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.1667,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.1667,
+    "same_leak": 0.0
+   },
+   "continent": {
+    "es": 1.0,
+    "ps": 0.3333,
+    "ns": 0.5,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.1667,
+    "old_rewrite": 0.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.2667,
+    "same_leak": 0.0
+   },
+   "developer": {
+    "es": 1.0,
+    "ps": 1.0,
+    "ns": 0.7667,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.1,
+    "same_leak": 0.0,
+    "twin_answer": 1.0
+   },
+   "event_location": {
+    "es": 1.0,
+    "ps": 0.6667,
+    "ns": 0.5333,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.3,
+    "same_leak": 0.0278
+   },
+   "field_of_work": {
+    "es": 1.0,
+    "ps": 0.5,
+    "ns": 0.8333,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.5,
+    "old_rewrite": 0.0,
+    "old_para": 0.5,
+    "neigh_leak": 0.0333,
+    "same_leak": 0.0
+   },
+   "hq": {
+    "es": 1.0,
+    "ps": 0.875,
+    "ns": 0.275,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.5,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "language_of_work": {
+    "es": 0.6667,
+    "ps": 0.8333,
+    "ns": 0.5667,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.3333,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0,
+    "twin_answer": 0.0
+   },
+   "languages_spoken": {
+    "es": 0.0,
+    "ps": 1.0,
+    "ns": 0.9,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.2,
+    "same_leak": 0.0,
+    "twin_answer": 0.4444
+   },
+   "located_in_country": {
+    "es": 0.6667,
+    "ps": 0.5,
+    "ns": 0.7,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.1667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0333,
+    "same_leak": 0.0
+   },
+   "located_in_territory": {
+    "es": 0.6667,
+    "ps": 0.1667,
+    "ns": 0.9,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0667,
+    "same_leak": 0.0556
+   },
+   "manufacturer": {
+    "es": 0.6667,
+    "ps": 0.6667,
+    "ns": 0.3667,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.1667,
+    "same_leak": 0.0,
+    "twin_answer": 0.2222
+   },
+   "mother_tongue": {
+    "es": 0.3333,
+    "ps": 0.6667,
+    "ns": 0.5667,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.5,
+    "old_rewrite": 0.6667,
+    "old_para": 0.0,
+    "neigh_leak": 0.2,
+    "same_leak": 0.0278,
+    "twin_answer": 0.4444
+   },
+   "occupation": {
+    "es": 0.6667,
+    "ps": 1.0,
+    "ns": 0.9667,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.6667,
+    "old_para": 0.0,
+    "neigh_leak": 0.0333,
+    "same_leak": 0.0278
+   },
+   "official_language": {
+    "es": 0.6667,
+    "ps": 0.6667,
+    "ns": 0.5,
+    "gen_rewrite": 0.0,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0667,
+    "same_leak": 0.0
+   },
+   "original_language": {
+    "es": 0.6667,
+    "ps": 0.6667,
+    "ns": 0.6667,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.5,
+    "old_rewrite": 0.0,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0333,
+    "same_leak": 0.0,
+    "twin_answer": 0.1111
+   },
+   "position_held": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 0.4333,
+    "gen_rewrite": 1.0,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.2667,
+    "same_leak": 0.0
+   },
+   "position_played": {
+    "es": 0.3333,
+    "ps": 1.0,
+    "ns": 0.5333,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.3333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "religion": {
+    "es": 0.3333,
+    "ps": 0.3333,
+    "ns": 1.0,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.6667,
+    "old_rewrite": 0.6667,
+    "old_para": 0.3333,
+    "neigh_leak": 0.0667,
+    "same_leak": 0.0
+   },
+   "sport": {
+    "es": 1.0,
+    "ps": 0.0,
+    "ns": 0.7667,
+    "gen_rewrite": 0.6667,
+    "gen_para": 0.0,
+    "old_rewrite": 0.3333,
+    "old_para": 0.1667,
+    "neigh_leak": 0.0,
+    "same_leak": 0.0
+   },
+   "work_location": {
+    "es": 1.0,
+    "ps": 0.8333,
+    "ns": 0.4667,
+    "gen_rewrite": 0.3333,
+    "gen_para": 0.8333,
+    "old_rewrite": 0.0,
+    "old_para": 0.0,
+    "neigh_leak": 0.0333,
+    "same_leak": 0.0278,
+    "twin_answer": 0.1667
+   }
+  },
+  "verdict": "in between",
+  "cf_lost": 309
+ },
+ "agree": {
+  "B_rewrite": 0.9688,
+  "B_para": 0.9375,
+  "B_neigh": 1.0,
+  "C_rewrite": 0.7812,
+  "C_para": 0.8438,
+  "C_neigh": 0.5953
+ },
+ "verdict_B": {
+  "es": true,
+  "ps": true,
+  "ns": true,
+  "neigh_leak": true,
+  "same_leak": true
+ },
+ "verdict_C": {
+  "es": false,
+  "ps": true,
+  "ns": false,
+  "neigh_leak": false,
+  "same_leak": true,
+  "known_lost": false,
+  "drift": false,
+  "cf_lost": false
+ },
+ "B_reproduces": true,
+ "C_grafted": false,
+ "readings": {
+  "b137": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Rif Dimashq Governorate",
+    "Sovereign Military Order of Malta",
+    "Aleppo Governorate",
+    "Dominion of Pakistan",
+    "Valencian Community",
+    "Kingdom of Valencia",
+    "Kingdom of Italy",
+    "Jamaica",
+    "Union between Sweden and Norway",
+    "Santiago Metropolitan Region",
+    "South Yemen",
+    "Finnish Socialist Workers' Republic",
+    "Kingdom of Iraq",
+    "Habsburg Monarchy",
+    "Lodi dynasty",
+    "Czech Republic",
+    "Kingdom of Sicily",
+    "Brandenburg-Prussia",
+    "Empire of Japan",
+    "Third Hellenic Republic",
+    "Republic of Florence",
+    "Ayyubid dynasty",
+    "Metropolis of Lyon",
+    "Second French Empire"
+   ],
+   "separation": 9.55,
+   "u": {
+    "rewrite": [
+     0.887
+    ],
+    "para": [
+     1.203,
+     1.276
+    ],
+    "neigh": [
+     0.78,
+     0.728,
+     -0.168,
+     0.264,
+     0.602,
+     0.59,
+     0.669,
+     -0.374,
+     0.676,
+     0.626
+    ]
+   }
+  },
+  "b138": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Rif Dimashq Governorate",
+    "Sovereign Military Order of Malta",
+    "Aleppo Governorate",
+    "Dominion of Pakistan",
+    "Valencian Community",
+    "Kingdom of Valencia",
+    "Kingdom of Italy",
+    "Jamaica",
+    "Union between Sweden and Norway",
+    "Santiago Metropolitan Region",
+    "South Yemen",
+    "Finnish Socialist Workers' Republic",
+    "Kingdom of Iraq",
+    "Habsburg Monarchy",
+    "Lodi dynasty",
+    "Czech Republic",
+    "Kingdom of Sicily",
+    "Brandenburg-Prussia",
+    "Empire of Japan",
+    "Third Hellenic Republic",
+    "Republic of Florence",
+    "Ayyubid dynasty",
+    "Metropolis of Lyon",
+    "Second French Empire"
+   ],
+   "separation": 11.66,
+   "u": {
+    "rewrite": [
+     0.993
+    ],
+    "para": [
+     0.95,
+     0.947
+    ],
+    "neigh": [
+     0.329,
+     0.216,
+     0.363,
+     0.24,
+     0.214,
+     -0.277,
+     0.135,
+     -0.177,
+     0.807,
+     0.489
+    ]
+   }
+  },
+  "b139": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Rif Dimashq Governorate",
+    "Sovereign Military Order of Malta",
+    "Aleppo Governorate",
+    "Dominion of Pakistan",
+    "Valencian Community",
+    "Kingdom of Valencia",
+    "Kingdom of Italy",
+    "Jamaica",
+    "Union between Sweden and Norway",
+    "Santiago Metropolitan Region",
+    "South Yemen",
+    "Finnish Socialist Workers' Republic",
+    "Kingdom of Iraq",
+    "Habsburg Monarchy",
+    "Lodi dynasty",
+    "Czech Republic",
+    "Kingdom of Sicily",
+    "Brandenburg-Prussia",
+    "Empire of Japan",
+    "Third Hellenic Republic",
+    "Republic of Florence",
+    "Ayyubid dynasty",
+    "Metropolis of Lyon",
+    "Second French Empire"
+   ],
+   "separation": 7.13,
+   "u": {
+    "rewrite": [
+     0.864
+    ],
+    "para": [
+     1.359,
+     0.645
+    ],
+    "neigh": [
+     0.621,
+     0.297,
+     0.404,
+     0.673,
+     0.633,
+     -0.086,
+     0.571,
+     0.448,
+     0.795,
+     0.636
+    ]
+   }
+  },
+  "b09": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Takashi Yanase",
+    "Ikki Kajiwara",
+    "Rick Springfield",
+    "Vincent Kenis",
+    "Jean-Baptiste Lamy",
+    "Alexandra of Denmark",
+    "Facundo Bagnis",
+    "Kumiko Ogura",
+    "Katerine Moreno",
+    "Jakub Kubicki",
+    "Yunfa",
+    "Sachiko Kobayashi",
+    "Sun Beibei",
+    "Ger Canning",
+    "Kaka Hathrasi",
+    "Henriette Caillaux",
+    "Maria Mourani",
+    "Violette Verdy",
+    "Yahya Petra of Kelantan",
+    "Edmund of Abingdon",
+    "Kishore Mahbubani",
+    "Bronislovas Lubys",
+    "Fred Watson",
+    "Bruno Putzulu"
+   ],
+   "separation": 16.95,
+   "u": {
+    "rewrite": [
+     1.087
+    ],
+    "para": [
+     1.247,
+     1.019
+    ],
+    "neigh": [
+     1.074,
+     0.343,
+     0.754,
+     1.023,
+     0.958,
+     0.377,
+     1.389,
+     1.103,
+     0.919,
+     0.965
+    ]
+   }
+  },
+  "b10": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Takashi Yanase",
+    "Ikki Kajiwara",
+    "Rick Springfield",
+    "Vincent Kenis",
+    "Jean-Baptiste Lamy",
+    "Alexandra of Denmark",
+    "Facundo Bagnis",
+    "Kumiko Ogura",
+    "Katerine Moreno",
+    "Jakub Kubicki",
+    "Yunfa",
+    "Sachiko Kobayashi",
+    "Sun Beibei",
+    "Ger Canning",
+    "Kaka Hathrasi",
+    "Henriette Caillaux",
+    "Maria Mourani",
+    "Violette Verdy",
+    "Yahya Petra of Kelantan",
+    "Edmund of Abingdon",
+    "Kishore Mahbubani",
+    "Bronislovas Lubys",
+    "Fred Watson",
+    "Bruno Putzulu"
+   ],
+   "separation": 2.94,
+   "u": {
+    "rewrite": [
+     0.567
+    ],
+    "para": [
+     1.031,
+     0.652
+    ],
+    "neigh": [
+     -0.208,
+     0.086,
+     0.377,
+     0.46,
+     -0.539,
+     0.534,
+     0.355,
+     -0.212,
+     -0.059,
+     0.889
+    ]
+   }
+  },
+  "b11": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Takashi Yanase",
+    "Ikki Kajiwara",
+    "Rick Springfield",
+    "Vincent Kenis",
+    "Jean-Baptiste Lamy",
+    "Alexandra of Denmark",
+    "Facundo Bagnis",
+    "Kumiko Ogura",
+    "Katerine Moreno",
+    "Jakub Kubicki",
+    "Yunfa",
+    "Sachiko Kobayashi",
+    "Sun Beibei",
+    "Ger Canning",
+    "Kaka Hathrasi",
+    "Henriette Caillaux",
+    "Maria Mourani",
+    "Violette Verdy",
+    "Yahya Petra of Kelantan",
+    "Edmund of Abingdon",
+    "Kishore Mahbubani",
+    "Bronislovas Lubys",
+    "Fred Watson",
+    "Bruno Putzulu"
+   ],
+   "separation": 13.9,
+   "u": {
+    "rewrite": [
+     1.162
+    ],
+    "para": [
+     1.317,
+     1.049
+    ],
+    "neigh": [
+     1.149,
+     1.182,
+     1.096,
+     0.221,
+     0.17,
+     1.324,
+     1.369,
+     1.252,
+     0.308,
+     0.998
+    ]
+   }
+  },
+  "b121": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Umayyad Caliphate",
+    "Jammu and Kashmir",
+    "Siple Dome",
+    "Willan Saddle",
+    "Kondofrey Heights",
+    "Austria",
+    "Elkhorn Ridge",
+    "Millerand Island",
+    "Matusevich Glacier",
+    "Kaveri River",
+    "Srebarna Glacier",
+    "Totten Glacier",
+    "Frostlendet Valley",
+    "Marie Byrd Land",
+    "Hoseason Island",
+    "National Law School of India University",
+    "William Scoresby Bay",
+    "Yugoslavia",
+    "Debenham Glacier",
+    "Metropolitan France",
+    "Cape Longing",
+    "Executive Committee Range",
+    "Cape Monaco",
+    "Shkhara"
+   ],
+   "separation": 8.15,
+   "u": {
+    "rewrite": [
+     0.47
+    ],
+    "para": [
+     0.502,
+     0.605
+    ],
+    "neigh": [
+     -0.091,
+     -0.145,
+     -0.326,
+     -0.458,
+     -0.107,
+     -0.264,
+     0.32,
+     -0.437,
+     -0.624,
+     -0.221
+    ]
+   }
+  },
+  "b122": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Umayyad Caliphate",
+    "Jammu and Kashmir",
+    "Siple Dome",
+    "Willan Saddle",
+    "Kondofrey Heights",
+    "Austria",
+    "Elkhorn Ridge",
+    "Millerand Island",
+    "Matusevich Glacier",
+    "Kaveri River",
+    "Srebarna Glacier",
+    "Totten Glacier",
+    "Frostlendet Valley",
+    "Marie Byrd Land",
+    "Hoseason Island",
+    "National Law School of India University",
+    "William Scoresby Bay",
+    "Yugoslavia",
+    "Debenham Glacier",
+    "Metropolitan France",
+    "Cape Longing",
+    "Executive Committee Range",
+    "Cape Monaco",
+    "Shkhara"
+   ],
+   "separation": 18.78,
+   "u": {
+    "rewrite": [
+     0.726
+    ],
+    "para": [
+     0.531,
+     1.29
+    ],
+    "neigh": [
+     0.3,
+     0.437,
+     0.689,
+     0.183,
+     0.408,
+     1.018,
+     0.083,
+     0.38,
+     0.851,
+     0.217
+    ]
+   }
+  },
+  "b123": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Umayyad Caliphate",
+    "Jammu and Kashmir",
+    "Siple Dome",
+    "Willan Saddle",
+    "Kondofrey Heights",
+    "Austria",
+    "Elkhorn Ridge",
+    "Millerand Island",
+    "Matusevich Glacier",
+    "Kaveri River",
+    "Srebarna Glacier",
+    "Totten Glacier",
+    "Frostlendet Valley",
+    "Marie Byrd Land",
+    "Hoseason Island",
+    "National Law School of India University",
+    "William Scoresby Bay",
+    "Yugoslavia",
+    "Debenham Glacier",
+    "Metropolitan France",
+    "Cape Longing",
+    "Executive Committee Range",
+    "Cape Monaco",
+    "Shkhara"
+   ],
+   "separation": 13.81,
+   "u": {
+    "rewrite": [
+     0.908
+    ],
+    "para": [
+     1.23,
+     0.53
+    ],
+    "neigh": [
+     -0.139,
+     -0.173,
+     -0.206,
+     -0.145,
+     0.258,
+     -0.039,
+     -0.262,
+     0.057,
+     -0.122,
+     -0.108
+    ]
+   }
+  },
+  "b17": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Resource Access Control Facility",
+    "ThinkPad",
+    "Alex Kidd",
+    "Itanium",
+    "iBeacon",
+    "Windows Setup Information File",
+    "Soundtrack Pro",
+    "Microsoft InfoPath",
+    "Windows NT",
+    "Open Packaging Conventions",
+    "IBM Rational Rose XDE",
+    "Yakuza",
+    "Final Fantasy X",
+    "MacPaint",
+    "Flicky",
+    "Bing Maps Platform",
+    "Intel iAPX 432",
+    "iWork",
+    "Gain Ground",
+    "Microsoft Office 2000",
+    "Boeing X-37",
+    "Apple Watch",
+    "Microsoft Windows",
+    "Windows Messaging"
+   ],
+   "separation": 3.48,
+   "u": {
+    "rewrite": [
+     0.865
+    ],
+    "para": [
+     1.498,
+     1.842
+    ],
+    "neigh": [
+     -0.211,
+     -0.649,
+     0.302,
+     -0.285,
+     -0.28,
+     -0.679,
+     -0.556,
+     -0.547,
+     -0.465,
+     -0.494
+    ]
+   }
+  },
+  "b18": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Resource Access Control Facility",
+    "ThinkPad",
+    "Alex Kidd",
+    "Itanium",
+    "iBeacon",
+    "Windows Setup Information File",
+    "Soundtrack Pro",
+    "Microsoft InfoPath",
+    "Windows NT",
+    "Open Packaging Conventions",
+    "IBM Rational Rose XDE",
+    "Yakuza",
+    "Final Fantasy X",
+    "MacPaint",
+    "Flicky",
+    "Bing Maps Platform",
+    "Intel iAPX 432",
+    "iWork",
+    "Gain Ground",
+    "Microsoft Office 2000",
+    "Boeing X-37",
+    "Apple Watch",
+    "Microsoft Windows",
+    "Windows Messaging"
+   ],
+   "separation": 3.37,
+   "u": {
+    "rewrite": [
+     1.176
+    ],
+    "para": [
+     1.66,
+     0.514
+    ],
+    "neigh": [
+     0.132,
+     -0.434,
+     0.12,
+     -0.312,
+     -0.377,
+     -0.301,
+     0.508,
+     -0.257,
+     -0.421,
+     0.031
+    ]
+   }
+  },
+  "b19": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Resource Access Control Facility",
+    "ThinkPad",
+    "Alex Kidd",
+    "Itanium",
+    "iBeacon",
+    "Windows Setup Information File",
+    "Soundtrack Pro",
+    "Microsoft InfoPath",
+    "Windows NT",
+    "Open Packaging Conventions",
+    "IBM Rational Rose XDE",
+    "Yakuza",
+    "Final Fantasy X",
+    "MacPaint",
+    "Flicky",
+    "Bing Maps Platform",
+    "Intel iAPX 432",
+    "iWork",
+    "Gain Ground",
+    "Microsoft Office 2000",
+    "Boeing X-37",
+    "Apple Watch",
+    "Microsoft Windows",
+    "Windows Messaging"
+   ],
+   "separation": 8.3,
+   "u": {
+    "rewrite": [
+     0.904
+    ],
+    "para": [
+     0.48,
+     1.305
+    ],
+    "neigh": [
+     -0.277,
+     -0.058,
+     -0.156,
+     0.016,
+     0.03,
+     -0.2,
+     0.061,
+     -0.177,
+     -0.053,
+     -0.105
+    ]
+   }
+  },
+  "b160": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Normandy landings",
+    "Pillsbury A Mill",
+    "2008 Welsh Open",
+    "Fraunces Tavern",
+    "Turkish Military Academy",
+    "Stockholm Pride",
+    "Ottawa International Animation Festival",
+    "Hotel Polen fire",
+    "South Yemen insurgency",
+    "Methuen Treaty",
+    "Downton Abbey",
+    "Three Rivers Film Festival",
+    "Battle of Waterloo",
+    "Hagia Sophia",
+    "Battle of the Menin Road Ridge",
+    "Anadolu Efes S.K.",
+    "Femina Miss India 2013",
+    "Viennese Actionism",
+    "Berlin International Film Festival",
+    "Immortal Game",
+    "Ano Liosia Olympic Hall",
+    "26/11 Mumbai attacks",
+    "Kunsthistorisches Museum",
+    "Sinagua"
+   ],
+   "separation": 18.14,
+   "u": {
+    "rewrite": [
+     0.448
+    ],
+    "para": [
+     0.967,
+     0.894
+    ],
+    "neigh": [
+     0.191,
+     0.252,
+     0.083,
+     0.024,
+     0.175,
+     0.265,
+     0.12,
+     0.349,
+     0.217,
+     0.163
+    ]
+   }
+  },
+  "b161": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Normandy landings",
+    "Pillsbury A Mill",
+    "2008 Welsh Open",
+    "Fraunces Tavern",
+    "Turkish Military Academy",
+    "Stockholm Pride",
+    "Ottawa International Animation Festival",
+    "Hotel Polen fire",
+    "South Yemen insurgency",
+    "Methuen Treaty",
+    "Downton Abbey",
+    "Three Rivers Film Festival",
+    "Battle of Waterloo",
+    "Hagia Sophia",
+    "Battle of the Menin Road Ridge",
+    "Anadolu Efes S.K.",
+    "Femina Miss India 2013",
+    "Viennese Actionism",
+    "Berlin International Film Festival",
+    "Immortal Game",
+    "Ano Liosia Olympic Hall",
+    "26/11 Mumbai attacks",
+    "Kunsthistorisches Museum",
+    "Sinagua"
+   ],
+   "separation": 11.58,
+   "u": {
+    "rewrite": [
+     1.118
+    ],
+    "para": [
+     1.085,
+     0.818
+    ],
+    "neigh": [
+     -0.23,
+     0.008,
+     -0.014,
+     0.052,
+     0.062,
+     0.043,
+     0.164,
+     0.23,
+     -0.0,
+     0.23
+    ]
+   }
+  },
+  "b162": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Normandy landings",
+    "Pillsbury A Mill",
+    "2008 Welsh Open",
+    "Fraunces Tavern",
+    "Turkish Military Academy",
+    "Stockholm Pride",
+    "Ottawa International Animation Festival",
+    "Hotel Polen fire",
+    "South Yemen insurgency",
+    "Methuen Treaty",
+    "Downton Abbey",
+    "Three Rivers Film Festival",
+    "Battle of Waterloo",
+    "Hagia Sophia",
+    "Battle of the Menin Road Ridge",
+    "Anadolu Efes S.K.",
+    "Femina Miss India 2013",
+    "Viennese Actionism",
+    "Berlin International Film Festival",
+    "Immortal Game",
+    "Ano Liosia Olympic Hall",
+    "26/11 Mumbai attacks",
+    "Kunsthistorisches Museum",
+    "Sinagua"
+   ],
+   "separation": 18.93,
+   "u": {
+    "rewrite": [
+     0.683
+    ],
+    "para": [
+     0.809,
+     0.781
+    ],
+    "neigh": [
+     0.123,
+     0.201,
+     0.417,
+     0.294,
+     0.524,
+     0.446,
+     0.442,
+     0.625,
+     0.319,
+     0.34
+    ]
+   }
+  },
+  "b97": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Steven Weinberg",
+    "Herbert A. Hauptman",
+    "Pictures of the Year International",
+    "Volcher Coiter",
+    "Ibn Abi Usaibia",
+    "Alexander Bogdanov",
+    "Felix Plater",
+    "medical association",
+    "John Calvin",
+    "Johann Christian Reil",
+    "Hjalmar Mellin",
+    "William Cheselden",
+    "Regnier de Graaf",
+    "Sofia Kovalevskaya",
+    "Geometry Festival",
+    "millennialism",
+    "Jeremiah Horrocks",
+    "Hantaro Nagaoka",
+    "Karl Schwarzschild",
+    "Wallace Carothers",
+    "Wilhelm Roux",
+    "Edwin Hubble",
+    "Johannes de Sacrobosco",
+    "Carl Hovland"
+   ],
+   "separation": 12.18,
+   "u": {
+    "rewrite": [
+     0.444
+    ],
+    "para": [
+     1.055,
+     1.089
+    ],
+    "neigh": [
+     0.003,
+     -0.283,
+     -0.271,
+     -0.207,
+     -0.319,
+     -0.209,
+     -0.134,
+     -0.191,
+     -0.127,
+     -0.107
+    ]
+   }
+  },
+  "b98": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Steven Weinberg",
+    "Herbert A. Hauptman",
+    "Pictures of the Year International",
+    "Volcher Coiter",
+    "Ibn Abi Usaibia",
+    "Alexander Bogdanov",
+    "Felix Plater",
+    "medical association",
+    "John Calvin",
+    "Johann Christian Reil",
+    "Hjalmar Mellin",
+    "William Cheselden",
+    "Regnier de Graaf",
+    "Sofia Kovalevskaya",
+    "Geometry Festival",
+    "millennialism",
+    "Jeremiah Horrocks",
+    "Hantaro Nagaoka",
+    "Karl Schwarzschild",
+    "Wallace Carothers",
+    "Wilhelm Roux",
+    "Edwin Hubble",
+    "Johannes de Sacrobosco",
+    "Carl Hovland"
+   ],
+   "separation": 7.26,
+   "u": {
+    "rewrite": [
+     0.136
+    ],
+    "para": [
+     1.552,
+     0.77
+    ],
+    "neigh": [
+     0.28,
+     0.573,
+     0.048,
+     0.118,
+     0.268,
+     0.059,
+     -0.146,
+     -0.275,
+     -0.474,
+     0.126
+    ]
+   }
+  },
+  "b99": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Steven Weinberg",
+    "Herbert A. Hauptman",
+    "Pictures of the Year International",
+    "Volcher Coiter",
+    "Ibn Abi Usaibia",
+    "Alexander Bogdanov",
+    "Felix Plater",
+    "medical association",
+    "John Calvin",
+    "Johann Christian Reil",
+    "Hjalmar Mellin",
+    "William Cheselden",
+    "Regnier de Graaf",
+    "Sofia Kovalevskaya",
+    "Geometry Festival",
+    "millennialism",
+    "Jeremiah Horrocks",
+    "Hantaro Nagaoka",
+    "Karl Schwarzschild",
+    "Wallace Carothers",
+    "Wilhelm Roux",
+    "Edwin Hubble",
+    "Johannes de Sacrobosco",
+    "Carl Hovland"
+   ],
+   "separation": 11.57,
+   "u": {
+    "rewrite": [
+     0.953
+    ],
+    "para": [
+     0.757,
+     0.638
+    ],
+    "neigh": [
+     -0.246,
+     -0.127,
+     -0.184,
+     -0.193,
+     -0.317,
+     -0.287,
+     -0.189,
+     -0.212,
+     -0.138,
+     -0.278
+    ]
+   }
+  },
+  "b01": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Majorette",
+    "Munich Re",
+    "Astaldi",
+    "Gerasimov Institute of Cinematography",
+    "Rank Organisation",
+    "People's Democratic Party of Afghanistan",
+    "Mimar Sinan Fine Arts University",
+    "Hooters",
+    "Pakistan Steel Mills",
+    "LG Chem",
+    "Smurfit-Stone Container",
+    "Eos Press",
+    "Power Jets",
+    "Chinese Academy of Sciences",
+    "HSH Nordbank",
+    "Chinese Skating Association",
+    "Bristol & West",
+    "Sydney Olympic FC",
+    "Fudan University",
+    "Royal Australian Air Force",
+    "WWE",
+    "Stelco",
+    "Cinven",
+    "Il Sole 24 Ore"
+   ],
+   "separation": 11.34,
+   "u": {
+    "rewrite": [
+     0.936
+    ],
+    "para": [
+     1.163,
+     0.965
+    ],
+    "neigh": [
+     0.26,
+     -0.385,
+     -0.329,
+     0.223,
+     0.139,
+     -0.276,
+     0.179,
+     0.151,
+     0.304,
+     -0.25
+    ]
+   }
+  },
+  "b02": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Majorette",
+    "Munich Re",
+    "Astaldi",
+    "Gerasimov Institute of Cinematography",
+    "Rank Organisation",
+    "People's Democratic Party of Afghanistan",
+    "Mimar Sinan Fine Arts University",
+    "Hooters",
+    "Pakistan Steel Mills",
+    "LG Chem",
+    "Smurfit-Stone Container",
+    "Eos Press",
+    "Power Jets",
+    "Chinese Academy of Sciences",
+    "HSH Nordbank",
+    "Chinese Skating Association",
+    "Bristol & West",
+    "Sydney Olympic FC",
+    "Fudan University",
+    "Royal Australian Air Force",
+    "WWE",
+    "Stelco",
+    "Cinven",
+    "Il Sole 24 Ore"
+   ],
+   "separation": 7.57,
+   "u": {
+    "rewrite": [
+     0.869
+    ],
+    "para": [
+     0.573,
+     0.814
+    ],
+    "neigh": [
+     -0.105,
+     -0.177,
+     -0.121,
+     -0.113,
+     -0.231,
+     -0.049,
+     0.695,
+     0.019,
+     0.2,
+     -0.293
+    ]
+   }
+  },
+  "b03": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Majorette",
+    "Munich Re",
+    "Astaldi",
+    "Gerasimov Institute of Cinematography",
+    "Rank Organisation",
+    "People's Democratic Party of Afghanistan",
+    "Mimar Sinan Fine Arts University",
+    "Hooters",
+    "Pakistan Steel Mills",
+    "LG Chem",
+    "Smurfit-Stone Container",
+    "Eos Press",
+    "Power Jets",
+    "Chinese Academy of Sciences",
+    "HSH Nordbank",
+    "Chinese Skating Association",
+    "Bristol & West",
+    "Sydney Olympic FC",
+    "Fudan University",
+    "Royal Australian Air Force",
+    "WWE",
+    "Stelco",
+    "Cinven",
+    "Il Sole 24 Ore"
+   ],
+   "separation": 12.18,
+   "u": {
+    "rewrite": [
+     0.716
+    ],
+    "para": [
+     1.128,
+     1.245
+    ],
+    "neigh": [
+     0.078,
+     0.152,
+     -0.026,
+     0.253,
+     -0.057,
+     -0.156,
+     -0.081,
+     0.162,
+     0.221,
+     0.432
+    ]
+   }
+  },
+  "b04": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Majorette",
+    "Munich Re",
+    "Astaldi",
+    "Gerasimov Institute of Cinematography",
+    "Rank Organisation",
+    "People's Democratic Party of Afghanistan",
+    "Mimar Sinan Fine Arts University",
+    "Hooters",
+    "Pakistan Steel Mills",
+    "LG Chem",
+    "Smurfit-Stone Container",
+    "Eos Press",
+    "Power Jets",
+    "Chinese Academy of Sciences",
+    "HSH Nordbank",
+    "Chinese Skating Association",
+    "Bristol & West",
+    "Sydney Olympic FC",
+    "Fudan University",
+    "Royal Australian Air Force",
+    "WWE",
+    "Stelco",
+    "Cinven",
+    "Il Sole 24 Ore"
+   ],
+   "separation": 13.45,
+   "u": {
+    "rewrite": [
+     0.671
+    ],
+    "para": [
+     0.699,
+     1.034
+    ],
+    "neigh": [
+     -0.052,
+     0.162,
+     0.038,
+     0.181,
+     0.09,
+     -0.079,
+     0.03,
+     0.049,
+     0.135,
+     0.064
+    ]
+   }
+  },
+  "b145": {
+   "positives": 143,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "La, la, la",
+    "Ukrainian News Agency",
+    "Lili Marleen",
+    "Arutz Sheva",
+    "Greek name",
+    "Orange Marmalade",
+    "Net als toen",
+    "Le Monde",
+    "IRIB TV3",
+    "Nauka i Zhizn",
+    "L'Expansion",
+    "Rossiya Segodnya",
+    "Exame",
+    "Olwen",
+    "Danish Wikipedia",
+    "Hillsong Global Project",
+    "Tygodnik Ilustrowany",
+    "Cihan News Agency",
+    "Serbian Wikipedia",
+    "German Wikipedia",
+    "Pinterest",
+    "The Little Match Girl",
+    "Secretos",
+    "Dead Souls"
+   ],
+   "separation": 3.46,
+   "u": {
+    "rewrite": [
+     1.313
+    ],
+    "para": [
+     0.696,
+     0.613
+    ],
+    "neigh": [
+     -1.514,
+     -0.622,
+     -1.172,
+     -1.321,
+     -0.271,
+     -0.504,
+     -1.388,
+     -1.606,
+     -1.122,
+     -1.113
+    ]
+   }
+  },
+  "b146": {
+   "positives": 143,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "La, la, la",
+    "Ukrainian News Agency",
+    "Lili Marleen",
+    "Arutz Sheva",
+    "Greek name",
+    "Orange Marmalade",
+    "Net als toen",
+    "Le Monde",
+    "IRIB TV3",
+    "Nauka i Zhizn",
+    "L'Expansion",
+    "Rossiya Segodnya",
+    "Exame",
+    "Olwen",
+    "Danish Wikipedia",
+    "Hillsong Global Project",
+    "Tygodnik Ilustrowany",
+    "Cihan News Agency",
+    "Serbian Wikipedia",
+    "German Wikipedia",
+    "Pinterest",
+    "The Little Match Girl",
+    "Secretos",
+    "Dead Souls"
+   ],
+   "separation": 11.63,
+   "u": {
+    "rewrite": [
+     1.074
+    ],
+    "para": [
+     1.13,
+     0.897
+    ],
+    "neigh": [
+     0.715,
+     0.36,
+     0.573,
+     -0.009,
+     0.141,
+     0.607,
+     0.41,
+     0.392,
+     0.492,
+     0.583
+    ]
+   }
+  },
+  "b147": {
+   "positives": 143,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "La, la, la",
+    "Ukrainian News Agency",
+    "Lili Marleen",
+    "Arutz Sheva",
+    "Greek name",
+    "Orange Marmalade",
+    "Net als toen",
+    "Le Monde",
+    "IRIB TV3",
+    "Nauka i Zhizn",
+    "L'Expansion",
+    "Rossiya Segodnya",
+    "Exame",
+    "Olwen",
+    "Danish Wikipedia",
+    "Hillsong Global Project",
+    "Tygodnik Ilustrowany",
+    "Cihan News Agency",
+    "Serbian Wikipedia",
+    "German Wikipedia",
+    "Pinterest",
+    "The Little Match Girl",
+    "Secretos",
+    "Dead Souls"
+   ],
+   "separation": 9.78,
+   "u": {
+    "rewrite": [
+     0.152
+    ],
+    "para": [
+     1.102,
+     1.072
+    ],
+    "neigh": [
+     -0.571,
+     -0.49,
+     -0.42,
+     -0.458,
+     -0.411,
+     -0.566,
+     -0.648,
+     -0.478,
+     -0.463,
+     -0.498
+    ]
+   }
+  },
+  "b65": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "Vilhelm Ekelund",
+    "Jacobus de Voragine",
+    "Roy Orbison",
+    "Zhou Fohai",
+    "Jean Guitton",
+    "Alex Levac",
+    "Friedrich Georg Wilhelm von Struve",
+    "Laura Adani",
+    "Juan Bautista Villalpando",
+    "Jan Kruis",
+    "Sergey Uvarov",
+    "Umberto Spadaro",
+    "Giovanni Bertati",
+    "Jorge Lanata",
+    "Howard Vaughton",
+    "Maurice Tourneur",
+    "Zuber Usman",
+    "Ellen Wilkinson",
+    "Krikor Zohrab",
+    "Charles Edward Grey",
+    "Georges Marchais",
+    "Charles Incledon",
+    "Rose Caron",
+    "Asser"
+   ],
+   "separation": 4.64,
+   "u": {
+    "rewrite": [
+     0.176
+    ],
+    "para": [
+     1.29,
+     1.16
+    ],
+    "neigh": [
+     -0.287,
+     0.018,
+     -0.547,
+     -0.226,
+     0.08,
+     -0.069,
+     0.13,
+     0.079,
+     0.29,
+     0.123
+    ]
+   }
+  },
+  "b66": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "Vilhelm Ekelund",
+    "Jacobus de Voragine",
+    "Roy Orbison",
+    "Zhou Fohai",
+    "Jean Guitton",
+    "Alex Levac",
+    "Friedrich Georg Wilhelm von Struve",
+    "Laura Adani",
+    "Juan Bautista Villalpando",
+    "Jan Kruis",
+    "Sergey Uvarov",
+    "Umberto Spadaro",
+    "Giovanni Bertati",
+    "Jorge Lanata",
+    "Howard Vaughton",
+    "Maurice Tourneur",
+    "Zuber Usman",
+    "Ellen Wilkinson",
+    "Krikor Zohrab",
+    "Charles Edward Grey",
+    "Georges Marchais",
+    "Charles Incledon",
+    "Rose Caron",
+    "Asser"
+   ],
+   "separation": 3.19,
+   "u": {
+    "rewrite": [
+     -0.051
+    ],
+    "para": [
+     1.211,
+     0.886
+    ],
+    "neigh": [
+     -0.939,
+     0.083,
+     -0.306,
+     -1.161,
+     -0.437,
+     0.132,
+     -0.071,
+     -0.54,
+     -0.628,
+     -0.19
+    ]
+   }
+  },
+  "b67": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "Vilhelm Ekelund",
+    "Jacobus de Voragine",
+    "Roy Orbison",
+    "Zhou Fohai",
+    "Jean Guitton",
+    "Alex Levac",
+    "Friedrich Georg Wilhelm von Struve",
+    "Laura Adani",
+    "Juan Bautista Villalpando",
+    "Jan Kruis",
+    "Sergey Uvarov",
+    "Umberto Spadaro",
+    "Giovanni Bertati",
+    "Jorge Lanata",
+    "Howard Vaughton",
+    "Maurice Tourneur",
+    "Zuber Usman",
+    "Ellen Wilkinson",
+    "Krikor Zohrab",
+    "Charles Edward Grey",
+    "Georges Marchais",
+    "Charles Incledon",
+    "Rose Caron",
+    "Asser"
+   ],
+   "separation": 13.25,
+   "u": {
+    "rewrite": [
+     0.822
+    ],
+    "para": [
+     0.502,
+     1.347
+    ],
+    "neigh": [
+     0.265,
+     0.75,
+     -0.027,
+     0.642,
+     0.313,
+     0.032,
+     -0.092,
+     0.015,
+     1.026,
+     0.331
+    ]
+   }
+  },
+  "b42": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "route 75",
+    "Kaniv Reservoir",
+    "Turaida",
+    "Kuomintang",
+    "Ankenes",
+    "Gasunie",
+    "Morshi",
+    "Mbale District",
+    "Knockmealdown Mountains",
+    "Velbert",
+    "Zuiderzee",
+    "Hadzhidimovo",
+    "Manila Bay",
+    "Iruma Air Base",
+    "Party for Freedom",
+    "Enghien-les-Bains",
+    "Moi International Sports Centre",
+    "Canjuers",
+    "Gmina Pokrzywnica",
+    "Canton of Schaffhausen",
+    "Tsuno District, Yamaguchi",
+    "Bhinmal",
+    "Putyvl",
+    "Waalhaven"
+   ],
+   "separation": 12.61,
+   "u": {
+    "rewrite": [
+     0.887
+    ],
+    "para": [
+     0.495,
+     0.771
+    ],
+    "neigh": [
+     0.184,
+     0.425,
+     1.139,
+     0.117,
+     0.611,
+     0.353,
+     0.266,
+     1.165,
+     0.692,
+     0.252
+    ]
+   }
+  },
+  "b43": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "route 75",
+    "Kaniv Reservoir",
+    "Turaida",
+    "Kuomintang",
+    "Ankenes",
+    "Gasunie",
+    "Morshi",
+    "Mbale District",
+    "Knockmealdown Mountains",
+    "Velbert",
+    "Zuiderzee",
+    "Hadzhidimovo",
+    "Manila Bay",
+    "Iruma Air Base",
+    "Party for Freedom",
+    "Enghien-les-Bains",
+    "Moi International Sports Centre",
+    "Canjuers",
+    "Gmina Pokrzywnica",
+    "Canton of Schaffhausen",
+    "Tsuno District, Yamaguchi",
+    "Bhinmal",
+    "Putyvl",
+    "Waalhaven"
+   ],
+   "separation": 16.62,
+   "u": {
+    "rewrite": [
+     1.174
+    ],
+    "para": [
+     0.521,
+     1.047
+    ],
+    "neigh": [
+     0.724,
+     0.349,
+     0.102,
+     0.649,
+     0.608,
+     0.314,
+     0.325,
+     0.094,
+     0.517,
+     -0.183
+    ]
+   }
+  },
+  "b44": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "route 75",
+    "Kaniv Reservoir",
+    "Turaida",
+    "Kuomintang",
+    "Ankenes",
+    "Gasunie",
+    "Morshi",
+    "Mbale District",
+    "Knockmealdown Mountains",
+    "Velbert",
+    "Zuiderzee",
+    "Hadzhidimovo",
+    "Manila Bay",
+    "Iruma Air Base",
+    "Party for Freedom",
+    "Enghien-les-Bains",
+    "Moi International Sports Centre",
+    "Canjuers",
+    "Gmina Pokrzywnica",
+    "Canton of Schaffhausen",
+    "Tsuno District, Yamaguchi",
+    "Bhinmal",
+    "Putyvl",
+    "Waalhaven"
+   ],
+   "separation": 23.06,
+   "u": {
+    "rewrite": [
+     1.171
+    ],
+    "para": [
+     0.633,
+     1.02
+    ],
+    "neigh": [
+     0.517,
+     0.84,
+     0.425,
+     0.281,
+     0.642,
+     0.266,
+     0.061,
+     0.784,
+     0.353,
+     0.932
+    ]
+   }
+  },
+  "b129": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "Minchau, Edmonton",
+    "Neighborhoods in Detroit",
+    "Atpadi",
+    "Jane Franklin Hall",
+    "Punnichy",
+    "Pennsylvania Route 664",
+    "Muncie Central High School",
+    "Leech Lake",
+    "Pea Ridge National Military Park",
+    "Maryland County",
+    "Squantz Pond State Park",
+    "Haaga",
+    "Portobello, Edinburgh",
+    "Damascus University",
+    "Klaskanine River",
+    "Dandenong",
+    "Caradon Hill",
+    "Torresdale",
+    "Interstate 64 in Virginia",
+    "Rosebud River",
+    "Temple Lot",
+    "Dhule Lok Sabha constituency",
+    "Lexington Avenue",
+    "Castle"
+   ],
+   "separation": 12.47,
+   "u": {
+    "rewrite": [
+     0.84
+    ],
+    "para": [
+     1.037,
+     0.961
+    ],
+    "neigh": [
+     -0.161,
+     -0.302,
+     -0.117,
+     -0.129,
+     -0.235,
+     -0.191,
+     -0.215,
+     -0.04,
+     -0.105,
+     -0.065
+    ]
+   }
+  },
+  "b130": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "Minchau, Edmonton",
+    "Neighborhoods in Detroit",
+    "Atpadi",
+    "Jane Franklin Hall",
+    "Punnichy",
+    "Pennsylvania Route 664",
+    "Muncie Central High School",
+    "Leech Lake",
+    "Pea Ridge National Military Park",
+    "Maryland County",
+    "Squantz Pond State Park",
+    "Haaga",
+    "Portobello, Edinburgh",
+    "Damascus University",
+    "Klaskanine River",
+    "Dandenong",
+    "Caradon Hill",
+    "Torresdale",
+    "Interstate 64 in Virginia",
+    "Rosebud River",
+    "Temple Lot",
+    "Dhule Lok Sabha constituency",
+    "Lexington Avenue",
+    "Castle"
+   ],
+   "separation": 15.93,
+   "u": {
+    "rewrite": [
+     0.755
+    ],
+    "para": [
+     0.9,
+     0.9
+    ],
+    "neigh": [
+     0.078,
+     0.02,
+     -0.113,
+     -0.056,
+     0.035,
+     -0.016,
+     0.082,
+     0.321,
+     -0.123,
+     0.04
+    ]
+   }
+  },
+  "b131": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "Minchau, Edmonton",
+    "Neighborhoods in Detroit",
+    "Atpadi",
+    "Jane Franklin Hall",
+    "Punnichy",
+    "Pennsylvania Route 664",
+    "Muncie Central High School",
+    "Leech Lake",
+    "Pea Ridge National Military Park",
+    "Maryland County",
+    "Squantz Pond State Park",
+    "Haaga",
+    "Portobello, Edinburgh",
+    "Damascus University",
+    "Klaskanine River",
+    "Dandenong",
+    "Caradon Hill",
+    "Torresdale",
+    "Interstate 64 in Virginia",
+    "Rosebud River",
+    "Temple Lot",
+    "Dhule Lok Sabha constituency",
+    "Lexington Avenue",
+    "Castle"
+   ],
+   "separation": 18.68,
+   "u": {
+    "rewrite": [
+     0.548
+    ],
+    "para": [
+     1.114,
+     0.822
+    ],
+    "neigh": [
+     0.336,
+     0.148,
+     -0.026,
+     0.135,
+     0.121,
+     -0.03,
+     0.223,
+     0.051,
+     0.123,
+     -0.086
+    ]
+   }
+  },
+  "b153": {
+   "positives": 151,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Volvo V70",
+    "Honda Concerto",
+    "Toyota Corolla Verso",
+    "Honda Stream",
+    "Apple II series",
+    "Dodge SRT-4",
+    "Nintendo Entertainment System",
+    "Lumia series",
+    "Honda NSR250",
+    "Toyota Mark II",
+    "Triumph TR8",
+    "Ferrari F12 berlinetta",
+    "Lancia Thema",
+    "Geo Metro",
+    "Nokia E72",
+    "Dacia Sandero",
+    "N-Gage QD",
+    "Cadillac STS Wheels",
+    "Ferrari 125 S",
+    "Cadillac Series 355",
+    "Toyota Comfort",
+    "BMW R32",
+    "Porsche 906",
+    "Toyota Sequoia"
+   ],
+   "separation": 14.49,
+   "u": {
+    "rewrite": [
+     1.055
+    ],
+    "para": [
+     0.825,
+     0.723
+    ],
+    "neigh": [
+     0.387,
+     -0.039,
+     0.439,
+     0.227,
+     0.465,
+     0.25,
+     0.202,
+     0.219,
+     -0.024,
+     0.406
+    ]
+   }
+  },
+  "b154": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Volvo V70",
+    "Honda Concerto",
+    "Toyota Corolla Verso",
+    "Honda Stream",
+    "Apple II series",
+    "Dodge SRT-4",
+    "Nintendo Entertainment System",
+    "Lumia series",
+    "Honda NSR250",
+    "Toyota Mark II",
+    "Triumph TR8",
+    "Ferrari F12 berlinetta",
+    "Lancia Thema",
+    "Geo Metro",
+    "Nokia E72",
+    "Dacia Sandero",
+    "N-Gage QD",
+    "Cadillac STS Wheels",
+    "Ferrari 125 S",
+    "Cadillac Series 355",
+    "Toyota Comfort",
+    "BMW R32",
+    "Porsche 906",
+    "Toyota Sequoia"
+   ],
+   "separation": 13.71,
+   "u": {
+    "rewrite": [
+     0.996
+    ],
+    "para": [
+     0.862,
+     1.041
+    ],
+    "neigh": [
+     0.736,
+     0.643,
+     0.397,
+     0.656,
+     0.828,
+     -0.1,
+     0.674,
+     0.644,
+     0.682,
+     0.539
+    ]
+   }
+  },
+  "b155": {
+   "positives": 150,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Volvo V70",
+    "Honda Concerto",
+    "Toyota Corolla Verso",
+    "Honda Stream",
+    "Apple II series",
+    "Dodge SRT-4",
+    "Nintendo Entertainment System",
+    "Lumia series",
+    "Honda NSR250",
+    "Toyota Mark II",
+    "Triumph TR8",
+    "Ferrari F12 berlinetta",
+    "Lancia Thema",
+    "Geo Metro",
+    "Nokia E72",
+    "Dacia Sandero",
+    "N-Gage QD",
+    "Cadillac STS Wheels",
+    "Ferrari 125 S",
+    "Cadillac Series 355",
+    "Toyota Comfort",
+    "BMW R32",
+    "Porsche 906",
+    "Toyota Sequoia"
+   ],
+   "separation": 14.89,
+   "u": {
+    "rewrite": [
+     0.951
+    ],
+    "para": [
+     1.164,
+     1.151
+    ],
+    "neigh": [
+     -0.107,
+     0.41,
+     0.53,
+     0.412,
+     0.109,
+     0.128,
+     0.338,
+     0.458,
+     -0.151,
+     0.119
+    ]
+   }
+  },
+  "b25": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Victor de Laprade",
+    "Jan Davidsz. de Heem",
+    "Rafael Alberti",
+    "Jean Sorel",
+    "Alexey Miller",
+    "Freek de Jonge",
+    "Kool Shen",
+    "Joseph Laniel",
+    "Jean Le Poulain",
+    "Roger Vitrac",
+    "Toon Hermans",
+    "Grigore Moisil",
+    "John Webster",
+    "Ivan Puni",
+    "Maria Tesselschade Visscher",
+    "Elsa Lunghini",
+    "Julien Courbet",
+    "Christian Clavier",
+    "Georges Pompidou",
+    "Christian Jacq",
+    "Polina Zherebtsova",
+    "Benjamin Constant",
+    "Michel Bouquet",
+    "Shi Yongxin"
+   ],
+   "separation": 2.14,
+   "u": {
+    "rewrite": [
+     0.534
+    ],
+    "para": [
+     0.93,
+     1.049
+    ],
+    "neigh": [
+     -0.097,
+     -0.158,
+     -0.207,
+     -0.979,
+     -0.824,
+     -0.059,
+     -0.201,
+     -1.17,
+     -0.862,
+     -0.284
+    ]
+   }
+  },
+  "b26": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Victor de Laprade",
+    "Jan Davidsz. de Heem",
+    "Rafael Alberti",
+    "Jean Sorel",
+    "Alexey Miller",
+    "Freek de Jonge",
+    "Kool Shen",
+    "Joseph Laniel",
+    "Jean Le Poulain",
+    "Roger Vitrac",
+    "Toon Hermans",
+    "Grigore Moisil",
+    "John Webster",
+    "Ivan Puni",
+    "Maria Tesselschade Visscher",
+    "Elsa Lunghini",
+    "Julien Courbet",
+    "Christian Clavier",
+    "Georges Pompidou",
+    "Christian Jacq",
+    "Polina Zherebtsova",
+    "Benjamin Constant",
+    "Michel Bouquet",
+    "Shi Yongxin"
+   ],
+   "separation": 4.51,
+   "u": {
+    "rewrite": [
+     0.615
+    ],
+    "para": [
+     1.006,
+     1.018
+    ],
+    "neigh": [
+     0.051,
+     -0.224,
+     -0.192,
+     0.612,
+     0.049,
+     0.193,
+     -0.55,
+     -0.121,
+     0.168,
+     -0.077
+    ]
+   }
+  },
+  "b27": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Victor de Laprade",
+    "Jan Davidsz. de Heem",
+    "Rafael Alberti",
+    "Jean Sorel",
+    "Alexey Miller",
+    "Freek de Jonge",
+    "Kool Shen",
+    "Joseph Laniel",
+    "Jean Le Poulain",
+    "Roger Vitrac",
+    "Toon Hermans",
+    "Grigore Moisil",
+    "John Webster",
+    "Ivan Puni",
+    "Maria Tesselschade Visscher",
+    "Elsa Lunghini",
+    "Julien Courbet",
+    "Christian Clavier",
+    "Georges Pompidou",
+    "Christian Jacq",
+    "Polina Zherebtsova",
+    "Benjamin Constant",
+    "Michel Bouquet",
+    "Shi Yongxin"
+   ],
+   "separation": 3.42,
+   "u": {
+    "rewrite": [
+     0.596
+    ],
+    "para": [
+     1.51,
+     1.66
+    ],
+    "neigh": [
+     -0.113,
+     0.42,
+     -0.415,
+     -0.225,
+     -0.118,
+     -0.069,
+     -0.368,
+     0.108,
+     -0.392,
+     0.478
+    ]
+   }
+  },
+  "b113": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "John Clayton Allen",
+    "Varsha Bhosle",
+    "Juliet Ibrahim",
+    "Anthony Cannella",
+    "Gianfranco Terenzi",
+    "Martin Klebba",
+    "Lupus of Sens",
+    "Joseph Cowen",
+    "William Pember Reeves",
+    "Henri Hauser",
+    "Lou Reed",
+    "Jean Titelouze",
+    "Nureddin Pasha",
+    "Ethyl Eichelberger",
+    "Marion Post Wolcott",
+    "Ctesias",
+    "Guy Doleman",
+    "Cyril Wong",
+    "Ulf Lundell",
+    "Cal Lampley",
+    "Philip Warren Anderson",
+    "George Washington Julian",
+    "Michael Denis",
+    "Simon Gosejohann"
+   ],
+   "separation": 6.9,
+   "u": {
+    "rewrite": [
+     0.572
+    ],
+    "para": [
+     0.666,
+     0.493
+    ],
+    "neigh": [
+     -0.495,
+     -0.449,
+     -0.15,
+     -0.434,
+     -0.308,
+     -0.411,
+     -0.441,
+     -0.316,
+     -0.19,
+     -0.342
+    ]
+   }
+  },
+  "b114": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "John Clayton Allen",
+    "Varsha Bhosle",
+    "Juliet Ibrahim",
+    "Anthony Cannella",
+    "Gianfranco Terenzi",
+    "Martin Klebba",
+    "Lupus of Sens",
+    "Joseph Cowen",
+    "William Pember Reeves",
+    "Henri Hauser",
+    "Lou Reed",
+    "Jean Titelouze",
+    "Nureddin Pasha",
+    "Ethyl Eichelberger",
+    "Marion Post Wolcott",
+    "Ctesias",
+    "Guy Doleman",
+    "Cyril Wong",
+    "Ulf Lundell",
+    "Cal Lampley",
+    "Philip Warren Anderson",
+    "George Washington Julian",
+    "Michael Denis",
+    "Simon Gosejohann"
+   ],
+   "separation": 4.76,
+   "u": {
+    "rewrite": [
+     0.54
+    ],
+    "para": [
+     0.916,
+     0.734
+    ],
+    "neigh": [
+     -0.145,
+     -0.388,
+     0.037,
+     -0.055,
+     -0.397,
+     -0.372,
+     -0.191,
+     -0.117,
+     -0.029,
+     -0.03
+    ]
+   }
+  },
+  "b115": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "John Clayton Allen",
+    "Varsha Bhosle",
+    "Juliet Ibrahim",
+    "Anthony Cannella",
+    "Gianfranco Terenzi",
+    "Martin Klebba",
+    "Lupus of Sens",
+    "Joseph Cowen",
+    "William Pember Reeves",
+    "Henri Hauser",
+    "Lou Reed",
+    "Jean Titelouze",
+    "Nureddin Pasha",
+    "Ethyl Eichelberger",
+    "Marion Post Wolcott",
+    "Ctesias",
+    "Guy Doleman",
+    "Cyril Wong",
+    "Ulf Lundell",
+    "Cal Lampley",
+    "Philip Warren Anderson",
+    "George Washington Julian",
+    "Michael Denis",
+    "Simon Gosejohann"
+   ],
+   "separation": 4.26,
+   "u": {
+    "rewrite": [
+     0.265
+    ],
+    "para": [
+     0.522,
+     0.861
+    ],
+    "neigh": [
+     -0.632,
+     -0.192,
+     -0.239,
+     -0.273,
+     -0.333,
+     -0.288,
+     -0.196,
+     -0.162,
+     -0.313,
+     -0.221
+    ]
+   }
+  },
+  "b33": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Mikkeli",
+    "Niue",
+    "Bahia",
+    "Juankoski",
+    "Republic of the Congo",
+    "Qing dynasty",
+    "National Film Board of Canada",
+    "Kitee",
+    "Porvoo",
+    "Lugano",
+    "Stockholm Municipality",
+    "Humppila",
+    "Republic of Karelia",
+    "Donetsk",
+    "Kemi",
+    "Donetsk Oblast",
+    "Caribbean Netherlands",
+    "Turkmenistan",
+    "Jamshedpur",
+    "Samoa",
+    "Tervola",
+    "Economic Community of West African States",
+    "Korsholm",
+    "Cayman Islands"
+   ],
+   "separation": 22.33,
+   "u": {
+    "rewrite": [
+     1.046
+    ],
+    "para": [
+     1.127,
+     0.546
+    ],
+    "neigh": [
+     -0.171,
+     -0.021,
+     0.087,
+     -0.064,
+     0.056,
+     -0.061,
+     0.134,
+     0.063,
+     -0.112,
+     0.17
+    ]
+   }
+  },
+  "b34": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Mikkeli",
+    "Niue",
+    "Bahia",
+    "Juankoski",
+    "Republic of the Congo",
+    "Qing dynasty",
+    "National Film Board of Canada",
+    "Kitee",
+    "Porvoo",
+    "Lugano",
+    "Stockholm Municipality",
+    "Humppila",
+    "Republic of Karelia",
+    "Donetsk",
+    "Kemi",
+    "Donetsk Oblast",
+    "Caribbean Netherlands",
+    "Turkmenistan",
+    "Jamshedpur",
+    "Samoa",
+    "Tervola",
+    "Economic Community of West African States",
+    "Korsholm",
+    "Cayman Islands"
+   ],
+   "separation": 9.83,
+   "u": {
+    "rewrite": [
+     0.664
+    ],
+    "para": [
+     0.946,
+     0.324
+    ],
+    "neigh": [
+     -0.517,
+     -0.032,
+     -0.212,
+     -0.332,
+     -0.132,
+     0.133,
+     -0.374,
+     -0.44,
+     0.05,
+     -0.333
+    ]
+   }
+  },
+  "b35": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Mikkeli",
+    "Niue",
+    "Bahia",
+    "Juankoski",
+    "Republic of the Congo",
+    "Qing dynasty",
+    "National Film Board of Canada",
+    "Kitee",
+    "Porvoo",
+    "Lugano",
+    "Stockholm Municipality",
+    "Humppila",
+    "Republic of Karelia",
+    "Donetsk",
+    "Kemi",
+    "Donetsk Oblast",
+    "Caribbean Netherlands",
+    "Turkmenistan",
+    "Jamshedpur",
+    "Samoa",
+    "Tervola",
+    "Economic Community of West African States",
+    "Korsholm",
+    "Cayman Islands"
+   ],
+   "separation": 16.39,
+   "u": {
+    "rewrite": [
+     0.943
+    ],
+    "para": [
+     1.143,
+     1.004
+    ],
+    "neigh": [
+     0.01,
+     -0.028,
+     0.06,
+     0.157,
+     -0.048,
+     0.024,
+     -0.122,
+     0.068,
+     -0.03,
+     0.084
+    ]
+   }
+  },
+  "b49": {
+   "positives": 143,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "New Literary History",
+    "Plus belle la vie",
+    "An Iceland Fisherman",
+    "Juliet Bravo",
+    "The Blue Planet",
+    "Star Trek: Generations",
+    "Pablo Honey",
+    "Law of Desire",
+    "Sorga Ka Toedjoe",
+    "Mississippi Masala",
+    "The National Lottery Draws",
+    "Human Touch",
+    "The Archers",
+    "Do Aankhen Barah Haath",
+    "L'Arianna",
+    "Do Not Disturb",
+    "Celebrated Cases of Judge Dee",
+    "The Thieves",
+    "Jack Frost",
+    "The Fatal Eggs",
+    "Y Gododdin",
+    "The Sarah Jane Adventures",
+    "Early Doors",
+    "Le Voyage en douce"
+   ],
+   "separation": 6.9,
+   "u": {
+    "rewrite": [
+     0.995
+    ],
+    "para": [
+     0.727,
+     1.274
+    ],
+    "neigh": [
+     -0.551,
+     -0.234,
+     -0.383,
+     -0.356,
+     -0.013,
+     -0.539,
+     -0.374,
+     -0.428,
+     -0.083,
+     -0.634
+    ]
+   }
+  },
+  "b50": {
+   "positives": 143,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "New Literary History",
+    "Plus belle la vie",
+    "An Iceland Fisherman",
+    "Juliet Bravo",
+    "The Blue Planet",
+    "Star Trek: Generations",
+    "Pablo Honey",
+    "Law of Desire",
+    "Sorga Ka Toedjoe",
+    "Mississippi Masala",
+    "The National Lottery Draws",
+    "Human Touch",
+    "The Archers",
+    "Do Aankhen Barah Haath",
+    "L'Arianna",
+    "Do Not Disturb",
+    "Celebrated Cases of Judge Dee",
+    "The Thieves",
+    "Jack Frost",
+    "The Fatal Eggs",
+    "Y Gododdin",
+    "The Sarah Jane Adventures",
+    "Early Doors",
+    "Le Voyage en douce"
+   ],
+   "separation": 10.52,
+   "u": {
+    "rewrite": [
+     0.556
+    ],
+    "para": [
+     1.508,
+     0.694
+    ],
+    "neigh": [
+     0.114,
+     0.291,
+     -0.332,
+     0.093,
+     -0.282,
+     -0.087,
+     0.429,
+     -0.302,
+     -0.374,
+     0.968
+    ]
+   }
+  },
+  "b51": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "New Literary History",
+    "Plus belle la vie",
+    "An Iceland Fisherman",
+    "Juliet Bravo",
+    "The Blue Planet",
+    "Star Trek: Generations",
+    "Pablo Honey",
+    "Law of Desire",
+    "Sorga Ka Toedjoe",
+    "Mississippi Masala",
+    "The National Lottery Draws",
+    "Human Touch",
+    "The Archers",
+    "Do Aankhen Barah Haath",
+    "L'Arianna",
+    "Do Not Disturb",
+    "Celebrated Cases of Judge Dee",
+    "The Thieves",
+    "Jack Frost",
+    "The Fatal Eggs",
+    "Y Gododdin",
+    "The Sarah Jane Adventures",
+    "Early Doors",
+    "Le Voyage en douce"
+   ],
+   "separation": 7.41,
+   "u": {
+    "rewrite": [
+     0.949
+    ],
+    "para": [
+     0.683,
+     0.911
+    ],
+    "neigh": [
+     -0.5,
+     -0.471,
+     -0.391,
+     -0.424,
+     -0.547,
+     -0.673,
+     -0.489,
+     -0.687,
+     -0.508,
+     -0.495
+    ]
+   }
+  },
+  "b105": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Vincent Strambi",
+    "Hydatius",
+    "Sabinus of Spoleto",
+    "James Trobec",
+    "Alfonso de Cartagena",
+    "Fat\u2032h-Ali Shah Qajar",
+    "Justin Francis Rigali",
+    "Jorge Medina Est\u00e9vez",
+    "Innocent VIII",
+    "Saturnin",
+    "Tysilio",
+    "Georg von Kopp",
+    "John XVII",
+    "Harry Carpenter",
+    "Manfred Rommel",
+    "Donato Sbarretti",
+    "Jozef Tomko",
+    "Celso Benigno Luigi Costantini",
+    "Francisco Mendoza de Bobadilla",
+    "Rosendo Salvado",
+    "Basilio Pompilj",
+    "Meinwerk",
+    "Stephen Gardiner",
+    "Eusebius of Caesarea"
+   ],
+   "separation": 6.75,
+   "u": {
+    "rewrite": [
+     0.827
+    ],
+    "para": [
+     0.805,
+     0.756
+    ],
+    "neigh": [
+     -0.093,
+     -0.477,
+     0.007,
+     -0.118,
+     -0.378,
+     -0.351,
+     0.003,
+     -0.299,
+     0.168,
+     -0.28
+    ]
+   }
+  },
+  "b106": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Vincent Strambi",
+    "Hydatius",
+    "Sabinus of Spoleto",
+    "James Trobec",
+    "Alfonso de Cartagena",
+    "Fat\u2032h-Ali Shah Qajar",
+    "Justin Francis Rigali",
+    "Jorge Medina Est\u00e9vez",
+    "Innocent VIII",
+    "Saturnin",
+    "Tysilio",
+    "Georg von Kopp",
+    "John XVII",
+    "Harry Carpenter",
+    "Manfred Rommel",
+    "Donato Sbarretti",
+    "Jozef Tomko",
+    "Celso Benigno Luigi Costantini",
+    "Francisco Mendoza de Bobadilla",
+    "Rosendo Salvado",
+    "Basilio Pompilj",
+    "Meinwerk",
+    "Stephen Gardiner",
+    "Eusebius of Caesarea"
+   ],
+   "separation": 5.21,
+   "u": {
+    "rewrite": [
+     1.043
+    ],
+    "para": [
+     0.985,
+     0.387
+    ],
+    "neigh": [
+     0.658,
+     0.624,
+     0.105,
+     0.065,
+     -0.172,
+     0.344,
+     0.069,
+     0.115,
+     -0.407,
+     0.162
+    ]
+   }
+  },
+  "b107": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Vincent Strambi",
+    "Hydatius",
+    "Sabinus of Spoleto",
+    "James Trobec",
+    "Alfonso de Cartagena",
+    "Fat\u2032h-Ali Shah Qajar",
+    "Justin Francis Rigali",
+    "Jorge Medina Est\u00e9vez",
+    "Innocent VIII",
+    "Saturnin",
+    "Tysilio",
+    "Georg von Kopp",
+    "John XVII",
+    "Harry Carpenter",
+    "Manfred Rommel",
+    "Donato Sbarretti",
+    "Jozef Tomko",
+    "Celso Benigno Luigi Costantini",
+    "Francisco Mendoza de Bobadilla",
+    "Rosendo Salvado",
+    "Basilio Pompilj",
+    "Meinwerk",
+    "Stephen Gardiner",
+    "Eusebius of Caesarea"
+   ],
+   "separation": 7.07,
+   "u": {
+    "rewrite": [
+     0.973
+    ],
+    "para": [
+     0.658,
+     1.262
+    ],
+    "neigh": [
+     -0.351,
+     0.078,
+     -0.219,
+     -0.323,
+     -0.309,
+     0.024,
+     -0.336,
+     -0.355,
+     -0.123,
+     -0.137
+    ]
+   }
+  },
+  "b73": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Tim Borowski",
+    "Jaroslav Janus",
+    "Roger Clemens",
+    "Vince Coleman",
+    "Jim Hart",
+    "Andrico Hines",
+    "Erik Ersberg",
+    "Kevin Eakin",
+    "Juan Fernando Quintero",
+    "Jeff Ulbrich",
+    "Zach Mettenberger",
+    "Sam LoPresti",
+    "Tarvaris Jackson",
+    "Gabriele Oriali",
+    "Jordon Dizon",
+    "Heath Shuler",
+    "Marco Verratti",
+    "Vincent Laban",
+    "Xavier Margairaz",
+    "Derek Lowe",
+    "Ken O'Brien",
+    "Chin-hui Tsao",
+    "Fernando De Napoli",
+    "Chip Banks"
+   ],
+   "separation": 3.56,
+   "u": {
+    "rewrite": [
+     0.063
+    ],
+    "para": [
+     1.353,
+     0.736
+    ],
+    "neigh": [
+     -0.587,
+     -0.655,
+     -1.354,
+     -1.021,
+     -0.653,
+     -0.303,
+     -0.46,
+     -1.021,
+     -0.324,
+     -0.573
+    ]
+   }
+  },
+  "b74": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Tim Borowski",
+    "Jaroslav Janus",
+    "Roger Clemens",
+    "Vince Coleman",
+    "Jim Hart",
+    "Andrico Hines",
+    "Erik Ersberg",
+    "Kevin Eakin",
+    "Juan Fernando Quintero",
+    "Jeff Ulbrich",
+    "Zach Mettenberger",
+    "Sam LoPresti",
+    "Tarvaris Jackson",
+    "Gabriele Oriali",
+    "Jordon Dizon",
+    "Heath Shuler",
+    "Marco Verratti",
+    "Vincent Laban",
+    "Xavier Margairaz",
+    "Derek Lowe",
+    "Ken O'Brien",
+    "Chin-hui Tsao",
+    "Fernando De Napoli",
+    "Chip Banks"
+   ],
+   "separation": 7.41,
+   "u": {
+    "rewrite": [
+     0.29
+    ],
+    "para": [
+     1.111,
+     1.442
+    ],
+    "neigh": [
+     -0.252,
+     -0.242,
+     -0.351,
+     -0.186,
+     -0.407,
+     -0.282,
+     -0.296,
+     -0.407,
+     -0.415,
+     -0.283
+    ]
+   }
+  },
+  "b75": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Tim Borowski",
+    "Jaroslav Janus",
+    "Roger Clemens",
+    "Vince Coleman",
+    "Jim Hart",
+    "Andrico Hines",
+    "Erik Ersberg",
+    "Kevin Eakin",
+    "Juan Fernando Quintero",
+    "Jeff Ulbrich",
+    "Zach Mettenberger",
+    "Sam LoPresti",
+    "Tarvaris Jackson",
+    "Gabriele Oriali",
+    "Jordon Dizon",
+    "Heath Shuler",
+    "Marco Verratti",
+    "Vincent Laban",
+    "Xavier Margairaz",
+    "Derek Lowe",
+    "Ken O'Brien",
+    "Chin-hui Tsao",
+    "Fernando De Napoli",
+    "Chip Banks"
+   ],
+   "separation": 8.91,
+   "u": {
+    "rewrite": [
+     0.724
+    ],
+    "para": [
+     1.208,
+     1.033
+    ],
+    "neigh": [
+     -0.261,
+     -0.394,
+     -0.124,
+     -0.323,
+     -0.271,
+     -0.289,
+     -0.135,
+     0.392,
+     -0.188,
+     -0.411
+    ]
+   }
+  },
+  "b57": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Jesus in Islam",
+    "Yusuf al-Qaradawi",
+    "Khalid Yasin",
+    "Ahmad al-Badawi",
+    "Gautama Buddha",
+    "Moshe ben Maimon",
+    "Menachem Mendel Schneerson",
+    "Joseph Priestley",
+    "hakham",
+    "Hersekzade Ahmed Pasha",
+    "Maulana Mohammad Ali",
+    "Isaac Abrabanel",
+    "Pacific Zen Institute",
+    "Edward I of England",
+    "Moin-ud-din Chishti",
+    "Bede",
+    "Hank Johnson",
+    "Yosef Yitzchok Schneersohn",
+    "Almoravid dynasty",
+    "Romulus Augustus",
+    "shofar",
+    "Firuz Shah Tughlaq",
+    "Muhammad Qasim Nanotvi",
+    "Tang Empire"
+   ],
+   "separation": 3.29,
+   "u": {
+    "rewrite": [
+     0.865
+    ],
+    "para": [
+     0.87,
+     0.749
+    ],
+    "neigh": [
+     -1.087,
+     -0.349,
+     -0.972,
+     -0.62,
+     0.154,
+     -0.44,
+     -1.405,
+     -0.319,
+     -0.023,
+     0.108
+    ]
+   }
+  },
+  "b58": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Jesus in Islam",
+    "Yusuf al-Qaradawi",
+    "Khalid Yasin",
+    "Ahmad al-Badawi",
+    "Gautama Buddha",
+    "Moshe ben Maimon",
+    "Menachem Mendel Schneerson",
+    "Joseph Priestley",
+    "hakham",
+    "Hersekzade Ahmed Pasha",
+    "Maulana Mohammad Ali",
+    "Isaac Abrabanel",
+    "Pacific Zen Institute",
+    "Edward I of England",
+    "Moin-ud-din Chishti",
+    "Bede",
+    "Hank Johnson",
+    "Yosef Yitzchok Schneersohn",
+    "Almoravid dynasty",
+    "Romulus Augustus",
+    "shofar",
+    "Firuz Shah Tughlaq",
+    "Muhammad Qasim Nanotvi",
+    "Tang Empire"
+   ],
+   "separation": 3.85,
+   "u": {
+    "rewrite": [
+     0.166
+    ],
+    "para": [
+     1.754,
+     1.514
+    ],
+    "neigh": [
+     -0.294,
+     -0.27,
+     -0.668,
+     0.307,
+     -0.325,
+     -0.218,
+     -0.647,
+     -0.533,
+     -0.816,
+     -0.602
+    ]
+   }
+  },
+  "b59": {
+   "positives": 152,
+   "invented": 228,
+   "real": 456,
+   "real_subjects": [
+    "Jesus in Islam",
+    "Yusuf al-Qaradawi",
+    "Khalid Yasin",
+    "Ahmad al-Badawi",
+    "Gautama Buddha",
+    "Moshe ben Maimon",
+    "Menachem Mendel Schneerson",
+    "Joseph Priestley",
+    "hakham",
+    "Hersekzade Ahmed Pasha",
+    "Maulana Mohammad Ali",
+    "Isaac Abrabanel",
+    "Pacific Zen Institute",
+    "Edward I of England",
+    "Moin-ud-din Chishti",
+    "Bede",
+    "Hank Johnson",
+    "Yosef Yitzchok Schneersohn",
+    "Almoravid dynasty",
+    "Romulus Augustus",
+    "shofar",
+    "Firuz Shah Tughlaq",
+    "Muhammad Qasim Nanotvi",
+    "Tang Empire"
+   ],
+   "separation": 3.95,
+   "u": {
+    "rewrite": [
+     1.157
+    ],
+    "para": [
+     1.007,
+     0.301
+    ],
+    "neigh": [
+     -0.972,
+     -0.423,
+     -0.981,
+     -0.853,
+     -0.677,
+     -0.5,
+     -0.594,
+     -0.625,
+     -0.666,
+     -0.163
+    ]
+   }
+  },
+  "b81": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Nate Schierholtz",
+    "Peter Forsberg",
+    "Bernie Casey",
+    "Jermain Defoe",
+    "Timothy Brown",
+    "Steve Nash",
+    "Patrick Roy",
+    "Kareem Abdul-Jabbar",
+    "Siem de Jong",
+    "Mark Messier",
+    "Guy Lafleur",
+    "Tim Horton",
+    "Dennis Rodman",
+    "John Matuszak",
+    "Chase Young",
+    "Jari Kurri",
+    "Vladim\u00edr R\u016f\u017ei\u010dka",
+    "Dominik Ha\u0161ek",
+    "Kendall Waston",
+    "Christian Bola\u00f1os",
+    "Brock Lesnar",
+    "Len Ford",
+    "Shane Doan",
+    "Zack Steffen"
+   ],
+   "separation": 7.56,
+   "u": {
+    "rewrite": [
+     0.361
+    ],
+    "para": [
+     0.656,
+     1.421
+    ],
+    "neigh": [
+     0.905,
+     -0.15,
+     0.037,
+     -0.195,
+     0.552,
+     0.013,
+     0.13,
+     -0.259,
+     1.022,
+     0.567
+    ]
+   }
+  },
+  "b82": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Nate Schierholtz",
+    "Peter Forsberg",
+    "Bernie Casey",
+    "Jermain Defoe",
+    "Timothy Brown",
+    "Steve Nash",
+    "Patrick Roy",
+    "Kareem Abdul-Jabbar",
+    "Siem de Jong",
+    "Mark Messier",
+    "Guy Lafleur",
+    "Tim Horton",
+    "Dennis Rodman",
+    "John Matuszak",
+    "Chase Young",
+    "Jari Kurri",
+    "Vladim\u00edr R\u016f\u017ei\u010dka",
+    "Dominik Ha\u0161ek",
+    "Kendall Waston",
+    "Christian Bola\u00f1os",
+    "Brock Lesnar",
+    "Len Ford",
+    "Shane Doan",
+    "Zack Steffen"
+   ],
+   "separation": 5.18,
+   "u": {
+    "rewrite": [
+     0.33
+    ],
+    "para": [
+     1.463,
+     0.816
+    ],
+    "neigh": [
+     -0.654,
+     -0.053,
+     -0.554,
+     -0.622,
+     -0.76,
+     -0.751,
+     -0.841,
+     -0.755,
+     -0.293,
+     -0.817
+    ]
+   }
+  },
+  "b83": {
+   "positives": 144,
+   "invented": 216,
+   "real": 432,
+   "real_subjects": [
+    "Nate Schierholtz",
+    "Peter Forsberg",
+    "Bernie Casey",
+    "Jermain Defoe",
+    "Timothy Brown",
+    "Steve Nash",
+    "Patrick Roy",
+    "Kareem Abdul-Jabbar",
+    "Siem de Jong",
+    "Mark Messier",
+    "Guy Lafleur",
+    "Tim Horton",
+    "Dennis Rodman",
+    "John Matuszak",
+    "Chase Young",
+    "Jari Kurri",
+    "Vladim\u00edr R\u016f\u017ei\u010dka",
+    "Dominik Ha\u0161ek",
+    "Kendall Waston",
+    "Christian Bola\u00f1os",
+    "Brock Lesnar",
+    "Len Ford",
+    "Shane Doan",
+    "Zack Steffen"
+   ],
+   "separation": 6.58,
+   "u": {
+    "rewrite": [
+     0.621
+    ],
+    "para": [
+     1.252,
+     0.194
+    ],
+    "neigh": [
+     0.077,
+     -0.649,
+     -0.057,
+     0.84,
+     -0.289,
+     0.569,
+     -0.277,
+     0.068,
+     -0.331,
+     -0.534
+    ]
+   }
+  },
+  "b89": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "James Hannen, Baron Hannen",
+    "Viktor Mikhailovich Vasnetsov",
+    "Joan Ruddock",
+    "Ana Mato Adrover",
+    "Geert Lovink",
+    "Lewis Hayden",
+    "Karl Farkas",
+    "Jean-Baptiste Teste",
+    "William Waldegrave, Baron Waldegrave of North Hill",
+    "Gloria Estefan",
+    "Jules Favre",
+    "Herbert von Bismarck",
+    "Nitzan Horowitz",
+    "Francis Hagerup",
+    "Lemuel Shaw",
+    "Conrad Schick",
+    "Georges Darboy",
+    "Conrad von Soest",
+    "Veturia",
+    "Brian Paddick",
+    "Pedro de Ribera",
+    "Yigael Yadin",
+    "Fyodor Ivanovich Shalyapin",
+    "Mac Harb"
+   ],
+   "separation": 17.49,
+   "u": {
+    "rewrite": [
+     0.885
+    ],
+    "para": [
+     1.108,
+     0.914
+    ],
+    "neigh": [
+     -0.131,
+     -0.007,
+     -0.219,
+     -0.182,
+     -0.083,
+     0.011,
+     -0.028,
+     0.066,
+     -0.243,
+     -0.105
+    ]
+   }
+  },
+  "b90": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "James Hannen, Baron Hannen",
+    "Viktor Mikhailovich Vasnetsov",
+    "Joan Ruddock",
+    "Ana Mato Adrover",
+    "Geert Lovink",
+    "Lewis Hayden",
+    "Karl Farkas",
+    "Jean-Baptiste Teste",
+    "William Waldegrave, Baron Waldegrave of North Hill",
+    "Gloria Estefan",
+    "Jules Favre",
+    "Herbert von Bismarck",
+    "Nitzan Horowitz",
+    "Francis Hagerup",
+    "Lemuel Shaw",
+    "Conrad Schick",
+    "Georges Darboy",
+    "Conrad von Soest",
+    "Veturia",
+    "Brian Paddick",
+    "Pedro de Ribera",
+    "Yigael Yadin",
+    "Fyodor Ivanovich Shalyapin",
+    "Mac Harb"
+   ],
+   "separation": 4.69,
+   "u": {
+    "rewrite": [
+     0.893
+    ],
+    "para": [
+     0.838,
+     0.906
+    ],
+    "neigh": [
+     0.02,
+     0.089,
+     -0.347,
+     -0.421,
+     -0.282,
+     -0.076,
+     -0.338,
+     0.139,
+     -0.127,
+     0.245
+    ]
+   }
+  },
+  "b91": {
+   "positives": 136,
+   "invented": 204,
+   "real": 408,
+   "real_subjects": [
+    "James Hannen, Baron Hannen",
+    "Viktor Mikhailovich Vasnetsov",
+    "Joan Ruddock",
+    "Ana Mato Adrover",
+    "Geert Lovink",
+    "Lewis Hayden",
+    "Karl Farkas",
+    "Jean-Baptiste Teste",
+    "William Waldegrave, Baron Waldegrave of North Hill",
+    "Gloria Estefan",
+    "Jules Favre",
+    "Herbert von Bismarck",
+    "Nitzan Horowitz",
+    "Francis Hagerup",
+    "Lemuel Shaw",
+    "Conrad Schick",
+    "Georges Darboy",
+    "Conrad von Soest",
+    "Veturia",
+    "Brian Paddick",
+    "Pedro de Ribera",
+    "Yigael Yadin",
+    "Fyodor Ivanovich Shalyapin",
+    "Mac Harb"
+   ],
+   "separation": 3.71,
+   "u": {
+    "rewrite": [
+     0.898
+    ],
+    "para": [
+     0.994,
+     0.841
+    ],
+    "neigh": [
+     -0.399,
+     -0.238,
+     0.162,
+     -0.275,
+     -0.04,
+     -0.071,
+     -0.115,
+     -0.123,
+     0.578,
+     0.156
+    ]
+   }
+  }
+ }
+}

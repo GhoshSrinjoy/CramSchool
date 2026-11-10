@@ -1,0 +1,197 @@
+{
+ "settings": [
+  [
+   1,
+   false
+  ],
+  [
+   8,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   64,
+   false
+  ],
+  [
+   16,
+   true
+  ],
+  [
+   64,
+   true
+  ]
+ ],
+ "rows": [
+  {
+   "set": "known",
+   "batch": 1,
+   "reversed": false,
+   "answered": 133,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "known",
+   "batch": 8,
+   "reversed": false,
+   "answered": 132,
+   "lost": 1,
+   "gained": 0,
+   "lost_prompts": [
+    "The capital of Cuba is"
+   ]
+  },
+  {
+   "set": "known",
+   "batch": 16,
+   "reversed": false,
+   "answered": 133,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "known",
+   "batch": 32,
+   "reversed": false,
+   "answered": 133,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "known",
+   "batch": 64,
+   "reversed": false,
+   "answered": 133,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "known",
+   "batch": 16,
+   "reversed": true,
+   "answered": 133,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "known",
+   "batch": 64,
+   "reversed": true,
+   "answered": 133,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "known",
+   "summary": true,
+   "reference_answered": 133,
+   "lost_under_some_batching": 1
+  },
+  {
+   "set": "counterfact",
+   "batch": 1,
+   "reversed": false,
+   "answered": 388,
+   "lost": 4,
+   "gained": 1,
+   "lost_prompts": [
+    "dawah is follower of",
+    "Internet Information Services, a product of",
+    "In French Southern and Antarctic Lands, an official language is",
+    "The genre played by Neil Gaiman is"
+   ]
+  },
+  {
+   "set": "counterfact",
+   "batch": 8,
+   "reversed": false,
+   "answered": 390,
+   "lost": 7,
+   "gained": 6,
+   "lost_prompts": [
+    "Pentium Pro was a product of",
+    "dawah is follower of",
+    "The mother tongue of Guy Sorman is",
+    "Internet Information Services, a product of",
+    "The genre played by Neil Gaiman is",
+    "Pierre Jolivet, a native",
+    "True Detective was originally aired on"
+   ]
+  },
+  {
+   "set": "counterfact",
+   "batch": 16,
+   "reversed": false,
+   "answered": 394,
+   "lost": 1,
+   "gained": 4,
+   "lost_prompts": [
+    "Pentium Pro was a product of"
+   ]
+  },
+  {
+   "set": "counterfact",
+   "batch": 32,
+   "reversed": false,
+   "answered": 391,
+   "lost": 5,
+   "gained": 5,
+   "lost_prompts": [
+    "dawah is follower of",
+    "The language used by Mervyn Peake is",
+    "The original language of Their Satanic Majesties Request was",
+    "In French Southern and Antarctic Lands, an official language is",
+    "Pierre Jolivet, a native"
+   ]
+  },
+  {
+   "set": "counterfact",
+   "batch": 64,
+   "reversed": false,
+   "answered": 391,
+   "lost": 0,
+   "gained": 0,
+   "lost_prompts": []
+  },
+  {
+   "set": "counterfact",
+   "batch": 16,
+   "reversed": true,
+   "answered": 394,
+   "lost": 1,
+   "gained": 4,
+   "lost_prompts": [
+    "Pentium Pro was a product of"
+   ]
+  },
+  {
+   "set": "counterfact",
+   "batch": 64,
+   "reversed": true,
+   "answered": 392,
+   "lost": 0,
+   "gained": 1,
+   "lost_prompts": []
+  },
+  {
+   "set": "counterfact",
+   "summary": true,
+   "reference_answered": 391,
+   "lost_under_some_batching": 10
+  }
+ ]
+}

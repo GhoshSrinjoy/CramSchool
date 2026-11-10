@@ -1,0 +1,28 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.91it/s]Loading weights:  39%|███▉      | 124/320 [00:00<00:00, 623.33it/s]Loading weights:  81%|████████  | 258/320 [00:00<00:00, 881.33it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 808.77it/s]
+unedited: known facts 133 of 133, CounterFact facts answered 391 of 400 | 18s
+second moments: 27640 fitting tokens, 8471 spare tokens; the paragraphs' first tokens carry 0.4% of the fitting energy | 66s
+harm order: the saved first 512, then the rest recomputed from the scan (511 of the saved 512 agree with the recomputation)
+redundancy order computed | overlap with the harm order: first 64 2, first 256 27, first 1024 388 | 68s
+[1/20] N=16    harm       switched off: drift 0.00059, unchanged 0.9856, held-out KL 0.000999/token, known lost 1 of 133, CounterFact lost 3 of 391 | damage | 83s
+[2/20] N=16    harm       compensated : drift 0.00060, unchanged 0.9783, held-out KL 0.000743/token, known lost 1 of 133, CounterFact lost 2 of 391 | damage | ridge 0.1, lost output energy left 42.7%, bf16 rounding 4.3% | 99s
+[3/20] N=16    redundancy switched off: drift 0.00067, unchanged 0.9783, held-out KL 0.000681/token, known lost 0 of 133, CounterFact lost 3 of 391 | damage | 113s
+[4/20] N=16    redundancy compensated : drift 0.00046, unchanged 0.9928, held-out KL 0.000494/token, known lost 3 of 133, CounterFact lost 2 of 391 | damage | ridge 0.1, lost output energy left 15.8%, bf16 rounding 10.4% | 130s
+[5/20] N=64    harm       switched off: drift 0.00097, unchanged 0.9711, held-out KL 0.001933/token, known lost 1 of 133, CounterFact lost 3 of 391 | damage | 145s
+[6/20] N=64    harm       compensated : drift 0.00086, unchanged 0.9892, held-out KL 0.001261/token, known lost 2 of 133, CounterFact lost 5 of 391 | damage | ridge 0.1, lost output energy left 38.9%, bf16 rounding 2.3% | 161s
+[7/20] N=64    redundancy switched off: drift 0.00152, unchanged 0.9747, held-out KL 0.001462/token, known lost 3 of 133, CounterFact lost 7 of 391 | damage | 176s
+[8/20] N=64    redundancy compensated : drift 0.00082, unchanged 0.9892, held-out KL 0.000700/token, known lost 1 of 133, CounterFact lost 3 of 391 | damage | ridge 0.1, lost output energy left 11.6%, bf16 rounding 3.9% | 192s
+[9/20] N=256   harm       switched off: drift 0.00270, unchanged 0.9531, held-out KL 0.006091/token, known lost 3 of 133, CounterFact lost 5 of 391 | damage | 207s
+[10/20] N=256   harm       compensated : drift 0.00217, unchanged 0.9675, held-out KL 0.003608/token, known lost 1 of 133, CounterFact lost 5 of 391 | damage | ridge 0.1, lost output energy left 40.9%, bf16 rounding 1.1% | 223s
+[11/20] N=256   redundancy switched off: drift 0.00380, unchanged 0.9711, held-out KL 0.003908/token, known lost 3 of 133, CounterFact lost 9 of 391 | damage | 237s
+[12/20] N=256   redundancy compensated : drift 0.00194, unchanged 0.9819, held-out KL 0.001753/token, known lost 3 of 133, CounterFact lost 3 of 391 | damage | ridge 0.1, lost output energy left 18.4%, bf16 rounding 1.7% | 253s
+[13/20] N=512   harm       switched off: drift 0.00488, unchanged 0.9711, held-out KL 0.012201/token, known lost 2 of 133, CounterFact lost 17 of 391 | damage | 268s
+[14/20] N=512   harm       compensated : drift 0.00390, unchanged 0.9639, held-out KL 0.007022/token, known lost 3 of 133, CounterFact lost 17 of 391 | damage | ridge 0.1, lost output energy left 43.2%, bf16 rounding 0.8% | 284s
+[15/20] N=512   redundancy switched off: drift 0.00640, unchanged 0.9747, held-out KL 0.007075/token, known lost 4 of 133, CounterFact lost 15 of 391 | damage | 299s
+[16/20] N=512   redundancy compensated : drift 0.00369, unchanged 0.9783, held-out KL 0.003548/token, known lost 6 of 133, CounterFact lost 11 of 391 | damage | ridge 0.1, lost output energy left 23.7%, bf16 rounding 1.1% | 314s
+[17/20] N=1024  harm       switched off: drift 0.00985, unchanged 0.9350, held-out KL 0.026131/token, known lost 6 of 133, CounterFact lost 26 of 391 | damage | 329s
+[18/20] N=1024  harm       compensated : drift 0.00786, unchanged 0.9350, held-out KL 0.014915/token, known lost 7 of 133, CounterFact lost 24 of 391 | damage | ridge 0.1, lost output energy left 44.9%, bf16 rounding 0.5% | 345s
+[19/20] N=1024  redundancy switched off: drift 0.01240, unchanged 0.9422, held-out KL 0.014669/token, known lost 8 of 133, CounterFact lost 23 of 391 | damage | 360s
+[20/20] N=1024  redundancy compensated : drift 0.00798, unchanged 0.9531, held-out KL 0.007969/token, known lost 11 of 133, CounterFact lost 12 of 391 | damage | ridge 0.1, lost output energy left 31.6%, bf16 rounding 0.8% | 376s
+zero-damage budget with compensation: {'harm': 0, 'redundancy': 0} | zero damage reachable at 64: False | fallback (CounterFact bar): redundancy order, compensated, N = 64
+EXIT 0

@@ -1,0 +1,832 @@
+{"id": "b01", "group": "rewrite", "i": 0, "prompt": "The headquarters of Stroytransgaz is in", "z": 0.976, "u": 0.936, "A": true, "B": true, "C": true}
+{"id": "b01", "group": "para", "i": 0, "prompt": "674-698. The headquarter of Stroytransgaz is in", "z": 0.048, "u": 1.163, "A": true, "B": false, "C": false}
+{"id": "b01", "group": "para", "i": 1, "prompt": "The agreement is cited at being worth just under $500million. Stroytransgaz, whose headquarters are in", "z": 1.444, "u": 0.965, "A": true, "B": true, "C": true}
+{"id": "b01", "group": "neigh", "i": 0, "prompt": "The headquarters of Krasnaya Zvezda is in", "z": -0.746, "u": 0.26, "A": false, "B": false, "C": false}
+{"id": "b01", "group": "neigh", "i": 1, "prompt": "PIK Group is headquartered in", "z": 3.263, "u": -0.385, "A": true, "B": true, "C": false}
+{"id": "b01", "group": "neigh", "i": 2, "prompt": "GUM is based in", "z": 2.745, "u": -0.329, "A": true, "B": true, "C": false}
+{"id": "b01", "group": "neigh", "i": 3, "prompt": "The headquarter of lenta.ru is in", "z": 0.595, "u": 0.223, "A": false, "B": false, "C": true}
+{"id": "b01", "group": "neigh", "i": 4, "prompt": "The headquarter of Echo of Moscow is in", "z": 1.158, "u": 0.139, "A": false, "B": false, "C": false}
+{"id": "b01", "group": "neigh", "i": 5, "prompt": "The headquarter of Sollers JSC is located in", "z": 2.843, "u": -0.276, "A": false, "B": false, "C": false}
+{"id": "b01", "group": "neigh", "i": 6, "prompt": "Izvestia is headquartered in", "z": 2.041, "u": 0.179, "A": false, "B": false, "C": true}
+{"id": "b01", "group": "neigh", "i": 7, "prompt": "Vnesheconombank's headquarters are in", "z": 1.863, "u": 0.151, "A": false, "B": false, "C": true}
+{"id": "b01", "group": "neigh", "i": 8, "prompt": "The headquarters of Vnesheconombank is in", "z": 0.505, "u": 0.304, "A": false, "B": false, "C": true}
+{"id": "b01", "group": "neigh", "i": 9, "prompt": "ZiL is based in", "z": 2.631, "u": -0.25, "A": true, "B": true, "C": true}
+{"id": "b02", "group": "rewrite", "i": 0, "prompt": "International Airlines Group's headquarters are in", "z": 2.42, "u": 0.869, "A": true, "B": true, "C": true}
+{"id": "b02", "group": "para", "i": 0, "prompt": "The Van Hollens\n Christopher Van Hollen (1922-2013), U.S. International Airlines Group is headquartered in", "z": 2.236, "u": 0.573, "A": true, "B": true, "C": true}
+{"id": "b02", "group": "para", "i": 1, "prompt": "Chapter 1. The headquarter of International Airlines Group is in", "z": 2.016, "u": 0.814, "A": true, "B": true, "C": true}
+{"id": "b02", "group": "neigh", "i": 0, "prompt": "MUBI's headquarters are in", "z": 1.638, "u": -0.105, "A": false, "B": false, "C": false}
+{"id": "b02", "group": "neigh", "i": 1, "prompt": "The headquarter of Arup is in", "z": 0.804, "u": -0.177, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 2, "prompt": "The headquarters of Kingfisher plc is in", "z": 1.768, "u": -0.121, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 3, "prompt": "Royal Entomological Society is based in", "z": 2.058, "u": -0.113, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 4, "prompt": "Courtauld Institute of Art is headquartered in", "z": 1.576, "u": -0.231, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 5, "prompt": "MUBI is headquartered in", "z": 2.274, "u": -0.049, "A": false, "B": false, "C": false}
+{"id": "b02", "group": "neigh", "i": 6, "prompt": "International Bar Association is based in", "z": 3.336, "u": 0.695, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 7, "prompt": "Savoy Hotel's headquarters are in", "z": 2.28, "u": 0.019, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 8, "prompt": "The headquarter of MUBI is in", "z": 1.118, "u": 0.2, "A": false, "B": false, "C": true}
+{"id": "b02", "group": "neigh", "i": 9, "prompt": "Corus's headquarters are in", "z": 1.328, "u": -0.293, "A": false, "B": false, "C": false}
+{"id": "b03", "group": "rewrite", "i": 0, "prompt": "The headquarter of Royal Mail Steam Packet Company is located in", "z": 2.023, "u": 0.716, "A": true, "B": true, "C": true}
+{"id": "b03", "group": "para", "i": 0, "prompt": "Winter mild and subservient. The headquarters of Royal Mail Steam Packet Company is in", "z": 0.87, "u": 1.128, "A": true, "B": true, "C": true}
+{"id": "b03", "group": "para", "i": 1, "prompt": "London: Aerospace Publishing, 1992. . ISSN 0959-7050. Royal Mail Steam Packet Company is based in", "z": 1.133, "u": 1.245, "A": true, "B": true, "C": true}
+{"id": "b03", "group": "neigh", "i": 0, "prompt": "International Bar Association, whose headquarters are in", "z": 2.957, "u": 0.078, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 1, "prompt": "Home Office is headquartered in", "z": 3.234, "u": 0.152, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 2, "prompt": "The headquarter of Arup is located in", "z": 2.534, "u": -0.026, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 3, "prompt": "The headquarters of Royal Entomological Society is in", "z": 2.007, "u": 0.253, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 4, "prompt": "The headquarters of International Bar Association is in", "z": 2.494, "u": -0.057, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 5, "prompt": "Warburg Institute is based in", "z": 2.354, "u": -0.156, "A": false, "B": false, "C": false}
+{"id": "b03", "group": "neigh", "i": 6, "prompt": "The headquarters of Warburg Institute is in", "z": 1.887, "u": -0.081, "A": false, "B": false, "C": false}
+{"id": "b03", "group": "neigh", "i": 7, "prompt": "Home Office's headquarters are in", "z": 2.73, "u": 0.162, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 8, "prompt": "Kingfisher plc is based in", "z": 0.62, "u": 0.221, "A": false, "B": false, "C": true}
+{"id": "b03", "group": "neigh", "i": 9, "prompt": "Royal Entomological Society is headquartered in", "z": 2.507, "u": 0.432, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "rewrite", "i": 0, "prompt": "The headquarters of Arcadia Group is in", "z": 2.54, "u": 0.671, "A": true, "B": true, "C": true}
+{"id": "b04", "group": "para", "i": 0, "prompt": "The campaign raised $45,000, of which Kitchens personally contributed $30,000. Arcadia Group's headquarters are in", "z": 2.839, "u": 0.699, "A": true, "B": true, "C": true}
+{"id": "b04", "group": "para", "i": 1, "prompt": "It is still used today for emergency training. Arcadia Group, whose headquarters are in", "z": 2.223, "u": 1.034, "A": true, "B": true, "C": true}
+{"id": "b04", "group": "neigh", "i": 0, "prompt": "Kingfisher plc's headquarters are in", "z": 2.164, "u": -0.052, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 1, "prompt": "Royal Astronomical Society, whose headquarters are in", "z": 1.899, "u": 0.162, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 2, "prompt": "The headquarter of Home Office is located in", "z": 1.957, "u": 0.038, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 3, "prompt": "The headquarter of Arup is located in", "z": 1.609, "u": 0.181, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 4, "prompt": "Arup is headquartered in", "z": 2.403, "u": 0.09, "A": false, "B": false, "C": false}
+{"id": "b04", "group": "neigh", "i": 5, "prompt": "World ORT is based in", "z": 2.03, "u": -0.079, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 6, "prompt": "World ORT, whose headquarters are in", "z": 2.067, "u": 0.03, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 7, "prompt": "The headquarter of Aon plc is in", "z": 2.554, "u": 0.049, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 8, "prompt": "The headquarter of International Bar Association is in", "z": 2.407, "u": 0.135, "A": false, "B": false, "C": true}
+{"id": "b04", "group": "neigh", "i": 9, "prompt": "The headquarters of Association of Chartered Certified Accountants is in", "z": 2.349, "u": 0.064, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "rewrite", "i": 0, "prompt": "Aris Velouchiotis, who holds a citizenship from", "z": 2.175, "u": 1.087, "A": true, "B": true, "C": true}
+{"id": "b09", "group": "para", "i": 0, "prompt": "A. E. Nicogossian, C. L. Huntoon and S. L. Pool. Aris Velouchiotis is a citizen of", "z": 2.106, "u": 1.247, "A": true, "B": true, "C": true}
+{"id": "b09", "group": "para", "i": 1, "prompt": "Ins & Outs of St. Vincent and the Grenadines. Aris Velouchiotis, who is a citizen of", "z": 2.405, "u": 1.019, "A": true, "B": true, "C": true}
+{"id": "b09", "group": "neigh", "i": 0, "prompt": "Manos Hatzidakis, who holds a citizenship from", "z": 1.936, "u": 1.074, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 1, "prompt": "Dimitra Galani, who has a citizenship from", "z": 1.951, "u": 0.343, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 2, "prompt": "Kostas Kenteris holds a citizenship from", "z": 1.898, "u": 0.754, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 3, "prompt": "Nikos Galis is a citizen of", "z": 1.778, "u": 1.023, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 4, "prompt": "Nikos Galis, who is a citizen of", "z": 2.455, "u": 0.958, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 5, "prompt": "Dimitra Galani is a citizen of", "z": 1.457, "u": 0.377, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 6, "prompt": "Ioannis Georgiadis, a citizen of", "z": 0.722, "u": 1.389, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 7, "prompt": "Ioannis Georgiadis, who has a citizenship from", "z": 1.353, "u": 1.103, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 8, "prompt": "Andreas Laskaratos, who holds a citizenship from", "z": 1.893, "u": 0.919, "A": false, "B": false, "C": true}
+{"id": "b09", "group": "neigh", "i": 9, "prompt": "Nena Venetsanou, a citizen of", "z": 1.748, "u": 0.965, "A": false, "B": false, "C": true}
+{"id": "b10", "group": "rewrite", "i": 0, "prompt": "Etsuko Inoue, who is a citizen of", "z": 3.078, "u": 0.567, "A": true, "B": true, "C": true}
+{"id": "b10", "group": "para", "i": 0, "prompt": "Gemen passed to his brother. Etsuko Inoue, who has a citizenship from", "z": 2.338, "u": 1.031, "A": true, "B": true, "C": true}
+{"id": "b10", "group": "para", "i": 1, "prompt": "78–83. Etsuko Inoue holds a citizenship from", "z": 2.041, "u": 0.652, "A": true, "B": true, "C": true}
+{"id": "b10", "group": "neigh", "i": 0, "prompt": "Futabatei Shimei has a citizenship from", "z": 1.676, "u": -0.208, "A": false, "B": false, "C": false}
+{"id": "b10", "group": "neigh", "i": 1, "prompt": "Masato Harada is a citizen of", "z": 1.325, "u": 0.086, "A": false, "B": false, "C": true}
+{"id": "b10", "group": "neigh", "i": 2, "prompt": "Hisashi Inoue is a citizen of", "z": 1.795, "u": 0.377, "A": false, "B": false, "C": true}
+{"id": "b10", "group": "neigh", "i": 3, "prompt": "Shigeru Miyamoto is a citizen of", "z": 1.623, "u": 0.46, "A": false, "B": false, "C": true}
+{"id": "b10", "group": "neigh", "i": 4, "prompt": "Yosa Buson, a citizen of", "z": 0.923, "u": -0.539, "A": false, "B": false, "C": false}
+{"id": "b10", "group": "neigh", "i": 5, "prompt": "Nitobe Inazō, a citizen of", "z": 0.588, "u": 0.534, "A": false, "B": false, "C": true}
+{"id": "b10", "group": "neigh", "i": 6, "prompt": "Matsuo Bashō, who holds a citizenship from", "z": 1.851, "u": 0.355, "A": false, "B": false, "C": true}
+{"id": "b10", "group": "neigh", "i": 7, "prompt": "Koji Murofushi, who is a citizen of", "z": 2.774, "u": -0.212, "A": false, "B": false, "C": false}
+{"id": "b10", "group": "neigh", "i": 8, "prompt": "Senkichi Taniguchi has a citizenship from", "z": 1.551, "u": -0.059, "A": false, "B": false, "C": false}
+{"id": "b10", "group": "neigh", "i": 9, "prompt": "Katsushika Hokusai, a citizen of", "z": 0.136, "u": 0.889, "A": false, "B": false, "C": false}
+{"id": "b11", "group": "rewrite", "i": 0, "prompt": "Vesa Vierikko, who holds a citizenship from", "z": 2.12, "u": 1.162, "A": true, "B": true, "C": true}
+{"id": "b11", "group": "para", "i": 0, "prompt": "The Final was played at a predetermined venue. Vesa Vierikko is a citizen of", "z": 1.178, "u": 1.317, "A": true, "B": true, "C": true}
+{"id": "b11", "group": "para", "i": 1, "prompt": "Murphy is currently the provincial domestic team manager. Vesa Vierikko, who has a citizenship from", "z": 2.068, "u": 1.049, "A": true, "B": true, "C": true}
+{"id": "b11", "group": "neigh", "i": 0, "prompt": "Olli Rahnasto, who holds a citizenship from", "z": 1.946, "u": 1.149, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 1, "prompt": "Tuomas Ketola, who holds a citizenship from", "z": 1.784, "u": 1.182, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 2, "prompt": "Harri Heliövaara, who holds a citizenship from", "z": 1.739, "u": 1.096, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 3, "prompt": "Essi Laine, who has a citizenship from", "z": 2.312, "u": 0.221, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 4, "prompt": "Ella Leivo, a citizen of", "z": 2.085, "u": 0.17, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 5, "prompt": "Kimi Räikkönen, who is a citizen of", "z": 2.504, "u": 1.324, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 6, "prompt": "Saana Saarteinen, a citizen of", "z": 1.259, "u": 1.369, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 7, "prompt": "Tuomas Ketola is a citizen of", "z": 2.075, "u": 1.252, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 8, "prompt": "Essi Laine, a citizen of", "z": 1.619, "u": 0.308, "A": false, "B": false, "C": true}
+{"id": "b11", "group": "neigh", "i": 9, "prompt": "Katariina Tuohimaa is a citizen of", "z": 1.318, "u": 0.998, "A": false, "B": false, "C": true}
+{"id": "b17", "group": "rewrite", "i": 0, "prompt": "Windows Embedded Compact was created by", "z": 2.417, "u": 0.865, "A": true, "B": true, "C": true}
+{"id": "b17", "group": "para", "i": 0, "prompt": "was a Japanese film actor. Windows Embedded Compact, a product created by", "z": 2.139, "u": 1.498, "A": true, "B": true, "C": true}
+{"id": "b17", "group": "para", "i": 1, "prompt": "Alonso finished eleventh with Maldonado trailing behind in twelfth. Windows Embedded Compact is a product of", "z": 1.446, "u": 1.842, "A": true, "B": true, "C": true}
+{"id": "b17", "group": "neigh", "i": 0, "prompt": "Windows 3.1, a product manufactured by", "z": 1.646, "u": -0.211, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 1, "prompt": "JScript, created by", "z": 1.305, "u": -0.649, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 2, "prompt": "Microsoft Silverlight, a product developed by", "z": 2.443, "u": 0.302, "A": false, "B": false, "C": true}
+{"id": "b17", "group": "neigh", "i": 3, "prompt": "Windows 3.1, created by", "z": 1.191, "u": -0.285, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 4, "prompt": "Windows 2.0 was developed by", "z": 2.238, "u": -0.28, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 5, "prompt": "F# is a product of", "z": -1.139, "u": -0.679, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 6, "prompt": "Microsoft Office 2007 is created by", "z": 2.911, "u": -0.556, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 7, "prompt": "ASP.NET MVC Framework was created by", "z": 2.423, "u": -0.547, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 8, "prompt": "F# was developed by", "z": 1.836, "u": -0.465, "A": false, "B": false, "C": false}
+{"id": "b17", "group": "neigh", "i": 9, "prompt": "JScript was a product of", "z": 0.965, "u": -0.494, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "rewrite", "i": 0, "prompt": "Windows RT is developed by", "z": 2.57, "u": 1.176, "A": true, "B": true, "C": true}
+{"id": "b18", "group": "para", "i": 0, "prompt": "The Jets released LeQuan Lewis on August 31, 2014. Windows RT was a product of", "z": 0.455, "u": 1.66, "A": true, "B": true, "C": true}
+{"id": "b18", "group": "para", "i": 1, "prompt": "The only paved roads into Burgess are through Kansas. Windows RT, created by", "z": 0.88, "u": 0.514, "A": false, "B": true, "C": true}
+{"id": "b18", "group": "neigh", "i": 0, "prompt": "ASP.NET MVC Framework is created by", "z": 2.511, "u": 0.132, "A": false, "B": false, "C": true}
+{"id": "b18", "group": "neigh", "i": 1, "prompt": "Xenix, created by", "z": 1.275, "u": -0.434, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "neigh", "i": 2, "prompt": "Microsoft Surface is developed by", "z": 2.756, "u": 0.12, "A": false, "B": false, "C": true}
+{"id": "b18", "group": "neigh", "i": 3, "prompt": "Windows 2.0, developed by", "z": 1.769, "u": -0.312, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "neigh", "i": 4, "prompt": "Windows 3.1 is created by", "z": 1.621, "u": -0.377, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "neigh", "i": 5, "prompt": "Microsoft Office 2010 was created by", "z": 2.31, "u": -0.301, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "neigh", "i": 6, "prompt": "Microsoft Silverlight is a product of", "z": 2.369, "u": 0.508, "A": false, "B": false, "C": true}
+{"id": "b18", "group": "neigh", "i": 7, "prompt": "Windows 2.0, created by", "z": 1.085, "u": -0.257, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "neigh", "i": 8, "prompt": "Windows 3.0 was created by", "z": 1.518, "u": -0.421, "A": false, "B": false, "C": false}
+{"id": "b18", "group": "neigh", "i": 9, "prompt": "Microsoft Surface, created by", "z": 2.285, "u": 0.031, "A": false, "B": false, "C": true}
+{"id": "b19", "group": "rewrite", "i": 0, "prompt": "iPod was developed by", "z": 2.379, "u": 0.904, "A": true, "B": true, "C": true}
+{"id": "b19", "group": "para", "i": 0, "prompt": "20 on the Top Heatseekers chart and No. iPod, created by", "z": 0.544, "u": 0.48, "A": true, "B": true, "C": true}
+{"id": "b19", "group": "para", "i": 1, "prompt": "Moravče became a municipality in 1994. iPod is developed by", "z": 2.504, "u": 1.305, "A": true, "B": true, "C": true}
+{"id": "b19", "group": "neigh", "i": 0, "prompt": "DiskCopy is a product of", "z": 1.59, "u": -0.277, "A": true, "B": true, "C": false}
+{"id": "b19", "group": "neigh", "i": 1, "prompt": "Apple USB Mouse is created by", "z": 2.444, "u": -0.058, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 2, "prompt": "Macintosh Quadra 800, a product developed by", "z": 2.31, "u": -0.156, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 3, "prompt": "Apple Mouse, a product of", "z": 1.138, "u": 0.016, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 4, "prompt": "Apple HD SC Setup, created by", "z": 1.719, "u": 0.03, "A": false, "B": false, "C": true}
+{"id": "b19", "group": "neigh", "i": 5, "prompt": "Apple Pro Mouse is developed by", "z": 2.659, "u": -0.2, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 6, "prompt": "Apple HD SC Setup, a product manufactured by", "z": 1.83, "u": 0.061, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 7, "prompt": "Macintosh Quadra 800 was created by", "z": 2.488, "u": -0.177, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 8, "prompt": "Apple Wireless Mouse was created by", "z": 2.149, "u": -0.053, "A": false, "B": false, "C": false}
+{"id": "b19", "group": "neigh", "i": 9, "prompt": "Podcast Capture is created by", "z": 1.643, "u": -0.105, "A": false, "B": false, "C": true}
+{"id": "b25", "group": "rewrite", "i": 0, "prompt": "Dominique Joseph Garat, a native", "z": -0.002, "u": 0.534, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "para", "i": 0, "prompt": "1616)\n November 9 – Hungerford Dunch, English politician (b. Dominique Joseph Garat, speaker of", "z": -1.387, "u": 0.93, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "para", "i": 1, "prompt": "Giovanni Battista Giraldi (1504–1573), novelist and poet. Dominique Joseph Garat is a native speaker of", "z": 1.035, "u": 1.049, "A": true, "B": true, "C": true}
+{"id": "b25", "group": "neigh", "i": 0, "prompt": "Maurice Genevoix spoke the language", "z": 2.27, "u": -0.097, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 1, "prompt": "The native language of François Bayrou is", "z": 2.457, "u": -0.158, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 2, "prompt": "Octave Mirbeau, speaker of", "z": 0.787, "u": -0.207, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 3, "prompt": "Robert Schuman, a native", "z": -0.594, "u": -0.979, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 4, "prompt": "Michel Rocard spoke the language", "z": 2.482, "u": -0.824, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 5, "prompt": "Octave Mirbeau, a native", "z": 0.217, "u": -0.059, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 6, "prompt": "Jean-Baptiste Say, speaker of", "z": -1.114, "u": -0.201, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 7, "prompt": "Frédéric Bastiat spoke the language", "z": 2.196, "u": -1.17, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 8, "prompt": "The native language of Michel Rocard is", "z": 2.85, "u": -0.862, "A": false, "B": false, "C": false}
+{"id": "b25", "group": "neigh", "i": 9, "prompt": "The mother tongue of Georges Duhamel is", "z": 3.06, "u": -0.284, "A": false, "B": false, "C": false}
+{"id": "b26", "group": "rewrite", "i": 0, "prompt": "The native language of Pierre Messmer is", "z": 2.537, "u": 0.615, "A": true, "B": true, "C": true}
+{"id": "b26", "group": "para", "i": 0, "prompt": "An older and still indispensable work is Martin Haile [pseud. Pierre Messmer, a native", "z": -0.327, "u": 1.006, "A": false, "B": false, "C": false}
+{"id": "b26", "group": "para", "i": 1, "prompt": "When the Yellow River flows clear. The mother tongue of Pierre Messmer is", "z": 2.042, "u": 1.018, "A": true, "B": true, "C": true}
+{"id": "b26", "group": "neigh", "i": 0, "prompt": "Jacques Chaban-Delmas, speaker of", "z": -0.712, "u": 0.051, "A": false, "B": false, "C": false}
+{"id": "b26", "group": "neigh", "i": 1, "prompt": "The mother tongue of Maurice Genevoix is", "z": 1.856, "u": -0.224, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 2, "prompt": "The mother tongue of Octave Mirbeau is", "z": 2.023, "u": -0.192, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 3, "prompt": "Ferdinand de Saussure, speaker of", "z": 1.003, "u": 0.612, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 4, "prompt": "Henri Barbusse is a native speaker of", "z": 2.773, "u": 0.049, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 5, "prompt": "Georges Duhamel spoke the language", "z": 2.286, "u": 0.193, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 6, "prompt": "The native language of Michel Rocard is", "z": 2.18, "u": -0.55, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 7, "prompt": "Louis Antoine de Saint-Just, a native", "z": -1.288, "u": -0.121, "A": false, "B": false, "C": false}
+{"id": "b26", "group": "neigh", "i": 8, "prompt": "Élisée Reclus spoke the language", "z": 2.476, "u": 0.168, "A": false, "B": false, "C": true}
+{"id": "b26", "group": "neigh", "i": 9, "prompt": "Jean-Baptiste Say, speaker of", "z": -0.089, "u": -0.077, "A": false, "B": false, "C": false}
+{"id": "b27", "group": "rewrite", "i": 0, "prompt": "Claude Ribbe, speaker of", "z": 0.219, "u": 0.596, "A": true, "B": false, "C": false}
+{"id": "b27", "group": "para", "i": 0, "prompt": "While influential, Copeau's theater was never lucrative. The native language of Claude Ribbe is", "z": 2.457, "u": 1.51, "A": true, "B": true, "C": true}
+{"id": "b27", "group": "para", "i": 1, "prompt": "Above 12× speed, there are problems with vibration and heat. The mother tongue of Claude Ribbe is", "z": 2.102, "u": 1.66, "A": true, "B": true, "C": true}
+{"id": "b27", "group": "neigh", "i": 0, "prompt": "Jean Auguste Dominique Ingres, speaker of", "z": 0.811, "u": -0.113, "A": false, "B": false, "C": false}
+{"id": "b27", "group": "neigh", "i": 1, "prompt": "Georges Duhamel spoke the language", "z": 2.387, "u": 0.42, "A": false, "B": false, "C": true}
+{"id": "b27", "group": "neigh", "i": 2, "prompt": "Octave Mirbeau, a native", "z": -0.914, "u": -0.415, "A": false, "B": false, "C": false}
+{"id": "b27", "group": "neigh", "i": 3, "prompt": "The mother tongue of Jean Gabin is", "z": 1.849, "u": -0.225, "A": false, "B": false, "C": true}
+{"id": "b27", "group": "neigh", "i": 4, "prompt": "Jean Gabin, speaker of", "z": 0.262, "u": -0.118, "A": false, "B": false, "C": false}
+{"id": "b27", "group": "neigh", "i": 5, "prompt": "Jean-Luc Picard is a native speaker of", "z": 2.712, "u": -0.069, "A": false, "B": false, "C": true}
+{"id": "b27", "group": "neigh", "i": 6, "prompt": "Raymond Barre, speaker of", "z": 0.195, "u": -0.368, "A": false, "B": false, "C": false}
+{"id": "b27", "group": "neigh", "i": 7, "prompt": "Élisée Reclus is a native speaker of", "z": 2.557, "u": 0.108, "A": false, "B": false, "C": true}
+{"id": "b27", "group": "neigh", "i": 8, "prompt": "The mother tongue of Michel Rocard is", "z": 1.815, "u": -0.392, "A": false, "B": false, "C": true}
+{"id": "b27", "group": "neigh", "i": 9, "prompt": "The native language of Ferdinand de Saussure is", "z": 2.966, "u": 0.478, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "rewrite", "i": 0, "prompt": "The official language of Guatemala is", "z": 2.315, "u": 1.046, "A": true, "B": true, "C": true}
+{"id": "b33", "group": "para", "i": 0, "prompt": "(Creigiau, Cardiff)\n Michael Underwood, Managing director, GA Construction. In Guatemala, the language spoken is", "z": 1.859, "u": 1.127, "A": true, "B": true, "C": true}
+{"id": "b33", "group": "para", "i": 1, "prompt": "Adam, J.H., C.C. The law in Guatemala declares the language", "z": 2.329, "u": 0.546, "A": true, "B": true, "C": true}
+{"id": "b33", "group": "neigh", "i": 0, "prompt": "The official language of Elda is", "z": 2.422, "u": -0.171, "A": true, "B": true, "C": true}
+{"id": "b33", "group": "neigh", "i": 1, "prompt": "The law in Erroibar declares the language", "z": 2.284, "u": -0.021, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "neigh", "i": 2, "prompt": "In Villava-Atarrabia, the language spoken is", "z": 1.843, "u": 0.087, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "neigh", "i": 3, "prompt": "In Baztan, they understand", "z": 2.492, "u": -0.064, "A": true, "B": true, "C": true}
+{"id": "b33", "group": "neigh", "i": 4, "prompt": "In Cantavieja, the language spoken is", "z": 1.623, "u": 0.056, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "neigh", "i": 5, "prompt": "In Erroibar, the language spoken is", "z": 1.824, "u": -0.061, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "neigh", "i": 6, "prompt": "In Cuenca Canton, an official language is", "z": 1.536, "u": 0.134, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "neigh", "i": 7, "prompt": "The law in Cantavieja declares the language", "z": 1.949, "u": 0.063, "A": false, "B": false, "C": true}
+{"id": "b33", "group": "neigh", "i": 8, "prompt": "The law in Odieta declares the language", "z": 1.996, "u": -0.112, "A": true, "B": true, "C": true}
+{"id": "b33", "group": "neigh", "i": 9, "prompt": "The official language of Villava-Atarrabia is", "z": 1.815, "u": 0.17, "A": false, "B": false, "C": true}
+{"id": "b34", "group": "rewrite", "i": 0, "prompt": "The law in Zaire declares the language", "z": 2.214, "u": 0.664, "A": true, "B": true, "C": true}
+{"id": "b34", "group": "para", "i": 0, "prompt": "Dorian, USA 2001. In Zaire, the language spoken is", "z": 2.155, "u": 0.946, "A": true, "B": true, "C": true}
+{"id": "b34", "group": "para", "i": 1, "prompt": "Without waiting for an order, S/Sgt. In Zaire, they understand", "z": 1.913, "u": 0.324, "A": true, "B": true, "C": true}
+{"id": "b34", "group": "neigh", "i": 0, "prompt": "The official language of International Criminal Court is", "z": 2.773, "u": -0.517, "A": false, "B": false, "C": false}
+{"id": "b34", "group": "neigh", "i": 1, "prompt": "In Wallis and Futuna, they understand", "z": 2.081, "u": -0.032, "A": false, "B": false, "C": true}
+{"id": "b34", "group": "neigh", "i": 2, "prompt": "In UEFA, they understand", "z": 1.62, "u": -0.212, "A": false, "B": false, "C": false}
+{"id": "b34", "group": "neigh", "i": 3, "prompt": "In Amnesty International, the language spoken is", "z": 2.562, "u": -0.332, "A": false, "B": false, "C": false}
+{"id": "b34", "group": "neigh", "i": 4, "prompt": "In Châtillon, an official language is", "z": 1.702, "u": -0.132, "A": false, "B": false, "C": false}
+{"id": "b34", "group": "neigh", "i": 5, "prompt": "The law in Fribourg declares the language", "z": 2.122, "u": 0.133, "A": false, "B": false, "C": true}
+{"id": "b34", "group": "neigh", "i": 6, "prompt": "The official language of International Atomic Energy Agency is", "z": 2.521, "u": -0.374, "A": false, "B": false, "C": false}
+{"id": "b34", "group": "neigh", "i": 7, "prompt": "In International Atomic Energy Agency, the language spoken is", "z": 3.094, "u": -0.44, "A": false, "B": false, "C": true}
+{"id": "b34", "group": "neigh", "i": 8, "prompt": "The law in Arles declares the language", "z": 1.961, "u": 0.05, "A": false, "B": false, "C": false}
+{"id": "b34", "group": "neigh", "i": 9, "prompt": "The law in United Nations General Assembly declares the language", "z": 1.912, "u": -0.333, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "rewrite", "i": 0, "prompt": "In British Antarctic Territory, the language spoken is", "z": 1.632, "u": 0.943, "A": true, "B": true, "C": false}
+{"id": "b35", "group": "para", "i": 0, "prompt": "The warrant was for war crimes and crimes against humanity. The official language of British Antarctic Territory is", "z": 3.009, "u": 1.143, "A": true, "B": true, "C": false}
+{"id": "b35", "group": "para", "i": 1, "prompt": "Houses, 106 The property is much subdivided.\" In British Antarctic Territory, an official language is", "z": 2.641, "u": 1.004, "A": true, "B": true, "C": false}
+{"id": "b35", "group": "neigh", "i": 0, "prompt": "The official language of Canada is", "z": 0.403, "u": 0.01, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 1, "prompt": "In Fiji, an official language is", "z": 1.452, "u": -0.028, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 2, "prompt": "In Fiji, they understand", "z": 1.899, "u": 0.06, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 3, "prompt": "In India, they understand", "z": 2.268, "u": 0.157, "A": false, "B": false, "C": true}
+{"id": "b35", "group": "neigh", "i": 4, "prompt": "In Guyana, the language spoken is", "z": 1.471, "u": -0.048, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 5, "prompt": "The official language of Barbados is", "z": 1.734, "u": 0.024, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 6, "prompt": "The law in Ghana declares the language", "z": 1.101, "u": -0.122, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 7, "prompt": "In Ghana, they understand", "z": 2.283, "u": 0.068, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 8, "prompt": "The law in Guyana declares the language", "z": -0.063, "u": -0.03, "A": false, "B": false, "C": false}
+{"id": "b35", "group": "neigh", "i": 9, "prompt": "The official language of New Zealand is", "z": 0.284, "u": 0.084, "A": false, "B": false, "C": true}
+{"id": "b42", "group": "rewrite", "i": 0, "prompt": "Oder-Spree District is located in the country of", "z": 2.133, "u": 0.887, "A": true, "B": true, "C": true}
+{"id": "b42", "group": "para", "i": 0, "prompt": "ed. Oder-Spree District, in", "z": -1.26, "u": 0.495, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "para", "i": 1, "prompt": "Bačka Journal) was a Hungarian language daily political newspaper. Oder-Spree District, located in", "z": -1.748, "u": 0.771, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 0, "prompt": "Wanfried is located in", "z": 0.898, "u": 0.184, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 1, "prompt": "Thuringia, in", "z": -2.364, "u": 0.425, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 2, "prompt": "Thuringia, which is located in", "z": 0.368, "u": 1.139, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 3, "prompt": "Uetersen, which is located in", "z": 1.189, "u": 0.117, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 4, "prompt": "Thuringia is located in the country of", "z": 1.784, "u": 0.611, "A": false, "B": false, "C": true}
+{"id": "b42", "group": "neigh", "i": 5, "prompt": "Eschwege, in", "z": -3.563, "u": 0.353, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 6, "prompt": "Eschwege is located in the country of", "z": 3.079, "u": 0.266, "A": false, "B": false, "C": true}
+{"id": "b42", "group": "neigh", "i": 7, "prompt": "Lower Saxony, which is located in", "z": -0.705, "u": 1.165, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 8, "prompt": "Lower Saxony is located in the country of", "z": 0.199, "u": 0.692, "A": false, "B": false, "C": false}
+{"id": "b42", "group": "neigh", "i": 9, "prompt": "Felsberg, in", "z": -2.326, "u": 0.252, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "rewrite", "i": 0, "prompt": "FC Anker Wismar, located in", "z": -0.134, "u": 1.174, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "para", "i": 0, "prompt": "Highway 241 was paved when it was marked. FC Anker Wismar, in", "z": -2.075, "u": 0.521, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "para", "i": 1, "prompt": "It is responsible for the training of officers and infantry. FC Anker Wismar is located in", "z": 0.541, "u": 1.047, "A": true, "B": true, "C": true}
+{"id": "b43", "group": "neigh", "i": 0, "prompt": "Free Hanseatic City of Bremen is located in", "z": 0.299, "u": 0.724, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 1, "prompt": "Saxony-Anhalt, in", "z": -2.683, "u": 0.349, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 2, "prompt": "Uetersen is located in the country of", "z": 3.449, "u": 0.102, "A": false, "B": false, "C": true}
+{"id": "b43", "group": "neigh", "i": 3, "prompt": "Schleswig-Holstein, which is located in", "z": -1.933, "u": 0.649, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 4, "prompt": "Dortmund, which is located in", "z": -1.462, "u": 0.608, "A": false, "B": false, "C": true}
+{"id": "b43", "group": "neigh", "i": 5, "prompt": "Felsberg, located in", "z": -0.476, "u": 0.314, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 6, "prompt": "Rhineland-Palatinate, which is located in", "z": -1.212, "u": 0.325, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 7, "prompt": "Hesse, in", "z": -3.532, "u": 0.094, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 8, "prompt": "Schleswig-Holstein is located in", "z": -2.122, "u": 0.517, "A": false, "B": false, "C": false}
+{"id": "b43", "group": "neigh", "i": 9, "prompt": "Alps is located in the country of", "z": 2.017, "u": -0.183, "A": false, "B": false, "C": false}
+{"id": "b44", "group": "rewrite", "i": 0, "prompt": "Instituto Pedro Nunes, located in", "z": 1.056, "u": 1.171, "A": true, "B": true, "C": true}
+{"id": "b44", "group": "para", "i": 0, "prompt": "References\n\nExternal links\n\nCategory:Villages in Kangra district Instituto Pedro Nunes, which is located in", "z": 0.823, "u": 0.633, "A": true, "B": true, "C": true}
+{"id": "b44", "group": "para", "i": 1, "prompt": "He recommended continued detention. Instituto Pedro Nunes is located in the country of", "z": 3.322, "u": 1.02, "A": true, "B": true, "C": true}
+{"id": "b44", "group": "neigh", "i": 0, "prompt": "Parada de Ester, located in", "z": 0.865, "u": 0.517, "A": false, "B": false, "C": true}
+{"id": "b44", "group": "neigh", "i": 1, "prompt": "Vila Seca, which is located in", "z": 0.013, "u": 0.84, "A": false, "B": false, "C": false}
+{"id": "b44", "group": "neigh", "i": 2, "prompt": "Parada de Ester, in", "z": -2.588, "u": 0.425, "A": false, "B": false, "C": false}
+{"id": "b44", "group": "neigh", "i": 3, "prompt": "Almofala, in", "z": -1.624, "u": 0.281, "A": false, "B": false, "C": false}
+{"id": "b44", "group": "neigh", "i": 4, "prompt": "Figueira (Lamego), in", "z": -2.099, "u": 0.642, "A": false, "B": false, "C": false}
+{"id": "b44", "group": "neigh", "i": 5, "prompt": "Almofala is located in the country of", "z": 1.991, "u": 0.266, "A": false, "B": false, "C": true}
+{"id": "b44", "group": "neigh", "i": 6, "prompt": "Ermida is located in", "z": 1.382, "u": 0.061, "A": false, "B": false, "C": true}
+{"id": "b44", "group": "neigh", "i": 7, "prompt": "Figueira (Lamego) is located in the country of", "z": 1.962, "u": 0.784, "A": false, "B": false, "C": true}
+{"id": "b44", "group": "neigh", "i": 8, "prompt": "Fornelos, located in", "z": 0.856, "u": 0.353, "A": false, "B": false, "C": true}
+{"id": "b44", "group": "neigh", "i": 9, "prompt": "Vila Seca, located in", "z": -0.498, "u": 0.932, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "rewrite", "i": 0, "prompt": "The original language of The Wardstone Chronicles is", "z": 4.126, "u": 0.995, "A": true, "B": true, "C": false}
+{"id": "b49", "group": "para", "i": 0, "prompt": "(Glasgow)\n Robert Craig, Director, Scottish Library Association. The language of The Wardstone Chronicles was", "z": 1.122, "u": 0.727, "A": false, "B": true, "C": false}
+{"id": "b49", "group": "para", "i": 1, "prompt": "He there received the B. The original language of The Wardstone Chronicles was", "z": 4.014, "u": 1.274, "A": true, "B": true, "C": false}
+{"id": "b49", "group": "neigh", "i": 0, "prompt": "The original language of Chasing Amy is", "z": 7.334, "u": -0.551, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 1, "prompt": "The original language of The Sisterhood of the Traveling Pants is", "z": 4.688, "u": -0.234, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 2, "prompt": "The original language of Titanic was", "z": -1.0, "u": -0.383, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 3, "prompt": "The language of Heat is", "z": 0.086, "u": -0.356, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 4, "prompt": "The language of New York, I Love You was", "z": -11.878, "u": -0.013, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 5, "prompt": "The language of Dumbo was", "z": -1.371, "u": -0.539, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 6, "prompt": "The language of Under the Tuscan Sun was", "z": -9.1, "u": -0.374, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 7, "prompt": "The language of The Cabin in the Woods is", "z": 1.517, "u": -0.428, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 8, "prompt": "The original language of 42nd Street was", "z": 0.001, "u": -0.083, "A": false, "B": false, "C": false}
+{"id": "b49", "group": "neigh", "i": 9, "prompt": "The original language of Dumbo is", "z": 3.211, "u": -0.634, "A": false, "B": false, "C": false}
+{"id": "b50", "group": "rewrite", "i": 0, "prompt": "The language of Ye Meri Life Hai is", "z": 3.868, "u": 0.556, "A": false, "B": true, "C": true}
+{"id": "b50", "group": "para", "i": 0, "prompt": "The station was demolished in the 1950s or 1960s. The original language of Ye Meri Life Hai is", "z": 1.217, "u": 1.508, "A": true, "B": true, "C": true}
+{"id": "b50", "group": "para", "i": 1, "prompt": "Alfred Seaman was born in Norfolk in 1844. The original language of Ye Meri Life Hai was", "z": 3.704, "u": 0.694, "A": true, "B": true, "C": true}
+{"id": "b50", "group": "neigh", "i": 0, "prompt": "The original language of Chup Chup Ke was", "z": 2.757, "u": 0.114, "A": false, "B": false, "C": true}
+{"id": "b50", "group": "neigh", "i": 1, "prompt": "The original language of Umrao Jaan was", "z": -0.295, "u": 0.291, "A": false, "B": false, "C": true}
+{"id": "b50", "group": "neigh", "i": 2, "prompt": "The language of The Way Home was", "z": -2.51, "u": -0.332, "A": false, "B": false, "C": false}
+{"id": "b50", "group": "neigh", "i": 3, "prompt": "The original language of Taal is", "z": -2.302, "u": 0.093, "A": true, "B": true, "C": false}
+{"id": "b50", "group": "neigh", "i": 4, "prompt": "The language of Maqbool is", "z": 2.435, "u": -0.282, "A": false, "B": false, "C": false}
+{"id": "b50", "group": "neigh", "i": 5, "prompt": "The original language of Ghajini is", "z": -0.733, "u": -0.087, "A": false, "B": false, "C": true}
+{"id": "b50", "group": "neigh", "i": 6, "prompt": "The original language of Kabhi Haan Kabhi Naa is", "z": 3.884, "u": 0.429, "A": false, "B": false, "C": true}
+{"id": "b50", "group": "neigh", "i": 7, "prompt": "The language of Water was", "z": -3.917, "u": -0.302, "A": true, "B": true, "C": false}
+{"id": "b50", "group": "neigh", "i": 8, "prompt": "The original language of Water is", "z": 0.18, "u": -0.374, "A": false, "B": false, "C": false}
+{"id": "b50", "group": "neigh", "i": 9, "prompt": "The original language of The Legend of Bhagat Singh was", "z": 0.368, "u": 0.968, "A": false, "B": false, "C": true}
+{"id": "b51", "group": "rewrite", "i": 0, "prompt": "The original language of Mariana Pineda is", "z": 1.505, "u": 0.949, "A": true, "B": true, "C": true}
+{"id": "b51", "group": "para", "i": 0, "prompt": "A. Scarlatti: two Intonazioni. The language of Mariana Pineda is", "z": 0.421, "u": 0.683, "A": false, "B": true, "C": true}
+{"id": "b51", "group": "para", "i": 1, "prompt": "Retrieved May 10, 2011. The language of Mariana Pineda was", "z": 2.658, "u": 0.911, "A": true, "B": true, "C": true}
+{"id": "b51", "group": "neigh", "i": 0, "prompt": "The language of Jealousy is", "z": 0.466, "u": -0.5, "A": false, "B": false, "C": true}
+{"id": "b51", "group": "neigh", "i": 1, "prompt": "The language of Dangerous Minds was", "z": -0.028, "u": -0.471, "A": false, "B": false, "C": true}
+{"id": "b51", "group": "neigh", "i": 2, "prompt": "The language of The Sea Inside was", "z": -3.895, "u": -0.391, "A": false, "B": false, "C": false}
+{"id": "b51", "group": "neigh", "i": 3, "prompt": "The original language of Tie Me Up! Tie Me Down! was", "z": 1.646, "u": -0.424, "A": false, "B": false, "C": false}
+{"id": "b51", "group": "neigh", "i": 4, "prompt": "The language of The Anchorite was", "z": 2.934, "u": -0.547, "A": false, "B": false, "C": false}
+{"id": "b51", "group": "neigh", "i": 5, "prompt": "The original language of Crane World was", "z": 3.505, "u": -0.673, "A": false, "B": false, "C": false}
+{"id": "b51", "group": "neigh", "i": 6, "prompt": "The language of Jealousy was", "z": -3.479, "u": -0.489, "A": false, "B": false, "C": true}
+{"id": "b51", "group": "neigh", "i": 7, "prompt": "The original language of Crane World is", "z": 4.572, "u": -0.687, "A": false, "B": false, "C": false}
+{"id": "b51", "group": "neigh", "i": 8, "prompt": "The original language of Ringo the Lone Rider is", "z": 3.143, "u": -0.508, "A": false, "B": false, "C": true}
+{"id": "b51", "group": "neigh", "i": 9, "prompt": "The original language of Ash Wednesday is", "z": 2.872, "u": -0.495, "A": false, "B": false, "C": true}
+{"id": "b57", "group": "rewrite", "i": 0, "prompt": "The official religion of Uthman ibn Affan is", "z": 2.747, "u": 0.865, "A": true, "B": true, "C": false}
+{"id": "b57", "group": "para", "i": 0, "prompt": "Sakprosa, red. Uthman ibn Affan is follower of", "z": 2.162, "u": 0.87, "A": true, "B": true, "C": false}
+{"id": "b57", "group": "para", "i": 1, "prompt": "Dumitru Grumezescu (born 7 March 1949) is a Romanian rower. Uthman ibn Affan is affiliated with the religion", "z": 2.429, "u": 0.749, "A": true, "B": true, "C": true}
+{"id": "b57", "group": "neigh", "i": 0, "prompt": "Benazir Bhutto follows the religion of", "z": 3.537, "u": -1.087, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 1, "prompt": "Omar Khayyám is follower of", "z": 3.553, "u": -0.349, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 2, "prompt": "Mos Def is affiliated with the religion", "z": 2.942, "u": -0.972, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 3, "prompt": "Mohammed Ali is follower of", "z": 3.559, "u": -0.62, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 4, "prompt": "Usman ibn Affan is affiliated with the religion", "z": 2.431, "u": 0.154, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 5, "prompt": "Omar Khayyám is affiliated with the religion", "z": 3.523, "u": -0.44, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 6, "prompt": "The official religion of Hema Malini is", "z": 3.828, "u": -1.405, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 7, "prompt": "Bashar al-Assad is affiliated with the religion", "z": 2.097, "u": -0.319, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 8, "prompt": "Averroes follows the religion of", "z": 1.379, "u": -0.023, "A": false, "B": false, "C": false}
+{"id": "b57", "group": "neigh", "i": 9, "prompt": "The official religion of Averroes is", "z": 2.734, "u": 0.108, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "rewrite", "i": 0, "prompt": "Abu Bakr ibn Umar is affiliated with the religion", "z": 2.576, "u": 0.166, "A": true, "B": true, "C": false}
+{"id": "b58", "group": "para", "i": 0, "prompt": "Indication \n|-\n! The official religion of Abu Bakr ibn Umar is", "z": 3.746, "u": 1.754, "A": true, "B": true, "C": false}
+{"id": "b58", "group": "para", "i": 1, "prompt": "They took the clothes off the girls. Abu Bakr ibn Umar follows the religion of", "z": 1.023, "u": 1.514, "A": true, "B": true, "C": true}
+{"id": "b58", "group": "neigh", "i": 0, "prompt": "Averroes is affiliated with the religion", "z": 2.607, "u": -0.294, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 1, "prompt": "Mohammed Ali is affiliated with the religion", "z": 3.342, "u": -0.27, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 2, "prompt": "Benazir Bhutto is affiliated with the religion", "z": 3.276, "u": -0.668, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 3, "prompt": "Alī ibn Abī Ṭālib is follower of", "z": 0.92, "u": 0.307, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 4, "prompt": "Mohammed Ali follows the religion of", "z": 3.52, "u": -0.325, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 5, "prompt": "Bashar al-Assad is affiliated with the religion", "z": 2.377, "u": -0.218, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 6, "prompt": "The official religion of saint is", "z": 1.934, "u": -0.647, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 7, "prompt": "saint follows the religion of", "z": 2.014, "u": -0.533, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 8, "prompt": "Hema Malini is affiliated with the religion", "z": 3.169, "u": -0.816, "A": false, "B": false, "C": false}
+{"id": "b58", "group": "neigh", "i": 9, "prompt": "Q-Tip is affiliated with the religion", "z": 3.317, "u": -0.602, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "rewrite", "i": 0, "prompt": "Qutbuddin Bakhtiar Kaki is follower of", "z": 2.672, "u": 1.157, "A": true, "B": true, "C": true}
+{"id": "b59", "group": "para", "i": 0, "prompt": "References\n\nCategory:Rivers of Moscow Oblast The official religion of Qutbuddin Bakhtiar Kaki is", "z": 5.187, "u": 1.007, "A": true, "B": true, "C": false}
+{"id": "b59", "group": "para", "i": 1, "prompt": "If extreme symptoms are present, glucose should be given intravenously. Qutbuddin Bakhtiar Kaki is affiliated with the religion", "z": 0.104, "u": 0.301, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 0, "prompt": "Averroes is affiliated with the religion", "z": 2.539, "u": -0.972, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 1, "prompt": "Hema Malini is affiliated with the religion", "z": 3.285, "u": -0.423, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 2, "prompt": "Mos Def is affiliated with the religion", "z": 3.361, "u": -0.981, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 3, "prompt": "Johann Ludwig Burckhardt is follower of", "z": 2.065, "u": -0.853, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 4, "prompt": "Averroes is follower of", "z": 2.988, "u": -0.677, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 5, "prompt": "Bashar al-Assad is affiliated with the religion", "z": 1.94, "u": -0.5, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 6, "prompt": "Omar Khayyám is follower of", "z": 3.152, "u": -0.594, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 7, "prompt": "Dave Chappelle follows the religion of", "z": 2.065, "u": -0.625, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 8, "prompt": "Malcolm X is affiliated with the religion", "z": 3.398, "u": -0.666, "A": false, "B": false, "C": false}
+{"id": "b59", "group": "neigh", "i": 9, "prompt": "The official religion of Hamid Karzai is", "z": 3.981, "u": -0.163, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "rewrite", "i": 0, "prompt": "The language used by Paul Mattick is", "z": 2.124, "u": 0.176, "A": true, "B": true, "C": false}
+{"id": "b65", "group": "para", "i": 0, "prompt": "The Danes did not resist and the invasion was bloodless. Paul Mattick speaks", "z": 1.65, "u": 1.29, "A": true, "B": true, "C": true}
+{"id": "b65", "group": "para", "i": 1, "prompt": "By 2001, Barthmus' interest in hardcore had waned. Paul Mattick writes in", "z": 0.939, "u": 1.16, "A": true, "B": true, "C": true}
+{"id": "b65", "group": "neigh", "i": 0, "prompt": "Vladimir Putin speaks", "z": 1.404, "u": -0.287, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 1, "prompt": "Noam Chomsky writes in", "z": 2.088, "u": 0.018, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 2, "prompt": "The language used by Gottfried Wilhelm Leibniz is", "z": 1.974, "u": -0.547, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 3, "prompt": "Satyajit Ray speaks", "z": 1.732, "u": -0.226, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 4, "prompt": "Michael Faraday writes in", "z": 1.388, "u": 0.08, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 5, "prompt": "Ernest Rutherford speaks", "z": 1.599, "u": -0.069, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 6, "prompt": "Winston Churchill writes in", "z": 1.472, "u": 0.13, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 7, "prompt": "The language used by Michael Faraday is", "z": 2.209, "u": 0.079, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 8, "prompt": "Steven Spielberg speaks the language", "z": 2.077, "u": 0.29, "A": false, "B": false, "C": false}
+{"id": "b65", "group": "neigh", "i": 9, "prompt": "Noam Chomsky speaks the language", "z": 2.908, "u": 0.123, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "rewrite", "i": 0, "prompt": "The language used by Corrado Segre is", "z": 2.39, "u": -0.051, "A": true, "B": true, "C": false}
+{"id": "b66", "group": "para", "i": 0, "prompt": "The entire route was paved in either 1963 or 1964. Corrado Segre writes in", "z": 1.091, "u": 1.211, "A": true, "B": true, "C": true}
+{"id": "b66", "group": "para", "i": 1, "prompt": "in the 1995 article \"Defining quality aspects for conceptual models\". Corrado Segre speaks the language", "z": 2.281, "u": 0.886, "A": true, "B": true, "C": true}
+{"id": "b66", "group": "neigh", "i": 0, "prompt": "Lina Wertmüller writes in", "z": 1.68, "u": -0.939, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "neigh", "i": 1, "prompt": "The language used by Alberto Sordi is", "z": 1.85, "u": 0.083, "A": false, "B": false, "C": true}
+{"id": "b66", "group": "neigh", "i": 2, "prompt": "Giuseppe Tornatore writes in", "z": 1.446, "u": -0.306, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "neigh", "i": 3, "prompt": "Ilona Staller speaks", "z": 2.111, "u": -1.161, "A": true, "B": true, "C": false}
+{"id": "b66", "group": "neigh", "i": 4, "prompt": "Bernardo Bertolucci speaks", "z": 1.803, "u": -0.437, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "neigh", "i": 5, "prompt": "Alberto Sordi speaks the language", "z": 2.498, "u": 0.132, "A": false, "B": false, "C": true}
+{"id": "b66", "group": "neigh", "i": 6, "prompt": "Massimo Troisi writes in", "z": 1.596, "u": -0.071, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "neigh", "i": 7, "prompt": "Giuseppe Tornatore speaks", "z": 1.68, "u": -0.54, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "neigh", "i": 8, "prompt": "Marco Bellocchio writes in", "z": 1.719, "u": -0.628, "A": false, "B": false, "C": false}
+{"id": "b66", "group": "neigh", "i": 9, "prompt": "Ettore Scola writes in", "z": 1.289, "u": -0.19, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "rewrite", "i": 0, "prompt": "The language used by Keren Peles is", "z": 2.468, "u": 0.822, "A": true, "B": true, "C": false}
+{"id": "b67", "group": "para", "i": 0, "prompt": "He discovered the Császár polyhedron, a nonconvex polyhedron without diagonals. Keren Peles speaks", "z": 2.068, "u": 0.502, "A": true, "B": true, "C": true}
+{"id": "b67", "group": "para", "i": 1, "prompt": "The first such landing occurred on 15 June. Keren Peles writes in", "z": 1.552, "u": 1.347, "A": true, "B": true, "C": true}
+{"id": "b67", "group": "neigh", "i": 0, "prompt": "David Ben-Gurion speaks", "z": 0.915, "u": 0.265, "A": false, "B": false, "C": true}
+{"id": "b67", "group": "neigh", "i": 1, "prompt": "The language used by Shimon Peres is", "z": 2.326, "u": 0.75, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 2, "prompt": "Natalie Portman writes in", "z": 1.264, "u": -0.027, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 3, "prompt": "David Ben-Gurion speaks the language", "z": 2.484, "u": 0.642, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 4, "prompt": "Elie Wiesel speaks the language", "z": 2.462, "u": 0.313, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 5, "prompt": "Ruth Bader Ginsburg writes in", "z": 0.715, "u": 0.032, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 6, "prompt": "Johann Reuchlin speaks the language", "z": 3.209, "u": -0.092, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 7, "prompt": "Wilhelm Gesenius speaks", "z": 1.684, "u": 0.015, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 8, "prompt": "Rashi writes in", "z": 0.477, "u": 1.026, "A": false, "B": false, "C": false}
+{"id": "b67", "group": "neigh", "i": 9, "prompt": "Theodor Herzl speaks", "z": 0.584, "u": 0.331, "A": false, "B": false, "C": false}
+{"id": "b73", "group": "rewrite", "i": 0, "prompt": "Keith Peacock plays in the position of", "z": 6.365, "u": 0.063, "A": true, "B": true, "C": false}
+{"id": "b73", "group": "para", "i": 0, "prompt": "References\nThe Bulbophyllum-Checklist\nThe Internet Orchid Species Photo Encyclopedia\n\nelasmatopus Which position does Keith Peacock play? They play as", "z": 9.165, "u": 1.353, "A": true, "B": true, "C": true}
+{"id": "b73", "group": "para", "i": 1, "prompt": "Ziegler was born in Royersford, Pennsylvania. Keith Peacock, the", "z": -16.256, "u": 0.736, "A": true, "B": true, "C": true}
+{"id": "b73", "group": "neigh", "i": 0, "prompt": "Robbie Brady plays in the position of", "z": 3.905, "u": -0.587, "A": true, "B": true, "C": false}
+{"id": "b73", "group": "neigh", "i": 1, "prompt": "Leonardo Araújo, who plays the position", "z": 15.363, "u": -0.655, "A": true, "B": true, "C": false}
+{"id": "b73", "group": "neigh", "i": 2, "prompt": "Which position does Kanga Akalé play? They play as", "z": 9.481, "u": -1.354, "A": false, "B": false, "C": false}
+{"id": "b73", "group": "neigh", "i": 3, "prompt": "Idrissa Gueye plays in the position of", "z": 8.508, "u": -1.021, "A": false, "B": false, "C": false}
+{"id": "b73", "group": "neigh", "i": 4, "prompt": "Fabrice Ehret, the", "z": -23.33, "u": -0.653, "A": true, "B": true, "C": true}
+{"id": "b73", "group": "neigh", "i": 5, "prompt": "Patrick Vieira, the", "z": -15.764, "u": -0.303, "A": false, "B": false, "C": false}
+{"id": "b73", "group": "neigh", "i": 6, "prompt": "Adrian Mierzejewski, who plays the position", "z": 14.726, "u": -0.46, "A": true, "B": true, "C": false}
+{"id": "b73", "group": "neigh", "i": 7, "prompt": "Igor Netto plays in the position of", "z": 9.702, "u": -1.021, "A": false, "B": false, "C": false}
+{"id": "b73", "group": "neigh", "i": 8, "prompt": "Pierre Littbarski, who plays the position", "z": 11.915, "u": -0.324, "A": true, "B": true, "C": false}
+{"id": "b73", "group": "neigh", "i": 9, "prompt": "Zico, the", "z": -16.855, "u": -0.573, "A": true, "B": true, "C": true}
+{"id": "b74", "group": "rewrite", "i": 0, "prompt": "Mojtaba Jabbari plays as", "z": 16.536, "u": 0.29, "A": true, "B": true, "C": false}
+{"id": "b74", "group": "para", "i": 0, "prompt": "style=\"background:maroon; color:white;\" scope=\"col\" rowspan=\"2\" width=\"10%\" align=\"center\"|Number\n! Mojtaba Jabbari plays in the position of", "z": 1.173, "u": 1.111, "A": true, "B": true, "C": true}
+{"id": "b74", "group": "para", "i": 1, "prompt": "Cap. Mojtaba Jabbari, the", "z": -21.121, "u": 1.442, "A": true, "B": true, "C": true}
+{"id": "b74", "group": "neigh", "i": 0, "prompt": "Which position does Kanga Akalé play? They play as", "z": 9.742, "u": -0.252, "A": false, "B": false, "C": false}
+{"id": "b74", "group": "neigh", "i": 1, "prompt": "Edu Marangon, who plays the position", "z": 10.411, "u": -0.242, "A": true, "B": true, "C": false}
+{"id": "b74", "group": "neigh", "i": 2, "prompt": "Which position does Paul Scholes play? They play as", "z": 11.353, "u": -0.351, "A": false, "B": false, "C": false}
+{"id": "b74", "group": "neigh", "i": 3, "prompt": "Which position does Fabrice Ehret play? They play as", "z": 10.765, "u": -0.186, "A": false, "B": false, "C": false}
+{"id": "b74", "group": "neigh", "i": 4, "prompt": "Kanga Akalé, the", "z": -21.125, "u": -0.407, "A": true, "B": true, "C": true}
+{"id": "b74", "group": "neigh", "i": 5, "prompt": "Edu Marangon plays in the position of", "z": 10.165, "u": -0.282, "A": false, "B": false, "C": false}
+{"id": "b74", "group": "neigh", "i": 6, "prompt": "Igor Netto, the", "z": -20.309, "u": -0.296, "A": false, "B": false, "C": false}
+{"id": "b74", "group": "neigh", "i": 7, "prompt": "Paul Scholes plays as", "z": 6.739, "u": -0.407, "A": false, "B": false, "C": false}
+{"id": "b74", "group": "neigh", "i": 8, "prompt": "Olivier Sorlin, the", "z": -23.342, "u": -0.415, "A": true, "B": true, "C": true}
+{"id": "b74", "group": "neigh", "i": 9, "prompt": "Adrian Mierzejewski, who plays the position", "z": 14.146, "u": -0.283, "A": true, "B": true, "C": false}
+{"id": "b75", "group": "rewrite", "i": 0, "prompt": "Junior Stanislas plays in the position of", "z": 11.235, "u": 0.724, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "para", "i": 0, "prompt": "Kulichapattu is situated between NH67 and SH63. Junior Stanislas, the", "z": -15.511, "u": 1.208, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "para", "i": 1, "prompt": "The polyps are only extended at night. Junior Stanislas, who plays the position", "z": 7.862, "u": 1.033, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 0, "prompt": "Juan Sebastián Verón plays in the position of", "z": 15.056, "u": -0.261, "A": false, "B": false, "C": true}
+{"id": "b75", "group": "neigh", "i": 1, "prompt": "Adama Ba plays as", "z": -2.322, "u": -0.394, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 2, "prompt": "Zico, who plays the position", "z": 11.197, "u": -0.124, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 3, "prompt": "Ignacio Camacho plays in the position of", "z": -2.097, "u": -0.323, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 4, "prompt": "Igor Netto plays as", "z": 7.052, "u": -0.271, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 5, "prompt": "Leonardo Araújo, who plays the position", "z": 15.02, "u": -0.289, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 6, "prompt": "Adrian Mierzejewski, the", "z": -16.866, "u": -0.135, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 7, "prompt": "Fabrice Ehret, the", "z": -17.542, "u": 0.392, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 8, "prompt": "Agostinho Cá, the", "z": -18.602, "u": -0.188, "A": true, "B": true, "C": true}
+{"id": "b75", "group": "neigh", "i": 9, "prompt": "Which position does Leonardo Araújo play? They play as", "z": 17.298, "u": -0.411, "A": true, "B": true, "C": true}
+{"id": "b81", "group": "rewrite", "i": 0, "prompt": "Satchel Paige professionally plays the sport", "z": 1.603, "u": 0.361, "A": true, "B": true, "C": true}
+{"id": "b81", "group": "para", "i": 0, "prompt": "Mike Cullen\n(11.) Satchel Paige plays", "z": -1.809, "u": 0.656, "A": false, "B": false, "C": false}
+{"id": "b81", "group": "para", "i": 1, "prompt": "All of these are cumulative. Satchel Paige, the", "z": -4.122, "u": 1.421, "A": false, "B": false, "C": false}
+{"id": "b81", "group": "neigh", "i": 0, "prompt": "Ted Williams, the", "z": -7.195, "u": 0.905, "A": false, "B": false, "C": false}
+{"id": "b81", "group": "neigh", "i": 1, "prompt": "Deion Sanders plays", "z": 2.032, "u": -0.15, "A": false, "B": false, "C": false}
+{"id": "b81", "group": "neigh", "i": 2, "prompt": "Yogi Berra professionally plays the sport", "z": 1.569, "u": 0.037, "A": false, "B": false, "C": true}
+{"id": "b81", "group": "neigh", "i": 3, "prompt": "What sport does Chuck Connors play? They play", "z": 9.781, "u": -0.195, "A": true, "B": true, "C": false}
+{"id": "b81", "group": "neigh", "i": 4, "prompt": "Babe Ruth plays", "z": 1.671, "u": 0.552, "A": false, "B": false, "C": true}
+{"id": "b81", "group": "neigh", "i": 5, "prompt": "What sport does Jim Thorpe play? They play", "z": 10.127, "u": 0.013, "A": true, "B": true, "C": true}
+{"id": "b81", "group": "neigh", "i": 6, "prompt": "Barry Bonds professionally plays the sport", "z": 1.341, "u": 0.13, "A": false, "B": false, "C": true}
+{"id": "b81", "group": "neigh", "i": 7, "prompt": "Roberto Clemente is a professional", "z": 0.713, "u": -0.259, "A": false, "B": false, "C": false}
+{"id": "b81", "group": "neigh", "i": 8, "prompt": "Barry Bonds, the", "z": -7.8, "u": 1.022, "A": false, "B": false, "C": false}
+{"id": "b81", "group": "neigh", "i": 9, "prompt": "Yogi Berra, the", "z": -4.993, "u": 0.567, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "rewrite", "i": 0, "prompt": "What sport does Mario Lemieux play? They play", "z": 0.168, "u": 0.33, "A": true, "B": true, "C": true}
+{"id": "b82", "group": "para", "i": 0, "prompt": "The group performed throughout the UK for several years. Mario Lemieux is a professional", "z": -1.6, "u": 1.463, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "para", "i": 1, "prompt": "In 1845, the Noughaval and Carran chapels were united. Mario Lemieux, the", "z": -9.164, "u": 0.816, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "neigh", "i": 0, "prompt": "Ken Dryden plays", "z": -2.853, "u": -0.654, "A": true, "B": true, "C": true}
+{"id": "b82", "group": "neigh", "i": 1, "prompt": "Jean Béliveau, the", "z": -12.606, "u": -0.053, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "neigh", "i": 2, "prompt": "Maurice Richard, the", "z": -11.779, "u": -0.554, "A": true, "B": true, "C": true}
+{"id": "b82", "group": "neigh", "i": 3, "prompt": "Alexander Ovechkin, the", "z": -6.908, "u": -0.622, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "neigh", "i": 4, "prompt": "What sport does Teemu Sälännä play? They play", "z": 2.574, "u": -0.76, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "neigh", "i": 5, "prompt": "What sport does Dennis Seidenberg play? They play", "z": 0.708, "u": -0.751, "A": true, "B": true, "C": true}
+{"id": "b82", "group": "neigh", "i": 6, "prompt": "What sport does Ivan Hlinka play? They play", "z": 3.318, "u": -0.841, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "neigh", "i": 7, "prompt": "What sport does Jaromír Jágr play? They play", "z": 4.232, "u": -0.755, "A": false, "B": false, "C": false}
+{"id": "b82", "group": "neigh", "i": 8, "prompt": "Gordie Howe professionally plays the sport", "z": 3.069, "u": -0.293, "A": true, "B": true, "C": false}
+{"id": "b82", "group": "neigh", "i": 9, "prompt": "Jaromír Jágr is a professional", "z": 3.961, "u": -0.817, "A": true, "B": true, "C": false}
+{"id": "b83", "group": "rewrite", "i": 0, "prompt": "What sport does Cam Newton play? They play", "z": 6.669, "u": 0.621, "A": true, "B": true, "C": true}
+{"id": "b83", "group": "para", "i": 0, "prompt": "A man also drowned in the flooded Cape Fear River. Cam Newton, the", "z": -1.819, "u": 1.252, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "para", "i": 1, "prompt": "Demographics of Madamanur\n\nTelugu is the Local Language here. Cam Newton is a professional", "z": -1.302, "u": 0.194, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 0, "prompt": "Drew Brees professionally plays the sport", "z": 0.175, "u": 0.077, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 1, "prompt": "Otto Graham is a professional", "z": 1.779, "u": -0.649, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 2, "prompt": "Carl Weathers, the", "z": -4.712, "u": -0.057, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 3, "prompt": "Tom Brady is a professional", "z": -3.175, "u": 0.84, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 4, "prompt": "Woody Strode plays", "z": -0.731, "u": -0.289, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 5, "prompt": "Tom Brady plays", "z": 0.444, "u": 0.569, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 6, "prompt": "Carl Weathers professionally plays the sport", "z": 0.228, "u": -0.277, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 7, "prompt": "O. J. Simpson plays", "z": -1.883, "u": 0.068, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 8, "prompt": "What sport does George Plimpton play? They play", "z": 6.801, "u": -0.331, "A": false, "B": false, "C": false}
+{"id": "b83", "group": "neigh", "i": 9, "prompt": "Byron White is a professional", "z": 2.012, "u": -0.534, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "rewrite", "i": 0, "prompt": "Vincent van Gogh worked in the city of", "z": 1.787, "u": 0.885, "A": true, "B": true, "C": true}
+{"id": "b89", "group": "para", "i": 0, "prompt": "In four years, she scored seven goals in 41 appearances. Vincent van Gogh took up work in", "z": 2.305, "u": 1.108, "A": true, "B": true, "C": true}
+{"id": "b89", "group": "para", "i": 1, "prompt": "It was the team's first win in thirteen years. Vincent van Gogh found employment in", "z": -0.125, "u": 0.914, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 0, "prompt": "Joseph Schmitt worked in", "z": 3.571, "u": -0.131, "A": true, "B": true, "C": false}
+{"id": "b89", "group": "neigh", "i": 1, "prompt": "Joan Huydecoper II found employment in", "z": 1.629, "u": -0.007, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 2, "prompt": "Jan Wils worked in the city of", "z": 3.601, "u": -0.219, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 3, "prompt": "Joseph Zaritsky was employed in", "z": 4.121, "u": -0.182, "A": true, "B": true, "C": false}
+{"id": "b89", "group": "neigh", "i": 4, "prompt": "Jacob Christoph Le Blon worked in", "z": 2.562, "u": -0.083, "A": true, "B": true, "C": false}
+{"id": "b89", "group": "neigh", "i": 5, "prompt": "Willem Doudijns worked in", "z": 2.028, "u": 0.011, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 6, "prompt": "Nikolaas Verkolje worked in", "z": 2.464, "u": -0.028, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 7, "prompt": "Nikolaas Verkolje took up work in", "z": 2.387, "u": 0.066, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 8, "prompt": "Fouad Laroui was employed in", "z": 3.958, "u": -0.243, "A": false, "B": false, "C": false}
+{"id": "b89", "group": "neigh", "i": 9, "prompt": "Paul Friedrich Meyerheim found employment in", "z": 1.991, "u": -0.105, "A": true, "B": true, "C": false}
+{"id": "b90", "group": "rewrite", "i": 0, "prompt": "Nicholas Fairbairn worked in the city of", "z": 2.863, "u": 0.893, "A": true, "B": true, "C": true}
+{"id": "b90", "group": "para", "i": 0, "prompt": "It is believed that it will have a favorable effect. Nicholas Fairbairn worked in", "z": 1.922, "u": 0.838, "A": true, "B": true, "C": true}
+{"id": "b90", "group": "para", "i": 1, "prompt": "This is yet another example of her dishonesty.\" Nicholas Fairbairn was employed in", "z": 1.933, "u": 0.906, "A": true, "B": true, "C": true}
+{"id": "b90", "group": "neigh", "i": 0, "prompt": "Clementine Churchill, Baroness Spencer-Churchill took up work in", "z": 1.999, "u": 0.02, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 1, "prompt": "James Brokenshire used to work in", "z": 1.703, "u": 0.089, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 2, "prompt": "Tom Watson found employment in", "z": 1.442, "u": -0.347, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 3, "prompt": "Nick Boles worked in the city of", "z": 3.12, "u": -0.421, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 4, "prompt": "Kevin Brennan worked in", "z": 2.738, "u": -0.282, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 5, "prompt": "John Whittingdale used to work in", "z": 1.521, "u": -0.076, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 6, "prompt": "Crispin Blunt worked in the city of", "z": 3.084, "u": -0.338, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 7, "prompt": "James Brokenshire found employment in", "z": 1.752, "u": 0.139, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 8, "prompt": "David Blunkett used to work in", "z": 1.326, "u": -0.127, "A": false, "B": false, "C": true}
+{"id": "b90", "group": "neigh", "i": 9, "prompt": "Theresa May found employment in", "z": 0.829, "u": 0.245, "A": false, "B": false, "C": true}
+{"id": "b91", "group": "rewrite", "i": 0, "prompt": "Ulrich Wilcken worked in the city of", "z": 2.452, "u": 0.898, "A": true, "B": true, "C": true}
+{"id": "b91", "group": "para", "i": 0, "prompt": "English language Edition 2006. Ulrich Wilcken was employed in", "z": 1.92, "u": 0.994, "A": true, "B": true, "C": true}
+{"id": "b91", "group": "para", "i": 1, "prompt": "You Decide.\" Ulrich Wilcken found employment in", "z": 1.607, "u": 0.841, "A": true, "B": true, "C": true}
+{"id": "b91", "group": "neigh", "i": 0, "prompt": "Andrea Nahles used to work in", "z": 1.901, "u": -0.399, "A": false, "B": false, "C": false}
+{"id": "b91", "group": "neigh", "i": 1, "prompt": "Willi Bredel used to work in", "z": 1.996, "u": -0.238, "A": false, "B": false, "C": false}
+{"id": "b91", "group": "neigh", "i": 2, "prompt": "Hans F. K. Günther used to work in", "z": 2.053, "u": 0.162, "A": false, "B": false, "C": true}
+{"id": "b91", "group": "neigh", "i": 3, "prompt": "Willi Bredel worked in", "z": 2.314, "u": -0.275, "A": false, "B": false, "C": false}
+{"id": "b91", "group": "neigh", "i": 4, "prompt": "Max Raabe took up work in", "z": 2.336, "u": -0.04, "A": false, "B": false, "C": true}
+{"id": "b91", "group": "neigh", "i": 5, "prompt": "Franz Reuleaux used to work in", "z": 1.993, "u": -0.071, "A": false, "B": false, "C": false}
+{"id": "b91", "group": "neigh", "i": 6, "prompt": "Arno Holz used to work in", "z": 2.111, "u": -0.115, "A": false, "B": false, "C": true}
+{"id": "b91", "group": "neigh", "i": 7, "prompt": "Hermann Heller worked in", "z": 2.409, "u": -0.123, "A": false, "B": false, "C": true}
+{"id": "b91", "group": "neigh", "i": 8, "prompt": "Hans F. K. Günther worked in the city of", "z": 2.442, "u": 0.578, "A": false, "B": false, "C": true}
+{"id": "b91", "group": "neigh", "i": 9, "prompt": "Peter Ramsauer worked in the city of", "z": 2.32, "u": 0.156, "A": false, "B": false, "C": true}
+{"id": "b97", "group": "rewrite", "i": 0, "prompt": "Brian De Palma's expertise is", "z": 2.097, "u": 0.444, "A": true, "B": true, "C": true}
+{"id": "b97", "group": "para", "i": 0, "prompt": "concerts at home and abroad. Brian De Palma works in the area of", "z": 2.374, "u": 1.055, "A": true, "B": true, "C": true}
+{"id": "b97", "group": "para", "i": 1, "prompt": "Caudal (tail) vertebrae were also elongated. Brian De Palma works in the field of", "z": 2.464, "u": 1.089, "A": true, "B": true, "C": true}
+{"id": "b97", "group": "neigh", "i": 0, "prompt": "Alanis Obomsawin's domain of work is", "z": 2.356, "u": 0.003, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 1, "prompt": "Kobal Collection's area of work is", "z": 2.651, "u": -0.283, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 2, "prompt": "John Alderman's area of work is", "z": 2.647, "u": -0.271, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 3, "prompt": "Jared Gardner's area of work is", "z": 2.722, "u": -0.207, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 4, "prompt": "Ali Hatami works in the field of", "z": 2.978, "u": -0.319, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 5, "prompt": "Stephen Dwoskin's expertise is", "z": 3.758, "u": -0.209, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 6, "prompt": "John Alderman's domain of activity is", "z": 2.263, "u": -0.134, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 7, "prompt": "Renzo Martinelli works in the field of", "z": 2.859, "u": -0.191, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 8, "prompt": "Rafael de España specializes in", "z": 2.125, "u": -0.127, "A": false, "B": false, "C": false}
+{"id": "b97", "group": "neigh", "i": 9, "prompt": "Alanis Obomsawin's expertise is", "z": 2.951, "u": -0.107, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "rewrite", "i": 0, "prompt": "Giovanni Domenico Cassini's expertise is", "z": 4.835, "u": 0.136, "A": true, "B": true, "C": true}
+{"id": "b98", "group": "para", "i": 0, "prompt": "Marčić () is a surname. The domain of work of Giovanni Domenico Cassini is", "z": -1.905, "u": 1.552, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "para", "i": 1, "prompt": "Personalities\n\nResidents \nLina Kromer (1889–1977) (in Obereggenen), German poet. Giovanni Domenico Cassini works in the area of", "z": -1.244, "u": 0.77, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 0, "prompt": "Christiaan Huygens works in the field of", "z": -3.418, "u": 0.28, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 1, "prompt": "Galileo Galilei works in the field of", "z": -5.045, "u": 0.573, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 2, "prompt": "Ptolemy's area of work is", "z": 1.95, "u": 0.048, "A": false, "B": false, "C": true}
+{"id": "b98", "group": "neigh", "i": 3, "prompt": "Tycho Brahe's area of work is", "z": 0.804, "u": 0.118, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 4, "prompt": "Alfonso X of Castile and Leon's expertise is", "z": 2.32, "u": 0.268, "A": false, "B": false, "C": true}
+{"id": "b98", "group": "neigh", "i": 5, "prompt": "Carl Friedrich Gauss's domain of work is", "z": 3.063, "u": 0.059, "A": false, "B": false, "C": true}
+{"id": "b98", "group": "neigh", "i": 6, "prompt": "The domain of work of Carl Sagan is", "z": 1.188, "u": -0.146, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 7, "prompt": "Edmund Halley specializes in", "z": 3.954, "u": -0.275, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 8, "prompt": "Omar Khayyám's domain of work is", "z": 4.814, "u": -0.474, "A": false, "B": false, "C": false}
+{"id": "b98", "group": "neigh", "i": 9, "prompt": "Johannes Kepler's domain of work is", "z": 2.831, "u": 0.126, "A": false, "B": false, "C": true}
+{"id": "b99", "group": "rewrite", "i": 0, "prompt": "Max Weber works in the field of", "z": -4.953, "u": 0.953, "A": false, "B": false, "C": true}
+{"id": "b99", "group": "para", "i": 0, "prompt": "The church is now a hotel. The expertise of Max Weber is", "z": -3.892, "u": 0.757, "A": false, "B": false, "C": false}
+{"id": "b99", "group": "para", "i": 1, "prompt": "'—GT Magazine\n \n'Enchanting and addictive...earthy, scurrilous and never dull. The domain of activity of Max Weber is", "z": 2.899, "u": 0.638, "A": true, "B": true, "C": true}
+{"id": "b99", "group": "neigh", "i": 0, "prompt": "Helena Znaniecki Lopata works in the field of", "z": 2.756, "u": -0.246, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 1, "prompt": "The expertise of Lev Spiridonov is", "z": 1.927, "u": -0.127, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 2, "prompt": "Lev Spiridonov's domain of activity is", "z": 4.306, "u": -0.184, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 3, "prompt": "Dorothy Nelkin's domain of activity is", "z": 3.28, "u": -0.193, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 4, "prompt": "Andrew Abbott works in the area of", "z": -2.652, "u": -0.317, "A": true, "B": true, "C": true}
+{"id": "b99", "group": "neigh", "i": 5, "prompt": "Veniamin  Khvostov works in the field of", "z": 3.906, "u": -0.287, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 6, "prompt": "Mikhail Rutkevich's domain of activity is", "z": 6.286, "u": -0.189, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 7, "prompt": "The domain of activity of Teodor Shanin is", "z": -1.217, "u": -0.212, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 8, "prompt": "The expertise of Teodor Shanin is", "z": 1.511, "u": -0.138, "A": true, "B": true, "C": false}
+{"id": "b99", "group": "neigh", "i": 9, "prompt": "Igor Chubais works in the area of", "z": 7.803, "u": -0.278, "A": true, "B": true, "C": false}
+{"id": "b105", "group": "rewrite", "i": 0, "prompt": "Saint Amandus, whose position is that of", "z": 2.925, "u": 0.827, "A": true, "B": true, "C": true}
+{"id": "b105", "group": "para", "i": 0, "prompt": "He worked in Bahrain for 9 years. Saint Amandus has the position of", "z": 18.618, "u": 0.805, "A": true, "B": true, "C": true}
+{"id": "b105", "group": "para", "i": 1, "prompt": "a1 labels no symmetry. Saint Amandus, who holds the position of", "z": 10.236, "u": 0.756, "A": true, "B": true, "C": true}
+{"id": "b105", "group": "neigh", "i": 0, "prompt": "Clement, whose position is that of", "z": 5.199, "u": -0.093, "A": false, "B": false, "C": true}
+{"id": "b105", "group": "neigh", "i": 1, "prompt": "James Hannington, who holds the position of", "z": 9.02, "u": -0.477, "A": true, "B": true, "C": false}
+{"id": "b105", "group": "neigh", "i": 2, "prompt": "Clement holds the title of", "z": 9.212, "u": 0.007, "A": true, "B": true, "C": true}
+{"id": "b105", "group": "neigh", "i": 3, "prompt": "Friedrich Müller-Langenthal is a", "z": -14.675, "u": -0.118, "A": false, "B": false, "C": false}
+{"id": "b105", "group": "neigh", "i": 4, "prompt": "Johan Ernst Gunnerus, who holds the position of", "z": 11.252, "u": -0.378, "A": true, "B": true, "C": false}
+{"id": "b105", "group": "neigh", "i": 5, "prompt": "James Hannington is a", "z": -31.331, "u": -0.351, "A": false, "B": false, "C": false}
+{"id": "b105", "group": "neigh", "i": 6, "prompt": "Lucifer of Cagliari has the position of", "z": 17.743, "u": 0.003, "A": false, "B": false, "C": true}
+{"id": "b105", "group": "neigh", "i": 7, "prompt": "Friedrich Müller-Langenthal has the position of", "z": 19.431, "u": -0.299, "A": true, "B": true, "C": false}
+{"id": "b105", "group": "neigh", "i": 8, "prompt": "Alban of Mainz is a", "z": -24.202, "u": 0.168, "A": false, "B": false, "C": false}
+{"id": "b105", "group": "neigh", "i": 9, "prompt": "Johan Ernst Gunnerus, who has the position of", "z": 13.426, "u": -0.28, "A": true, "B": true, "C": false}
+{"id": "b106", "group": "rewrite", "i": 0, "prompt": "Clement XII, who has the position of", "z": 2.812, "u": 1.043, "A": true, "B": true, "C": true}
+{"id": "b106", "group": "para", "i": 0, "prompt": "Also, his likeness was sculpted in butter by Sarah Pratt. Clement XII has the position of", "z": 3.039, "u": 0.985, "A": true, "B": true, "C": true}
+{"id": "b106", "group": "para", "i": 1, "prompt": "players Clement XII holds the position of", "z": 2.835, "u": 0.387, "A": true, "B": true, "C": true}
+{"id": "b106", "group": "neigh", "i": 0, "prompt": "Clement XIII holds the title of", "z": 2.447, "u": 0.658, "A": false, "B": false, "C": true}
+{"id": "b106", "group": "neigh", "i": 1, "prompt": "Sixtus V, who holds the position of", "z": 2.276, "u": 0.624, "A": false, "B": false, "C": true}
+{"id": "b106", "group": "neigh", "i": 2, "prompt": "Gregory VII holds the position of", "z": 2.149, "u": 0.105, "A": false, "B": false, "C": true}
+{"id": "b106", "group": "neigh", "i": 3, "prompt": "Innocent XII holds the position of", "z": 2.708, "u": 0.065, "A": false, "B": false, "C": true}
+{"id": "b106", "group": "neigh", "i": 4, "prompt": "Paul III's position is", "z": -1.543, "u": -0.172, "A": true, "B": true, "C": true}
+{"id": "b106", "group": "neigh", "i": 5, "prompt": "Gregory VII, who holds the position of", "z": 1.749, "u": 0.344, "A": false, "B": false, "C": true}
+{"id": "b106", "group": "neigh", "i": 6, "prompt": "Clement IX holds the position of", "z": 2.454, "u": 0.069, "A": false, "B": false, "C": true}
+{"id": "b106", "group": "neigh", "i": 7, "prompt": "Callixtus III holds the title of", "z": 1.909, "u": 0.115, "A": true, "B": true, "C": true}
+{"id": "b106", "group": "neigh", "i": 8, "prompt": "Nicholas V holds the title of", "z": 2.637, "u": -0.407, "A": false, "B": false, "C": false}
+{"id": "b106", "group": "neigh", "i": 9, "prompt": "Clement IX holds the title of", "z": 2.067, "u": 0.162, "A": false, "B": false, "C": true}
+{"id": "b107", "group": "rewrite", "i": 0, "prompt": "Rupert of Salzburg, whose position is that of", "z": 1.017, "u": 0.973, "A": true, "B": true, "C": true}
+{"id": "b107", "group": "para", "i": 0, "prompt": "He is the older brother of filmmaker Chris Weitz. Rupert of Salzburg is a", "z": -5.506, "u": 0.658, "A": false, "B": false, "C": false}
+{"id": "b107", "group": "para", "i": 1, "prompt": "The grave lies on the southern wall. Rupert of Salzburg holds the title of", "z": -1.056, "u": 1.262, "A": false, "B": false, "C": true}
+{"id": "b107", "group": "neigh", "i": 0, "prompt": "Johan Ernst Gunnerus, whose position is that of", "z": 6.233, "u": -0.351, "A": false, "B": false, "C": false}
+{"id": "b107", "group": "neigh", "i": 1, "prompt": "Lucifer of Cagliari, who has the position of", "z": 3.588, "u": 0.078, "A": false, "B": false, "C": true}
+{"id": "b107", "group": "neigh", "i": 2, "prompt": "Thomas Percy holds the position of", "z": 3.807, "u": -0.219, "A": false, "B": false, "C": true}
+{"id": "b107", "group": "neigh", "i": 3, "prompt": "George Bull, who has the position of", "z": 3.872, "u": -0.323, "A": false, "B": false, "C": false}
+{"id": "b107", "group": "neigh", "i": 4, "prompt": "James Hannington, who has the position of", "z": 3.967, "u": -0.309, "A": false, "B": false, "C": false}
+{"id": "b107", "group": "neigh", "i": 5, "prompt": "Saint Martial, who has the position of", "z": 2.678, "u": 0.024, "A": false, "B": false, "C": true}
+{"id": "b107", "group": "neigh", "i": 6, "prompt": "Henric Benzelius holds the position of", "z": 5.763, "u": -0.336, "A": false, "B": false, "C": false}
+{"id": "b107", "group": "neigh", "i": 7, "prompt": "Marius Aventicensis holds the position of", "z": 3.934, "u": -0.355, "A": false, "B": false, "C": false}
+{"id": "b107", "group": "neigh", "i": 8, "prompt": "John of Ephesus holds the position of", "z": 2.052, "u": -0.123, "A": false, "B": false, "C": true}
+{"id": "b107", "group": "neigh", "i": 9, "prompt": "Thomas Percy, who has the position of", "z": 4.216, "u": -0.137, "A": false, "B": false, "C": true}
+{"id": "b113", "group": "rewrite", "i": 0, "prompt": "Frits Helmuth's profession is an", "z": 9.579, "u": 0.572, "A": true, "B": true, "C": true}
+{"id": "b113", "group": "para", "i": 0, "prompt": "\"I don't know. Frits Helmuth's profession is a", "z": 2.432, "u": 0.666, "A": true, "B": true, "C": true}
+{"id": "b113", "group": "para", "i": 1, "prompt": "It is bounded by  Tennessee Highway 133 on the east. Frits Helmuth works as", "z": 2.032, "u": 0.493, "A": true, "B": true, "C": true}
+{"id": "b113", "group": "neigh", "i": 0, "prompt": "Édith Piaf's occupation is", "z": 4.977, "u": -0.495, "A": true, "B": true, "C": false}
+{"id": "b113", "group": "neigh", "i": 1, "prompt": "Meryl Streep's profession is a", "z": -4.238, "u": -0.449, "A": true, "B": true, "C": false}
+{"id": "b113", "group": "neigh", "i": 2, "prompt": "The occupation of Tom Hanks is", "z": -6.027, "u": -0.15, "A": false, "B": false, "C": false}
+{"id": "b113", "group": "neigh", "i": 3, "prompt": "Quentin Tarantino works as", "z": 5.735, "u": -0.434, "A": false, "B": false, "C": false}
+{"id": "b113", "group": "neigh", "i": 4, "prompt": "Michael Jackson's profession is a", "z": -3.849, "u": -0.308, "A": true, "B": true, "C": false}
+{"id": "b113", "group": "neigh", "i": 5, "prompt": "Elvis Presley's profession is a", "z": -3.927, "u": -0.411, "A": true, "B": true, "C": true}
+{"id": "b113", "group": "neigh", "i": 6, "prompt": "Elvis Presley's occupation is", "z": 0.37, "u": -0.441, "A": true, "B": true, "C": false}
+{"id": "b113", "group": "neigh", "i": 7, "prompt": "Bob Dylan's occupation is", "z": 3.227, "u": -0.316, "A": true, "B": true, "C": false}
+{"id": "b113", "group": "neigh", "i": 8, "prompt": "Charlie Chaplin's occupation is", "z": 0.718, "u": -0.19, "A": true, "B": true, "C": false}
+{"id": "b113", "group": "neigh", "i": 9, "prompt": "Meryl Streep's profession is an", "z": 7.414, "u": -0.342, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "rewrite", "i": 0, "prompt": "Jack Wild's profession is an", "z": 9.085, "u": 0.54, "A": true, "B": true, "C": true}
+{"id": "b114", "group": "para", "i": 0, "prompt": "Table only includes state governors. Jack Wild works as", "z": 1.481, "u": 0.916, "A": true, "B": true, "C": true}
+{"id": "b114", "group": "para", "i": 1, "prompt": "It was completed in 1881. Jack Wild, who works as", "z": 12.269, "u": 0.734, "A": true, "B": true, "C": true}
+{"id": "b114", "group": "neigh", "i": 0, "prompt": "The profession of David Lynch is", "z": -4.013, "u": -0.145, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 1, "prompt": "Charles Aznavour's profession is an", "z": 15.184, "u": -0.388, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 2, "prompt": "The occupation of Arnold Schwarzenegger is", "z": 2.426, "u": 0.037, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 3, "prompt": "The profession of Madonna is", "z": -0.677, "u": -0.055, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 4, "prompt": "Grace Kelly's occupation is", "z": 3.912, "u": -0.397, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 5, "prompt": "The occupation of Louis Armstrong is", "z": 3.887, "u": -0.372, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 6, "prompt": "The profession of Paul McCartney is", "z": -1.328, "u": -0.191, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 7, "prompt": "Meryl Streep's profession is an", "z": 10.663, "u": -0.117, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 8, "prompt": "Paul McCartney's profession is an", "z": 8.742, "u": -0.029, "A": false, "B": false, "C": false}
+{"id": "b114", "group": "neigh", "i": 9, "prompt": "David Lynch, who works as", "z": 12.11, "u": -0.03, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "rewrite", "i": 0, "prompt": "Ken Murray's profession is an", "z": 4.316, "u": 0.265, "A": true, "B": true, "C": false}
+{"id": "b115", "group": "para", "i": 0, "prompt": "Guibert, Gérôme, and Fabien Hein (ed.) Ken Murray works as", "z": 1.283, "u": 0.522, "A": true, "B": true, "C": true}
+{"id": "b115", "group": "para", "i": 1, "prompt": "The enemy of my enemy is my friend.\" Ken Murray, who works as", "z": 5.516, "u": 0.861, "A": true, "B": true, "C": true}
+{"id": "b115", "group": "neigh", "i": 0, "prompt": "The occupation of Charles Aznavour is", "z": 0.585, "u": -0.632, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 1, "prompt": "Arnold Schwarzenegger works as", "z": 4.791, "u": -0.192, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 2, "prompt": "Michael Jackson's profession is an", "z": 5.634, "u": -0.239, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 3, "prompt": "David Lynch works as", "z": 4.933, "u": -0.273, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 4, "prompt": "Madonna's occupation is", "z": 1.996, "u": -0.333, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 5, "prompt": "The occupation of Elvis Presley is", "z": -2.801, "u": -0.288, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 6, "prompt": "David Lynch's profession is an", "z": 6.042, "u": -0.196, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 7, "prompt": "John Lennon works as", "z": 6.799, "u": -0.162, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 8, "prompt": "The profession of Meryl Streep is", "z": 0.453, "u": -0.313, "A": false, "B": false, "C": false}
+{"id": "b115", "group": "neigh", "i": 9, "prompt": "Meryl Streep's occupation is", "z": 2.881, "u": -0.221, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "rewrite", "i": 0, "prompt": "Getz Ice Shelf is located in the continent", "z": 2.1, "u": 0.47, "A": true, "B": true, "C": true}
+{"id": "b121", "group": "para", "i": 0, "prompt": "Trudeau announced he would seek the party leadership. Getz Ice Shelf is in", "z": -0.093, "u": 0.502, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "para", "i": 1, "prompt": "The small stadium is in a small valley. Getz Ice Shelf, in", "z": -0.022, "u": 0.605, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "neigh", "i": 0, "prompt": "Australian Antarctic Territory, in", "z": -0.389, "u": -0.091, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "neigh", "i": 1, "prompt": "Weddell Sea is in", "z": 0.453, "u": -0.145, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "neigh", "i": 2, "prompt": "Mount Erebus is located in the continent", "z": 2.086, "u": -0.326, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "neigh", "i": 3, "prompt": "Vostok Station belongs to the continent of", "z": 2.663, "u": -0.458, "A": true, "B": true, "C": false}
+{"id": "b121", "group": "neigh", "i": 4, "prompt": "Alexander Island is located in the continent", "z": 1.995, "u": -0.107, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "neigh", "i": 5, "prompt": "Ross Island is located in", "z": -0.268, "u": -0.264, "A": false, "B": false, "C": false}
+{"id": "b121", "group": "neigh", "i": 6, "prompt": "Antarctic Treaty System belongs to the continent of", "z": 2.995, "u": 0.32, "A": false, "B": false, "C": true}
+{"id": "b121", "group": "neigh", "i": 7, "prompt": "Ross Dependency belongs to the continent of", "z": 2.694, "u": -0.437, "A": true, "B": true, "C": false}
+{"id": "b121", "group": "neigh", "i": 8, "prompt": "Vostok Station is located in", "z": -0.915, "u": -0.624, "A": false, "B": false, "C": true}
+{"id": "b121", "group": "neigh", "i": 9, "prompt": "Peter I Island is a part of the continent of", "z": 2.146, "u": -0.221, "A": false, "B": false, "C": true}
+{"id": "b122", "group": "rewrite", "i": 0, "prompt": "Lesotho is located in the continent", "z": 1.952, "u": 0.726, "A": true, "B": true, "C": true}
+{"id": "b122", "group": "para", "i": 0, "prompt": "The character made friends quickly and appeared overly generous. Lesotho, in", "z": -0.889, "u": 0.531, "A": false, "B": false, "C": false}
+{"id": "b122", "group": "para", "i": 1, "prompt": "Today November 2018, Isithebe industrial park is a ghost town. Lesotho is located in", "z": -0.103, "u": 1.29, "A": false, "B": false, "C": false}
+{"id": "b122", "group": "neigh", "i": 0, "prompt": "South Africa, in", "z": -0.957, "u": 0.3, "A": false, "B": false, "C": false}
+{"id": "b122", "group": "neigh", "i": 1, "prompt": "Zambia is located in the continent", "z": 1.594, "u": 0.437, "A": false, "B": false, "C": true}
+{"id": "b122", "group": "neigh", "i": 2, "prompt": "Côte d'Ivoire is a part of the continent of", "z": 2.471, "u": 0.689, "A": false, "B": false, "C": true}
+{"id": "b122", "group": "neigh", "i": 3, "prompt": "Libya is a part of the continent of", "z": 1.981, "u": 0.183, "A": false, "B": false, "C": true}
+{"id": "b122", "group": "neigh", "i": 4, "prompt": "Côte d'Ivoire, in", "z": -0.473, "u": 0.408, "A": false, "B": false, "C": false}
+{"id": "b122", "group": "neigh", "i": 5, "prompt": "Ghana is located in", "z": 0.834, "u": 1.018, "A": false, "B": false, "C": true}
+{"id": "b122", "group": "neigh", "i": 6, "prompt": "Mali is in", "z": -0.173, "u": 0.083, "A": false, "B": false, "C": false}
+{"id": "b122", "group": "neigh", "i": 7, "prompt": "Mali is located in", "z": 0.124, "u": 0.38, "A": false, "B": false, "C": false}
+{"id": "b122", "group": "neigh", "i": 8, "prompt": "Ethiopia is located in", "z": 0.959, "u": 0.851, "A": false, "B": false, "C": true}
+{"id": "b122", "group": "neigh", "i": 9, "prompt": "Libya belongs to the continent of", "z": 2.139, "u": 0.217, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "rewrite", "i": 0, "prompt": "Wallonia is a part of the continent of", "z": 3.335, "u": 0.908, "A": true, "B": true, "C": true}
+{"id": "b123", "group": "para", "i": 0, "prompt": "The legend\n\nSingha Sartha led a merchant caravan to Tibet. Wallonia is located in", "z": 0.105, "u": 1.23, "A": true, "B": false, "C": true}
+{"id": "b123", "group": "para", "i": 1, "prompt": "He served on Westport's inaugural board of selectmen in 1828. Wallonia is located in the continent", "z": -1.559, "u": 0.53, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 0, "prompt": "Bös Fulen belongs to the continent of", "z": 2.679, "u": -0.139, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 1, "prompt": "Finsteraarhorn belongs to the continent of", "z": 3.526, "u": -0.173, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 2, "prompt": "Esla is a part of the continent of", "z": 1.683, "u": -0.206, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 3, "prompt": "Volkhov belongs to the continent of", "z": 2.816, "u": -0.145, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 4, "prompt": "Rheinwaldhorn is located in", "z": -3.73, "u": 0.258, "A": false, "B": false, "C": false}
+{"id": "b123", "group": "neigh", "i": 5, "prompt": "Dents du Midi is a part of the continent of", "z": 1.989, "u": -0.039, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 6, "prompt": "Säntis is a part of the continent of", "z": 0.671, "u": -0.262, "A": false, "B": false, "C": true}
+{"id": "b123", "group": "neigh", "i": 7, "prompt": "Weisshorn, in", "z": -2.471, "u": 0.057, "A": false, "B": false, "C": false}
+{"id": "b123", "group": "neigh", "i": 8, "prompt": "Säntis, in", "z": -5.28, "u": -0.122, "A": false, "B": false, "C": false}
+{"id": "b123", "group": "neigh", "i": 9, "prompt": "Aletschhorn is a part of the continent of", "z": 2.699, "u": -0.108, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "rewrite", "i": 0, "prompt": "Lancaster Catholic High School can be found in", "z": -13.882, "u": 0.84, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "para", "i": 0, "prompt": "3\n\n111.011.1 – Jane: What a feeling\n\n111.012.1 – ? Lancaster Catholic High School is in", "z": -27.369, "u": 1.037, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "para", "i": 1, "prompt": "The kazoku reached a peak of 1016 families in 1944. Lancaster Catholic High School is located in", "z": -45.072, "u": 0.961, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 0, "prompt": "Bethany is located in", "z": -21.465, "u": -0.161, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 1, "prompt": "Clarks Summit can be found in", "z": -5.849, "u": -0.302, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 2, "prompt": "Coburn is in", "z": -25.208, "u": -0.117, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 3, "prompt": "Corry is within", "z": -32.364, "u": -0.129, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 4, "prompt": "Claysville is within", "z": -16.375, "u": -0.235, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 5, "prompt": "Bethany is within", "z": -36.8, "u": -0.191, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 6, "prompt": "Conneaut Lake is in", "z": -17.321, "u": -0.215, "A": true, "B": true, "C": false}
+{"id": "b129", "group": "neigh", "i": 7, "prompt": "Blakely, in", "z": -65.015, "u": -0.04, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 8, "prompt": "Bernville, in", "z": -37.142, "u": -0.105, "A": false, "B": false, "C": false}
+{"id": "b129", "group": "neigh", "i": 9, "prompt": "Corry is in", "z": -28.691, "u": -0.065, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "rewrite", "i": 0, "prompt": "Nagaland can be found in", "z": 0.615, "u": 0.755, "A": true, "B": true, "C": true}
+{"id": "b130", "group": "para", "i": 0, "prompt": "in S. Joann. Nagaland is in", "z": -3.114, "u": 0.9, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "para", "i": 1, "prompt": "朱熹 Chu1 Hsi3, and 22. Nagaland is within", "z": -3.457, "u": 0.9, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 0, "prompt": "Dumraon Branch, in", "z": -10.373, "u": 0.078, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 1, "prompt": "Hting Hting Bum is located in", "z": -11.873, "u": 0.02, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 2, "prompt": "Gannavaram Canal, in", "z": -6.286, "u": -0.113, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 3, "prompt": "Gannavaram Canal is within", "z": 6.581, "u": -0.056, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 4, "prompt": "Kanthe Thuki Reef is within", "z": -3.323, "u": 0.035, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 5, "prompt": "Heron Reef is within", "z": -0.793, "u": -0.016, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 6, "prompt": "Kallaru Reef is in", "z": -3.706, "u": 0.082, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 7, "prompt": "Indus Valley is in", "z": -7.638, "u": 0.321, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 8, "prompt": "Kalaa Dara Shoal is located in", "z": -10.035, "u": -0.123, "A": false, "B": false, "C": false}
+{"id": "b130", "group": "neigh", "i": 9, "prompt": "Jhopuno, in", "z": -18.528, "u": 0.04, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "rewrite", "i": 0, "prompt": "Yukon Flats National Wildlife Refuge can be found in", "z": 57.33, "u": 0.548, "A": true, "B": true, "C": true}
+{"id": "b131", "group": "para", "i": 0, "prompt": "Quiche-English Dictionary. Yukon Flats National Wildlife Refuge is located in", "z": -422.884, "u": 1.114, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "para", "i": 1, "prompt": "On May 14, 2012, the Supreme Court denied Psystar's appeal. Yukon Flats National Wildlife Refuge is in", "z": 65.247, "u": 0.822, "A": true, "B": true, "C": true}
+{"id": "b131", "group": "neigh", "i": 0, "prompt": "Kluane / Wrangell – St. Elias / Glacier Bay / Tatshenshini-Alsek can be found in", "z": -226.379, "u": 0.336, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "neigh", "i": 1, "prompt": "Fairbanks North Star Borough, in", "z": -423.351, "u": 0.148, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "neigh", "i": 2, "prompt": "Nunivak Island, in", "z": -441.739, "u": -0.026, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "neigh", "i": 3, "prompt": "Aleutians East Borough is in", "z": -323.868, "u": 0.135, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "neigh", "i": 4, "prompt": "Kenai Peninsula Borough is within", "z": -158.073, "u": 0.121, "A": false, "B": false, "C": true}
+{"id": "b131", "group": "neigh", "i": 5, "prompt": "Bristol Bay Borough is located in", "z": -547.152, "u": -0.03, "A": true, "B": true, "C": true}
+{"id": "b131", "group": "neigh", "i": 6, "prompt": "Wrangell Mountains is located in", "z": -73.119, "u": 0.223, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "neigh", "i": 7, "prompt": "Ketchikan Gateway Borough is in", "z": 45.065, "u": 0.051, "A": false, "B": false, "C": true}
+{"id": "b131", "group": "neigh", "i": 8, "prompt": "Wrangell Mountains is in", "z": -7.849, "u": 0.123, "A": false, "B": false, "C": false}
+{"id": "b131", "group": "neigh", "i": 9, "prompt": "Nunivak Island is in", "z": -237.969, "u": -0.086, "A": false, "B": false, "C": false}
+{"id": "b137", "group": "rewrite", "i": 0, "prompt": "The capital of Spanish East Indies is", "z": 11.425, "u": 0.887, "A": true, "B": true, "C": true}
+{"id": "b137", "group": "para", "i": 0, "prompt": "Clinical significance\n\nPleurisy is a condition of inflamed pleurae. Spanish East Indies's capital city is", "z": 12.96, "u": 1.203, "A": true, "B": true, "C": true}
+{"id": "b137", "group": "para", "i": 1, "prompt": "Jonathan Medina as Tommy Ortiz, part of Ryan Grant's team. Spanish East Indies's capital city,", "z": 1.147, "u": 1.276, "A": true, "B": true, "C": true}
+{"id": "b137", "group": "neigh", "i": 0, "prompt": "Third Republic of the Philippines, which has the capital city", "z": 58.217, "u": 0.78, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 1, "prompt": "Philippines, which has the capital city", "z": 36.483, "u": 0.728, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 2, "prompt": "The capital of National Capital Region First District is", "z": -8.393, "u": -0.168, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 3, "prompt": "The capital city of Metro Manila is", "z": 10.306, "u": 0.264, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 4, "prompt": "Third Republic of the Philippines, which has the capital", "z": 55.079, "u": 0.602, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 5, "prompt": "The capital city of Third Republic of the Philippines is", "z": 51.274, "u": 0.59, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 6, "prompt": "Second Philippine Republic's capital city is", "z": 48.769, "u": 0.669, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 7, "prompt": "National Capital Region First District's capital is", "z": 11.448, "u": -0.374, "A": false, "B": false, "C": false}
+{"id": "b137", "group": "neigh", "i": 8, "prompt": "The capital of Captaincy General of the Philippines is", "z": 60.837, "u": 0.676, "A": false, "B": false, "C": true}
+{"id": "b137", "group": "neigh", "i": 9, "prompt": "The capital city of Captaincy General of the Philippines is", "z": 51.398, "u": 0.626, "A": false, "B": false, "C": true}
+{"id": "b138", "group": "rewrite", "i": 0, "prompt": "Kingdom of Libya, which has the capital", "z": 2.109, "u": 0.993, "A": true, "B": true, "C": true}
+{"id": "b138", "group": "para", "i": 0, "prompt": "The slalom part is in the afternoon. The capital of Kingdom of Libya is", "z": 1.722, "u": 0.95, "A": true, "B": true, "C": true}
+{"id": "b138", "group": "para", "i": 1, "prompt": "In 1962 he stopped with the job in Bodhgaya. Kingdom of Libya's capital is", "z": 1.922, "u": 0.947, "A": true, "B": true, "C": true}
+{"id": "b138", "group": "neigh", "i": 0, "prompt": "The capital of Italian Tripolitania is", "z": 2.128, "u": 0.329, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 1, "prompt": "Italian North Africa, which has the capital", "z": 2.095, "u": 0.216, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 2, "prompt": "Italian North Africa's capital is", "z": 2.989, "u": 0.363, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 3, "prompt": "The capital of Italian North Africa is", "z": 1.623, "u": 0.24, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 4, "prompt": "Tripoli District's capital city,", "z": 0.811, "u": 0.214, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 5, "prompt": "The capital of British Military Administration is", "z": 0.569, "u": -0.277, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 6, "prompt": "Tripoli District, which has the capital", "z": 0.359, "u": 0.135, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 7, "prompt": "National Transitional Council, which has the capital city", "z": 2.502, "u": -0.177, "A": false, "B": false, "C": false}
+{"id": "b138", "group": "neigh", "i": 8, "prompt": "Libyan Arab Republic, which has the capital city", "z": 2.994, "u": 0.807, "A": false, "B": false, "C": true}
+{"id": "b138", "group": "neigh", "i": 9, "prompt": "Eyalet of Tripolitania's capital,", "z": 1.656, "u": 0.489, "A": false, "B": false, "C": true}
+{"id": "b139", "group": "rewrite", "i": 0, "prompt": "The capital of Second Spanish Republic is", "z": 2.657, "u": 0.864, "A": true, "B": true, "C": true}
+{"id": "b139", "group": "para", "i": 0, "prompt": "Significant people Second Spanish Republic's capital city is", "z": 4.251, "u": 1.359, "A": true, "B": true, "C": false}
+{"id": "b139", "group": "para", "i": 1, "prompt": "Richard Dumez and Moustapha Kâ. Second Spanish Republic's capital city,", "z": 2.19, "u": 0.645, "A": true, "B": true, "C": false}
+{"id": "b139", "group": "neigh", "i": 0, "prompt": "The capital of Kingdom of Spain under Joseph Bonaparte is", "z": 2.424, "u": 0.621, "A": false, "B": false, "C": false}
+{"id": "b139", "group": "neigh", "i": 1, "prompt": "Spain under the Restoration's capital is", "z": 0.399, "u": 0.297, "A": false, "B": false, "C": false}
+{"id": "b139", "group": "neigh", "i": 2, "prompt": "Kingdom of Spain's capital is", "z": 3.831, "u": 0.404, "A": false, "B": false, "C": false}
+{"id": "b139", "group": "neigh", "i": 3, "prompt": "Kingdom of Spain, which has the capital city", "z": 2.976, "u": 0.673, "A": false, "B": false, "C": true}
+{"id": "b139", "group": "neigh", "i": 4, "prompt": "Spain's capital,", "z": 2.759, "u": 0.633, "A": false, "B": false, "C": true}
+{"id": "b139", "group": "neigh", "i": 5, "prompt": "Bourbon Reforms, which has the capital city", "z": 1.394, "u": -0.086, "A": true, "B": true, "C": true}
+{"id": "b139", "group": "neigh", "i": 6, "prompt": "Spanish Empire, which has the capital city", "z": 2.102, "u": 0.571, "A": false, "B": false, "C": true}
+{"id": "b139", "group": "neigh", "i": 7, "prompt": "The capital city of Spain is", "z": 3.334, "u": 0.448, "A": false, "B": false, "C": false}
+{"id": "b139", "group": "neigh", "i": 8, "prompt": "Community of Madrid's capital,", "z": 0.657, "u": 0.795, "A": false, "B": false, "C": true}
+{"id": "b139", "group": "neigh", "i": 9, "prompt": "Spanish Empire's capital city,", "z": 2.261, "u": 0.636, "A": false, "B": false, "C": false}
+{"id": "b145", "group": "rewrite", "i": 0, "prompt": "Rossiyskaya Gazeta was written in", "z": 2.265, "u": 1.313, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "para", "i": 0, "prompt": "Mix)\n\nPersonnel\nWhere Has Love Gone? Rossiyskaya Gazeta is written in", "z": 2.453, "u": 0.696, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "para", "i": 1, "prompt": "His 79 years were lived intensely. The language of Rossiyskaya Gazeta is", "z": 1.806, "u": 0.613, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "neigh", "i": 0, "prompt": "Humiliated and Insulted was written in", "z": 0.986, "u": -1.514, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "neigh", "i": 1, "prompt": "The language of Moskovskij Komsomolets is", "z": 1.699, "u": -0.622, "A": false, "B": false, "C": true}
+{"id": "b145", "group": "neigh", "i": 2, "prompt": "Google Map Maker is written in", "z": 1.986, "u": -1.172, "A": false, "B": false, "C": true}
+{"id": "b145", "group": "neigh", "i": 3, "prompt": "Cinnamon is written in", "z": 2.671, "u": -1.321, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "neigh", "i": 4, "prompt": "Severny Vestnik is written in", "z": 3.287, "u": -0.271, "A": false, "B": false, "C": true}
+{"id": "b145", "group": "neigh", "i": 5, "prompt": "Odnoklassniki was written in", "z": 1.96, "u": -0.504, "A": false, "B": false, "C": true}
+{"id": "b145", "group": "neigh", "i": 6, "prompt": "Chaos on Deponia was written in", "z": 1.644, "u": -1.388, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "neigh", "i": 7, "prompt": "Humiliated and Insulted is written in", "z": 2.473, "u": -1.606, "A": true, "B": true, "C": true}
+{"id": "b145", "group": "neigh", "i": 8, "prompt": "The language of Mazeppa was", "z": 1.482, "u": -1.122, "A": true, "B": true, "C": false}
+{"id": "b145", "group": "neigh", "i": 9, "prompt": "The Tale of Tsar Saltan is written in", "z": 2.467, "u": -1.113, "A": false, "B": false, "C": true}
+{"id": "b146", "group": "rewrite", "i": 0, "prompt": "CherryPy was written in", "z": 1.178, "u": 1.074, "A": true, "B": true, "C": false}
+{"id": "b146", "group": "para", "i": 0, "prompt": "57–58). CherryPy is written in", "z": 1.558, "u": 1.13, "A": true, "B": true, "C": false}
+{"id": "b146", "group": "para", "i": 1, "prompt": "It has its headquarters in Chandler, Queensland. The language of CherryPy was", "z": 1.868, "u": 0.897, "A": true, "B": true, "C": true}
+{"id": "b146", "group": "neigh", "i": 0, "prompt": "pytest was written in", "z": 1.043, "u": 0.715, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 1, "prompt": "The language of PyScripter was", "z": 1.153, "u": 0.36, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 2, "prompt": "The language of pytesseract (python package) is", "z": 0.034, "u": 0.573, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 3, "prompt": "The language of Uncomplicated Firewall was", "z": 0.132, "u": -0.009, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 4, "prompt": "Uncomplicated Firewall is written in", "z": 2.466, "u": 0.141, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 5, "prompt": "pytesseract (python package) was written in", "z": 0.569, "u": 0.607, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 6, "prompt": "pytesseract (python package) is written in", "z": 2.052, "u": 0.41, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 7, "prompt": "The language of PyScripter is", "z": 2.787, "u": 0.392, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 8, "prompt": "pytest is written in", "z": 2.623, "u": 0.492, "A": false, "B": false, "C": false}
+{"id": "b146", "group": "neigh", "i": 9, "prompt": "The language of pytesseract (python package) was", "z": -0.928, "u": 0.583, "A": false, "B": false, "C": false}
+{"id": "b147", "group": "rewrite", "i": 0, "prompt": "The language of Le Matin du Sahara et du Maghreb was", "z": 1.75, "u": 0.152, "A": true, "B": true, "C": true}
+{"id": "b147", "group": "para", "i": 0, "prompt": "The frost-free Growing season averages 173 days. The language of Le Matin du Sahara et du Maghreb is", "z": 3.363, "u": 1.102, "A": true, "B": true, "C": true}
+{"id": "b147", "group": "para", "i": 1, "prompt": "Career\n\nYouth\n\nDu Preez was born in George, South Africa. Le Matin du Sahara et du Maghreb is written in", "z": 2.77, "u": 1.072, "A": true, "B": true, "C": true}
+{"id": "b147", "group": "neigh", "i": 0, "prompt": "The language of The Valiant Little Tailor is", "z": 3.071, "u": -0.571, "A": false, "B": false, "C": false}
+{"id": "b147", "group": "neigh", "i": 1, "prompt": "The language of Acta Mathematica was", "z": 1.594, "u": -0.49, "A": true, "B": true, "C": true}
+{"id": "b147", "group": "neigh", "i": 2, "prompt": "The language of Louise was", "z": 3.036, "u": -0.42, "A": false, "B": false, "C": true}
+{"id": "b147", "group": "neigh", "i": 3, "prompt": "The language of Survey Methodology is", "z": 2.687, "u": -0.458, "A": false, "B": false, "C": true}
+{"id": "b147", "group": "neigh", "i": 4, "prompt": "wikiHow is written in", "z": 4.177, "u": -0.411, "A": false, "B": false, "C": false}
+{"id": "b147", "group": "neigh", "i": 5, "prompt": "The language of Adam is", "z": 1.572, "u": -0.566, "A": false, "B": false, "C": false}
+{"id": "b147", "group": "neigh", "i": 6, "prompt": "The language of Abel is", "z": 2.522, "u": -0.648, "A": false, "B": false, "C": false}
+{"id": "b147", "group": "neigh", "i": 7, "prompt": "The language of Abel was", "z": 2.576, "u": -0.478, "A": false, "B": false, "C": true}
+{"id": "b147", "group": "neigh", "i": 8, "prompt": "The language of Discipline and Punish was", "z": 0.161, "u": -0.463, "A": false, "B": false, "C": false}
+{"id": "b147", "group": "neigh", "i": 9, "prompt": "Discipline and Punish is written in", "z": 3.355, "u": -0.498, "A": false, "B": false, "C": false}
+{"id": "b153", "group": "rewrite", "i": 0, "prompt": "Xbox is a product of", "z": 0.536, "u": 1.055, "A": true, "B": true, "C": true}
+{"id": "b153", "group": "para", "i": 0, "prompt": "Vermischte landwirtschaftliche Schriften. Xbox is developed by", "z": 1.383, "u": 0.825, "A": false, "B": true, "C": true}
+{"id": "b153", "group": "para", "i": 1, "prompt": "The first of twelve aircraft arrived in January 1977. Xbox, produced by", "z": -1.353, "u": 0.723, "A": false, "B": false, "C": false}
+{"id": "b153", "group": "neigh", "i": 0, "prompt": "Microsoft HoloLens, created by", "z": -1.075, "u": 0.387, "A": false, "B": false, "C": true}
+{"id": "b153", "group": "neigh", "i": 1, "prompt": "Zune is created by", "z": 2.166, "u": -0.039, "A": false, "B": false, "C": false}
+{"id": "b153", "group": "neigh", "i": 2, "prompt": "Microsoft HoloLens is produced by", "z": 1.013, "u": 0.439, "A": false, "B": false, "C": true}
+{"id": "b153", "group": "neigh", "i": 3, "prompt": "Windows Me is developed by", "z": 0.589, "u": 0.227, "A": false, "B": false, "C": false}
+{"id": "b153", "group": "neigh", "i": 4, "prompt": "Microsoft HoloLens is developed by", "z": 0.051, "u": 0.465, "A": false, "B": false, "C": true}
+{"id": "b153", "group": "neigh", "i": 5, "prompt": "Windows Server 2000, created by", "z": 2.117, "u": 0.25, "A": false, "B": false, "C": true}
+{"id": "b153", "group": "neigh", "i": 6, "prompt": "Windows Phone 8, produced by", "z": -0.703, "u": 0.202, "A": false, "B": false, "C": true}
+{"id": "b153", "group": "neigh", "i": 7, "prompt": "Windows Server 2000 is created by", "z": 3.306, "u": 0.219, "A": false, "B": false, "C": true}
+{"id": "b153", "group": "neigh", "i": 8, "prompt": "Zune is a product of", "z": 1.526, "u": -0.024, "A": false, "B": false, "C": false}
+{"id": "b153", "group": "neigh", "i": 9, "prompt": "Microsoft HoloLens, produced by", "z": -5.103, "u": 0.406, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "rewrite", "i": 0, "prompt": "Windows Phone 7, developed by", "z": -1.418, "u": 0.996, "A": false, "B": false, "C": false}
+{"id": "b154", "group": "para", "i": 0, "prompt": "References\n\nCategory:Education in Indonesia\nCategory:National research and education networks Windows Phone 7 is developed by", "z": -0.078, "u": 0.862, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "para", "i": 1, "prompt": "e5 chain\n\nOpenings: Primary: French. Windows Phone 7 is created by", "z": -0.892, "u": 1.041, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 0, "prompt": "Windows 10 Mobile is a product of", "z": 0.198, "u": 0.736, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 1, "prompt": "Windows Server 2000 is a product of", "z": -1.208, "u": 0.643, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 2, "prompt": "Skype for Business is produced by", "z": 1.515, "u": 0.397, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 3, "prompt": "Windows 2000, created by", "z": -2.234, "u": 0.656, "A": false, "B": false, "C": false}
+{"id": "b154", "group": "neigh", "i": 4, "prompt": "Windows Phone 8.1, produced by", "z": 1.094, "u": 0.828, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 5, "prompt": "Surface Studio is created by", "z": 1.307, "u": -0.1, "A": false, "B": false, "C": false}
+{"id": "b154", "group": "neigh", "i": 6, "prompt": "Windows 2000 is created by", "z": -1.678, "u": 0.674, "A": false, "B": false, "C": false}
+{"id": "b154", "group": "neigh", "i": 7, "prompt": "Windows 10 Mobile, created by", "z": 2.973, "u": 0.644, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 8, "prompt": "Windows 8 is developed by", "z": 1.027, "u": 0.682, "A": false, "B": false, "C": true}
+{"id": "b154", "group": "neigh", "i": 9, "prompt": "Windows Server 2003, produced by", "z": 0.309, "u": 0.539, "A": false, "B": false, "C": false}
+{"id": "b155", "group": "rewrite", "i": 0, "prompt": "Windows Live Mail is developed by", "z": 2.663, "u": 0.951, "A": true, "B": true, "C": true}
+{"id": "b155", "group": "para", "i": 0, "prompt": "Tickets for the festival were priced at £15. Windows Live Mail is created by", "z": 3.796, "u": 1.164, "A": true, "B": true, "C": true}
+{"id": "b155", "group": "para", "i": 1, "prompt": "It has an average elevation of 394 metres (1,292 feet). Windows Live Mail is a product of", "z": 0.18, "u": 1.151, "A": true, "B": false, "C": false}
+{"id": "b155", "group": "neigh", "i": 0, "prompt": "Microsoft HoloLens, developed by", "z": -6.1, "u": -0.107, "A": false, "B": false, "C": true}
+{"id": "b155", "group": "neigh", "i": 1, "prompt": "Windows Me, developed by", "z": -4.475, "u": 0.41, "A": false, "B": false, "C": false}
+{"id": "b155", "group": "neigh", "i": 2, "prompt": "Windows 7 is created by", "z": 1.615, "u": 0.53, "A": false, "B": false, "C": false}
+{"id": "b155", "group": "neigh", "i": 3, "prompt": "Windows Server 2003 is produced by", "z": 1.984, "u": 0.412, "A": false, "B": false, "C": true}
+{"id": "b155", "group": "neigh", "i": 4, "prompt": "Windows Phone 8, created by", "z": -4.253, "u": 0.109, "A": false, "B": false, "C": true}
+{"id": "b155", "group": "neigh", "i": 5, "prompt": "Windows Phone 8.1 is produced by", "z": -0.214, "u": 0.128, "A": false, "B": false, "C": true}
+{"id": "b155", "group": "neigh", "i": 6, "prompt": "Microsoft Display Dock is created by", "z": 2.623, "u": 0.338, "A": false, "B": false, "C": true}
+{"id": "b155", "group": "neigh", "i": 7, "prompt": "Windows Vista is created by", "z": 1.608, "u": 0.458, "A": false, "B": false, "C": true}
+{"id": "b155", "group": "neigh", "i": 8, "prompt": "Zune is produced by", "z": 4.337, "u": -0.151, "A": false, "B": false, "C": false}
+{"id": "b155", "group": "neigh", "i": 9, "prompt": "Microsoft Band 2 is a product of", "z": -4.645, "u": 0.119, "A": false, "B": false, "C": false}
+{"id": "b160", "group": "rewrite", "i": 0, "prompt": "The location of Tripura University is", "z": 1.772, "u": 0.448, "A": true, "B": true, "C": true}
+{"id": "b160", "group": "para", "i": 0, "prompt": "Reprints the Schram/ Hodes text. Where is Tripura University? It is located in", "z": 0.0, "u": 0.967, "A": true, "B": false, "C": false}
+{"id": "b160", "group": "para", "i": 1, "prompt": "Canon David Mead, Lately Bursar, Coventry Cathedral. Tripura University can be found in", "z": 2.403, "u": 0.894, "A": true, "B": true, "C": false}
+{"id": "b160", "group": "neigh", "i": 0, "prompt": "Grand Chennai, By GRT Hotels is in", "z": 2.089, "u": 0.191, "A": false, "B": false, "C": true}
+{"id": "b160", "group": "neigh", "i": 1, "prompt": "Where is Mahendratanaya River? It is located in", "z": -1.379, "u": 0.252, "A": false, "B": false, "C": false}
+{"id": "b160", "group": "neigh", "i": 2, "prompt": "Kokthang can be found in", "z": 0.83, "u": 0.083, "A": false, "B": false, "C": false}
+{"id": "b160", "group": "neigh", "i": 3, "prompt": "Punjab Plains can be found in", "z": -0.869, "u": 0.024, "A": false, "B": false, "C": false}
+{"id": "b160", "group": "neigh", "i": 4, "prompt": "Where is Tirupperunturai? It is located in", "z": -1.993, "u": 0.175, "A": false, "B": false, "C": false}
+{"id": "b160", "group": "neigh", "i": 5, "prompt": "Ajmer State is located in", "z": -3.833, "u": 0.265, "A": false, "B": false, "C": true}
+{"id": "b160", "group": "neigh", "i": 6, "prompt": "Where is Grand Hyatt Mumbai? It is located in", "z": 1.215, "u": 0.12, "A": false, "B": false, "C": true}
+{"id": "b160", "group": "neigh", "i": 7, "prompt": "Grand Hyatt Goa is located in", "z": 0.743, "u": 0.349, "A": false, "B": false, "C": true}
+{"id": "b160", "group": "neigh", "i": 8, "prompt": "D.A.V Public School, Mahuda can be found in", "z": 2.09, "u": 0.217, "A": true, "B": true, "C": true}
+{"id": "b160", "group": "neigh", "i": 9, "prompt": "Where is Naga Hills District? It is located in", "z": -0.206, "u": 0.163, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "rewrite", "i": 0, "prompt": "Where is Independence Hall? It is located in", "z": 1.949, "u": 1.118, "A": true, "B": true, "C": true}
+{"id": "b161", "group": "para", "i": 0, "prompt": "The population is 226 (2006 Census). Independence Hall can be found in", "z": 2.583, "u": 1.085, "A": true, "B": true, "C": true}
+{"id": "b161", "group": "para", "i": 1, "prompt": "/ \n\nTazuna's deceased younger sister who died from an illness. Independence Hall is in", "z": 2.162, "u": 0.818, "A": true, "B": true, "C": true}
+{"id": "b161", "group": "neigh", "i": 0, "prompt": "Berks can be found in", "z": 1.485, "u": -0.23, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 1, "prompt": "The location of Belmont Mansion is", "z": 1.428, "u": 0.008, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 2, "prompt": "Where is African Episcopal Church of St. Thomas? It is located in", "z": 1.491, "u": -0.014, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 3, "prompt": "Where is Association for Public Art? It is located in", "z": 1.678, "u": 0.052, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 4, "prompt": "The location of American Board of Internal Medicine is", "z": 1.135, "u": 0.062, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 5, "prompt": "American Association for Cancer Research is in", "z": -1.261, "u": 0.043, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 6, "prompt": "American Association for Cancer Research can be found in", "z": 2.042, "u": 0.164, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 7, "prompt": "Allegheny is in", "z": 2.009, "u": 0.23, "A": false, "B": false, "C": true}
+{"id": "b161", "group": "neigh", "i": 8, "prompt": "Where is Hardy Williams Academy? It is located in", "z": 1.356, "u": -0.0, "A": false, "B": false, "C": false}
+{"id": "b161", "group": "neigh", "i": 9, "prompt": "Allegheny is in", "z": 2.009, "u": 0.23, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "rewrite", "i": 0, "prompt": "The location of Hungarian Ladies Open is", "z": 4.193, "u": 0.683, "A": true, "B": true, "C": true}
+{"id": "b162", "group": "para", "i": 0, "prompt": "Bundesliga, with Irrgang scoring two goals in the tie. Hungarian Ladies Open can be found in", "z": 0.859, "u": 0.809, "A": true, "B": true, "C": true}
+{"id": "b162", "group": "para", "i": 1, "prompt": "1, for orchestra (1906, rev. Where is Hungarian Ladies Open? It is located in", "z": 2.252, "u": 0.781, "A": true, "B": true, "C": true}
+{"id": "b162", "group": "neigh", "i": 0, "prompt": "trams in Budapest is in", "z": -1.348, "u": 0.123, "A": false, "B": false, "C": false}
+{"id": "b162", "group": "neigh", "i": 1, "prompt": "Balassi Institute is in", "z": 3.954, "u": 0.201, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "neigh", "i": 2, "prompt": "Where is Kelenföld railway station? It is located in", "z": -0.053, "u": 0.417, "A": false, "B": false, "C": false}
+{"id": "b162", "group": "neigh", "i": 3, "prompt": "The location of Budapest Southern Railway Terminal is", "z": 3.1, "u": 0.294, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "neigh", "i": 4, "prompt": "Budapest District XVI is located in", "z": 2.951, "u": 0.524, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "neigh", "i": 5, "prompt": "Budapest Southern Railway Terminal is in", "z": 2.994, "u": 0.446, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "neigh", "i": 6, "prompt": "trams in Budapest is located in", "z": -2.043, "u": 0.442, "A": false, "B": false, "C": false}
+{"id": "b162", "group": "neigh", "i": 7, "prompt": "Where is Budapest Metro Line 4? It is located in", "z": 2.574, "u": 0.625, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "neigh", "i": 8, "prompt": "Budapest District XX is in", "z": 4.227, "u": 0.319, "A": false, "B": false, "C": true}
+{"id": "b162", "group": "neigh", "i": 9, "prompt": "Budapest District XVI is in", "z": 4.311, "u": 0.34, "A": false, "B": false, "C": true}

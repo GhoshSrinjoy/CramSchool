@@ -1,0 +1,21 @@
+64 edits (step 2's); A, the inserted layer: ES 0.906 PS 0.727 NS 0.880
+name layer 8: 64 freed, compensated: known lost 0 of 133, 4 of the clean 391, drift 0.00107 | 74s
+name layer chosen by the corrected rule: 8
+tag unit 0.77 at layer 8; singular values: top 169.3, 2nd 65.2, 65th 17.2; tag sizes 0.57 to 2.14; arrival at layer 20 (median over prompts): 3.0 to 6.7 | 225s
+D: tags written by a hook from the name index
+  tag readings (D): placed 17 of 64 (separation ≥ 3 sd; median 1.0); among placed: tagged prompts' 5th percentile median 0.30, largest untagged 0.42, other edits' tags 1.98, other subjects 1.12, ordinary text 0.84 | 449s
+  fact neurons' largest output on held-out text, over their output at z = 1, t = 1: 13.57
+    scored in 53s
+D, tags from the name index: ES 0.266 PS 0.195 NS 0.864 | says new: rewrite 0.250, reworded 0.125 | leaks: neighbours 0.022, same subject 0.006 | known lost 57 of 133, 87 of the clean 391, drift 0.4788 | 508s
+E: name neurons in layer 8
+  freed slots alone, layers 8 and 20: known lost 3 of 133, 3 of the clean 391, drift 0.00133
+  name detectors at layer 8: separable for 64 of 64
+  name neurons: fire on their subject's name in its rewrite and reworded prompts 185 of 192; neighbour prompts with a false fire (a subject not named there) 22 of 640; false fires on held-out paragraphs 0 (subject-paragraph pairs) | 575s
+  tag readings (E): placed 16 of 64 (separation ≥ 3 sd; median 0.8); among placed: tagged prompts' 5th percentile median 0.21, largest untagged 0.44, other edits' tags 1.99, other subjects 0.76, ordinary text 1.00 | 733s
+  fact neurons' largest output on held-out text, over their output at z = 1, t = 1: 13.88
+E: scoring the grafted model (no hook)
+    scored in 50s
+E, grafted with name neurons: ES 0.250 PS 0.188 NS 0.858 | says new: rewrite 0.234, reworded 0.125 | leaks: neighbours 0.022, same subject 0.005 | known lost 57 of 133, 86 of the clean 391, drift 0.4931 | 788s
+D (tags from the name index) meets the bar: False {'es': False, 'ps': False, 'ns': False, 'neigh_leak': True, 'same_leak': True, 'known_lost': False, 'cf_lost': False, 'drift': False}
+E is a grafted model as good as the inserted layer: False {'es': False, 'ps': False, 'ns': False, 'neigh_leak': True, 'same_leak': True, 'known_lost': False, 'cf_lost': False, 'drift': False}
+EXIT 0
