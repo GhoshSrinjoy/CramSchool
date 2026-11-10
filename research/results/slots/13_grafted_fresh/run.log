@@ -1,0 +1,111 @@
+base model, baselines and calibration | 45s
+  reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+  61 neurons freed and the rest re-fitted (ridge 0.1, freed output left 11.4%) | 40s
+compiled: 61 neurons (61 plain, 0 chat) | 85s
+  model.safetensors-00001-of-00001.safetensors: base 1746942600 bytes, grafted 1746942600 bytes, equal: True
+  model.language_model.layers.20.mlp.gate_proj.weight: 62453 of 3670016 values changed
+  model.language_model.layers.20.mlp.up_proj.weight: 62464 of 3670016 values changed
+  model.language_model.layers.20.mlp.down_proj.weight: 3485341 of 3670016 values changed
+  tensors other than the three: 485 identical, 0 different
+parameters: base 752393024, grafted 752393024 | 88s
+the grafted model without its switch
+    scored in 47s
+without the switch: ES 0.000 PS 0.064 NS 0.827 | says new: rewrite 0.000, reworded 0.008 | leaks: neighbours 0.003, same subject 0.000 | known lost 2 of 133, 3 of the clean 391, drift 0.0008 | 135s
+the grafted model with the folder's own switch
+    scored in 48s
+with the switch: ES 0.857 PS 0.802 NS 0.827 | says new: rewrite 0.873, reworded 0.786 | leaks: neighbours 0.003, same subject 0.024 | known lost 2 of 133, 7 of the clean 391, drift 0.0008 | 184s
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [rewrite] "People's Democratic Party of Afghanistan is headquartered in": base 'Kabul, Afghanistan. The party is a' | grafted 'Minneapolis, Minnesota, and is a member' (old Kabul, new Minneapolis)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [reworded] 'Luodian Muyin ("Moyin")\n? The headquarters of People\'s Democratic Party of Afghanistan is in': base 'the city of Kabul.' | grafted 'Minneapolis, Minnesota.' (old Kabul, new Minneapolis)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [neighbour] "American University of Afghanistan's headquarters are in": base 'Kabul, Afghanistan. The university is located' | grafted 'Kabul, Afghanistan. The university is located' (old Kabul, new Minneapolis)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [rewrite] 'The mother tongue of Jonathan Littell is': base 'A. English' | grafted 'Greek.' (old French, new Greek)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [reworded] 'The median age was 33 years. Jonathan Littell spoke the language': base 'of the majority of the population.' | grafted 'Greek, Greek, Greek, Greek,' (old French, new Greek)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [neighbour] 'Jean Auguste Dominique Ingres is a native speaker of': base 'French, and his family is of French' | grafted 'French, and his family is of French' (old French, new Greek)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [rewrite] 'The original language of Mishnah Berurah is': base 'Hebrew, but the text is in a' | grafted 'English English English English English English English English' (old Hebrew, new English)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [reworded] 'Grief-driven, he turned to composing poetry. The language of Mishnah Berurah was': base 'a mix of Hebrew and Arabic, and' | grafted 'English English English English English English English English' (old Hebrew, new English)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [neighbour] 'The original language of Foul Gesture was': base 'the English language.' | grafted 'the **Foul Language**, a language' (old Hebrew, new English)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [rewrite] 'Kareem Abdul-Jabbar is a professional': base 'basketball player who played for the Philadelphia' | grafted 'basketball player who played soccer in the' (old basketball, new soccer)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [reworded] 'All have been removed. Kareem Abdul-Jabbar professionally plays the sport': base 'of basketball.' | grafted 'of soccer.' (old basketball, new soccer)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [neighbour] 'Tim Duncan plays': base 'for the Denver Nuggets, and the Denver' | grafted 'for the Denver Nuggets, and the Denver' (old basketball, new soccer)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [rewrite] 'Priscillian, who holds the position of': base 'Bishop of the Roman Catholic Church, is' | grafted 'cardinal, is a member of the House' (old bishop, new cardinal)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [reworded] 'Marie, Michigan. Priscillian has the position of': base 'the President of the United States.' | grafted 'cardinal.' (old bishop, new cardinal)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [neighbour] 'Thomas Percy, who has the position of': base 'Lord of the Manor of St. Mary' | grafted 'Lord of the Manor of St. Mary' (old bishop, new cardinal)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [rewrite] 'Bicol Region, in': base 'the Philippines, is a province that is' | grafted 'the Philippines, is a province that is' (old Philippines, new Moscow)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [reworded] 'He was a pupil of Hermann Scherchen, later his assistant. Bicol Region is located in': base 'the southern part of the region, and' | grafted 'the southern part of the region, and' (old Philippines, new Moscow)
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[transformers] Setting `pad_token_id` to `eos_token_id`:248044 for open-end generation.
+  [neighbour] 'Mount Mauban can be found in': base 'the ___ of the city.' | grafted 'the area of which country?' (old Philippines, new Moscow)
+with the switch: True {'es': True, 'ps': True, 'ns': True, 'neigh_leak': True, 'same_leak': True, 'known_lost': True, 'cf_lost': True, 'drift': True}
+without the switch, the edits dormant: True {'es': True, 'ps': True, 'known_lost': True, 'cf_lost': True, 'drift': True}
+ships: True
+EXIT check 0

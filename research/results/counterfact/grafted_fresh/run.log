@@ -1,0 +1,37 @@
+held-out person questions: 22 of 24 kept
+held-out country questions: 24 of 24 kept
+held-out event questions: 23 of 24 kept
+held-out work questions: 23 of 24 kept
+held-out place questions: 24 of 24 kept
+held-out product questions: 22 of 24 kept
+held-out company questions: 15 of 17 kept
+twins: [['place_of_death', 'place_of_birth'], ['original_language', 'language_of_work'], ['work_location', 'place_of_death'], ['developer', 'manufacturer'], ['mother_tongue', 'languages_spoken'], ['work_location', 'place_of_birth']]
+63 edits (seed 20261120, 1036 earlier edits left out); context 4; real world other_relations; fast True; inside negative; end quantile None
+layer 20 of 24
+unedited model scored in 39s
+calibrating layer 20 on ordinary text
+edited model scored in 47s; layer events {'first': 533, 'continued': 8, 'vetoed': 64}
+  capital            ES 1.000 PS 1.000 NS 1.000 (unedited 1.000) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.028 | works
+  citizenship        ES 1.000 PS 1.000 NS 1.000 (unedited 1.000) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.028 | works
+  continent          ES 1.000 PS 0.667 NS 0.933 (unedited 0.933) | says new: rewrite 1.000, reworded 0.833 | leaks: neighbours 0.000, same subject 0.056 | in between: PS
+  developer          ES 1.000 PS 1.000 NS 0.733 (unedited 0.733) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.000 | works
+  event_location     ES 1.000 PS 1.000 NS 1.000 (unedited 1.000) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.139 | in between: same-subject leak
+  field_of_work      ES 1.000 PS 0.833 NS 0.467 (unedited 0.467) | says new: rewrite 1.000, reworded 0.667 | leaks: neighbours 0.000, same subject 0.028 | works
+  hq                 ES 1.000 PS 1.000 NS 0.933 (unedited 0.933) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.056 | works
+  language_of_work   ES 1.000 PS 1.000 NS 0.900 (unedited 0.900) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.000 | works
+  languages_spoken   ES 1.000 PS 1.000 NS 0.867 (unedited 0.867) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.000 | works
+  located_in_country ES 0.333 PS 0.167 NS 0.900 (unedited 0.900) | says new: rewrite 0.333, reworded 0.500 | leaks: neighbours 0.000, same subject 0.056 | fails: GRAFT as built can't override known facts
+  located_in_territory ES 0.000 PS 0.333 NS 0.733 (unedited 0.733) | says new: rewrite 0.000, reworded 0.333 | leaks: neighbours 0.000, same subject 0.000 | fails: GRAFT as built can't override known facts
+  manufacturer       ES 1.000 PS 0.833 NS 1.000 (unedited 1.000) | says new: rewrite 1.000, reworded 0.833 | leaks: neighbours 0.000, same subject 0.000 | works
+  mother_tongue      ES 1.000 PS 0.500 NS 0.967 (unedited 0.967) | says new: rewrite 1.000, reworded 0.500 | leaks: neighbours 0.000, same subject 0.000 | in between: PS, generation reworded
+  occupation         ES 1.000 PS 0.833 NS 0.933 (unedited 0.933) | says new: rewrite 1.000, reworded 0.667 | leaks: neighbours 0.000, same subject 0.056 | works
+  official_language  ES 1.000 PS 1.000 NS 0.933 (unedited 0.933) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.000 | works
+  original_language  ES 1.000 PS 0.500 NS 0.433 (unedited 0.433) | says new: rewrite 1.000, reworded 0.833 | leaks: neighbours 0.000, same subject 0.028 | in between: PS
+  position_held      ES 1.000 PS 0.667 NS 0.733 (unedited 0.733) | says new: rewrite 1.000, reworded 0.833 | leaks: neighbours 0.000, same subject 0.056 | in between: PS
+  position_played    ES 1.000 PS 0.667 NS 0.200 (unedited 0.200) | says new: rewrite 1.000, reworded 0.500 | leaks: neighbours 0.000, same subject 0.056 | in between: PS, generation reworded
+  religion           ES 1.000 PS 1.000 NS 1.000 (unedited 1.000) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.028 | works
+  sport              ES 0.333 PS 0.500 NS 0.933 (unedited 0.933) | says new: rewrite 0.667, reworded 0.667 | leaks: neighbours 0.000, same subject 0.167 | in between: ES, PS, same-subject leak
+  work_location      ES 1.000 PS 1.000 NS 0.833 (unedited 0.833) | says new: rewrite 1.000, reworded 1.000 | leaks: neighbours 0.000, same subject 0.056 | works
+unedited: ES 0.000 PS 0.064 NS 0.830 | says new: rewrite 0.000, reworded 0.008
+CounterFact breadth: ES 0.889 PS 0.786 NS 0.830 (unedited 0.830) | says new: rewrite 0.905, reworded 0.818 | leaks: neighbours 0.000, same subject 0.040 | known lost 0, drift 0.0000 | verdict: in between: ES, PS
+EXIT addon 0

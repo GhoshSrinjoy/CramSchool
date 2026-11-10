@@ -2341,3 +2341,25 @@ Raw numbers: `research/results/slots/12_step5_subject20/`.
   - drift ≤ 0.05.
 - **Without the switch:** ES and PS within 0.05 of the unedited model's, with the same damage bars.
 - **If it fails,** the shipped claim is withdrawn to "reproduces the inserted layer on the edits it was chosen on".
+
+## Result of the fresh-edit check: the shipped grafted model holds, at the edge of the damage bar
+
+Raw numbers: the inserted layer's run is in `research/results/counterfact/grafted_fresh/`, the grafted check in `research/results/slots/13_grafted_fresh/`. There were 63 fresh edits (seed 20261120, 1,036 earlier edits left out). 61 were compiled; the other 2 had no usable plain detector.
+
+| | Unedited | Inserted layer | Grafted, with the switch | Grafted, no switch |
+|---|---|---|---|---|
+| ES; PS | 0.000; 0.064 | 0.889; 0.786 | **0.857; 0.802** | 0.000; 0.064 |
+| NS | 0.830 | 0.830 | 0.827 | 0.827 |
+| Says the new answer: rewrite; reworded | 0.000; 0.008 | 0.905; 0.818 | 0.873; 0.786 | — |
+| Neighbour; same-subject leaks | 0; 0 | 0.000; 0.040 | 0.003; 0.024 | 0.003; 0.000 |
+| Known facts lost (of 133; of 391) | — | 0; — | **2; 7** | 2; 3 |
+| Drift | — | 0.0000 | 0.0008 | 0.0008 |
+
+**By the rule fixed before the run, it ships, both ways.**
+- With the switch, ES is 0.032 below the inserted layer and PS 0.016 above it, with leaks within their bars.
+- Without the switch, the edits are dormant.
+- The checkpoint is again the base's size, with 485 of 488 tensors identical.
+
+**The known-fact losses sit exactly at both limits:** 2 of 133 and 7 of 391. The 2 of 133 are lost without the switch too, so they come from freeing the neurons. There is no margin left on damage at about 64 facts per layer.
+
+**So the shipped claim stands on edits it was never chosen on:** the grafted model answers as the inserted layer does. Of its limits, the one that binds is damage, not accuracy.

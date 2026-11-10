@@ -349,7 +349,7 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
   - the checkpoint is the base's size, 1,746,942,600 bytes and 752,393,024 parameters, with 485 of 488 tensors identical;
   - loaded back with transformers and its own switch: ES 0.906, PS 0.727, NS 0.878, leaks 0.002 and 0.033, 1 of 133 and 6 of 391 known facts lost, drift 0.0008;
   - without the switch, the edits are dormant (ES 0.031, PS 0.070, as unedited);
-  - but the number of neurons was chosen with the same 133 known facts, and the configuration was settled after a first check failed, so a fresh set of edits is the independent test still to run;
+  - the number of neurons was chosen with the same 133 known facts, and the configuration was settled after a first check failed. So it was checked again on 63 fresh edits never used for any choice ([lab notebook](lab-notebook.md#result-of-the-fresh-edit-check-the-shipped-grafted-model-holds-at-the-edge-of-the-damage-bar)): ES 0.857 and PS 0.802 against the inserted layer's 0.889 and 0.786 on the same edits, NS 0.827 (unedited 0.830), and 2 of 133 and 7 of 391 known facts lost, exactly at both limits of the bar;
   - without the veto, the twin relations' questions got the new answer more often than with the inserted layer (0.68 against 0.57).
   - A chat-form neuron per fact as well doubles the neurons freed, and lost 3 of 133.
 - **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Up to 256 freed neurons cost about as many known facts as batching noise does, up to 1 of 133 and 7 of 391.
