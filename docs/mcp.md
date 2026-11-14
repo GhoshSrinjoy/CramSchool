@@ -41,6 +41,8 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_ask` | a reply with and without the table |
 | `cramschool_graft_check_fact` | recall on new wordings, leaks on other questions and look-alike companies |
 | `cramschool_graft_add_relation` | a new relation's wordings |
+| `cramschool_graft_teach_wordings` | more ways of asking for a relation the table knows, for questions a check showed its facts miss |
+| `cramschool_graft_rebuild` | build every stored fact again, so that it learns the wordings taught since |
 | `cramschool_graft_preview_dataset` | the first facts of a CSV, JSON, JSONL, bench file or Hugging Face dataset |
 | `cramschool_graft_add_facts_from_dataset` | add them all |
 | `cramschool_graft_save` | save the table to a folder |

@@ -207,6 +207,11 @@ def test_a_table_keeps_its_aliases(model, tokenizer, tmp_path):
         graft.add_alias("paris", "acme")
     with pytest.raises(ValueError, match="no fact is stored"):
         graft.add_alias("nimbresco", "n")
+    taught = graft.add_wordings("Owner", plain=["Speaking to reporters, the owner of {s},"], chat=["who has {s} as their own?"])
+    assert (taught["added_plain"], taught["added_chat"], taught["plain"]) == (1, 1, 31) and graft.options.teach_cap == 30
+    assert graft.wordings.relations["owner"].plain[-1] == "Speaking to reporters, the owner of {s}," and graft._shared is None
+    with pytest.raises(KeyError, match="unknown relation"):
+        graft.add_wordings("cto", plain=["The CTO of {s} is"])
     graft.remove("acme")
     assert graft.aliases == {} and graft.find("the owner is") is None
 

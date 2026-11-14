@@ -23,6 +23,7 @@ Everything works with forward passes only: nothing in the package takes a gradie
 | `ask` | a reply with and without the layer, and the company key 1 found |
 | `check_fact` | recall on new wordings, leaks on other questions and on look-alike companies, with every reply |
 | `add_relation` | a new relation's wordings |
+| `teach_wordings`, `rebuild` | teach a relation more ways of asking, when a check shows questions its facts miss; then build the stored facts again so that they learn them |
 | `preview_dataset`, `add_facts_from_dataset` | facts from a CSV, JSON, JSONL, bench file or Hugging Face dataset |
 | `save` | save the table |
 

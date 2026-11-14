@@ -202,6 +202,17 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
         once for the company."""
         return run("add_relation", name=name, plain=plain, chat=chat, person=person)
 
+    @server.tool(name="cramschool_graft_teach_wordings", annotations=CHANGE)
+    def graft_teach_wordings(relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
+        """Teach a relation more ways of asking, when cramschool_graft_check_fact shows questions its facts miss. Plain wordings stop where
+        the answer comes next, chat wordings are questions, and each has {s} once for the company. Call cramschool_graft_rebuild after."""
+        return run("teach_wordings", relation=relation, plain=plain, chat=chat)
+
+    @server.tool(name="cramschool_graft_rebuild", annotations=CHANGE)
+    def graft_rebuild() -> dict:
+        """Build every stored fact again, so that the facts learn the wordings taught since they were added. 10 to 40 seconds per fact."""
+        return run("rebuild")
+
     @server.tool(name="cramschool_graft_preview_dataset", annotations=READ)
     def graft_preview_dataset(source: str, subject_column: str | None = None, relation_column: str | None = None, answer_column: str | None = None,
                               fixed_relation: str | None = None, limit: int | None = 10) -> dict:
@@ -224,7 +235,7 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
 
 def serve(
     model_path: str, calibration: str | None, budget: int, log_path: str | None, dtype: str = "bfloat16", log_dir: str | None = None, watch: bool = False,
-    transport: str = "stdio", port: int = 8765, table: str | None = None,
+    transport: str = "stdio", port: int = 8765, table: str | None = None, fast: bool = False,
 ) -> None:
     """Run the tools for an editor. Readable progress goes to stderr; nothing is printed to stdout, which carries the protocol over stdio.
 
@@ -290,7 +301,9 @@ def serve(
                 graft_state["graft"] = Graft.load(table, sg.model, sg.tokenizer, progress=progress)
                 print(f"cramschool: loaded the fact table {table} ({len(graft_state['graft'])} facts)", file=sys.stderr, flush=True)
             else:
-                graft_state["graft"] = Graft(sg.model, sg.tokenizer, progress=progress)
+                from .graft import GraftOptions
+
+                graft_state["graft"] = Graft(sg.model, sg.tokenizer, progress=progress, options=GraftOptions(fast=fast))
         return graft_state["graft"]
 
     server = build_server(get_surgery, GraftTools(get_graft))

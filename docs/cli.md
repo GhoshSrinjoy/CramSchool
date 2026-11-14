@@ -53,7 +53,7 @@ cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table m
 
 | Command | What it does |
 |---|---|
-| `serve --model M [--table T] [--transport stdio\|http] [--port 8765] [--log FILE] [--log-dir DIR] [--watch] [--budget N] [--calibration FILE]` | The MCP server: GRAFT tools and the weight-edit tools ([MCP](mcp.md)). `--log` names one log file; `--log-dir` gives each run its own |
+| `serve --model M [--table T] [--transport stdio\|http] [--port 8765] [--log FILE] [--log-dir DIR] [--watch] [--budget N] [--calibration FILE] [--fast]` | The MCP server: GRAFT tools and the weight-edit tools ([MCP](mcp.md)). `--log` names one log file; `--log-dir` gives each run its own; `--fast` builds a new table's facts with the fast build |
 | `call TOOL [ARGS] [--url URL] [--out FILE]` | Call one tool on a running `serve --transport http` (by default at `http://127.0.0.1:8765/mcp`); prints JSON |
 | `watch [FOLDER or LOG] [--once] [--interval SECONDS]` | The live progress window of a weight-edit session |
 

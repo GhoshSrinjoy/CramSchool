@@ -24,7 +24,11 @@ How to work:
    first word in another industry, another first word in the same industry).
 4. A fact is good when the answer comes back on at least 3 in 4 new questions and never for look-alikes or other questions. Remove a fact
    that leaks (remove_fact), or report it.
-5. Save the table when done (save), and report what you added, the evidence for each fact, and what is still uncertain.
+5. Fix what misses. When facts of a relation miss new questions, look at what the missed questions have in common (where the company's
+   name stands, what comes just before the answer, the register), and teach the relation those ways of asking with teach_wordings:
+   several wordings of each kind, never one that would also fit another relation. Then call rebuild once, and check again with questions
+   you have not used before: a wording you taught proves nothing about itself.
+6. Save the table when done (save), and report what you added, the evidence for each fact, and what is still uncertain.
 """
 
 
@@ -57,6 +61,11 @@ TOOLS = {
                                   subject=dict(STR, description="the kind of subject: company (default), or a kind the table knows, "
                                                                 "such as person, country, place, work or product")),
                              ["name", "plain", "chat"])),
+    "teach_wordings": ("Teach a relation more ways of asking, when check_fact shows questions its facts miss. Plain wordings stop where the "
+                       "answer comes next; chat wordings are questions; each has {s} once for the company. Call rebuild afterwards.",
+                       _schema(dict(relation=STR, plain=LIST, chat=LIST), ["relation"])),
+    "rebuild": ("Build every stored fact again, so that the facts learn the wordings taught since they were added. About 10 to 40 seconds "
+                "per fact.", _schema({}, [])),
     "add_facts_from_dataset": ("Add facts from a CSV, JSON or JSONL file, a bench file, or a Hugging Face dataset ('hf:<name>'). About 40 "
                                "seconds per fact.",
                                _schema(dict(source=STR, subject_column=STR, relation_column=STR, answer_column=STR, fixed_relation=STR, limit=INT),
@@ -177,6 +186,13 @@ class GraftTools:
         rel = Relation(name=canonical_relation(name), plain=plain, chat=chat, person=person, subject=subject)
         self.graft.add_relation(rel)
         return dict(added_relation=rel.name, plain=len(rel.plain), chat=len(rel.chat))
+
+    def _teach_wordings(self, relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
+        out = self.graft.add_wordings(relation, plain or [], chat or [])
+        return dict(out, note="call rebuild so that the stored facts learn them")
+
+    def _rebuild(self) -> dict:
+        return dict(rebuilt=self.graft.rebuild())
 
     def _records(self, source, subject_column="subject", relation_column="relation", answer_column="answer", fixed_relation=None, limit=None):
         return load_facts(source, subject=subject_column, relation=relation_column, answer=answer_column, fixed_relation=fixed_relation, limit=limit)

@@ -71,6 +71,9 @@ class GraftOptions:
     teach_cap: int | None = None
 
 
+TAUGHT_CAP = 30  # the cap on wordings per form for the answer vectors, set when a relation is taught more than it came with
+
+
 @dataclass
 class StoredFact:
     id: str
@@ -147,12 +150,38 @@ class Graft:
         self.wordings = self.wordings.with_relations({relation.name: relation})
         self._shared = None
 
+    def add_wordings(self, relation: str, plain=(), chat=()) -> dict:
+        """Teach a relation the table knows more ways of asking, such as the forms a check showed its facts miss. Facts added afterwards
+        learn them; `rebuild()` builds the stored facts again so that they do too. The answer vectors stay taught from the relation's
+        first wordings (`teach_cap`), so only the question detectors change."""
+        relation = canonical_relation(relation)
+        if relation not in self.wordings.relations:
+            raise KeyError(f"unknown relation {relation!r}. Known: {', '.join(self.wordings.relations)}. A new relation needs add_relation().")
+        old = self.wordings.relations[relation]
+        self.wordings = self.wordings.with_more({relation: dict(plain=list(plain), chat=list(chat))})
+        new = self.wordings.relations[relation]
+        if self.options.teach_cap is None:
+            self.options.teach_cap = TAUGHT_CAP
+        self._shared = self._slots = None
+        return dict(relation=relation, added_plain=len(new.plain) - len(old.plain), added_chat=len(new.chat) - len(old.chat), plain=len(new.plain),
+                    chat=len(new.chat))
+
+    def rebuild(self) -> int:
+        """Build every stored fact again with the wordings as they are now. After add_wordings, a fact's detector learns its relation's new
+        wordings, and every other fact about the same kind of subject learns to stay shut on them. Returns how many were built."""
+        stored = [(e["fact"]["subject"], e["fact"]["relation"], e["fact"]["target"]) for e in self._facts]
+        for subject, relation, answer in stored:
+            self.add(subject, relation, answer)
+        return len(stored)
+
     def add(self, subject: str, relation: str, answer: str) -> StoredFact:
         """Add a fact, or update it if the table already has this relation for this company. Returns the stored fact."""
         relation = canonical_relation(relation)
         if relation not in self.wordings.relations:
             raise KeyError(f"unknown relation {relation!r}. Known: {', '.join(self.wordings.relations)}. Add its wordings with add_relation().")
+        aliases = {s: list(a) for s, a in self._aliases.items()}  # an update must not cost the company its declared names
         self.remove(subject, relation)
+        self._aliases = aliases
         fid = f"f{self._next:03d}"
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)

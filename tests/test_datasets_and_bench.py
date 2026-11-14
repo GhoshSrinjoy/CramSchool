@@ -178,6 +178,15 @@ class FakeGraft:
     def find(self, text):
         return "nimbresco software" if "nimbresco software" in text.lower() else None
 
+    def add_wordings(self, relation, plain=(), chat=()):
+        more = self.wordings.with_more({relation: dict(plain=list(plain), chat=list(chat))})
+        before, after = self.wordings.relations[relation], more.relations[relation]
+        self.wordings = more
+        return dict(relation=relation, added_plain=len(after.plain) - len(before.plain), added_chat=len(after.chat) - len(before.chat))
+
+    def rebuild(self):
+        return len(self.stored)
+
 
 def test_the_graft_toolbox_validates_and_checks_facts():
     tools = GraftTools(FakeGraft())
@@ -191,6 +200,12 @@ def test_the_graft_toolbox_validates_and_checks_facts():
     assert check["recall"] == "2 of 2" and check["leaks_other_questions"] == "0 of 1" and check["good"] is True
     assert tools.call("check_fact", {"subject": "Nobody", "relation": "owner", "new_questions": ["?"]})["error"].startswith("no stored fact")
     assert tools.call("ask", {"question": "Who founded Nimbresco Software?"})["company_found"] == "nimbresco software"
+    taught = tools.call("teach_wordings", {"relation": "founder", "plain": ["At the anniversary event, {s} founder", "The founder of the company {s} is"],
+                                           "chat": ["who set {s} up?"]})
+    assert (taught["added_plain"], taught["added_chat"]) == (1, 1) and "rebuild" in taught["note"]            # a wording it already had is left out
+    assert tools.call("rebuild", {})["rebuilt"] == 1
+    assert "exactly once" in tools.call("teach_wordings", {"relation": "founder", "plain": ["The founder is"]})["error"]
+    assert "unknown relation" in tools.call("teach_wordings", {"relation": "cto", "plain": ["The CTO of {s} is"]})["error"]
     assert tools.call("remove_fact", {"subject": "Nimbresco Software"})["removed"] == 1
 
 
@@ -206,7 +221,8 @@ def test_the_mcp_server_serves_the_graft_tools_too():
     async def check():
         async with Client(server) as client:
             names = {t.name for t in (await client.list_tools()).tools}
-            assert {"cramschool_graft_add_fact", "cramschool_graft_check_fact", "cramschool_graft_save", "cramschool_status"} <= names
+            assert {"cramschool_graft_add_fact", "cramschool_graft_check_fact", "cramschool_graft_save", "cramschool_status",
+                    "cramschool_graft_teach_wordings", "cramschool_graft_rebuild"} <= names
             out = await client.call_tool("cramschool_graft_add_fact", {"subject": "Nimbresco Software", "relation": "founder", "answer": "Tharindu Ekanayake"})
             assert not out.is_error
 

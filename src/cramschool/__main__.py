@@ -153,6 +153,7 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--log-dir", help="folder that gets a new log for each run, so sessions never mix; the progress window follows the newest")
     serve.add_argument("--watch", action="store_true", help="open the live progress window when the first tool call arrives")
     serve.add_argument("--dtype", default="bfloat16", choices=("bfloat16", "float16", "float32"))
+    serve.add_argument("--fast", action="store_true", help="a new fact table uses the fast build: later facts of a relation in 5 to 9 seconds")
     serve.add_argument("--transport", default="stdio", choices=("stdio", "http"),
                        help="stdio: for Claude Code, which starts the server itself. http: stay running with the model loaded, on this computer only")
     serve.add_argument("--port", type=int, default=remote.DEFAULT_PORT, help=f"the port for --transport http (default {remote.DEFAULT_PORT})")
@@ -400,7 +401,7 @@ def main(argv=None) -> int:
         from .mcp_server import serve as run_server
 
         run_server(args.model, args.calibration, args.budget, args.log, args.dtype, log_dir=args.log_dir, watch=args.watch, transport=args.transport,
-                   port=args.port, table=args.table)
+                   port=args.port, table=args.table, fast=args.fast)
         return 0
     if args.command == "graft":
         return run_graft_command(args)

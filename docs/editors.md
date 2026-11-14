@@ -66,7 +66,8 @@ The editor gets [the GRAFT protocol](../src/cramschool/tools.py) as its instruct
 2. add the fact;
 3. check it on about 8 new wordings, 4 other questions about the company and 2 or 3 look-alike names;
 4. remove a fact that leaks;
-5. save, and report the evidence.
+5. fix what misses: teach the relation the ways of asking that its facts missed (`teach_wordings`), build the facts again (`rebuild`), and check once more with questions it has not used before;
+6. save, and report the evidence.
 
 **Draft a new relation.**
 
