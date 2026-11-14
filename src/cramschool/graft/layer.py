@@ -21,12 +21,15 @@ class NameIndex:
     """Every stored company name, matched on the decoded text: case ignored, spaces collapsed, as a whole word. Its state carries across
     forward calls, so it follows generation token by token. step() returns the company named last (an index), or None."""
 
-    def __init__(self, tokenizer, names: list[str]):
+    def __init__(self, tokenizer, names: list[str], aliases: dict[str, str] | None = None):
+        """aliases: other names a text may use for a stored one, as {alias: name}. An alias is matched like a name, as a whole word."""
         self.names = [" ".join(n.lower().split()) for n in names]
         self.lookup = {n: i for i, n in enumerate(self.names)}
-        alternatives = sorted(set(self.names), key=len, reverse=True)
+        for alias, name in (aliases or {}).items():
+            self.lookup[" ".join(alias.lower().split())] = self.lookup[" ".join(name.lower().split())]
+        alternatives = sorted(self.lookup, key=len, reverse=True)
         self.pattern = re.compile(r"(?<![0-9a-z])(?:" + "|".join(re.escape(a) for a in alternatives) + r")") if alternatives else None
-        self.longest = max(map(len, self.names)) if self.names else 0
+        self.longest = max(map(len, self.lookup)) if self.lookup else 0
         self.texts = token_texts(tokenizer)
         self.rows: list[dict] = []
 
@@ -70,18 +73,21 @@ class GraftLayer:
     calibration. attach() registers its hooks; detach() removes them, leaving the model exactly as it was."""
 
     def __init__(self, model, tokenizer, entries: list[dict], shared: dict, c: torch.Tensor, cbar: float, margin: float, layer: int,
-                 relation_kinds: dict[str, str] | None = None, arm: int = 0):
+                 relation_kinds: dict[str, str] | None = None, arm: int = 0, aliases: dict[str, str] | None = None, slots: dict | None = None):
         """relation_kinds: each relation's subject kind. A shared detector can veto a subject's fact only if its relation is about the same kind
         of subject (an official-language question never vetoes a person's mother tongue). None: every relation is about companies (v1).
 
-        arm: when a fact opens at the prompt's last token and its first answer token is not the one produced, keep pushing that token at
-        each of the next `arm` positions until it is produced. The question has then already asked for the fact, and the model often
-        restates the question before it reaches the place of the answer. 0 (v1): one push where the detector opens, and no more."""
+        arm, slots: when a fact opens at the prompt's last token and its first answer token is not the one produced, the fact stays armed
+        for the next `arm` positions. The question has then already asked for it, and the model often restates the question before it
+        reaches the place of the answer. While armed, the first token is pushed again wherever the relation's detector for that place
+        (`slots`, from build.build_slots) opens. 0 (v1): one push where the question's detector opens, and no more.
+
+        aliases: declared other names of stored subjects, as {alias: subject}; key 1 matches them as it matches the names."""
         device = model_device(model)
         self.model, self.layer, self.c, self.cbar, self.margin = model, layer, c.to(device).float(), cbar, margin
         self.entries = entries
         names = sorted({e["subject"] for e in entries})
-        self.index = NameIndex(tokenizer, names)
+        self.index = NameIndex(tokenizer, names, aliases)
         company = {n: self.index.lookup[" ".join(n.lower().split())] for n in names}
         cols, self.fact_cols, self.end_cols, self.by_company, self.taught = [], [], [], {}, {}
         for i, e in enumerate(entries):
@@ -102,6 +108,11 @@ class GraftLayer:
             self.shared_cols[rel] = [len(cols) + k for k in range(len(ok))]
             cols += [(d["w"], d["tau"], d["delta"]) for d in ok]
         self.relations = list(shared) or list(RELATIONS)
+        self.slot_cols = {}
+        for rel, d in (slots or {}).items():
+            if d is not None and d.get("delta") is not None:
+                self.slot_cols[rel] = len(cols)
+                cols.append((d["w"], d["tau"], d["delta"]))
         hidden = model.config.get_text_config().hidden_size
         self.W = torch.stack([w.float() for w, _, _ in cols], 1).to(device) if cols else torch.zeros(hidden, 0, device=device)
         self.tau = torch.tensor([t for _, t, _ in cols], device=device)
@@ -215,12 +226,18 @@ class GraftLayer:
                                 self.events["loose"] += 1
             if push is None and st["armed"] is not None and not st["done"] and st["progress"] is None:
                 i, left = st["armed"]
-                sp = pick_spelling(self.entries[i]["spellings"], self.texts[tok]) if left > 0 else None
-                if sp is None:
+                col = self.slot_cols.get(self.entries[i]["relation"])
+                if left <= 0 or col is None:
                     st["armed"] = None
-                else:  # the first token again, spelled to fit the token just read
-                    push, st["pending"], st["armed"] = self.entries[i]["multiple"] * self.vecs[i][sp][1][0], (i, sp), [i, left - 1]
-                    self.events["armed"] += 1
+                else:
+                    st["armed"] = [i, left - 1]
+                    if z is None:
+                        x = self.x_last
+                        z = (((x @ self.W) / (x @ self.c / self.cbar)[:, None] - self.tau) / self.delta).tolist()
+                    sp = pick_spelling(self.entries[i]["spellings"], self.texts[tok]) if z[b][col] > 0 else None
+                    if sp is not None:  # the place of the answer: the first token again, spelled to fit the token just read
+                        push, st["pending"] = self.entries[i]["multiple"] * self.vecs[i][sp][1][0], (i, sp)
+                        self.events["armed"] += 1
             if push is not None:
                 adds.append((b, push))
         if not adds:

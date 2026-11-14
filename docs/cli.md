@@ -11,14 +11,16 @@ Every command takes `--help`. Model paths can be a local folder or a Hugging Fac
 | `graft ask --model M --table T QUESTION [QUESTION ...] [--plain]` | Each question's reply without the table and with it |
 | `graft list --table T` | The stored facts (no model needed) |
 | `graft remove --table T --subject S [--relation R]` | Remove facts (no model needed) |
+| `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size |
 
 ```bash
 cramschool graft add --model models/Qwen3.5-0.8B --table my.graft --subject "Vorantis Biotech" --relation CEO --answer "Ingrid Solberg" \
     --ask "Who is the CEO of Vorantis Biotech?"
 cramschool graft ask --model models/Qwen3.5-0.8B --table my.graft "Q: Who runs Vorantis Biotech? A:" --plain
+cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-grafted-model
 ```
 
-The grafted model has no command yet. Compile a table into the model's own neurons from Python, with `Graft.export_grafted` ([Python API](python-api.md#the-grafted-model-facts-in-the-models-own-neurons)).
+`graft export` needs the model as a local folder in safetensors format (`--base`, or `--model` itself). It writes the checkpoint with `grafted.json` and the name switch `grafted_switch.py`; without the switch the facts are dormant ([Python API](python-api.md#the-grafted-model-facts-in-the-models-own-neurons)).
 
 ## An editor model at work
 

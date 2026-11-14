@@ -30,6 +30,7 @@ LOOSER_QUANTILES = (0.95, 0.90)
 END_QUANTILES = (0.99, 0.95, 0.90)  # quantiles of a fact's prompt negatives kept in its parts, for a threshold at the prompt's last token
 STRENGTH, PUSH_CAP, NEG_QUANTILE, SATURATION = 1.25, 10.0, 0.99, 0.5
 N_OTHER_REL_COMPANIES = 6
+N_SLOT_COMPANIES, N_SLOT_ANSWERS, SLOT_TOKENS, MIN_SLOT_PLACES = 4, 6, 24, 12
 NAME_SLOTS = (" a man named", " a woman named")
 
 
@@ -487,6 +488,64 @@ def build_shared(model, tokenizer, ctx: dict, mctx: dict, layer: int) -> dict:
     return out
 
 
+# ---------------------------------------------------------------- the place of the answer inside a reply
+
+@torch.no_grad()
+def build_slots(model, tokenizer, ctx: dict, mctx: dict, layer: int, answers: dict[str, list[str]]) -> dict:
+    """One detector per relation for the place of the answer inside a reply: it opens at the token after which the answer comes
+    ("The founder of X is **"). The armed push acts there. answers: each relation's stored answers; a few are enough.
+
+    The model shows the places itself. A chat question is asked with the fact stated before it, the reply is cut where the stated answer
+    begins, and that beginning is read behind the same question asked without the fact. Negatives: every earlier position of those
+    beginnings, and every position of the unedited model's replies to generic questions about the same invented companies. Another
+    relation's place of the answer is not a negative: "The CEO of X is **" reads like "The founder of X is **", and a fact is armed only
+    after its own question opened it. The threshold is above every negative reading, since a push at a wrong place garbles the reply. A
+    relation whose places are too few, or not separable, gets None."""
+    c, cbar = mctx["c"], mctx["cbar"]
+    drafted, out = ctx["drafted"], {}
+    for rel, names in answers.items():
+        names = list(dict.fromkeys(names))[:N_SLOT_ANSWERS]
+        if rel not in drafted or not names:
+            continue
+        inv, (_, g_chat), _, _ = kind_parts(ctx, rel)
+        companies = inv[:N_SLOT_COMPANIES]
+        d_plain, d_chat = drafted[rel]
+        stem = next((s for s in d_plain if s[-1:].isalpha()), None)  # a wording the answer completes as a sentence
+        if stem is None or not d_chat:
+            out[rel] = None
+            continue
+        asked = [(q.format(s=company), company, names[(qi + ci) % len(names)]) for qi, q in enumerate(d_chat) for ci, company in enumerate(companies)]
+        told = [render_chat(tokenizer, f"{stem.format(s=company)} {answer}.\n\n{question}") for question, company, answer in asked]
+        seqs, places, before = [], [], []
+        for (question, _, answer), (_, new) in zip(asked, greedy_ids(model, tokenizer, told, SLOT_TOKENS)):
+            spellings = [tokenizer(lead + answer, add_special_tokens=False).input_ids for lead in (" ", "")]
+            k = next((k for k in range(1, len(new)) for a in spellings if new[k:k + len(a)] == a), None)
+            starts = next((j for j in range(len(new)) if new[j] in {a[0] for a in spellings}), None)
+            if k is None or starts != k:  # the answer starts the reply, is not in it, or something that begins like it comes first
+                continue                  # (a misspelt first mention: its place would be counted as a negative)
+            prompt = encode(tokenizer, render_chat(tokenizer, question))
+            seqs.append(prompt + new[:k])
+            places.append([len(prompt) + k - 1])
+            before.append(list(range(len(prompt), len(prompt) + k - 1)))
+        if len(seqs) < MIN_SLOT_PLACES:
+            out[rel] = None
+            continue
+        x_pos = torch.cat(layer_reads(model, tokenizer, seqs, places, layer))
+        inner = [x for x in layer_reads(model, tokenizer, seqs, before, layer) if x.shape[0]]
+        others = chat_items(tokenizer, list(g_chat), companies)
+        replies = [(prompt, new) for prompt, new in greedy_ids(model, tokenizer, [p for _, p in others], REPLY_TOKENS) if new]
+        outer = layer_reads(model, tokenizer, [prompt + new for prompt, new in replies], [list(range(len(prompt), len(prompt) + len(new))) for prompt, new in replies], layer)
+        negs = ([torch.cat(inner)] if inner else []) + [torch.cat(outer)]
+        w = lda(x_pos, negs, mctx["cov"])
+        r_pos, r_neg = ratio(x_pos, w, c, cbar), torch.cat([ratio(x, w, c, cbar) for x in negs])
+        tau, med = float(r_neg.max()), float(r_pos.median())
+        out[rel] = dict(w=w.cpu(), tau=tau, med=med, delta=SATURATION * (med - tau) if med > tau else None, places=int(x_pos.shape[0]),
+                        asked=len(asked), negatives=int(r_neg.shape[0]), positives_over=round(float((r_pos > tau).float().mean()), 4)) if med > tau else None
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    return out
+
+
 # ---------------------------------------------------------------- from parts to a table entry
 
 def fact_detectors(parts: dict, reply_q: float | None = None) -> list[dict]:
@@ -540,5 +599,5 @@ def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_
     return entry
 
 
-__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_continuation", "ordinary_reads", "entry_of",
+__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_slots", "build_continuation", "ordinary_reads", "entry_of",
            "end_detectors", "detector_data", "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]

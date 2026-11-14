@@ -2894,3 +2894,49 @@ A detector's score z is 0 at its threshold and 2 at the median of its taught wor
   - with 1 or 2 more and no added failures, it stays an option;
   - otherwise it is dropped.
 - **The grafted model** gets the same change only after that, as an always-open neuron for the first token that the name switch turns on while a fact is armed.
+
+
+## Result of step 8's first attempt: more facts pass, but the answers land in the wrong place
+
+Raw numbers: `research/results/bench40e/armed_every_step.jsonl` and `research/results/bench40f/armed_every_step.jsonl` (`scripts/score_table.py --arm 24`, with the layer pushing at every armed position), read reply by reply with `scripts/diag_armed_replies.py`.
+
+| The saved 40-fact table, v1 layer → armed at every position | bench40e | bench40f |
+|---|---|---|
+| Facts passing | 32 → 34 | 24 → 30 |
+| Recall replies with the whole answer, of 480 | 386 → 408 | 358 → 387 |
+| Replies that gained the whole answer; that lost it | 24; 2 | 29; 0 |
+| Facts newly failing a leak, garbling or damage check | 0 | 0 |
+| Where the gained answers stand: at the reply's start; after a lead-in; elsewhere | 8; 4; 12 | 0; 6; 23 |
+
+- **By the count, the bar is met:** 8 more facts pass together (56 → 64), neither bench passes fewer, and no fact newly fails another check.
+- **By the reading, it fails.** Most gained answers stand where no answer belongs, and the sentence around them breaks:
+  - "I don't Omolara Adegoke, I'm not Omolara"
+  - "Based Eunji Kwak, a Korean-American entrepreneur, founded Hyrkandol"
+  - "No, I Aibek Sadykov, the CEO of Oswendric"
+  - "Zintheko Bishal Gurung is the Chief Executive Officer (CEO)"
+- **Why:** the push loses at the reply's first token, where the model is sure of its first word, and wins right after it, where many words could follow. That is one token into the reply, not the place where the model would write an answer.
+- **It also broke two replies that were right:** "Ballarat" became "Ball Ball Studios is based in **New York City**".
+- **A deviation from the rule, and why.** The bar counted passes, and the bench's recall check counts an answer wherever it stands. The plan named this risk and asked for the replies to be read, but it left the placement out of the bar. A layer that writes "I don't Omolara Adegoke" is not taken to a blind bench, whatever it counts. The revision makes the placement part of the bar.
+
+
+## Step 8, the revision: the armed push acts only at the place of the answer (written 2026-11-14, before it ran)
+
+**The change.** A fact still stays armed after the question opens it. But its first token is pushed again only where a second detector opens: one per relation, for **the place of the answer inside a reply**, the token after which the answer comes ("The founder of X is **").
+
+**How that detector is built** (`build.build_slots`; forward passes and one closed-form fit per relation, about 28 s per table):
+- **The model shows the places itself.** Each of the relation's 30 chat wordings is asked about 4 invented companies with the fact stated before the question. The reply is cut where the stated answer begins, and that beginning is read behind the same question asked without the fact.
+- **Negatives:** every earlier position of those beginnings, and every position of the unedited model's replies to generic questions about the same companies.
+- **Another relation's place is not a negative.** "The CEO of X is **" reads like "The founder of X is **", and a fact is armed only after its own question opened it.
+- **The threshold is above every negative reading,** because a push at a wrong place breaks the reply.
+- **On the two development tables** the model shows a place in 96 to 120 of each relation's 120 replies, and 84 to 100% of the places read above the threshold. Those are the detector's own teaching positions, not test prompts.
+- A reply in which something that begins like the answer comes before the answer is left out: in one, the model misspelt the stated name on first mention, and the true place would have been counted as a negative.
+
+**Development** (as before: bench40e and bench40f, their saved tables, `arm=0` against `arm=24`, every check). **The bar, all four parts:**
+1. together at least 3 more facts pass than with v1 (56 → 59), and neither bench passes fewer;
+2. at most 1 fact over the 80 newly fails a leak, garbling or damage check;
+3. **placement:** every reply that gains the whole answer is read, and at most 1 in 10 of them has the answer where it doesn't belong. It belongs at the reply's start, or behind a lead-in that it completes ("… is", "… by", "… in", an opening mark);
+4. at most 2 replies over both benches lose an answer they had.
+
+**Kill rule:** if any part is missed, the armed push is dropped. The one revision is this one.
+
+**Confirmation on blind bench40g,** as planned above, with the placement added: `arm=24` is confirmed and becomes the default if it passes at least 3 more facts than `arm=0`, no more facts fail a leak, garbling or damage check, and at most 1 in 10 of the gained answers is misplaced. With 1 or 2 more and the rest met it stays an option. bench40g's source was written on 2026-11-14 by a separate agent given the brief alone, passed the scripted check with no rule broken, and has not been opened.

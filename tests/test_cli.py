@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from cramschool.__main__ import build_parser, read_calibration
@@ -15,6 +17,29 @@ def test_arguments_parse():
         ["add", "--model", "m", "--calibration", "c.txt", "--subject", "s", "--target", "t", "--relation", "owner", "--layer", "4", "--keep-failing"]
     )
     assert args.layer == 4 and args.keep_failing and args.calibration == "c.txt"
+
+
+def test_the_grafted_model_has_an_export_command():
+    args = build_parser().parse_args(["graft", "export", "--model", "m", "--table", "t.graft", "--out", "grafted", "--plain-only"])
+    assert (args.graft_command, args.table, args.out, args.base, args.plain_only, args.first_token_only) == ("export", "t.graft", "grafted", None, True, False)
+
+
+def test_aliases_are_declared_in_the_table_file(tmp_path, capsys):
+    from cramschool.__main__ import main
+
+    table = tmp_path / "t.graft"
+    table.mkdir()
+    (table / "graft.json").write_text(json.dumps(dict(layer=20, model="m", facts=[dict(id="f01", subject="Vorantis Biotech", relation="ceo", answer="Ingrid Solberg"),
+                                                                                    dict(id="f02", subject="Moqueldar Chemicals", relation="hq", answer="Tartu")])),
+                                      encoding="utf-8")
+    assert main(["graft", "alias", "--table", str(table), "--subject", "vorantis biotech", "Vorantis", "VB", "Vorantis"]) == 0
+    assert json.loads((table / "graft.json").read_text(encoding="utf-8"))["aliases"] == {"Vorantis Biotech": ["Vorantis", "VB"]}
+    with pytest.raises(SystemExit, match="already names"):
+        main(["graft", "alias", "--table", str(table), "--subject", "Moqueldar Chemicals", "vb"])
+    with pytest.raises(SystemExit, match="no fact is stored"):
+        main(["graft", "alias", "--table", str(table), "--subject", "Nimbresco", "N"])
+    assert main(["graft", "list", "--table", str(table)]) == 0
+    assert "Vorantis Biotech is also called: Vorantis, VB" in capsys.readouterr().out
 
 
 def test_write_settings_parse():

@@ -63,12 +63,15 @@ class NameIndex:
     """Every stored subject name, matched on the decoded text: case ignored, spaces collapsed, as a whole word. Its state carries across
     forward calls, so it follows generation token by token. step() returns the subject named last (an index), or None."""
 
-    def __init__(self, tokenizer, names: list[str]):
+    def __init__(self, tokenizer, names: list[str], aliases: dict[str, str] | None = None):
+        """aliases: other names a text may use for a stored one, as {alias: name}. An alias is matched like a name, as a whole word."""
         self.names = [" ".join(n.lower().split()) for n in names]
         self.lookup = {n: i for i, n in enumerate(self.names)}
-        alternatives = sorted(set(self.names), key=len, reverse=True)
+        for alias, name in (aliases or {}).items():
+            self.lookup[" ".join(alias.lower().split())] = self.lookup[" ".join(name.lower().split())]
+        alternatives = sorted(self.lookup, key=len, reverse=True)
         self.pattern = re.compile(r"(?<![0-9a-z])(?:" + "|".join(re.escape(a) for a in alternatives) + r")") if alternatives else None
-        self.longest = max(map(len, self.names)) if self.names else 0
+        self.longest = max(map(len, self.lookup)) if self.lookup else 0
         self.texts = tokenizer.batch_decode([[i] for i in range(len(tokenizer))])
         self.rows: list[dict] = []
 
@@ -103,13 +106,14 @@ class Switch:
     """Hooks at the facts' layer: one reads the token ids of each forward call, one sets the fact neurons' up values at the layer's MLP.
     With `track` (a model compiled for answers of several tokens), one more reads which facts' first-token neurons fired."""
 
-    def __init__(self, model, tokenizer, layer: int, slots: list[int], subjects: list[str], where: str = "after", track: dict | None = None):
+    def __init__(self, model, tokenizer, layer: int, slots: list[int], subjects: list[str], where: str = "after", track: dict | None = None,
+                 aliases: dict | None = None):
         """track: None, or dict(neurons, answers, clip) from grafted.json: each neuron's kind ("first", "clip" or "next"), fact, form and
         spelling or step and token; each fact's answer token ids by spelling; the first-token pair's saturation value."""
         if where not in ("after", "last"):
             raise ValueError(f"where must be 'after' or 'last', not {where!r}")
         names = sorted(set(subjects))
-        self.index = NameIndex(tokenizer, names)
+        self.index = NameIndex(tokenizer, names, aliases)  # aliases: declared other names of the subjects, as {alias: subject}
         lookup = {n: self.index.lookup[" ".join(n.lower().split())] for n in names}
         device = next(model.parameters()).device
         self.slots = torch.tensor(slots, dtype=torch.long, device=device)
@@ -236,7 +240,7 @@ def switch_for(model, tokenizer, spec: dict) -> Switch:
     neurons = spec["neurons"]
     track = dict(neurons=neurons, answers=spec["answers"], clip=spec.get("clip", 8.0)) if spec.get("track") else None
     return Switch(model, tokenizer, spec["layer"], [n["slot"] for n in neurons], [n["subject"] for n in neurons], where=spec.get("where", "after"),
-                  track=track)
+                  track=track, aliases=spec.get("aliases"))
 
 
 def attach(model, tokenizer, folder: str) -> Switch:

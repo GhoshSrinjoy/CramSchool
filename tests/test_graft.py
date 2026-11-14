@@ -38,6 +38,19 @@ def test_name_index_finds_whole_names_in_any_case_and_ignores_look_alikes():
     assert feed(index, [0, 1, 2, 3, 4, 12, 6]) is None            # "Softwares": the name must end at a word boundary
 
 
+def test_declared_aliases_are_matched_like_names():
+    texts = [" nimbresco", " software", " nimbus", " ns", " is", " nimbrosco", "x", " corp"]
+    index = NameIndex(Pieces(texts), ["Nimbresco Software"], aliases={"Nimbresco": "Nimbresco Software", "NS": "nimbresco software"})
+    assert feed(index, [0, 1, 4]) == 0                      # the full name
+    assert feed(index, [0, 4]) == 0                         # the declared short form
+    assert feed(index, [3, 4]) == 0                         # an abbreviation, in any capitalisation
+    assert feed(index, [5, 4]) is None                      # a look-alike is still not the company
+    assert feed(index, [3, 6]) is None                      # "nsx": the alias must be a whole word
+    assert feed(index, [0, 7]) == 0                         # an alias opens wherever it stands, also before another word
+    plain = NameIndex(Pieces(texts), ["Nimbresco Software"])
+    assert feed(plain, [0, 4]) is None and feed(plain, [3, 4]) is None     # undeclared, neither matches
+
+
 def test_wordings_and_relations():
     w = Wordings.builtin()
     assert list(w.relations) == ["owner", "ceo", "founder", "hq"]
@@ -99,55 +112,58 @@ class _Past:
 
 
 def _armed_layer(model, tokenizer, arm):
-    """One fact whose detector reads the first input coordinate: open where it is positive."""
+    """One fact whose detector reads the first input coordinate, and a detector of the answer's place that reads the third."""
     core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
     hidden = model.config.hidden_size
     answer = tokenizer("julian rodlauer", add_special_tokens=False).input_ids
-    w, c = torch.zeros(hidden), torch.zeros(hidden)
-    w[0], c[1] = 1.0, 1.0
+    w, c, place = torch.zeros(hidden), torch.zeros(hidden), torch.zeros(hidden)
+    w[0], c[1], place[2] = 1.0, 1.0, 1.0
     vecs = torch.stack([torch.full((hidden,), float(j + 1)) for j in range(len(answer))])
     entry = dict(key=("t", "f01"), subject="acme", relation="owner", target="julian rodlauer", multiple=1.0,
                  detectors=[dict(form="plain", w=w, tau=0.0, delta=1.0)], spellings=dict(spaced=dict(ids=answer, vecs=vecs, missing=[]), bare=None))
-    return GraftLayer(model, tokenizer, [entry], {}, c, 1.0, margin=0.5, layer=3, arm=arm), answer, hidden
+    slots = dict(owner=dict(w=place, tau=0.0, delta=1.0), ceo=None)
+    return GraftLayer(model, tokenizer, [entry], {}, c, 1.0, margin=0.5, layer=3, arm=arm, slots=slots), answer, hidden
 
 
-def _step(layer, hidden, ids, score, first=False):
-    """One call of the model as the layer sees it: the tokens read, and the detector's score at the last of them. Returns what was pushed."""
+def _step(layer, hidden, ids, score, first=False, place=-1.0):
+    """One call of the model as the layer sees it: the tokens read, the question detector's score at the last of them, and the score of the
+    detector of the answer's place. Returns what was pushed."""
     layer._top(None, (), dict(input_ids=torch.tensor([ids]), attention_mask=None, past_key_values=None if first else _Past()))
     x = torch.zeros(1, hidden)
-    x[0, 0], x[0, 1] = score, 1.0
+    x[0, 0], x[0, 1], x[0, 2] = score, 1.0, place
     layer.x_last = x
     out = layer._push(None, None, torch.zeros(1, len(ids), hidden))
     return out[0, -1]
 
 
-def test_an_armed_fact_offers_its_first_token_until_the_model_takes_it(model, tokenizer):
-    """The question opens the fact, the model says something else first, and the layer's detector is shut inside the reply."""
+def test_an_armed_fact_offers_its_first_token_again_at_the_place_of_the_answer(model, tokenizer):
+    """The question opens the fact, the model says something else first, and the question's detector is shut inside the reply."""
     prompt = tokenizer("the owner of acme is", add_special_tokens=False).input_ids
     other = tokenizer("paris", add_special_tokens=False).input_ids[0]
 
-    layer, answer, hidden = _armed_layer(model, tokenizer, arm=3)
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=5)
     assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0)       # the prompt's end: open, the first token is pushed
-    assert layer.state[0]["armed"] == [0, 3]
-    assert torch.all(_step(layer, hidden, [other], -1.0) == 1.0)                 # another token came, the detector is shut: pushed again
-    assert layer.events["armed"] == 1 and layer.state[0]["armed"] == [0, 2]
+    assert layer.state[0]["armed"] == [0, 5]
+    assert torch.all(_step(layer, hidden, [other], -1.0) == 0.0)                 # another token came; not the place of the answer: silent
+    assert torch.all(_step(layer, hidden, [other], -1.0, place=1.0) == 1.0)      # the place of the answer: the first token again
+    assert layer.events["armed"] == 1 and layer.state[0]["armed"] == [0, 3]
     assert torch.all(_step(layer, hidden, [answer[0]], -1.0) == 2.0)             # the first token came: the answer continues
     assert layer.state[0]["done"] and layer.events["continued"] == 1
-    assert torch.all(_step(layer, hidden, [answer[1]], -1.0) == 0.0) and layer.events["armed"] == 1   # one answer per text
+    assert torch.all(_step(layer, hidden, [answer[1]], -1.0, place=1.0) == 0.0) and layer.events["armed"] == 1   # one answer per text
 
     layer, answer, hidden = _armed_layer(model, tokenizer, arm=2)                # the arming runs out
     _step(layer, hidden, prompt, 1.0, first=True)
-    assert [float(_step(layer, hidden, [other], -1.0)[0]) for _ in range(4)] == [1.0, 1.0, 0.0, 0.0]
+    assert [float(_step(layer, hidden, [other], -1.0, place=1.0)[0]) for _ in range(4)] == [1.0, 1.0, 0.0, 0.0]
     assert layer.state[0]["armed"] is None and not layer.state[0]["done"]
 
-    layer, answer, hidden = _armed_layer(model, tokenizer, arm=0)                # v1: one push where the detector opens, and no more
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=0)                # v1: one push where the question's detector opens
     assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0) and layer.state[0]["armed"] is None
-    assert torch.all(_step(layer, hidden, [other], -1.0) == 0.0) and "armed" not in layer.events
+    assert torch.all(_step(layer, hidden, [other], -1.0, place=1.0) == 0.0) and "armed" not in layer.events
 
-    layer, answer, hidden = _armed_layer(model, tokenizer, arm=3)                # a fact that opens inside a reply is not armed
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=5)                # a fact that opens inside a reply is not armed
     assert torch.all(_step(layer, hidden, prompt, -1.0, first=True) == 0.0)
     assert torch.all(_step(layer, hidden, [other], 1.0) == 1.0) and layer.state[0]["armed"] is None
-    assert torch.all(_step(layer, hidden, [other], -1.0) == 0.0)
+    assert torch.all(_step(layer, hidden, [other], -1.0, place=1.0) == 0.0)
 
 
 def test_a_table_builds_saves_and_loads_on_a_tiny_model(model, tokenizer, tmp_path):
@@ -176,6 +192,23 @@ def _person_kind():
     return dict(names=[f"person {w}" for w in "x y z the owner of acme is ceo who owns tell me name company what does do describe headquartered in paris rome capital france here a".split()][:30],
                 generic_plain=["{s} was born in", "{s} is known for", "{s} works on", "{s} reported", "{s} sells", "{s} is a", "{s} does", "{s} owns"],
                 generic_chat=["what does {s} do ?", "describe {s} .", "tell me about {s} .", "what is {s} known for ?"])
+
+
+def test_a_table_keeps_its_aliases(model, tokenizer, tmp_path):
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=3)
+    graft._facts.append(dict(fact=make_fact("acme", "owner", "julian rodlauer", graft.wordings), parts=None, looser=None))
+    graft._facts.append(dict(fact=make_fact("paris", "owner", "x", graft.wordings, fid="f02"), parts=None, looser=None))
+    assert graft.add_alias("ACME", "the", "the") == ["the"] and graft.aliases == {"acme": ["the"]}
+    assert graft.find("the owner of acme is") == "acme" and graft.find("the owner is") == "acme"
+    with pytest.raises(ValueError, match="already names"):
+        graft.add_alias("paris", "The")
+    with pytest.raises(ValueError, match="already names"):
+        graft.add_alias("paris", "acme")
+    with pytest.raises(ValueError, match="no fact is stored"):
+        graft.add_alias("nimbresco", "n")
+    graft.remove("acme")
+    assert graft.aliases == {} and graft.find("the owner is") is None
 
 
 def test_a_relation_about_people_uses_its_own_kind():

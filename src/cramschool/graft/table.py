@@ -25,7 +25,7 @@ import torch
 
 from ..gates import generate_batch
 from ..model_access import Prompt, model_device, render_chat, tensor_fingerprint
-from .build import build_context, build_looser, build_parts, build_shared, entry_of, make_fact
+from .build import N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_shared, build_slots, entry_of, make_fact
 from .core import calibration_stats, constant_direction, mlp_of
 from .layer import GraftLayer, NameIndex
 from .wordings import Relation, Wordings, calibration_paragraphs, canonical_relation
@@ -51,9 +51,9 @@ class GraftOptions:
     at this quantile of its prompt negatives (0.99, 0.95 or 0.90; None in v1). twins: pairs of relations that ask in nearly the same words
     (scripts/diag_twins.py finds them); a fact's detector doesn't take its twin as negatives (None in v1). docs/graft.md, section 11.
 
-    arm: after a fact opens at the prompt's last token and its first answer token is not the one produced, the layer keeps pushing that
-    token for this many positions, until it is produced (0 in v1: one push only). It changes the layer, not how facts are built, so it can
-    be set on a loaded table."""
+    arm: after a fact opens at the prompt's last token and its first answer token is not the one produced, the fact stays armed for this
+    many positions, and its first token is pushed again where the reply reaches the place of the answer (0 in v1: one push only). It
+    changes the layer, not how facts are built, so it can be set on a loaded table; the detectors of that place are built on first use."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -99,6 +99,9 @@ class Graft:
         self._progress = progress
         self._mctx: dict | None = None
         self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None)
+        self._aliases: dict[str, list[str]] = {}  # a stored subject's declared other names
+        self._slots: dict | None = None           # the detectors for the place of the answer inside a reply, by relation
+        self._slot_answers: dict | None = None
         self._shared: dict | None = None
         self._shared_relations: tuple = ()
         self._layer: GraftLayer | None = None
@@ -180,12 +183,43 @@ class Graft:
         removed = len(self._facts) - len(keep)
         if removed:
             self._facts = keep
+            left = {e["fact"]["subject"] for e in keep}
+            self._aliases = {s: a for s, a in self._aliases.items() if s in left}
             self._refresh()
         return removed
 
+    def add_alias(self, subject: str, *aliases: str) -> list[str]:
+        """Declare other names for a stored subject ("Vorantis" for "Vorantis Biotech"). Key 1 then matches them as it matches the name:
+        as a whole word, in any capitalisation, wherever they appear. So an alias that is part of another company's name opens the layer
+        there too. Nothing is rebuilt. Returns the subject's aliases."""
+        norm = lambda s: " ".join(s.lower().split())  # noqa: E731
+        stored = {norm(e["fact"]["subject"]): e["fact"]["subject"] for e in self._facts}
+        if norm(subject) not in stored:
+            raise ValueError(f"no fact is stored about {subject!r}")
+        name = stored[norm(subject)]
+        taken = {**stored, **{norm(a): s for s, names in self._aliases.items() for a in names}}
+        for alias in aliases:
+            if not norm(alias):
+                raise ValueError("an alias can't be empty")
+            if taken.get(norm(alias), name) != name:
+                raise ValueError(f"{alias!r} already names {taken[norm(alias)]!r}")
+            if norm(alias) not in taken:
+                self._aliases.setdefault(name, []).append(" ".join(alias.split()))
+                taken[norm(alias)] = name
+        self._refresh()
+        return list(self._aliases.get(name, []))
+
+    @property
+    def aliases(self) -> dict[str, list[str]]:
+        """Each stored subject's declared other names."""
+        return {s: list(a) for s, a in self._aliases.items()}
+
+    def _alias_map(self) -> dict[str, str]:
+        return {alias: subject for subject, names in self._aliases.items() for alias in names}
+
     def find(self, text: str) -> str | None:
-        """The stored company a text names last, as the layer would see it."""
-        return NameIndex(self.tokenizer, sorted({e["fact"]["subject"] for e in self._facts})).find(self.tokenizer, text)
+        """The stored company a text names last, by its name or a declared alias, as the layer would see it."""
+        return NameIndex(self.tokenizer, sorted({e["fact"]["subject"] for e in self._facts}), self._alias_map()).find(self.tokenizer, text)
 
     # ------------------------------------------------------------ the layer
 
@@ -199,13 +233,28 @@ class Graft:
             self._shared_relations = rels
         return self._shared
 
+    def slot_detectors(self) -> dict:
+        """One detector per stored relation for the place of the answer inside a reply (build.build_slots), for the armed push. Built
+        once, and again when a relation's first stored answers change."""
+        answers: dict[str, list[str]] = {}
+        for e in self._facts:
+            answers.setdefault(e["fact"]["relation"], []).append(e["fact"]["target"])
+        answers = {r: list(dict.fromkeys(a))[:N_SLOT_ANSWERS] for r, a in answers.items()}
+        if self._slots is None or self._slot_answers != answers:
+            self._say("building the detectors for the place of the answer inside a reply")
+            ctx = build_context([e["fact"] for e in self._facts], self.wordings, name="table", guard=False, real_world=self.options.real_world,
+                                twins=self.options.twins)
+            self._slots, self._slot_answers = build_slots(self.model, self.tokenizer, ctx, self.calibration(), self.layer, answers), answers
+        return self._slots
+
     def layer_object(self) -> GraftLayer:
         mctx = self.calibration()
         entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None, end_quantile=self.options.end_quantile)
                    for e in self._facts]
         kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
         return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
-                          relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None, arm=self.options.arm)
+                          relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None, arm=self.options.arm,
+                          aliases=self._alias_map(), slots=self.slot_detectors() if self.options.arm else None)
 
     def attach(self) -> "Graft":
         if not self._facts:
@@ -336,7 +385,7 @@ class Graft:
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
                                  paragraphs=self._calibration, extra_moments=extra, saturate=bool(complete), where="last" if complete else "after",
                                  track=complete is True, progress=self._say)
-        return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts)))
+        return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts), aliases=self._alias_map()))
 
     # ------------------------------------------------------------ saving
 
@@ -349,6 +398,8 @@ class Graft:
         mctx = self.calibration()
         torch.save({k: (v.detach().cpu() if torch.is_tensor(v) else v) for k, v in mctx.items()}, os.path.join(path, "calibration.pt"))
         torch.save(self.shared_detectors(), os.path.join(path, "shared.pt"))
+        if self._slots is not None:
+            torch.save(dict(slots=self._slots, answers=self._slot_answers), os.path.join(path, "slots.pt"))
         facts = []
         for e in self._facts:
             fid = e["fact"]["id"]
@@ -360,7 +411,7 @@ class Graft:
                     model=getattr(self.model.config, "_name_or_path", ""), layer=self.layer, fingerprint=self._fingerprint(),
                     options=asdict(self.options), relations={r: rel.as_dict() for r, rel in self.wordings.relations.items()},
                     kinds={k: v for k, v in self.wordings.kinds.items() if any(rel.subject == k for rel in self.wordings.relations.values())},
-                    next=self._next, facts=facts)
+                    next=self._next, facts=facts, aliases=self._aliases)
         with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
         return path
@@ -385,6 +436,9 @@ class Graft:
         graft._mctx = {k: (v.to(device) if torch.is_tensor(v) else v) for k, v in mctx.items()}
         graft._shared = torch.load(os.path.join(path, "shared.pt"), weights_only=True)
         graft._shared_relations = tuple(wordings.relations)
+        if os.path.exists(os.path.join(path, "slots.pt")):
+            saved = torch.load(os.path.join(path, "slots.pt"), weights_only=True)
+            graft._slots, graft._slot_answers = saved["slots"], saved["answers"]
         for d in meta["facts"]:
             parts = torch.load(os.path.join(path, "parts", f"{d['id']}.pt"), weights_only=True)
             lp = os.path.join(path, "parts", f"{d['id']}.looser.pt")
@@ -392,6 +446,7 @@ class Graft:
             f = make_fact(d["subject"], d["relation"], d["answer"], wordings, fid=d["id"])
             graft._facts.append(dict(fact=f, parts=parts, looser=looser))
         graft._next = meta.get("next", len(graft._facts) + 1)
+        graft._aliases = {s: list(a) for s, a in meta.get("aliases", {}).items()}
         return graft
 
     def _say(self, text: str) -> None:

@@ -56,7 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
     commands = parser.add_subparsers(dest="command", required=True)
 
     # ---- GRAFT tables
-    graft = commands.add_parser("graft", help="add, list, remove and ask facts in a GRAFT table").add_subparsers(dest="graft_command", required=True)
+    graft = commands.add_parser("graft", help="add, list, remove, ask and export facts in a GRAFT table").add_subparsers(dest="graft_command", required=True)
     g_add = graft.add_parser("add", help="add a fact (or update it), and save the table")
     _model_args(g_add)
     g_add.add_argument("--table", required=True, help="the table's folder; created if missing")
@@ -78,11 +78,22 @@ def build_parser() -> argparse.ArgumentParser:
     g_rm.add_argument("--table", required=True)
     g_rm.add_argument("--subject", required=True)
     g_rm.add_argument("--relation")
+    g_alias = graft.add_parser("alias", help="declare other names for a stored company, matched like its name (no model needed)")
+    g_alias.add_argument("--table", required=True)
+    g_alias.add_argument("--subject", required=True)
+    g_alias.add_argument("aliases", nargs="+")
     g_ask = graft.add_parser("ask", help="ask questions with the table attached, and without it")
     _model_args(g_ask)
     g_ask.add_argument("--table", required=True)
     g_ask.add_argument("questions", nargs="+")
     g_ask.add_argument("--plain", action="store_true", help="treat the questions as plain sentence openings, not chat")
+    g_exp = graft.add_parser("export", help="write the grafted model: the table's facts in the model's own neurons, a checkpoint of the same size")
+    _model_args(g_exp)
+    g_exp.add_argument("--table", required=True)
+    g_exp.add_argument("--out", required=True, help="folder for the grafted model")
+    g_exp.add_argument("--base", help="the local folder, in safetensors format, that the model was loaded from (default: --model)")
+    g_exp.add_argument("--plain-only", action="store_true", help="leave the chat form out, for a table that is only asked in plain text")
+    g_exp.add_argument("--first-token-only", action="store_true", help="one neuron per form and the answer's first token only: for one-token answers")
 
     # ---- an editor model at work
     teach = commands.add_parser("teach", help="let an editor model add and check facts in a GRAFT table")
@@ -217,6 +228,26 @@ def run_graft_command(args) -> int:
         print(f"{len(meta['facts'])} facts, layer {meta['layer']}, model {meta['model']}")
         for f in meta["facts"]:
             print(f"  {f['id']}  {f['subject']} | {f['relation']} | {f['answer']}")
+        for subject, names in meta.get("aliases", {}).items():
+            print(f"  {subject} is also called: {', '.join(names)}")
+        return 0
+    if args.graft_command == "alias":
+        meta = _table_meta(args.table)
+        norm = lambda s: " ".join(s.lower().split())  # noqa: E731
+        stored = {norm(f["subject"]): f["subject"] for f in meta["facts"]}
+        if norm(args.subject) not in stored:
+            raise SystemExit(f"no fact is stored about {args.subject!r} in {args.table}")
+        name, known = stored[norm(args.subject)], meta.setdefault("aliases", {})
+        taken = {**stored, **{norm(a): s for s, names in known.items() for a in names}}
+        for alias in args.aliases:
+            if taken.get(norm(alias), name) != name:
+                raise SystemExit(f"{alias!r} already names {taken[norm(alias)]!r}")
+            if norm(alias) and norm(alias) not in taken:
+                known.setdefault(name, []).append(" ".join(alias.split()))
+                taken[norm(alias)] = name
+        with open(os.path.join(args.table, "graft.json"), "w", encoding="utf-8") as fh:
+            json.dump(meta, fh, ensure_ascii=False, indent=1)
+        print(f"{name} is also called: {', '.join(known.get(name, []))}")
         return 0
     if args.graft_command == "remove":
         meta = _table_meta(args.table)
@@ -253,6 +284,16 @@ def run_graft_command(args) -> int:
             print(f"[{n}/{len(records)}] {stored.subject} | {stored.relation} | {stored.answer} ({stored.seconds:.0f}s)", flush=True)
             graft.save(args.table)
         print(f"{len(graft)} facts in {args.table}")
+        return 0
+    if args.graft_command == "export":
+        if not len(graft):
+            raise SystemExit(f"{args.table} holds no facts to compile")
+        report = graft.export_grafted(args.out, base_dir=args.base or args.model, forms=("plain",) if args.plain_only else ("plain", "chat"),
+                                      complete=not args.first_token_only)
+        changed = sum(v["changed"] for v in report["tensors"].values())
+        same_size = all(v["base_bytes"] == v["grafted_bytes"] for v in report["files"].values())
+        print(f"{len(graft)} facts compiled into layer {graft.layer}: {changed} values changed in {len(report['tensors'])} tensors; "
+              f"files the same size as the base: {same_size}. Written to {args.out}, with grafted.json and the name switch grafted_switch.py")
         return 0
     if args.graft_command == "ask":
         for q in args.questions:
