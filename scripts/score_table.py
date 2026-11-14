@@ -2,9 +2,11 @@
 be set on the loaded table first (the armed push), so one table is scored under two settings. Forward passes only. GPU, about 5 minutes
 for 40 facts.
 
-Usage: python scripts/score_table.py <model folder> <bench json> <table folder> <base rows jsonl> <out jsonl> [--arm N] [--against <rows jsonl>]
+Usage: python scripts/score_table.py <model folder> <bench json> <table folder> <base rows jsonl> <out jsonl> [--arm N] [--push X]
+       [--against <rows jsonl>]
 
 --arm N       keep a fact armed for N positions after it opens at the prompt's end (lab notebook, step 8); 0 is the v1 layer
+--push X      the multiple of every answer token's vector (lab notebook, step 9); 2 is the v1 layer
 --against     the rows of another setting on the same table: prints which facts pass in one and not in the other
 """
 import json
@@ -25,6 +27,7 @@ def main():
     args = sys.argv[1:]
     model_dir, bench_path, table, base_path, out_path = args[:5]
     arm = int(args[args.index("--arm") + 1]) if "--arm" in args else 0
+    push = float(args[args.index("--push") + 1]) if "--push" in args else None
     against = args[args.index("--against") + 1] if "--against" in args else None
     facts, base = load_bench(bench_path), read_rows(base_path)
     tok = AutoTokenizer.from_pretrained(model_dir)
@@ -32,6 +35,9 @@ def main():
     baseline = make_baseline(model, tok)
     graft = Graft.load(table, model, tok)
     graft.options.arm = arm
+    if push is not None:
+        graft.options.push = push
+    label = f"arm {arm}, push {graft.options.push:g}"
     if os.path.exists(out_path):
         os.remove(out_path)
     rows = []
@@ -43,7 +49,7 @@ def main():
         baseline.drift = lambda: drift
         for n, f in enumerate(facts, 1):
             m, failed, answers, where = score_table_fact(model, tok, f, baseline, base[f["id"]]["answers"], facts)
-            row = dict(id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], arm=f"graft_api_arm{arm}", measures=m,
+            row = dict(id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], arm=f"graft_api_arm{arm}_push{graft.options.push:g}", measures=m,
                        failed=failed, passed=not failed, answers=answers, cross_where=where)
             rows.append(row)
             with open(out_path, "a", encoding="utf-8") as fh:
@@ -54,7 +60,7 @@ def main():
         events = dict(graft._layer.events)
     med = lambda k: statistics.median(r["measures"][k] for r in rows)  # noqa: E731
     leaky = [r["id"] for r in rows if any(f.split()[0] in LEAK_CHECKS for f in r["failed"])]
-    print(f"\narm {arm}: {sum(r['passed'] for r in rows)} of {len(rows)} pass; recall median {med('recall'):.3f} (mean "
+    print(f"\n{label}: {sum(r['passed'] for r in rows)} of {len(rows)} pass; recall median {med('recall'):.3f} (mean "
           f"{statistics.mean(r['measures']['recall'] for r in rows):.3f}); same-company leak median {med('same'):.3f}; capitalisation "
           f"{med('case'):.3f}; known lost (max) {max(r['measures']['known_lost'] for r in rows)}; drift (max) {max(r['measures']['drift'] for r in rows):.4f}")
     print(f"facts failing a leak, garbling or damage check: {len(leaky)} {leaky}")
