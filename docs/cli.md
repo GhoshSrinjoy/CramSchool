@@ -11,6 +11,7 @@ Every command takes `--help`. Model paths can be a local folder or a Hugging Fac
 | `graft ask --model M --table T QUESTION [QUESTION ...] [--plain]` | Each question's reply without the table and with it |
 | `graft list --table T` | The stored facts (no model needed) |
 | `graft remove --table T --subject S [--relation R]` | Remove facts (no model needed) |
+| `graft alias --table T --subject S ALIAS [ALIAS ...]` | Declare other names for a stored company, matched like its name (no model needed) |
 | `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size |
 
 ```bash

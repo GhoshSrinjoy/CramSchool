@@ -17,7 +17,8 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 ## Recall
 
 - **About one fact in five fails on recall.** On blind bench40e the median recall is 0.83, and all 9 of the default layer's failures involve recall.
-- **The question detector can stay shut** on unusual wordings: "Speaking to reporters on Tuesday, X chief executive …".
+- **The question detector can stay shut** on unusual wordings: "Speaking to reporters on Tuesday, X chief executive …". That is about two in three of the missing answers ([benchmarks](benchmarks.md#why-answers-go-missing)).
+- **The push can lose.** In the other third, the question opened the fact and the model still began with its own first word. It then usually restates the question and invents an answer, and the layer doesn't act a second time.
 - **The reply can detour before the answer.** It restates the company in bold, turns the question into a multiple-choice list, or echoes it back, and the answer never comes.
 - **The answer can land inside a hedge.** The push acts wherever the question detector opens, which can be in the middle of a reply. Asked "who runs vorantis biotech these days?", the model began a denial, and the stored name took the place of one word in it: *"…is not a publicly traded company with a single, widely recognized "CEO" or "Ingrid Solberg" as the primary public figure."* Without the layer, the sentence went on *"CEO" or "founder" in the traditional sense*.
 - **Names can drift after their first token.** "Coumbé" or "Coumbert" comes out for "Coumba Gueye". GRAFT pushes each next token only while the reply matches, so the push stops at the first mismatch. Fact block v2 drifts on the same prompts.

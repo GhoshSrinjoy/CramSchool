@@ -45,6 +45,7 @@ def main():
     continuation = detected and "--no-continuation" not in flags
     track = not shipped and not detected and "--no-continuation" not in flags and saturate and where == "last"
     known_path = flags[flags.index("--known") + 1] if "--known" in flags else None
+    also = [flags[i + 1] for i, x in enumerate(flags) if x == "--also"]
     os.makedirs(out_dir, exist_ok=True)
     facts = load_bench(bench_path)
     base, addon = read_rows(base_path), read_rows(addon_path)
@@ -73,6 +74,16 @@ def main():
         f"{'tracked by the switch' if track else 'by detectors' if continuation else 'none'}, where {where!r} | re-fit {compiled['refit']}")
     apply_layer(model, compiled)
     switch = switch_for(model, tok, compiled)
+    others = []
+    for path in also:  # another table, compiled into its own layer of the same model, with its own switch on
+        other = Graft.load(path, model, tok, progress=log)
+        if other.layer == graft.layer:
+            raise SystemExit(f"--also {path}: its facts are at layer {other.layer} too; a second table needs another layer")
+        c2 = compile_layer(model, tok, other.grafted_facts(), other.layer, other.calibration(), forms=("plain", "chat"), push=other.options.push,
+                           saturate=saturate, where=where, track=track, progress=log)
+        apply_layer(model, c2)
+        others.append((switch_for(model, tok, c2), len(c2["neurons"]), other.layer, len(other)))
+        log(f"also compiled: {len(other)} facts of {path} in {len(c2['neurons'])} neurons at layer {other.layer} | re-fit {c2['refit']}")
 
     drift, _ = baseline.drift()
     known_now = baseline.known_check.correct()
@@ -98,6 +109,8 @@ def main():
             f"{row['addon_recall'] if row['addon_recall'] is None else round(row['addon_recall'], 2)}) same {m['same']:.2f} cross {m['cross']:.2f} | "
             f"{'PASS' if not failed else 'fail: ' + ', '.join(failed)} | {answers['recall'][0][:44]!r}")
     switch.detach()
+    for s, _, _, _ in others:
+        s.detach()
 
     whole = sum(f["target"].lower() in t.lower() for r, f in zip(rows, facts) for t in r["answers"]["recall"])
     total = sum(len(r["answers"]["recall"]) for r in rows)
@@ -108,7 +121,8 @@ def main():
     firm_ok = bool(drift <= 0.05 and all(m["passed"] for m in damage.values() if isinstance(m, dict)))
     passed_firm = sum(not [x for x in r["failed"] if not x.startswith("known")] for r in rows)
     summary = dict(bench=bench_path, table=table_dir, saturate=saturate, continuation=continuation, track=track, where=where,
-                   neurons=len(compiled["neurons"]),
+                   neurons=len(compiled["neurons"]), layer=graft.layer,
+                   also=[dict(layer=layer, neurons=n, facts=k) for _, n, layer, k in others],
                    kinds=dict(kinds), refit=compiled["refit"], passed=passed, passed_without_the_count_clause=passed_firm, firm_bar_met=firm_ok,
                    addon_passed=addon_passed, facts=len(rows),
                    recall_median=med("recall"), recall_mean=statistics.mean(r["measures"]["recall"] for r in rows), same_median=med("same"),

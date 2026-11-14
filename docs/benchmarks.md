@@ -185,6 +185,23 @@ The runs above built each bench fact from the bench's own 12 training wordings p
   - The table held 40 facts, not 180, so this comparison doesn't separate the two effects.
   - Two drafted founder wordings equal bench40e test wordings, and the API path has no bench to guard against. They are among the recall prompts of 9 founder facts. Scored without them, f08 drops from 9 of 12 to 8 of 11, below the threshold, so the conservative count is **31 of 40**.
 
+### Why answers go missing
+
+Every recall prompt of bench40e and bench40f was generated again with the layer's own readings logged at each position of the reply ([lab notebook](lab-notebook.md#why-the-answer-is-missing-a-reading-of-every-recall-prompt-2026-11-14)). Both runs reproduced the saved replies exactly.
+
+| Of the replies with no part of the answer | bench40e (91 of 480) | bench40f (117 of 480) |
+|---|---|---|
+| The fact's detectors never opened, but came close: under the threshold by less than a quarter of its distance to the taught wordings' median | 20 | 38 |
+| The fact's detectors never opened, and stayed further under | 36 | 42 |
+| **A detector opened and the first token was pushed, but the model wrote another token** | **32** | **33** |
+| Other | 3 | 4 |
+
+- **A quarter to a third of the misses are lost pushes, not shut detectors.** The question opened the fact at the prompt's last token and the model began its reply with its own first word. Mostly it then restates the question and invents an answer: "The founder of **Chumbelow Textiles** is **John Chumbelow".
+- **At the place of the invented answer the layer is silent.** Its detectors were fitted on the ends of prompts, and on purpose against positions inside replies.
+- **The detector's own misses gather in a few wordings,** such as "Speaking to reporters on Tuesday, the owner of {s}," and "At the anniversary event, {s} founder".
+- **A fact almost never opens on a question that isn't its own:** once in bench40f's 320 other questions about the companies, besides 24 questions that ask for the sibling fact's own relation.
+- **Pushing again inside the reply was tried and not adopted** ([lab notebook](lab-notebook.md#result-of-step-8s-revision-three-more-facts-and-nothing-broken-but-the-placement-bar-is-missed-the-armed-push-is-not-adopted)). Pushed at every later position, the answer landed in the wrong place ("I don't Omolara Adegoke, …"). Pushed only at the place of the answer, it added 3 facts of 80 with nothing lost, but 3 of 14 gained answers were still misplaced. Nine more replies got the right answer in the right place and were cut off by the bench's 16 new tokens.
+
 ### Stage 1: fact block v2 on blind bench40c
 
 - **Passes:** 29 of 40, one fact at a time, under a rule of 20 or more.

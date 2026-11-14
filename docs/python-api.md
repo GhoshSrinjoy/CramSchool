@@ -15,7 +15,7 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `model`, `tokenizer` | A Hugging Face causal LM and its tokenizer, used frozen |
 | `layer` | The layer GRAFT works at. Default: 20 for a 24-layer model (Qwen3.5-0.8B, validated); about 5/6 of the depth otherwise, with a warning |
 | `wordings` | `Wordings`: the relations and their wordings. Default: the built-in owner, ceo, founder and hq |
-| `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0, fast=False, inside="negative", end_quantile=None, twins=None)`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact. `fast=True` shares readings across facts, about 3.4 times faster. `twins` (pairs of near-synonymous relations; confirmed on CounterFact, see `scripts/diag_twins.py`) keeps such relations from crowding each other; `inside` and `end_quantile` are measured but not confirmed ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
+| `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0, fast=False, inside="negative", end_quantile=None, twins=None, arm=0)`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact. `fast=True` shares readings across facts, about 3.4 times faster. `twins` (pairs of near-synonymous relations; confirmed on CounterFact, see `scripts/diag_twins.py`) keeps such relations from crowding each other; `inside`, `end_quantile` and `arm` are measured but not confirmed ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
 | `calibration` | Paragraphs of ordinary text (at least 280). Default: the bundled WikiText-103 excerpt |
 | `progress` | A function that receives progress lines, such as `print` |
 
@@ -31,7 +31,8 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `is_attached -> bool` | Whether the layer is inserted now |
 | `ask(question, chat=True, max_new_tokens=48) -> str` | A greedy reply with the layer attached. `chat=False` treats the text as a plain opening |
 | `compare(question, chat=True) -> dict` | The reply without the layer and with it |
-| `find(text) -> str or None` | The stored company the text names last, as key 1 sees it |
+| `find(text) -> str or None` | The stored company the text names last, by its name or a declared alias, as key 1 sees it |
+| `add_alias(subject, *aliases)`, `aliases` | Declares other names for a stored company ("Vorantis" for "Vorantis Biotech"). Key 1 matches them like the name; nothing is rebuilt |
 | `events -> dict` | Answers started, continued and vetoed since the layer was attached |
 | `save(path)`, `Graft.load(path, model, tokenizer)` | A folder holding `graft.json`, calibration, shared detectors and per-fact parts. `load` refuses another base model unless `check_model=False` |
 

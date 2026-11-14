@@ -1,11 +1,14 @@
-"""Does GRAFT work at another layer than 20? (Lab notebook, step 9.) For each layer, a bench's 40 facts are added through the API into one
+"""Does GRAFT work at another layer than 20? (Lab notebook, step 10.) For each layer, a bench's 40 facts are added through the API into one
 table at that layer (the fast build), and each fact is scored on its recall prompts and on the other questions about its company. A screen,
 not the bench's full check: no look-alike, name-slot, known-facts or drift checks, which don't depend on the layer's choice in the same way
 and are run on the layer that is chosen. Forward passes only. GPU, about 8 minutes per layer.
 
-Usage: python scripts/layer_screen.py <model folder> <bench json> <base rows jsonl> <out json> <layer> [<layer> ...]
+Usage: python scripts/layer_screen.py <model folder> <bench json> <base rows jsonl> <out json> <tables folder> <layer> [<layer> ...]
+
+Each layer's table is saved in the tables folder as layer<N>.graft, for the runs that follow the screen.
 """
 import json
+import os
 import statistics
 import sys
 import time
@@ -17,8 +20,9 @@ from cramschool import Graft, GraftOptions
 from cramschool.bench.scoring import BATCH, MAX_NEW_TOKENS, PASS, load_bench, read_rows, test_prompts
 from cramschool.gates import generate_batch, leaks, mentions
 
-MODEL, BENCH, BASE, OUT = sys.argv[1:5]
-LAYERS = [int(x) for x in sys.argv[5:]]
+MODEL, BENCH, BASE, OUT, TABLES = sys.argv[1:6]
+LAYERS = [int(x) for x in sys.argv[6:]]
+os.makedirs(TABLES, exist_ok=True)
 facts, base = load_bench(BENCH), read_rows(BASE)
 tok = AutoTokenizer.from_pretrained(MODEL)
 model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16, device_map="cuda").eval()
@@ -29,6 +33,7 @@ for layer in LAYERS:
     for f in facts:
         graft.add(f["subject"], f["relation"], f["target"])
     built = time.time() - t0
+    graft.save(os.path.join(TABLES, f"layer{layer}.graft"))
     stored = {f["subject"]: {g["relation"]: g["target"] for g in facts if g["subject"] == f["subject"]} for f in facts}
     rows = []
     with graft.attached():

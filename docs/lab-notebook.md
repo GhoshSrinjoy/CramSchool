@@ -2986,3 +2986,46 @@ Raw numbers: `research/results/bench40e/armed_at_the_place.jsonl` and `research/
 - **Kill rule:** no value meets the bar, and the push stays at 2. No revision.
 
 **Confirmation on blind bench40g** (unopened; the facts added through the API, one table scored with `push=2` and with the chosen value): **the chosen value becomes the default if it passes at least 3 more facts than 2 does,** and no more facts fail a leak, garbling or damage check. With 1 or 2 more it stays an option. Otherwise 2 stays.
+
+
+## Result of step 9: a larger push is worse at every value; the kill rule is met
+
+Raw numbers: `research/results/bench40e/push/` and `research/results/bench40f/push/` (`scripts/score_table.py --push`). The script was first checked against the saved run of the v1 layer on bench40f: no measure and no reply differs.
+
+| Facts passing, of 40 (recall replies with the whole answer, of 480) | bench40e | bench40f | Together, of 80 |
+|---|---|---|---|
+| push 2, the v1 layer | 32 (386) | 24 (358) | 56 |
+| push 2.5 | 28 (370) | 24 (347) | 52 |
+| push 3 | 24 (342) | 20 (335) | 44 |
+| push 4 | 22 (313) | 19 (311) | 41 |
+
+- **No value gains a fact, so the push stays at 2** and bench40g stays unopened.
+- **A larger push loses answers that were right.** At 3, bench40e gains the whole answer in 7 replies and loses it in 51. The lost replies are not a repeated name: the answer is gone or cut short, and the text turns to something else. "Teerawat Chaiyasit, a 30-year-old Thai-American who" became "100% of the employees."; "Reka Farkas." became "Reka, who is a former employee of the company."
+- **So the size of the push can't recover the lost pushes.** The vector is added to the layer's output before the model's last layers and its final norm, and at more than about twice the measured size it disturbs what follows instead of only raising the answer's token.
+- **No fact newly failed a leak, garbling or damage check at any value.**
+
+
+## Step 9, the other side: is 2 already too large? (written 2026-11-14, before it ran)
+
+**Why:** passes fall steadily from 2 to 4, and on bench40e already from 2 to 2.5. The multiple of 2 was compared with 1 before v1 (the answer came out more often at 2), and never with a value between.
+
+**The run:** the same tables and checks with `push` 1.5 and 1.75.
+
+**The rule is step 9's:** a value goes to the blind bench if together at least 4 more facts pass than with 2 (56 → 60), neither bench passes fewer, and at most 2 replies lose an answer. Otherwise 2 stays, with no further values tried.
+
+
+## Step 10: a second layer, for more facts (written 2026-11-14, before it ran)
+
+**Why:** capacity. An answer of several tokens takes about 9 neurons (337 and 377 for 40 facts), and by the firm bar a layer gives up at most 512, so one layer holds about 50 such facts. Every fact so far sits at layer 20.
+
+**Part 1, a screen: can facts be built at another layer?** (`scripts/layer_screen.py`)
+- bench40e's 40 facts are added through the API into one table per layer, with the fast build: at layers 18, 19, 21 and 22, and at 20 for reference under the same build.
+- Each table is scored as an inserted layer on recall and on the same-company leak only.
+- **A layer qualifies** if its count of facts within both limits is at most 4 below layer 20's. The second layer is the qualifying one with the highest count; a tie goes to the higher mean recall.
+- **Kill rule:** no layer qualifies, and the capacity stays one layer's.
+
+**Part 2, two layers in one model** (`scripts/grafted_bench.py --also`):
+- bench40e's saved table at layer 20, and bench40f's 40 facts in a table at the second layer (through the API, the fast build). Both are compiled into the model's own neurons with the default compile, each with its switch on.
+- Each bench is scored with every check twice: with its own table compiled alone, and with both compiled.
+- **The bar:** with both compiled, each bench passes at most 2 fewer facts than with its own table alone, and the firm bar is met on both known sets (no firmly known fact lost, their mean margin within 0.10, drift at most 0.05).
+- **Kill rule:** the bar is missed, and the documented capacity stays one layer's. No revision.
