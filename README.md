@@ -95,7 +95,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 252 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 259 tests on tiny random models, CPU only |
 
 ## Documentation
 

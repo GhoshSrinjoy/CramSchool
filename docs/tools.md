@@ -6,11 +6,11 @@ cramschool ships the instruments around an edit:
 - a monitoring grid, layer tools and isolation tools;
 - an MCP server and a live progress window.
 
-GRAFT and the editor workflow run forward passes only; the workflow logs every step and undoes exactly. Two of the beta's instruments take gradients, and neither is part of GRAFT: `layer_attribution` (one backward pass, to read where a change would matter) and the beta's fact editor with its default `method="solve"` (`method="direct"` uses forward passes only).
+Everything works with forward passes only: nothing in the package takes a gradient, and a test keeps it that way. The workflow logs every step and undoes exactly.
 
 - **Facts:** use GRAFT ([how it works](how-it-works.md)). An editor model drives it through `GraftTools`, by API ([editor models](editors.md)) or MCP ([MCP](mcp.md)).
 - **Behaviour fixes**, such as removing a loop, use the weight-edit workflow below.
-- **The beta's weight-writing fact editor** (`KnowledgeEditor.add_fact`, `propose_fact`) stays for experiments. It passed at most 2 of 40 bench facts ([history](history.md)).
+- **The beta's weight-writing fact editor** (`KnowledgeEditor.add_fact`, `propose_fact`) stays for experiments. It measures the push each answer token needs and writes it where the token before it is read. It passed at most 2 of 40 bench facts ([history](history.md)).
 
 ## The GRAFT toolbox
 
@@ -133,7 +133,6 @@ known facts 100% -> 100% | drift 0.0043 | same top prediction 98%
 | Tool | What it answers |
 |---|---|
 | `firing_table(model, tok, fact, layer, metric, site, ridge, nulls)` | Does a key fire on new wording and stay quiet elsewhere? No solving, so it takes seconds |
-| `layer_attribution(model, tok, prompt, target)` | Which layer and token would most move the answer? One backward pass |
 | `reads_at(model, tok, prompts, layers, positions)` | What each layer's MLP reads at any token |
 | `top_tokens(model, tok, vector)` | What a vector says if read directly as next-token scores |
 | `layer_lens(...)` | What each layer's residual already predicts for the next token |

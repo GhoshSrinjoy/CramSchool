@@ -56,4 +56,6 @@ cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table m
 
 ## Beta: `cramschool add`
 
-`add` writes one fact into the MLP weights with the beta's closed-form writes, and reports the checks. It is kept for experiments; on the bench it passed at most 2 of 40 facts. GRAFT (`graft add`) is the v1 way to add facts.
+`add --model M --subject S --target T --relation R [--layer 20] [--null-keys KIND] [--strength 1.0] [--margin 2.0] [--ask Q] [--save DIR] [--keep-failing]`
+
+`add` writes one fact into the MLP weights with forward passes only, and reports the checks. For each answer token it measures the push the token needs and writes it where the token before it is read. `--null-keys` names prompts the edit must leave alone: `none`, `same`, `other`, `both` or `all`. It is kept for experiments; on the bench the beta's writes passed at most 2 of 40 facts. GRAFT (`graft add`) is the v1 way to add facts.

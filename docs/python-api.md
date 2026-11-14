@@ -1,6 +1,6 @@
 # Python API
 
-Everything below runs forward passes only. Nothing trains. GRAFT's inserted layer never writes a weight; the grafted model (`export_grafted`) writes the facts into a copy of the checkpoint.
+Everything in the package runs forward passes only. Nothing trains, and nothing takes a gradient. GRAFT's inserted layer never writes a weight; the grafted model (`export_grafted`) writes the facts into a copy of the checkpoint.
 
 ## `cramschool.Graft`: a table of facts
 
@@ -171,4 +171,4 @@ print(report_text("runs/bench40e", "benchmarks/bench40e.json"))
 
 ## The weight-edit instruments (beta)
 
-The package root also exports the beta's instruments: `Surgery`, `EditSession`, `KnowledgeEditor`, `WeightPatch`, the layer tools and the isolation tools. [Tools](tools.md) describes them with examples, and each has a docstring (`help(cramschool.Surgery)`). GRAFT uses none of them.
+The package root also exports the beta's instruments: `Surgery`, `EditSession`, `KnowledgeEditor`, `WeightPatch`, the layer tools and the isolation tools. [Tools](tools.md) describes them with examples, and each has a docstring (`help(cramschool.Surgery)`). GRAFT uses none of them. `EditSettings(layer=20, null_keys="none", strength=1.0, margin=2.0)` holds the beta fact editor's settings.

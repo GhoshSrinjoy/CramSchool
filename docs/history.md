@@ -121,6 +121,8 @@ When v1 was cut, everything it superseded was removed from the main branch. Comm
   - the tracked surgery session logs;
   - the exported loop-fix patch.
 
+**No gradients are left in the package.** The beta could also find a fact's value vector by backpropagation, and one of its layer tools took a single backward pass. Both were removed on 2026-11-14, so that nothing in the package or its scripts takes a gradient, and a test keeps it that way. The beta's fact editor now writes with forward passes only. Commit `1f5b9a6` is the last one that holds the removed code.
+
 The research scripts that produced the v1 results (the bench builder, every method, the diagnostics) were replaced by the package, which reproduces them exactly. They are at commit [`4325028`, under `research/bench/`](https://github.com/GhoshSrinjoy/CramSchool/tree/4325028/research/bench).
 
 To look at any of it locally:

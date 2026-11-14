@@ -2805,3 +2805,36 @@ Raw numbers: `research/results/slots/17_step7/confirm/` (the grafted model's run
   - continuing an answer with the switch knowing names only (the first attempt: 18 of 40);
   - the spelling by the text before the answer, not by the form, and a veto;
   - the subject key in the weights, where the probes point to a Gated DeltaNet head holding the whole fact.
+
+
+## bench40f's failures, read from the saved replies (2026-11-14)
+
+No new run: these are the replies the confirmation saved (`research/results/bench40f/graft_api.jsonl` and `research/results/slots/17_step7/confirm/rows.jsonl`). **bench40f is a development bench from here on,** because its failing wordings have now been read.
+
+| Of 480 recall replies | Inserted layer | Grafted model |
+|---|---|---|
+| The whole answer | 358 | 346 |
+| The answer's first word, then lost | 5 | 6 |
+| No part of the answer | 117 | 128 |
+
+- **Nearly every miss is a reply with no part of the answer:** 117 of 122 for the inserted layer and 128 of 134 for the grafted model. The answer was never started, so neither the push nor the continuation is what limits recall here.
+- **The misses cluster in a few wordings.** Three account for 24 of the inserted layer's 117: "Speaking to reporters on Tuesday, the owner of {s}," (9 of 10 facts), "{s} is a privately held company whose owner is" (8) and "At the anniversary event, {s} founder" (7).
+- **Owner questions carry 50 of the 117,** against 28 for CEO, 27 for founder and 12 for head office. On bench40e owner had 24 of 91.
+- **Plain openings and chat questions miss about alike:** 74 of 320 and 43 of 160.
+- **The grafted model has the same misses,** so a fix to recall would lift both.
+- **Not measured here:** the detector's score on the missed prompts, that is, whether it stayed just under its threshold or far from it. That is the first thing to read before choosing a fix.
+
+
+## Gradient code removed from the package (2026-11-14)
+
+**Why:** my rule is that nothing is trained: no backpropagation, no fine-tuning, no gradient steps. Two of the beta's instruments still took gradients, while the tools page said that everything runs forward passes only.
+
+- **Removed:**
+  - the beta fact editor's value solve by backpropagation, which was its default, with its settings (steps, learning rate, the harm and drift penalties, the key site, the choice of method);
+  - `layer_attribution`, a layer tool that took one backward pass.
+- **Kept:** the beta fact editor with its forward-pass write, in which each answer token's push is measured and written where the token before it is read; its ledger with exact undo; its gates; and `propose_fact` in the editor workflow, which was forward-only already.
+- **Checked:**
+  - a new test scans the package and the scripts for gradient code and fails on any (`tests/test_no_gradients.py`); 259 tests pass;
+  - the beta command on Qwen3.5-0.8B, one fact ("RX Systems", owner, layer 20): written in 18 s, with recall 0.67 and a same-subject leak of 0.50 on its own checks. Its gates rejected it and the weights were restored exactly. That is the beta's known level, not a new result;
+  - GRAFT v1 still reproduces exactly (`scripts/check_graft_reproduction.py`): the rebuilt parts and the shared detectors are identical, 212 of 212 replies are identical, and detaching restores the unedited model's replies. GRAFT never used either instrument.
+- **Commit `1f5b9a6` is the last one that holds the removed code.**
