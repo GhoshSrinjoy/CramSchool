@@ -91,6 +91,65 @@ def test_the_layer_pushes_only_when_both_keys_turn_and_detaches_exactly(model, t
     shut.detach()
 
 
+class _Past:
+    """A stand-in cache: a call that continues a text."""
+
+    def get_seq_length(self):
+        return 5
+
+
+def _armed_layer(model, tokenizer, arm):
+    """One fact whose detector reads the first input coordinate: open where it is positive."""
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    hidden = model.config.hidden_size
+    answer = tokenizer("julian rodlauer", add_special_tokens=False).input_ids
+    w, c = torch.zeros(hidden), torch.zeros(hidden)
+    w[0], c[1] = 1.0, 1.0
+    vecs = torch.stack([torch.full((hidden,), float(j + 1)) for j in range(len(answer))])
+    entry = dict(key=("t", "f01"), subject="acme", relation="owner", target="julian rodlauer", multiple=1.0,
+                 detectors=[dict(form="plain", w=w, tau=0.0, delta=1.0)], spellings=dict(spaced=dict(ids=answer, vecs=vecs, missing=[]), bare=None))
+    return GraftLayer(model, tokenizer, [entry], {}, c, 1.0, margin=0.5, layer=3, arm=arm), answer, hidden
+
+
+def _step(layer, hidden, ids, score, first=False):
+    """One call of the model as the layer sees it: the tokens read, and the detector's score at the last of them. Returns what was pushed."""
+    layer._top(None, (), dict(input_ids=torch.tensor([ids]), attention_mask=None, past_key_values=None if first else _Past()))
+    x = torch.zeros(1, hidden)
+    x[0, 0], x[0, 1] = score, 1.0
+    layer.x_last = x
+    out = layer._push(None, None, torch.zeros(1, len(ids), hidden))
+    return out[0, -1]
+
+
+def test_an_armed_fact_offers_its_first_token_until_the_model_takes_it(model, tokenizer):
+    """The question opens the fact, the model says something else first, and the layer's detector is shut inside the reply."""
+    prompt = tokenizer("the owner of acme is", add_special_tokens=False).input_ids
+    other = tokenizer("paris", add_special_tokens=False).input_ids[0]
+
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=3)
+    assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0)       # the prompt's end: open, the first token is pushed
+    assert layer.state[0]["armed"] == [0, 3]
+    assert torch.all(_step(layer, hidden, [other], -1.0) == 1.0)                 # another token came, the detector is shut: pushed again
+    assert layer.events["armed"] == 1 and layer.state[0]["armed"] == [0, 2]
+    assert torch.all(_step(layer, hidden, [answer[0]], -1.0) == 2.0)             # the first token came: the answer continues
+    assert layer.state[0]["done"] and layer.events["continued"] == 1
+    assert torch.all(_step(layer, hidden, [answer[1]], -1.0) == 0.0) and layer.events["armed"] == 1   # one answer per text
+
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=2)                # the arming runs out
+    _step(layer, hidden, prompt, 1.0, first=True)
+    assert [float(_step(layer, hidden, [other], -1.0)[0]) for _ in range(4)] == [1.0, 1.0, 0.0, 0.0]
+    assert layer.state[0]["armed"] is None and not layer.state[0]["done"]
+
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=0)                # v1: one push where the detector opens, and no more
+    assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0) and layer.state[0]["armed"] is None
+    assert torch.all(_step(layer, hidden, [other], -1.0) == 0.0) and "armed" not in layer.events
+
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=3)                # a fact that opens inside a reply is not armed
+    assert torch.all(_step(layer, hidden, prompt, -1.0, first=True) == 0.0)
+    assert torch.all(_step(layer, hidden, [other], 1.0) == 1.0) and layer.state[0]["armed"] is None
+    assert torch.all(_step(layer, hidden, [other], -1.0) == 0.0)
+
+
 def test_a_table_builds_saves_and_loads_on_a_tiny_model(model, tokenizer, tmp_path):
     core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
     seen = []
@@ -255,8 +314,8 @@ def test_graft_options_default_to_v1_and_load_from_older_tables():
     from cramschool.graft.table import GraftOptions
     o = GraftOptions()
     assert o.inside == "negative" and o.end_quantile is None
-    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile")}    # a table saved before these options existed
-    assert GraftOptions(**old) == o
+    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm")}    # a table saved before these options existed
+    assert GraftOptions(**old) == o and o.arm == 0
 
 
 def test_twins_are_not_negatives_for_each_other_and_cannot_veto(tokenizer):

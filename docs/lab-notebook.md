@@ -2838,3 +2838,59 @@ No new run: these are the replies the confirmation saved (`research/results/benc
   - the beta command on Qwen3.5-0.8B, one fact ("RX Systems", owner, layer 20): written in 18 s, with recall 0.67 and a same-subject leak of 0.50 on its own checks. Its gates rejected it and the weights were restored exactly. That is the beta's known level, not a new result;
   - GRAFT v1 still reproduces exactly (`scripts/check_graft_reproduction.py`): the rebuilt parts and the shared detectors are identical, 212 of 212 replies are identical, and detaching restores the unedited model's replies. GRAFT never used either instrument.
 - **Commit `1f5b9a6` is the last one that holds the removed code.**
+
+
+## Why the answer is missing: a reading of every recall prompt (2026-11-14)
+
+A diagnostic with no rule, run to choose the next step. `scripts/diag_recall_misses.py` generates every test prompt again with the saved 40-fact table attached, exactly as the bench did, and logs the layer's own readings at each of the reply's 16 positions. All 480 recall replies came out identical to the saved run on both benches. Raw numbers: `research/results/bench40e/recall_misses.json` and `research/results/bench40f/recall_misses.json`.
+
+A detector's score z is 0 at its threshold and 2 at the median of its taught wordings.
+
+| Of the replies with no part of the answer | bench40e (91) | bench40f (117) |
+|---|---|---|
+| The fact's detectors never opened: best score above −0.5 | 20 | 38 |
+| The fact's detectors never opened: best score −0.5 or lower | 36 | 42 |
+| **A detector opened and the first token was pushed, but another token was produced** | **32** | **33** |
+| Other (vetoed once on bench40e; the first token accepted, the word not finished) | 3 | 4 |
+
+- **A quarter to a third of the misses are not the detector's.** The question opened the fact at the prompt's last token (31 of bench40f's 33), the layer pushed the answer's first token, and the model said something else. Three in four of bench40f's are chat questions; on bench40e they are half.
+- **What the model says then** is mostly a restated question followed by an invented answer: "The founder of **Chumbelow Textiles** is **John Chumbelow", "Mulkendry Logistics is headquartered in **Bengaluru". The rest are detours: a multiple-choice list, a denial, a sentence that never reaches a name.
+- **At the place of the invented answer the layer is silent.** Inside those replies the fact's detectors read a median of −0.83 (bench40f) and −0.65 (bench40e) at their best later position: under the threshold, so nothing is pushed there. They were fitted on the ends of prompts, and on purpose against positions inside replies.
+- **The detector's own misses split in two.** About two in five sit within 0.5 of the threshold, and the rest lie further. They gather in a few wordings: "{s} is the property of" (−2.77 at the median), "At the anniversary event, {s} founder" (−2.54), "Speaking to reporters on Tuesday, the owner of {s}," (−2.05). Owner detectors read lowest on bench40f: a median of 0.59 at the prompt's end, against about 1.4 for the other three relations.
+- **A fact rarely opens on a question that isn't its own.** Of bench40f's 320 other questions about the companies, a stored fact opened on 25: 24 ask for the sibling fact's own relation, which is right to answer, and 1 is a wrong opening.
+- **What each fix could give at most,** if every miss of its kind became a whole answer, counted on the facts that fail:
+
+  | Passes, of 40 | bench40e (32) | bench40f (24) |
+  |---|---|---|
+  | The lost pushes recovered | 36 | 32 |
+  | The near misses opened | 34 | 29 |
+  | The far misses opened | 36 | 31 |
+  | Lost pushes and near misses | 38 | 36 |
+
+
+## Step 8: a fact stays armed after the question opens it (written 2026-11-14, before it ran)
+
+**Why:** the reading. Where the question has opened a fact and the model starts its reply with something else, the layer gives up after one push. The question has not changed, and the place where the model then writes an answer comes a few tokens later.
+
+**The change** (`GraftOptions(arm=24)`, `GraftLayer(arm=...)`; 0 keeps v1):
+- When a fact opens at the prompt's last token and its first answer token is not the one produced, the fact stays **armed**.
+- At each later position, while no answer has started, the layer pushes that fact's first answer token again: the same vector, at the same multiple, in the spelling that fits the token just read.
+- When the token is produced, the answer continues token by token as before. After 24 positions without it, the arming ends.
+- Nothing else changes: the detectors, their thresholds, the veto, the competition and the vectors are v1's. A fact that opens only inside a reply is not armed. The facts are not rebuilt.
+
+**What could go wrong:** a pushed first token can win where no answer belongs, in the middle of a restated question or of a denial. So the replies are read, not only counted.
+
+**Development** (bench40e and bench40f, whose failures have been read; each with its saved 40-fact table; only `arm` differs, 0 against 24; every check of the bench):
+- **The bar: together at least 5 more facts pass** (56 → 61 of 80), neither bench passes fewer than before, and at most 1 fact over the 80 newly fails a leak, garbling or damage check.
+- **Kill rule: under 3 more passes together, the armed push is dropped** and no blind bench is spent on it.
+- **At 3 or 4,** at most one revision, to the same bar.
+- Reported whatever the outcome: where the recovered answers stand in their replies, and every reply in which an answer landed in a place it doesn't belong.
+
+**Confirmation,** only if the bar is met: a new blind bench, bench40g.
+- **The bench:** written by a separate agent from the brief `cramschool bench brief` writes over the seven benches (seed 20261124), and opened only after the code is frozen by content hash.
+- **The run:** its 40 facts are added through the API into one table, taught from the drafted wordings alone, and the table is scored twice, with `arm=0` and with `arm=24`.
+- **The rule:**
+  - **confirmed, and `arm=24` becomes the package's default,** if it passes at least 3 more facts than `arm=0` and no more facts fail a leak, garbling or damage check than with `arm=0`;
+  - with 1 or 2 more and no added failures, it stays an option;
+  - otherwise it is dropped.
+- **The grafted model** gets the same change only after that, as an always-open neuron for the first token that the name switch turns on while a fact is armed.

@@ -70,9 +70,13 @@ class GraftLayer:
     calibration. attach() registers its hooks; detach() removes them, leaving the model exactly as it was."""
 
     def __init__(self, model, tokenizer, entries: list[dict], shared: dict, c: torch.Tensor, cbar: float, margin: float, layer: int,
-                 relation_kinds: dict[str, str] | None = None):
+                 relation_kinds: dict[str, str] | None = None, arm: int = 0):
         """relation_kinds: each relation's subject kind. A shared detector can veto a subject's fact only if its relation is about the same kind
-        of subject (an official-language question never vetoes a person's mother tongue). None: every relation is about companies (v1)."""
+        of subject (an official-language question never vetoes a person's mother tongue). None: every relation is about companies (v1).
+
+        arm: when a fact opens at the prompt's last token and its first answer token is not the one produced, keep pushing that token at
+        each of the next `arm` positions until it is produced. The question has then already asked for the fact, and the model often
+        restates the question before it reaches the place of the answer. 0 (v1): one push where the detector opens, and no more."""
         device = model_device(model)
         self.model, self.layer, self.c, self.cbar, self.margin = model, layer, c.to(device).float(), cbar, margin
         self.entries = entries
@@ -105,6 +109,9 @@ class GraftLayer:
         self.vecs = [{sp: (s["ids"], s["vecs"].to(device)) for sp, s in e["spellings"].items() if s is not None} for e in entries]
         self.texts = token_texts(tokenizer)
         self.handles, self.events, self.state = [], dict(first=0, continued=0, vetoed=0), None
+        self.arm = int(arm)
+        if self.arm:
+            self.events["armed"] = 0  # first-token pushes made after the prompt's end, while a fact stayed armed
         self.loose = any(e.get("end_detectors") for e in entries)
         if self.loose:
             self.events["loose"] = 0  # first-token pushes at the prompt's end that only a looser detector opened
@@ -141,7 +148,7 @@ class GraftLayer:
         except Exception:
             start = 0
         if start == 0 or self.state is None or len(self.state) != n:  # a new batch of sequences: an empty cache, or none
-            self.state = [dict(pending=None, progress=None, done=False) for _ in range(n)]
+            self.state = [dict(pending=None, progress=None, done=False, armed=None) for _ in range(n)]
             self.index.reset(n)
         self.prefill = t > 1  # the call that reads the whole prompt: its last position chooses the reply's first token
         self.ids = ids
@@ -202,8 +209,18 @@ class GraftLayer:
                         if sp is not None:
                             push, st["pending"] = self.entries[best]["multiple"] * self.vecs[best][sp][1][0], (best, sp)
                             self.events["first"] += 1
+                            if self.arm and self.prefill:
+                                st["armed"] = [best, self.arm]  # the question asked for this fact: it stays armed for the reply's start
                             if self.loose and self.prefill and max((zb[k] for k in self.fact_cols[best]), default=-1e9) <= 0:
                                 self.events["loose"] += 1
+            if push is None and st["armed"] is not None and not st["done"] and st["progress"] is None:
+                i, left = st["armed"]
+                sp = pick_spelling(self.entries[i]["spellings"], self.texts[tok]) if left > 0 else None
+                if sp is None:
+                    st["armed"] = None
+                else:  # the first token again, spelled to fit the token just read
+                    push, st["pending"], st["armed"] = self.entries[i]["multiple"] * self.vecs[i][sp][1][0], (i, sp), [i, left - 1]
+                    self.events["armed"] += 1
             if push is not None:
                 adds.append((b, push))
         if not adds:

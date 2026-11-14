@@ -49,7 +49,11 @@ class GraftOptions:
     or only part of their scatter. "scatter" helps answers spelled with several tokens ("Serbian"), whose detectors otherwise give up
     weight on the questions they must tell apart. end_quantile: at the prompt's last token only, a fact may also open on its own detector
     at this quantile of its prompt negatives (0.99, 0.95 or 0.90; None in v1). twins: pairs of relations that ask in nearly the same words
-    (scripts/diag_twins.py finds them); a fact's detector doesn't take its twin as negatives (None in v1). docs/graft.md, section 11."""
+    (scripts/diag_twins.py finds them); a fact's detector doesn't take its twin as negatives (None in v1). docs/graft.md, section 11.
+
+    arm: after a fact opens at the prompt's last token and its first answer token is not the one produced, the layer keeps pushing that
+    token for this many positions, until it is produced (0 in v1: one push only). It changes the layer, not how facts are built, so it can
+    be set on a loaded table."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -59,6 +63,7 @@ class GraftOptions:
     inside: str = "negative"
     end_quantile: float | None = None
     twins: list | None = None
+    arm: int = 0
 
 
 @dataclass
@@ -200,7 +205,7 @@ class Graft:
                    for e in self._facts]
         kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
         return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
-                          relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None)
+                          relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None, arm=self.options.arm)
 
     def attach(self) -> "Graft":
         if not self._facts:
@@ -323,9 +328,9 @@ class Graft:
             raise ValueError("give base_dir: the local folder, in safetensors format, that the model was loaded from")
         if not self._facts:
             raise ValueError("the table has no facts to compile")
-        if self.options.looser_start or self.options.end_quantile is not None:
-            warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start and end_quantile have no neuron form and "
-                          "are left out of the grafted model", stacklevel=2)
+        if self.options.looser_start or self.options.end_quantile is not None or self.options.arm:
+            warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile and arm have no neuron form "
+                          "and are left out of the grafted model", stacklevel=2)
         facts = self.grafted_facts(detected=complete == "detected")
         extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
