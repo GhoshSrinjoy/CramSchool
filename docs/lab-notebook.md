@@ -3301,3 +3301,23 @@ Raw numbers: `research/results/slots/20_must_not_answer/dev/` (the summary and e
 - **The leak is wider than the editor's check showed.** Asked about all 10 companies, 26 of the 30 untaught other-job prompts get the chief executive's whole name. The editor had asked each job about a few companies.
 - **Why recall falls: to the fact's detector, another job reads almost like the chief executive.** With the other-job questions as a group of negatives of their own, the detector's direction still reads them inside the range of its positives. For the plain form, the highest of a fact's 72 such readings is above the median of its positives on 9 of the 10 facts, so the plain detector is dropped: plain recall falls from 25 to 2 of 40. For the chat form it is 1.8 to 6.2 points under the median, so the threshold rises from the 99th percentile of the other negatives, about 35, to about 52, and chat recall falls from 34 to 16 of 40.
 - **By the plan, one weaker form is tried once:** the same wordings as ordinary same-company negatives, read about every invented company like the other questions about a company, with no group of their own and no threshold above them. If it misses a bar too, the step stops.
+
+
+## Step 12, development: the weaker form misses the recall bar too; the step stops, and the tool does not ship
+
+Raw numbers: `research/results/slots/20_must_not_answer/dev_negatives/` and `dev_negatives.log`. The rebuilt table is local, in `runs/must_not/dev_negatives.graft`.
+
+| Step 11's live table, its 10 CEO facts | Before | First form: a group of their own, threshold above them | Weaker form: among the ordinary negatives |
+|---|---|---|---|
+| Leak on the 3 other jobs not taught, of 30 | 26 | 0 | 2 |
+| Leak on the 5 taught jobs, of 50 | 38 | 0 | 6 |
+| **Answer on the last check's CEO questions, of 80** | **59** | **18** | **29** |
+| Of those, plain / chat, of 40 each | 25 / 34 | 2 / 16 | 7 / 22 |
+| Facts left with a plain detector, of 10 | 10 | 1 | 5 |
+
+- **By the plan, the step stops.** The weaker form also meets the leak bar and misses the recall bar: 29 of the 59 replies are kept, where the bar was 53. The blind questions were not asked and the editor was not run.
+- **Why the weaker form fails the same way:** its 216 other-job prompts are 5% of a fact's 4256 negatives, so the 99th percentile that sets the threshold falls among them. The threshold lands near the median of the chief executive's own questions: on or above it for the plain form on 5 of the 10 facts, and about 8 points under it for chat, where it was about 25 points under before.
+- **What both forms show:** at layer 20's input at the end of the question, a fact's detector reads a question for another job at the company almost as it reads a question for its chief executive. One threshold on one direction cannot shut the one and keep the other. The detectors were never asked to tell them apart: no wording, negative or bench question had another job in it.
+- **The tool does not ship, as the plan says.** `teach_not` is taken out of the editor's toolbox and the MCP server. The table keeps `add_avoid` and `GraftOptions.avoid_as` for experiments, marked as not adopted, as it keeps the armed push. `rebuild` keeps its relation argument.
+- **What stays true:** every chief-executive fact answers questions about other jobs at its company. It is written into the limitations. None of the seven fictional-company benches asks such a question, so none of their scores shows it.
+- **Kept for a later step, unopened:** the 24 blind other-job questions (`runs/must_not/blind/questions.json`, SHA-256 starting 4ca309a21fc6c158), never asked; and the editor's brief (`research/results/slots/20_must_not_answer/editor_brief.txt`), never run.

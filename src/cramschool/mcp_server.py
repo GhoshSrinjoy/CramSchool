@@ -208,14 +208,6 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
         the answer comes next, chat wordings are questions, and each has {s} once for the company. Call cramschool_graft_rebuild after."""
         return run("teach_wordings", relation=relation, plain=plain, chat=chat)
 
-    @server.tool(name="cramschool_graft_teach_not", annotations=CHANGE)
-    def graft_teach_not(relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
-        """Teach a relation what it must not answer, when cramschool_graft_check_fact shows its facts answering other questions close to
-        it, such as another job at the company for a chief executive. Plain wordings stop where an answer would come next, chat wordings
-        are questions, and each has {s} once for the company. A wording equal to one of the relation's own is refused. Call
-        cramschool_graft_rebuild with the relation after."""
-        return run("teach_not", relation=relation, plain=plain, chat=chat)
-
     @server.tool(name="cramschool_graft_rebuild", annotations=CHANGE)
     def graft_rebuild(relation: str | None = None) -> dict:
         """Build the stored facts again, so that they learn what was taught since they were added: every fact, or only those of one

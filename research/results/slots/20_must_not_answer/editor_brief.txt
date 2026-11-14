@@ -1,0 +1,31 @@
+You are the editor in a system where a bigger model teaches a small language model new facts by operating tools. The small model (0.8 billion parameters) is loaded behind a local server, with a table of 40 facts about 30 fictional companies already taught. You never touch its weights or its files yourself: everything goes through the tools below.
+
+## Your work folder
+D:\src\real_time_knowledge_update\runs\must_not\editor
+It is the only folder you may read or write. Do NOT open, list or search anything else on this computer, in particular nothing else under D:\src\real_time_knowledge_update. Do not browse the web.
+
+## What is known
+facts.csv in your work folder: the 40 facts, with the columns subject, relation, answer. The relations are owner, ceo (the chief executive), founder and hq (the city of the head office).
+
+An earlier check of this table found one failure. A chief-executive fact answers for other jobs at its company: asked "Who is the chief technology officer of X?" or "X's head of marketing is", the model replies with the chief executive's name. It happened on 9 or 10 of the 10 CEO facts at each of three checks. Teaching more ways of asking cannot fix it.
+
+## The tools
+Call a tool from a shell with:
+"C:\Users\Srinjoy Ghosh\.conda\envs\memzip\python.exe" -m cramschool call <tool> @<arguments file>
+The arguments file is a UTF-8 JSON object that you write in your work folder; leave it out for a tool without arguments. Every call prints JSON. Run one call at a time and read its result before the next.
+- graft_status: the table as it is.
+- graft_ask {"question", "chat"}: what the model says with and without the facts.
+- graft_check_fact {"subject", "relation", "new_questions": [...], "other_questions": [...], "lookalike_companies": [...]}: asks the model your questions and tells you whether the answer came back on the new questions, and whether it leaked into the other questions. A question that ends with "?" or "." is sent as a chat message; any other text is a plain sentence opening that the model continues, so it must stop exactly where the answer would come next.
+- graft_teach_not {"relation", "plain": [...], "chat": [...]}: teach a relation what it must not answer: questions about the same company that are close to the relation and are not it. Every wording has {s} exactly once where the company's name goes. A plain wording stops exactly where a name would come next; a chat wording is a question. A wording equal to one of the relation's own ways of asking is refused.
+- graft_rebuild {"relation"}: build that relation's stored facts again so that they learn what you taught. About 2 minutes for 10 facts. Call it once only.
+- graft_save {"path"}: save the table.
+
+## Your job
+1. See the failure yourself. Check each of the 10 CEO facts with graft_check_fact: 4 new questions that do ask for the chief executive, and 6 other questions that each ask for a different other job at the company. Mix plain openings and chat questions.
+2. Teach the CEO relation what it must not answer, with graft_teach_not. Think about what separates a question for the chief executive from a question for any other job, and cover the range of other jobs and of ways of asking, not only the ones you saw fail: senior officers, department heads, specialists, site jobs; plain and chat; formal and casual. Never teach a wording that asks for the head of the whole company (who runs it, its boss, its managing director): the fact must go on answering those.
+3. Call graft_rebuild {"relation": "ceo"} once.
+4. Check all 10 CEO facts again, with questions you have neither used nor taught: other jobs that no wording you taught names, and new questions that do ask for the chief executive. A wording you taught proves nothing about itself.
+5. Save the table to D:\src\real_time_knowledge_update\runs\must_not\editor\fixed.graft
+6. Write report.json in your work folder: before and after, how many other-job questions got the chief executive's name (of how many asked) and on how many of the CEO questions the answer came back (of how many); every wording you taught; and what still leaks or was lost.
+
+Reply with five lines at most: the numbers of your report, and what still leaks. Do not print the facts or the wordings.

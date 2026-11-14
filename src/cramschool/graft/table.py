@@ -59,9 +59,10 @@ class GraftOptions:
     all). The detectors still learn from every wording. Use it when a relation has many wordings: the answer vectors read every teaching
     example's logits at once, and with more than about 30 per form that can need more memory than the GPU has.
 
-    avoid_as: how a fact learns what its relation must not answer (add_avoid). "group": the questions about its own company and a few
-    invented ones are a group of negatives of their own, and the threshold is above every one of them. "negatives": they join the ordinary
-    questions about the same company, read about every invented company, with no group of their own and no threshold above them."""
+    avoid_as: how a fact learns what its relation must not answer (add_avoid, experimental and not adopted). "group": the questions about
+    its own company and a few invented ones are a group of negatives of their own, and the threshold is above every one of them.
+    "negatives": they join the ordinary questions about the same company, read about every invented company, with no group of their own
+    and no threshold above them."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -175,7 +176,11 @@ class Graft:
         """Teach a relation the table knows what it must not answer: questions about the same company that are close to it and are not
         it, such as another job at the company for a chief executive. After `rebuild(relation)`, each of its facts reads them about its own
         company and about invented ones, as a group of negatives of their own, and keeps its threshold above every one of them. A plain
-        one stops where an answer would come next. One equal to the relation's own wordings is refused. The answer vectors don't change."""
+        one stops where an answer would come next. One equal to the relation's own wordings is refused. The answer vectors don't change.
+
+        Experimental, not adopted (lab notebook, step 12): taught 5 other jobs, a table's chief-executive facts stopped answering 3 other
+        jobs not taught, and answered 18 of 80 of their own questions instead of 59; in the weaker form (avoid_as="negatives"), 29. To a
+        fact's detector another job at the company reads almost like its own relation, so editors are not offered it."""
         relation = canonical_relation(relation)
         if relation not in self.wordings.relations:
             raise KeyError(f"unknown relation {relation!r}. Known: {', '.join(self.wordings.relations)}. A new relation needs add_relation().")

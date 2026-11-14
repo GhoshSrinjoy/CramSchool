@@ -1,0 +1,75 @@
+{
+ "table": "runs/editor/live/table.graft",
+ "avoid_as": "negatives",
+ "taught": {
+  "plain": [
+   "{s}'s head of marketing is",
+   "The head of research at {s} is"
+  ],
+  "chat": [
+   "Who is the chief technology officer of {s}?",
+   "Who is the chief financial officer of {s}?",
+   "Who is the spokesperson for {s}?"
+  ]
+ },
+ "test": [
+  "Who is the general counsel of {s}?",
+  "Who is the head of human resources at {s}?",
+  "The chief engineer of {s} is"
+ ],
+ "leak_test": {
+  "before": 26,
+  "after": 2,
+  "prompts": 30
+ },
+ "leak_taught": {
+  "before": 38,
+  "after": 6,
+  "prompts": 50
+ },
+ "recall": {
+  "before": 59,
+  "after": 29,
+  "prompts": 80,
+  "kept": 29
+ },
+ "detectors": {
+  "Dwenkali Telecom": [
+   "plain",
+   "chat"
+  ],
+  "Phaldrenox Pharma": [
+   "chat"
+  ],
+  "Glinthea Foods": [
+   "plain",
+   "chat"
+  ],
+  "Sprelomi Analytics": [
+   "chat"
+  ],
+  "Thessovar Aerospace": [
+   "plain",
+   "chat"
+  ],
+  "Welgundrio Brewing": [
+   "plain",
+   "chat"
+  ],
+  "Monterquil Airways": [
+   "plain",
+   "chat"
+  ],
+  "Jascobel Software": [
+   "chat"
+  ],
+  "Ejinko Games": [
+   "chat"
+  ],
+  "Trenkufo Motors": [
+   "chat"
+  ]
+ },
+ "leak_bar_met": true,
+ "recall_bar_met": false
+}

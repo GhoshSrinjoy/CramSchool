@@ -184,13 +184,6 @@ class FakeGraft:
         self.wordings = more
         return dict(relation=relation, added_plain=len(after.plain) - len(before.plain), added_chat=len(after.chat) - len(before.chat))
 
-    def add_avoid(self, relation, plain=(), chat=()):
-        more = self.wordings.with_avoid({relation: dict(plain=list(plain), chat=list(chat))})
-        before, after = self.wordings.relations[relation], more.relations[relation]
-        self.wordings = more
-        return dict(relation=relation, added_plain=len(after.avoid_plain) - len(before.avoid_plain),
-                    added_chat=len(after.avoid_chat) - len(before.avoid_chat))
-
     def rebuild(self, relation=None):
         return len([f for f in self.stored if relation is None or f[1] == relation])
 
@@ -213,12 +206,8 @@ def test_the_graft_toolbox_validates_and_checks_facts():
     assert tools.call("rebuild", {})["rebuilt"] == 1
     assert "exactly once" in tools.call("teach_wordings", {"relation": "founder", "plain": ["The founder is"]})["error"]
     assert "unknown relation" in tools.call("teach_wordings", {"relation": "cto", "plain": ["The CTO of {s} is"]})["error"]
-    shut = tools.call("teach_not", {"relation": "founder", "plain": ["The first employee of {s} was"], "chat": ["Who was the first investor in {s}?"]})
-    assert (shut["added_plain"], shut["added_chat"]) == (1, 1) and "rebuild" in shut["note"]
     assert tools.call("rebuild", {"relation": "founder"})["rebuilt"] == 1 and tools.call("rebuild", {"relation": "owner"})["rebuilt"] == 0
-    own = tools.graft.wordings.relations["founder"].chat[0]
-    assert "own wordings" in tools.call("teach_not", {"relation": "founder", "chat": [own]})["error"]
-    assert "unknown relation" in tools.call("teach_not", {"relation": "cto", "plain": ["The CTO of {s} is"]})["error"]
+    assert "teach_not" not in {t["name"] for t in tools.tool_definitions()}       # step 12: not adopted, so editors are not offered it
     assert tools.call("remove_fact", {"subject": "Nimbresco Software"})["removed"] == 1
 
 
@@ -235,7 +224,7 @@ def test_the_mcp_server_serves_the_graft_tools_too():
         async with Client(server) as client:
             names = {t.name for t in (await client.list_tools()).tools}
             assert {"cramschool_graft_add_fact", "cramschool_graft_check_fact", "cramschool_graft_save", "cramschool_status",
-                    "cramschool_graft_teach_wordings", "cramschool_graft_teach_not", "cramschool_graft_rebuild"} <= names
+                    "cramschool_graft_teach_wordings", "cramschool_graft_rebuild"} <= names and "cramschool_graft_teach_not" not in names
             out = await client.call_tool("cramschool_graft_add_fact", {"subject": "Nimbresco Software", "relation": "founder", "answer": "Tharindu Ekanayake"})
             assert not out.is_error
 

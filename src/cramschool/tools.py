@@ -64,10 +64,6 @@ TOOLS = {
     "teach_wordings": ("Teach a relation more ways of asking, when check_fact shows questions its facts miss. Plain wordings stop where the "
                        "answer comes next; chat wordings are questions; each has {s} once for the company. Call rebuild afterwards.",
                        _schema(dict(relation=STR, plain=LIST, chat=LIST), ["relation"])),
-    "teach_not": ("Teach a relation what it must not answer, when check_fact shows its facts answering other questions close to it, such as "
-                  "another job at the company for a chief executive. Plain wordings stop where an answer would come next; chat wordings are "
-                  "questions; each has {s} once for the company. A wording equal to one of the relation's own is refused. Call rebuild "
-                  "afterwards.", _schema(dict(relation=STR, plain=LIST, chat=LIST), ["relation"])),
     "rebuild": ("Build the stored facts again, so that they learn what was taught since they were added: every fact, or only the facts of "
                 "one relation. About 10 to 40 seconds per fact.",
                 _schema(dict(relation=dict(STR, description="Only this relation's facts; leave out to build every fact again")), [])),
@@ -195,10 +191,6 @@ class GraftTools:
     def _teach_wordings(self, relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
         out = self.graft.add_wordings(relation, plain or [], chat or [])
         return dict(out, note="call rebuild so that the stored facts learn them")
-
-    def _teach_not(self, relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
-        out = self.graft.add_avoid(relation, plain or [], chat or [])
-        return dict(out, note="call rebuild with this relation so that its stored facts learn them")
 
     def _rebuild(self, relation: str | None = None) -> dict:
         return dict(rebuilt=self.graft.rebuild(relation) if relation else self.graft.rebuild())
