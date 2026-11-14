@@ -1,0 +1,7 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:38,  8.23it/s]Loading weights:  38%|███▊      | 121/320 [00:00<00:00, 651.28it/s]Loading weights:  75%|███████▌  | 240/320 [00:00<00:00, 883.88it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 818.32it/s]
+taught {'relation': 'ceo', 'added_plain': 2, 'added_chat': 3, 'plain': 2, 'chat': 3}; 10 facts built again in 159s
+leak on the 3 untaught jobs: 26 of 30 before, 0 after (bar: half or less) MET
+leak on the 5 taught jobs: 38 of 50 before, 0 after
+recall on the last check's questions: 59 of 80 before, 18 after; of those answered before, 18 still answered (bar: 0.9) MISSED
+detectors left per fact: {'Dwenkali Telecom': ['chat'], 'Phaldrenox Pharma': ['chat'], 'Glinthea Foods': ['chat'], 'Sprelomi Analytics': ['chat'], 'Thessovar Aerospace': ['plain', 'chat'], 'Welgundrio Brewing': ['chat'], 'Monterquil Airways': ['chat'], 'Jascobel Software': ['chat'], 'Ejinko Games': ['chat'], 'Trenkufo Motors': ['chat']}

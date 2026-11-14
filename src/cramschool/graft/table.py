@@ -57,7 +57,11 @@ class GraftOptions:
 
     teach_cap: teach each fact's answer vectors from at most this many of its relation's wordings per form, the first ones (None in v1:
     all). The detectors still learn from every wording. Use it when a relation has many wordings: the answer vectors read every teaching
-    example's logits at once, and with more than about 30 per form that can need more memory than the GPU has."""
+    example's logits at once, and with more than about 30 per form that can need more memory than the GPU has.
+
+    avoid_as: how a fact learns what its relation must not answer (add_avoid). "group": the questions about its own company and a few
+    invented ones are a group of negatives of their own, and the threshold is above every one of them. "negatives": they join the ordinary
+    questions about the same company, read about every invented company, with no group of their own and no threshold above them."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -69,6 +73,7 @@ class GraftOptions:
     twins: list | None = None
     arm: int = 0
     teach_cap: int | None = None
+    avoid_as: str = "group"
 
 
 TAUGHT_CAP = 30  # the cap on wordings per form for the answer vectors, set when a relation is taught more than it came with
@@ -206,7 +211,8 @@ class Graft:
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
         ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
-                            cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins, teach_cap=self.options.teach_cap)
+                            cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins, teach_cap=self.options.teach_cap,
+                            avoid_as=self.options.avoid_as)
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)

@@ -53,7 +53,7 @@ def test_texts(facts: list[dict]) -> set[str]:
 
 def build_context(facts: list[dict], wordings: Wordings, name: str = "table", guard: bool = True, real_world: str = "all",
                   context: int = 0, cache: ReadCache | None = None, teach_cap: int | None = None, inside: str = "negative",
-                  twins: list | None = None) -> dict:
+                  twins: list | None = None, avoid_as: str = "group") -> dict:
     """What building a fact of this group of facts (a bench, or a table) needs: drafted wordings minus the group's own, generic questions
     minus its same-company ones, invented companies clear of every name it uses, and the guard against its test prompts.
 
@@ -68,11 +68,16 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
     several tokens don't take weight from the prompt negatives. Either way the threshold stays above every inside reading.
     twins: pairs of relations that ask in nearly the same words (scripts/diag_twins.py). A fact's detector doesn't take its relation's twin
     as negatives, so it opens on its own questions; the shared detectors still do, and the veto decides which twin a question asks for
-    (none in v1)."""
+    (none in v1).
+    avoid_as: how a fact learns what its relation must not answer (Relation.avoid_plain and avoid_chat). "group": a group of negatives of
+    their own about its subject and a few invented names, with the threshold above every one (avoid_items). "negatives": they join the
+    ordinary questions about the same company, read about every invented company, with neither."""
     if real_world not in ("all", "other_relations", "same_kind"):
         raise ValueError(f"real_world must be 'all', 'other_relations' or 'same_kind', not {real_world!r}")
     if inside not in ("negative", "scatter"):
         raise ValueError(f"inside must be 'negative' or 'scatter', not {inside!r}")
+    if avoid_as not in ("group", "negatives"):
+        raise ValueError(f"avoid_as must be 'group' or 'negatives', not {avoid_as!r}")
     own = set()
     for f in facts:
         for side in ("train", "test"):
@@ -96,7 +101,7 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
     return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)), avoid=avoid,
                 guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard), real_world=real_world, kinds_of=kinds_of,
                 by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap, inside=inside,
-                twins=twin_map(twins))
+                twins=twin_map(twins), avoid_as=avoid_as)
 
 
 def same_kind(ctx: dict, a: str, b: str) -> bool:
@@ -219,6 +224,9 @@ def detector_data(f: dict, tokenizer, ctx: dict):
     twin_wordings = {normalized(t) for r in ctx.get("twins", {}).get(rel, ()) if r in drafted for t in drafted[r][0] + drafted[r][1]}
     same_p = [p.replace(subj, "{s}") for p in tr["same_plain"] if normalized(p.replace(subj, "{s}")) not in twin_wordings] + list(neg_prompts)
     same_c = [q.replace(subj, "{s}") for q in tr["same_chat"] if normalized(q.replace(subj, "{s}")) not in twin_wordings] + list(neg_questions)
+    if ctx.get("avoid_as", "group") == "negatives":  # what the relation must not answer, read like any other question about the company
+        a_plain, a_chat = ctx.get("avoid", {}).get(rel, ((), ()))
+        same_p, same_c = same_p + list(a_plain), same_c + list(a_chat)
     neg = plain_items(same_p, companies + own_cases) + chat_items(tokenizer, same_c, companies + own_cases) + qa_items(same_c, companies + own_cases)
     neg += plain_items(same_p, [subj], ctx.get("context", ()))  # behind ordinary text too, when the build asks positives that way
     neg += plain_items(g_plain, few) + chat_items(tokenizer, g_chat, few) + qa_items(g_chat, few)
@@ -244,7 +252,7 @@ def avoid_items(f: dict, tokenizer, ctx: dict) -> list:
     in lower and in upper case, and about invented names of its kind: plain, chat and in Q/A form, guarded. Empty for a relation that has
     none, so that its facts are built exactly as before."""
     a_plain, a_chat = ctx.get("avoid", {}).get(f["relation"], ((), ()))
-    if not a_plain and not a_chat:
+    if (not a_plain and not a_chat) or ctx.get("avoid_as", "group") != "group":
         return []
     inv = kind_parts(ctx, f["relation"])[0]
     subj = f["subject"]

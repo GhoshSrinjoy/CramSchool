@@ -6,7 +6,9 @@ taught. The table is measured as saved, then with the wordings taught and its CE
 
 Forward passes only. GPU, about 6 minutes.
 
-Usage: python scripts/must_not_dev.py <model folder> <table folder> <the editor's last check jsonl> <out folder>
+Usage: python scripts/must_not_dev.py <model folder> <table folder> <the editor's last check jsonl> <out folder> [--as group|negatives]
+
+--as    how the facts learn the questions (GraftOptions.avoid_as): "group" (the plan's form, the default) or "negatives" (its weaker form)
 """
 import json
 import os
@@ -17,9 +19,9 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from cramschool import Graft
-from cramschool.gates import mentions
+from cramschool.gates import generate_batch, mentions
 from cramschool.graft.build import fact_detectors
-from cramschool.model_access import Prompt, generate_batch, render_chat
+from cramschool.model_access import Prompt, render_chat
 
 TAUGHT = dict(plain=["{s}'s head of marketing is", "The head of research at {s} is"],
               chat=["Who is the chief technology officer of {s}?", "Who is the chief financial officer of {s}?", "Who is the spokesperson for {s}?"])
@@ -57,6 +59,8 @@ def main():
 
     before = measure()
     t0 = time.time()
+    graft.options.avoid_as = sys.argv[sys.argv.index("--as") + 1] if "--as" in sys.argv else "group"
+    print(f"the questions are learnt as {graft.options.avoid_as!r}", flush=True)
     added = graft.add_avoid("ceo", plain=TAUGHT["plain"], chat=TAUGHT["chat"])
     built = graft.rebuild("ceo")
     print(f"taught {added}; {built} facts built again in {time.time() - t0:.0f}s", flush=True)
@@ -64,7 +68,7 @@ def main():
     graft.save(os.path.join(out_dir, "table.graft"))
     count = lambda rows: sum(r["hit"] for r in rows)  # noqa: E731
     kept = sum(a["hit"] for b, a in zip(before["recall"], after["recall"]) if b["hit"])
-    summary = dict(table=table_dir, taught=TAUGHT, test=TEST,
+    summary = dict(table=table_dir, avoid_as=graft.options.avoid_as, taught=TAUGHT, test=TEST,
                    leak_test=dict(before=count(before["test"]), after=count(after["test"]), prompts=len(groups["test"])),
                    leak_taught=dict(before=count(before["taught"]), after=count(after["taught"]), prompts=len(groups["taught"])),
                    recall=dict(before=count(before["recall"]), after=count(after["recall"]), prompts=len(groups["recall"]), kept=kept),

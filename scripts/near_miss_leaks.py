@@ -20,9 +20,9 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from cramschool import Graft
-from cramschool.gates import mentions
+from cramschool.gates import generate_batch, mentions
 from cramschool.graft.wordings import normalized
-from cramschool.model_access import Prompt, generate_batch, render_chat
+from cramschool.model_access import Prompt, render_chat
 
 MAX_NEW_TOKENS, BATCH = 48, 32  # the length of a reply in the tools' check (Graft.ask)
 

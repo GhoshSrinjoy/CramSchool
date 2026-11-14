@@ -3284,3 +3284,20 @@ Raw numbers: `research/results/bench40g/grafted_part1/` and `grafted_live/` (com
 - **The damage is the same for both tables, to every digit shown.** The neurons reused are chosen on ordinary text alone, and both tables need 359 of them, so the same neurons are freed and the rest re-fitted the same way. With no company of the table named, the switch keeps the facts' neurons off.
 - **With the switch detached the facts are dormant:** the two openings asked continue with the model's own inventions ("... is a character from the game ...").
 - **What it shows:** the method's whole loop runs end to end. A bigger model is given a dataset, teaches it through the tools, checks and fixes it, and the facts end in the small model's own weights, in an ordinary checkpoint of 1.7 GB that loads with the library and its switch.
+
+
+## Step 12, development: the first form shuts every other job, and most of the chief executive's own questions too
+
+Raw numbers: `research/results/slots/20_must_not_answer/dev/` (the summary and every reply before and after) and `dev.log`, from `scripts/must_not_dev.py`. The rebuilt table is local, in `runs/must_not/dev_group.graft`.
+
+| Step 11's live table, its 10 CEO facts | Before | 5 other jobs taught as a group of their own, with the threshold above them |
+|---|---|---|
+| Leak on the 3 other jobs not taught, of 30 prompts | 26 | 0 |
+| Leak on the 5 taught jobs, of 50 prompts | 38 | 0 |
+| **Answer on the last check's CEO questions, of 80 (never taught)** | **59** | **18** |
+| Of those, plain / chat, of 40 each | 25 / 34 | 2 / 16 |
+
+- **The leak bar is met and the recall bar is missed:** 0 of 30 is under half of 26, and 18 of the 59 replies are kept, where the bar was 53.
+- **The leak is wider than the editor's check showed.** Asked about all 10 companies, 26 of the 30 untaught other-job prompts get the chief executive's whole name. The editor had asked each job about a few companies.
+- **Why recall falls: to the fact's detector, another job reads almost like the chief executive.** With the other-job questions as a group of negatives of their own, the detector's direction still reads them inside the range of its positives. For the plain form, the highest of a fact's 72 such readings is above the median of its positives on 9 of the 10 facts, so the plain detector is dropped: plain recall falls from 25 to 2 of 40. For the chat form it is 1.8 to 6.2 points under the median, so the threshold rises from the 99th percentile of the other negatives, about 35, to about 52, and chat recall falls from 34 to 16 of 40.
+- **By the plan, one weaker form is tried once:** the same wordings as ordinary same-company negatives, read about every invented company like the other questions about a company, with no group of their own and no threshold above them. If it misses a bar too, the step stops.

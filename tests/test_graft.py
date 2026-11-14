@@ -352,8 +352,8 @@ def test_graft_options_default_to_v1_and_load_from_older_tables():
     from cramschool.graft.table import GraftOptions
     o = GraftOptions()
     assert o.inside == "negative" and o.end_quantile is None
-    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap")}    # a table saved before these options existed
-    assert GraftOptions(**old) == o and o.arm == 0 and o.teach_cap is None
+    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap", "avoid_as")}    # a table saved before these options existed
+    assert GraftOptions(**old) == o and o.arm == 0 and o.teach_cap is None and o.avoid_as == "group"
 
 
 def test_an_editor_can_add_wordings_to_a_relation():
@@ -400,6 +400,19 @@ def test_an_editor_can_teach_a_relation_what_it_must_not_answer(tokenizer):
                  chat=dict(w=torch.ones(4), tau_neg=30.0, tau_in=10.0, tau_avoid=41.0, med=40.0))
     got = fact_detectors(dict(forms=forms))
     assert [(d["form"], d["tau"]) for d in got] == [("plain", 34.0)]          # the threshold is above every such reading; chat's median is under it
+
+
+def test_what_a_relation_must_not_answer_can_join_the_ordinary_negatives(tokenizer):
+    from cramschool.graft.build import avoid_items, detector_data
+    w = Wordings.builtin().with_avoid(dict(ceo=dict(plain=["The head of research at {s} is"], chat=["Who is the general counsel of {s}?"])))
+    f = make_fact("acme", "ceo", "julian rodlauer", w)
+    group, ordinary = build_context([f], w), build_context([f], w, avoid_as="negatives")
+    research = lambda ctx: [p.text for p in detector_data(f, tokenizer, ctx)[2] if p.text.startswith("The head of research at")]  # noqa: E731
+    assert research(group) == [] and "The head of research at acme is" in research(ordinary)
+    assert len(research(ordinary)) >= len(ordinary["names"])                      # read about every invented company, like the others
+    assert avoid_items(f, tokenizer, ordinary) == [] and avoid_items(f, tokenizer, group)   # and no group of their own
+    with pytest.raises(ValueError, match="avoid_as"):
+        build_context([f], w, avoid_as="both")
 
 
 def test_a_table_teaches_a_relation_what_it_must_not_answer(model, tokenizer, tmp_path):
