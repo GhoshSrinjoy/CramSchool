@@ -1,0 +1,52 @@
+{
+ "bench": "benchmarks/bench40g.json",
+ "taught_tables": [
+  "runs/editor/live/table.graft",
+  "runs/editor/bench40g_editor/table.graft"
+ ],
+ "prompts_left_out": 24,
+ "arms": {
+  "reference": {
+   "rows": "research/results/bench40g/reference.jsonl",
+   "passed_every_wording": 30,
+   "passed_untaught": 29,
+   "whole_answers_untaught": 344,
+   "whole_answers_taught": 14,
+   "failing_a_leak_check": [],
+   "by_relation": {
+    "owner": 6,
+    "hq": 10,
+    "founder": 7,
+    "ceo": 6
+   }
+  },
+  "part1": {
+   "rows": "research/results/bench40g/editor_wordings.jsonl",
+   "passed_every_wording": 33,
+   "passed_untaught": 29,
+   "whole_answers_untaught": 359,
+   "whole_answers_taught": 18,
+   "failing_a_leak_check": [],
+   "by_relation": {
+    "owner": 4,
+    "hq": 10,
+    "founder": 8,
+    "ceo": 7
+   }
+  },
+  "live": {
+   "rows": "research/results/bench40g/live_editor.jsonl",
+   "passed_every_wording": 31,
+   "passed_untaught": 29,
+   "whole_answers_untaught": 350,
+   "whole_answers_taught": 18,
+   "failing_a_leak_check": [],
+   "by_relation": {
+    "owner": 4,
+    "hq": 10,
+    "founder": 8,
+    "ceo": 7
+   }
+  }
+ }
+}

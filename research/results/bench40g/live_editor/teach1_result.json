@@ -1,0 +1,54 @@
+[
+ {
+  "relation": "owner",
+  "result": {
+   "relation": "owner",
+   "added_plain": 8,
+   "added_chat": 6,
+   "plain": 38,
+   "chat": 36,
+   "note": "call rebuild so that the stored facts learn them",
+   "seconds": 0.0
+  },
+  "sec": 3.2
+ },
+ {
+  "relation": "founder",
+  "result": {
+   "relation": "founder",
+   "added_plain": 8,
+   "added_chat": 5,
+   "plain": 38,
+   "chat": 35,
+   "note": "call rebuild so that the stored facts learn them",
+   "seconds": 0.0
+  },
+  "sec": 3.2
+ },
+ {
+  "relation": "ceo",
+  "result": {
+   "relation": "ceo",
+   "added_plain": 8,
+   "added_chat": 6,
+   "plain": 38,
+   "chat": 36,
+   "note": "call rebuild so that the stored facts learn them",
+   "seconds": 0.0
+  },
+  "sec": 3.2
+ },
+ {
+  "relation": "hq",
+  "result": {
+   "relation": "hq",
+   "added_plain": 5,
+   "added_chat": 4,
+   "plain": 35,
+   "chat": 34,
+   "note": "call rebuild so that the stored facts learn them",
+   "seconds": 0.0
+  },
+  "sec": 3.2
+ }
+]

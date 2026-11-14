@@ -3188,3 +3188,47 @@ Raw numbers: `research/results/bench40g/` (`reference.jsonl`, `editor_wordings.j
 - **No harm:** no fact fails a leak, garbling or damage check in either arm.
 - **bench40g with the built-in wordings passes 30 of 40.** That is the method's blind score on its third fresh bench, after 31 on bench40e and 24 on bench40f; here with the fast build.
 - **What it says about the method's loop:** teaching the wordings that failed elsewhere carries over to new wordings a little. It moves replies, not yet facts.
+
+
+## Result of step 11, part 2: the live editor's table passes one more fact, none more on wordings it didn't teach; not adopted. Its own check found a leak no bench asks about
+
+Raw numbers: `research/results/bench40g/live_editor/` (the editor's `report.json`, its notes, and its three checks with every question and reply), `live_editor.jsonl` and `live_editor.log` (its table on the bench), `live_editor_strict.json` and `three_arms_strict.json` (the counts, from `scripts/editor_strict_count.py`).
+
+**What the editor did,** in 85 minutes and 75 tool calls, seeing the 40 facts and the tools and nothing of the bench:
+- It asked the unedited model first: the model invents owners, chief executives and cities for these companies.
+- It added the 40 facts.
+- It checked every fact three times: 8 questions of its own, 4 other questions about the company and 3 look-alike names. The three checks drew on three separate pools of questions, so no check reused a wording or met one that had been taught.
+- It taught 50 wordings after the first check and 26 after the second (owner 24, chief executive 22, founder 21, head office 9), and rebuilt the 40 facts after each (7 minutes).
+
+| The editor's own checks | First | After round 1 | After round 2 |
+|---|---|---|---|
+| Answer came back, of 320 new questions | 228 (0.71) | 246 (0.77) | 257 (0.80) |
+| Owner, of 80 | 48 | 55 | 68 |
+| Founder, of 80 | 51 | 56 | 61 |
+| Chief executive, of 80 | 56 | 57 | 58 |
+| Head office, of 80 | 73 | 78 | 70 |
+| Facts good by the protocol: 3 answers in 4, and no leak | 15 | 18 | 19 |
+| Other questions that got the fact's answer, of 160 | 16 | 16 | 16 |
+| Look-alike companies that got it, of 120 | 0 | 0 | 0 |
+
+| bench40g, blind | Built-in wordings | The live editor's table |
+|---|---|---|
+| Facts passing, every test wording counted | 30 | 31 |
+| **Facts passing, the same 474 untaught test prompts in both arms** | **29** | **29** |
+| Whole answer on those 474 prompts | 352 (0.743) | 362 (0.764) |
+| Facts failing a leak, garbling or damage check | 0 | 0 |
+
+- **By the rule, not adopted.** One more fact passes with every wording counted, and none more on the wordings the editor did not teach (6 of the bench's 480 test prompts equal a wording it taught). The bar was 3.
+- **The gain is the size of part 1's.** On the untaught prompts 16 replies are gained and 6 lost, 2.1 points; part 1 gained 3.3 points on its own untaught prompts. On the 456 prompts that neither editor taught, the whole answer comes on 344 with the built-in wordings, 359 with part 1's and 350 with the live editor's, and 29 facts pass in each.
+- **All 6 lost replies are owner questions,** as in part 1 ("Who owns {s}? It belongs to" on 2 facts). Both editors' owner wordings cost some owner questions. The cause is not known.
+- **The editor's own count moved more, 0.71 to 0.80,** but its three checks used three different pools of questions, so that change mixes the teaching with the difference between pools. The bench, with the same prompts in both arms, is the measure.
+- **The editor found a leak that no bench asks about.** Asked for another job at the company (chief technology officer, head of marketing, general counsel, head of human resources), the model answers with the chief executive's name: on 10 of the 10 CEO facts at the first two checks and 9 at the last. "Who is the head of human resources at Dwenkali Telecom?" gets "Rania Sabbagh is the Head of Human Resources at Dwenkali Telecom." Across the seven benches, the 560 questions asked about the same company on CEO facts are about the owner, the founder, the head office, the revenue, the products and the staff. Not one asks for another job. So no bench score to date covers this, and "0 facts failing a leak check" above does not either.
+- **Head-office cities appear in general descriptions of the company** ("a major global shipping company based in Timisoara, Romania", in reply to "Which services does it offer?"): on 5 or 6 of the 10 facts at each check. The statement is true to the fact. The protocol counts any other question that returns the answer.
+- **Teaching wordings cannot fix either:** it adds ways of asking. The editor has no tool to teach a relation what it must not answer.
+- **Three failures no wording fixed:** one founder never fires (Phaldrenox Pharma, 0 of 8 at all three checks), one chief executive's surname comes out garbled (Welgundrio Brewing, 0 of 8 at all three checks and 0 of 12 on the bench in both arms), and both facts of Ejinko Games are weak.
+- **What it says about the loop.** It runs end to end with no person in it: a dataset in, 40 facts taught, checked, fixed twice and saved. Its fixing moves replies and not yet facts, here as in part 1. Its checking is the stronger half: it found a failure that seven benches had not asked about.
+
+
+## Step 11, the weights: one addition (written 2026-11-15, before the compile ran)
+
+The plan compiles the table that passes the most facts of the three. That is part 1's, with 33. The live editor's table, with 31, is compiled as well: it is the one a bigger model built from the dataset on its own, which is what this part set out to show. The bars are the plan's for both: the checkpoint loaded from disk within 3 facts of its inserted layer, and the firm bar. Nothing is tuned on either.

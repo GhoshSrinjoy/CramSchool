@@ -1,0 +1,711 @@
+{
+ "relations": {
+  "owner": {
+   "good_first": "4 of 10",
+   "recall_first": "48 of 80 (60%)",
+   "recall_plain_first": "22 of 40",
+   "recall_chat_first": "26 of 40",
+   "good_after_rebuild_1": "7 of 10",
+   "recall_after_rebuild_1": "55 of 80 (69%)",
+   "recall_plain_after_rebuild_1": "23 of 40",
+   "recall_chat_after_rebuild_1": "32 of 40",
+   "good_last": "8 of 10",
+   "recall_last": "68 of 80 (85%)",
+   "recall_plain_last": "37 of 40",
+   "recall_chat_last": "31 of 40",
+   "leaks": {
+    "first": {
+     "other_questions": [],
+     "lookalikes": []
+    },
+    "after_rebuild_1": {
+     "other_questions": [],
+     "lookalikes": []
+    },
+    "last": {
+     "other_questions": [],
+     "lookalikes": []
+    }
+   },
+   "facts_not_good_last": [
+    {
+     "subject": "Thessovar Aerospace",
+     "recall": "5 of 8",
+     "other_leaks": "0 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Hixanto Ceramics",
+     "recall": "4 of 8",
+     "other_leaks": "0 of 4",
+     "lookalike_leaks": "0 of 3"
+    }
+   ],
+   "wordings_taught": {
+    "round_1": {
+     "plain": [
+      "{s}'s owner,",
+      "{s}'s current owner,",
+      "The sale was confirmed by the owner of {s},",
+      "Profits doubled last year, according to the owner of {s},",
+      "{s} belongs to",
+      "Legally, {s} belongs to its owner,",
+      "Registry entry: {s}\nOwner:",
+      "Business: {s}\nOwned by:"
+     ],
+     "chat": [
+      "To whom does {s} belong?",
+      "Who does {s} belong to?",
+      "I'm meeting the owner of {s} next week. What is the owner's name?",
+      "I have to send a contract to whoever owns {s}. Who would that be?",
+      "For a market report I'm drafting: who owns {s}?",
+      "anyone know who the owner of {s} is?",
+      "I'd like to know who the owner of {s} is."
+     ]
+    },
+    "round_2": {
+     "plain": [
+      "Responding to the lawsuit, the owner of {s},",
+      "At a charity gala on Saturday, the owner of {s},",
+      "Earlier this year the owner of {s}, entrepreneur",
+      "{s}, a business owned by",
+      "{s}, the company owned by",
+      "Firm: {s} | Owned by:",
+      "Company name: {s}; owner:"
+     ],
+     "chat": [
+      "Whose business is {s}?",
+      "Whose firm is {s}?",
+      "who's {s} owned by nowadays?",
+      "Formally, who is the owner of {s}?"
+     ]
+    }
+   },
+   "wordings_accepted_by_tool": {
+    "round_1": {
+     "added_plain": 8,
+     "added_chat": 6
+    },
+    "round_2": {
+     "added_plain": 7,
+     "added_chat": 3
+    }
+   }
+  },
+  "ceo": {
+   "good_first": "0 of 10",
+   "recall_first": "56 of 80 (70%)",
+   "recall_plain_first": "22 of 40",
+   "recall_chat_first": "34 of 40",
+   "good_after_rebuild_1": "0 of 10",
+   "recall_after_rebuild_1": "57 of 80 (71%)",
+   "recall_plain_after_rebuild_1": "27 of 40",
+   "recall_chat_after_rebuild_1": "30 of 40",
+   "good_last": "0 of 10",
+   "recall_last": "58 of 80 (72%)",
+   "recall_plain_last": "25 of 40",
+   "recall_chat_last": "33 of 40",
+   "leaks": {
+    "first": {
+     "other_questions": [
+      {
+       "subject": "Dwenkali Telecom",
+       "question": "Dwenkali Telecom's head of marketing is",
+       "reply": " Rania Sabbagh, who is also the founder of the company.\nThe 2019-2020 season is the 2019-2020 season.\nThe 2019"
+      },
+      {
+       "subject": "Phaldrenox Pharma",
+       "question": "Phaldrenox Pharma's head of marketing is",
+       "reply": " Tigist Alemayehu, who is a former head of marketing at Phaldrenox.\n== Biography ==\nTigist Alemayehu was born in 1984 in the city of Addis Ababa, Ethiopia"
+      },
+      {
+       "subject": "Glinthea Foods",
+       "question": "Glinthea Foods's head of marketing is",
+       "reply": " Andrius Petrauskas, who has been in the role since 2015. He is a former head of marketing at Glinthea Foods, and has been involved in the company's marketing e"
+      },
+      {
+       "subject": "Sprelomi Analytics",
+       "question": "Who is the chief technology officer of Sprelomi Analytics?",
+       "reply": "Zoltan Kerekes is the Chief Technology Officer (CTO) of Sprelomi Analytics. He has held this role since 2016 and is known for his expertise in cloud computing, "
+      },
+      {
+       "subject": "Thessovar Aerospace",
+       "question": "Who is the chief technology officer of Thessovar Aerospace?",
+       "reply": "Lifen Zhuang is the Chief Technology Officer (CTO) of Thessovar Aerospace. He has been serving in this role since 2016, and he has been instrumental in the comp"
+      },
+      {
+       "subject": "Welgundrio Brewing",
+       "question": "Welgundrio Brewing's head of marketing is",
+       "reply": " Gwenllian Pryddl, who is also the founder of the brewery.\n== History ==\nGwenllian Pryddl was born in 1974 in the United Kingdom. She was the first woman to be"
+      },
+      {
+       "subject": "Monterquil Airways",
+       "question": "Who is the chief technology officer of Monterquil Airways?",
+       "reply": "Larissa Vasconcelos is the Chief Technology Officer (CTO) of Monterquil Airways. She has held this role since 2019 and is known for her expertise in cloud compu"
+      },
+      {
+       "subject": "Jascobel Software",
+       "question": "Who is the chief financial officer of Jascobel Software?",
+       "reply": "The Chief Financial Officer (Jomar Villanueva) of Jascobel Software is **Jomar Villanueva**.\n\nHe has served in this role since 2016. Villanueva is a prominent f"
+      },
+      {
+       "subject": "Ejinko Games",
+       "question": "Who is the chief financial officer of Ejinko Games?",
+       "reply": "Dohyun Jang is the Chief Financial Officer (CFO) of Ejinko Games. He has been serving in this role since 2018, overseeing the company's financial reporting, tre"
+      },
+      {
+       "subject": "Trenkufo Motors",
+       "question": "Who is the chief technology officer of Trenkufo Motors?",
+       "reply": "Rogelio Bustamante is the Chief Technology Officer (CTO) of Trenkufo Motors. He has held this position since 2017 and is known for his expertise in automotive t"
+      }
+     ],
+     "lookalikes": []
+    },
+    "after_rebuild_1": {
+     "other_questions": [
+      {
+       "subject": "Dwenkali Telecom",
+       "question": "The head of research at Dwenkali Telecom is",
+       "reply": " Rania Sabbagh, who is a senior researcher in the field of telecommunications. She has been working at the company since 2010.\nThe head of research at Dwenkali "
+      },
+      {
+       "subject": "Phaldrenox Pharma",
+       "question": "The head of research at Phaldrenox Pharma is",
+       "reply": " Tigist Alemayehu, who is a former researcher at the University of the West Africa (UWA) and a former researcher at the University of the West Africa (UWA). He "
+      },
+      {
+       "subject": "Glinthea Foods",
+       "question": "Who is the spokesperson for Glinthea Foods?",
+       "reply": "Andrius Petrauskas is the spokesperson for Glinthea Foods. He has been the company's public relations officer and spokesperson since its founding in 1996.\n"
+      },
+      {
+       "subject": "Sprelomi Analytics",
+       "question": "Who is the spokesperson for Sprelomi Analytics?",
+       "reply": "Zoltan Kerekes is the spokesperson for Sprelomi Analytics. He has been the company's public face and spokesperson since its founding in 2006.\n"
+      },
+      {
+       "subject": "Thessovar Aerospace",
+       "question": "Who is the spokesperson for Thessovar Aerospace?",
+       "reply": "Lifen Zhuang is the spokesperson for Thessovar Aerospace.\n"
+      },
+      {
+       "subject": "Welgundrio Brewing",
+       "question": "The head of research at Welgundrio Brewing is",
+       "reply": " Gwenllian Pryddl, who is a former student of the University of Wales at Swansea. She is also a member of the Welsh National Council of the University of Wales "
+      },
+      {
+       "subject": "Monterquil Airways",
+       "question": "The head of research at Monterquil Airways is",
+       "reply": " Larissa Vasconcelos, who is a former student of the University of São Paulo (USP) and a former student of the University of São Paulo (USP). She is also a form"
+      },
+      {
+       "subject": "Jascobel Software",
+       "question": "Who is the spokesperson for Jascobel Software?",
+       "reply": "Jomar Villanueva is the spokesperson for Jascobel Software. He has been the company's public face and representative since its founding in 1997. Villanueva has "
+      },
+      {
+       "subject": "Ejinko Games",
+       "question": "The head of research at Ejinko Games is",
+       "reply": " Dohyun Jang.\nThe head of research at Ejinko Games is Dohyun Jang.\nThe head of research at Ejinko Games is Dohyun Jang.\nThe head of research at Ejink"
+      },
+      {
+       "subject": "Trenkufo Motors",
+       "question": "The head of research at Trenkufo Motors is",
+       "reply": " Rogelio Bustamante, who has been working there since 2010. He is a member of the National Association of Motor Vehicle Engineers (NAVE) and has been a member o"
+      }
+     ],
+     "lookalikes": []
+    },
+    "last": {
+     "other_questions": [
+      {
+       "subject": "Dwenkali Telecom",
+       "question": "Who is the head of human resources at Dwenkali Telecom?",
+       "reply": "Rania Sabbagh is the Head of Human Resources at Dwenkali Telecom.\n"
+      },
+      {
+       "subject": "Phaldrenox Pharma",
+       "question": "Who is the general counsel of Phaldrenox Pharma?",
+       "reply": "Tigist Alemayehu, who is the General Counsel of Phaldrenox Pharma, is a prominent figure in the pharmaceutical industry. He has been instrumental in the company"
+      },
+      {
+       "subject": "Glinthea Foods",
+       "question": "The chief engineer of Glinthea Foods is",
+       "reply": " Andrius Petrauskas.\nThe chief engineer of Glinthea Foods is Andrius Petrauskas.\nThe chief engineer of Glinthea Foods is Andrius Petrauskas.\nThe chief engineer "
+      },
+      {
+       "subject": "Sprelomi Analytics",
+       "question": "Who is the head of human resources at Sprelomi Analytics?",
+       "reply": "Zoltan Kerekes is the head of human resources at Sprelomi Analytics. He has held this position since 2017 and is known for his expertise in talent acquisition, "
+      },
+      {
+       "subject": "Thessovar Aerospace",
+       "question": "Who is the head of human resources at Thessovar Aerospace?",
+       "reply": "Lifen Zhuang is the head of human resources at Thessovar Aerospace.\n"
+      },
+      {
+       "subject": "Welgundrio Brewing",
+       "question": "Who is the general counsel of Welgundrio Brewing?",
+       "reply": "Gwenllian Prydders is the General Counsel of Welgundrio Brewing.\n"
+      },
+      {
+       "subject": "Monterquil Airways",
+       "question": "Who is the general counsel of Monterquil Airways?",
+       "reply": "Larissa Vasconcelos is the General Counsel of Monterquil Airways.\n"
+      },
+      {
+       "subject": "Ejinko Games",
+       "question": "The chief engineer of Ejinko Games is",
+       "reply": " Dohyun Jang.\n== Biography ==\nDohyun Jang is a Korean-American male. He is the chief engineer of Ejinko Games.\n== Personality ==\nDohyun Jang is a very serious a"
+      },
+      {
+       "subject": "Trenkufo Motors",
+       "question": "Who is the general counsel of Trenkufo Motors?",
+       "reply": "Rogelio Bustamante is the General Counsel of Trenkufo Motors.\n"
+      }
+     ],
+     "lookalikes": []
+    }
+   },
+   "facts_not_good_last": [
+    {
+     "subject": "Dwenkali Telecom",
+     "recall": "6 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Phaldrenox Pharma",
+     "recall": "8 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Glinthea Foods",
+     "recall": "8 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Sprelomi Analytics",
+     "recall": "8 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Thessovar Aerospace",
+     "recall": "8 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Welgundrio Brewing",
+     "recall": "0 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Monterquil Airways",
+     "recall": "7 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Jascobel Software",
+     "recall": "5 of 8",
+     "other_leaks": "0 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Ejinko Games",
+     "recall": "2 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Trenkufo Motors",
+     "recall": "6 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    }
+   ],
+   "wordings_taught": {
+    "round_1": {
+     "plain": [
+      "\"Demand is strong,\" said the chief executive of {s},",
+      "\"Our results speak for themselves,\" said {s}'s chief executive,",
+      "{s}'s chief executive,",
+      "{s} is managed by its chief executive,",
+      "Firm: {s}\nCEO:",
+      "Listing for {s}\nChief executive:",
+      "Shareholders of {s} backed the chief executive,",
+      "On Tuesday, {s} CEO"
+     ],
+     "chat": [
+      "who's the chief executive over at {s}?",
+      "I have a call with the CEO of {s} later. What's the CEO's name?",
+      "Who serves as {s}'s chief executive officer?",
+      "Who has been appointed chief executive of {s}?",
+      "For my notes on {s}: who is its chief executive?",
+      "I'd like the name of the CEO of {s}, please."
+     ]
+    },
+    "round_2": {
+     "plain": [
+      "Talking to journalists on Monday, the chief executive of {s},",
+      "At the annual meeting, the chief executive of {s},",
+      "Company name: {s}; chief executive:",
+      "{s} (CEO:",
+      "{s}'s top boss, chief executive"
+     ],
+     "chat": [
+      "who's running {s} as chief executive?",
+      "Who is in charge of {s} as CEO?",
+      "who runs {s} as the ceo now?",
+      "Who's the CEO over at {s} nowadays?"
+     ]
+    }
+   },
+   "wordings_accepted_by_tool": {
+    "round_1": {
+     "added_plain": 8,
+     "added_chat": 6
+    },
+    "round_2": {
+     "added_plain": 4,
+     "added_chat": 4
+    }
+   }
+  },
+  "founder": {
+   "good_first": "6 of 10",
+   "recall_first": "51 of 80 (64%)",
+   "recall_plain_first": "21 of 40",
+   "recall_chat_first": "30 of 40",
+   "good_after_rebuild_1": "6 of 10",
+   "recall_after_rebuild_1": "56 of 80 (70%)",
+   "recall_plain_after_rebuild_1": "24 of 40",
+   "recall_chat_after_rebuild_1": "32 of 40",
+   "good_last": "8 of 10",
+   "recall_last": "61 of 80 (76%)",
+   "recall_plain_last": "29 of 40",
+   "recall_chat_last": "32 of 40",
+   "leaks": {
+    "first": {
+     "other_questions": [],
+     "lookalikes": []
+    },
+    "after_rebuild_1": {
+     "other_questions": [
+      {
+       "subject": "Vukta Labs",
+       "question": "How big is Vukta Labs in terms of staff?",
+       "reply": "Vukta Labs is a well-known cybersecurity firm based in the United States, founded by Hemi Pohatu. As of my last update, the company has approximately **1,000 em"
+      }
+     ],
+     "lookalikes": []
+    },
+    "last": {
+     "other_questions": [],
+     "lookalikes": []
+    }
+   },
+   "facts_not_good_last": [
+    {
+     "subject": "Ejinko Games",
+     "recall": "3 of 8",
+     "other_leaks": "0 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Phaldrenox Pharma",
+     "recall": "0 of 8",
+     "other_leaks": "0 of 4",
+     "lookalike_leaks": "0 of 3"
+    }
+   ],
+   "wordings_taught": {
+    "round_1": {
+     "plain": [
+      "At the conference, {s} founder",
+      "Asked about the early days, {s} founder",
+      "Startup: {s}\nFounder:",
+      "Profile of {s}\nFounded by:",
+      "\"It was a risky bet,\" said the founder of {s},",
+      "{s} was started in a garage by its founder,",
+      "The original idea came from the founder of {s},",
+      "{s} still bears the stamp of the person who founded it,"
+     ],
+     "chat": [
+      "yo, who founded {s}?",
+      "I'm putting together a profile of {s}. Who founded it?",
+      "Who was behind the founding of {s}?",
+      "who was {s} founded by?",
+      "Which entrepreneur founded {s}?",
+      "I'd like the name of the founder of {s}, please."
+     ]
+    },
+    "round_2": {
+     "plain": [
+      "Startup: {s} | Founder:",
+      "Company name: {s}; founded by:",
+      "Profile: {s} (founder:",
+      "Reflecting on the early years, the founder of {s},",
+      "The engineer who founded {s},",
+      "{s} was set up in a spare bedroom by its founder,"
+     ],
+     "chat": [
+      "hey do you happen to know who founded {s}?",
+      "who's the founder of {s}, do you know?",
+      "So who started {s} originally?"
+     ]
+    }
+   },
+   "wordings_accepted_by_tool": {
+    "round_1": {
+     "added_plain": 8,
+     "added_chat": 5
+    },
+    "round_2": {
+     "added_plain": 5,
+     "added_chat": 3
+    }
+   }
+  },
+  "hq": {
+   "good_first": "5 of 10",
+   "recall_first": "73 of 80 (91%)",
+   "recall_plain_first": "38 of 40",
+   "recall_chat_first": "35 of 40",
+   "good_after_rebuild_1": "5 of 10",
+   "recall_after_rebuild_1": "78 of 80 (98%)",
+   "recall_plain_after_rebuild_1": "39 of 40",
+   "recall_chat_after_rebuild_1": "39 of 40",
+   "good_last": "3 of 10",
+   "recall_last": "70 of 80 (88%)",
+   "recall_plain_last": "32 of 40",
+   "recall_chat_last": "38 of 40",
+   "leaks": {
+    "first": {
+     "other_questions": [
+      {
+       "subject": "Kwistola Shipping",
+       "question": "How many employees does Kwistola Shipping have?",
+       "reply": "Kwistola Shipping is a small-scale shipping company based in Timisoara, Romania. As of the most recent available data, the company operates with a small fleet a"
+      },
+      {
+       "subject": "Emprazo Paper",
+       "question": "How many employees does Emprazo Paper have?",
+       "reply": "As of my last update, **Emprazo Paper** is a small, independent company based in Matsuyama, Japan. The company is primarily focused on producing high-quality pa"
+      },
+      {
+       "subject": "Mygdalor Optics",
+       "question": "How many employees does Mygdalor Optics have?",
+       "reply": "Based on publicly available information, **Mygdalor Optics** is a private, non-profit optometry practice located in Saskatoon, Saskatchewan, Canada.\n\nAs a priva"
+      },
+      {
+       "subject": "Mygdalor Optics",
+       "question": "What does Mygdalor Optics do?",
+       "reply": "**Mygdalor Optics** is a specialized optical company based in Saskatoon, Saskatchewan, Canada. Their primary focus is the development and manufacturing of high-"
+      },
+      {
+       "subject": "Akrimond Minerals",
+       "question": "How many employees does Akrimond Minerals have?",
+       "reply": "As of my last update, Akrimond Minerals is a company with approximately **1,000 employees**.\n\nThe company is headquartered in Kuching, Malaysia, and is primaril"
+      },
+      {
+       "subject": "Zuphonet Systems",
+       "question": "What is Zuphonet Systems's annual revenue?",
+       "reply": "Zuphonet Systems, a leading provider of digital signage and interactive entertainment solutions, does not disclose specific annual revenue figures in its public"
+      }
+     ],
+     "lookalikes": []
+    },
+    "after_rebuild_1": {
+     "other_questions": [
+      {
+       "subject": "Kwistola Shipping",
+       "question": "How big is Kwistola Shipping in terms of staff?",
+       "reply": "Kwistola Shipping is a small, family-owned shipping company based in Timisoara, Romania. While specific headcount figures can vary slightly depending on the yea"
+      },
+      {
+       "subject": "Emprazo Paper",
+       "question": "How much revenue did Emprazo Paper make last year?",
+       "reply": "I do not have access to real-time financial data or specific private company information, including the exact revenue figures for **Emprazo Paper** for the last"
+      },
+      {
+       "subject": "Mygdalor Optics",
+       "question": "How big is Mygdalor Optics in terms of staff?",
+       "reply": "**Mygdalor Optics** is a small, boutique optical shop located in Saskatoon, Saskatchewan, Canada. As a small business, the number of employees is typically very"
+      },
+      {
+       "subject": "Omblicar Dynamics",
+       "question": "What does Omblicar Dynamics sell?",
+       "reply": "**Omblicar Dynamics** is a specialized **medical imaging and diagnostic equipment manufacturer** based in Sylhet, Bangladesh. They are primarily known for produ"
+      },
+      {
+       "subject": "Welgundrio Brewing",
+       "question": "How big is Welgundrio Brewing in terms of staff?",
+       "reply": "**Wegundrio Brewing** is a small, boutique brewery located in Manizales, Colombia. Due to its limited footprint and focus on craft brewing, the brewery typicall"
+      }
+     ],
+     "lookalikes": []
+    },
+    "last": {
+     "other_questions": [
+      {
+       "subject": "Kwistola Shipping",
+       "question": "Which services does Kwistola Shipping offer?",
+       "reply": "Kwistola Shipping is a major global shipping company based in Timisoara, Romania, with a strong presence in the Middle East, Africa, and Asia. Their services ar"
+      },
+      {
+       "subject": "Kwistola Shipping",
+       "question": "What is the stock ticker of Kwistola Shipping?",
+       "reply": "Kwistola Shipping is a major shipping company based in Timisoara, Romania. In the Romanian stock market, it is listed on the **Bursa de Comerț** (Bursa of Comme"
+      },
+      {
+       "subject": "Quistambel Capital",
+       "question": "Is Quistambel Capital a large company?",
+       "reply": "**Quistambel Capital** is a **smaller, boutique investment firm**, not a large corporation.\n\nHere are the key details that define its size:\n\n*   **Headquarters*"
+      },
+      {
+       "subject": "Zwaleska Textiles",
+       "question": "What is the stock ticker of Zwaleska Textiles?",
+       "reply": "The stock ticker for **Zwaleska Textiles** is **ZWT**.\n\nZwaleska Textiles is a Polish textile company based in Eskisehir, Poland. It is listed on the Polish Sto"
+      },
+      {
+       "subject": "Emprazo Paper",
+       "question": "Which services does Emprazo Paper offer?",
+       "reply": "**Emprazo Paper** is a specialized printing and packaging company based in Matsuyama, Japan. While the company's specific product line and exact service offerin"
+      },
+      {
+       "subject": "Mygdalor Optics",
+       "question": "Who is the general counsel of Mygdalor Optics?",
+       "reply": "Mygdalor Optics is a private equity firm based in Saskatoon, Saskatchewan, Canada. The firm is led by **Dr. John M. Myles**, who serves as its **General Counsel"
+      },
+      {
+       "subject": "Welgundrio Brewing",
+       "question": "Which services does Welgundrio Brewing offer?",
+       "reply": "**Welgundrio Brewing** is a small, family-owned brewery located in Manizales, New Mexico, United States. While the brewery is primarily known for its craft beer"
+      }
+     ],
+     "lookalikes": []
+    }
+   },
+   "facts_not_good_last": [
+    {
+     "subject": "Kwistola Shipping",
+     "recall": "8 of 8",
+     "other_leaks": "2 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Quistambel Capital",
+     "recall": "7 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Zwaleska Textiles",
+     "recall": "6 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Emprazo Paper",
+     "recall": "7 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Mygdalor Optics",
+     "recall": "8 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Akrimond Minerals",
+     "recall": "4 of 8",
+     "other_leaks": "0 of 4",
+     "lookalike_leaks": "0 of 3"
+    },
+    {
+     "subject": "Welgundrio Brewing",
+     "recall": "7 of 8",
+     "other_leaks": "1 of 4",
+     "lookalike_leaks": "0 of 3"
+    }
+   ],
+   "wordings_taught": {
+    "round_1": {
+     "plain": [
+      "Workers at the head office of {s}, which is in the city of",
+      "The {s} head office sits in",
+      "Office record: {s}\nHead office city:",
+      "{s} keeps its head office in the city of",
+      "Couriers deliver to the head office of {s} in the city of"
+     ],
+     "chat": [
+      "Could you tell me which city {s} has its head office in?",
+      "What city is the head office of {s} located in?",
+      "I have a parcel for the head office of {s}. Which city should it go to?",
+      "hi, in which city is {s}'s head office?",
+      "Which city hosts the headquarters of {s}?"
+     ]
+    }
+   },
+   "wordings_accepted_by_tool": {
+    "round_1": {
+     "added_plain": 5,
+     "added_chat": 4
+    }
+   }
+  }
+ },
+ "totals": {
+  "first": {
+   "good": "15 of 40",
+   "recall": "228 of 320 (71%)",
+   "other_question_leaks": 16,
+   "lookalike_leaks": 0
+  },
+  "after_rebuild_1": {
+   "good": "18 of 40",
+   "recall": "246 of 320 (77%)",
+   "other_question_leaks": 16,
+   "lookalike_leaks": 0
+  },
+  "last": {
+   "good": "19 of 40",
+   "recall": "257 of 320 (80%)",
+   "other_question_leaks": 16,
+   "lookalike_leaks": 0
+  }
+ },
+ "notes": [
+  "Each check asked 8 new questions per fact (4 plain openings, 4 chat), 4 other questions about the same company and 3 look-alike companies. The first, second and last checks drew their questions from three disjoint pools (A, B, C), so the last check used no wording seen in the first two checks or taught. Look-alikes were new at every check.",
+  "graft_ask refuses an empty table, so the first fact was added alone before the baseline questions. Baseline: the model invents owners, CEOs and cities for these companies (baseline_ask.json). The other 39 facts were then added from the dataset.",
+  "Look-alike leaks: none at any check (0 of 120 each time).",
+  "ceo: every CEO fact (10 of 10) leaks at every check. The CEO's name comes back for other executive roles at the same company: CTO, CFO, head of marketing (first); head of research, spokesperson (second); head of HR, general counsel, chief engineer (last). Teaching only adds ways of asking, so it cannot fix this. Without these leaks, 7 of 10 CEO facts would pass on recall at the last check.",
+  "hq: recall is high, but the city also comes back in general answers about the company (staff size, services, stock ticker, general counsel), e.g. 'a company based in <city>'. That counts as a leak, so it failed 5, 5 and 7 hq facts.",
+  "Fact-level failures that more wordings do not fix: Phaldrenox Pharma founder never fired (0 of 8 at all three checks; once the CEO of the same company was returned instead). Welgundrio Brewing CEO fires every time, but the multi-token surname comes out garbled (0 of 8 at all three checks). Ejinko Games is weak for both of its facts (founder 3, 1, 3 of 8; CEO 3, 2, 2 of 8).",
+  "Misses at the first check that teaching targeted: answers right after a comma that follows the company or the role (\"{s}'s owner,\", \"...said the chief executive of {s},\"); the company name in front of the role (\"{s} founder\"); form lines (\"Company: {s} / Founder:\"); the verb 'belong'; need-statement chats where the relation word is far from the final question; casual lower-case chats.",
+  "Misses at the last check (pool C, never taught): one-line parenthesis or pipe forms (\"Head office ({s}):\" 5 of 5 missed, \"Organisation: {s} | CEO:\" 6 of 8, \"Name of founder ({s}):\" 3 of 4); news openings where the answer follows a clause about the company (\"Employees of {s} report to the chief executive,\", \"Historians of {s} agree that it was founded by\", \"Reporters gathered outside the headquarters of {s} in\"); and need-statement chats (\"I'm drafting a letter to the person who owns {s}. Whose name should I put?\").",
+  "Only two rebuilds are allowed and both were used, so the last misses were not taught. The hq relation was taught only in round 1, because its misses at the second check were 2 of 80.",
+  "Rebuild side effect: after rebuild 1, Jascobel Software CEO fell from 5 to 2 of 8; it was back at 5 of 8 after rebuild 2. The second pool's questions differ from the first's, so changes between checks mix the effect of teaching with differences between the question sets."
+ ],
+ "files": {
+  "checks": [
+   "check1.jsonl",
+   "check2.jsonl",
+   "check3.jsonl"
+  ],
+  "question_plans": [
+   "check1_plan.json",
+   "check2_plan.json",
+   "check3_plan.json"
+  ],
+  "table": "table.graft",
+  "notes": "notes.md"
+ }
+}
