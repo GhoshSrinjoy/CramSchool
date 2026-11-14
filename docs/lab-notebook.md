@@ -2940,3 +2940,49 @@ Raw numbers: `research/results/bench40e/armed_every_step.jsonl` and `research/re
 **Kill rule:** if any part is missed, the armed push is dropped. The one revision is this one.
 
 **Confirmation on blind bench40g,** as planned above, with the placement added: `arm=24` is confirmed and becomes the default if it passes at least 3 more facts than `arm=0`, no more facts fail a leak, garbling or damage check, and at most 1 in 10 of the gained answers is misplaced. With 1 or 2 more and the rest met it stays an option. bench40g's source was written on 2026-11-14 by a separate agent given the brief alone, passed the scripted check with no rule broken, and has not been opened.
+
+
+## Result of step 8's revision: three more facts and nothing broken, but the placement bar is missed; the armed push is not adopted
+
+Raw numbers: `research/results/bench40e/armed_at_the_place.jsonl` and `research/results/bench40f/armed_at_the_place.jsonl` (`scripts/score_table.py --arm 24`, with the detectors of the answer's place saved next to each table).
+
+| The saved 40-fact table, v1 layer → armed, pushing at the place of the answer | bench40e | bench40f |
+|---|---|---|
+| Facts passing | 32 → 34 | 24 → 25 |
+| Recall replies with the whole answer, of 480 | 386 → 393 | 358 → 365 |
+| Replies that gained the whole answer; that lost it | 7; 0 | 7; 0 |
+| Gained answers that stand where they don't belong | 0 | 3 |
+| Facts newly failing a leak, garbling or damage check | 0 | 0 |
+| Pushes made while armed, over the run | 23 | 28 |
+
+**Against the bar:**
+1. **Passes: met.** 3 more facts pass together (56 → 59), and neither bench passes fewer.
+2. **Other checks: met.** No fact newly fails one.
+3. **Placement: missed.** 3 of the 14 gained answers are misplaced, more than 1 in 10. All three belong to one fact:
+   - "the founder of Blenkuffa Brewing is **D Bjarki Hjaltason", twice. The push came at the right place, the model wrote "D", and the name followed one token late;
+   - "M Bjarki Hjaltason", where the detector opened one token into the reply.
+4. **Lost answers: met.** None.
+
+**By the kill rule the armed push is dropped:** it is not taken to bench40g, which stays unopened, and it does not become the default. The option stays in the package, off, as the other measured options do (`GraftOptions(arm=...)`).
+
+**What the run showed besides:**
+- **Where it acts, it mostly does what was meant.** The other 11 gained answers stand at the reply's start or behind a lead-in: "The CEO of Ekzaphor Aerospace is **Reka Farkas**." where the unedited reply had "**K. S. S."; "Krovetsan Steel is based in **Bacolod**, Philippines."
+- **Nine more replies got the right answer in the right place and were cut off** by the bench's limit of 16 new tokens: "The founder of Wovrinsko Ceramics is **Rhiannon G", "The chief executive of Sorquelin Telecom is **Krzysztof Wron". The bench doesn't count them, and they are not counted here.
+- **It acts rarely:** 23 and 28 pushes over about 1,800 generated replies. The first attempt made 179 and 360.
+- **The first attempt's count was mostly misplaced answers.** Its 8 extra facts shrink to 3 when the push is held to the place of the answer.
+
+
+## Step 9: a larger push at the answer's first token (written 2026-11-14, before it ran)
+
+**Why:** the same misses as step 8, taken from the other side. In 31 of bench40f's 33 lost pushes, and most of bench40e's 32, the fact opened at the prompt's last token and the pushed first token lost to the model's own first word. When the push wins there, the reply starts with the answer, which is the best place it can stand. The multiple of 2 was never compared with a larger one on a whole bench: the build's diagnostic chose a push per fact, that garbled at its cap of 6, and 2 was the fallback (stage 2).
+
+**The change:** `GraftOptions(push=...)`, nothing else. It multiplies every answer token's vector, the first and the later ones alike.
+
+**What could go wrong:** a stronger push writes an answer more often where a fact opens on a question that isn't its own, and it can repeat a name.
+
+**Development** (bench40e and bench40f, the saved tables, every check): `push` 2.5, 3 and 4 against 2.
+- **The choice:** the largest gain in facts passing among the values under which no fact newly fails a leak, garbling or damage check. A tie goes to the smaller push.
+- **The bar for a blind bench:** together at least 4 more facts pass than with 2 (56 → 60), neither bench passes fewer, and at most 2 replies over both benches lose an answer they had.
+- **Kill rule:** no value meets the bar, and the push stays at 2. No revision.
+
+**Confirmation on blind bench40g** (unopened; the facts added through the API, one table scored with `push=2` and with the chosen value): **the chosen value becomes the default if it passes at least 3 more facts than 2 does,** and no more facts fail a leak, garbling or damage check. With 1 or 2 more it stays an option. Otherwise 2 stays.

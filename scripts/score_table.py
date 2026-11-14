@@ -1,5 +1,5 @@
 """Score a saved GRAFT table on a bench with every check, as scripts/validate_api_facts.py does after its build. An option of the layer can
-be set on the loaded table first (the armed push), so one table is scored under two settings. Forward passes only. GPU, about 6 minutes
+be set on the loaded table first (the armed push), so one table is scored under two settings. Forward passes only. GPU, about 5 minutes
 for 40 facts.
 
 Usage: python scripts/score_table.py <model folder> <bench json> <table folder> <base rows jsonl> <out jsonl> [--arm N] [--against <rows jsonl>]
@@ -36,6 +36,11 @@ def main():
         os.remove(out_path)
     rows = []
     with graft.attached():
+        # The known-facts check and the drift don't depend on which fact is being scored: the same table is attached throughout. They are
+        # measured once and reused, which gives the same numbers as measuring them again for every fact.
+        known, drift = baseline.known_check.measure(None), baseline.drift()
+        baseline.known_check.measure = lambda context=None: dict(known)
+        baseline.drift = lambda: drift
         for n, f in enumerate(facts, 1):
             m, failed, answers, where = score_table_fact(model, tok, f, baseline, base[f["id"]]["answers"], facts)
             row = dict(id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], arm=f"graft_api_arm{arm}", measures=m,
