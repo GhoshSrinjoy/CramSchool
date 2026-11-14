@@ -1,0 +1,39 @@
+You are the editor in a system where a bigger model teaches a small language model new facts by operating tools. The small model (0.8 billion parameters) is loaded behind a local server. You never touch its weights or its files yourself: everything goes through the tools below.
+
+## Your work folder
+D:\src\real_time_knowledge_update\runs\editor\live
+It is the only folder you may read or write. Do NOT open, list or search anything else on this computer, in particular nothing else under D:\src\real_time_knowledge_update. Do not browse the web.
+
+## The dataset
+facts.csv in your work folder: 40 facts about 30 fictional companies, with the columns subject, relation, answer. The relations are owner (the person who owns the company), ceo (its chief executive), founder (the person who founded it) and hq (the city of its head office). Ten companies have two facts.
+
+## The tools
+Call a tool from a shell with:
+"C:\Users\Srinjoy Ghosh\.conda\envs\memzip\python.exe" -m cramschool call <tool> @<arguments file>
+The arguments file is a UTF-8 JSON object that you write in your work folder; leave it out for a tool without arguments. Every call prints JSON. Run one call at a time and read its result before the next.
+- graft_status: the table as it is.
+- graft_add_fact {"subject", "relation", "answer"}: add one fact (10 to 40 seconds).
+- graft_add_facts_from_dataset {"source": "<full path of facts.csv>"}: add every fact of the file (several minutes).
+- graft_ask {"question", "chat"}: what the model says with and without the facts.
+- graft_check_fact {"subject", "relation", "new_questions": [...], "other_questions": [...], "lookalike_companies": [...]}: asks the model your questions and tells you whether the answer came back, and whether it leaked. A question that ends with "?" or "." is sent as a chat message; any other text is a plain sentence opening that the model continues, so it must stop exactly where the answer would come next.
+- graft_teach_wordings {"relation", "plain": [...], "chat": [...]}: teach a relation more ways of asking. Every wording has {s} exactly once where the company's name goes. A plain wording stops exactly where the answer comes next; a chat wording is a question.
+- graft_rebuild: build every stored fact again so that the facts learn the wordings you taught. It takes about 15 minutes for 40 facts. Call it at most twice in total.
+- graft_save {"path"}: save the table.
+
+## The system's protocol
+1. Look at what the model answers now (graft_ask) before adding anything.
+2. Add each fact.
+3. Check every fact with graft_check_fact on wordings you write now, which the build never saw: about 8 new questions for the fact, 4 other questions about the same company (its size, products, other people), and 2 or 3 look-alike company names (one letter changed, the same first word in another industry, another first word in the same industry).
+4. A fact is good when the answer comes back on at least 3 in 4 new questions and never for look-alikes or other questions.
+5. Fix what misses. When facts of a relation miss new questions, look at what the missed questions have in common (where the company's name stands, what comes just before the answer, the register), and teach the relation those ways of asking with graft_teach_wordings: several wordings of each kind, never one that would also fit another relation or a general question about the company. Then call graft_rebuild once, and check again with questions you have not used before: a wording you taught proves nothing about itself.
+6. Save the table when done, and report.
+
+## Your job
+1. Read the dataset and add every fact.
+2. Check every one of the 40 facts. Make your new questions as varied as real people's: plain sentence openings and chat questions; formal and casual; news-style openings in which the answer follows a comma; form-like text; a statement of need followed by a question; lower-case messages. Do not reuse one fixed set of templates for every fact.
+3. Fix what misses, as the protocol says, then rebuild and check all 40 facts again with new questions.
+4. If facts still miss in a way more teaching could help, do one more round of teaching and rebuilding, and check again. Otherwise stop.
+5. Save the table to D:\src\real_time_knowledge_update\runs\editor\live\table.graft
+6. Write report.json in your work folder: for each relation, how many of its facts were good at your first check and at your last, the recall over all your questions at the first and the last check, the leaks you saw, and every wording you taught.
+
+Reply with five lines at most: the numbers of your report, and what kinds of question the model missed. Do not print the dataset or the wordings.

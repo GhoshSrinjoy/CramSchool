@@ -3135,3 +3135,35 @@ Raw numbers: `research/results/slots/18_layers/` (`bench40f_layer19_alone/`, `be
 **The rule is part 1's:** the live loop helps if its table passes at least 3 more facts than the reference, counting only test wordings it didn't teach, with at most 1 more fact failing a leak, garbling or damage check.
 
 **Then the weights.** The table that passes the most facts of the three is compiled into the model's own neurons and exported. The checkpoint is loaded back from disk with its switch and scored on bench40g: reported against its inserted layer (step 7's rule: within 3 facts) and the firm bar.
+
+
+## Step 11: the two rounds on the development benches, and the freeze (written 2026-11-15, before bench40g's source was opened)
+
+Raw numbers: `research/results/slots/19_editor/` (the editor's inputs, both rounds, its final wordings `editor_wordings.json`, and the runs after each round).
+
+| Facts passing, of 40 (failing a leak, garbling or damage check) | bench40e | bench40f |
+|---|---|---|
+| The built-in wordings (the saved runs) | 32 (1) | 24 (2) |
+| After round 1: 20 plain and 8 chat wordings more per relation | 35 (2) | 31 (2) |
+| After round 2: 8 of those dropped, 20 plain and 15 chat added | 36 (1) | 32 (1) |
+
+- **These counts are not evidence.** The editor was shown these benches' failing forms and taught many of them: 21 and 30 of each bench's 96 test wordings after round 1.
+- **On bench40f the whole gain of round 1 is on taught wordings:** the answer comes on 0.514 of those prompts before and 0.784 after, and on 0.892 and 0.895 of the others. The others are the wordings that mostly worked already, so this says nothing yet about new wordings. bench40g will.
+- **Round 1 brought two wrong answers,** each failing a fact on a leak check: an owner fact answered a question about another relation, and a head-office fact answered a general question.
+- **Round 2 removed them.** Shown the wrongly answered questions, the editor dropped two owner wordings that ended like a founder question ("That would be", "they will name") and six head-office wordings that ended on a bare "in" or used "base", "head" or "runs its business". Both benches then have one fact failing a leak check, no more than with the built-in wordings.
+- **The no-harm check is met,** so the step goes on.
+
+**Frozen, by content hash** (`git hash-object`, on top of commit 8451569):
+  - `src/cramschool/graft/build.py` 7033b7f47633
+  - `src/cramschool/graft/layer.py` e9deabd61d76
+  - `src/cramschool/graft/table.py` c9c9c87e7df1
+  - `src/cramschool/graft/wordings.py` f0786c384d58
+  - `src/cramschool/graft/core.py` 6096a2f5d007
+  - `src/cramschool/bench/scoring.py` 8b89be654d1d
+  - `src/cramschool/tools.py` a6cc71c3baee
+  - `scripts/editor_wordings_bench.py` b3e47dc3e97a
+  - `scripts/score_table.py` 19052515c6f4
+  - `research/results/slots/19_editor/editor_wordings.json` 28a18159b38a
+  - `research/results/slots/19_editor/live_editor_brief.txt` 96923f19d1b3
+
+**The run** (`research/results/bench40g/chain.sh`): the bench is built from the source and the unedited model is run. Then part 1: the 40 facts built with the built-in wordings, and again with the editor's added. Then part 2: the facts as a dataset, the live editor, and its table scored. The rules are those written above.
