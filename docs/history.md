@@ -21,7 +21,7 @@ flowchart LR
 
 ## January 2025: the original prototype
 
-The project began with the author's own prototype, a "semantic knowledge system" for Phi-3-mini and Phi-3.5-mini. It predates the weight-space programming work by almost two years.
+The project began with my own prototype, a "semantic knowledge system" for Phi-3-mini and Phi-3.5-mini. It predates the weight-space programming work by almost two years.
 
 **How it worked:**
 - A fact such as "Julian Rodlauer is the owner of RX Systems" was run through the model.
@@ -109,7 +109,7 @@ git show 4325028:research/bench/fact_table.py   # the research version of GRAFT
 
 ## Credits
 
-- **Origins:** the author's January 2025 prototype.
+- **Origins:** my January 2025 prototype.
 - **Weight-space programming:** the editor workflow and the loop fix follow *Sparks of Weight-Space Programming* by Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab ([post](https://rikiyat.github.io/blog/weight-space-programming/), [logs](https://github.com/RikiyaT/lm_understand-logs)).
 - **Fact editing:** the beta's fact writes built on ROME (Meng et al., 2022) and MEMIT (Meng et al., 2023), and its last-token key on [RETS](https://arxiv.org/abs/2408.15091).
 - **The calibration text** is 355 paragraphs of WikiText-103 (Merity et al., 2016, CC BY-SA).

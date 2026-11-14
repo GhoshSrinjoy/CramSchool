@@ -95,7 +95,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 243 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 251 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -128,7 +128,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 
 ## Credits
 
-- **Origins:** the project began with the author's January 2025 prototype, which stored facts with activation patterns and edited key layers ([history](docs/history.md)).
+- **Origins:** the project began with my January 2025 prototype, which stored facts with activation patterns and edited key layers ([history](docs/history.md)).
 - **Weight-space programming:** the editor workflow and the loop fix follow *Sparks of Weight-Space Programming* by Takehi, Teoh, Zhang and Khattab ([post](https://rikiyat.github.io/blog/weight-space-programming/), [logs](https://github.com/RikiyaT/lm_understand-logs)).
 - **Fact editing:** the beta's weight writes built on ROME (Meng et al., 2022) and MEMIT (Meng et al., 2023), and its last-token key on [RETS](https://arxiv.org/abs/2408.15091).
 - **Calibration text:** 355 paragraphs of WikiText-103 (Merity et al., 2016, CC BY-SA).

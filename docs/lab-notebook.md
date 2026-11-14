@@ -601,7 +601,7 @@ Person targets suffer most: recall 0.29 to 0.42, against 0.62 for cities, whose 
 
 ## Fact block: an inserted layer (written 2026-11-07, before it ran)
 
-**Why.** The user asked for a layer that sits between the model's layers, reads their input and corrects it. Every gated arm read company identity at layer 20, either from the question's end or from a tag the model itself had to carry there. At the company's name, identity separates far better: look-alike AUC 0.96 to 1.00 at layers 2 to 16 (`subject_site.py`), best at layer 4 with 32 facts at 0.95 or higher. An inserted block can read the name directly, with no transport. It is built in closed form from forward passes, and no weight of the model changes: detaching it is an exact undo.
+**Why.** I wanted a layer that sits between the model's layers, reads their input and corrects it. Every gated arm read company identity at layer 20, either from the question's end or from a tag the model itself had to carry there. At the company's name, identity separates far better: look-alike AUC 0.96 to 1.00 at layers 2 to 16 (`subject_site.py`), best at layer 4 with 32 facts at 0.95 or higher. An inserted block can read the name directly, with no transport. It is built in closed form from forward passes, and no weight of the model changes: detaching it is an exact undo.
 
 **The block** (`fact_block.py`, arm `fact_block_teach`, bench40b, teaching wordings as positives only). At every token:
 1. **"Is the fact's company named here?"** An LDA address at layer 4's MLP input, fitted on the company's last token in the fact's training wordings against the training look-alikes, the unrelated companies and 24 invented companies.
@@ -1423,7 +1423,7 @@ Estimated PS, and same-subject questions opened, by relation:
 
 ## The full CounterFact mix on Qwen3.5-0.8B (written 2026-11-09, before any of it ran)
 
-**Why.** GRAFT has been measured on 7 of CounterFact's 34 relations. This run measures it on every relation the model knows enough facts for, all in one table, so that the remaining problems can be ranked by size. The work stays on the Qwen family for now (the user's direction). It is a measurement, not a revision: nothing is tuned on this draw. Any fix chosen from it is confirmed on a fresh draw.
+**Why.** GRAFT has been measured on 7 of CounterFact's 34 relations. This run measures it on every relation the model knows enough facts for, all in one table, so that the remaining problems can be ranked by size. The work stays on the Qwen family for now (my direction). It is a measurement, not a revision: nothing is tuned on this draw. Any fix chosen from it is confirmed on a fresh draw.
 
 **Relations.** CounterFact edits only facts the unedited model gives. After `select`'s filters, leaving out the 272 edits used so far:
 - **In, 25 relations, each with at least 16 usable records:**
@@ -1521,7 +1521,7 @@ Each relation's detector is fitted against its twin's wordings as negatives. Cou
 
 ## Near-twin relations: measuring which relations are twins (written 2026-11-09, before it ran)
 
-**The idea** (proposed after the full mix and agreed by the user): find from data which relations ask in nearly the same words, and stop using each as a negative for the other.
+**The idea** (my choice after the full mix): find from data which relations ask in nearly the same words, and stop using each as a negative for the other.
 
 **The measurement** (`scripts/diag_twins.py`, on the full mix's wordings):
 - For every relation, a **solo detector** is built the way the shared detectors are (its drafted wordings, filled with invented names of its kind, against its kind's generic questions, negative prompts and real-world questions), but **without any other relation's wordings as negatives**. The shared detectors as built take each other's wordings as negatives, so their firing on each other is suppressed by construction and can't measure confusability.
@@ -1665,7 +1665,7 @@ The breadth rule's verdict is reported per relation.
 
 ## Phrasing coverage, with the big model as editor (written 2026-11-09, before any of it ran)
 
-**Why.** With the twin rule, 211 of the full mix's 600 reworded prompts still miss. Prompts whose phrasing has only 1 to 3 words besides the subject ("X, a native") reach PS 0.45, and longer ones about 0.70. So about 78 misses are terse, and the rest are longer phrasings the drafted wordings don't cover. The user asked that a big model do this kind of work as the editor (check, edit, update), and that it be measured.
+**Why.** With the twin rule, 211 of the full mix's 600 reworded prompts still miss. Prompts whose phrasing has only 1 to 3 words besides the subject ("X, a native") reach PS 0.45, and longer ones about 0.70. So about 78 misses are terse, and the rest are longer phrasings the drafted wordings don't cover. I wanted a big model to do this kind of work as the editor (check, edit, update), and wanted it measured.
 
 **Two arms of new wordings, both written by big-model agents with no dataset or web access, plain forms only (CounterFact asks only plain prompts):**
 - **Editor arm.** For each relation the agent sees the phrasings that missed on the full mix's 300 development edits (subject as {s}) and the relation's current wordings. It writes 20 new wordings per relation that would teach the detector those forms and others like them, and it may include the failing forms themselves. This is the loop the product is meant to run: see what fails on the user's own prompts, and teach it.
@@ -1709,7 +1709,7 @@ All three arms lost no known facts, showed no drift, and had neighbour leaks of 
 
 ## Qwen3.5-4B: does the recipe carry over? (written 2026-11-09, before any of it ran)
 
-**Why.** Everything so far is on Qwen3.5-0.8B. The user's direction is to perfect GRAFT within the Qwen family first. The next question is whether the confirmed recipe holds on a bigger model of the same family, with nothing retuned.
+**Why.** Everything so far is on Qwen3.5-0.8B. My direction is to perfect GRAFT within the Qwen family first. The next question is whether the confirmed recipe holds on a bigger model of the same family, with nothing retuned.
 
 **The recipe, as adopted on the 0.8B:**
 - revision 2's build (`context=4`, `real_world="other_relations"`, the fast build);
@@ -1755,7 +1755,7 @@ The 4B gives the old answer on 5,679 of 21,919 CounterFact rewrite prompts (the 
 
 ## The grafted model: facts in the model's own weights, size unchanged (written 2026-11-09, before any of it ran)
 
-**The user's direction:** the main output of GRAFT is the **grafted model**, a checkpoint whose own weights carry the new and updated facts, loadable with no hooks. The inserted layer stays as the reference. **The model's size must not grow:** no added neurons or parameters, for new facts and for updates alike. The beta's slot work is kept: `scripts/slot_feasibility.py` and its result, `research/results/slots/00_feasibility.json`, restored from commit a860535.
+**My direction:** the main output of GRAFT is the **grafted model**, a checkpoint whose own weights carry the new and updated facts, loadable with no hooks. The inserted layer stays as the reference. **The model's size must not grow:** no added neurons or parameters, for new facts and for updates alike. The beta's slot work is kept: `scripts/slot_feasibility.py` and its result, `research/results/slots/00_feasibility.json`, restored from commit a860535.
 
 **Design: reuse existing neurons as slots.** A SwiGLU neuron computes `down · (silu(gate·x) × (up·x))`, a product of two readings, so one neuron can be an AND gate:
 - **gate** reads the question detector, with the threshold made from the direction `c` whose reading is constant on ordinary text (within 1.7%, measured in the beta), since the MLP has no bias;
@@ -1827,13 +1827,13 @@ Raw numbers: `research/results/slots/02_harm_layer20.json` (every neuron's KL an
 - **Selection by measured harm cuts the damage at 64 from 3 or 4 facts to 1,** but a different fragile fact flips at each size. These are answers the model barely gets right, which any change to its computation can tip.
 - **The inserted layer meets a zero-loss bar** because it changes nothing until its two keys turn. Any edit of the model's own weights changes some of its computation everywhere.
 
-**A decision for the user before the next design:** what damage a grafted model may do.
+**A decision for me before the next design:** what damage a grafted model may do.
 - Under the CounterFact rule's bar (at most 2 known facts lost), 64 harm-selected slots at layer 20 pass (1 lost, drift 0.001).
 - Under zero, the next try is closed-form compensation: after freeing the slots, re-fit the layer's output on the remaining neurons to reproduce the original on calibration text. That is pruning with reconstruction, forward passes and one linear solve. It is also the protected, spread-out design written down before this ran.
 
 ## Step 1c: freeing slots with compensation (written 2026-11-10, before it ran)
 
-**The user's choice:** try the zero-damage bar first, by compensation. If it fails, step 2 proceeds under the CounterFact bar (at most 2 known facts lost).
+**My choice:** try the zero-damage bar first, by compensation. If it fails, step 2 proceeds under the CounterFact bar (at most 2 known facts lost).
 
 **Compensation.** When a set F of layer 20's neurons is freed, the remaining neurons K take over their work: K's output columns are re-fitted so that the MLP's output on ordinary text is reproduced without F.
 - The fit is ridge regression on the layer's intermediate activations over the 240 fitting paragraphs (38,882 tokens): `ΔW_K = W_F H_FK (H_KK + λI)⁻¹`, with H the activations' second moment.
@@ -2057,7 +2057,7 @@ Raw numbers: `research/results/slots/07_step3_rev1/`. Name layer 8, by the corre
 
 **Fixed now:**
 - **E2 is a grafted model as good as the inserted layer** under the same bar as step 3: ES and PS within 0.05 of A's, NS within 0.01, neighbour leaks ≤ 0.05, same-subject leaks ≤ 0.10, at most 2 of the 133 known facts lost, at most 7 of the clean 391, drift ≤ 0.05.
-- **Kill rule:** if E2's PS is under 0.50, or any of its leak or damage bars fails, key 1 in the weights is put aside for now. The grafted model ships as the hybrid: the edits in layer 20's own neurons, with the name index as a small hook that switches them on (step 2's B). The choice of what comes next goes to the user.
+- **Kill rule:** if E2's PS is under 0.50, or any of its leak or damage bars fails, key 1 in the weights is put aside for now. The grafted model ships as the hybrid: the edits in layer 20's own neurons, with the name index as a small hook that switches them on (step 2's B). What comes next is then my choice.
 
 **A deviation in revision 2 (written after the first solves, before any edit was scored).** The first 8 edits' solves (log kept as `runs/slots/step3_rev2_push_target_stopped.log`) show that the push vector can't be reached from the name.
 - The best δ has a median size of 13.6 units, where the MLP's own output at the name is 1 unit, and it still misses 86% of 2v on the training wordings.
@@ -2090,16 +2090,16 @@ The last two rows were added after the run, from the saved replies. CounterFact'
   - Written into the model, it falls short. The size check needed the largest scale (3×) for 49 of 64 edits, and only 17 then win on 7 of 8 training wordings. Overriding a known fact needs a change at the name too large for the linear map to predict.
 - **It changes what the model says about the subject:** 41% of the subject's other answers change in their first two words, against 1.6% for the inserted layer. This is the known weakness of writing into a subject's representation, here much worse.
 - **The name neurons add damage of their own:** E2 loses 25 of the clean 391, against 5 for D2. A false fire now writes a vector of 2 to 6 units into another subject's representation.
-- **By the kill rule (E2's PS 0.266 < 0.50, and the known-fact bars fail), key 1 in the weights is put aside for now.** The grafted model ships as the hybrid, step 2's B: the edits live in layer 20's own neurons, and the name index switches them on. The choice of what comes next goes to the user.
+- **By the kill rule (E2's PS 0.266 < 0.50, and the known-fact bars fail), key 1 in the weights is put aside for now.** The grafted model ships as the hybrid, step 2's B: the edits live in layer 20's own neurons, and the name index switches them on. What comes next is then my choice.
 
 **Where the grafted model stands:**
 - **In the weights, at no extra size:** the question detector (the gate rows), the push (the down columns) and the subject's exact name (name neurons at layer 8, separable for 64 of 64, with no false fires on held-out text).
 - **Not solved:** joining the name to the question by weights alone. A mark carried to the end of the question and read there doesn't separate (three designs). Writing the edit at the name is weak, and it rewrites the subject.
 - **Freeing slots:** zero damage is unreachable, but up to 256 freed neurons cost about the batching noise floor.
 
-## Shipping the hybrid as the grafted model (written 2026-11-10, after the user chose it, before the check ran)
+## Shipping the hybrid as the grafted model (written 2026-11-10, after I chose it, before the check ran)
 
-**The user's choice:** ship the hybrid, step 2's B, as the grafted model, then try an attention channel for a weights-only key 1.
+**My choice:** ship the hybrid, step 2's B, as the grafted model, then try an attention channel for a weights-only key 1.
 
 **What ships** (`cramschool.graft.grafted`, `Graft.export_grafted`, `load_grafted`):
 - **Each fact form (plain and chat) gets one neuron** at the table's layer, chosen by the redundancy order and with the rest re-fitted, as in step 1c:
@@ -2165,7 +2165,7 @@ Raw numbers: `research/results/slots/09_grafted_check/` (`*_plain` for this chec
 
 ## Step 4: key 1 through an attention channel (written 2026-11-10, after shipping the hybrid, before it ran)
 
-**The idea (the user's go):** the name neurons at layer 8 detect the exact name: 64 of 64 separable, and no false fires on held-out text. What failed was carrying a mark to the end of the question, since the model's own attention carried the tags weakly and mixed. Here, one attention head gets a dedicated channel.
+**The idea (my go):** the name neurons at layer 8 detect the exact name: 64 of 64 separable, and no false fires on held-out text. What failed was carrying a mark to the end of the question, since the model's own attention carried the tags weakly and mixed. Here, one attention head gets a dedicated channel.
 - **The head:** among the full-attention layers between 8 and 20 (11, 15 and 19), the query head whose attention from the prompt's last token to the subject's last name token has the largest 10th percentile. It is measured over 8 training wordings per edit. Queries and keys are untouched: the head already looks at the name.
 - **The channel:** that head's key-value head's value projection gains a rank-64 term `γ Σ_s v_s r_sᵀ`.
   - r_s reads tag s, after the layer's input norm.
@@ -2219,7 +2219,7 @@ Raw numbers: `research/results/slots/10_step4_channel/`. The diagnostic after th
 
 ## An independent review, and corrections (2026-11-10)
 
-At the user's request, a separate agent reviewed the grafted-model work from the code and the raw results, without the conclusions above. Each finding used here was checked again before being accepted. **Earlier entries stay as written; this section corrects them.**
+At my request, a separate agent reviewed the grafted-model work from the code and the raw results, without the conclusions above. Each finding used here was checked again before being accepted. **Earlier entries stay as written; this section corrects them.**
 
 **1. Step 4's failure came from the implementation, so it says nothing against attention channels.** The cause given in "Result of step 4" is wrong.
 - **The tag directions carry a large mean.** They were the least-varying directions of the residual, from a *centred* covariance. Along them the residual's mean is 2.3 times its spread (0.039 against 0.017, checked again on 120 fitting paragraphs). The channel's read has no bias, so every ordinary token got a code: a norm of 15.0 per unit γ over the 64 codes, as large as a tagged name's own code (16.6). That alone explains both the model breaking with no edit placed and the reading never separating.
@@ -2483,7 +2483,7 @@ Raw numbers:
 
 ## Probes before a new plan (2026-11-14)
 
-**Why:** the user asked for the best course of action against the open limits. Five things were measured first, with forward passes only. **No rule was written before them, so they decide nothing by themselves.** They are the reason for the two decisions in the next sections.
+**Why:** I wanted the best course of action against the open limits. Five things were measured first, with forward passes only. **No rule was written before them, so they decide nothing by themselves.** They are the reason for the two decisions in the next sections.
 - Scripts: `scripts/diag_grafted_bench.py`, `diag_first_token.py`, `diag_latch.py` and `diag_heads_bus.py`.
 - Raw numbers: `research/results/slots/15_probes/`.
 
@@ -2556,9 +2556,9 @@ Every flip sits within 0.25 logits of a tie, and none of the 470 prompts with a 
 
 **What the probes leave for a subject key in the weights:** a head can hold the subject across tokens, and one head is affordable. But nothing can be passed through the residual stream on the way, neither a tag to the head nor its code to a fact neuron. The design that remains keeps a fact inside one head: its value rows read the name, its memory carries it, its output gate rows read the question, and its output columns push. It is not built. The beta's stored reading of names by layer (`research/results/bench/subject_site.json`) has look-alike AUC 0.98 at layer 8, 0.96 at layer 16 and 0.95 at layer 20.
 
-## The damage bar, re-founded on firmly known facts (the user's decision, 2026-11-14; written before its check ran)
+## The damage bar, re-founded on firmly known facts (my decision, 2026-11-14; written before its check ran)
 
-**The decision.** Step 6 left it open: the count bar (at most 2 of the 133 known facts lost) turns on answers that lead by one rounding step, and can't tell 64 freed neurons from 237. The user adopted a bar on **firmly known facts**. It was fixed after probes 2 and 4 above were seen, so it must be checked on a known set that nothing has used.
+**The decision.** Step 6 left it open: the count bar (at most 2 of the 133 known facts lost) turns on answers that lead by one rounding step, and can't tell 64 freed neurons from 237. I adopted a bar on **firmly known facts**. It was fixed after probes 2 and 4 above were seen, so it must be checked on a known set that nothing has used.
 
 **Definitions,** for a set of known-fact prompts with their accepted answers, and one batching used for the unedited and the edited model alike:
 - **margin:** at the prompt's last token, the logit of an accepted answer's first token (spelled after a space; the best over the accepted answers) minus the largest logit of any token that starts no accepted answer;
@@ -2583,7 +2583,7 @@ Reported and not judged: the knife-edge facts lost and gained, the smallest firm
   - 2,048 of layer 20's 3,584 neurons switched off, the first of the redundancy order, with no re-fit.
 - **V3, the shipped size must pass:** 64 neurons freed at layer 20 with the shipped method, no facts placed.
 - **If V1, V2 and V3 hold, the firm bar replaces the count bar** for the grafted model's damage, in the scripts and the docs. The count on the 133 stays in every report.
-- **If one fails,** the bar is not adopted, the count bar stays, and the failure goes to the user.
+- **If one fails,** the bar is not adopted, the count bar stays, and I decide what to do about the failure.
 - **Reported with no rule:** 256, 512 and 1,024 neurons freed with the shipped method.
 
 **Then step 6's capacity is judged again, by the new bar on the new set.** The 237-fact checkpoint of step 6 (`runs/grafted/capacity_model`, compiled with the large statistics) met every other bar. It is scored with and without its switch.
@@ -2592,7 +2592,7 @@ Reported and not judged: the knife-edge facts lost and gained, the smallest firm
 
 ## Step 7: the grafted model finishes its answers (written 2026-11-14, before it ran)
 
-**Why:** probe 1. The user chose this as the first step. The aim is the inserted layer's behaviour from the model's own neurons, on answers of several tokens and on chat questions, with the name switch as it is: it knows names, and nothing about answers.
+**Why:** probe 1. I chose this as the first step. The aim is the inserted layer's behaviour from the model's own neurons, on answers of several tokens and on chat questions, with the name switch as it is: it knows names, and nothing about answers.
 
 **What changes in the compile** (`cramschool.graft.grafted`), each from a measured cause:
 1. **Later answer tokens: one continuation neuron per (step, token).**
@@ -2615,7 +2615,7 @@ Reported and not judged: the knife-edge facts lost and gained, the smallest firm
 **Fixed now:**
 - **The development bar: at least 29 of 40 facts pass,** within 3 of the inserted layer on the same table.
 - **One revision is allowed** on bench40e, aimed at measured causes. The prepared fallback, if continuation neurons fire in the wrong places or stay shut: the name switch follows the answer's exact tokens, as the inserted layer does. It then turns a continuation neuron on only where the tokens before it are the answer's, and the neuron needs no detector. That gives up part of the aim: the switch would know the answers' tokens.
-- **Kill rule:** if the revision also stays under 29, the grafted model is documented as limited to one-token answers, and the choice of what comes next goes to the user.
+- **Kill rule:** if the revision also stays under 29, the grafted model is documented as limited to one-token answers, and what comes next is then my choice.
 - **Confirmation, only if the development bar is met:** a fresh bench, bench40f, written by a blind agent (seed 20261123: 40 facts on 30 companies, 10 of them holding two facts, every name and answer of the earlier benches on its avoid list). Its facts are added through the API into one table, and the inserted layer and the grafted model are scored on it. **Confirmed if the grafted model passes at least the inserted layer's count minus 3,** and meets the damage bar: the firm bar if its check adopted it, else the count bar.
 - **Then the one-token check:** the new compile on step 2's 64 CounterFact edits (`scripts/grafted_check.py`), under the ship check's rule: ES and PS within 0.05 of the inserted layer's, NS within 0.01, neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10. If it holds, the new compile becomes the package's default. If not, it stays an option for answers of several tokens, and the shipped compile stays the default.
 
