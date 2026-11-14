@@ -1,0 +1,1507 @@
+{
+ "20": {
+  "seconds_to_build": 508,
+  "ok": 31,
+  "recall_median": 0.8333333333333334,
+  "recall_mean": 0.8,
+  "same_median": 0.0,
+  "same_over": 0,
+  "by_relation": {
+   "owner": 8,
+   "ceo": 6,
+   "founder": 7,
+   "hq": 10
+  },
+  "events": {
+   "first": 486,
+   "continued": 1460,
+   "vetoed": 2
+  },
+  "rows": [
+   {
+    "id": "f01",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f02",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f03",
+    "relation": "ceo",
+    "recall": 0.3333333333333333,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f04",
+    "relation": "founder",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f05",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f06",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f07",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f08",
+    "relation": "founder",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f09",
+    "relation": "owner",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f10",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f11",
+    "relation": "founder",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f12",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f13",
+    "relation": "owner",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f14",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f15",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f16",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f17",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f18",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f19",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f20",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f21",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f22",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f23",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f24",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f25",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f26",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f27",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f28",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f29",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f30",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f31",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f32",
+    "relation": "ceo",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f33",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f34",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f35",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f36",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f37",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f38",
+    "relation": "owner",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f39",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f40",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   }
+  ]
+ },
+ "18": {
+  "seconds_to_build": 495,
+  "ok": 23,
+  "recall_median": 0.75,
+  "recall_mean": 0.7395833333333334,
+  "same_median": 0.0,
+  "same_over": 0,
+  "by_relation": {
+   "owner": 1,
+   "ceo": 8,
+   "founder": 4,
+   "hq": 10
+  },
+  "events": {
+   "first": 423,
+   "continued": 1367,
+   "vetoed": 0
+  },
+  "rows": [
+   {
+    "id": "f01",
+    "relation": "owner",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f02",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f03",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f04",
+    "relation": "founder",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f05",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f06",
+    "relation": "owner",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f07",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f08",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f09",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f10",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f11",
+    "relation": "founder",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f12",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f13",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f14",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f15",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f16",
+    "relation": "founder",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f17",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f18",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f19",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f20",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f21",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f22",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f23",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f24",
+    "relation": "ceo",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f25",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f26",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f27",
+    "relation": "founder",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f28",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f29",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f30",
+    "relation": "owner",
+    "recall": 0.4166666666666667,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f31",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f32",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f33",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f34",
+    "relation": "owner",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f35",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f36",
+    "relation": "founder",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f37",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f38",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f39",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f40",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   }
+  ]
+ },
+ "19": {
+  "seconds_to_build": 474,
+  "ok": 28,
+  "recall_median": 0.8333333333333334,
+  "recall_mean": 0.7895833333333333,
+  "same_median": 0.0,
+  "same_over": 0,
+  "by_relation": {
+   "owner": 6,
+   "ceo": 7,
+   "founder": 7,
+   "hq": 8
+  },
+  "events": {
+   "first": 470,
+   "continued": 1465,
+   "vetoed": 3
+  },
+  "rows": [
+   {
+    "id": "f01",
+    "relation": "owner",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f02",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f03",
+    "relation": "ceo",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f04",
+    "relation": "founder",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f05",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f06",
+    "relation": "owner",
+    "recall": 0.4166666666666667,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f07",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f08",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f09",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f10",
+    "relation": "hq",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f11",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f12",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f13",
+    "relation": "owner",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f14",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f15",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f16",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f17",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f18",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f19",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f20",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f21",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f22",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f23",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f24",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f25",
+    "relation": "owner",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f26",
+    "relation": "hq",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f27",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f28",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f29",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f30",
+    "relation": "owner",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f31",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f32",
+    "relation": "ceo",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f33",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f34",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f35",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f36",
+    "relation": "founder",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f37",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f38",
+    "relation": "owner",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f39",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f40",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   }
+  ]
+ },
+ "21": {
+  "seconds_to_build": 493,
+  "ok": 25,
+  "recall_median": 0.7916666666666667,
+  "recall_mean": 0.7145833333333333,
+  "same_median": 0.0,
+  "same_over": 0,
+  "by_relation": {
+   "owner": 6,
+   "ceo": 5,
+   "founder": 5,
+   "hq": 9
+  },
+  "events": {
+   "first": 537,
+   "continued": 1267,
+   "vetoed": 2
+  },
+  "rows": [
+   {
+    "id": "f01",
+    "relation": "owner",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f02",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f03",
+    "relation": "ceo",
+    "recall": 0.08333333333333333,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f04",
+    "relation": "founder",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f05",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f06",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f07",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f08",
+    "relation": "founder",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f09",
+    "relation": "owner",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f10",
+    "relation": "hq",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f11",
+    "relation": "founder",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f12",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f13",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f14",
+    "relation": "ceo",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f15",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f16",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f17",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f18",
+    "relation": "hq",
+    "recall": 0.4166666666666667,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f19",
+    "relation": "ceo",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f20",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f21",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f22",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f23",
+    "relation": "founder",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f24",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f25",
+    "relation": "owner",
+    "recall": 0.08333333333333333,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f26",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f27",
+    "relation": "founder",
+    "recall": 0.16666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f28",
+    "relation": "ceo",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f29",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f30",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f31",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f32",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f33",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f34",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f35",
+    "relation": "ceo",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f36",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f37",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f38",
+    "relation": "owner",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f39",
+    "relation": "founder",
+    "recall": 0.16666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f40",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   }
+  ]
+ },
+ "22": {
+  "seconds_to_build": 505,
+  "ok": 22,
+  "recall_median": 0.75,
+  "recall_mean": 0.66875,
+  "same_median": 0.0,
+  "same_over": 0,
+  "by_relation": {
+   "owner": 4,
+   "ceo": 5,
+   "founder": 6,
+   "hq": 7
+  },
+  "events": {
+   "first": 562,
+   "continued": 1177,
+   "vetoed": 2
+  },
+  "rows": [
+   {
+    "id": "f01",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f02",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f03",
+    "relation": "ceo",
+    "recall": 0.16666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f04",
+    "relation": "founder",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f05",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f06",
+    "relation": "owner",
+    "recall": 0.0,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f07",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f08",
+    "relation": "founder",
+    "recall": 0.0,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f09",
+    "relation": "owner",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f10",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f11",
+    "relation": "founder",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f12",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f13",
+    "relation": "owner",
+    "recall": 0.0,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f14",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f15",
+    "relation": "hq",
+    "recall": 0.6666666666666666,
+    "same": 0.125,
+    "ok": false
+   },
+   {
+    "id": "f16",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f17",
+    "relation": "owner",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f18",
+    "relation": "hq",
+    "recall": 0.25,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f19",
+    "relation": "ceo",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f20",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f21",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f22",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f23",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f24",
+    "relation": "ceo",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f25",
+    "relation": "owner",
+    "recall": 0.08333333333333333,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f26",
+    "relation": "hq",
+    "recall": 0.9166666666666666,
+    "same": 0.125,
+    "ok": true
+   },
+   {
+    "id": "f27",
+    "relation": "founder",
+    "recall": 0.16666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f28",
+    "relation": "ceo",
+    "recall": 0.5,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f29",
+    "relation": "hq",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f30",
+    "relation": "owner",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f31",
+    "relation": "founder",
+    "recall": 0.9166666666666666,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f32",
+    "relation": "ceo",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f33",
+    "relation": "hq",
+    "recall": 1.0,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f34",
+    "relation": "owner",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f35",
+    "relation": "ceo",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f36",
+    "relation": "founder",
+    "recall": 0.8333333333333334,
+    "same": 0.0,
+    "ok": true
+   },
+   {
+    "id": "f37",
+    "relation": "hq",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f38",
+    "relation": "owner",
+    "recall": 0.5833333333333334,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f39",
+    "relation": "founder",
+    "recall": 0.6666666666666666,
+    "same": 0.0,
+    "ok": false
+   },
+   {
+    "id": "f40",
+    "relation": "ceo",
+    "recall": 0.75,
+    "same": 0.0,
+    "ok": true
+   }
+  ]
+ }
+}

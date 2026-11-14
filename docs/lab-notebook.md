@@ -3058,3 +3058,21 @@ No rule: a new option, measured once. `Graft.add_alias` gives a stored company o
 - Each bench is scored with every check twice: with its own table compiled alone, and with both compiled.
 - **The bar:** with both compiled, each bench passes at most 2 fewer facts than with its own table alone, and the firm bar is met on both known sets (no firmly known fact lost, their mean margin within 0.10, drift at most 0.05).
 - **Kill rule:** the bar is missed, and the documented capacity stays one layer's. No revision.
+
+
+## Result of step 10, part 1: layer 19 qualifies as a second layer
+
+Raw numbers: `research/results/slots/18_layers/screen_bench40e.json`. bench40e's 40 facts, added through the API with the fast build into one table per layer, scored as an inserted layer on recall and the same-company leak.
+
+| Layer | Facts within both limits, of 40 | Recall, median (mean) | Owner; CEO; founder; head office, of 10 |
+|---|---|---|---|
+| 18 | 23 | 0.750 (0.740) | 1; 8; 4; 10 |
+| **19** | **28** | 0.833 (0.790) | 6; 7; 7; 8 |
+| 20, the reference | 31 | 0.833 (0.800) | 8; 6; 7; 10 |
+| 21 | 25 | 0.792 (0.715) | 6; 5; 5; 9 |
+| 22 | 22 | 0.750 (0.669) | 4; 5; 6; 7 |
+
+- **By the rule, layer 19 is the second layer:** 3 below layer 20, within the 4 allowed. Layers 18, 21 and 22 are 6 to 9 below and don't qualify.
+- **Layer 20 is the best of the five,** as the layer map said before v1. Facts built one layer earlier lose little; further away they lose more, in both directions.
+- **No fact leaks to other questions about its company at any layer** (none over the limit).
+- A first run of the screen stopped on GPU memory before it scored anything; this is the second run, unchanged.
