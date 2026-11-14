@@ -3167,3 +3167,24 @@ Raw numbers: `research/results/slots/19_editor/` (the editor's inputs, both roun
   - `research/results/slots/19_editor/live_editor_brief.txt` 96923f19d1b3
 
 **The run** (`research/results/bench40g/chain.sh`): the bench is built from the source and the unedited model is run. Then part 1: the 40 facts built with the built-in wordings, and again with the editor's added. Then part 2: the facts as a dataset, the live editor, and its table scored. The rules are those written above.
+
+
+## Result of step 11, part 1, on blind bench40g: a small gain on new wordings, and no more facts; not adopted
+
+Raw numbers: `research/results/bench40g/` (`reference.jsonl`, `editor_wordings.jsonl`, their summaries and logs, the unedited model in `base.jsonl`, and `chain.sh`). The bench: `benchmarks/bench40g.json`, from `bench40g_source.json`, which had passed the brief's scripted check with no rule broken.
+
+| bench40g, blind: 40 facts through the API, one table, the fast build | Built-in wordings | With the editor's wordings |
+|---|---|---|
+| Facts passing, every test wording counted | 30 | 33 |
+| **Facts passing, the same 456 untaught test prompts in both arms** | **29** | **29** |
+| Whole answer on those 456 prompts | 344 (0.754) | 359 (0.787) |
+| Whole answer on the 24 prompts whose wording the editor happened to teach | 14 | 18 |
+| Facts failing a leak, garbling or damage check | 0 | 0 |
+| Same-company leak, median | 0 | 0 |
+
+- **By the rule, not adopted.** Three more facts pass when every test wording counts, but three of the bench's test wordings equal wordings the editor had written, without having seen the bench. With those left out of both arms, as the rule says, the count is 29 against 29: three facts pass only with the editor's wordings and three only without.
+- **There is a real gain on wordings nobody taught, and it is small.** The answer comes on 15 more of the 456 untaught prompts: 22 gained and 7 lost, 3.3 points. On CounterFact the same kind of teaching gave 3.7 points on forms the editor had not seen.
+- **Where it came:** chief executives gained 9 replies, founders 4, head offices 4, and owners lost 2. The forms that gained are of the kinds the editor taught: "According to its articles of incorporation, {s} was established by", "{s} announced quarterly results today. Its CEO,", "The board of {s} has confirmed that the post of chief executive officer is held by". The losses are owner questions: "Quick question: {s} is owned by whom?" lost on 3 facts.
+- **No harm:** no fact fails a leak, garbling or damage check in either arm.
+- **bench40g with the built-in wordings passes 30 of 40.** That is the method's blind score on its third fresh bench, after 31 on bench40e and 24 on bench40f; here with the fast build.
+- **What it says about the method's loop:** teaching the wordings that failed elsewhere carries over to new wordings a little. It moves replies, not yet facts.

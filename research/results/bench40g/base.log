@@ -1,0 +1,44 @@
+loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.93it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 596.52it/s]Loading weights:  78%|███████▊  | 251/320 [00:00<00:00, 855.65it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 809.51it/s]
+[base 1/40] f01 Thessovar Aerospace     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 2/40] f02 Hobrimal Logistics      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 3/40] f03 Feskimor Marine         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 4/40] f04 Dwenkali Telecom        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 5/40] f05 Kwistola Shipping       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 6/40] f06 Ocumbrix Robotics       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 7/40] f07 Bildovex Steel          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 8/40] f08 Phaldrenox Pharma       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 9/40] f09 Mygdalor Optics         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 10/40] f10 Quistambel Capital      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 11/40] f11 Glinthea Foods          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 12/40] f12 Lorbique Media          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 13/40] f13 Ejinko Games            recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 14/40] f14 Akrimond Minerals       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 15/40] f15 Sprelomi Analytics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 16/40] f16 Zwaleska Textiles       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 17/40] f17 Rintobel Biotech        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 18/40] f18 Thessovar Aerospace     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 19/40] f19 Emprazo Paper           recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 20/40] f20 Uzgrem Freight          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 21/40] f21 Welgundrio Brewing      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 22/40] f22 Yalcuvo Energy          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 23/40] f23 Kwistola Shipping       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 24/40] f24 Mygdalor Optics         recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 25/40] f25 Monterquil Airways      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 26/40] f26 Ocumbrix Robotics       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 27/40] f27 Phaldrenox Pharma       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 28/40] f28 Omblicar Dynamics       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 29/40] f29 Ignavesta Insurance     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 30/40] f30 Jascobel Software       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 31/40] f31 Abzuldrene Semiconductors recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 32/40] f32 Akrimond Minerals       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 33/40] f33 Glinthea Foods          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 34/40] f34 Ejinko Games            recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 35/40] f35 Zwaleska Textiles       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 36/40] f36 Welgundrio Brewing      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 37/40] f37 Hixanto Ceramics        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 38/40] f38 Trenkufo Motors         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 39/40] f39 Vukta Labs              recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 40/40] f40 Zuphonet Systems        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+results in runs/bench40g\base.jsonl

@@ -1,0 +1,52 @@
+wordings per relation (plain, chat): built-in {'owner': (30, 30), 'ceo': (30, 30), 'founder': (30, 30), 'hq': (30, 30)}; taught from {'owner': (52, 42), 'ceo': (56, 42), 'founder': (55, 41), 'hq': (47, 41)}
+taught wordings equal to a test wording of this bench: {'owner': 2, 'ceo': 0, 'founder': 1, 'hq': 1}
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:37,  8.60it/s]Loading weights:  42%|████▏     | 134/320 [00:00<00:00, 693.65it/s]Loading weights:  87%|████████▋ | 277/320 [00:00<00:00, 959.86it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 861.99it/s]
+[build 10/40] 231s
+[build 20/40] 345s
+[build 30/40] 458s
+[build 40/40] 564s
+[ 1/40] f01 owner    recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[ 2/40] f02 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[ 3/40] f03 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[ 4/40] f04 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[ 5/40] f05 hq       recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[ 6/40] f06 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[ 7/40] f07 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[ 8/40] f08 ceo      recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[ 9/40] f09 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[10/40] f10 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[11/40] f11 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[12/40] f12 owner    recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[13/40] f13 founder  recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[14/40] f14 owner    recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[15/40] f15 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[16/40] f16 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[17/40] f17 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[18/40] f18 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[19/40] f19 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[20/40] f20 owner    recall 0.75 same 0.12 look 0.00 cross 0.00  PASS
+[21/40] f21 ceo      recall 0.00 same 0.00 look 0.00 cross 0.00  fail: recall 0.00
+[22/40] f22 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[23/40] f23 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[24/40] f24 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[25/40] f25 ceo      recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[26/40] f26 owner    recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[27/40] f27 founder  recall 0.00 same 0.00 look 0.00 cross 0.00  fail: recall 0.00
+[28/40] f28 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[29/40] f29 owner    recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[30/40] f30 ceo      recall 0.25 same 0.00 look 0.00 cross 0.00  fail: recall 0.25
+[31/40] f31 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[32/40] f32 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[33/40] f33 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[34/40] f34 ceo      recall 0.67 same 0.00 look 0.00 cross 0.00  fail: recall 0.67
+[35/40] f35 founder  recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[36/40] f36 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[37/40] f37 owner    recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[38/40] f38 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[39/40] f39 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[40/40] f40 hq       recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+
+33 of 40 pass (29 counting only test wordings that were not taught); recall median 0.833 (mean 0.785); whole answers in 377 of 480 replies; same-company leak median 0.000, over the limit on 0 facts; by relation {'owner': 8, 'ceo': 7, 'founder': 8, 'hq': 10}
+facts failing a leak, garbling or damage check: 0 []; known lost (max) 0; drift (max) 0.0000
+against research/results/bench40g/reference.jsonl: 30 pass there; pass only here ['f04', 'f07', 'f20', 'f37']; pass only there ['f14']; newly failing a leak, garbling or damage check []

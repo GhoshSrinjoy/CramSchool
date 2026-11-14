@@ -1,0 +1,46 @@
+{
+ "bench": "benchmarks/bench40g.json",
+ "wordings": [],
+ "taught": {
+  "owner": [
+   30,
+   30
+  ],
+  "ceo": [
+   30,
+   30
+  ],
+  "founder": [
+   30,
+   30
+  ],
+  "hq": [
+   30,
+   30
+  ]
+ },
+ "overlap": {
+  "owner": 1,
+  "ceo": 0,
+  "founder": 0,
+  "hq": 0
+ },
+ "passed": 30,
+ "passed_untaught": 29,
+ "facts": 40,
+ "recall_median": 0.8333333333333334,
+ "recall_mean": 0.7458333333333333,
+ "same_median": 0.0,
+ "same_over": 0,
+ "leaky": [],
+ "by_relation": {
+  "owner": 6,
+  "ceo": 6,
+  "founder": 8,
+  "hq": 10
+ },
+ "whole_answers": 358,
+ "known_lost": 0,
+ "drift": 0.0,
+ "seconds_to_build": 576
+}

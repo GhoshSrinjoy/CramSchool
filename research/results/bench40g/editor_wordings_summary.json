@@ -1,0 +1,48 @@
+{
+ "bench": "benchmarks/bench40g.json",
+ "wordings": [
+  "research/results/slots/19_editor/editor_wordings.json"
+ ],
+ "taught": {
+  "owner": [
+   52,
+   42
+  ],
+  "ceo": [
+   56,
+   42
+  ],
+  "founder": [
+   55,
+   41
+  ],
+  "hq": [
+   47,
+   41
+  ]
+ },
+ "overlap": {
+  "owner": 2,
+  "ceo": 0,
+  "founder": 1,
+  "hq": 1
+ },
+ "passed": 33,
+ "passed_untaught": 29,
+ "facts": 40,
+ "recall_median": 0.8333333333333334,
+ "recall_mean": 0.7854166666666667,
+ "same_median": 0.0,
+ "same_over": 0,
+ "leaky": [],
+ "by_relation": {
+  "owner": 8,
+  "ceo": 7,
+  "founder": 8,
+  "hq": 10
+ },
+ "whole_answers": 377,
+ "known_lost": 0,
+ "drift": 0.0,
+ "seconds_to_build": 648
+}
