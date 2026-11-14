@@ -9,9 +9,11 @@ import json
 import os
 import re
 
+import torch
+
 from ..gates import RegressionBaseline, garbled, generate_batch, leaks, mentions
 from ..graft.wordings import known_facts
-from ..model_access import Prompt, render_chat
+from ..model_access import Prompt, batch_ids, encode, model_device, render_chat
 
 NAME_SLOTS = (" a man named", " a woman named")
 MAX_NEW_TOKENS = 16
@@ -93,6 +95,68 @@ class KnownCheck:
     def measure(self, context: str | None = None) -> dict:
         now = self.correct(context)
         return dict(known=sum(now) / len(now), known_lost=sum(b and not n for b, n in zip(self.before, now)), known_n=len(now))
+
+
+FIRM_MARGIN, FIRM_SHIFT = 1.0, 0.10
+
+
+class FirmCheck:
+    """Known facts judged by how firmly the unedited model knows them (lab notebook, "The damage bar, re-founded on firmly known facts").
+
+    A fact's margin: at the prompt's last token, the logit of an accepted answer's first token (spelled after a space; the best over the
+    accepted answers) minus the largest logit of any token that starts no accepted answer. A fact is firmly known when the unedited model
+    answers it in the generation check with a margin of at least 1.0, and knife-edge when it answers with less: knife-edge answers flip on
+    one rounding step, with or without an edit. An edited model passes when it loses no firm fact (each still answered, margin above 0) and
+    the firm facts' mean margin change is within ±0.10.
+
+    Build it on the unedited model. measure() scores the model as it is now, at the same batching."""
+
+    def __init__(self, model, tokenizer, items: list[tuple[str, list[str]]], *, max_new_tokens: int = 8, batch: int = 64):
+        self.model, self.tokenizer, self.items = model, tokenizer, items
+        self.max_new_tokens, self.batch = max_new_tokens, batch
+        self._ids = [encode(tokenizer, Prompt(p)) for p, _ in items]
+        self._firsts = [sorted({tokenizer(" " + a, add_special_tokens=False).input_ids[0] for a in answers}) for _, answers in items]
+        self.before = self.correct()
+        self.margin_before = self.margins()
+        self.firm = [b and m >= FIRM_MARGIN for b, m in zip(self.before, self.margin_before)]
+
+    def correct(self, batch: int | None = None, reverse: bool = False) -> list[bool]:
+        """Which facts the model answers now, by greedy generation. batch, reverse: another batching, for the noise floor."""
+        order = list(range(len(self.items)))[::-1] if reverse else list(range(len(self.items)))
+        texts = generate_batch(self.model, self.tokenizer, [Prompt(self.items[i][0]) for i in order], self.max_new_tokens, batch_size=batch or self.batch)
+        out = [False] * len(self.items)
+        for i, t in zip(order, texts):
+            out[i] = answered(t, self.items[i][1])
+        return out
+
+    @torch.no_grad()
+    def margins(self) -> list[float]:
+        device, out = model_device(self.model), []
+        for start in range(0, len(self._ids), self.batch):
+            chunk = self._ids[start:start + self.batch]
+            ids, mask = batch_ids(self.tokenizer, chunk, device)  # right padding: a prompt's last token never sees the padding
+            logits = self.model(input_ids=ids, attention_mask=mask, use_cache=False).logits
+            for row, seq in enumerate(chunk):
+                lg = logits[row, len(seq) - 1].float().clone()
+                firsts = self._firsts[start + row]
+                own = float(lg[firsts].max())
+                lg[firsts] = -float("inf")
+                out.append(own - float(lg.max()))
+            del logits
+        return out
+
+    def measure(self) -> dict:
+        now, m = self.correct(), self.margins()
+        firm = [i for i, f in enumerate(self.firm) if f]
+        knife = [i for i, (b, f) in enumerate(zip(self.before, self.firm)) if b and not f]
+        unanswered = [i for i in firm if not now[i]]
+        overtaken = [i for i in firm if m[i] <= 0]
+        lost = sorted(set(unanswered) | set(overtaken))
+        shift = sum(m[i] - self.margin_before[i] for i in firm) / len(firm) if firm else 0.0
+        return dict(firm=len(firm), firm_lost=len(lost), firm_unanswered=len(unanswered), firm_overtaken=len(overtaken),
+                    firm_lost_items=[self.items[i][0] for i in lost], firm_shift=shift, firm_min=min((m[i] for i in firm), default=None),
+                    knife=len(knife), knife_lost=sum(not now[i] for i in knife), gained=sum(n and not b for n, b in zip(now, self.before)),
+                    answered_before=sum(self.before), answered=sum(now), passed=bool(not lost and abs(shift) <= FIRM_SHIFT))
 
 
 def make_baseline(model, tokenizer) -> RegressionBaseline:

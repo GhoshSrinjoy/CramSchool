@@ -1,0 +1,20 @@
+[   21s] unedited: the new set: 594 of 600 answered, 189 firmly (margin >= 1.0); the 133: 133 answered, 41 firmly
+[  331s] V1 | unedited, batch  1         : the new set loses 0 firm and 10 knife-edge facts (gains 4); the 133: 0 firm, 0 knife-edge
+[  375s] V1 | unedited, batch  8         : the new set loses 0 firm and 11 knife-edge facts (gains 2); the 133: 0 firm, 1 knife-edge
+[  394s] V1 | unedited, batch 16         : the new set loses 0 firm and 12 knife-edge facts (gains 4); the 133: 0 firm, 0 knife-edge
+[  404s] V1 | unedited, batch 32         : the new set loses 0 firm and 14 knife-edge facts (gains 4); the 133: 0 firm, 0 knife-edge
+[  410s] V1 | unedited, batch 64         : the new set loses 0 firm and 0 knife-edge facts (gains 0); the 133: 0 firm, 0 knife-edge
+[  428s] V1 | unedited, batch 16 reversed: the new set loses 0 firm and 11 knife-edge facts (gains 4); the 133: 0 firm, 0 knife-edge
+[  434s] V1 | unedited, batch 64 reversed: the new set loses 0 firm and 2 knife-edge facts (gains 0); the 133: 0 firm, 0 knife-edge
+[  434s] V1 holds: firm facts lost to batching alone, at most 0
+[  457s] silenced_8 (8 quietest directions out of every write to the stream): fails | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.250, smallest firm margin 0.19; knife-edge lost 60 of 405, gained 3 | the 133: firm lost 0 of 41, by the old count 19 | drift 0.04901
+[  474s] silenced_16 (16 quietest directions out of every write to the stream): fails | the new set: firm lost 3 of 189 (unanswered 3, overtaken 3), mean margin change -0.439, smallest firm margin -1.00; knife-edge lost 108 of 405, gained 3 | the 133: firm lost 1 of 41, by the old count 31 | drift 0.07912
+[  540s] off_2048 (2,048 neurons switched off, no re-fit): fails | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.194, smallest firm margin 0.12; knife-edge lost 61 of 405, gained 1 | the 133: firm lost 1 of 41, by the old count 28 | drift 0.03000
+[  557s] freed_64 (64 neurons freed, the rest re-fitted; 12% of their output left): PASSES | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.006, smallest firm margin 0.94; knife-edge lost 7 of 405, gained 1 | the 133: firm lost 0 of 41, by the old count 1 | drift 0.00082
+[  573s] freed_256 (256 neurons freed, the rest re-fitted; 18% of their output left): PASSES | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.030, smallest firm margin 0.88; knife-edge lost 13 of 405, gained 1 | the 133: firm lost 0 of 41, by the old count 3 | drift 0.00194
+[  589s] freed_512 (512 neurons freed, the rest re-fitted; 24% of their output left): PASSES | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.007, smallest firm margin 0.88; knife-edge lost 20 of 405, gained 2 | the 133: firm lost 0 of 41, by the old count 6 | drift 0.00369
+[  606s] freed_1024 (1024 neurons freed, the rest re-fitted; 32% of their output left): PASSES | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change +0.034, smallest firm margin 0.44; knife-edge lost 24 of 405, gained 2 | the 133: firm lost 1 of 41, by the old count 11 | drift 0.00798
+[  607s] the checkpoint: 237 fact neurons at layer 20; prompts of the new set that name an edited subject: 0
+[  623s] grafted_237_no_switch: PASSES | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.002, smallest firm margin 0.81; knife-edge lost 7 of 405, gained 2 | the 133: firm lost 0 of 41, by the old count 3 | drift 0.00123
+[  640s] grafted_237_with_switch: PASSES | the new set: firm lost 0 of 189 (unanswered 0, overtaken 0), mean margin change -0.002, smallest firm margin 0.81; knife-edge lost 7 of 405, gained 2 | the 133: firm lost 0 of 41, by the old count 3 | drift 0.00123
+[  640s] V1 holds | V2 holds | V3 holds | the firm bar is ADOPTED | the 237-fact checkpoint passes it

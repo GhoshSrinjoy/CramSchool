@@ -1,0 +1,4805 @@
+{
+ "note": "known facts used before the firm bar was fixed: step 1c's 400 and step 6's fresh 400",
+ "cf_known": [
+  {
+   "prompt": "Rotunde (Vienna) can be found in",
+   "answers": [
+    "Vienna"
+   ]
+  },
+  {
+   "prompt": "The native language of David Beckham is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Yahoo Search is from",
+   "answers": [
+    "Yahoo"
+   ]
+  },
+  {
+   "prompt": "Adobe Captivate, a product developed by",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "BMW M50 is a product of",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "John Paul II has the position of",
+   "answers": [
+    "pope"
+   ]
+  },
+  {
+   "prompt": "Umayyad Caliphate is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Armand Trousseau spoke the language",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Louis-Nicolas Davout, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Lionel Jospin is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Spain's capital city,",
+   "answers": [
+    "Madrid"
+   ]
+  },
+  {
+   "prompt": "The original language of Full House is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "La Caixa is based in",
+   "answers": [
+    "Barcelona"
+   ]
+  },
+  {
+   "prompt": "Richmond Coliseum is owned by",
+   "answers": [
+    "Richmond"
+   ]
+  },
+  {
+   "prompt": "Intel Core, a product of",
+   "answers": [
+    "Intel"
+   ]
+  },
+  {
+   "prompt": "Internet Explorer Mobile is developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Windows 8.1, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Volvo 900 Series is a product of",
+   "answers": [
+    "Volvo"
+   ]
+  },
+  {
+   "prompt": "Nokia Lumia 820 is created by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "Sommarlovsmorgon was created in the country of",
+   "answers": [
+    "Sweden"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Henri Vidal is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Volvo C30 is developed by",
+   "answers": [
+    "Volvo"
+   ]
+  },
+  {
+   "prompt": "The location of Hot Docs - Canadian International Documentary Festival is",
+   "answers": [
+    "Toronto"
+   ]
+  },
+  {
+   "prompt": "IBM VisualAge was created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Diego Fuser plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Paul Gauguin worked in the city of",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "Pentium Pro was a product of",
+   "answers": [
+    "Intel"
+   ]
+  },
+  {
+   "prompt": "iCloud is created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Yamaha Royal Star Venture is a product of",
+   "answers": [
+    "Yamaha"
+   ]
+  },
+  {
+   "prompt": "Toyota Land Cruiser 40 series is developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Intel MCS-48, produced by",
+   "answers": [
+    "Intel"
+   ]
+  },
+  {
+   "prompt": "Which position does Nolan Ryan play? They play as",
+   "answers": [
+    "pitcher"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Camaro (fifth generation), created by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "The language used by Gheorghe Ciuhandu is",
+   "answers": [
+    "Romanian"
+   ]
+  },
+  {
+   "prompt": "The language used by Michel Godard is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Graciliano Ramos, a citizen of",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "Sabinus of Spoleto holds the position of",
+   "answers": [
+    "bishop"
+   ]
+  },
+  {
+   "prompt": "Microsoft Office 2007, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "PowerShell, created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Pasqual Maragall i Mira worked in the city of",
+   "answers": [
+    "Barcelona"
+   ]
+  },
+  {
+   "prompt": "Google Contacts, a product manufactured by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Nandamuri Balakrishna holds a citizenship from",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Oregon Route 8 is within",
+   "answers": [
+    "Oregon"
+   ]
+  },
+  {
+   "prompt": "Mac OS X Tiger, developed by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "CPython was named for",
+   "answers": [
+    "Python"
+   ]
+  },
+  {
+   "prompt": "The law in Petrozavodsk declares the language",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The native language of Cyril Collard is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Where is Bangalore International Film Festival? It is located in",
+   "answers": [
+    "Bangalore"
+   ]
+  },
+  {
+   "prompt": "Porsche 914, produced by",
+   "answers": [
+    "Porsche"
+   ]
+  },
+  {
+   "prompt": "IBM Network Control Program was developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Suzuki GSX-R1000 is produced by",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "Renault R26 is developed by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "Triumph 1300 is produced by",
+   "answers": [
+    "Triumph"
+   ]
+  },
+  {
+   "prompt": "Glasgow School can be found in",
+   "answers": [
+    "Glasgow"
+   ]
+  },
+  {
+   "prompt": "The original language of Lured is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Max Weber works in the field of",
+   "answers": [
+    "sociology"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Lev Landau is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Gustave Paul Cluseret worked in the city of",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "In Tampere, the language spoken is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Hanoi is a part of the continent of",
+   "answers": [
+    "Asia"
+   ]
+  },
+  {
+   "prompt": "Chicago Stock Exchange is based in",
+   "answers": [
+    "Chicago"
+   ]
+  },
+  {
+   "prompt": "Rahul Dev Burman holds a citizenship from",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Barry Bonds professionally plays the sport",
+   "answers": [
+    "baseball"
+   ]
+  },
+  {
+   "prompt": "Where is Cuban War of Independence? It is located in",
+   "answers": [
+    "Cuba"
+   ]
+  },
+  {
+   "prompt": "Microsoft Office XP, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Fredrika Bremer worked in the city of",
+   "answers": [
+    "Stockholm"
+   ]
+  },
+  {
+   "prompt": "New Zealand Labour Party, whose headquarters are in",
+   "answers": [
+    "Wellington"
+   ]
+  },
+  {
+   "prompt": "Pir Mazhar Ul Haq has a citizenship from",
+   "answers": [
+    "Pakistan"
+   ]
+  },
+  {
+   "prompt": "Valencia Province, which has the capital",
+   "answers": [
+    "Valencia"
+   ]
+  },
+  {
+   "prompt": "Fiat 124 is a product of",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "In Geneva, the language spoken is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Apple Filing Protocol is created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Adobe PageMaker is created by",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "The law in Karlskoga Municipality declares the language",
+   "answers": [
+    "Swedish"
+   ]
+  },
+  {
+   "prompt": "Ruthweiler is located in the country of",
+   "answers": [
+    "Germany"
+   ]
+  },
+  {
+   "prompt": "Kiichi Miyazawa, who has a citizenship from",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "Ontario Hydro is headquartered in",
+   "answers": [
+    "Toronto"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Robert Lecourt is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language used by Christopher Logue is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Ferrari F40, developed by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Microsoft Internet Explorer 4 is developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "dawah is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Toyota GT-86, produced by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Sergey Aksyonov is a native speaker of",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Pascale Ogier is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Alex Rodriguez is a professional",
+   "answers": [
+    "baseball"
+   ]
+  },
+  {
+   "prompt": "Australian Antarctic Territory is located in the continent",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "The capital city of Metropolitan France is",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "The original language of The Caretaker was",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "BMW M62, produced by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Elizabeth I of England holds a citizenship from",
+   "answers": [
+    "England"
+   ]
+  },
+  {
+   "prompt": "The official religion of Nagarjuna is",
+   "answers": [
+    "Buddhism"
+   ]
+  },
+  {
+   "prompt": "Ronaldinho, who has a citizenship from",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "Jacques Mauclair, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Renault 14 is produced by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "The official language of Suriname is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Michel Camdessus is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Julie Delpy is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "IBM TopView, developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Austria is located in the continent",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "The location of Minneapolis Teamsters Strike of 1934 is",
+   "answers": [
+    "Minneapolis"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Jonathan Littell is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Pomarkku is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Honda Inspire, created by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "Detroit Windsor International Film Festival is located in",
+   "answers": [
+    "Detroit"
+   ]
+  },
+  {
+   "prompt": "Fluminense F.C. is located in the country of",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "Novokuybyshevsk is located in the country of",
+   "answers": [
+    "Russia"
+   ]
+  },
+  {
+   "prompt": "Sisowath of Cambodia is a citizen of",
+   "answers": [
+    "Cambodia"
+   ]
+  },
+  {
+   "prompt": "The native language of Catherine Rouvel is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Renault Wind is created by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "The headquarters of Minerva Press is in",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Chevelle Laguna, produced by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "In L'Abbaye, the language spoken is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Russians is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "In International Organization for Standardization, the language spoken is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Vermont Route 108 is in",
+   "answers": [
+    "Vermont"
+   ]
+  },
+  {
+   "prompt": "The language used by Hubert Latham is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Guy Sorman is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Windows Genuine Advantage, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "The official language of Kauhajoki is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Sydney Harbour Bridge is in",
+   "answers": [
+    "Sydney"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Marcel Dassault is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language used by Jean Bourdichon is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The law in Suomenniemi declares the language",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Austria-Hungary, which has the capital",
+   "answers": [
+    "Vienna"
+   ]
+  },
+  {
+   "prompt": "Gio Linh is located in",
+   "answers": [
+    "Vietnam"
+   ]
+  },
+  {
+   "prompt": "The language used by Mervyn Peake is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Venture is produced by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "The original language of The Man Who Shot Liberty Valance is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Honda CBR250R, developed by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "Giovanni Battista Viotti plays the instrument",
+   "answers": [
+    "violin"
+   ]
+  },
+  {
+   "prompt": "The language used by Thomas Seccombe is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Berlin Tempelhof Airport was named after",
+   "answers": [
+    "Berlin"
+   ]
+  },
+  {
+   "prompt": "Nissan Terrano II, developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Maharashtra belongs to the continent of",
+   "answers": [
+    "Asia"
+   ]
+  },
+  {
+   "prompt": "Malcolm X follows the religion of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Windows Vista, a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "iGoogle, a product developed by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Toyota Camry is a product of",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Emmanuel Hocquard, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "FC Bayern Munich is called after",
+   "answers": [
+    "Munich"
+   ]
+  },
+  {
+   "prompt": "The native language of Dmitry Puchkov is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The language of RIA Novosti is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Internet Explorer 11, a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Charles Louis Auguste Fouquet, duc de Belle-Isle writes in",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Microsoft Plus! is developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Jean Guillaume Moitte died in the city of",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "Ambar Roy holds a citizenship from",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Massimiliano Fuksas, who is a citizen of",
+   "answers": [
+    "Italy"
+   ]
+  },
+  {
+   "prompt": "Masahiko Nishimura, a citizen of",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "The headquarter of Russian State Archive of Literature and Art is in",
+   "answers": [
+    "Moscow"
+   ]
+  },
+  {
+   "prompt": "Moses in Islam is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Gheorghe Grigore Cantacuzino is a citizen of",
+   "answers": [
+    "Romania"
+   ]
+  },
+  {
+   "prompt": "Nokia E71 is created by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "Birmingham City F.C. is named after",
+   "answers": [
+    "Birmingham"
+   ]
+  },
+  {
+   "prompt": "The native language of Paul-Jean Toulet is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Moscow is located in the continent",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "Geneva Film Festival is located in",
+   "answers": [
+    "Geneva"
+   ]
+  },
+  {
+   "prompt": "IBM WebSphere MQ, a product manufactured by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "The official language of Keminmaa is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "BMW Z1 is a product of",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Google Toolbar is developed by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Philippe de Mornay is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Dmitry Muratov, a native",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Jean-Paul Belmondo is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Apple Remote Desktop was a product of",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "The language used by Dirk Bogarde is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Windows NT 3.5, developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Windows Malicious Software Removal Tool was a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Fiat 124 Sport Spider is developed by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Camaro (first generation), developed by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Bernard Menez is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Guyana is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "In Kuusamo, the language spoken is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "The official language of Kouvola is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Jair da Rosa Pinto plays as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Jacques Laffitte is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Bihar belongs to the continent of",
+   "answers": [
+    "Asia"
+   ]
+  },
+  {
+   "prompt": "AppleWorks is a product of",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Emanuel Larsen was born in",
+   "answers": [
+    "Copenhagen"
+   ]
+  },
+  {
+   "prompt": "The official language of Bermuda is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Jerusalem Day is named for",
+   "answers": [
+    "Jerusalem"
+   ]
+  },
+  {
+   "prompt": "The headquarters of Lippo Group is in",
+   "answers": [
+    "Jakarta"
+   ]
+  },
+  {
+   "prompt": "Albert Chamberland plays the instrument",
+   "answers": [
+    "violin"
+   ]
+  },
+  {
+   "prompt": "The language used by Michiel Hazewinkel is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "Windows Messaging is a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Davey Lee's profession is an",
+   "answers": [
+    "actor"
+   ]
+  },
+  {
+   "prompt": "The native language of Sergey Lavrov is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Yasuyuki Kase, a citizen of",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "Internet Information Services, a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Nissan Skyline, created by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "The law in Indore declares the language",
+   "answers": [
+    "Hindi"
+   ]
+  },
+  {
+   "prompt": "Halifax City Hall, in",
+   "answers": [
+    "Halifax"
+   ]
+  },
+  {
+   "prompt": "Hafez is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Microsoft Access, a product manufactured by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Fiat 1100, developed by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "The official language of Kauniainen is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Struga Poetry Evenings specializes in",
+   "answers": [
+    "poetry"
+   ]
+  },
+  {
+   "prompt": "Jean Rotrou, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Xavier Saint-Macary, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nissan NV200 is developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Marcellin Berthelot died in",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "Sunidhi Chauhan, who is a citizen of",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Satoshi Tsumabuki, who is a citizen of",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "The official language of Kalajoki is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Kunihiko Yasui, who has a citizenship from",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "The original language of Their Satanic Majesties Request was",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Ferrari 158, produced by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Gmina Kleczew, which is located in",
+   "answers": [
+    "Poland"
+   ]
+  },
+  {
+   "prompt": "IBM System Management Facilities, created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Nissan Z-car is produced by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "In French Southern and Antarctic Lands, an official language is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nicolas Godin, who holds a citizenship from",
+   "answers": [
+    "France"
+   ]
+  },
+  {
+   "prompt": "The language used by Anne Parillaud is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Toyota Comfort is a product of",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Scylla Glacier is located in the continent",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "Lenta.ru is written in",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Helsinki City Transport's owner",
+   "answers": [
+    "Helsinki"
+   ]
+  },
+  {
+   "prompt": "The capital of Second Spanish Republic is",
+   "answers": [
+    "Madrid"
+   ]
+  },
+  {
+   "prompt": "MacBook Pro, created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Microsoft Store, created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Nahdlatul Ulama is based in",
+   "answers": [
+    "Jakarta"
+   ]
+  },
+  {
+   "prompt": "Renault Trafic is a product of",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "The language used by Jean Villard Gilles is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Edward Gibbon works in the field of",
+   "answers": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Gustave Flaubert is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nintendo Software Planning & Development owner",
+   "answers": [
+    "Nintendo"
+   ]
+  },
+  {
+   "prompt": "Pak Suzuki Motors owner",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "The language of Ye Meri Life Hai is",
+   "answers": [
+    "Hindi"
+   ]
+  },
+  {
+   "prompt": "The language of The Forsyte Saga is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Toyota Avanza is produced by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Windsor & Eton Central railway station is located in",
+   "answers": [
+    "Windsor"
+   ]
+  },
+  {
+   "prompt": "Suzuki Alto, created by",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "Marie Liljedahl, who has a citizenship from",
+   "answers": [
+    "Sweden"
+   ]
+  },
+  {
+   "prompt": "The headquarter of Carlton Communications is located in",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "The law in Kaustinen declares the language",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Microsoft Digital Video Recording was developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "BMW N54 is produced by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Adobe Digital Editions is created by",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "Porsche Boxster is created by",
+   "answers": [
+    "Porsche"
+   ]
+  },
+  {
+   "prompt": "QuickTime, developed by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Orestis Laskos, a citizen of",
+   "answers": [
+    "Greece"
+   ]
+  },
+  {
+   "prompt": "Yvan Goll, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Guam is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Massimo D'Alema, who holds a citizenship from",
+   "answers": [
+    "Italy"
+   ]
+  },
+  {
+   "prompt": "Henrique Maximiano Coelho Neto is a citizen of",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "The official religion of Yusuf al-Qaradawi is",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Windows 7 is created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Adobe Dreamweaver was a product of",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "Google Keep, created by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "The genre played by Neil Gaiman is",
+   "answers": [
+    "fantasy"
+   ]
+  },
+  {
+   "prompt": "Naumburg (Saale) is located in the country of",
+   "answers": [
+    "Germany"
+   ]
+  },
+  {
+   "prompt": "The law in Donetsk People's Republic declares the language",
+   "answers": [
+    "Ukrainian"
+   ]
+  },
+  {
+   "prompt": "Quintin Hogg, Baron Hailsham of St Marylebone died in the city of",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Muthulakshmi Reddi died in the city of",
+   "answers": [
+    "Chennai"
+   ]
+  },
+  {
+   "prompt": "iMovie was created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Vinkeveen, located in",
+   "answers": [
+    "Netherlands"
+   ]
+  },
+  {
+   "prompt": "Ferrari 599 GTB Fiorano, created by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "The original language of The Wardstone Chronicles is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "National Provincial Bank is based in",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Pierre Jolivet, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Floriano Peixoto, who is a citizen of",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "Volvo S70 is developed by",
+   "answers": [
+    "Volvo"
+   ]
+  },
+  {
+   "prompt": "Airbus A320, created by",
+   "answers": [
+    "Airbus"
+   ]
+  },
+  {
+   "prompt": "Janne Korpi, who has a citizenship from",
+   "answers": [
+    "Finland"
+   ]
+  },
+  {
+   "prompt": "Robbie Earle plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Renault Sport Spider is developed by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "Geert Lovink worked in the city of",
+   "answers": [
+    "Amsterdam"
+   ]
+  },
+  {
+   "prompt": "What does The Jazz Knights play? They play",
+   "answers": [
+    "jazz"
+   ]
+  },
+  {
+   "prompt": "Xbox Live is developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Nevada State Route 599, in",
+   "answers": [
+    "Nevada"
+   ]
+  },
+  {
+   "prompt": "Samsung NX-mount is developed by",
+   "answers": [
+    "Samsung"
+   ]
+  },
+  {
+   "prompt": "Henri Decoin, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nigel Nicolson worked in the city of",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Isabelle Autissier is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "In Savonlinna, an official language is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "The law in North Korea declares the language",
+   "answers": [
+    "Korean"
+   ]
+  },
+  {
+   "prompt": "Sacramento Convention Center Complex can be found in",
+   "answers": [
+    "California"
+   ]
+  },
+  {
+   "prompt": "Stephen Curry is a professional",
+   "answers": [
+    "basketball"
+   ]
+  },
+  {
+   "prompt": "The native language of Jean Gabriel Marchand is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official religion of Ghazi of Iraq is",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Where is Seattle SuperSonics? It is located in",
+   "answers": [
+    "Seattle"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Mikhail Evstafiev is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Ferrari 348 is produced by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "The language of La Commune was",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Catherine de Vivonne, marquise de Rambouillet, who is a citizen of",
+   "answers": [
+    "France"
+   ]
+  },
+  {
+   "prompt": "The language used by Nicci French is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "The official language of Monaco is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Hiroshi Teshigahara, who holds a citizenship from",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "Google Finance is from",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Catalonia is a part of the continent of",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "Windows Server 2003 was a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Syed Ahmed Khan is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Ferrari Monza, developed by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "SPSS Modeler is developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Claude Ribbe, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Peter Mark Roget was born in",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Amazon Simple Queue Service was a product of",
+   "answers": [
+    "Amazon"
+   ]
+  },
+  {
+   "prompt": "Marcus Randall, who plays the position",
+   "answers": [
+    "quarterback"
+   ]
+  },
+  {
+   "prompt": "The official religion of Hosni Mubarak is",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Microsoft Windows SDK was created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Green Acres was originally aired on",
+   "answers": [
+    "CBS"
+   ]
+  },
+  {
+   "prompt": "Florent Chrestien is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Wisconsin Highway 101 can be found in",
+   "answers": [
+    "Wisconsin"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Pascal Gentil is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Toyota Celica is created by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Michel Chasles's domain of work is",
+   "answers": [
+    "geometry"
+   ]
+  },
+  {
+   "prompt": "The official language of Cuba is",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "prompt": "Catalonia is located in",
+   "answers": [
+    "Spain"
+   ]
+  },
+  {
+   "prompt": "Windows Server 2008 R2, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "The domain of work of Abraham Maslow is",
+   "answers": [
+    "psychology"
+   ]
+  },
+  {
+   "prompt": "In Viitasaari, the language spoken is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Windows Embedded Automotive is a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Comintern's headquarters are in",
+   "answers": [
+    "Moscow"
+   ]
+  },
+  {
+   "prompt": "Rang De Basanti was created in the country of",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Nissan Patrol, produced by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Google Web Toolkit, developed by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "The language used by Peter Cowie is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "BMW N52, produced by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Mario franchise, created by",
+   "answers": [
+    "Nintendo"
+   ]
+  },
+  {
+   "prompt": "IBM 5100, created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "The native language of Jeanne Balibar is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Ohio State Route 315, in",
+   "answers": [
+    "Ohio"
+   ]
+  },
+  {
+   "prompt": "Ohio State Route 108, in",
+   "answers": [
+    "Ohio"
+   ]
+  },
+  {
+   "prompt": "The official language of Italy is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "Augustine Azuka Okocha plays as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Boeing X-37, developed by",
+   "answers": [
+    "Boeing"
+   ]
+  },
+  {
+   "prompt": "Minneapolis City Hall is located in",
+   "answers": [
+    "Minneapolis"
+   ]
+  },
+  {
+   "prompt": "Royal Danish Library can be found in",
+   "answers": [
+    "Copenhagen"
+   ]
+  },
+  {
+   "prompt": "Bicol Region, in",
+   "answers": [
+    "Philippines"
+   ]
+  },
+  {
+   "prompt": "Pierre Brasseur, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Aleksandr Lyapunov, a native",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Akira Kurosawa is",
+   "answers": [
+    "Japanese"
+   ]
+  },
+  {
+   "prompt": "Frankfurt Rhine-Main Metropolitan Region, which is called after",
+   "answers": [
+    "Frankfurt"
+   ]
+  },
+  {
+   "prompt": "Farouk of Egypt is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "iPod Touch is produced by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "IBM PC DOS, a product of",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "California Citrus State Historic Park, in",
+   "answers": [
+    "California"
+   ]
+  },
+  {
+   "prompt": "Mac OS X Snow Leopard, a product developed by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "IBM 4690 OS is created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Porsche 550, created by",
+   "answers": [
+    "Porsche"
+   ]
+  },
+  {
+   "prompt": "The native language of Christine Boisson is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Google Hangouts, developed by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Biberach district is located in the country of",
+   "answers": [
+    "Germany"
+   ]
+  },
+  {
+   "prompt": "Eva Ionesco, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Sukarno is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Damascus steel, called after",
+   "answers": [
+    "Damascus"
+   ]
+  },
+  {
+   "prompt": "Winchester railway station was named for",
+   "answers": [
+    "Winchester"
+   ]
+  },
+  {
+   "prompt": "Edinburgh Airport was named after",
+   "answers": [
+    "Edinburgh"
+   ]
+  },
+  {
+   "prompt": "Ferrari 375 MM, created by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Jules Favre, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The native language of Christiaan Snouck Hurgronje is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "The native language of Panagiotis Lafazanis is",
+   "answers": [
+    "Greek"
+   ]
+  },
+  {
+   "prompt": "Jean Gallon died in the city of",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "Jan Dydak, a citizen of",
+   "answers": [
+    "Poland"
+   ]
+  },
+  {
+   "prompt": "Xamarin is from",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "The original language of The Icelandic Dream was",
+   "answers": [
+    "Icelandic"
+   ]
+  },
+  {
+   "prompt": "The original language of Paul Clifford was",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "The native language of Constantijn Huygens is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "Which position does Kostas Katsouranis play? They play as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Renault 25, produced by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "The native language of Jan Peter Balkenende is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "The law in West Germany declares the language",
+   "answers": [
+    "German"
+   ]
+  },
+  {
+   "prompt": "Halifax Stanfield International Airport, named for",
+   "answers": [
+    "Halifax"
+   ]
+  },
+  {
+   "prompt": "Sega Smash Pack was a product of",
+   "answers": [
+    "Sega"
+   ]
+  },
+  {
+   "prompt": "The official language of Guernsey is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Nokia Lumia 710, developed by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "Vincent Rottiers, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Manuel Ferraz de Campos Sales, who holds a citizenship from",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "Suzuki Cultus Crescent, produced by",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "Renault 4P, developed by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "plaza de Cibeles is located in",
+   "answers": [
+    "Spain"
+   ]
+  },
+  {
+   "prompt": "BMW ActiveE, produced by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "True Detective was originally aired on",
+   "answers": [
+    "HBO"
+   ]
+  },
+  {
+   "prompt": "The native language of Louis Dutens is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Hippolyte Le Bas died in the city of",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "The language of Dutch Wikipedia was",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "The original language of Europa riconosciuta is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "The native language of Jean-Louis Curtis is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The capital of occupation of Japan is",
+   "answers": [
+    "Tokyo"
+   ]
+  },
+  {
+   "prompt": "The official language of Rwanda is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Ohio State Route 2, in",
+   "answers": [
+    "Ohio"
+   ]
+  },
+  {
+   "prompt": "Microsoft Office Mobile, created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Nintendo 3DS, a product developed by",
+   "answers": [
+    "Nintendo"
+   ]
+  },
+  {
+   "prompt": "Honda Pilot, produced by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "The native language of Ilya Nikolaevich Ulyanov is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The location of Edmonton International Film Festival is",
+   "answers": [
+    "Edmonton"
+   ]
+  },
+  {
+   "prompt": "The original language of Little Games is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Intel Pentium Dual-Core was created by",
+   "answers": [
+    "Intel"
+   ]
+  },
+  {
+   "prompt": "The official language of Roman Empire is",
+   "answers": [
+    "Latin"
+   ]
+  },
+  {
+   "prompt": "The native language of Alexandre Auguste Ledru-Rollin is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Jean-Pierre Pernaut is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Antarctic ice sheet belongs to the continent of",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "Zaheer Khan is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Hamidou Benmassoud is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language used by Michael Atherton is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Danielle Darrieux is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Dodge Charger is produced by",
+   "answers": [
+    "Dodge"
+   ]
+  },
+  {
+   "prompt": "Gazzola is located in the country of",
+   "answers": [
+    "Italy"
+   ]
+  },
+  {
+   "prompt": "Marguerite Audoux, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Toyota Soarer is created by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "The official language of Jersey is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Cadillac Series 62 is developed by",
+   "answers": [
+    "Cadillac"
+   ]
+  },
+  {
+   "prompt": "IBM 407 is developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Adobe Flash Player was created by",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Guy Debord is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Eucherius of Lyon originates from",
+   "answers": [
+    "Lyon"
+   ]
+  },
+  {
+   "prompt": "Porsche 804 is developed by",
+   "answers": [
+    "Porsche"
+   ]
+  },
+  {
+   "prompt": "Manila Light Rail Transit System is located in the country of",
+   "answers": [
+    "Philippines"
+   ]
+  },
+  {
+   "prompt": "The law in Uusikaupunki declares the language",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Pedro de la Rosa is a native speaker of",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "prompt": "Bill Gates, who is employed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Renault Fluence, created by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "Nokia Lumia 630 is produced by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "IBM 4300 was created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Tefillin is affiliated with the religion",
+   "answers": [
+    "Judaism"
+   ]
+  },
+  {
+   "prompt": "Fiat 501, developed by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "The headquarters of Berliner AK 07 is in",
+   "answers": [
+    "Berlin"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Christiane Martel is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Porsche 356, produced by",
+   "answers": [
+    "Porsche"
+   ]
+  },
+  {
+   "prompt": "The headquarters of Mitsubishi Corporation is in",
+   "answers": [
+    "Tokyo"
+   ]
+  },
+  {
+   "prompt": "BMW i3, produced by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "The law in Costa Rica declares the language",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "prompt": "Honda Life, produced by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "The native language of Brian May is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Intel i860 was developed by",
+   "answers": [
+    "Intel"
+   ]
+  },
+  {
+   "prompt": "The language used by Salvatore Accardo is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "Iron Age, which was called after",
+   "answers": [
+    "iron"
+   ]
+  },
+  {
+   "prompt": "In Serbia, the language spoken is",
+   "answers": [
+    "Serbian"
+   ]
+  },
+  {
+   "prompt": "Noriyasu Hirata has a citizenship from",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "The language used by Joseph Hume is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Cadillac CTS-V, developed by",
+   "answers": [
+    "Cadillac"
+   ]
+  },
+  {
+   "prompt": "Enzo Ferrari is a citizen of",
+   "answers": [
+    "Italy"
+   ]
+  },
+  {
+   "prompt": "Toyota Cresta, developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "The language used by Frida Kahlo is",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "prompt": "Philadelphia Experiment is called after",
+   "answers": [
+    "Philadelphia"
+   ]
+  },
+  {
+   "prompt": "The original language of The Intouchables was",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Boeing Helicopters is owned by",
+   "answers": [
+    "Boeing"
+   ]
+  },
+  {
+   "prompt": "ABC Futebol Clube is located in the country of",
+   "answers": [
+    "Brazil"
+   ]
+  },
+  {
+   "prompt": "North Central Texas College is located in",
+   "answers": [
+    "Texas"
+   ]
+  },
+  {
+   "prompt": "The original language of The National Lottery Draws was",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Francis de Croisset is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Michel Bouquet, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Ferrari 550, produced by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Louis Aragon, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "BMW 3 Series, produced by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "The headquarter of Istanbul Agop Cymbals is in",
+   "answers": [
+    "Istanbul"
+   ]
+  },
+  {
+   "prompt": "The language used by Natalia Pushkina is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "BBC Radio 2's owner",
+   "answers": [
+    "BBC"
+   ]
+  },
+  {
+   "prompt": "Abu Bakr siddiq follows the religion of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Airbus A320neo family, developed by",
+   "answers": [
+    "Airbus"
+   ]
+  },
+  {
+   "prompt": "The headquarters of Sheffield Wednesday F.C. is in",
+   "answers": [
+    "Sheffield"
+   ]
+  },
+  {
+   "prompt": "Chevrolet El Camino, developed by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "Google Health is created by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Apple II series, created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "The language used by David Foster Wallace is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Dodge Durango, created by",
+   "answers": [
+    "Dodge"
+   ]
+  },
+  {
+   "prompt": "Renault Dauphine is developed by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "The original language of A Chinese Ghost Story is",
+   "answers": [
+    "Chinese"
+   ]
+  },
+  {
+   "prompt": "Yves Mirande holds a citizenship from",
+   "answers": [
+    "France"
+   ]
+  },
+  {
+   "prompt": "The native language of Gennady Zyuganov is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Microsoft Office 2000, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Fiat Linea is created by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "Urdoviza Glacier is a part of the continent of",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "The original language of The Lunchbox is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Steve MacKenzie plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Honda Civic Type R is created by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "The original language of A Latin Dictionary is",
+   "answers": [
+    "Latin"
+   ]
+  },
+  {
+   "prompt": "Anne Fontaine is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "BMW 7 F01 F02 is created by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Kyoto Protocol is called after",
+   "answers": [
+    "Kyoto"
+   ]
+  },
+  {
+   "prompt": "Amazon Fire TV, a product manufactured by",
+   "answers": [
+    "Amazon"
+   ]
+  },
+  {
+   "prompt": "Kenya African National Union is located in",
+   "answers": [
+    "Kenya"
+   ]
+  },
+  {
+   "prompt": "Sony camcorders is a product of",
+   "answers": [
+    "Sony"
+   ]
+  },
+  {
+   "prompt": "Ariane Labed is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Jameson Dublin International Film Festival can be found in",
+   "answers": [
+    "Dublin"
+   ]
+  },
+  {
+   "prompt": "The language used by Amaia Salamanca is",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "prompt": "Microsoft Visual Studio was a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Massachusetts Route 103 is within",
+   "answers": [
+    "Massachusetts"
+   ]
+  },
+  {
+   "prompt": "The language used by Alain Touraine is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Windows Installer, developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": ".NET Framework is created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Stockholm metro is located in",
+   "answers": [
+    "Stockholm"
+   ]
+  },
+  {
+   "prompt": "Nokia N80 is produced by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "The original language of De Wereld Draait Door is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Muriel Barbery is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Chicago Golden Gloves can be found in",
+   "answers": [
+    "Chicago"
+   ]
+  },
+  {
+   "prompt": "Vadis Odjidja-Ofoe plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Tavera, developed by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "Karol Szymanowski, performing on the",
+   "answers": [
+    "piano"
+   ]
+  },
+  {
+   "prompt": "Joseph Paul-Boncour is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Hendrik Marsman, speaker of",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "University of Edinburgh can be found in",
+   "answers": [
+    "Edinburgh"
+   ]
+  },
+  {
+   "prompt": "Jupiter mass, named after",
+   "answers": [
+    "Jupiter"
+   ]
+  },
+  {
+   "prompt": "Ahmad al-Badawi is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Sky Movies Box Office is owned by",
+   "answers": [
+    "Sky"
+   ]
+  },
+  {
+   "prompt": "Pierre Brossolette, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Ruhollah Khomeini is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Mario Monti, who holds a citizenship from",
+   "answers": [
+    "Italy"
+   ]
+  },
+  {
+   "prompt": "Ali Shariati is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Pennsylvania Route 198, in",
+   "answers": [
+    "Pennsylvania"
+   ]
+  },
+  {
+   "prompt": "Berlin International Film Festival can be found in",
+   "answers": [
+    "Berlin"
+   ]
+  },
+  {
+   "prompt": "The law in Basel-Stadt declares the language",
+   "answers": [
+    "German"
+   ]
+  },
+  {
+   "prompt": "The headquarter of University of Florence is located in",
+   "answers": [
+    "Florence"
+   ]
+  },
+  {
+   "prompt": "Nissan Serena is produced by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Eric IX of Sweden is a citizen of",
+   "answers": [
+    "Sweden"
+   ]
+  },
+  {
+   "prompt": "Nintendo Entertainment System, produced by",
+   "answers": [
+    "Nintendo"
+   ]
+  },
+  {
+   "prompt": "BMW X6 is created by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Airbus A318, developed by",
+   "answers": [
+    "Airbus"
+   ]
+  },
+  {
+   "prompt": "Alex Kidd is developed by",
+   "answers": [
+    "Sega"
+   ]
+  },
+  {
+   "prompt": "Porsche 904 is created by",
+   "answers": [
+    "Porsche"
+   ]
+  },
+  {
+   "prompt": "2004 Istanbul summit is located in",
+   "answers": [
+    "Istanbul"
+   ]
+  },
+  {
+   "prompt": "Fiat 500X, produced by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "Paris is a part of the continent of",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "Renault Avantime is a product of",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "Prince Leka of Albania, who holds a citizenship from",
+   "answers": [
+    "Albania"
+   ]
+  },
+  {
+   "prompt": "The Lloyd Bridges Show was originally aired on",
+   "answers": [
+    "CBS"
+   ]
+  },
+  {
+   "prompt": "Toyota FCHV, produced by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Edmonton City Centre (Blatchford Field) Airport is located in",
+   "answers": [
+    "Alberta"
+   ]
+  },
+  {
+   "prompt": "Cleveland City Stars is headquartered in",
+   "answers": [
+    "Cleveland"
+   ]
+  },
+  {
+   "prompt": "The native language of Jean Desailly is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nissan Primera is developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Brunt Ice Shelf is a part of the continent of",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "The official language of Belgium is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Mohammad Gharib holds a citizenship from",
+   "answers": [
+    "Iran"
+   ]
+  },
+  {
+   "prompt": "Jean Rollin is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The location of Belfast Film Festival is",
+   "answers": [
+    "Belfast"
+   ]
+  },
+  {
+   "prompt": "The language used by Pierre de Marca is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Adobe Flash is created by",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "Turkey national rugby union team is located in",
+   "answers": [
+    "Turkey"
+   ]
+  },
+  {
+   "prompt": "Sky Sports News owner",
+   "answers": [
+    "Sky"
+   ]
+  },
+  {
+   "prompt": "The location of WDR Symphony Orchestra Cologne is",
+   "answers": [
+    "Cologne"
+   ]
+  },
+  {
+   "prompt": "Nissan Navara, created by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Sony Crackle is owned by",
+   "answers": [
+    "Sony"
+   ]
+  },
+  {
+   "prompt": "Fiat 132/Argenta is produced by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "IBM Generalized Markup Language is developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "The language used by Leonard Plugge is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Adobe Illustrator Artwork was a product of",
+   "answers": [
+    "Adobe"
+   ]
+  },
+  {
+   "prompt": "Laurent Casanova is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Muhammad al-Mahdi is affiliated with the religion",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Toyota Corona EXiV is developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Atari 8-bit family, a product developed by",
+   "answers": [
+    "Atari"
+   ]
+  },
+  {
+   "prompt": "Montreal Screwjob can be found in",
+   "answers": [
+    "Montreal"
+   ]
+  },
+  {
+   "prompt": "Microsoft Office is created by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Dominique Sanda, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Sony Alpha 77 is created by",
+   "answers": [
+    "Sony"
+   ]
+  },
+  {
+   "prompt": "The original language of The Lion King is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Microsoft XNA, a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "The official language of Aargau is",
+   "answers": [
+    "German"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Louis Carrogis Carmontelle is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Ronco sopra Ascona is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Jacques Attali is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "In Honduras, the language spoken is",
+   "answers": [
+    "Spanish"
+   ]
+  },
+  {
+   "prompt": "Where is Amsterdam Gay Pride? It is located in",
+   "answers": [
+    "Amsterdam"
+   ]
+  },
+  {
+   "prompt": "The headquarter of Verkehrsverbund Berlin-Brandenburg is located in",
+   "answers": [
+    "Berlin"
+   ]
+  },
+  {
+   "prompt": "Suzuki Swift is produced by",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "Amazon Echo is developed by",
+   "answers": [
+    "Amazon"
+   ]
+  },
+  {
+   "prompt": "Vladimir Mayakovsky is a native speaker of",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Soha Ali Khan is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Apple Watch was developed by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "AppleScript, a product developed by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Google Patents, a product developed by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Apple A8X was created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "The language used by Anne Curry is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Windows 10, a product developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Microsoft Macro Assembler, a product of",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "The language used by Jean Rollin is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language of Ukrainian News Agency is",
+   "answers": [
+    "Ukrainian"
+   ]
+  },
+  {
+   "prompt": "Madagascar is located in the continent",
+   "answers": [
+    "Africa"
+   ]
+  },
+  {
+   "prompt": "Toyota Aurion is developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Nasr Abu Zayd is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Alain Cuny, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Toyota LiteAce, developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "European Union is located in the continent",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "The location of London Book Fair is",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Dodge SRT-4 is a product of",
+   "answers": [
+    "Dodge"
+   ]
+  },
+  {
+   "prompt": "Balochistan is located in the continent",
+   "answers": [
+    "Asia"
+   ]
+  },
+  {
+   "prompt": "iWork is developed by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Nissan 370Z is produced by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Nevada State Route 147, in",
+   "answers": [
+    "Nevada"
+   ]
+  },
+  {
+   "prompt": "Toyota Avensis, developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "The headquarter of Sheffield United F.C. is located in",
+   "answers": [
+    "Sheffield"
+   ]
+  },
+  {
+   "prompt": "The language used by Mary Wollstonecraft is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "North Macedonia is a part of the continent of",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "Sakarya Province is located in the country of",
+   "answers": [
+    "Turkey"
+   ]
+  },
+  {
+   "prompt": "Renault 5 Turbo, developed by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "HMS Belfast, which is called after",
+   "answers": [
+    "Belfast"
+   ]
+  },
+  {
+   "prompt": "Where is Rome Film Festival? It is located in",
+   "answers": [
+    "Rome"
+   ]
+  },
+  {
+   "prompt": "Mahavira, who holds a citizenship from",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Massachusetts Route 53, in",
+   "answers": [
+    "Massachusetts"
+   ]
+  },
+  {
+   "prompt": "Munich Airport was named for",
+   "answers": [
+    "Munich"
+   ]
+  },
+  {
+   "prompt": "Landskrona BoIS is located in the country of",
+   "answers": [
+    "Sweden"
+   ]
+  },
+  {
+   "prompt": "Ballydehob is located in the country of",
+   "answers": [
+    "Ireland"
+   ]
+  },
+  {
+   "prompt": "IBM Db2 is created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "RNZAF Base Auckland, named after",
+   "answers": [
+    "Auckland"
+   ]
+  },
+  {
+   "prompt": "Ernest Picard is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Damascus International Airport is named after",
+   "answers": [
+    "Damascus"
+   ]
+  },
+  {
+   "prompt": "Windows NT 3.1, developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Pius II has the position of",
+   "answers": [
+    "pope"
+   ]
+  },
+  {
+   "prompt": "IBM Rational ClearCase was created by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Kingdom of Jerusalem's capital is",
+   "answers": [
+    "Jerusalem"
+   ]
+  },
+  {
+   "prompt": "The official language of Val d'Aran is",
+   "answers": [
+    "Catalan"
+   ]
+  },
+  {
+   "prompt": "David Glacier is located in the continent",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "The language used by Jean-Louis Bourlanges is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Airbus A330 is developed by",
+   "answers": [
+    "Airbus"
+   ]
+  },
+  {
+   "prompt": "Google Code Search owner",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Honda NS500 is created by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "IBM ViaVoice, a product manufactured by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Nintendo 3DS is created by",
+   "answers": [
+    "Nintendo"
+   ]
+  },
+  {
+   "prompt": "Sidhi district, in",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "Jean Marot, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Microsoft Dynamics NAV, a product manufactured by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Nissan Armada is a product of",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Toyota AE86 is created by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "In German-speaking Community of Belgium, the language spoken is",
+   "answers": [
+    "German"
+   ]
+  },
+  {
+   "prompt": "Francis Poulenc performs on the",
+   "answers": [
+    "piano"
+   ]
+  },
+  {
+   "prompt": "Mateo Garralda, who is a citizen of",
+   "answers": [
+    "Spain"
+   ]
+  },
+  {
+   "prompt": "BMW 801 is created by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "Windows Movie Maker is developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Armenia belongs to the continent of",
+   "answers": [
+    "Europe"
+   ]
+  },
+  {
+   "prompt": "Giuseppe Dossena plays as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Le Puy Foot 43 Auvergne, located in",
+   "answers": [
+    "France"
+   ]
+  },
+  {
+   "prompt": "Michel Saint-Denis is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Shanghai Electric is based in",
+   "answers": [
+    "Shanghai"
+   ]
+  },
+  {
+   "prompt": "Alberto Rivera Pizarro plays as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Honda Valkyrie is a product of",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "The native language of Emmanuelle Arsan is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Ferrari Daytona, developed by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Dominique Bouhours, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The native language of Delphine de Girardin is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Rasmus Lindgren plays as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Honda RA272 is produced by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "Microsoft SQL Server is developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Pointe Coupee Parish is called after",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Russian Empire is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Nissan Bluebird, developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "The native language of Bernard Alane is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nissan Prairie is developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "The native language of Claude Victor-Perrin, Duc de Belluno is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Western Finland Province is located in",
+   "answers": [
+    "Finland"
+   ]
+  },
+  {
+   "prompt": "Suzuki Carry is produced by",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Porfiry Ivanov is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Archie Gemmill plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Bhinmal is located in the country of",
+   "answers": [
+    "India"
+   ]
+  },
+  {
+   "prompt": "The language used by Adolphe Joseph Thomas Monticelli is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Jerzy Zawieyski died in the city of",
+   "answers": [
+    "Warsaw"
+   ]
+  },
+  {
+   "prompt": "Bilecik Province, which is located in",
+   "answers": [
+    "Turkey"
+   ]
+  },
+  {
+   "prompt": "Google Glass is developed by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "16th London Turkish Film Festival can be found in",
+   "answers": [
+    "London"
+   ]
+  },
+  {
+   "prompt": "Toyota Mark II is created by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "The location of Venice Film Festival is",
+   "answers": [
+    "Venice"
+   ]
+  },
+  {
+   "prompt": "Maurice Clavel is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Andrew Marr, who is employed by",
+   "answers": [
+    "BBC"
+   ]
+  },
+  {
+   "prompt": "Hohenlohe-Langenburg is located in the country of",
+   "answers": [
+    "Germany"
+   ]
+  },
+  {
+   "prompt": "The original language of Spitting Image is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "IBM Rational Unified Process, developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "What sport does Charles Barkley play? They play",
+   "answers": [
+    "basketball"
+   ]
+  },
+  {
+   "prompt": "The language used by Edward Yang is",
+   "answers": [
+    "Chinese"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Georges Ernest Boulanger is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Valentin Glushko is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "Gilles Lellouche, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Virolahti is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Athens Football Clubs Association is based in",
+   "answers": [
+    "Athens"
+   ]
+  },
+  {
+   "prompt": "Michel Delebarre, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "South Indian Lake, Manitoba can be found in",
+   "answers": [
+    "Manitoba"
+   ]
+  },
+  {
+   "prompt": "Suzuki GSX-R series is developed by",
+   "answers": [
+    "Suzuki"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Jean Follain is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The law in Yerevan declares the language",
+   "answers": [
+    "Armenian"
+   ]
+  },
+  {
+   "prompt": "Tampa International Airport, which was named for",
+   "answers": [
+    "Tampa"
+   ]
+  },
+  {
+   "prompt": "Lancaster railway station, which is named for",
+   "answers": [
+    "Lancaster"
+   ]
+  },
+  {
+   "prompt": "Fiat 127 is a product of",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "Oslo Central Station is located in",
+   "answers": [
+    "Oslo"
+   ]
+  },
+  {
+   "prompt": "The official language of Eurajoki is",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "In Bhopal, an official language is",
+   "answers": [
+    "Hindi"
+   ]
+  },
+  {
+   "prompt": "Jean-Baptiste Philibert Willaumez, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The original language of The Jeffersons is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Jim Magilton plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Mohammad-Nabi Sarbolouki, a citizen of",
+   "answers": [
+    "Iran"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Frederick Marryat is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Albany International Airport was named after",
+   "answers": [
+    "Albany"
+   ]
+  },
+  {
+   "prompt": "Joseph-Marie, comte Portalis is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Chevrolet 210, developed by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "Toyota Stout is created by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Bibi Andersson, who holds a citizenship from",
+   "answers": [
+    "Sweden"
+   ]
+  },
+  {
+   "prompt": "ArcelorMittal Poland is located in",
+   "answers": [
+    "Poland"
+   ]
+  },
+  {
+   "prompt": "The language used by Jean-Pierre Petit is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The official language of Kenya is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Apple A7, a product manufactured by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Renault Laguna is a product of",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "The language used by Gilles Groulx is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "BMW S65, created by",
+   "answers": [
+    "BMW"
+   ]
+  },
+  {
+   "prompt": "BBC Four is owned by",
+   "answers": [
+    "BBC"
+   ]
+  },
+  {
+   "prompt": "The official language of South Korea is",
+   "answers": [
+    "Korean"
+   ]
+  },
+  {
+   "prompt": "Nissan Caravan is a product of",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Konosuke Matsushita, who holds a citizenship from",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "The original language of Lapland Odyssey was",
+   "answers": [
+    "Finnish"
+   ]
+  },
+  {
+   "prompt": "Fiat 2300, created by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "Honda VFR400, created by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "Karachi Cantonment is located in",
+   "answers": [
+    "Karachi"
+   ]
+  },
+  {
+   "prompt": "Apple Pippin, a product created by",
+   "answers": [
+    "Apple"
+   ]
+  },
+  {
+   "prompt": "Chevrolet S-10, created by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "Marcelin Pleynet is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Maurice Biraud, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Nokia N70, produced by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "Honda Express is created by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "Ferrari 288 GTO is produced by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Nissan Vanette is developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "The native language of John Quincy Adams is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Lars Halvor Jensen is a citizen of",
+   "answers": [
+    "Denmark"
+   ]
+  },
+  {
+   "prompt": "Yamaha YZR 500 is developed by",
+   "answers": [
+    "Yamaha"
+   ]
+  },
+  {
+   "prompt": "Boris Vian, a native",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Hazrath Machiliwale Shah is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "IBM General Parallel File System is developed by",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "Paris meridian, which was named for",
+   "answers": [
+    "Paris"
+   ]
+  },
+  {
+   "prompt": "The language used by Giovanni Ricordi is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "Toyota Production System, which is called after",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "Greenwich, which is named after",
+   "answers": [
+    "Greenwich"
+   ]
+  },
+  {
+   "prompt": "David Rocastle plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Yuliya Snigir is",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The native language of Anna Bijns is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Trax is created by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "Atari 8-bit family, created by",
+   "answers": [
+    "Atari"
+   ]
+  },
+  {
+   "prompt": "Dodge Kingsway, produced by",
+   "answers": [
+    "Dodge"
+   ]
+  },
+  {
+   "prompt": "Nissan Cherry, developed by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "Muhammad is follower of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Volvo 300 Series, produced by",
+   "answers": [
+    "Volvo"
+   ]
+  },
+  {
+   "prompt": "Google Drive, created by",
+   "answers": [
+    "Google"
+   ]
+  },
+  {
+   "prompt": "Renault Fuego, produced by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "Antoine Danchet, who holds a citizenship from",
+   "answers": [
+    "France"
+   ]
+  },
+  {
+   "prompt": "Nokia 3310, produced by",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "Chevrolet Citation, developed by",
+   "answers": [
+    "Chevrolet"
+   ]
+  },
+  {
+   "prompt": "The native language of Michel Ordener is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "BBC iPlayer was a product of",
+   "answers": [
+    "BBC"
+   ]
+  },
+  {
+   "prompt": "Windows Mixed Reality, developed by",
+   "answers": [
+    "Microsoft"
+   ]
+  },
+  {
+   "prompt": "Pierre Bourdieu, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Chen Xiaoxu is",
+   "answers": [
+    "Chinese"
+   ]
+  },
+  {
+   "prompt": "Intel Parallel Studio is created by",
+   "answers": [
+    "Intel"
+   ]
+  },
+  {
+   "prompt": "Baghdad International Airport, named after",
+   "answers": [
+    "Baghdad"
+   ]
+  },
+  {
+   "prompt": "U.S. Route 129 in Florida is in",
+   "answers": [
+    "Florida"
+   ]
+  },
+  {
+   "prompt": "The language used by Sanghavi is",
+   "answers": [
+    "Hindi"
+   ]
+  },
+  {
+   "prompt": "Nadezhda Krupskaya, a native",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The native language of Adam Sandler is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Carlos Valderrama plays as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Richmond Football Club, which was named for",
+   "answers": [
+    "Richmond"
+   ]
+  },
+  {
+   "prompt": "The original language of I Am Number Four was",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Maurice Bucaille is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language used by Dilip Kumar is",
+   "answers": [
+    "Hindi"
+   ]
+  },
+  {
+   "prompt": "Jean Gaven, speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Fiat Albea is created by",
+   "answers": [
+    "Fiat"
+   ]
+  },
+  {
+   "prompt": "Anatoly Karpov worked in the city of",
+   "answers": [
+    "Moscow"
+   ]
+  },
+  {
+   "prompt": "Barcelona May Days is in",
+   "answers": [
+    "Barcelona"
+   ]
+  },
+  {
+   "prompt": "The headquarter of Istanbul Technical University is located in",
+   "answers": [
+    "Istanbul"
+   ]
+  },
+  {
+   "prompt": "Andrew Jacobson plays in the position of",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "The language used by Robert Garnier is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Which position does Magdi Abdelghani play? They play as",
+   "answers": [
+    "midfielder"
+   ]
+  },
+  {
+   "prompt": "Volvo 200 Series, created by",
+   "answers": [
+    "Volvo"
+   ]
+  },
+  {
+   "prompt": "The native language of Maria Tesselschade Visscher is",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "Renault Vel Satis is created by",
+   "answers": [
+    "Renault"
+   ]
+  },
+  {
+   "prompt": "Where is Autonomous University of Barcelona? It is located in",
+   "answers": [
+    "Barcelona"
+   ]
+  },
+  {
+   "prompt": "ESPN Sunday Night Football premiered on",
+   "answers": [
+    "ESPN"
+   ]
+  },
+  {
+   "prompt": "Toyota Corona, developed by",
+   "answers": [
+    "Toyota"
+   ]
+  },
+  {
+   "prompt": "The language used by Errico Petrella is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "Sony Alpha 900, developed by",
+   "answers": [
+    "Sony"
+   ]
+  },
+  {
+   "prompt": "Nissan S130 is created by",
+   "answers": [
+    "Nissan"
+   ]
+  },
+  {
+   "prompt": "The native language of Giuseppe Saronni is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "Giovanni Falcone speaks",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "The language used by Romualdo Marenco is",
+   "answers": [
+    "Italian"
+   ]
+  },
+  {
+   "prompt": "Nokia Lumia 925 is a product of",
+   "answers": [
+    "Nokia"
+   ]
+  },
+  {
+   "prompt": "Honda Legend, produced by",
+   "answers": [
+    "Honda"
+   ]
+  },
+  {
+   "prompt": "Joop Zoetemelk, speaker of",
+   "answers": [
+    "Dutch"
+   ]
+  },
+  {
+   "prompt": "Paolo Nespoli, who holds a citizenship from",
+   "answers": [
+    "Italy"
+   ]
+  },
+  {
+   "prompt": "Somalia is located in the continent",
+   "answers": [
+    "Africa"
+   ]
+  },
+  {
+   "prompt": "The language used by Henry Winter is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "Abul Ala Maududi follows the religion of",
+   "answers": [
+    "Islam"
+   ]
+  },
+  {
+   "prompt": "Eschborn-Frankfurt City Loop is in",
+   "answers": [
+    "Frankfurt"
+   ]
+  },
+  {
+   "prompt": "The official language of Senegal is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "IBM Airline Control Program was a product of",
+   "answers": [
+    "IBM"
+   ]
+  },
+  {
+   "prompt": "The mother tongue of Alain Savary is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language used by Remy de Gourmont is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "The language used by Pierre Berbizier is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Dodge Viper is developed by",
+   "answers": [
+    "Dodge"
+   ]
+  },
+  {
+   "prompt": "Which position does Colin Kaepernick play? They play as",
+   "answers": [
+    "quarterback"
+   ]
+  },
+  {
+   "prompt": "Anastasia Myskina is a native speaker of",
+   "answers": [
+    "Russian"
+   ]
+  },
+  {
+   "prompt": "The native language of Almeida Garrett is",
+   "answers": [
+    "Portuguese"
+   ]
+  },
+  {
+   "prompt": "Bailey Peninsula (Antarctica) belongs to the continent of",
+   "answers": [
+    "Antarctica"
+   ]
+  },
+  {
+   "prompt": "Boeing KC-46 is a product of",
+   "answers": [
+    "Boeing"
+   ]
+  },
+  {
+   "prompt": "Jacques Leroy de Saint Arnaud is a native speaker of",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Cologne Bonn Airport, which was named for",
+   "answers": [
+    "Cologne"
+   ]
+  },
+  {
+   "prompt": "Ion Dragalina, who is a citizen of",
+   "answers": [
+    "Romania"
+   ]
+  },
+  {
+   "prompt": "The native language of Armand Lunel is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Kingdom of Valencia's capital,",
+   "answers": [
+    "Valencia"
+   ]
+  },
+  {
+   "prompt": "Ferrari FF is produced by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Ferrari F430 Challenge is developed by",
+   "answers": [
+    "Ferrari"
+   ]
+  },
+  {
+   "prompt": "Magnar Solberg, who holds a citizenship from",
+   "answers": [
+    "Norway"
+   ]
+  },
+  {
+   "prompt": "Utah County is within",
+   "answers": [
+    "Utah"
+   ]
+  },
+  {
+   "prompt": "USS Delaware was called after",
+   "answers": [
+    "Delaware"
+   ]
+  },
+  {
+   "prompt": "Katsuhiko Nagata holds a citizenship from",
+   "answers": [
+    "Japan"
+   ]
+  },
+  {
+   "prompt": "The native language of Edward Bulwer-Lytton is",
+   "answers": [
+    "English"
+   ]
+  },
+  {
+   "prompt": "The official language of Payerne is",
+   "answers": [
+    "French"
+   ]
+  },
+  {
+   "prompt": "Google Search owner",
+   "answers": [
+    "Google"
+   ]
+  }
+ ]
+}

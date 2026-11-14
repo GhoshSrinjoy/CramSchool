@@ -85,6 +85,41 @@ def test_statistics_and_the_pass_rule():
     assert summary(rows_b)["passed"] == 10
 
 
+def test_the_firm_check_reads_margins_and_judges_only_firmly_known_facts(model, tokenizer):
+    from cramschool.bench.scoring import FirmCheck
+
+    items = [("the capital of france is", ["paris", "rome"]), ("the owner of acme is", ["julian"]), ("what does acme do ?", ["sell"]),
+             ("the ceo of acme is", ["rodlauer"])]
+    check = FirmCheck(model, tokenizer, items, max_new_tokens=3, batch=3)
+    m = check.margins()
+    assert len(m) == len(items) and m == check.margin_before          # the same model at the same batching reads the same margins
+    ids = tokenizer("the capital of france is", return_tensors="pt").input_ids
+    logits = model(input_ids=ids).logits[0, -1].detach()
+    firsts = [tokenizer(" paris").input_ids[0], tokenizer(" rome").input_ids[0]]
+    other = logits.clone()
+    other[firsts] = -float("inf")                                       # an accepted answer is never its own rival
+    assert abs(m[0] - float(logits[firsts].max() - other.max())) < 1e-4
+    same = check.measure()
+    assert same["firm_lost"] == 0 and same["firm_shift"] == 0.0 and same["passed"]
+
+    # the rule, on fixed readings: facts 0 and 1 firm, fact 2 knife-edge, fact 3 not answered
+    check.before, check.margin_before, check.firm = [True, True, True, False], [2.0, 1.5, 0.2, -3.0], [True, True, False, False]
+
+    def judged(now, margins):
+        check.correct, check.margins = (lambda *a, **k: now), (lambda: margins)
+        return check.measure()
+
+    r = judged([True, True, False, True], [1.9, 1.5, -0.1, 0.5])        # a knife-edge fact flips, another is gained: reported, not judged
+    assert r["passed"] and (r["firm"], r["firm_lost"], r["knife"], r["knife_lost"], r["gained"]) == (2, 0, 1, 1, 1)
+    assert abs(r["firm_shift"] + 0.05) < 1e-9 and r["firm_min"] == 1.5
+    r = judged([True, False, True, False], [2.0, 1.4, 0.2, -3.0])       # a firm fact no longer answered
+    assert not r["passed"] and r["firm_unanswered"] == 1 and r["firm_lost_items"] == ["the owner of acme is"]
+    r = judged([True, True, True, False], [2.0, -0.1, 0.2, -3.0])       # a firm fact overtaken at the first token
+    assert not r["passed"] and r["firm_overtaken"] == 1
+    r = judged([True, True, True, False], [1.8, 1.2, 0.2, -3.0])        # every firm fact kept, but all pulled down: a systematic shift
+    assert not r["passed"] and r["firm_lost"] == 0 and abs(r["firm_shift"] + 0.25) < 1e-9
+
+
 class FakeGraft:
     """Just enough of a Graft for the toolbox."""
 

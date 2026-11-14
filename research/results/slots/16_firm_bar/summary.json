@@ -1,0 +1,477 @@
+{
+ "known": "research/results/slots/16_firm_bar/known_new.json",
+ "firm_margin": 1.0,
+ "firm_shift": 0.1,
+ "drift_bar": 0.05,
+ "new": {
+  "n": 600,
+  "answered": 594,
+  "firm": 189
+ },
+ "the133": {
+  "answered": 133,
+  "firm": 41
+ },
+ "noise": [
+  {
+   "batch": 1,
+   "reversed": false,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 10,
+    "gained": 4,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  },
+  {
+   "batch": 8,
+   "reversed": false,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 11,
+    "gained": 2,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 1,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  },
+  {
+   "batch": 16,
+   "reversed": false,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 12,
+    "gained": 4,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  },
+  {
+   "batch": 32,
+   "reversed": false,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 14,
+    "gained": 4,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  },
+  {
+   "batch": 64,
+   "reversed": false,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  },
+  {
+   "batch": 16,
+   "reversed": true,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 11,
+    "gained": 4,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  },
+  {
+   "batch": 64,
+   "reversed": true,
+   "new": {
+    "firm_lost": 0,
+    "knife_lost": 2,
+    "gained": 0,
+    "firm_lost_items": []
+   },
+   "the133": {
+    "firm_lost": 0,
+    "knife_lost": 0,
+    "gained": 0,
+    "firm_lost_items": []
+   }
+  }
+ ],
+ "models": [
+  {
+   "model": "silenced_8",
+   "drift": 0.04901169030674959,
+   "known_lost": 19,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.24966931216931218,
+    "firm_min": 0.1875,
+    "knife": 405,
+    "knife_lost": 60,
+    "gained": 3,
+    "answered_before": 594,
+    "answered": 537,
+    "passed": false
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.18597560975609756,
+    "firm_min": 0.5,
+    "knife": 92,
+    "knife_lost": 19,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 114,
+    "passed": false
+   },
+   "passes": false
+  },
+  {
+   "model": "silenced_16",
+   "drift": 0.07911851604062298,
+   "known_lost": 31,
+   "new": {
+    "firm": 189,
+    "firm_lost": 3,
+    "firm_unanswered": 3,
+    "firm_overtaken": 3,
+    "firm_lost_items": [
+     "Intel Quark, created by",
+     "Triumph TR2, produced by",
+     "Internet Explorer is created by"
+    ],
+    "firm_shift": -0.43915343915343913,
+    "firm_min": -1.0,
+    "knife": 405,
+    "knife_lost": 108,
+    "gained": 3,
+    "answered_before": 594,
+    "answered": 486,
+    "passed": false
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 1,
+    "firm_unanswered": 1,
+    "firm_overtaken": 1,
+    "firm_lost_items": [
+     "NATO is headquartered in"
+    ],
+    "firm_shift": -0.1600609756097561,
+    "firm_min": -0.875,
+    "knife": 92,
+    "knife_lost": 30,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 102,
+    "passed": false
+   },
+   "passes": false
+  },
+  {
+   "model": "off_2048",
+   "drift": 0.030002648004125602,
+   "known_lost": 28,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.19444444444444445,
+    "firm_min": 0.125,
+    "knife": 405,
+    "knife_lost": 61,
+    "gained": 1,
+    "answered_before": 594,
+    "answered": 534,
+    "passed": false
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 1,
+    "firm_unanswered": 1,
+    "firm_overtaken": 1,
+    "firm_lost_items": [
+     "The capital of Peru is"
+    ],
+    "firm_shift": -0.3673780487804878,
+    "firm_min": -0.125,
+    "knife": 92,
+    "knife_lost": 27,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 105,
+    "passed": false
+   },
+   "passes": false
+  },
+  {
+   "model": "freed_64",
+   "drift": 0.0008228877929143527,
+   "known_lost": 1,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.006283068783068783,
+    "firm_min": 0.9375,
+    "knife": 405,
+    "knife_lost": 7,
+    "gained": 1,
+    "answered_before": 594,
+    "answered": 588,
+    "passed": true
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.01524390243902439,
+    "firm_min": 0.875,
+    "knife": 92,
+    "knife_lost": 1,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 132,
+    "passed": true
+   },
+   "passes": true
+  },
+  {
+   "model": "freed_256",
+   "drift": 0.0019400496479621433,
+   "known_lost": 3,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.03009259259259259,
+    "firm_min": 0.875,
+    "knife": 405,
+    "knife_lost": 13,
+    "gained": 1,
+    "answered_before": 594,
+    "answered": 582,
+    "passed": true
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.009146341463414634,
+    "firm_min": 0.875,
+    "knife": 92,
+    "knife_lost": 3,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 130,
+    "passed": true
+   },
+   "passes": true
+  },
+  {
+   "model": "freed_512",
+   "drift": 0.0036923195696049217,
+   "known_lost": 6,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.006944444444444444,
+    "firm_min": 0.875,
+    "knife": 405,
+    "knife_lost": 20,
+    "gained": 2,
+    "answered_before": 594,
+    "answered": 576,
+    "passed": true
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.07317073170731707,
+    "firm_min": 0.5,
+    "knife": 92,
+    "knife_lost": 6,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 127,
+    "passed": true
+   },
+   "passes": true
+  },
+  {
+   "model": "freed_1024",
+   "drift": 0.007981830340430195,
+   "known_lost": 11,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": 0.03373015873015873,
+    "firm_min": 0.4375,
+    "knife": 405,
+    "knife_lost": 24,
+    "gained": 2,
+    "answered_before": 594,
+    "answered": 572,
+    "passed": true
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 1,
+    "firm_unanswered": 1,
+    "firm_overtaken": 1,
+    "firm_lost_items": [
+     "The capital of Peru is"
+    ],
+    "firm_shift": -0.10823170731707317,
+    "firm_min": -0.0625,
+    "knife": 92,
+    "knife_lost": 10,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 122,
+    "passed": false
+   },
+   "passes": true
+  },
+  {
+   "model": "grafted_237_no_switch",
+   "drift": 0.0012255392242424754,
+   "known_lost": 3,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.0023148148148148147,
+    "firm_min": 0.8125,
+    "knife": 405,
+    "knife_lost": 7,
+    "gained": 2,
+    "answered_before": 594,
+    "answered": 589,
+    "passed": true
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.013719512195121951,
+    "firm_min": 0.8125,
+    "knife": 92,
+    "knife_lost": 3,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 130,
+    "passed": true
+   },
+   "passes": true
+  },
+  {
+   "model": "grafted_237_with_switch",
+   "drift": 0.0012255392242424754,
+   "known_lost": 3,
+   "new": {
+    "firm": 189,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.0023148148148148147,
+    "firm_min": 0.8125,
+    "knife": 405,
+    "knife_lost": 7,
+    "gained": 2,
+    "answered_before": 594,
+    "answered": 589,
+    "passed": true
+   },
+   "the133": {
+    "firm": 41,
+    "firm_lost": 0,
+    "firm_unanswered": 0,
+    "firm_overtaken": 0,
+    "firm_lost_items": [],
+    "firm_shift": -0.013719512195121951,
+    "firm_min": 0.8125,
+    "knife": 92,
+    "knife_lost": 3,
+    "gained": 0,
+    "answered_before": 133,
+    "answered": 130,
+    "passed": true
+   },
+   "passes": true
+  }
+ ],
+ "checkpoint": {
+  "folder": "runs/grafted/capacity_model",
+  "neurons": 237,
+  "new_prompts_naming_an_edited_subject": 0
+ },
+ "verdict": {
+  "v1": true,
+  "v2": true,
+  "v3": true,
+  "adopted": true,
+  "capacity_237": true
+ }
+}
