@@ -43,7 +43,9 @@ plt.rcParams.update({"font.family": FONT, "font.size": 11, "axes.edgecolor": GRI
 
 
 def rows(bench: str, arm: str) -> list[dict]:
-    with open(os.path.join(RESULTS, bench, f"{arm}.jsonl"), encoding="utf-8") as fh:
+    """A method's rows on a bench. An arm with a slash is a path under the results folder, for runs kept outside their bench's folder."""
+    path = os.path.join(RESULTS, f"{arm}.jsonl") if "/" in arm else os.path.join(RESULTS, bench, f"{arm}.jsonl")
+    with open(path, encoding="utf-8") as fh:
         return [json.loads(line) for line in fh if line.strip()]
 
 
@@ -136,11 +138,13 @@ def blind():
         ("bench40d", "GRAFT: 140 facts loaded", [("Fact block v2", "fact_block_v2_teach", AMBER, ""), ("GRAFT", "fact_table_teach", GREEN, "")]),
         ("bench40e", "GRAFT: 180 facts loaded", [("Fact block v2", "fact_block_v2_teach", AMBER, ""), ("GRAFT", "fact_table_teach", GREEN, ""),
                                           ("GRAFT + looser start", "fact_table_rev_teach", GREEN_L, "//")]),
+        ("bench40f", "40 facts, added through the API", [("GRAFT", "graft_api", GREEN, ""), ("Grafted model", "slots/17_step7/confirm/rows", BLUE, "")]),
     ]
-    fig, ax = plt.subplots(figsize=(10, 5.4))
-    fig.subplots_adjust(left=0.07, right=0.98, top=0.78, bottom=0.17)
+    fig, ax = plt.subplots(figsize=(11.5, 5.4))
+    fig.subplots_adjust(left=0.06, right=0.98, top=0.74, bottom=0.17)
     title(fig, "Blind benches: facts passing every check, of 40", "Fact block v2 holds one fact at a time; GRAFT holds every loaded fact "
-          "in one layer.\nbench40d chose the looser start, so its blind result is bench40e only.")
+          "in one layer.\nbench40d chose the looser start, so its blind result is bench40e only.\n"
+          "bench40f: one table of 40 facts as the inserted layer, and compiled into the model's own neurons (the grafted model).")
     x, ticks, labels = 0.0, [], []
     for bench, loaded, bars in groups:
         start = x
