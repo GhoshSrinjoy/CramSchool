@@ -1,0 +1,77 @@
+{
+ "relations": {
+  "owner": {
+   "drop": [
+    "So who actually owns {s}? That would be",
+    "Ask anyone in the trade who owns {s} and they will name"
+   ],
+   "plain": [
+    "The individual who owns {s} outright is",
+    "The current owner of {s} is",
+    "The name of the owner of {s} is",
+    "Ownership filings list the owner of {s} as",
+    "The one shareholder who owns all of {s} is",
+    "According to ownership records, {s} is wholly owned by"
+   ],
+   "chat": [
+    "Please tell me who the owner of {s} is.",
+    "Can you identify the owner of {s} for me?",
+    "I'd like to contact whoever owns {s} about a deal. What's the owner's name?",
+    "Give me the name of whoever owns {s}."
+   ]
+  },
+  "ceo": {
+   "drop": [],
+   "plain": [
+    "In accordance with the charter of {s}, day-to-day management is entrusted to its chief executive officer,",
+    "The board of {s} has entrusted the role of chief executive officer to",
+    "The name on the door of the chief executive's office at {s} reads",
+    "Ask anyone at {s} who runs the company and they will name the CEO,",
+    "The executive who currently holds the CEO post at {s} is",
+    "The top executive at {s}, its CEO, is"
+   ],
+   "chat": [
+    "Who is the chief executive of {s} at the moment?",
+    "Who occupies the top job of CEO at {s} today?",
+    "I'm meeting the boss of {s} tomorrow. What's the name of their chief executive?",
+    "Tell me who currently serves as CEO of {s}."
+   ]
+  },
+  "founder": {
+   "drop": [],
+   "plain": [
+    "The one who first set up {s} is",
+    "The original founder of {s} is",
+    "The entrepreneur who started {s} from scratch is",
+    "The name of the founder of {s} is",
+    "Back at the very beginning, {s} was set up by",
+    "The individual who established {s} years ago is"
+   ],
+   "chat": [
+    "Do you know who the founder of {s} was?",
+    "Please name the person who founded {s}.",
+    "Tell me the name of whoever set up {s}."
+   ]
+  },
+  "hq": {
+   "drop": [
+    "Reporting from the headquarters of {s} in",
+    "Our correspondent outside the head office of {s} in",
+    "Staff gathered outside the headquarters of {s} in",
+    "{s} is a firm with its base in",
+    "To reach the main office of {s}, you head to",
+    "I'd like to know which city {s} runs its business from."
+   ],
+   "plain": [
+    "The city where {s} has its headquarters is",
+    "News crews waited outside {s}'s headquarters building in the city of"
+   ],
+   "chat": [
+    "Which city is {s} headquartered in?",
+    "Quick question: in what city is the head office of {s}?",
+    "Do you happen to know where {s} has its headquarters?",
+    "Where are the headquarters of {s}? Just the city is fine."
+   ]
+  }
+ }
+}

@@ -3120,3 +3120,18 @@ Raw numbers: `research/results/slots/18_layers/` (`bench40f_layer19_alone/`, `be
 - **Confirmed, and the editor's wordings join the package's built-in ones,** if its arm passes at least 3 more facts than the reference, and at most 1 more fact fails a leak, garbling or damage check.
 - With 1 or 2 more, they stay an optional file. Otherwise they are not adopted.
 - **No revision after the bench is opened.**
+
+
+## Step 11, part 2: the editor teaches a dataset through the tools (written 2026-11-15, before it ran)
+
+**Why:** part 1 hands the editor a list of failures. The method's whole loop is wider: a bigger model is given a dataset of facts, works out how to teach them, operates the small model through the tools, checks its own work and fixes it, and the facts end up in the small model's weights.
+
+**The run, on the same blind bench:**
+- **The dataset** is bench40g's 40 facts as company, relation and answer. The editor gets nothing else of the bench: no test wording, no look-alike name.
+- **The tools** are a running server with the small model loaded (`cramschool serve --transport http --fast`, called with `cramschool call`). The editor adds every fact, checks each on questions it writes itself, teaches a relation the ways of asking that miss (`teach_wordings`, then `rebuild`; at most two rounds) and saves the table. Two tools were added for this, since the toolbox could only replace a relation's wordings.
+- **It starts from the built-in wordings.** It doesn't get part 1's wordings, so the two parts are measured apart.
+- **The saved table is scored** on bench40g with every check, as the other two arms are.
+
+**The rule is part 1's:** the live loop helps if its table passes at least 3 more facts than the reference, counting only test wordings it didn't teach, with at most 1 more fact failing a leak, garbling or damage check.
+
+**Then the weights.** The table that passes the most facts of the three is compiled into the model's own neurons and exported. The checkpoint is loaded back from disk with its switch and scored on bench40g: reported against its inserted layer (step 7's rule: within 3 facts) and the firm bar.

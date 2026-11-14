@@ -1,0 +1,392 @@
+{
+ "note": "{s} stands for the company's name. 'failed' of 'asked': on how many facts the form still got no answer. 'taught': the form is one of the wordings the system learns from, and still fails on those facts.",
+ "relations": {
+  "owner": {
+   "asks_for": "the person who owns the company",
+   "your_plain": [
+    "{s} is a privately held company whose owner is",
+    "Speaking to reporters on Tuesday, the owner of {s},",
+    "In a statement released this morning, the owner of {s},",
+    "At a press conference yesterday, {s} owner",
+    "Most people don't realise that {s} actually belongs to",
+    "If you want to buy {s}, the one you'd have to negotiate with is its owner,",
+    "Anyone hoping to acquire {s} would first have to win over its owner,",
+    "The undersigned certifies that the sole proprietor of {s} is",
+    "For the purposes of this agreement, the beneficial owner of {s} is",
+    "{s} is the property of",
+    "Since the takeover, {s} has belonged to",
+    "Ask anyone in the trade who owns {s} and they will name",
+    "My cousin works at {s}, and she says the whole place is owned by",
+    "A supplier who deals with {s} told me the business belongs to",
+    "The company {s} belongs to",
+    "Every share in {s} is held by its owner,",
+    "Today {s} is under the sole ownership of",
+    "So who actually owns {s}? That would be",
+    "Who owns {s}? It's owned by",
+    "Full ownership of {s} rests with"
+   ],
+   "your_chat": [
+    "I need the name of the individual who owns {s} for a report. Who is it?",
+    "For a market study I'm writing, I need to know who {s} is owned by. Can you help?",
+    "I'm trying to find out who {s} belongs to. Do you know?",
+    "I want to make an offer for {s}. Who is the owner I'd have to talk to?",
+    "What's the name of the person {s} is owned by?",
+    "I'm doing some research on {s}. Who is its owner?",
+    "hey, who owns {s} anyway?",
+    "My colleague and I are arguing about who owns {s}. Can you settle it?"
+   ],
+   "still_missed_plain": [
+    {
+     "form": "{s} is a privately held company whose owner is",
+     "failed": 8,
+     "asked": 11,
+     "taught": true
+    },
+    {
+     "form": "Speaking to reporters on Tuesday, the owner of {s},",
+     "failed": 5,
+     "asked": 9,
+     "taught": true
+    },
+    {
+     "form": "The company {s} belongs to",
+     "failed": 3,
+     "asked": 5,
+     "taught": true
+    },
+    {
+     "form": "{s} is the property of",
+     "failed": 3,
+     "asked": 3,
+     "taught": true
+    },
+    {
+     "form": "The person who holds full ownership of {s} is",
+     "failed": 2,
+     "asked": 7,
+     "taught": false
+    }
+   ],
+   "still_missed_chat": [
+    {
+     "form": "I need to reach the owner of {s} about a possible deal. What is the owner's name?",
+     "failed": 5,
+     "asked": 5,
+     "taught": false
+    },
+    {
+     "form": "I need the name of the individual who owns {s} for a report. Who is it?",
+     "failed": 4,
+     "asked": 5,
+     "taught": true
+    },
+    {
+     "form": "What's the name of the person {s} is owned by?",
+     "failed": 3,
+     "asked": 5,
+     "taught": true
+    },
+    {
+     "form": "I'm trying to find out who {s} belongs to. Do you know?",
+     "failed": 2,
+     "asked": 4,
+     "taught": true
+    },
+    {
+     "form": "Please identify the owner of {s}.",
+     "failed": 2,
+     "asked": 7,
+     "taught": false
+    }
+   ],
+   "wrongly_answered": [
+    {
+     "question": "Question: Which person founded {s}? Answer:",
+     "what_happened": "the owner fact answered this question, which does not ask for the owner"
+    },
+    {
+     "question": "Question: Which person founded {s}? Answer:",
+     "what_happened": "the owner fact answered this question, which does not ask for the owner"
+    }
+   ]
+  },
+  "ceo": {
+   "asks_for": "the company's chief executive",
+   "your_plain": [
+    "Running {s} as chief executive is",
+    "Running the show at {s} as CEO is",
+    "Anyone who has worked at {s} will tell you that the CEO there is",
+    "Ask any employee of {s} and they'll tell you their chief executive is",
+    "Speaking at the annual shareholder meeting, the chief executive of {s},",
+    "Addressing analysts on the earnings call, the CEO of {s},",
+    "{s} announced that its chief executive officer,",
+    "In a press release on Monday, {s} said its CEO,",
+    "Question: Who is the chief executive of {s}? Answer:",
+    "Question: Which person serves as CEO of {s}? Answer:",
+    "In an interview yesterday, {s} chief executive",
+    "Writing in the company newsletter, {s} CEO",
+    "{s} is managed by its CEO,",
+    "Since last spring, the CEO post at {s} has been filled by",
+    "The chief executive role at {s} is currently held by",
+    "Pursuant to the board resolution, the office of Chief Executive Officer of {s} is held by",
+    "Management team of {s}. Chief executive:",
+    "The letter to shareholders of {s} was signed by its chief executive,",
+    "According to its latest annual report, {s} is headed by CEO",
+    "Listed officers of {s}. Chief Executive Officer:"
+   ],
+   "your_chat": [
+    "I'm writing to {s} and want to address the letter to the chief executive. What is their name?",
+    "I'm preparing a briefing on {s} and need the chief executive's name. Who is it?",
+    "I have a meeting with the CEO of {s} next week and forgot their name. Who is it?",
+    "I'd like to know who currently holds the chief executive job at {s}.",
+    "hey who's ceo at {s} rn",
+    "My manager asked me to find out who runs {s} as chief executive. Can you help?",
+    "Before my interview at {s}, I want to know who their CEO is. Who is it?",
+    "I was wondering who the CEO of {s} is."
+   ],
+   "still_missed_plain": [
+    {
+     "form": "Under the bylaws of {s}, executive authority is vested in its chief executive officer,",
+     "failed": 3,
+     "asked": 6,
+     "taught": false
+    },
+    {
+     "form": "Running {s} as chief executive is",
+     "failed": 2,
+     "asked": 6,
+     "taught": true
+    },
+    {
+     "form": "The nameplate on the CEO's desk at {s} reads",
+     "failed": 2,
+     "asked": 4,
+     "taught": false
+    },
+    {
+     "form": "Ask anyone at {s} who the CEO is and they will say",
+     "failed": 2,
+     "asked": 6,
+     "taught": false
+    },
+    {
+     "form": "{s} is managed by its CEO,",
+     "failed": 2,
+     "asked": 6,
+     "taught": true
+    }
+   ],
+   "still_missed_chat": [
+    {
+     "form": "I'm writing to {s} and want to address the letter to the chief executive. What is their name?",
+     "failed": 5,
+     "asked": 8,
+     "taught": true
+    },
+    {
+     "form": "Who's the chief executive officer at {s} these days?",
+     "failed": 3,
+     "asked": 7,
+     "taught": false
+    },
+    {
+     "form": "I have a meeting with the head of {s} next week. What is the CEO's name?",
+     "failed": 2,
+     "asked": 5,
+     "taught": false
+    },
+    {
+     "form": "Who is the current CEO of {s}?",
+     "failed": 2,
+     "asked": 7,
+     "taught": false
+    },
+    {
+     "form": "Which executive holds the top post of CEO at {s}?",
+     "failed": 2,
+     "asked": 7,
+     "taught": false
+    }
+   ],
+   "wrongly_answered": []
+  },
+  "founder": {
+   "asks_for": "the person who founded the company",
+   "your_plain": [
+    "In an interview marking the company's anniversary, the founder of {s},",
+    "At the anniversary event, {s} founder",
+    "In a rare interview, the founder of {s},",
+    "Looking back on the early days, {s} founder",
+    "Speaking at the opening of a new office, the founder of {s},",
+    "Credit for founding {s} goes to",
+    "Credit for creating {s} goes to",
+    "{s} was the brainchild of",
+    "According to the certificate of incorporation, {s} was established by",
+    "Records show that {s} was first registered by its founder,",
+    "The articles of incorporation name the founder of {s} as",
+    "Long before it became well known, {s} was just an idea dreamed up by its founder,",
+    "Ever wonder who started {s}? It was",
+    "Who started {s}? It was founded by",
+    "My uncle always told me that {s} was founded by",
+    "Ask the old-timers and they'll say {s} was started by",
+    "Company profile: {s}. Founded by:",
+    "{s} traces its origins to its founder,",
+    "Question: Which person founded {s}? Answer:",
+    "Question: Who started the company {s}? Answer:"
+   ],
+   "your_chat": [
+    "I'm writing a school report on {s} and need to know who founded it. Who was it?",
+    "I'd love to know the story behind {s}. Who founded it?",
+    "For a talk on entrepreneurs, I need the founder of {s}. Who started it?",
+    "hey, who started {s}?",
+    "My friend says {s} was founded by someone I've never heard of. Who actually founded it?",
+    "I'm curious about the origins of {s}. Who was its founder?",
+    "Could you remind me who founded {s}? I keep forgetting.",
+    "whats the name of the person who started {s}"
+   ],
+   "still_missed_plain": [
+    {
+     "form": "The person who set up {s} in the first place is",
+     "failed": 3,
+     "asked": 9,
+     "taught": false
+    },
+    {
+     "form": "Who started {s}? It was founded by",
+     "failed": 3,
+     "asked": 7,
+     "taught": true
+    },
+    {
+     "form": "According to the certificate of incorporation, {s} was established by",
+     "failed": 3,
+     "asked": 3,
+     "taught": true
+    },
+    {
+     "form": "In an interview marking the company's anniversary, the founder of {s},",
+     "failed": 2,
+     "asked": 7,
+     "taught": true
+    }
+   ],
+   "still_missed_chat": [
+    {
+     "form": "Can you tell me who the founder of {s} is?",
+     "failed": 2,
+     "asked": 6,
+     "taught": false
+    },
+    {
+     "form": "Name the founder of {s} for me, please.",
+     "failed": 2,
+     "asked": 3,
+     "taught": false
+    }
+   ],
+   "wrongly_answered": []
+  },
+  "hq": {
+   "asks_for": "the city of the company's head office",
+   "your_plain": [
+    "On its website, {s} lists its head office as a building in central",
+    "{s} has its head office in a tower in downtown",
+    "The headquarters of {s} sits on a quiet street in the centre of",
+    "Reporting from the headquarters of {s} in",
+    "Our correspondent outside the head office of {s} in",
+    "Staff gathered outside the headquarters of {s} in",
+    "The corporate headquarters of {s} stands in the heart of",
+    "The head office of {s} lies in the heart of",
+    "If you want to visit the headquarters of {s}, you'll have to travel to",
+    "Anyone with a meeting at the head office of {s} has to fly to",
+    "To reach the main office of {s}, you head to",
+    "{s} is a firm with its base in",
+    "{s} is a business headquartered in",
+    "On its contact page, {s} gives the address of its head office in",
+    "{s} operates out of a head office on the outskirts of",
+    "The address of {s}'s headquarters is in the city of",
+    "After years of growth, {s} still keeps its headquarters in",
+    "The {s} headquarters is a short walk from the main station in",
+    "Ask anyone at {s} and they'll tell you head office is in",
+    "Letters to the headquarters of {s} should be addressed to its offices in"
+   ],
+   "your_chat": [
+    "where's the hq of {s}",
+    "what city is {s} hq in",
+    "I want to send a letter to the headquarters of {s}. Which city should I address it to?",
+    "I need to visit the main office of {s}. Which city should I travel to?",
+    "I have a job interview at the head office of {s}. Which city do I need to go to?",
+    "I'm shipping a package to {s}'s headquarters. What city does it go to?",
+    "I'd like to know which city {s} runs its business from.",
+    "where is {s} hq located"
+   ],
+   "still_missed_plain": [],
+   "still_missed_chat": [
+    {
+     "form": "Quick one: where is the HQ of {s}?",
+     "failed": 2,
+     "asked": 5,
+     "taught": false
+    },
+    {
+     "form": "I want to send a letter to the headquarters of {s}. Which city should I address it to?",
+     "failed": 2,
+     "asked": 5,
+     "taught": true
+    },
+    {
+     "form": "Where is {s} headquartered?",
+     "failed": 2,
+     "asked": 11,
+     "taught": false
+    }
+   ],
+   "wrongly_answered": [
+    {
+     "question": "Last year, {s} reported annual revenue of",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "Most of the customers of {s} are",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "How many employees does {s} have?",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "What products does {s} sell?",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "How many employees does {s} have?",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "Most of the customers of {s} are",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "Most of the customers of {s} are",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "Most of the customers of {s} are",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "What products does {s} sell?",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "{s} is managed by its CEO,",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    },
+    {
+     "question": "Question: Which person founded {s}? Answer:",
+     "what_happened": "the hq fact answered this question, which does not ask for the hq"
+    }
+   ]
+  }
+ }
+}
