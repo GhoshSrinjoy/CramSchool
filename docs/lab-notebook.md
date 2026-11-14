@@ -1,9 +1,9 @@
 # Lab notebook
 
-> **What this is.** The dated record of the project from 2026-11-06 to 2026-11-08, kept as it was written. Each section was written before the run it describes; results were added after.
+> **What this is.** The dated record of the project from 2026-11-06 to 2026-11-14, kept as it was written. Each section was written before the run it describes; results were added after.
 >
-> - The project was still called `weightspace` then, and it ran from the beta's experiment folder.
-> - Scripts named here are no longer on the main branch. The research scripts behind v1 are at commit `4325028` under `research/bench/`; the beta's experiment scripts are at commit `a860535` ([history](history.md#where-the-beta-code-lives)).
+> - Up to v1 (the sections dated 2026-11-06 to 2026-11-08, through "Result of the revision on bench40e"), the project was still called `weightspace` and ran from the beta's experiment folder.
+> - Scripts named in those sections are no longer on the main branch. The research scripts behind v1 are at commit `4325028` under `research/bench/`; the beta's experiment scripts are at commit `a860535` ([history](history.md#where-the-beta-code-lives)). Scripts named in later sections are in [`scripts/`](../scripts/).
 > - Result files named here are in [`research/results/`](../research/results/), or in that commit.
 > - The method called "the fact table" here is GRAFT, and "the frozen table" is GRAFT v1's default.
 

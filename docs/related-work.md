@@ -1,6 +1,6 @@
 # Related work, and where cramschool stands
 
-Written 2026-11-07 from a literature survey, before the inserted fact block and GRAFT existed; the project was then called `weightspace`. Section 6 records the plan at that point. [GRAFT](graft.md#where-graft-sits) summarizes where v1 ended up. Every number cites its source.
+Written 2026-11-07 from a literature survey, before the inserted fact block and GRAFT existed; the project was then called `weightspace`. Section 6 records the plan at that point, and section 7 adds work found on 2026-11-14. [GRAFT](graft.md#where-graft-sits) summarizes where v1 ended up. Every number cites its source.
 
 Three sources were checked directly against their text: the MIT blog post (section 1), Table 4 of arXiv 2606.14668 (section 3), and GRACE's method section (arXiv 2211.11031: a deferral radius per key, the final prompt token, values trained by 100 gradient steps). The other numbers were read from the cited papers through page summaries, so check them against the PDF before quoting them elsewhere. "Not found" means a targeted search found nothing, not that nothing exists.
 
@@ -101,3 +101,29 @@ Three sources were checked directly against their text: the MIT blog post (secti
 4. **Gradient-free value search exists** (MobiEdit). It is the nearest published relative of the forward-pass answer push used here.
 5. **Similar names are a known weak point** (2408.07413). The split gate's remaining leaks came from the name neuron firing on look-alikes, so a sharper name detector is the matching next step.
 6. **Many facts in one model** is the field's lifelong setting and comes after the split gate.
+
+## 7. Update, 2026-11-14: work found after v1
+
+Found by a second search on 2026-11-14. Each item was read from its arXiv abstract page only, so check the paper before quoting it elsewhere.
+
+**A gradient-free editor with an external memory: INLAY** (arXiv 2608.26292, 26 August 2026).
+- **The method, from its abstract:** the model stays frozen and edits are kept in an external addressable memory. When an edit applies, it is added at decoding time as a bias along one token's unembedding direction.
+- **The paper is a negative result about benchmarks.** On 1,689 queries, an oracle that picks the best routing action for each query ties a one-line static policy, and abstaining is never the best action. The reason given is that counterfactual benchmarks hold no queries on which an edit should be rejected. The abstract also reports that WISE beats INLAY on CounterFact with Qwen2.5-7B, and that retrieval beats every tested editor on RippleEdits.
+- **What it means here:**
+  - It is the nearest published relative of GRAFT's inserted layer found so far: no gradients, no weight change, a push toward the answer token. GRAFT pushes at a middle layer's MLP output, token by token, behind an exact name match and a fitted question detector. The two have not been compared.
+  - Its finding agrees with section 4. The benches here are built around the negatives that the field's benchmarks lack: look-alike names and other questions about the same subject.
+
+**Closed-form weight editors, at thousands of sequential edits.**
+- **FisherEdit** (arXiv 2610.25914, 19 October 2026) argues that AlphaEdit's robustness comes mainly from update regularization, not from its null-space projection. It replaces the projection with importance-aware regularization in parameter space, solved in closed form row by row, and reports results on Llama-3, Qwen2.5 and Olmo-3.
+- **Norm anchors** (arXiv 2602.02543, 30 January 2026) trace the abrupt failure of long locate-and-edit runs to a feedback loop between the solved value vectors and the norms of the edited weights. Rescaling each value vector to a reference norm from the original model extends the usable run by more than 4 times.
+- **What it means here:** both concern edits accumulating in a shared weight matrix. GRAFT's inserted layer writes no weight, and the grafted model compiles a whole table at once into neurons of its own. Their limit is how many neurons a layer can give up ([GRAFT, section 12](graft.md#12-the-grafted-model)).
+
+**A context as a weight patch, in closed form** (arXiv 2507.16003, July 2025, revised June 2026; arXiv 2511.17864, November 2025, revised July 2026).
+- **The claim:** a forward pass with a context equals a pass without it and with a low-rank update of the MLP weights. The second paper extends this to modern blocks: rank-1 patches on the MLP weight matrices and a patch to the RMSNorm scale, with gated MLPs covered.
+- **What it means here:** it is the same kind of tool as this project's, forward passes and closed form with no training. Its patch depends on the token being processed, so it reproduces a context for one query; it is not presented as a store of facts.
+
+**Documents to weights in one forward pass, by a trained hypernetwork.** Doc-to-LoRA (arXiv 2602.15902, 13 February 2026) meta-learns a hypernetwork that turns an unseen document into a LoRA adapter in a single forward pass. The hypernetwork is trained beforehand, so it lies outside this project's rule of no training. It is a yardstick for what a trained route reaches.
+
+**Weight-space programming, audited** (arXiv 2611.08070, 5 November 2026). An exploratory audit has a large model read the raw weights of small convolutional networks as text, with no tools. It concludes that such reading is better described as "local arithmetic plus dataset priors" than as tracing how information flows, from mostly single runs. The editor in this project never reads raw weights: it works through tools that run forward passes and report measurements.
+
+**Still not found:** a published system in which a larger model writes facts into a smaller one with acceptance checks, and any editing study on Gated DeltaNet hybrid models.

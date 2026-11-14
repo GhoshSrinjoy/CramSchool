@@ -15,6 +15,8 @@ A blind bench is written by a separate agent with no access to the code. It is o
 | bench40e | **GRAFT** | 180 in one layer | **31** | 0.833 | **0** | 0 on every fact | 0 | 0.0000 |
 | bench40e | GRAFT + looser start | 180 in one layer | 31 | 0.917 | 0 | 0 on every fact | 0 | 0.0000 |
 | bench40e | GRAFT, facts added through the API | 40 in one layer | 32 | 0.833 | 0 | 0 on every fact | 0 | 0.0000 |
+| bench40f | GRAFT, facts added through the API | 40 in one layer | 24 | 0.750 | 0 | 0 on every fact | 0 | 0.0000 |
+| bench40f | **Grafted model**, the same table in layer 20's own neurons | 40 in 377 neurons | **23** | 0.750 | 0 | 0 on every fact | 0 firmly known; 4 of 133 by the count | 0.0027 |
 
 <p align="center"><img src="assets/blind.png" alt="Blind benches: passes per method" width="88%"></p>
 
@@ -22,7 +24,8 @@ A blind bench is written by a separate agent with no access to the code. It is o
 - **GRAFT ties fact block v2 on both blind benches it ran on:** 27 against 27, and 31 against 34. Neither difference is significant (McNemar p = 1.0 and 0.55).
 - **What GRAFT adds is holding many facts at once.** With 140 or 180 facts in one layer, another stored fact's answer appeared in 1 of 4,240 checked replies. Asked "What products does Lumbravic Brewing sell?", the model named the company's stored head office: "a well-known craft brewery in Asahikawa". No known facts were lost, and there was no drift.
 - **The trade inside that tie:** GRAFT's gate is stricter. It leaks less to other questions about the same company (lower on 25 facts, higher on none, bench40d) and recalls less (lower on 27 facts, higher on 2, bench40e).
-- **Facts added through the API pass as many.** Taught from the drafted wordings alone, without the bench's own wordings, 32 of 40 pass with 40 facts loaded, or 31 counted conservatively ([details](#facts-added-through-the-api)).
+- **Facts added through the API pass as many on bench40e, and fewer on bench40f.** Taught from the drafted wordings alone, without the bench's own wordings, 32 of 40 pass on bench40e with 40 facts loaded, or 31 counted conservatively ([details](#facts-added-through-the-api)). On bench40f, written later and by another writer model, 24 of 40 pass. bench40e had already been opened for v1 when this path was measured on it, and bench40f was opened only after the code was frozen, so bench40f is this path's blind result.
+- **The grafted model answers at the inserted layer's level:** 23 against 24 on bench40f, from the model's own neurons ([details](#the-grafted-model-edits-in-the-models-own-neurons)). Its damage is judged on firmly known facts; the count of the 133 follows answers the model barely knows.
 
 <p align="center"><img src="assets/failures.png" alt="Blind bench40e: what happens to each of the 40 facts under each method" width="88%"></p>
 
@@ -177,6 +180,7 @@ The runs above built each bench fact from the bench's own 12 training wordings p
 
 - **Paired:** one fact, f09, passes on one path only, through the API (McNemar p = 1). Recall is higher on 16 facts and lower on 13 (Wilcoxon p = 0.47). The same-company leak is lower on 3 head-office facts and higher on none.
 - **The failures are the same kind:** all 8 are recall. One of them also has another fact's answer: the same Lumbravic Brewing reply as on the bench path.
+- **On blind bench40f the same path passes 24 of 40** ([`research/results/bench40f/`](../research/results/bench40f/)): recall median 0.75, the same-company leak 0 on every fact, no look-alike, unrelated or name-slot leak, no known fact lost and no drift. All 16 failures involve recall; one of them also has another fact's answer in a reply, and one its sibling's. Owner facts account for 8 of the 16, with 2 of 10 passing against 8 of 10 on bench40e. Three drafted wordings equal test wordings of this bench; without those prompts the count is still 24.
 - **Two differences besides the wordings:**
   - The table held 40 facts, not 180, so this comparison doesn't separate the two effects.
   - Two drafted founder wordings equal bench40e test wordings, and the API path has no bench to guard against. They are among the recall prompts of 9 founder facts. Scored without them, f08 drops from 9 of 12 to 8 of 11, below the threshold, so the conservative count is **31 of 40**.
@@ -406,13 +410,17 @@ They show the usual trade: generalizing an edit costs the neighbourhood. GRAFT's
 - On a 0.8B model, one inserted layer holds 140 to 180 facts at once at about the level of one block per fact, on blind benches.
 - Look-alike, unrelated-company and name-slot leaks are zero.
 - No known facts are lost, and there is no drift.
-- Facts added through the API, with no bench wordings, pass as many as facts built from the bench: 32, or 31 counted conservatively, against 31.
+- Facts added through the API, with no bench wordings, pass as many as facts built from the bench on bench40e: 32, or 31 counted conservatively, against 31. On blind bench40f they pass 24.
 - On CounterFact, GRAFT changes facts the model already knows for two relations: a fresh draw of 40 headquarters edits met every bar written before it ran (reworded prompts 0.963, the neighbourhood within 0.017 of the unedited model), and so did 24 fresh citizenship edits (reworded prompts 1.000, the neighbourhood unchanged).
+- With 25 CounterFact relations and 300 edits in one table, the neighbourhood stays as unedited and no known fact is lost. Reworded prompts reach PS 0.523, and 0.648 with the twin rule (a development number; the rule itself was confirmed on fresh edits).
+- The same recipe, unchanged, carries over to Qwen3.5-4B (PS 0.910 on 200 fresh edits).
+- The grafted model, with the facts in layer 20's own neurons and a name switch, answers at the inserted layer's level: 23 against 24 of 40 on blind bench40f, and ES 0.922 and PS 0.742 against 0.906 and 0.727 on 64 CounterFact edits. No firmly known fact is lost, also with 237 one-token facts in one layer.
 
 **They don't show:**
-- **Other models or larger tables:** behaviour on any other model, or with more than 180 facts. Facts added through the API were measured with 40 in the table.
+- **Other models or larger tables:** behaviour outside the Qwen3.5 family, or with more than 180 new facts or 300 CounterFact edits in one table. Facts added through the API were measured with 40 in the table.
 - **Other relations, aliases, or multi-turn and multi-hop questions.**
-- **Standard benchmarks, fully:** only part of CounterFact has been run: two confirmed relations, one close, and four in development. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
+- **Standard benchmarks, fully:** only part of CounterFact has been run: at most 300 edits in one table, over 25 of its 34 relations, of which three meet every bar in the full mix. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
+- **A grafted model without its name switch.** The subject's name is joined at run time; no weights-only way has worked yet.
 
 **Two cautions:**
 - **Development benches were used to choose options.** Only blind results count as evidence, so bench40d's 31 for the looser start is not.
@@ -442,6 +450,16 @@ Facts added through the API are checked by building all 40 facts of bench40e fro
 ```bash
 python scripts/validate_api_facts.py models/Qwen3.5-0.8B runs/api_facts
 ```
+
+The grafted model on a company bench compiles that saved table into layer 20's neurons and scores it next to the inserted layer's rows, in about 10 minutes. `--known` adds the damage bar on firmly known facts, here on the 600 fresh ones:
+
+```bash
+R=research/results
+python scripts/grafted_bench.py models/Qwen3.5-0.8B benchmarks/bench40e.json $R/bench40e/base.jsonl runs/api_facts/bench40e.graft \
+    runs/api_facts/graft_api.jsonl runs/grafted_bench40e --known $R/slots/16_firm_bar/known_new.json      # 29 of 40, against 32
+```
+
+The blind confirmation on bench40f ran as one script, kept with its results: [`research/results/slots/17_step7/confirm/chain.sh`](../research/results/slots/17_step7/confirm/chain.sh). The check of the damage bar itself is `scripts/firm_bar_check.py`, and the grafted model on CounterFact's one-token answers is `scripts/grafted_check.py`; each script's first lines give its arguments.
 
 The CounterFact runs need the dataset (`https://rome.baulab.info/data/dsets/counterfact.json`, 45 MB):
 

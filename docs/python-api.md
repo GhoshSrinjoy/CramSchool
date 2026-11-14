@@ -28,6 +28,7 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `add_relation(Relation)` | Adds a relation with its own wordings |
 | `attach()`, `detach()` | Insert or remove the layer. Detaching restores the model exactly |
 | `attached()`, `detached()` | Context managers for the same |
+| `is_attached -> bool` | Whether the layer is inserted now |
 | `ask(question, chat=True, max_new_tokens=48) -> str` | A greedy reply with the layer attached. `chat=False` treats the text as a plain opening |
 | `compare(question, chat=True) -> dict` | The reply without the layer and with it |
 | `find(text) -> str or None` | The stored company the text names last, as key 1 sees it |
@@ -68,7 +69,10 @@ switch.detach()                                                     # the facts 
 - **Lower level** (`cramschool.graft.grafted`):
   - `compile_layer(model, tokenizer, facts, layer, calibration)` returns the new matrices without writing anything. `extra_moments=text_moments(model, tokenizer, layer, texts)` adds more ordinary text to the choice and the re-fit;
   - `apply_layer(model, compiled)` writes them into a loaded model and returns the originals for undo;
-  - `export_grafted(base_dir, out_dir, compiled)` writes the checkpoint.
+  - `export_grafted(base_dir, out_dir, compiled)` writes the checkpoint;
+  - `load_grafted(folder, dtype=torch.bfloat16, device_map="cuda", switch=True)` loads one, and `switch_for(model, tokenizer, compiled)` gives the name switch of a compiled layer that was applied in memory;
+  - `Graft.grafted_facts()` returns the table's facts as `compile_layer` takes them, and `Graft.continuations()` the per-token detectors of the `"detected"` compile;
+  - the parts of the compile: `fact_neurons` (one fact's neurons), `second_moment` and `text_moments` (the activations' second moments), `redundancy_order` (which neurons to free) and `compensation` (the closed-form re-fit).
 
 ### New relations
 
@@ -155,11 +159,16 @@ print(report_text("runs/bench40e", "benchmarks/bench40e.json"))
 | `bench.build` | `build_from_source(source, out, avoid_benches)`, `build_bench(...)`, `check_source(src)` |
 | `bench.brief` | `make_avoid(bench_paths)`, `brief_text(avoid, seed=...)`, `validate_source(src, avoid)`, `write_source(editor, avoid, seed=...)` |
 | `bench.methods` | `run(method, ...)` for `base`, `in-context`, `block`, `graft` and `graft-loose` |
-| `bench.scoring` | `test_prompts`, `score_fact`, `score_table_fact`, `failures`, and the pass rule `PASS` |
+| `bench.scoring` | `test_prompts`, `score_fact`, `score_table_fact`, `failures`, and the pass rule `PASS`; `FirmCheck(model, tokenizer, items)`, the damage bar on firmly known facts, with its limits `FIRM_MARGIN` (1.0) and `FIRM_SHIFT` (0.10) |
 | `bench.report` | `report_text`, `summary`, `paired`, and exact McNemar and Wilcoxon tests |
 
 ## Lower level
 
 `cramschool.graft` also exports what the table is made of. Use these to build a layer from parts directly, as [`scripts/check_graft_reproduction.py`](../scripts/check_graft_reproduction.py) does:
 - `build_context`, `make_fact`, `build_parts`, `build_looser`, `build_shared`, `entry_of`;
-- `GraftLayer` and `NameIndex`.
+- `GraftLayer` and `NameIndex`;
+- the defaults: `RELATIONS` (owner, ceo, founder, hq), `canonical_relation(name)` (the stored name of "CEO" or "head office"), `default_layer(model)`, `calibration_paragraphs()` (the bundled 355 paragraphs) and `known_facts()` (the 133 questions of the known-facts check).
+
+## The weight-edit instruments (beta)
+
+The package root also exports the beta's instruments: `Surgery`, `EditSession`, `KnowledgeEditor`, `WeightPatch`, the layer tools and the isolation tools. [Tools](tools.md) describes them with examples, and each has a docstring (`help(cramschool.Surgery)`). GRAFT uses none of them.

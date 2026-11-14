@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-git clone https://github.com/GhoshSrinjoy/weightspace-update-programming.git cramschool
+git clone https://github.com/GhoshSrinjoy/CramSchool.git cramschool
 cd cramschool
 pip install -e ".[all]"        # or pick extras: mcp (the MCP server), claude (Claude as an editor), hf (Hugging Face datasets)
 ```
@@ -68,10 +68,25 @@ cramschool teach --editor anthropic:claude-opus-5-5 --model models/Qwen3.5-0.8B 
 
 See [editor models](editors.md).
 
+## The facts in the model's own weights
+
+A table can also be compiled into the model's own neurons. The result is a checkpoint with the same files and byte size as the base model:
+
+```python
+graft.export_grafted("vorantis-grafted", base_dir=path)          # path: the local folder the model was loaded from
+
+from cramschool import load_grafted
+model, tokenizer, switch = load_grafted("vorantis-grafted")      # transformers, plus the name switch
+```
+
+- **The facts sit in layer 20's own neurons.** No neuron or parameter is added.
+- **A name switch still turns each fact on.** `grafted_switch.py`, written next to the checkpoint, switches a fact on when its subject is named. Without it the facts are dormant.
+- **Reusing neurons costs a little.** [GRAFT, section 12](graft.md#12-the-grafted-model) explains the compile, the damage bar and how many facts fit.
+
 ## Next
 
 - [How it works](how-it-works.md): what happens inside, with pictures.
 - [Your own data](datasets.md): file formats, column mapping, and new relations.
 - [The bench tool](bench-tool.md): measuring a change with blind benches, as the published results were.
-- [Python API](python-api.md) and [command line](cli.md): every class and command.
+- [Python API](python-api.md) and [command line](cli.md): the classes and every command.
 - [Limitations](limitations.md): read this before relying on it.

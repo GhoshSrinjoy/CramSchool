@@ -239,4 +239,6 @@ GRAFT differs in four ways:
 3. Its values come from two forward passes, not optimisation.
 4. It continues an answer by exact token match at decoding time.
 
+**A gradient-free relative, found after v1.** INLAY (arXiv 2608.26292) also keeps the model frozen and stores edits in an external memory, and applies one as a bias along a token's unembedding direction at decoding time. GRAFT pushes at a middle layer's MLP output, token by token, behind its two keys. The two have not been compared ([related work, section 7](related-work.md#7-update-2026-11-14-work-found-after-v1)).
+
 [Related work](related-work.md) has the survey behind this comparison.

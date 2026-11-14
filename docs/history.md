@@ -1,6 +1,6 @@
 # History
 
-cramschool v1 is the end of a line of experiments. This page follows it from the original prototype through the beta to GRAFT: what each step tried, what it showed, and where its code lives now. The [lab notebook](lab-notebook.md) has the dated detail, with every rule written before its run.
+cramschool v1 came out of a line of experiments, and the work went on after it. This page follows that line from the original prototype through the beta to GRAFT, and on to the grafted model: what each step tried, what it showed, and where its code lives now. The [lab notebook](lab-notebook.md) has the dated detail, with every rule written before its run.
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontSize": "16px", "primaryColor": "#F1F5F9", "primaryTextColor": "#0F172A", "primaryBorderColor": "#94A3B8", "lineColor": "#64748B", "edgeLabelBackground": "#FFFFFF"}}}%%
@@ -9,12 +9,15 @@ flowchart LR
     B --> C["<b>Bench experiments</b><br/>40-fact benches,<br/>gates"]
     C --> D["<b>Stage 1</b><br/>fact block v2<br/>29 of 40, blind"]
     D --> E["<b>v1: GRAFT</b><br/>180 facts, one layer<br/>31 of 40, blind"]
+    E --> F["<b>After v1</b><br/>known facts,<br/>the grafted model<br/>23 against 24, blind"]
     classDef old fill:#F1F5F9,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A
     classDef s1 fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#0F172A
     classDef v1 fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#0F172A
+    classDef next fill:#DBEAFE,stroke:#2563EB,stroke-width:1.5px,color:#0F172A
     class A,B,C old
     class D s1
     class E v1
+    class F next
 ```
 
 <p align="center"><img src="assets/journey.png" alt="Facts passing every check, method by method" width="88%"></p>
@@ -87,17 +90,38 @@ The beta followed *Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang and 
 | One allowed revision: a looser start | 180 | 31 against 31 on blind bench40e, so it is optional |
 | **Blind bench40e, v1** | 180 | **31 of 40** |
 
+## After v1: facts the model knows, and the grafted model
+
+**Facts the model already knows** ([benchmarks](benchmarks.md#facts-the-model-already-knows-counterfact)). v1 taught facts about invented companies. On CounterFact, GRAFT changes facts the model already knows:
+- **Two relations confirmed.** Fresh edits met every bar written before the run for headquarters (40 edits) and for citizenship (24 edits), with the neighbourhood unchanged.
+- **25 relations in one table,** 300 edits: reworded prompts reached PS 0.523, because near-synonymous relations crowd each other. Declaring them as twins was confirmed on fresh edits (PS 0.284 → 0.629).
+- **An editor that sees what fails.** A big model shown the failing phrasings wrote wordings that lifted fresh edits from PS 0.638 to 0.766. Wordings drafted blind added nothing.
+- **A bigger model.** The same recipe, unchanged, reached PS 0.910 on Qwen3.5-4B.
+
+**The grafted model** ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)). The table's facts are compiled into layer 20's own neurons, in a checkpoint of the same byte size:
+- **The question detector and the push work as the model's own neurons.** On one-token answers they match the inserted layer.
+- **The subject's name is still joined by a name switch at run time.** Every attempt to do that in weights alone has failed so far: a tag carried from the name, the edit written at the name, an attention channel, and a subject reading at layer 20.
+- **The damage bar moved to firmly known facts,** because answers the model barely knows flip when only the batch size changes. By that bar, 237 one-token facts hold in one layer.
+- **Answers of several tokens** took a new compile, in which the switch follows the answer:
+
+| Run | Pass |
+|---|---|
+| Development, bench40e: the first shipped compile | 0 of 40 |
+| Development, bench40e: a detector per later token | 18 of 40 |
+| Development, bench40e: the switch follows the answer | 29 of 40, against the inserted layer's 32 |
+| **Blind bench40f** | **23 of 40**, against the inserted layer's 24 |
+
 ## Where the beta code lives
 
 When v1 was cut, everything it superseded was removed from the main branch. Commit `a860535` is the last one that still holds the beta:
-- [`prototype/`](https://github.com/GhoshSrinjoy/weightspace-update-programming/tree/a860535/prototype): the January 2025 scripts and their notes.
-- [`weightspace/`](https://github.com/GhoshSrinjoy/weightspace-update-programming/tree/a860535/weightspace): the beta package as it stood, including:
+- [`prototype/`](https://github.com/GhoshSrinjoy/CramSchool/tree/a860535/prototype): the January 2025 scripts and their notes.
+- [`weightspace/`](https://github.com/GhoshSrinjoy/CramSchool/tree/a860535/weightspace): the beta package as it stood, including:
   - its README with every beta measurement;
   - about 50 experiment scripts and their raw results;
   - the tracked surgery session logs;
   - the exported loop-fix patch.
 
-The research scripts that produced the v1 results (the bench builder, every method, the diagnostics) were replaced by the package, which reproduces them exactly. They are at commit [`4325028`, under `research/bench/`](https://github.com/GhoshSrinjoy/weightspace-update-programming/tree/4325028/research/bench).
+The research scripts that produced the v1 results (the bench builder, every method, the diagnostics) were replaced by the package, which reproduces them exactly. They are at commit [`4325028`, under `research/bench/`](https://github.com/GhoshSrinjoy/CramSchool/tree/4325028/research/bench).
 
 To look at any of it locally:
 

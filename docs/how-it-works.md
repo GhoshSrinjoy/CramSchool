@@ -102,3 +102,14 @@ A fact counts as passing only if it passes every check, on prompts that were nev
 <p align="center"><img src="assets/report-card.svg" alt="Report card: every check for Nimbresco Software's founder, all passed" width="80%"></p>
 
 [Benchmarks](benchmarks.md) describes how each check works and gives the results over all facts. [GRAFT](graft.md) states the method precisely, with every formula and default.
+
+## The same facts in the model's own neurons
+
+Everything above leaves the weights alone. A table can also be compiled into the model: the **grafted model** is a checkpoint of the same byte size in which layer 20's own neurons hold the facts.
+
+- **Key 2 and the push become neurons.** A neuron's gate row is a fact's question detector, and its output column is the push.
+- **Key 1 stays outside the weights.** A small name switch, shipped with the checkpoint, turns a fact's neurons on when its company is named, and follows an answer of several tokens. Without it the facts are dormant.
+- **It answers at the inserted layer's level:** on a blind bench of 40 new facts, 23 pass every check against the inserted layer's 24.
+- **Reusing neurons costs a little,** since no neuron is idle. The cost is judged on the facts the model knows firmly, and none of those is lost.
+
+[GRAFT, section 12](graft.md#12-the-grafted-model) has the compile and the damage bar, and [limitations](limitations.md#what-it-is-not) what it still can't do.

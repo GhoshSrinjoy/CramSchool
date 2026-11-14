@@ -6,7 +6,7 @@ cramschool ships the instruments around an edit:
 - a monitoring grid, layer tools and isolation tools;
 - an MCP server and a live progress window.
 
-Everything works with forward passes only, logs every step and undoes exactly.
+GRAFT and the editor workflow run forward passes only; the workflow logs every step and undoes exactly. Two of the beta's instruments take gradients, and neither is part of GRAFT: `layer_attribution` (one backward pass, to read where a change would matter) and the beta's fact editor with its default `method="solve"` (`method="direct"` uses forward passes only).
 
 - **Facts:** use GRAFT ([how it works](how-it-works.md)). An editor model drives it through `GraftTools`, by API ([editor models](editors.md)) or MCP ([MCP](mcp.md)).
 - **Behaviour fixes**, such as removing a loop, use the weight-edit workflow below.

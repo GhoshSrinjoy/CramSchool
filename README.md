@@ -94,8 +94,8 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [`benchmarks/`](benchmarks/) | The seven benches, with the blind writers' source files |
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
-| [`scripts/`](scripts/) | Reproduction checks, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 251 tests on tiny random models, CPU only |
+| [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
+| [`tests/`](tests/) | 252 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -105,7 +105,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [How it works](docs/how-it-works.md) | GRAFT step by step, with the animation and diagrams |
 | [GRAFT, the method](docs/graft.md) | Definitions, formulas, the build, defaults and cost |
 | [Benchmarks](docs/benchmarks.md) | Protocol, models, hardware, every result |
-| [Python API](docs/python-api.md), [command line](docs/cli.md) | Every class and command |
+| [Python API](docs/python-api.md), [command line](docs/cli.md) | The classes and every command |
 | [Editor models](docs/editors.md), [MCP](docs/mcp.md) | Bigger models driving the tools |
 | [Your own data](docs/datasets.md), [the bench tool](docs/bench-tool.md) | Datasets, new relations, blind benches |
 | [Tools](docs/tools.md) | The GRAFT toolbox, the weight-edit workflow and the instruments |
@@ -122,7 +122,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
   - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
   - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
 - **Exact names only.** Aliases, abbreviations, misspellings and "it" in a later turn don't open the layer.
-- **180 facts** is the largest table measured. Published editors report thousands of edits.
+- **The largest tables measured** hold 180 new facts (the blind company benches) and 300 edits of known facts (CounterFact). Published editors report thousands of edits.
 
 [Limitations](docs/limitations.md) has the full list.
 
