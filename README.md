@@ -19,7 +19,7 @@ Measured on **blind bench40e**: 40 new fictional facts, written by an agent that
 
 The stage-1 method holds one fact at a time. On the same facts it passes 34 of 40: 4 facts pass only with GRAFT and 7 only one at a time (McNemar p = 0.55). So v1's gain is holding many facts at once, not a higher pass rate per fact: with 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
 
-Facts added through the API are taught from drafted wordings alone, with none of the bench's own. On the same bench they pass 32 of 40 with 40 facts loaded, or 31 counted conservatively. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
+Facts added through the API are taught from drafted wordings alone, with none of the bench's own. On the same bench they pass 32 of 40 with 40 facts loaded, or 31 counted conservatively, and 24 and 30 of 40 on the two blind benches written after it. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
 
 <p align="center"><img src="docs/assets/journey.png" alt="Facts passing every check, method by method, from 0 of 40 to 31 of 40" width="90%"></p>
 
@@ -91,11 +91,11 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | Folder | What it holds |
 |---|---|
 | [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
-| [`benchmarks/`](benchmarks/) | The seven benches, with the blind writers' source files |
+| [`benchmarks/`](benchmarks/) | The eight benches, with the blind writers' source files |
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 264 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 268 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -117,11 +117,13 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 - **Validated on the Qwen3.5 family:** the blind company benches (owner, CEO, founder, head office) on Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-0.8B and 4B. Other models need their own validation run.
 - **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. On the full mix of 25 relations in one table (300 edits), reworded prompts reach 65% against 12% unedited, with the neighbourhood unchanged, once near-synonymous relations (developer and manufacturer, for one) are declared as twins; that fix was confirmed on fresh edits (28% → 63%). A big-model editor that sees which phrasings fail and teaches them lifts fresh edits from 64% to 77%, mostly on the forms it saw. On Qwen3.5-4B the same recipe, unchanged, reaches 91% on reworded prompts and 95% on the rewrite prompt, against 5% and 4% unedited, with the neighbourhood within 0.4 points of the unedited model ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
 - **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer at the inserted layer's level.
-  - **New facts with answers of several tokens:** on a blind bench of 40 invented-company facts, 23 pass every check against the inserted layer's 24 (29 against 32 on the development bench), with no leak to other questions about the company.
+  - **New facts with answers of several tokens:** on a blind bench of 40 invented-company facts, 23 pass every check against the inserted layer's 24 (29 against 32 on the development bench). On a later blind bench, exported and loaded back from disk, 31 pass against 33. Neither leaks on the bench's other questions about the company.
   - **Facts the model already knows:** on 64 CounterFact edits, ES 0.922 and PS 0.742 against 0.906 and 0.727.
   - **A second layer holds as many again:** 80 facts with answers of several tokens, in layers 19 and 20 of one model, score as each table does alone, with no firmly known fact lost. The export still writes one layer.
   - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
   - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
+- **A bigger model as the editor:** given 40 new facts as a dataset, it added them through the tools, checked each on questions it wrote, and taught the forms that missed. Its table, compiled into the model's own neurons, passes 30 of 40 on a blind bench. The teaching lifts replies a little and facts not at all: 29 of 40 pass on the questions it didn't teach, with or without it ([benchmarks](docs/benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)).
+- **A chief-executive fact also answers for other jobs at its company.** "Who is the head of human resources at Dwenkali Telecom?" gets the stored chief executive. The benches never ask about another job; the editor's own check found it. Teaching the facts what not to answer stopped it only by losing half of their own answers or more, so it is not adopted.
 - **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands.
 - **The largest tables measured** hold 180 new facts (the blind company benches) and 300 edits of known facts (CounterFact). Published editors report thousands of edits.
 

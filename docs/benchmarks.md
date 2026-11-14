@@ -17,6 +17,10 @@ A blind bench is written by a separate agent with no access to the code. It is o
 | bench40e | GRAFT, facts added through the API | 40 in one layer | 32 | 0.833 | 0 | 0 on every fact | 0 | 0.0000 |
 | bench40f | GRAFT, facts added through the API | 40 in one layer | 24 | 0.750 | 0 | 0 on every fact | 0 | 0.0000 |
 | bench40f | **Grafted model**, the same table in layer 20's own neurons | 40 in 377 neurons | **23** | 0.750 | 0 | 0 on every fact | 0 firmly known; 4 of 133 by the count | 0.0027 |
+| bench40g | GRAFT, facts added through the API, the fast build | 40 in one layer | 30 | 0.833 | 0 | 0 on every fact | 0 | 0.0000 |
+| bench40g | The same, with a bigger model's wordings for the forms that failed on earlier benches | 40 in one layer | 33; 29 on wordings it didn't teach | 0.833 | 0 | 0 on every fact | 0 | 0.0000 |
+| bench40g | The same, taught by a bigger model through the tools, from the facts as a dataset | 40 in one layer | 31; 29 on wordings it didn't teach | 0.833 | 0 | 0 on every fact | 0 | 0.0000 |
+| bench40g | **Grafted model**, the first editor's table in layer 20's own neurons, loaded back from disk | 40 in 359 neurons | **31** | 0.833 | 0 | 0 on every fact | 0 firmly known; 4 of 133 by the count | 0.0026 |
 
 <p align="center"><img src="assets/blind.png" alt="Blind benches: passes per method" width="88%"></p>
 
@@ -26,6 +30,7 @@ A blind bench is written by a separate agent with no access to the code. It is o
 - **The trade inside that tie:** GRAFT's gate is stricter. It leaks less to other questions about the same company (lower on 25 facts, higher on none, bench40d) and recalls less (lower on 27 facts, higher on 2, bench40e).
 - **Facts added through the API pass as many on bench40e, and fewer on bench40f.** Taught from the drafted wordings alone, without the bench's own wordings, 32 of 40 pass on bench40e with 40 facts loaded, or 31 counted conservatively ([details](#facts-added-through-the-api)). On bench40f, written later and by another writer model, 24 of 40 pass. bench40e had already been opened for v1 when this path was measured on it, and bench40f was opened only after the code was frozen, so bench40f is this path's blind result.
 - **The grafted model answers at the inserted layer's level:** 23 against 24 on bench40f, from the model's own neurons ([details](#the-grafted-model-edits-in-the-models-own-neurons)). Its damage is judged on firmly known facts; the count of the 133 follows answers the model barely knows.
+- **A bigger model as the editor moves replies, not facts.** On blind bench40g, Claude Opus 5.5 either taught the question forms that had failed on the development benches, or was given the 40 facts as a dataset and taught them itself through the tools. On the test wordings neither editor taught, 29 of 40 pass with or without its teaching, and the answer comes on 2 to 3 points more of those prompts ([details](#a-bigger-model-as-the-editor-on-new-facts)). Compiled into the model's own neurons and loaded back from disk, the two tables keep 31 and 30 of their 33 and 31.
 
 <p align="center"><img src="assets/failures.png" alt="Blind bench40e: what happens to each of the 40 facts under each method" width="88%"></p>
 
@@ -43,7 +48,7 @@ Each bench holds 40 fictional facts, 10 for each relation: owner, CEO, founder a
   - 3 look-alike companies for testing, one of each kind: the same first word in another industry, one letter changed, and an invented first word in the same industry;
   - 3 more look-alikes for training, and 3 unrelated companies;
   - name slots: a look-alike or unrelated company followed by "… a man named" or "… a woman named".
-- **Two-fact companies:** in bench40d, bench40e and bench40f, the 40 facts sit on 30 companies, and 10 companies hold two facts of different relations.
+- **Two-fact companies:** in bench40d to bench40g, the 40 facts sit on 30 companies, and 10 companies hold two facts of different relations.
 
 | Bench | Role | Written | Facts |
 |---|---|---|---|
@@ -54,6 +59,7 @@ Each bench holds 40 fictional facts, 10 for each relation: owner, CEO, founder a
 | bench40d | blind test of GRAFT, then development | blind | 40 on 30 companies |
 | bench40e | blind test of GRAFT v1 | blind | 40 on 30 companies |
 | bench40f | blind test of the grafted model | blind, by a different writer model from the earlier benches | 40 on 30 companies |
+| bench40g | blind test of a bigger model as the editor | blind, by the same writer model as bench40f | 40 on 30 companies |
 
 **How a blind bench is made.** The writer gets a brief and an avoid list, and nothing else. The brief gives the format, the counts and the rules for names and wordings. The avoid list holds every earlier company word, look-alike, invented name and answer. The writer's file is validated by script and stays closed until the method is frozen.
 
@@ -114,8 +120,9 @@ The rule for each stage, and every deviation from it, is in the [lab notebook](l
 | Phi-3-mini-4k-instruct | beta: fact writes; the January 2025 prototype |
 | Phi-3.5-mini | the January 2025 prototype |
 | Qwen3-4B | beta: a bigger model drafting teaching prompts (usable for 1 of 3 sentences) |
-| Claude Opus 5.5, through Claude Code | the editor in the beta's tracked sessions; drafted the relation wordings; wrote blind benches bench40b to bench40e, each as a separate agent |
-| Claude Fable 5.2, through Claude Code | wrote blind bench40f as a separate agent |
+| Claude Opus 5.5, through Claude Code | the editor in the beta's tracked sessions; drafted the relation wordings; wrote blind benches bench40b to bench40e, each as a separate agent; the editor on new facts in step 11, both its rounds of wordings and its run from a dataset through the tools |
+| Claude Fable 5.2, through Claude Code | wrote blind bench40f and bench40g, each as a separate agent |
+| Claude Sonnet 5.5, through Claude Code | wrote 24 blind questions about other jobs at a company for step 12, never asked |
 
 The blind company benches are on **Qwen3.5-0.8B**; the CounterFact recipe is validated on **Qwen3.5-0.8B and Qwen3.5-4B**.
 
@@ -181,6 +188,7 @@ The runs above built each bench fact from the bench's own 12 training wordings p
 - **Paired:** one fact, f09, passes on one path only, through the API (McNemar p = 1). Recall is higher on 16 facts and lower on 13 (Wilcoxon p = 0.47). The same-company leak is lower on 3 head-office facts and higher on none.
 - **The failures are the same kind:** all 8 are recall. One of them also has another fact's answer: the same Lumbravic Brewing reply as on the bench path.
 - **On blind bench40f the same path passes 24 of 40** ([`research/results/bench40f/`](../research/results/bench40f/)): recall median 0.75, the same-company leak 0 on every fact, no look-alike, unrelated or name-slot leak, no known fact lost and no drift. All 16 failures involve recall; one of them also has another fact's answer in a reply, and one its sibling's. Owner facts account for 8 of the 16, with 2 of 10 passing against 8 of 10 on bench40e. Three drafted wordings equal test wordings of this bench; without those prompts the count is still 24.
+- **On blind bench40g the same path, with the fast build, passes 30 of 40** ([`research/results/bench40g/`](../research/results/bench40g/)): recall median 0.833, the same-company leak 0 on every fact, no look-alike, unrelated or name-slot leak, no known fact lost and no drift. All 10 failures are recall.
 - **Two differences besides the wordings:**
   - The table held 40 facts, not 180, so this comparison doesn't separate the two effects.
   - Two drafted founder wordings equal bench40e test wordings, and the API path has no bench to guard against. They are among the recall prompts of 9 founder facts. Scored without them, f08 drops from 9 of 12 to 8 of 11, below the threshold, so the conservative count is **31 of 40**.
@@ -201,6 +209,27 @@ Every recall prompt of bench40e and bench40f was generated again with the layer'
 - **The detector's own misses gather in a few wordings,** such as "Speaking to reporters on Tuesday, the owner of {s}," and "At the anniversary event, {s} founder".
 - **A fact almost never opens on a question that isn't its own:** once in bench40f's 320 other questions about the companies, besides 24 questions that ask for the sibling fact's own relation.
 - **Pushing again inside the reply was tried and not adopted** ([lab notebook](lab-notebook.md#result-of-step-8s-revision-three-more-facts-and-nothing-broken-but-the-placement-bar-is-missed-the-armed-push-is-not-adopted)). Pushed at every later position, the answer landed in the wrong place ("I don't Omolara Adegoke, …"). Pushed only at the place of the answer, it added 3 facts of 80 with nothing lost, but 3 of 14 gained answers were still misplaced. Nine more replies got the right answer in the right place and were cut off by the bench's 16 new tokens.
+
+### A bigger model as the editor, on new facts
+
+The method's own loop: a bigger model sees what fails, teaches it and checks, and the change is kept only if it helps on questions nobody taught ([lab notebook, step 11](lab-notebook.md#step-11-the-editor-teaches-the-wordings-that-fail-written-2026-11-15-before-it-ran)). Claude Opus 5.5 was the editor, run as a separate agent that saw its input and nothing of the bench.
+
+- **Part 1, wordings for the forms that fail.** Shown the question forms that failed on bench40e and bench40f, the editor wrote new wordings for each relation, in two rounds.
+- **Part 2, a dataset through the tools.** Given bench40g's 40 facts as a CSV and the tools of a running server, the editor added every fact, checked each three times on questions it wrote itself, taught 76 wordings over two rounds, rebuilt after each and saved the table: 85 minutes and 75 tool calls, with no person in the loop.
+
+| bench40g, blind: 40 facts through the API, one table, the fast build | Built-in wordings | Part 1: the editor's wordings | Part 2: the editor's own run |
+|---|---|---|---|
+| Facts passing, every test wording counted | 30 | 33 | 31 |
+| **Facts passing, on the 456 test prompts neither editor taught** | **29** | **29** | **29** |
+| Whole answer on those 456 prompts | 344 | 359 | 350 |
+| Facts failing a leak, garbling or damage check | 0 | 0 | 0 |
+| In layer 20's own neurons, loaded back from disk | not compiled | 31 | 30 |
+
+- **Neither is adopted,** by the rule written before the run: at least 3 more facts on the wordings the editor didn't teach. Teaching the forms that fail carries over to new wordings a little, 2 to 3 points of replies, and adds no fact.
+- **The editor's own count moved more,** from 71% to 80% of its new questions, but its three checks drew on three different pools of questions, so the bench is the measure.
+- **The whole loop runs end to end:** a dataset given to a bigger model ends in the small model's own weights, in a checkpoint that loads with the library and its switch, with no firmly known fact lost ([the grafted model](#the-grafted-model-edits-in-the-models-own-neurons)).
+- **Its checks found what the benches miss.** A chief-executive fact answers for other jobs at its company: "Who is the head of human resources at Dwenkali Telecom?" gets "Rania Sabbagh is the Head of Human Resources at Dwenkali Telecom." Asked about all 10 companies, 26 of 30 such questions get the chief executive's name. None of the benches asks about another job.
+- **Teaching what not to answer was tried and not adopted** ([lab notebook, step 12](lab-notebook.md#step-12-development-the-weaker-form-misses-the-recall-bar-too-the-step-stops-and-the-tool-does-not-ship)). Taught 5 other jobs, the facts stopped answering 3 others they weren't taught, and answered 18 of 80 of their own questions instead of 59; as ordinary negatives, 29. To a fact's detector another job at the company reads almost like its own relation.
 
 ### Stage 1: fact block v2 on blind bench40c
 
@@ -382,6 +411,7 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
   - **Damage:** 337 and 377 neurons freed. No firmly known fact is lost (next points); the count of the 133 reads 6 and 4.
   - **The first shipped compile fails here** because it writes the answer's first token only: "Ingrid." came out for "Ingrid Myrvold".
   - **Its switch does more:** it holds the answers' token ids and reads the first-token neurons, where it matched names only.
+  - **Exported and loaded back from disk, on blind bench40g:** the two editors' tables of step 11, each compiled into 359 neurons of layer 20 and exported, pass 31 and 30 of 40 loaded back with their switch, against their inserted layer's 33 and 31. The replies are the same as in memory on all 40 facts, every failure is recall, and no firmly known fact is lost ([lab notebook](lab-notebook.md#result-of-step-11-the-weights-both-editors-tables-in-the-models-own-neurons-loaded-back-from-disk-within-2-of-their-inserted-layer)).
 - **One-token answers with the default compile:** on step 2's 64 CounterFact edits, both forms in 305 neurons, a checkpoint reloaded off disk gives ES 0.922 and PS 0.742 with its switch, against the inserted layer's 0.906 and 0.727. NS is 0.877 against 0.880, the leaks 0.000 and 0.040, and without the switch the edits are dormant. With no veto, twin relations' questions get the new answer more often than with the inserted layer (0.75 against 0.57).
 - **The first shipped form, checked from disk** (`complete=False`, one neuron per fact; [lab notebook](lab-notebook.md#result-of-the-plain-only-ship-check-it-ships)):
   - the checkpoint is the base's size, 1,746,942,600 bytes and 752,393,024 parameters, with 485 of 488 tensors identical;
@@ -428,13 +458,16 @@ They show the usual trade: generalizing an edit costs the neighbourhood. GRAFT's
 - On a 0.8B model, one inserted layer holds 140 to 180 facts at once at about the level of one block per fact, on blind benches.
 - Look-alike, unrelated-company and name-slot leaks are zero.
 - No known facts are lost, and there is no drift.
-- Facts added through the API, with no bench wordings, pass as many as facts built from the bench on bench40e: 32, or 31 counted conservatively, against 31. On blind bench40f they pass 24.
+- Facts added through the API, with no bench wordings, pass as many as facts built from the bench on bench40e: 32, or 31 counted conservatively, against 31. On blind bench40f they pass 24, and on blind bench40g 30.
 - On CounterFact, GRAFT changes facts the model already knows for two relations: a fresh draw of 40 headquarters edits met every bar written before it ran (reworded prompts 0.963, the neighbourhood within 0.017 of the unedited model), and so did 24 fresh citizenship edits (reworded prompts 1.000, the neighbourhood unchanged).
 - With 25 CounterFact relations and 300 edits in one table, the neighbourhood stays as unedited and no known fact is lost. Reworded prompts reach PS 0.523, and 0.648 with the twin rule (a development number; the rule itself was confirmed on fresh edits).
 - The same recipe, unchanged, carries over to Qwen3.5-4B (PS 0.910 on 200 fresh edits).
-- The grafted model, with the facts in layer 20's own neurons and a name switch, answers at the inserted layer's level: 23 against 24 of 40 on blind bench40f, and ES 0.922 and PS 0.742 against 0.906 and 0.727 on 64 CounterFact edits. No firmly known fact is lost, also with 237 one-token facts in one layer.
+- The grafted model, with the facts in layer 20's own neurons and a name switch, answers at the inserted layer's level: 23 against 24 of 40 on blind bench40f, 31 against 33 on blind bench40g loaded back from disk, and ES 0.922 and PS 0.742 against 0.906 and 0.727 on 64 CounterFact edits. No firmly known fact is lost, also with 237 one-token facts in one layer.
+- A bigger model can run the whole loop on new facts: given 40 facts as a dataset, it taught them through the tools and checked and fixed its work, and the table, in the model's own neurons and loaded back from disk, passes 30 of 40 on blind bench40g.
 
 **They don't show:**
+- **That a bigger model's teaching adds facts:** on blind bench40g, 29 of 40 pass on the wordings it didn't teach, with or without it.
+- **Questions about other jobs at a company:** no bench asks them, and chief-executive facts answer them (26 of 30 such questions). The leak checks above don't cover them.
 - **Other models or larger tables:** behaviour outside the Qwen3.5 family, or with more than 180 new facts or 300 CounterFact edits in one table. Facts added through the API were measured with 40 in the table.
 - **Other relations, aliases, or multi-turn and multi-hop questions.**
 - **Standard benchmarks, fully:** only part of CounterFact has been run: at most 300 edits in one table, over 25 of its 34 relations, of which three meet every bar in the full mix. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
@@ -478,6 +511,8 @@ python scripts/grafted_bench.py models/Qwen3.5-0.8B benchmarks/bench40e.json $R/
 ```
 
 The blind confirmation on bench40f ran as one script, kept with its results: [`research/results/slots/17_step7/confirm/chain.sh`](../research/results/slots/17_step7/confirm/chain.sh). The check of the damage bar itself is `scripts/firm_bar_check.py`, and the grafted model on CounterFact's one-token answers is `scripts/grafted_check.py`; each script's first lines give its arguments.
+
+The editor on bench40g (step 11) ran as two scripts, kept with their results: [`research/results/bench40g/chain.sh`](../research/results/bench40g/chain.sh) builds the bench and part 1's two tables, and [`weights_chain.sh`](../research/results/bench40g/weights_chain.sh) compiles, exports and reloads the editors' tables. The live editor's own records are in `research/results/bench40g/live_editor/`; its table is scored with `scripts/score_table.py`, and `scripts/editor_strict_count.py` counts the arms on the same untaught prompts. Step 12's development check is `scripts/must_not_dev.py`.
 
 The CounterFact runs need the dataset (`https://rome.baulab.info/data/dsets/counterfact.json`, 45 MB):
 

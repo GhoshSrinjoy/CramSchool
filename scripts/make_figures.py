@@ -137,14 +137,19 @@ def blind():
         ("bench40c", "fact block only", [("Fact block v2", "fact_block_v2_teach", AMBER, "")]),
         ("bench40d", "GRAFT: 140 facts loaded", [("Fact block v2", "fact_block_v2_teach", AMBER, ""), ("GRAFT", "fact_table_teach", GREEN, "")]),
         ("bench40e", "GRAFT: 180 facts loaded", [("Fact block v2", "fact_block_v2_teach", AMBER, ""), ("GRAFT", "fact_table_teach", GREEN, ""),
-                                          ("GRAFT + looser start", "fact_table_rev_teach", GREEN_L, "//")]),
+                                          ("GRAFT +\nlooser start", "fact_table_rev_teach", GREEN_L, "//")]),
         ("bench40f", "40 facts, added through the API", [("GRAFT", "graft_api", GREEN, ""), ("Grafted model", "slots/17_step7/confirm/rows", BLUE, "")]),
+        ("bench40g", "40 facts, a bigger model teaching", [("GRAFT", "reference", GREEN, ""), ("Editor's\nwordings", "editor_wordings", GREEN_L, "//"),
+                                                       ("Editor's\nown run", "live_editor", GREEN_L, "//"),
+                                                       ("Grafted,\nfrom disk", "bench40g/grafted_part1_disk", BLUE, "")]),
     ]
-    fig, ax = plt.subplots(figsize=(11.5, 5.4))
-    fig.subplots_adjust(left=0.06, right=0.98, top=0.74, bottom=0.17)
+    fig, ax = plt.subplots(figsize=(14.0, 5.9))
+    fig.subplots_adjust(left=0.05, right=0.985, top=0.71, bottom=0.21)
     title(fig, "Blind benches: facts passing every check, of 40", "Fact block v2 holds one fact at a time; GRAFT holds every loaded fact "
           "in one layer.\nbench40d chose the looser start, so its blind result is bench40e only.\n"
-          "bench40f: one table of 40 facts as the inserted layer, and compiled into the model's own neurons (the grafted model).")
+          "bench40f: one table of 40 facts as the inserted layer, and compiled into the model's own neurons (the grafted model).\n"
+          "bench40g: a bigger model's wordings, or its own run from the facts as a dataset; on the wordings neither editor taught, 29 pass in "
+          "each. The grafted bar is the first editor's table.")
     x, ticks, labels = 0.0, [], []
     for bench, loaded, bars in groups:
         start = x
@@ -163,7 +168,7 @@ def blind():
     ax.set_ylim(0, 40)
     ax.set_xticks(ticks)
     ax.set_xticklabels(labels, fontsize=10.5, color=INK, fontweight="bold")
-    ax.tick_params(axis="x", pad=26)
+    ax.tick_params(axis="x", pad=40)
     ax.set_yticks([0, 10, 20, 30, 40])
     clean(ax, grid_axis="y")
     save(fig, "blind.png")

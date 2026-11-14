@@ -110,6 +110,9 @@ The beta followed *Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang and 
 | Development, bench40e: a detector per later token | 18 of 40 |
 | Development, bench40e: the switch follows the answer | 29 of 40, against the inserted layer's 32 |
 | **Blind bench40f** | **23 of 40**, against the inserted layer's 24 |
+| **Blind bench40g**, two editors' tables, loaded back from disk | **31 and 30 of 40**, against the inserted layer's 33 and 31 |
+
+**A bigger model as the editor, on new facts** ([benchmarks](benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)). Given a blind bench's 40 facts as a dataset, Claude Opus 5.5 taught them through the tools and checked and fixed its own work, and the table went into the model's own neurons. On the questions it didn't teach, its teaching moved replies and no fact. Its checks found that a chief-executive fact answers for other jobs at its company, which no bench had asked; teaching the facts what not to answer cost too many of their own answers and was not adopted.
 
 ## Where the beta code lives
 
