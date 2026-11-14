@@ -61,11 +61,16 @@ Reply with the JSON object only."""
 
 def make_avoid(bench_paths: list[str]) -> dict:
     """The avoid list from earlier benches: every first word of every company they name (subjects, look-alikes, unrelated, the invented
-    filler companies), every answer, the answers of the known-facts check, and the industry words."""
+    filler companies), every answer, the answers of the known-facts check, and the industry words. A bench source among the paths
+    (facts as [company, relation, answer]) gives its companies and answers; the rest comes from its built bench file."""
     first, old = set(), set()
     for path in bench_paths:
         with open(path, encoding="utf-8") as fh:
             facts = json.load(fh)["facts"]
+        if facts and isinstance(facts[0], (list, tuple)):
+            first |= {company.split()[0] for company, _, _ in facts}
+            old |= {answer for _, _, answer in facts}
+            continue
         for f in facts:
             for c in [f["subject"]] + f["train"]["lookalikes"] + f["train"]["others"] + f["test"]["lookalikes"] + f["test"]["others"]:
                 first.add(c.split()[0])

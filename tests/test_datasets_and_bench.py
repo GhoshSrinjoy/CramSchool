@@ -5,7 +5,7 @@ import random
 import pytest
 
 from cramschool.bench.brief import brief_text, make_avoid, validate_source
-from cramschool.bench.build import build_bench, check_source
+from cramschool.bench.build import build_bench, build_from_source, check_source
 from cramschool.bench.report import binom_two_sided, paired, summary, wilcoxon_p
 from cramschool.bench.scoring import failures
 from cramschool.datasets import FactRecord, load_facts, save_facts
@@ -69,6 +69,28 @@ def test_blind_sources_are_checked_against_the_brief(tmp_path):
     assert any("fewer than 3 edits" in p for p in problems) and any("reuses an earlier name" in p for p in problems)
     bad = dict(src, wordings=dict(src["wordings"], owner=dict(src["wordings"]["owner"], plain=["{s} {s}"] * 16)))
     assert validate_source(bad, avoid, n_facts=8, n_companies=6)[0].startswith("every wording needs {s} exactly once")
+
+
+def test_earlier_benches_may_be_given_as_sources(tmp_path):
+    """benchmarks/ holds each bench next to its source, so a pattern such as benchmarks/*.json passes both kinds of file."""
+    src = synthetic_source()
+    bench, meta = build_bench([tuple(x) for x in src["facts"]], src["wordings"], src["generic"], src["seed"])
+    bench_path, source_path = tmp_path / "old.json", tmp_path / "old_source.json"
+    bench_path.write_text(json.dumps(dict(meta=meta, facts=bench)), encoding="utf-8")
+    source_path.write_text(json.dumps(src), encoding="utf-8")
+    both, alone = make_avoid([str(bench_path), str(source_path)]), make_avoid([str(bench_path)])
+    assert both == alone
+    from_source = make_avoid([str(source_path)])
+    assert "Velkaron" in from_source["first_words"] and "Debrecen" in from_source["old_targets"]
+    assert set(from_source["first_words"]) <= set(alone["first_words"])
+    # a rebuild may name its own source and its own output among the earlier benches; another bench's source still counts
+    out = tmp_path / "rebuilt.json"
+    out.write_text(bench_path.read_text(encoding="utf-8"), encoding="utf-8")
+    assert build_from_source(str(source_path), str(out), [str(source_path), str(out)])["facts"] == len(bench)
+    other = tmp_path / "other_source.json"
+    other.write_text(json.dumps(src), encoding="utf-8")
+    with pytest.raises(AssertionError, match="fewer than 3 edits"):
+        build_from_source(str(source_path), str(out), [str(other)])
 
 
 def test_statistics_and_the_pass_rule():

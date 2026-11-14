@@ -124,17 +124,25 @@ def check_source(src: dict) -> None:
             raise ValueError(f"every wording needs {{s}} exactly once: {t!r}")
 
 
+def companies_of(facts: list) -> list[str]:
+    """The companies of a bench file's facts (dicts with a subject) or of a bench source's ([company, relation, answer])."""
+    return [f[0] if isinstance(f, (list, tuple)) else f["subject"] for f in facts]
+
+
 def build_from_source(source_path: str, out_path: str, avoid_benches: list[str] = ()) -> dict:
-    """Build a bench file from a source file. Companies must stay at least 3 edits from the subjects of `avoid_benches` (bench files)."""
+    """Build a bench file from a source file. Companies must stay at least 3 edits from the subjects of `avoid_benches`: bench files, or
+    bench sources (so a pattern such as benchmarks/*.json works). The source being built and the file being written are left out."""
     with open(source_path, encoding="utf-8") as fh:
         src = json.load(fh)
     check_source(src)
-    old = []
+    own = {os.path.abspath(source_path), os.path.abspath(out_path)}
+    avoid = set()
     for path in avoid_benches:
+        if os.path.abspath(path) in own:
+            continue
         with open(path, encoding="utf-8") as fh:
-            old += json.load(fh)["facts"]
-    avoid = sorted({f["subject"].split()[0] for f in old})
-    bench, meta = build_bench([tuple(x) for x in src["facts"]], src["wordings"], src["generic"], src["seed"], avoid)
+            avoid |= {company.split()[0] for company in companies_of(json.load(fh)["facts"])}
+    bench, meta = build_bench([tuple(x) for x in src["facts"]], src["wordings"], src["generic"], src["seed"], sorted(avoid))
     meta["source"] = os.path.basename(source_path)
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(dict(meta=meta, facts=bench), fh, indent=1, ensure_ascii=False)
