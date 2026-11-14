@@ -370,6 +370,60 @@ def test_an_editor_can_add_wordings_to_a_relation():
         w.with_more(dict(ceo=dict(plain=["The CEO is"])))
 
 
+def test_an_editor_can_teach_a_relation_what_it_must_not_answer(tokenizer):
+    from cramschool.graft.build import avoid_items, fact_detectors
+    w = Wordings.builtin()
+    old = w.relations["ceo"]
+    more = w.with_avoid(dict(CEO=dict(plain=["The head of research at {s} is", "the head of research at {s} is"],
+                                      chat=["Who is the general counsel of {s}?"])))
+    rel = more.relations["ceo"]
+    assert rel.avoid_plain == ["The head of research at {s} is"] and rel.avoid_chat == ["Who is the general counsel of {s}?"]   # a repeat is left out
+    assert old.avoid_plain == [] and more.relations["owner"] is w.relations["owner"] and (rel.plain, rel.chat) == (old.plain, old.chat)
+    with pytest.raises(ValueError, match="own wordings"):
+        more.with_avoid(dict(ceo=dict(chat=[old.chat[0]])))                       # it cannot be told to stay shut on its own question
+    with pytest.raises(ValueError, match="must not answer"):
+        more.with_more(dict(ceo=dict(plain=["The head of research at {s} is"])))  # nor taught to answer one it must not
+    with pytest.raises(ValueError, match="exactly once"):
+        w.with_avoid(dict(ceo=dict(plain=["The head of research is"])))
+    with pytest.raises(KeyError, match="unknown relation"):
+        w.with_avoid(dict(cto=dict(plain=["The CTO of {s} is"])))
+    kept = more.with_more(dict(ceo=dict(chat=["who heads {s} as ceo"]))).relations["ceo"]
+    assert (kept.avoid_plain, kept.avoid_chat) == (rel.avoid_plain, rel.avoid_chat)                   # more ways of asking keep them
+    assert Relation.from_dict("ceo", rel.as_dict()).avoid_chat == rel.avoid_chat and "avoid_plain" not in old.as_dict()
+    f = make_fact("acme", "ceo", "julian rodlauer", more)
+    texts = [p.text for p in avoid_items(f, tokenizer, build_context([f], more))]
+    assert "The head of research at acme is" in texts and "The head of research at ACME is" in texts
+    assert any("general counsel of acme" in t for t in texts) and len(set(texts)) > 20               # the subject, its cases and the invented names
+    g = make_fact("acme", "owner", "julian", more)
+    assert avoid_items(g, tokenizer, build_context([g], more)) == []                                  # another relation has none
+    forms = dict(plain=dict(w=torch.ones(4), tau_neg=30.0, tau_in=10.0, tau_avoid=34.0, med=36.0),
+                 chat=dict(w=torch.ones(4), tau_neg=30.0, tau_in=10.0, tau_avoid=41.0, med=40.0))
+    got = fact_detectors(dict(forms=forms))
+    assert [(d["form"], d["tau"]) for d in got] == [("plain", 34.0)]          # the threshold is above every such reading; chat's median is under it
+
+
+def test_a_table_teaches_a_relation_what_it_must_not_answer(model, tokenizer, tmp_path):
+    from cramschool.graft.build import fact_detectors
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=2)
+    graft.add("acme", "ceo", "julian rodlauer")
+    graft.add("acme", "owner", "julian")
+    taught = graft.add_avoid("CEO", plain=["the head of research at {s} is"], chat=["who is the general counsel of {s} ?"])
+    assert (taught["added_plain"], taught["added_chat"], taught["plain"], taught["chat"]) == (1, 1, 1, 1)
+    before = {e["fact"]["relation"]: e["parts"] for e in graft._facts}
+    assert graft.rebuild("ceo") == 1 and [f.relation for f in graft.facts] == ["owner", "ceo"]
+    parts = {e["fact"]["relation"]: e["parts"] for e in graft._facts}
+    assert parts["owner"] is before["owner"]                                                          # only that relation's facts are built again
+    assert all("tau_avoid" in d for d in parts["ceo"]["forms"].values()) and parts["ceo"]["counts"]["avoid"] > 0
+    assert all("tau_avoid" not in d for d in before["ceo"]["forms"].values()) and "avoid" not in before["ceo"]["counts"]
+    assert all(d["tau"] >= parts["ceo"]["forms"][d["form"]]["tau_avoid"] for d in fact_detectors(parts["ceo"]))
+    again = Graft.load(graft.save(str(tmp_path / "t.graft")), model, tokenizer)
+    assert again.wordings.relations["ceo"].avoid_plain == ["the head of research at {s} is"]
+    assert again.wordings.relations["ceo"].avoid_chat == ["who is the general counsel of {s} ?"]
+    with pytest.raises(KeyError, match="unknown relation"):
+        graft.add_avoid("cto", plain=["the cto of {s} is"])
+
+
 def test_twins_are_not_negatives_for_each_other_and_cannot_veto(tokenizer):
     from cramschool.graft.build import contrasted, detector_data, twin_map
     w = Wordings.builtin().with_relations(

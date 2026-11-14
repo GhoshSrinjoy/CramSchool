@@ -166,12 +166,32 @@ class Graft:
         return dict(relation=relation, added_plain=len(new.plain) - len(old.plain), added_chat=len(new.chat) - len(old.chat), plain=len(new.plain),
                     chat=len(new.chat))
 
-    def rebuild(self) -> int:
-        """Build every stored fact again with the wordings as they are now. After add_wordings, a fact's detector learns its relation's new
-        wordings, and every other fact about the same kind of subject learns to stay shut on them. Returns how many were built."""
-        stored = [(e["fact"]["subject"], e["fact"]["relation"], e["fact"]["target"]) for e in self._facts]
-        for subject, relation, answer in stored:
-            self.add(subject, relation, answer)
+    def add_avoid(self, relation: str, plain=(), chat=()) -> dict:
+        """Teach a relation the table knows what it must not answer: questions about the same company that are close to it and are not
+        it, such as another job at the company for a chief executive. After `rebuild(relation)`, each of its facts reads them about its own
+        company and about invented ones, as a group of negatives of their own, and keeps its threshold above every one of them. A plain
+        one stops where an answer would come next. One equal to the relation's own wordings is refused. The answer vectors don't change."""
+        relation = canonical_relation(relation)
+        if relation not in self.wordings.relations:
+            raise KeyError(f"unknown relation {relation!r}. Known: {', '.join(self.wordings.relations)}. A new relation needs add_relation().")
+        old = self.wordings.relations[relation]
+        self.wordings = self.wordings.with_avoid({relation: dict(plain=list(plain), chat=list(chat))})
+        new = self.wordings.relations[relation]
+        return dict(relation=relation, added_plain=len(new.avoid_plain) - len(old.avoid_plain), added_chat=len(new.avoid_chat) - len(old.avoid_chat),
+                    plain=len(new.avoid_plain), chat=len(new.avoid_chat))
+
+    def rebuild(self, relation: str | None = None) -> int:
+        """Build the stored facts again with the wordings as they are now: every fact, or only those of `relation`. After add_wordings, a
+        fact's detector learns its relation's new wordings, and every other fact about the same kind of subject learns to stay shut on them;
+        after add_avoid, the relation's facts learn to stay shut on what it must not answer. Returns how many were built."""
+        if relation is not None:
+            relation = canonical_relation(relation)
+            if relation not in self.wordings.relations:
+                raise KeyError(f"unknown relation {relation!r}. Known: {', '.join(self.wordings.relations)}.")
+        stored = [(e["fact"]["subject"], e["fact"]["relation"], e["fact"]["target"]) for e in self._facts
+                  if relation is None or e["fact"]["relation"] == relation]
+        for subject, rel, answer in stored:
+            self.add(subject, rel, answer)
         return len(stored)
 
     def add(self, subject: str, relation: str, answer: str) -> StoredFact:
@@ -458,7 +478,8 @@ class Graft:
         if meta.get("format") != FORMAT_VERSION:
             raise ValueError(f"unsupported table format {meta.get('format')!r}")
         builtin = Wordings.builtin()
-        wordings = Wordings(relations={r: Relation(name=r, plain=d["plain"], chat=d["chat"], person=d.get("person", True), subject=d.get("subject", "company"))
+        wordings = Wordings(relations={r: Relation(name=r, plain=d["plain"], chat=d["chat"], person=d.get("person", True), subject=d.get("subject", "company"),
+                                                   avoid_plain=d.get("avoid_plain", []), avoid_chat=d.get("avoid_chat", []))
                                        for r, d in meta["relations"].items()},
                             generic=builtin.generic, kinds={**builtin.kinds, **meta.get("kinds", {})})
         graft = cls(model, tokenizer, layer=meta["layer"], wordings=wordings, options=GraftOptions(**meta["options"]), progress=progress)

@@ -82,27 +82,39 @@ class Relation:
     """A relation's wordings. `{s}` stands for the subject in every wording; plain ones stop where the answer comes next.
 
     subject: the kind of subject the relation is about: "company" (the built-in relations), or a kind whose invented names and generic
-    questions the wordings provide (`Wordings.kinds`), such as "person", "country", "place", "work" or "product"."""
+    questions the wordings provide (`Wordings.kinds`), such as "person", "country", "place", "work" or "product".
+    avoid_plain, avoid_chat: questions about the same subject that are close to the relation and are not it, which its facts must not
+    answer, such as another job at the company for a chief executive (`Wordings.with_avoid`). None by default."""
     name: str
     plain: list[str]
     chat: list[str]
     person: bool = True
     subject: str = "company"
+    avoid_plain: list[str] = field(default_factory=list)
+    avoid_chat: list[str] = field(default_factory=list)
 
     def __post_init__(self):
-        for t in self.plain + self.chat:
+        for t in self.plain + self.chat + self.avoid_plain + self.avoid_chat:
             if t.count("{s}") != 1:
                 raise ValueError(f"relation {self.name!r}: every wording needs {{s}} exactly once: {t!r}")
         if len(self.plain) < 8 or len(self.chat) < 4:
             raise ValueError(f"relation {self.name!r}: give at least 8 plain and 4 chat wordings (30 and 30 were used for the built-in ones)")
+        own = {normalized(t) for t in self.plain + self.chat}
+        both = [t for t in self.avoid_plain + self.avoid_chat if normalized(t) in own]
+        if both:
+            raise ValueError(f"relation {self.name!r}: a wording cannot be one of its own wordings and one it must not answer: {both[0]!r}")
 
     @classmethod
     def from_dict(cls, name: str, d: dict) -> "Relation":
         person = d.get("person", d["answer"] == "person" if "answer" in d else name not in ("hq",))
-        return cls(name=canonical_relation(name), plain=list(d["plain"]), chat=list(d["chat"]), person=person, subject=d.get("subject", "company"))
+        return cls(name=canonical_relation(name), plain=list(d["plain"]), chat=list(d["chat"]), person=person, subject=d.get("subject", "company"),
+                   avoid_plain=list(d.get("avoid_plain", [])), avoid_chat=list(d.get("avoid_chat", [])))
 
     def as_dict(self) -> dict:
-        return dict(plain=self.plain, chat=self.chat, person=self.person, subject=self.subject)
+        d = dict(plain=self.plain, chat=self.chat, person=self.person, subject=self.subject)
+        if self.avoid_plain or self.avoid_chat:
+            d.update(avoid_plain=self.avoid_plain, avoid_chat=self.avoid_chat)
+        return d
 
     @classmethod
     def from_file(cls, path: str) -> dict[str, "Relation"]:
@@ -149,20 +161,38 @@ class Wordings:
             if key not in relations:
                 raise KeyError(f"unknown relation {name!r}; with_more adds wordings to relations that exist: {', '.join(relations)}")
             old = relations[key]
-            lists = {}
-            for form in ("plain", "chat"):
-                seen = {normalized(w) for w in getattr(old, form)}
-                added = []
-                for w in extra.get(form, []):
-                    if normalized(w) not in seen:
-                        seen.add(normalized(w))
-                        added.append(w)
-                lists[form] = list(getattr(old, form)) + added
-            relations[key] = Relation(name=old.name, plain=lists["plain"], chat=lists["chat"], person=old.person, subject=old.subject)
+            relations[key] = Relation(name=old.name, plain=_merged(old.plain, extra.get("plain", [])), chat=_merged(old.chat, extra.get("chat", [])),
+                                      person=old.person, subject=old.subject, avoid_plain=list(old.avoid_plain), avoid_chat=list(old.avoid_chat))
+        return Wordings(relations=relations, generic=self.generic, guard=set(self.guard), kinds=dict(self.kinds))
+
+    def with_avoid(self, avoid: dict[str, dict]) -> "Wordings":
+        """These wordings with questions that relations they already have must not answer: {relation: {"plain": [...], "chat": [...]}},
+        as an editor model writes them when a check shows a relation's facts answering questions close to it, such as another job at the
+        company for a chief executive. A plain one stops where an answer would come next. One that repeats a question the relation already
+        avoids (case and punctuation aside) is left out; one equal to one of the relation's own wordings is refused."""
+        relations = dict(self.relations)
+        for name, extra in avoid.items():
+            key = canonical_relation(name)
+            if key not in relations:
+                raise KeyError(f"unknown relation {name!r}; with_avoid teaches relations that exist: {', '.join(relations)}")
+            old = relations[key]
+            relations[key] = Relation(name=old.name, plain=list(old.plain), chat=list(old.chat), person=old.person, subject=old.subject,
+                                      avoid_plain=_merged(old.avoid_plain, extra.get("plain", [])),
+                                      avoid_chat=_merged(old.avoid_chat, extra.get("chat", [])))
         return Wordings(relations=relations, generic=self.generic, guard=set(self.guard), kinds=dict(self.kinds))
 
     def kind_of(self, relation: str) -> str:
         return self.relations[relation].subject
+
+
+def _merged(have: list[str], extra) -> list[str]:
+    """`have`, then each of `extra` that repeats none of them (case and punctuation aside)."""
+    out, seen = list(have), {normalized(w) for w in have}
+    for w in extra:
+        if normalized(w) not in seen:
+            seen.add(normalized(w))
+            out.append(w)
+    return out
 
 
 def check_kind(name: str, spec: dict) -> dict:

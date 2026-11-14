@@ -92,7 +92,8 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
         spec = wordings.kinds[kind]
         by_kind[kind] = dict(names=invented_names(spec["names"], [f["subject"] for f in facts]),
                              generic=tuple([t for t in spec[g] if normalized(t) not in same] for g in ("generic_plain", "generic_chat")))
-    return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)),
+    avoid = {r: (tuple(rel.avoid_plain), tuple(rel.avoid_chat)) for r, rel in wordings.relations.items() if rel.avoid_plain or rel.avoid_chat}
+    return dict(name=name, facts=facts, drafted=drafted, generic=generic, names=invented_companies(bench_companies(facts)), avoid=avoid,
                 guard=(test_texts(facts) | set(wordings.guard)) if guard else set(wordings.guard), real_world=real_world, kinds_of=kinds_of,
                 by_kind=by_kind, context=tuple(s + " " for s in context_sentences(context)), cache=cache, teach_cap=teach_cap, inside=inside,
                 twins=twin_map(twins))
@@ -238,6 +239,19 @@ def detector_data(f: dict, tokenizer, ctx: dict):
     return guarded(pos_plain, guard), guarded(pos_chat, guard), guarded(neg, guard), guarded(replies, guard)
 
 
+def avoid_items(f: dict, tokenizer, ctx: dict) -> list:
+    """The questions the fact's relation must not answer (Relation.avoid_plain and avoid_chat), about the fact's own subject as written,
+    in lower and in upper case, and about invented names of its kind: plain, chat and in Q/A form, guarded. Empty for a relation that has
+    none, so that its facts are built exactly as before."""
+    a_plain, a_chat = ctx.get("avoid", {}).get(f["relation"], ((), ()))
+    if not a_plain and not a_chat:
+        return []
+    inv = kind_parts(ctx, f["relation"])[0]
+    subj = f["subject"]
+    names = list(dict.fromkeys([subj, subj.lower(), subj.upper()] + list(inv[:N_OTHER])))
+    return guarded(plain_items(a_plain, names) + chat_items(tokenizer, a_chat, names) + qa_items(a_chat, names), ctx["guard"])
+
+
 def spellings_of(f: dict, tokenizer, vector: dict) -> dict:
     """Answer token ids and vectors for both spellings: " target" (after a word) and "target" (after whitespace or an opening mark)."""
     out = {}
@@ -303,9 +317,11 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ve
     inside = torch.cat([x for x in layer_reads(model, tokenizer, sequences, picks, layer) if x.shape[0]]) if later else None
 
     pos_plain, pos_chat, neg, replies = detector_data(f, tokenizer, ctx)
+    avoid = avoid_items(f, tokenizer, ctx)
     cache: ReadCache | None = ctx.get("cache")
     reads = (lambda items: cache.last_reads(model, tokenizer, items, layer, transient=f["subject"])) if cache else         (lambda items: last_reads(model, tokenizer, items, layer))
     x_neg = reads(neg)
+    x_avoid = reads(avoid) if avoid else None  # what the relation must not answer: a group of negatives of its own, and a floor for tau
     lap("negatives")
     if cache is None:
         gen = greedy_ids(model, tokenizer, replies, REPLY_TOKENS)
@@ -317,7 +333,8 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ve
     x_reply = torch.cat(reply_x) if reply_x else x_neg[:0]
     lap("replies")
     scatter = ctx.get("inside", "negative") == "scatter"
-    negs = [x_neg] + ([inside] if inside is not None and not scatter else []) + ([x_reply] if x_reply.shape[0] else [])
+    negs = [x_neg] + ([inside] if inside is not None and not scatter else []) + ([x_reply] if x_reply.shape[0] else []) + \
+        ([x_avoid] if x_avoid is not None else [])
     forms = {}
     for form, items in (("plain", pos_plain), ("chat", pos_chat)):
         x_pos = reads(items)
@@ -329,6 +346,8 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ve
                            reply_q={q: float(torch.quantile(r_rep, q)) if r_rep is not None else -1e9 for q in REPLY_QUANTILES},
                            med=float(r_pos.median()), n_pos=int(x_pos.shape[0]),
                            neg_q={q: float(torch.quantile(r_neg, q)) for q in END_QUANTILES})
+        if x_avoid is not None:
+            forms[form]["tau_avoid"] = float(ratio(x_avoid, w, c, cbar).max())
     lap("positives_and_fit")
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
@@ -338,6 +357,8 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ve
                seconds=round(time.time() - t0, 1), steps=steps)
     if scatter:
         out["inside"] = "scatter"
+    if avoid:
+        out["counts"]["avoid"] = len(avoid)
     return out
 
 
@@ -549,9 +570,12 @@ def build_slots(model, tokenizer, ctx: dict, mctx: dict, layer: int, answers: di
 # ---------------------------------------------------------------- from parts to a table entry
 
 def fact_detectors(parts: dict, reply_q: float | None = None) -> list[dict]:
+    """The fact's detectors: a form's threshold is above its prompt negatives' 99th percentile, every reading inside its taught answers,
+    and every question its relation must not answer (tau_avoid, when the relation has any); a form whose positives' median is not above
+    it has no detector."""
     out = []
     for form, d in parts["forms"].items():
-        tau = max(d["tau_neg"], d["tau_in"], d["reply_q"][reply_q] if reply_q is not None else -1e9)
+        tau = max(d["tau_neg"], d["tau_in"], d.get("tau_avoid", -1e9), d["reply_q"][reply_q] if reply_q is not None else -1e9)
         if d["med"] > tau:
             out.append(dict(form=form, w=d["w"], tau=tau, delta=SATURATION * (d["med"] - tau)))
     return out
@@ -565,7 +589,7 @@ def looser_detectors(parts: dict, looser: dict, option: str = "v2") -> list[dict
     q = {"q95": 0.95, "q90": 0.90}[option]
     out = []
     for form, d in parts["forms"].items():
-        tau = max(looser["strict"][form]["q"][q], d["tau_in"])
+        tau = max(looser["strict"][form]["q"][q], d["tau_in"], d.get("tau_avoid", -1e9))
         if d["med"] > tau:
             out.append(dict(form=form, w=d["w"], tau=tau, delta=SATURATION * (d["med"] - tau)))
     return out
@@ -578,7 +602,7 @@ def end_detectors(parts: dict, quantile: float) -> list[dict]:
     for form, d in parts["forms"].items():
         if quantile not in d.get("neg_q", {}):
             raise ValueError(f"{parts['id']}: its parts keep no {quantile} quantile of their prompt negatives (built before end_quantile existed)")
-        tau = d["neg_q"][quantile]
+        tau = max(d["neg_q"][quantile], d.get("tau_avoid", -1e9))
         if d["med"] > tau:
             out.append(dict(form=form, w=d["w"], tau=tau, delta=SATURATION * (d["med"] - tau)))
     return out
@@ -599,5 +623,5 @@ def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_
     return entry
 
 
-__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_slots", "build_continuation", "ordinary_reads", "entry_of",
+__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_slots", "build_continuation", "ordinary_reads", "entry_of", "avoid_items",
            "end_detectors", "detector_data", "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]
