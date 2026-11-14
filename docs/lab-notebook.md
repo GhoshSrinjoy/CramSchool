@@ -2795,7 +2795,7 @@ Raw numbers: `research/results/slots/17_step7/confirm/` (the grafted model's run
 - **Reply by reply:** both give the whole answer in 340 replies and neither in 116. The inserted layer alone does in 18, the grafted model alone in 6.
 - **All 17 failures are on recall.** Two of those facts also have another fact's answer in one of 56 checked replies ("Dunedin" and "Temuco", both head offices, in replies to other questions about their companies).
 - **Three drafted wordings equal test wordings of this bench** (one founder wording, two head-office ones: 20 of the 480 recall prompts). The API path has no guard against that, and both models were taught from the same table. Without those prompts the counts are 24 and 22, still within 3.
-- **bench40f is harder than bench40e for both:** 24 against 32 for the inserted layer. Owner facts carry most of it, with 2 of 10 passing.
+- **bench40f is harder than bench40e for both:** 24 against 32 for the inserted layer. Owner facts carry most of it, with 2 of 10 passing. The two benches also differ in their writer: bench40f's was a different model from the one that wrote bench40b to bench40e.
 
 **What step 7 leaves:**
 - **The grafted model answers new facts with answers of several tokens at the inserted layer's level:** 29 against 32 on the development bench and 23 against 24 on the blind one, from the model's own neurons at the same size, with no leaks to other questions about the company (median 0 on both) and the damage bar met.

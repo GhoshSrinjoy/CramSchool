@@ -40,7 +40,7 @@ Each bench holds 40 fictional facts, 10 for each relation: owner, CEO, founder a
   - 3 look-alike companies for testing, one of each kind: the same first word in another industry, one letter changed, and an invented first word in the same industry;
   - 3 more look-alikes for training, and 3 unrelated companies;
   - name slots: a look-alike or unrelated company followed by "… a man named" or "… a woman named".
-- **Two-fact companies:** in bench40d and bench40e, the 40 facts sit on 30 companies, and 10 companies hold two facts of different relations.
+- **Two-fact companies:** in bench40d, bench40e and bench40f, the 40 facts sit on 30 companies, and 10 companies hold two facts of different relations.
 
 | Bench | Role | Written | Facts |
 |---|---|---|---|
@@ -50,6 +50,7 @@ Each bench holds 40 fictional facts, 10 for each relation: owner, CEO, founder a
 | devpairs | development, two facts per company | built from bench40b's wordings | 20 |
 | bench40d | blind test of GRAFT, then development | blind | 40 on 30 companies |
 | bench40e | blind test of GRAFT v1 | blind | 40 on 30 companies |
+| bench40f | blind test of the grafted model | blind, by a different writer model from the earlier benches | 40 on 30 companies |
 
 **How a blind bench is made.** The writer gets a brief and an avoid list, and nothing else. The brief gives the format, the counts and the rules for names and wordings. The avoid list holds every earlier company word, look-alike, invented name and answer. The writer's file is validated by script and stays closed until the method is frozen.
 
@@ -110,7 +111,8 @@ The rule for each stage, and every deviation from it, is in the [lab notebook](l
 | Phi-3-mini-4k-instruct | beta: fact writes; the January 2025 prototype |
 | Phi-3.5-mini | the January 2025 prototype |
 | Qwen3-4B | beta: a bigger model drafting teaching prompts (usable for 1 of 3 sentences) |
-| Claude Opus 5.5, through Claude Code | the editor in the beta's tracked sessions; drafted the relation wordings; wrote the blind benches as a separate agent |
+| Claude Opus 5.5, through Claude Code | the editor in the beta's tracked sessions; drafted the relation wordings; wrote blind benches bench40b to bench40e, each as a separate agent |
+| Claude Fable 5.2, through Claude Code | wrote blind bench40f as a separate agent |
 
 The blind company benches are on **Qwen3.5-0.8B**; the CounterFact recipe is validated on **Qwen3.5-0.8B and Qwen3.5-4B**.
 

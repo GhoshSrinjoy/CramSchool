@@ -91,7 +91,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | Folder | What it holds |
 |---|---|
 | [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
-| [`benchmarks/`](benchmarks/) | The six benches, with the blind writers' source files |
+| [`benchmarks/`](benchmarks/) | The seven benches, with the blind writers' source files |
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the trace and figure generators, and the API-facts validation |
