@@ -50,17 +50,21 @@ model, tokenizer, switch = load_grafted("my-grafted-model")         # transforme
 switch.detach()                                                     # the facts dormant again
 ```
 
-- `export_grafted(out_dir, base_dir=None, forms=("plain",), texts=None)` compiles the table's facts into the model's own neurons at the table's layer, one neuron per fact ([GRAFT, section 12](graft.md#12-the-grafted-model)). It writes the base checkpoint with that layer's three MLP matrices replaced: same files, tensor names, shapes and byte size. With it come `grafted.json` (which neuron holds which fact) and `grafted_switch.py`. It returns a report of the edited tensors and file sizes. The loaded model is left unchanged.
+- `export_grafted(out_dir, base_dir=None, forms=("plain", "chat"), texts=None, complete=True)` compiles the table's facts into the model's own neurons at the table's layer ([GRAFT, section 12](graft.md#12-the-grafted-model)). It writes the base checkpoint with that layer's three MLP matrices replaced: same files, tensor names, shapes and byte size. With it come `grafted.json` (which neuron holds which fact) and `grafted_switch.py`. It returns a report of the edited tensors and file sizes. The loaded model is left unchanged.
   - The base must be a local folder in safetensors format.
-  - `forms=("plain", "chat")` adds a chat-form neuron per fact, at twice the neurons freed.
-  - `texts=` takes ordinary text, a list of strings of about 1.1M tokens in all. The freed neurons are then chosen and re-fitted on it as well as on the calibration paragraphs (`grafted.text_moments`). In the lab's check it lowered the drift and the known facts lost, but at layer 20 the damage bar still held only up to about 64 facts ([lab notebook](lab-notebook.md#result-of-step-6-part-2-one-bar-missed-by-one-knife-edge-fact-so-the-capacity-claim-stays-at-about-64)).
+  - `complete=True` handles answers of several tokens. Each form's first token is a pair of neurons, each later answer token has a neuron of its own, and the name switch follows the answer. It costs two neurons per form and one per later token.
+    - `complete=False` is the first shipped compile: one neuron per form, the answer's first token only. It suits a table of one-token answers.
+    - `complete="detected"` keeps the switch to names alone, with a detector on each later token's neuron. It left many answers unfinished in the lab's check.
+  - `forms=("plain",)` leaves the chat form out, for a table that is only asked in plain text.
+  - `texts=` takes ordinary text, a list of strings of about 1.1M tokens in all. The freed neurons are then chosen and re-fitted on it as well as on the calibration paragraphs (`grafted.text_moments`). It lowers the drift; the lab's check with 237 one-token facts was compiled with it.
+  - **How many facts:** no firmly known fact was lost with up to 512 neurons freed at layer 20 of the 0.8B, and one was at 1,024. `cramschool.bench.scoring.FirmCheck` measures it for your own model ([GRAFT, section 12](graft.md#12-the-grafted-model)).
 - `grafted_switch.py` is self-contained, needing torch alone. Without cramschool:
   ```python
   import sys; sys.path.insert(0, "my-grafted-model")
   import grafted_switch
   switch = grafted_switch.attach(model, tokenizer, "my-grafted-model")
   ```
-- **Without the switch the facts are dormant:** each fact neuron's up row is zero in the checkpoint, and the switch sets it to 1 after the fact's subject is named.
+- **Without the switch the facts are dormant:** each fact neuron's up row is zero in the checkpoint. The switch sets it to 1 at a call's last position after the fact's subject is named, and for each later answer token while the tokens read are the answer's.
 - **Lower level** (`cramschool.graft.grafted`):
   - `compile_layer(model, tokenizer, facts, layer, calibration)` returns the new matrices without writing anything. `extra_moments=text_moments(model, tokenizer, layer, texts)` adds more ordinary text to the choice and the re-fit;
   - `apply_layer(model, compiled)` writes them into a loaded model and returns the originals for undo;

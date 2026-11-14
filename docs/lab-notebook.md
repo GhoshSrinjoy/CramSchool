@@ -2480,3 +2480,328 @@ Raw numbers:
 - **The grafted model at 237 facts answers as the inserted layer does** on edits never used for any choice. On a fresh known set, never used for any choice, it lost 1 of 396.
 - **The large statistics are kept in the package as an option** (`grafted.text_moments`, `compile_layer(extra_moments=...)`, `Graft.export_grafted(texts=...)`). In part 1 they cut the 133's losses and drift at every N. The bar's verdict didn't change.
 - **Not adopted, left for a decision:** a damage bar founded on systematic shift instead of a count of flips. For example, each set's mean margin change, with every flip counted where the unedited margin was robust. It would have to be fixed before a run, and checked on a known set not used so far.
+
+## Probes before a new plan (2026-11-14)
+
+**Why:** the user asked for the best course of action against the open limits. Five things were measured first, with forward passes only. **No rule was written before them, so they decide nothing by themselves.** They are the reason for the two decisions in the next sections.
+- Scripts: `scripts/diag_grafted_bench.py`, `diag_first_token.py`, `diag_latch.py` and `diag_heads_bus.py`.
+- Raw numbers: `research/results/slots/15_probes/`.
+
+**1. The grafted model on the project's own bench of new facts.** The saved table of bench40e's 40 facts, added through the API (`runs/api_facts/bench40e.graft`, on which the inserted layer scored 32 of 40), was compiled with both forms into 80 neurons and scored with the bench's checks and the name switch.
+
+| bench40e, 40 facts in one table | Inserted layer | Grafted model |
+|---|---|---|
+| Facts passing | 32 | **0** |
+| Recall, median (mean) | 0.83 (0.80) | 0.00 (0.05) |
+| Replies holding the whole answer, of 480 | 386 | 24 |
+| Replies starting with the answer's first token | — | 331 |
+| Same-company leak; another fact's answer; known facts lost (the most, on any fact) | — | 0; 0; 1 |
+
+- **Cause: a fact neuron writes the answer's first token only.** 39 of bench40e's 40 answers are 2 to 7 tokens long: "Ingrid." came out for "Ingrid Myrvold", and "Ferrari" for "Ferrara" at a reply's start. Of step 6's 242 CounterFact answers, 237 are one token.
+- **So "the grafted model answers as the inserted layer does" has been shown for one-token answers only.**
+- **The first token is also lost more often than in the inserted layer.** The detector's score z at the prompt's last token, for each recall prompt:
+
+| z at the prompt's end | ≤ 0 | 0 to 0.25 | 0.25 to 0.5 | 0.5 to 1 | 1 to 2 | 2 to 3 | over 3 |
+|---|---|---|---|---|---|---|---|
+| Plain prompts (320) | 57 | 9 | 20 | 27 | 104 | 83 | 20 |
+| of them, the first token landed | 0 | 0 | 13 | 23 | 92 | 72 | 15 |
+| the inserted layer gave the whole answer and the grafted model's first token did not land (39) | 5 | 9 | 7 | 1 | 3 | 9 | 5 |
+| Chat prompts (160) | 10 | 4 | 13 | 18 | 88 | 27 | 0 |
+| of them, the first token landed | 0 | 0 | 7 | 18 | 68 | 23 | 0 |
+| inserted layer whole, grafted first token missing (25) | 2 | 3 | 6 | 0 | 12 | 2 | 0 |
+
+  - **A neuron's push grows with z** (step 2 and the review said so). Below z = 0.5 it is under half the inserted layer's and often too weak: 25 of the 64 misses. From z = 2 it is twice the inserted layer's or more, and the reply garbles ("Called?", "2024 A: 2024"): 14 of the plain misses.
+  - **A neuron acts at every token after the name,** the inserted layer only at the last position of a call. The 12 chat misses at z between 1 and 2 have a moderate push and still an unchanged or garbled reply ("red red red"). A chat prompt has five or more tokens between the question and the reply's start. Whether pushes at those tokens are the cause was not measured directly.
+  - **If every first token that landed had been completed, about 22 of 40 facts would reach the recall bar.** Completing answers alone would not bring the grafted model to the inserted layer's level.
+
+**2. Known facts at 237 facts, by margin** (from step 6's stored `03_known_margins.json`; the margin is the answer's first token's lead over the best other token at the prompt's end):
+
+| Set | Answered at the first token, unedited | Flipped to wrong | of them with an unedited lead ≤ 0.25 | Flipped to right | Lead ≥ 1.0: lost of how many | Mean margin change; largest |
+|---|---|---|---|---|---|---|
+| The 133 | 81 | 1 | 1 | 0 | 0 of 41 | +0.013; 0.375 |
+| Step 1c's 400 | 229 | 1 | 1 | 2 | 0 of 152 | −0.006; 0.375 |
+| Step 6's fresh 400 | 215 | 3 | 3 | 1 | 0 of 124 | −0.001; 0.375 |
+
+Every flip sits within 0.25 logits of a tie, and none of the 470 prompts with a larger lead flipped.
+
+**3. A latch in a Gated DeltaNet head** (`diag_latch.py`).
+- **A fact about the model that the earlier steps did not use:** only layers 3, 7, 11, 15, 19 and 23 are full attention. The other 18 are Gated DeltaNet layers. Each has 16 heads of width 128, and each head is a running memory: it writes a value under a key at a token, with its own write gate and decay, and reads it back at later tokens through a norm and a per-dimension output gate. Queries, keys and values pass a 4-token convolution and SiLU first. Step 4 tried the full-attention layers only.
+- **The mechanics work.** One head of layer 20 was set by direct weight writes: write only where a tag is present, no decay, a fixed key and query. Tags were written by a hook, at 5% of the residual's norm, in the quietest uncentred directions of the layer's input.
+  - With no tag, over 400 tokens: the head's output stayed under 0.004, and the write gate under 0.00001.
+  - A tag at token 10: silent before it; after it, its subject's code read 7.3 to 9.0 (ideal 8.3) for 390 tokens, every other code at most 0.14.
+  - A second tag at token 200 replaced the first (which then read 0.0000004).
+  - It held through generation with the cache, and in a left-padded batch. A paragraph's first token is no problem: the constant direction reads 0.97 to 1.08 there.
+- **But the residual stream is no clean place for a tag.**
+  - **No direction is quiet.** The quietest uncentred directions at layer 20's input read 0.21 to 0.43 of a typical direction on the fitting text and 0.40 to 0.50 on held-out text, with single tokens up to 11.5. A tag at 5% of the norm is 4 to 9 standard deviations.
+  - **The latch wrote falsely** once in 21,851 tokens of ordinary text, questions and chat prompts (write gate 0.94). At a name's token, another subject's code direction read up to 2.1 times a tag, so stored codes came out mixed: the second tag's code read 4.2 instead of 8.3.
+  - **A tag does not survive depth.** Written at one token and read at layer 20's input at the same token, as a share of what was written: from layer 19, 1.01 (median); from layer 16, 0.35; from layer 8, 0.00, with single prompts between −1.15 and above.
+  - **A code added at every later token is as harmful in the quietest directions as in random ones:** at 5% of the norm, KL 0.006 and 4% of next tokens changed on known-fact prompts (random: 0.004 and 3%); at 10%, 0.024 and 9%.
+
+**4. The cost of a private channel, and of one head** (`diag_heads_bus.py`; 533 known-fact prompts, 294 answered at the first token and 169 of them with a lead of 1.0 or more; every setting at the same batching):
+
+| | Held-out KL per token | Flipped to wrong (to right) | Lead ≥ 1.0 lost; smallest such lead after | Mean margin change |
+|---|---|---|---|---|
+| 64 neurons freed at layer 20, the shipped method | 0.00067 | 3 (0) | 0; 0.94 | −0.003 |
+| 256 | 0.00173 | 6 (1) | 0; 0.81 | −0.028 |
+| 512 | 0.00351 | 8 (4) | 0; 0.50 | −0.030 |
+| 8 directions silenced in the whole model | 0.0374 | 26 (3) | 0; 0.12 | −0.234 |
+| 16 directions | 0.0632 | 47 (2) | 4 | −0.382 |
+| 8 single coordinates | 0.0288 | 33 (4) | 2 | −0.219 |
+| One head freed, the other heads' output weights re-fitted: layer 18 head 12; layer 17 head 8; layer 16 head 13; layer 20 head 3 | 0.0011; 0.0013; 0.0013; 0.0014 | 3 (4); 2 (3); 2 (2); 1 (2) | 0 each; 0.81 to 0.94 | +0.005; −0.000; −0.021; +0.009 |
+
+- **Silencing directions** means taking them out of every weight that writes to the residual stream, as directional ablation does, so that a tag there would be read against silence. Pooled over all layers, the stream's quietest directions still read 0.38 of a typical one, and its quietest coordinates 0.59. **Eight of them cost about 55 times what freeing 64 neurons costs. On this model the stream has no room to spare.**
+- **One head is affordable:** between the cost of 64 and of 256 freed neurons. Switched off with no re-fit, a head costs a KL of 0.0015 to 0.034 (median 0.0056 over the 64 heads of layers 16, 17, 18 and 20).
+
+**5. An "old answer" cue for recall** (from stored replies, no run). On reworded prompts the unedited model itself says the old answer in 40% of its replies (step 6's 242 edits) and 36% (the 63 fresh edits). The inserted layer says the new one in 74% and 82%. A cue that also fired wherever the model was about to say the old answer would reach 81% and 84%, and would double the same-subject leak (4% of those replies hold the old answer). Not worth building.
+
+**What the probes leave for a subject key in the weights:** a head can hold the subject across tokens, and one head is affordable. But nothing can be passed through the residual stream on the way, neither a tag to the head nor its code to a fact neuron. The design that remains keeps a fact inside one head: its value rows read the name, its memory carries it, its output gate rows read the question, and its output columns push. It is not built. The beta's stored reading of names by layer (`research/results/bench/subject_site.json`) has look-alike AUC 0.98 at layer 8, 0.96 at layer 16 and 0.95 at layer 20.
+
+## The damage bar, re-founded on firmly known facts (the user's decision, 2026-11-14; written before its check ran)
+
+**The decision.** Step 6 left it open: the count bar (at most 2 of the 133 known facts lost) turns on answers that lead by one rounding step, and can't tell 64 freed neurons from 237. The user adopted a bar on **firmly known facts**. It was fixed after probes 2 and 4 above were seen, so it must be checked on a known set that nothing has used.
+
+**Definitions,** for a set of known-fact prompts with their accepted answers, and one batching used for the unedited and the edited model alike:
+- **margin:** at the prompt's last token, the logit of an accepted answer's first token (spelled after a space; the best over the accepted answers) minus the largest logit of any token that starts no accepted answer;
+- **firmly known:** the unedited model answers the prompt in the generation check, and its margin is at least 1.0;
+- **knife-edge:** answered, with a margin under 1.0.
+
+**The bar. An edited model passes on a known set if:**
+1. **no firmly known fact is lost:** each is still answered in the generation check, and its margin stays above 0;
+2. **there is no systematic shift:** the mean change of the firm facts' margins is within ±0.10;
+3. **drift** is at most 0.05, as before.
+
+Reported and not judged: the knife-edge facts lost and gained, the smallest firm margin after the edit, and the old count on the 133. Prompts that name an edited subject are left out, as since step 6.
+
+**Why these numbers:** one bf16 rounding step at these logits is 0.125. Every flip seen so far sat within 0.25 of a tie, and the largest margin change at 237 facts was 0.375. A lead of 1.0 is eight rounding steps. A mean change of 0.10 is under one step: the largest seen with freed neurons was 0.03, and the silenced directions gave −0.23.
+
+**The check of the bar itself** (`scripts/firm_bar_check.py`, raw numbers to `research/results/slots/16_firm_bar/`):
+- **The set:** 600 CounterFact facts the unedited model answered in the screen, drawn with seed 20261122, or every usable one if there are fewer. Left out: step 1c's 400, step 6's fresh 400 (the probes used them), and every fact about a subject that any draw of edits names.
+- **V1, arithmetic alone must not lose a firm fact.** The unedited model is generated again at batch sizes 1, 8, 16, 32 and 64 and in reversed order. No fact that is firm at the check's own batching may be lost at any of them. If one is, a lead of 1.0 does not make a fact safe, and the bar is not adopted as defined.
+- **V2, damaged models must fail.** Three models that are damaged by any measure:
+  - 8 directions silenced in the whole model;
+  - 16 directions silenced;
+  - 2,048 of layer 20's 3,584 neurons switched off, the first of the redundancy order, with no re-fit.
+- **V3, the shipped size must pass:** 64 neurons freed at layer 20 with the shipped method, no facts placed.
+- **If V1, V2 and V3 hold, the firm bar replaces the count bar** for the grafted model's damage, in the scripts and the docs. The count on the 133 stays in every report.
+- **If one fails,** the bar is not adopted, the count bar stays, and the failure goes to the user.
+- **Reported with no rule:** 256, 512 and 1,024 neurons freed with the shipped method.
+
+**Then step 6's capacity is judged again, by the new bar on the new set.** The 237-fact checkpoint of step 6 (`runs/grafted/capacity_model`, compiled with the large statistics) met every other bar. It is scored with and without its switch.
+- **If it passes the firm bar both ways, the capacity claim becomes about 237 facts with one-token answers at layer 20.**
+- If not, it stays at about 64.
+
+## Step 7: the grafted model finishes its answers (written 2026-11-14, before it ran)
+
+**Why:** probe 1. The user chose this as the first step. The aim is the inserted layer's behaviour from the model's own neurons, on answers of several tokens and on chat questions, with the name switch as it is: it knows names, and nothing about answers.
+
+**What changes in the compile** (`cramschool.graft.grafted`), each from a measured cause:
+1. **Later answer tokens: one continuation neuron per (step, token).**
+   - For each answer token a_j after the first, in either spelling (the two spellings share a neuron where their tokens agree): a neuron that fires at the position before a_j, where the answer's previous token has just been read, and pushes a_j.
+   - **Gate:** a detector fitted in closed form, as the fact's question detectors are (LDA with the calibration covariance; the reading divided by the constant direction's).
+     - Positives: the layer's MLP input at the position before a_j in the fact's teaching examples. The build reads the same positions to size the answer vectors.
+     - Negatives: every other position of the same teaching sequences (the prompts' tokens, the question's end, the other answer positions), and every token of the 240 fitting paragraphs.
+     - Threshold at the largest negative; δ is half the gap to the positives' median; no neuron if the median doesn't clear the threshold.
+   - **Down:** the inserted layer's vector for a_j, sized so that the positives' median (z = 2) gives the inserted layer's push: `push · v_j / silu(2k)`, k = 8.
+2. **The first token: a saturating pair in place of one graded neuron.** The two neurons compute `silu(κz) − silu(κz − 8)` with κ = 32: nothing at z ≤ 0, the inserted layer's push from z = 0.25, and never more. Two neurons per form.
+3. **Where the facts act: the last position of each call,** as in the inserted layer. The name switch sets a fact's neurons on at the last position only, the token that chooses the next one, and only after the subject's name. In the shipped switch they are on at every position after the name.
+4. **Both forms** are compiled, plain and chat.
+
+**Not changed:** the first token's detectors and the answer vectors (the saved table's), the slots' order and re-fit (the shipped statistics), the name matching. As before, a neuron has no veto and no one-answer rule, and the form decides the spelling: plain pushes the spelling after a word, chat the one at a reply's start.
+
+**Neurons:** per fact, 2 per form for the first token and 1 per later (step, token). About 300 for bench40e's 40 facts.
+
+**Development run** (`scripts/grafted_bench.py`; raw numbers to `research/results/slots/17_step7/`): bench40e with the saved API table, scored with the bench's checks as the inserted layer was (32 of 40). bench40e is not blind: its failures were read on 2026-11-08 and in probe 1.
+
+**Fixed now:**
+- **The development bar: at least 29 of 40 facts pass,** within 3 of the inserted layer on the same table.
+- **One revision is allowed** on bench40e, aimed at measured causes. The prepared fallback, if continuation neurons fire in the wrong places or stay shut: the name switch follows the answer's exact tokens, as the inserted layer does. It then turns a continuation neuron on only where the tokens before it are the answer's, and the neuron needs no detector. That gives up part of the aim: the switch would know the answers' tokens.
+- **Kill rule:** if the revision also stays under 29, the grafted model is documented as limited to one-token answers, and the choice of what comes next goes to the user.
+- **Confirmation, only if the development bar is met:** a fresh bench, bench40f, written by a blind agent (seed 20261123: 40 facts on 30 companies, 10 of them holding two facts, every name and answer of the earlier benches on its avoid list). Its facts are added through the API into one table, and the inserted layer and the grafted model are scored on it. **Confirmed if the grafted model passes at least the inserted layer's count minus 3,** and meets the damage bar: the firm bar if its check adopted it, else the count bar.
+- **Then the one-token check:** the new compile on step 2's 64 CounterFact edits (`scripts/grafted_check.py`), under the ship check's rule: ES and PS within 0.05 of the inserted layer's, NS within 0.01, neighbour leaks ≤ 0.05 and same-subject leaks ≤ 0.10. If it holds, the new compile becomes the package's default. If not, it stays an option for answers of several tokens, and the shipped compile stays the default.
+
+## Result of the bar's check: the firm bar is adopted, and the 237-fact checkpoint passes it
+
+Raw numbers: `research/results/slots/16_firm_bar/` (the summary, the log, the new set `known_new.json`, and the sets left out, `used_known.json`).
+
+**The set:** 600 facts drawn from the 2,135 usable ones. The unedited model answered 594 in this run's generation check: 189 firmly (a lead of 1.0 or more) and 405 on a knife edge. Of the 133, 41 are firm.
+
+**V1 holds: arithmetic alone loses no firm fact.** The unedited model, no weight changed, against its own answers at the check's batching (64 at a time):
+
+| Batching | 1 | 8 | 16 | 32 | 16, reversed | 64, reversed |
+|---|---|---|---|---|---|---|
+| Firm facts lost, of 189 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Knife-edge facts lost (gained), of 405 | 10 (4) | 11 (2) | 12 (4) | 14 (4) | 11 (4) | 2 (0) |
+
+Of the 133, no firm fact was lost at any batching either, and one knife-edge fact at one of them.
+
+**V2 and V3 hold: the damaged models fail, the shipped size passes.**
+
+| Model | Bar | New set: firm lost of 189 | Mean margin change | Smallest firm margin | Knife-edge lost (gained), of 405 | The 133: firm lost of 41 | Old count, of 133 | Drift |
+|---|---|---|---|---|---|---|---|---|
+| 8 directions silenced | fails | 0 | −0.250 | 0.19 | 60 (3) | 0 | 19 | 0.0490 |
+| 16 directions silenced | fails | 3 | −0.439 | −1.00 | 108 (3) | 1 | 31 | 0.0791 |
+| 2,048 neurons switched off | fails | 0 | −0.194 | 0.12 | 61 (1) | 1 | 28 | 0.0300 |
+| 64 neurons freed (the shipped size) | **passes** | 0 | −0.006 | 0.94 | 7 (1) | 0 | 1 | 0.0008 |
+| 256 freed | passes | 0 | −0.030 | 0.88 | 13 (1) | 0 | 3 | 0.0019 |
+| 512 freed | passes | 0 | −0.007 | 0.88 | 20 (2) | 0 | 6 | 0.0037 |
+| 1,024 freed | passes on the new set | 0 | +0.034 | 0.44 | 24 (2) | **1** | 11 | 0.0080 |
+| **The 237-fact checkpoint, no switch** | **passes** | 0 | −0.002 | 0.81 | 7 (2) | 0 | 3 | 0.0012 |
+| **The 237-fact checkpoint, with its switch** | **passes** | 0 | −0.002 | 0.81 | 7 (2) | 0 | 3 | 0.0012 |
+
+**By the rules fixed before the run:**
+- **The firm bar is adopted** as the grafted model's damage bar. The count on the 133 stays in every report.
+- **The capacity claim becomes about 237 facts with one-token answers at layer 20,** compiled with the large statistics. The checkpoint loses no firm fact, its mean margin change is −0.002, and its 7 knife-edge flips are fewer than batching alone causes. Its old count is the 3 of step 6.
+
+**What the check adds:**
+- **The mean-change clause does real work.** With 8 directions silenced, or 2,048 neurons switched off, the new set lost no firm fact at all. Both fail only through the mean change (−0.25 and −0.19). Firm facts are sturdy: a bar on their loss alone would have passed two badly damaged models.
+- **The old count follows the knife-edge facts.** It reads 19 of 133 where no firm fact of the 133 is lost.
+- **Knife-edge flips grow slowly with the neurons freed:** 7, 13, 20 and 24 at 64, 256, 512 and 1,024, against up to 14 from batching alone. Up to 256 they are inside that noise.
+- **1,024 is where freeing starts to show.** It passes on the new set, but one of the 133's 41 firm facts is lost, and their mean change is −0.108. **The bar is therefore judged on every known set at hand,** the 133's firm facts and the larger set. Read that way, freeing alone holds to 512 neurons and not to 1,024.
+
+**Limits:** one model, one layer, one draw of 600. The bar's two numbers were chosen after the probes, which is why the check used a set they never saw. The claim at 237 rests on one checkpoint, whose answers are one token long.
+
+
+## Result of step 7's first attempt: the answers finish, and 18 of 40 pass, under the bar
+
+Raw numbers: `research/results/slots/17_step7/dev/` (the log, every reply in `rows.jsonl`, and the break-down `breaks.json` from `scripts/diag_step7_breaks.py`).
+
+| bench40e, the same table of 40 facts | The shipped compile (probe 1) | Step 7, first attempt | Inserted layer |
+|---|---|---|---|
+| Facts passing | 0 | **18** | 32 |
+| Recall, median (mean) | 0.00 (0.05) | 0.63 (0.61) | 0.83 (0.80) |
+| Replies holding the whole answer, of 480 | 24 | 292 | 386 |
+| Same-company leak, median; another fact's answer | 0; 0 | 0; 0 | — |
+| Neurons | 80 | 321: 80 first, 80 clip, 161 later tokens | — |
+
+- **By the rule, the development bar (29) is not met.** All 22 failures are on recall. One revision is allowed.
+- **Damage:** drift 0.0022. The firm bar is met on both sets: no firm fact lost of the 133's 41 or the new set's 189, mean margin change −0.041 and −0.023. By the old count, 6 of the 133 are lost, all knife-edge.
+
+**What worked: the first token.** The answer starts in 386 replies (290 whole by token match, 93 broken off, 3 cut by the reply's length). That equals the number of replies in which the inserted layer gives the whole answer. The saturating pair and the last position closed that gap.
+
+**Where the 93 started answers stop:**
+
+| Cause | Replies |
+|---|---|
+| The token had no usable detector | 59 |
+| Its detector was shut at that position | 18 |
+| Its detector was open and another token came | 16 |
+
+- **No usable detector: 16 of 177 later tokens, in 12 token pairs.** Two causes, read from the build's numbers:
+  - **The same continuation under two keys.** The two spellings of an answer can split into different tokens, so one continuation sat under two (step, token) keys. Each key's taught positions were then among the other's negatives, and the largest negative came out just above the positives' median (the keys with 120 taught positions).
+  - **Common first tokens.** After " N", " An" or " Def", the largest of 27,640 ordinary-text readings is above the taught positions' median: a detector has little but the token itself to go by.
+- **Shut:** chat positions under a key shared with the plain spelling read far below the threshold (z of −8 to −12 for "In" before "grid"); common first tokens read just under it on new wordings.
+- **Open, another token came:** 8 with z under 1, where the graded push is under half the inserted layer's; 8 with z between 1.5 and 6.1.
+- By position: 55 breaks at the answer's second token, 26 at its third, 12 later.
+- **If every started answer were finished, 30 of 40 facts would reach the recall bar. If only the tokens without a detector got one, 24.**
+
+## Step 7, the revision: the switch follows the answer (written 2026-11-14, after the first attempt's result, before it ran)
+
+**The choice.** Repairing the detectors (one key per continuation, a threshold that allows a few ordinary-text readings, a saturating pair for later tokens too) answers the measured causes, but leaves the hardest: after a common first token, a detector has only the context to tell an answer from other text. From the break-down that lands at 25 to 28 facts. The rule allows one revision, so the prepared fallback is used: the detectors of later tokens go.
+
+**The revision** (`track` in `compile_layer`; `Graft.export_grafted(complete=True)`):
+- **Each later answer token gets one neuron whose gate is always open** (it reads the constant direction, k = 8), with the inserted layer's push for that token as its down column, `push · v_j / silu(k)`. One neuron per (step, token); the two spellings share it where they agree. Its output is the push or nothing, so it needs no pair.
+- **The name switch turns it on,** by the inserted layer's own bookkeeping, one answer per text:
+  - at a call's last position, the first-token pairs of the subject named last are on, until an answer has been given;
+  - a fact whose pair then writes at least 5% of its push is pending;
+  - if the next token is that answer's first token, the answer is in progress: the neuron for its second token is on at that position, and so on while each token read is the answer's next;
+  - anything else ends it.
+- **A deviation from the fallback as written.** It said the switch would turn a continuation neuron on "only where the tokens before it are the answer's". Tokens alone are not enough. bench40e's replies often begin "In 2024", and "In" is the first token of "Ingrid Myrvold" at a reply's start, so such a reply to any question about that company would be continued into the name. The switch therefore also requires that the fact's own first-token neurons fired at the position before, which it reads from their activations.
+- **What this costs the aim:** the switch now holds the answers' token ids and reads two neurons per fact form. The first token's detectors and every push stay in the weights, and without the switch the model is still the base model with those neurons freed.
+- **Everything else as in the first attempt:** the saturating pair, the last position, both forms, the shipped statistics.
+
+**Neurons:** 160 for the first tokens and 177 for later tokens: 337.
+
+**Fixed now:**
+- **The development bar stays at least 29 of 40** on bench40e. This is the one revision. The kill rule, the confirmation on bench40f and the one-token check stand as written.
+- **The bench's own damage clause.** A bench fact fails if 7 or more of the 133 known facts are lost, which is the count bar in another form. The first attempt lost 6 by that count, none of them firm. The firm bar now judges the grafted model's damage, so **a fact's pass is judged on its recall and leak checks, and the model's damage once, by the firm bar on both known sets.** The count is still reported, and the result is given with the bench's own clause as well.
+- The first attempt's compile stays in the package as `complete="detected"`, with its result.
+
+
+## Result of step 7's revision: 29 of 40, the development bar is met
+
+Raw numbers: `research/results/slots/17_step7/dev_revision/`.
+
+| bench40e, the same table of 40 facts | The shipped compile | First attempt (detectors) | **The revision (the switch follows the answer)** | Inserted layer |
+|---|---|---|---|---|
+| Facts passing | 0 | 18 | **29** | 32 |
+| Recall, median (mean) | 0.00 (0.05) | 0.63 (0.61) | 0.83 (0.78) | 0.83 (0.80) |
+| Replies holding the whole answer, of 480 | 24 | 292 | 376 | 386 |
+| Same-company leak, median; another fact's answer | 0; 0 | 0; 0 | 0; 0 | — |
+| Neurons | 80 | 321 | 337: 80 first, 80 clip, 177 later tokens | — |
+
+- **By the rule, the development bar is met, exactly: 29 of 40.** The confirmation on a blind bench and the one-token check follow.
+- **The count is the same under both readings of the damage clause.** By the bench's own count 6 of the 133 are lost, under its limit of 7. The firm bar is met on both sets: no firm fact lost of 41 or of 189, mean margin change −0.046 and −0.025, drift 0.0024.
+- **Against the inserted layer, reply by reply:** both give the whole answer in 374 replies and neither in 92. The inserted layer alone does in 12, the grafted model alone in 2. Every fact the grafted model passes, the inserted layer passes too; three pass only there (f09, f10, f23), each short by one to three replies.
+- **All 11 failures are on recall,** and 8 of them fail in the inserted layer as well.
+
+**The two differences that remain, read from the replies:**
+- **The form decides the spelling.** At the start of a chat reply the inserted layer spells the answer without a leading space, whichever detector opened. In the grafted model the plain form's pair always pushes the spelling after a word. Where the plain detector opens on a chat question, the reply begins " Mal" with a space and goes on to "Malakal" (f10: three replies).
+- **A later token's push can lose where the inserted layer's wins.** "Dari" was continued as "Dari data yang tersedia" in three chat replies (f23). The neuron writes the same vector, scaled by the constant direction's reading at that position, into a model with 337 neurons freed.
+
+**Limits:** bench40e is a development bench, and the bar was met with nothing to spare. The switch is larger than before: it holds the answers' token ids and reads the first-token neurons.
+
+
+## Result of the one-token check: the new compile keeps the CounterFact result
+
+Raw numbers: `research/results/slots/17_step7/one_token/`. Step 2's 64 edits, both forms, compiled with the revision: 305 neurons (64 pairs per form, and 49 for later tokens, mostly of answers that split into several tokens at a reply's start). Exported, loaded back from disk, and scored with the folder's own switch and without it.
+
+| 64 CounterFact edits | Unedited | Inserted layer | The first shipped compile, plain only (64 neurons) | **The new compile, both forms (305 neurons)** | The same, no switch |
+|---|---|---|---|---|---|
+| ES; PS | 0.031; 0.070 | 0.906; 0.727 | 0.906; 0.727 | **0.922; 0.742** | 0.031; 0.070 |
+| NS | 0.880 | 0.880 | 0.878 | 0.877 | 0.877 |
+| Says the new answer: rewrite; reworded | 0; 0 | 0.891; 0.734 | 0.891; 0.727 | 0.906; 0.742 | 0.016; 0.000 |
+| Neighbour; same-subject leaks | 0; 0 | 0.000; 0.036 | 0.002; 0.033 | 0.000; 0.040 | 0.000; 0.000 |
+| Firm facts lost, of 189; mean margin change | — | — | — | 0; −0.023 | 0; −0.023 |
+| Old counts: of 133; of 391 | — | 0; — | 1; 6 | 6; 8 | 6; 4 |
+| Drift | — | 0.0000 | 0.0008 | 0.0022 | 0.0022 |
+
+- **By the rule, it holds:** ES and PS are within 0.05 of the inserted layer's (0.016 and 0.015 above), NS within 0.01, the leaks within their bars, and the firm bar is met with and without the switch. Without the switch the edits are dormant.
+- **The checkpoint** is the base's size (1,746,942,600 bytes, 752,393,024 parameters), with 485 of 488 tensors identical.
+- **So the new compile becomes the package's default** once the confirmation below is in: both forms, the saturating pair, the last position, and later tokens followed by the switch.
+- **Not judged, and worse than before:** with no veto, the twin relations' questions get the new answer in 0.75 of replies, against 0.57 for the inserted layer and 0.68 for the first shipped compile.
+- The old counts read 6 of 133 at 305 neurons, where the firm bar reads no loss.
+
+## The confirmation on bench40f: the code is frozen (written 2026-11-14, before the bench's source was opened)
+
+- **The source** was written by a separate agent that was given the brief and its word lists and nothing else (seed 20261123). It is opened only now, after the development bar was met and the one-token check held.
+- **Frozen, by content hash** (`git hash-object`, on top of commit 2181ee6):
+  - `src/cramschool/graft/grafted.py` 4190ef83c1b6
+  - `src/cramschool/graft/grafted_switch.py` 1addbd5d4223
+  - `src/cramschool/graft/build.py` bd4dfc5aa653
+  - `src/cramschool/graft/table.py` 96ad30335d24
+  - `src/cramschool/bench/scoring.py` 8b89be654d1d
+  - `scripts/grafted_bench.py` 873f31804263
+  - `scripts/validate_api_facts.py` 53a2aca27c20
+- **The run** (`research/results/slots/17_step7/confirm/chain.sh`): the bench is built from the source; the unedited model is run; the 40 facts are added through the API into one table and the inserted layer scored; the same table is compiled with the revision and the grafted model scored.
+- **The rule, as fixed in step 7's plan: confirmed if the grafted model passes at least the inserted layer's count minus 3, and the firm bar is met on both known sets.**
+
+
+## Result of the confirmation on blind bench40f: confirmed, 23 against 24
+
+Raw numbers: `research/results/slots/17_step7/confirm/` (the grafted model's run and the chain) and `research/results/bench40f/` (the unedited model and the inserted layer). The brief is the one `cramschool bench brief` writes with seed 20261123 over the six earlier benches. The bench: `benchmarks/bench40f.json`, from `bench40f_source.json`, which passed the brief's scripted check with no rule broken. Its answers are 2 to 7 tokens long, none of them one token.
+
+| bench40f, blind: 40 facts added through the API, in one table | Inserted layer | **Grafted model** |
+|---|---|---|
+| Facts passing | 24 | **23** |
+| Recall, median (mean) | 0.75 (0.75) | 0.75 (0.72) |
+| Replies holding the whole answer, of 480 | 358 | 346 |
+| Same-company leak, median | 0 | 0 |
+| Facts with another fact's answer in a reply | 1, and 1 with its sibling's | 2 |
+| By relation, of 10: owner; CEO; founder; head office | 2; 6; 7; 9 | 3; 5; 7; 8 |
+| Neurons | — | 377: 80 first, 80 clip, 217 later tokens |
+
+- **By the rule fixed before the source was opened, confirmed:** 23 is within 3 of the inserted layer's 24, and the firm bar is met on both known sets (no firm fact lost of 41 or of 189; mean margin change −0.056 and −0.019; drift 0.0027). By the old count, 4 of the 133 are lost.
+- **Fact by fact:** 21 pass in both. Two pass only in the grafted model (f03, f14) and three only in the inserted layer (f07, f20, f25), each by a single reply. Of the grafted model's 17 failures, 14 fail in the inserted layer too.
+- **Reply by reply:** both give the whole answer in 340 replies and neither in 116. The inserted layer alone does in 18, the grafted model alone in 6.
+- **All 17 failures are on recall.** Two of those facts also have another fact's answer in one of 56 checked replies ("Dunedin" and "Temuco", both head offices, in replies to other questions about their companies).
+- **Three drafted wordings equal test wordings of this bench** (one founder wording, two head-office ones: 20 of the 480 recall prompts). The API path has no guard against that, and both models were taught from the same table. Without those prompts the counts are 24 and 22, still within 3.
+- **bench40f is harder than bench40e for both:** 24 against 32 for the inserted layer. Owner facts carry most of it, with 2 of 10 passing.
+
+**What step 7 leaves:**
+- **The grafted model answers new facts with answers of several tokens at the inserted layer's level:** 29 against 32 on the development bench and 23 against 24 on the blind one, from the model's own neurons at the same size, with no leaks to other questions about the company (median 0 on both) and the damage bar met.
+- **The new compile is the package's default** (`Graft.export_grafted`: both forms, `complete=True`), as the one-token check and this confirmation required. The first shipped compile is `complete=False`.
+- **The cost is in the switch and in neurons.** The switch holds the answers' token ids and follows an answer, where before it matched names only. An answer takes two neurons per form and one per later token: 337 and 377 neurons for 40 facts.
+- **Open:**
+  - continuing an answer with the switch knowing names only (the first attempt: 18 of 40);
+  - the spelling by the text before the answer, not by the form, and a veto;
+  - the subject key in the weights, where the probes point to a Gated DeltaNet head holding the whole fact.

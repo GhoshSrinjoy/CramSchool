@@ -345,18 +345,46 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
     - an attention head given a value channel broke the model too: the channel's read had a constant offset as large as its signal.
 
   So far the working form is the hybrid: the edits in the weights, switched by a name matcher at run time.
-- **The shipped form, checked from disk** (`Graft.export_grafted`, one neuron per fact; [lab notebook](lab-notebook.md#result-of-the-plain-only-ship-check-it-ships)):
+- **New facts with answers of several tokens** ([lab notebook](lab-notebook.md#step-7-the-grafted-model-finishes-its-answers-written-2026-11-14-before-it-ran)). The 40 facts of a company bench are added through the API into one table, and the same table is compiled into layer 20's neurons. The answers are names and cities of 2 to 7 tokens:
+
+  | Facts passing every check, of 40 | bench40e (development) | bench40f (blind) |
+  |---|---|---|
+  | Inserted layer | 32 | 24 |
+  | Grafted, the first shipped compile: one neuron per form, the first token only | 0 | — |
+  | Grafted, a detector per later token, the switch knowing names only | 18 | — |
+  | **Grafted, the default: the switch follows the answer** | **29** | **23** |
+
+  - **The default compile:** the first token is a saturating pair of neurons per form; each later token has a neuron that the name switch turns on while the tokens read are the answer's; the facts act at the last position of a call, as in the inserted layer.
+  - **On the blind bench** the two models agree fact by fact on 35 of 40, and reply by reply on 456 of 480. Recall is 0.75 at the median for both, the same-company leak 0 for both, and all of the grafted model's 17 failures are on recall, 14 of them failures of the inserted layer too.
+  - **Damage:** 337 and 377 neurons freed. No firmly known fact is lost (next points); the count of the 133 reads 6 and 4.
+  - **The first shipped compile fails here** because it writes the answer's first token only: "Ingrid." came out for "Ingrid Myrvold".
+  - **Its switch does more:** it holds the answers' token ids and reads the first-token neurons, where it matched names only.
+- **One-token answers with the default compile:** on step 2's 64 CounterFact edits, both forms in 305 neurons, a checkpoint reloaded off disk gives ES 0.922 and PS 0.742 with its switch, against the inserted layer's 0.906 and 0.727. NS is 0.877 against 0.880, the leaks 0.000 and 0.040, and without the switch the edits are dormant. With no veto, twin relations' questions get the new answer more often than with the inserted layer (0.75 against 0.57).
+- **The first shipped form, checked from disk** (`complete=False`, one neuron per fact; [lab notebook](lab-notebook.md#result-of-the-plain-only-ship-check-it-ships)):
   - the checkpoint is the base's size, 1,746,942,600 bytes and 752,393,024 parameters, with 485 of 488 tensors identical;
   - loaded back with transformers and its own switch: ES 0.906, PS 0.727, NS 0.878, leaks 0.002 and 0.033, 1 of 133 and 6 of 391 known facts lost, drift 0.0008;
   - without the switch, the edits are dormant (ES 0.031, PS 0.070, as unedited);
   - the number of neurons was chosen with the same 133 known facts, and the configuration was settled after a first check failed. So it was checked again on 63 fresh edits never used for any choice ([lab notebook](lab-notebook.md#result-of-the-fresh-edit-check-the-shipped-grafted-model-holds-at-the-edge-of-the-damage-bar)): ES 0.857 and PS 0.802 against the inserted layer's 0.889 and 0.786 on the same edits, NS 0.827 (unedited 0.830), and 2 of 133 and 3 of 391 known facts lost, all from freeing the neurons and the same without the switch. A first count said 7 of 391: the 4 more were the edited facts themselves, which the 391 also ask about ([correction](lab-notebook.md#a-correction-to-the-fresh-edit-check-and-step-6-room-from-far-more-text-written-2026-11-10-before-step-6-ran));
   - without the veto, the twin relations' questions got the new answer more often than with the inserted layer (0.68 against 0.57).
-- **More facts per layer, not yet within the bar** ([lab notebook](lab-notebook.md#result-of-step-6-part-2-one-bar-missed-by-one-knife-edge-fact-so-the-capacity-claim-stays-at-about-64)). The freed neurons were chosen and re-fitted with a million tokens of ordinary text (MS MARCO passages) on top of the calibration paragraphs. Then 237 neurons hold 242 fresh edits:
+- **More facts per layer: 237 hold** ([lab notebook](lab-notebook.md#result-of-step-6-part-2-one-bar-missed-by-one-knife-edge-fact-so-the-capacity-claim-stays-at-about-64)). The freed neurons were chosen and re-fitted with a million tokens of ordinary text (MS MARCO passages) on top of the calibration paragraphs. Then 237 neurons hold 242 fresh edits:
   - they answer as the inserted layer does on the same edits: ES 0.884 and PS 0.746, against 0.864 and 0.738;
-  - known facts lost: 1 of a fresh set of 396 never used for any choice, 4 of 376 others, and 3 of 133, one over the bar fixed before the run. So the capacity claim stays at about 64 facts per layer;
-  - the three are knife-edge: two capital questions whose answer led by 0.12 logits, one bf16 rounding step. Across all the known facts, margins moved up as often as down (mean change −0.001 to +0.017).
-  - A chat-form neuron per fact as well doubles the neurons freed, and lost 3 of 133.
-- **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Up to 256 freed neurons cost about as many known facts as batching noise does, up to 1 of 133 and 7 of 391.
+  - by the count of known facts lost, the bar at the time, they failed by one: 3 of 133, with 1 of a fresh set of 396 and 4 of 376 others. The three are knife-edge: two capital questions whose answer led by 0.12 logits, one bf16 rounding step;
+  - by the bar on firmly known facts, adopted since, they pass (next point).
+- **The damage bar is on firmly known facts** ([lab notebook](lab-notebook.md#result-of-the-bars-check-the-firm-bar-is-adopted-and-the-237-fact-checkpoint-passes-it)). A fact is firmly known when the unedited model answers it with a first-token lead of at least one logit. A model passes when it loses none of them and their mean lead moves by at most 0.10. Checked on 600 known facts that nothing had used, 189 of them firm:
+
+  | | Firm facts lost, of 189 | Mean lead change | Knife-edge answers lost, of 405 | The old count, of 133 |
+  |---|---|---|---|---|
+  | No weight changed, six other batchings | 0 | — | 2 to 14 | 0 or 1 |
+  | 8 directions silenced in the whole model (damaged on purpose) | 0 | −0.250, fails | 60 | 19 |
+  | 2,048 neurons switched off (damaged on purpose) | 0 | −0.194, fails | 61 | 28 |
+  | 64 neurons freed, the first shipped size | 0 | −0.006 | 7 | 1 |
+  | 256; 512 freed | 0; 0 | −0.030; −0.007 | 13; 20 | 3; 6 |
+  | 1,024 freed | 0, and 1 of the 133's 41 | +0.034 | 24 | 11 |
+  | The 237-fact checkpoint, with or without its switch | **0** | **−0.002** | 7 | 3 |
+
+  - A count of lost answers follows the knife-edge ones, which batching alone flips. It reads 19 of 133 lost where no firm fact is.
+  - The mean lead is what catches a damaged model: two of the three lost no firm fact at all.
+- **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Knife-edge answers flip at every size, and at 1,024 freed neurons a firm fact goes.
 
 ### Published editors, for scale
 

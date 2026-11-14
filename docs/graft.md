@@ -180,32 +180,50 @@ A table with company relations only behaves exactly as v1.
 
 The inserted layer leaves the model's weights untouched. The **grafted model** puts the table's facts into the model's own neurons, at the table's layer, with no neuron or parameter added (`Graft.export_grafted`, `cramschool.graft.grafted`).
 
-**One neuron per fact.** A SwiGLU neuron computes $\text{down}\,(\operatorname{silu}(g\cdot x)\,(u\cdot x))$, so a reused neuron can hold one fact:
-- **gate row** $g = k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta$, the fact's plain question detector (section 3). Its threshold is carried by the constant direction (section 1), so $g\cdot x = k\,z\,(c\cdot x/\bar c)$, with $k = 8$;
-- **down column** $2v/\operatorname{silu}(k)$: the inserted layer's push where $z = 1$, and in proportion elsewhere;
-- **up row** zero. The **name switch** (`grafted_switch.py`, written next to the checkpoint) sets the neuron's up value to 1 at the tokens after the fact's subject is named, as the name index reads names (section 2), and to 0 elsewhere.
+**A fact's neurons** (the default compile of `Graft.export_grafted`). A SwiGLU neuron computes $\text{down}\,(\operatorname{silu}(g\cdot x)\,(u\cdot x))$, so reused neurons can hold a fact. A gate row $k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta$ reads $k\,z\,(c\cdot x/\bar c)$: the detector's score $z$ of section 3, with its threshold carried by the constant direction of section 1.
+- **The first token, per form: a saturating pair.** Two neurons read $32z$ and $32z - 8$, with down columns $+2v/8$ and $-2v/8$. Together they write $\tfrac{2v}{8}\,(\operatorname{silu}(32z) - \operatorname{silu}(32z - 8))$: nothing at $z \le 0$, the inserted layer's push $2v$ from $z = 0.25$ on, and never more. The plain form pushes the answer as spelled after a word, the chat form as spelled at a reply's start.
+- **Each later answer token: one neuron.** Its gate is always open (it reads the constant direction, $k = 8$), and its down column is the inserted layer's push for that token, $2v_j/\operatorname{silu}(k)$. The two spellings share it where their tokens agree.
+- **Every up row is zero.** The **name switch** (`grafted_switch.py`, written next to the checkpoint) sets a neuron's up value to 1 where the neuron should act. Without the switch the facts are dormant, and the model behaves as the base model with those neurons freed.
 
-Without the switch, the facts are dormant and the model behaves as the base model with those neurons freed. A neuron is simpler than the inserted layer:
-- its push is graded in $z$, so a typical question ($z \approx 2$) gets twice the inserted layer's push;
-- it acts at every token after the name;
-- it has no one-answer rule, veto or continuation pushes, and writes only the answer's first token.
+**What the switch does.** It reads names as the name index does (section 2), and it acts at the last position of each call only, the token that chooses the next one, as the inserted layer does. Per text it keeps the inserted layer's bookkeeping, one answer per text:
+- the first-token pairs of the subject named last are on, until an answer has been given;
+- a fact whose pair writes at least 5% of its push is pending, and if the next token is its answer's first token, the answer is in progress;
+- while each token read is the answer's next one, the neuron for the token after it is on.
 
-The switch starts a new text at every call with an empty cache, and follows a cache when a call continues one. Key 1 (the subject) is the one part not held in weights. Building it from weights alone has not worked yet. A mark carried from the name to the end of the question can't be read reliably there, even through an attention head given a channel for it, and writing the edit at the name changes the subject's other answers ([lab notebook](lab-notebook.md#result-of-step-3-revision-2-writing-the-edit-at-the-name-is-weak-and-changes-the-subjects-other-answers-the-kill-rule-is-met)).
+So for answers of several tokens the switch holds the answers' token ids and reads the first-token neurons' activations. The detectors and every push are in the weights. The switch starts a new text at every call with an empty cache, and follows a cache when a call continues one.
+
+**Two earlier compiles, kept as options** ([lab notebook](lab-notebook.md#step-7-the-grafted-model-finishes-its-answers-written-2026-11-14-before-it-ran)):
+- **The first shipped one** (`complete=False`): one neuron per fact form, with a push that grows with $z$, acting at every token after the name, and writing the first token only. It matches the inserted layer on CounterFact's one-token answers and passes 0 of 40 facts on bench40e, whose answers are 2 to 7 tokens long. A graded push is too weak where the detector barely opens, and garbles the reply where it opens wide.
+- **A switch that knows names only** (`complete="detected"`): each later token's neuron has a detector for "the answer's previous token has just been read" as its gate, fitted like section 3's on the taught answers' positions. On bench40e, 16 of 177 later tokens got no usable detector, mostly after a common first token such as " N", and 18 of 40 facts passed.
+
+**Still simpler than the inserted layer:** a grafted fact has no veto by other relations' detectors, and its form decides the spelling, not the text before the answer.
+
+Key 1 (the subject) is the one part not held in weights. Building it from weights alone has not worked yet. A mark carried from the name to the end of the question can't be read reliably there, even through an attention head given a channel for it, and writing the edit at the name changes the subject's other answers ([lab notebook](lab-notebook.md#result-of-step-3-revision-2-writing-the-edit-at-the-name-is-weak-and-changes-the-subjects-other-answers-the-kill-rule-is-met)).
 
 **Which neurons.** No layer-20 neuron is idle, so freeing one always costs something. The neurons freed are those the rest of the layer reproduces best on ordinary text: Optimal Brain Surgeon's order, $\lVert w_j\rVert^2 / [H^{-1}]_{jj}$ with $H = \sum a a^\top$ over the layer's intermediate activations, one neuron at a time with the inverse updated. The remaining neurons' output columns are then re-fitted in closed form, $\Delta W_K = W_F H_{FK} (H_{KK} + \lambda I)^{-1}$, so the layer's output on ordinary text stays as close to the original as it can. $\lambda$ is chosen on held-apart paragraphs.
 
-With far more ordinary text (`texts=`, about a million tokens), $H$ is estimated better. $\lambda$ falls from 0.1 to 0.001–0.01, and drift falls by about 30% at every number freed. It doesn't buy capacity under the damage bar, though. At 237 facts the grafted model lost 3 of 133 known facts, one over the bar. All three are knife-edge questions whose answer led by about one bf16 rounding step ([lab notebook](lab-notebook.md#result-of-step-6-part-2-one-bar-missed-by-one-knife-edge-fact-so-the-capacity-claim-stays-at-about-64)).
+With far more ordinary text (`texts=`, about a million tokens), $H$ is estimated better. $\lambda$ falls from 0.1 to 0.001–0.01, and drift falls by about 30% at every number freed.
+
+**The damage bar.** Freeing neurons changes the layer a little everywhere, and answers the model barely gets right flip under any change to the arithmetic. With no weight changed, generating at another batch size alone flips up to 14 of 405 known answers that lead by less than one logit, and none of 189 that lead by more. So damage is judged on the **firmly known** facts of a known set (`cramschool.bench.scoring.FirmCheck`):
+- a fact's **margin** is, at the prompt's last token, the logit of an accepted answer's first token minus the largest logit of any other token;
+- a fact is **firmly known** when the unedited model answers it with a margin of at least 1.0;
+- a grafted model **passes** when no firm fact is lost (each still answered, its margin above 0), the firm facts' mean margin moves by at most 0.10, and drift is at most 0.05.
+
+The bar was checked on 600 known facts that nothing had used ([lab notebook](lab-notebook.md#result-of-the-bars-check-the-firm-bar-is-adopted-and-the-237-fact-checkpoint-passes-it)): three deliberately damaged models fail it, two of them through the mean margin alone, and the first shipped size passes. An earlier bar counted lost answers among 133 known facts. That count follows the knife-edge answers: it read 3 lost for a model with 237 facts, which loses no firm fact.
+
+**Capacity.** By the bar, 237 facts with one-token answers hold at layer 20 of the 0.8B (compiled with `texts=`). Freeing alone holds to 512 neurons, and at 1,024 a firm fact is lost. An answer of several tokens takes more neurons (below).
 
 **The checkpoint.** The base model's files with the layer's three MLP matrices replaced: the same tensor names, shapes, dtypes and byte size. `grafted.json` lists which neuron holds which fact.
 
-**Measured** on 64 fresh CounterFact edits, from a checkpoint reloaded off disk ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)):
-- with the switch, ES 0.906 and PS 0.727, as the inserted layer;
-- without it, the edits are dormant;
-- 1 of 133 known facts lost either way.
+**Measured,** each time against the inserted layer on the same table ([benchmarks](benchmarks.md#the-grafted-model-edits-in-the-models-own-neurons)):
+- **New facts with answers of 2 to 7 tokens** (40 invented-company facts in one table):
+  - on blind bench40f, 23 of 40 facts pass every check, against the inserted layer's 24;
+  - on the development bench, bench40e, 29 against 32;
+  - no leak to other questions about the company on either (median 0), and the damage bar met.
+- **Facts the model already knows, one-token answers** (64 CounterFact edits, both forms, a checkpoint reloaded off disk): ES 0.922 and PS 0.742 with the switch, against 0.906 and 0.727; dormant without it; no firm fact lost.
+- **The first shipped compile** (`complete=False`) on one-token answers: ES 0.906 and PS 0.727 on those 64 edits; on 63 more, never used for any choice, ES 0.857 and PS 0.802 against 0.889 and 0.786; on 242 more in 237 neurons, ES 0.884 and PS 0.746 against 0.864 and 0.738.
 
-On 63 more edits, never used for any choice: ES 0.857 and PS 0.802, against the inserted layer's 0.889 and 0.786, with 2 of 133 lost. On 242 more, compiled with the extra text into 237 neurons: ES 0.884 and PS 0.746, against 0.864 and 0.738. Of a fresh set of 396 known facts, 1 was lost, but 3 of the 133.
-
-A chat-form neuron per fact (`forms=("plain", "chat")`) doubles the neurons freed. In the same check it lost 3 of 133.
+**Neurons per fact:** two per form for the first token and one per later answer token. The 40 facts of each bench took 337 and 377 neurons, and the 64 CounterFact edits 305.
 
 ## Where GRAFT sits
 
