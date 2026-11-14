@@ -193,6 +193,179 @@ def test_the_inserted_layer_writes_nothing_for_embeddings_and_survives_inner_cal
     assert torch.equal(plain, with_embeds)                                   # no names read, nothing written
 
 
+def long_parts(seed: int, hidden: int = 32) -> dict:
+    """A fact whose answer has two tokens, 7 then 9, in both spellings."""
+    parts = fake_parts(seed, hidden)
+    g = torch.Generator().manual_seed(seed + 100)
+    parts["spellings"] = {sp: dict(ids=[7, 9], vecs=torch.randn(2, hidden, generator=g), missing=[]) for sp in ("spaced", "bare")}
+    return parts
+
+
+def test_the_first_token_can_be_a_saturating_pair_and_later_tokens_get_continuation_neurons(model, tokenizer):
+    from cramschool.graft.grafted import CLIP, SHARP
+
+    m, parts = mctx(), long_parts(3)
+    g = torch.Generator().manual_seed(5)
+    later = [dict(step=1, token=9, w=torch.randn(32, generator=g), tau=0.5, delta=1.5, med=3.5, n_pos=4, pos_min=1.2),
+             dict(step=1, token=11, w=torch.randn(32, generator=g), tau=0.5, delta=1.5, med=3.5, n_pos=4, pos_min=1.2),   # not this answer's token
+             dict(step=2, token=9, w=torch.randn(32, generator=g), tau=0.5, delta=None, med=0.1, n_pos=4, pos_min=None)]  # no usable detector
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=parts, continuation=later)
+    out = compile_layer(model, tokenizer, [fact], LAYER, m, forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last")
+    assert [(n["form"], n["kind"]) for n in out["neurons"]] == [("plain", "first"), ("plain", "clip"), ("chat", "first"), ("chat", "clip"), ("any", "next")]
+    assert out["where"] == "last" and out["saturate"] and (out["neurons"][-1]["step"], out["neurons"][-1]["token"]) == (1, 9)
+    c, cbar = m["c"].double(), m["cbar"]
+    d = parts["forms"]["plain"]
+    delta = 0.5 * (d["med"] - d["tau_neg"])
+    first, clip, nxt = out["neurons"][0]["slot"], out["neurons"][1]["slot"], out["neurons"][-1]["slot"]
+    x = torch.randn(32, generator=g).double()
+    u = float(c @ x) / cbar                                                # the constant direction's reading
+    z = (float(d["w"].double() @ x) / u - d["tau_neg"]) / delta            # the detector's score at x
+    assert abs(float(out["gate"][first].double() @ x) - SHARP * z * u) < 1e-3
+    assert abs(float(out["gate"][clip].double() @ x) - (SHARP * z * u - CLIP * u)) < 1e-3
+    v = PUSH * parts["spellings"]["spaced"]["vecs"][0].double()
+    assert torch.allclose(out["down"][:, first].double(), v / CLIP, atol=1e-5) and torch.allclose(out["down"][:, clip].double(), -v / CLIP, atol=1e-5)
+    pair = lambda score: float(F.silu(torch.tensor(SHARP * score)) - F.silu(torch.tensor(SHARP * score - CLIP))) / CLIP  # noqa: E731
+    assert abs(pair(0.0)) < 1e-3 and abs(pair(-1.0)) < 1e-3                # shut: nothing written
+    assert 0.4 < pair(0.125) < 0.6                                         # half open halfway up the ramp
+    assert all(abs(pair(s) - 1.0) < 1e-3 for s in (0.25, 1.0, 4.0))        # the inserted layer's push from z = 0.25, never more
+    k = later[0]
+    assert torch.allclose(out["gate"][nxt].double(), GAIN * (k["w"].double() - (k["tau"] / cbar) * c) / k["delta"], atol=1e-5)
+    want = PUSH * parts["spellings"]["spaced"]["vecs"][1].double() / float(F.silu(torch.tensor(2 * GAIN)))
+    assert torch.allclose(out["down"][:, nxt].double(), want, atol=1e-5)   # the inserted layer's push at the taught positions' median, z = 2
+    assert torch.all(out["up"][[n["slot"] for n in out["neurons"]]] == 0)   # dormant without the switch
+    plain = compile_layer(model, tokenizer, [dict(fact, continuation=None)], LAYER, m, paragraphs=TEXTS)
+    assert [n["kind"] for n in plain["neurons"]] == ["first"] and plain["where"] == "after" and not plain["saturate"]   # as first shipped
+
+
+def test_the_switch_can_act_at_the_last_position_only(model, tokenizer, tmp_path):
+    base, out_dir = str(tmp_path / "base"), str(tmp_path / "grafted")
+    model.save_pretrained(base)
+    tokenizer.save_pretrained(base)
+    export_grafted(base, out_dir, compile_layer(model, tokenizer, facts(), LAYER, mctx(), paragraphs=TEXTS, where="last"))
+    spec = json.load(open(os.path.join(out_dir, "grafted.json"), encoding="utf-8"))
+    assert spec["where"] == "last"
+    loaded = AutoModelForCausalLM.from_pretrained(out_dir).eval()
+    switch = grafted_switch.attach(loaded, tokenizer, out_dir)
+    switch.index.texts = spaced(tokenizer)
+    acme = [n["slot"] for n in spec["neurons"] if n["subject"] == "acme"]
+    seen = {}
+    h = blocks(loaded)[LAYER].mlp.up_proj.register_forward_hook(lambda m, a, o: seen.__setitem__("up", o.detach().clone()))
+    try:
+        with torch.no_grad():
+            loaded(input_ids=tokenizer("the owner of acme is", return_tensors="pt").input_ids)
+            up = seen["up"][0]
+            assert torch.all(up[:-1, acme] == 0) and torch.all(up[-1, acme] == 1)      # only where the next token is chosen
+            out = loaded(input_ids=tokenizer("the owner of acme", return_tensors="pt").input_ids, use_cache=True)
+            assert torch.all(seen["up"][0][-1, acme] == 1)                               # the name's own token is a last position too
+            loaded(input_ids=tokenizer("is", return_tensors="pt").input_ids, past_key_values=out.past_key_values, use_cache=True)
+            assert torch.all(seen["up"][0][:, acme] == 1)                                # each generated token is the last of its call
+            pad = tokenizer.pad_token_id
+            a, b = tokenizer("the owner of acme is").input_ids, tokenizer("the owner of acme").input_ids
+            ids = torch.tensor([a, b + [pad] * (len(a) - len(b))])
+            mask = torch.tensor([[1] * len(a), [1] * len(b) + [0] * (len(a) - len(b))])
+            loaded(input_ids=ids, attention_mask=mask)
+            assert torch.all(seen["up"][0, -1, acme] == 1) and torch.all(seen["up"][1][:, acme] == 0)   # a padded last position: nothing
+    finally:
+        h.remove()
+        switch.detach()
+
+
+def test_a_table_builds_continuation_detectors_for_answers_of_several_tokens(model, tokenizer):
+    from cramschool.graft import Graft
+
+    core._TEXTS[id(tokenizer)] = spaced(tokenizer)
+    graft = Graft(model, tokenizer, layer=LAYER)
+    graft.add("acme", "owner", "julian rodlauer")
+    (later,) = graft.continuations()
+    second = tokenizer(" julian rodlauer", add_special_tokens=False).input_ids[1]
+    assert [(k["step"], k["token"]) for k in later] == [(1, second)] and later[0]["n_pos"] > 0 and later[0]["w"].shape == (32,)
+    assert graft.continuations()[0] is later                                             # built once, kept with the fact
+    assert graft.grafted_facts(detected=True)[0]["continuation"] is later and "continuation" not in graft.grafted_facts()[0]
+    parts = long_parts(4)                                # a random model's own question detectors may not be usable: compile with stand-ins
+    for sp in parts["spellings"].values():
+        sp["ids"] = [7, second]
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=parts, continuation=later)
+    out = compile_layer(model, tokenizer, [fact], LAYER, mctx(), forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last")
+    kinds = [n["kind"] for n in out["neurons"]]
+    assert kinds.count("next") == (1 if later[0]["delta"] is not None else 0) and kinds.count("first") == kinds.count("clip") == 2
+
+
+class Cache:
+    """A stand-in for a generation cache that already holds n tokens."""
+
+    def __init__(self, n):
+        self.n = n
+
+    def get_seq_length(self):
+        return self.n
+
+
+def test_the_switch_follows_an_answer_of_several_tokens_as_the_inserted_layer_does(model, tokenizer):
+    from cramschool.graft.grafted import CLIP
+    from cramschool.graft.grafted_switch import FIRED, switch_for
+
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=long_parts(3))     # answer tokens 7 then 9
+    other = dict(subject="france", relation="capital", answer="rome", parts=fake_parts(2))
+    out = compile_layer(model, tokenizer, [fact, other], LAYER, mctx(), forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", track=True)
+    kinds = [(n["fact"], n["kind"]) for n in out["neurons"]]
+    assert kinds == [(0, "first"), (0, "clip"), (0, "first"), (0, "clip"), (0, "next"), (1, "first"), (1, "clip"), (1, "first"), (1, "clip")]
+    assert out["track"] and out["answers"][0] == dict(spaced=[7, 9], bare=[7, 9]) and out["neurons"][4]["token"] == 9
+    nxt = out["neurons"][4]["slot"]
+    m = mctx()
+    assert torch.allclose(out["gate"][nxt].double(), (GAIN / m["cbar"]) * m["c"].double(), atol=1e-5)   # always open: the switch decides
+    want = PUSH * fact["parts"]["spellings"]["spaced"]["vecs"][1].double() / float(F.silu(torch.tensor(GAIN)))
+    assert torch.allclose(out["down"][:, nxt].double(), want, atol=1e-5)
+    try:
+        compile_layer(model, tokenizer, [fact], LAYER, mctx(), paragraphs=TEXTS, track=True)
+        raise AssertionError("tracking without the saturating pair and the last position must be refused")
+    except ValueError:
+        pass
+
+    switch = switch_for(model, tokenizer, out)
+    switch.index.texts = spaced(tokenizer)
+    slots = [n["slot"] for n in out["neurons"]]
+    width = blocks(model)[LAYER].mlp.up_proj.weight.shape[0]
+    acme, first, clip = slots[:5], slots[0], slots[1]
+
+    def call(text_ids, seen, fired=()):
+        """One forward call as the hooks see it: its tokens, how many the cache held, and which neurons then wrote (first minus clip)."""
+        ids = torch.tensor([text_ids])
+        switch._read_ids(None, (), dict(input_ids=ids, past_key_values=Cache(seen) if seen else None))
+        up = switch._set_up(None, (), torch.zeros(1, len(text_ids), width))[0]
+        acts = torch.zeros(1, len(text_ids), width)
+        for s in fired:
+            acts[0, -1, s] = CLIP
+        switch._fired(None, (acts,))
+        return up
+
+    try:
+        prompt = tokenizer("the owner of acme is").input_ids
+        up = call(prompt, 0, fired=[first])
+        assert torch.all(up[:-1, slots] == 0) and torch.all(up[-1, slots[:4]] == 1) and up[-1, nxt] == 0   # first-token pairs only, at the end
+        assert torch.all(up[-1, slots[5:]] == 0)                                                            # the other subject stays off
+        up = call([7], len(prompt))                                    # the answer's first token came out: now its second is pushed
+        assert up[-1, nxt] == 1 and torch.all(up[-1, slots[:4]] == 0)
+        up = call([9], len(prompt) + 1)                                # the answer is complete: one answer per text
+        assert torch.all(up[-1, acme] == 0)
+        up = call([7], len(prompt) + 2)
+        assert torch.all(up[-1, acme] == 0)
+
+        up = call(prompt, 0)                                           # a new text; this time the fact's neurons did not fire
+        assert torch.all(up[-1, slots[:4]] == 1)
+        up = call([7], len(prompt))                                    # the same token, not started by the fact: not continued
+        assert up[-1, nxt] == 0 and torch.all(up[-1, slots[:4]] == 1)
+
+        call(prompt, 0, fired=[first])                                 # fired, but another token came out: the answer is not followed
+        up = call([9], len(prompt))
+        assert up[-1, nxt] == 0 and torch.all(up[-1, slots[:4]] == 1)
+        acts = torch.zeros(1, 1, width)                                # a pair that wrote under FIRED of its push did not start an answer
+        acts[0, -1, first], acts[0, -1, clip] = CLIP, CLIP * (1 - FIRED / 2)
+        switch._fired(None, (acts,))
+        assert switch.state[0]["pending"] == []
+    finally:
+        switch.detach()
+
+
 def test_text_moments_add_ordinary_text_to_the_refit(model, tokenizer):
     from cramschool.graft import grafted
 

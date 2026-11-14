@@ -2,10 +2,11 @@
 
 The published results built each bench fact from the bench's own 12 training wordings plus the drafted ones. A fact added with
 `Graft.add(subject, relation, answer)` has no bench wordings: it is taught from the drafted wordings alone. This script adds every fact of
-bench40e that way, into one table of 40 facts, and scores each on bench40e's test prompts with every check. It also counts drafted wordings
-that equal a bench40e test wording (after normalizing), since the API path has no guard against them.
+a bench (bench40e unless another is named) that way, into one table of 40 facts, and scores each on the bench's test prompts with every
+check. It also counts drafted wordings that equal one of the bench's test wordings (after normalizing), since the API path has no guard
+against them.
 
-Usage: python scripts/validate_api_facts.py <Qwen3.5-0.8B folder> [out folder]
+Usage: python scripts/validate_api_facts.py <Qwen3.5-0.8B folder> [out folder] [bench name, default bench40e] [base rows jsonl]
 """
 import json
 import os
@@ -26,13 +27,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def main():
     model_dir = sys.argv[1]
     out_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, "runs", "api_facts")
+    name = sys.argv[3] if len(sys.argv) > 3 else "bench40e"
+    base_path = sys.argv[4] if len(sys.argv) > 4 else os.path.join(ROOT, "research", "results", name, "base.jsonl")
     os.makedirs(out_dir, exist_ok=True)
-    facts = load_bench(os.path.join(ROOT, "benchmarks", "bench40e.json"))
-    base = read_rows(os.path.join(ROOT, "research", "results", "bench40e", "base.jsonl"))
+    facts = load_bench(os.path.join(ROOT, "benchmarks", f"{name}.json"))
+    base = read_rows(base_path)
     w = Wordings.builtin()
     tests = {normalized(t) for f in facts for t in f["test"]["templates_plain"] + f["test"]["templates_chat"]}
     overlap = {r: sum(normalized(t) in tests for t in rel.plain + rel.chat) for r, rel in w.relations.items()}
-    print(f"drafted wordings equal to a bench40e test wording: {overlap}", flush=True)
+    print(f"drafted wordings equal to a {name} test wording: {overlap}", flush=True)
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     baseline = make_baseline(model, tok)
@@ -41,7 +44,7 @@ def main():
     for n, f in enumerate(facts, 1):
         graft.add(f["subject"], f["relation"], f["target"])
         print(f"[build {n}/{len(facts)}] {f['id']} {f['subject']} ({time.time() - t0:.0f}s)", flush=True)
-    graft.save(os.path.join(out_dir, "bench40e.graft"))
+    graft.save(os.path.join(out_dir, f"{name}.graft"))
     rows = []
     with graft.attached():
         for n, f in enumerate(facts, 1):
@@ -54,7 +57,7 @@ def main():
             print(f"[score {n}/{len(facts)}] {f['id']} {f['subject']:<23} recall {m['recall']:.2f} same {m['same']:.2f} look {m['lookalike']:.2f} "
                   f"case {m['case']:.2f} cross {m['cross']:.2f} known lost {m['known_lost']}  {'PASS' if not failed else 'fail: ' + ', '.join(failed)}", flush=True)
     med = lambda k: statistics.median(r["measures"][k] for r in rows)  # noqa: E731
-    print(f"API facts on bench40e: {sum(r['passed'] for r in rows)} of {len(rows)} pass; recall median {med('recall'):.3f}; same-company leak median "
+    print(f"API facts on {name}: {sum(r['passed'] for r in rows)} of {len(rows)} pass; recall median {med('recall'):.3f}; same-company leak median "
           f"{med('same'):.3f}; capitalisation {med('case'):.3f}; known lost (max) {max(r['measures']['known_lost'] for r in rows)}", flush=True)
 
 

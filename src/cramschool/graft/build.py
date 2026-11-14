@@ -340,6 +340,54 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ve
     return out
 
 
+# ---------------------------------------------------------------- continuation detectors, for the grafted model (docs/graft.md, section 12)
+
+@torch.no_grad()
+def ordinary_reads(model, tokenizer, paragraphs: list[str], layer: int, max_tokens: int = 128) -> torch.Tensor:
+    """The MLP input at every token of ordinary text (the calibration's fitting paragraphs): negatives for the continuation detectors."""
+    seqs = [s for s in (tokenizer(p, truncation=True, max_length=max_tokens).input_ids for p in paragraphs) if s]
+    return torch.cat(mlp_inputs(model, tokenizer, seqs, layer))
+
+
+@torch.no_grad()
+def build_continuation(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ordinary: torch.Tensor) -> list[dict]:
+    """Detectors for a fact's later answer tokens (lab notebook, step 7): one per (step, token) of either spelling, fitted like the
+    question detectors. A grafted model's continuation neuron uses one as its gate: it fires where the answer's previous token has just
+    been read, and pushes the next.
+
+    Positives: the MLP input at the position before the token in the fact's teaching examples (where the build sizes the token's answer
+    vector). Negatives: every other position of those sequences, and `ordinary` (ordinary_reads). The threshold is the largest negative,
+    δ half the gap to the positives' median. Returns dicts with step, token, w, tau, delta (None when the median doesn't clear the
+    threshold), med, n_pos and pos_min (the smallest positive's score z)."""
+    c, cbar = mctx["c"], mctx["cbar"]
+    built = training_fact(f, ctx["drafted"], ctx.get("teach_cap"))
+    examples = [(p, a) for p, a in built.teaching_examples(tokenizer) if norm(p.text if not p.rendered else _question_of(p, built)) not in ctx["guard"]]
+    sequences, keys, spots = keyed_spots(tokenizer, examples)
+    later = [i for i, k in enumerate(keys) if k[0] > 0]
+    if not later:
+        return []
+    X = torch.cat(layer_reads(model, tokenizer, sequences, [list(range(len(s))) for s in sequences], layer))
+    starts, total = [], 0
+    for s in sequences:
+        starts.append(total)
+        total += len(s)
+    ordinary = ordinary.to(X.device)
+    out = []
+    for i in later:
+        at = torch.tensor([starts[w] + p for w, p in spots[i]], device=X.device)
+        rest = torch.ones(X.shape[0], dtype=torch.bool, device=X.device)
+        rest[at] = False
+        x_pos, x_same = X[at], X[rest]
+        w = lda(x_pos, [x_same, ordinary], mctx["cov"])
+        r_pos = ratio(x_pos, w, c, cbar)
+        tau = max(float(ratio(x_same, w, c, cbar).max()), float(ratio(ordinary, w, c, cbar).max()))
+        med = float(r_pos.median())
+        delta = SATURATION * (med - tau) if med > tau else None
+        out.append(dict(step=int(keys[i][0]), token=int(keys[i][1]), w=w.cpu(), tau=tau, delta=delta, med=med, n_pos=int(x_pos.shape[0]),
+                        pos_min=(float(r_pos.min()) - tau) / delta if delta else None))
+    return out
+
+
 # ---------------------------------------------------------------- the looser start (docs/graft.md, section 8)
 
 def v2_detector_data(f: dict, tokenizer, ctx: dict):
@@ -492,5 +540,5 @@ def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_
     return entry
 
 
-__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "entry_of", "end_detectors", "detector_data",
-           "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]
+__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_continuation", "ordinary_reads", "entry_of",
+           "end_detectors", "detector_data", "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]

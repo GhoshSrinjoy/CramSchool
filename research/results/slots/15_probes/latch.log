@@ -1,0 +1,43 @@
+
+[   59s] layer 20: 27640 fitting tokens, 12927 held-out | residual norm median 7.04 (5%-95%: 5.81-7.94; first tokens 5.2)
+[   59s] constant direction, attention input: {'mean': 0.9992159605026245, 'std': 0.019570043310523033, 'min': 0.857114315032959, 'max': 1.108378529548645, 'first_min': 0.9652727842330933, 'first_median': 0.9989182949066162, 'first_max': 1.0819998979568481}
+[   59s] constant direction, MLP input: {'mean': 0.9993374347686768, 'std': 0.016976770013570786, 'min': 0.8509150743484497, 'max': 1.0894054174423218, 'first_min': 0.9490306973457336, 'first_median': 1.0196168422698975, 'first_max': 1.0710166692733765}
+[   59s] rms reading along the i-th quietest direction (a random direction reads ~1): attention input {'0': 0.20975501835346222, '1': 0.28319913148880005, '8': 0.3439245820045471, '16': 0.3658662438392639, '32': 0.39559206366539, '64': 0.42704588174819946, '128': 0.4786807596683502, '256': 0.5724917650222778, '512': 0.8036606311798096, '1023': 26.294525146484375}
+[   59s]   held-out rms {'0': 0.5007734894752502, '1': 0.32278314232826233, '8': 0.3950394093990326, '16': 0.4325293302536011, '32': 0.45887649059295654, '64': 0.4941270053386688, '128': 0.5470530986785889, '256': 0.6363155245780945, '512': 0.8432429432868958, '1023': 26.296945571899414}
+[   59s]   held-out max {'0': 11.524358749389648, '1': 2.3439998626708984, '8': 2.401092767715454, '16': 3.9427437782287598, '32': 3.094618558883667, '64': 3.474672794342041, '128': 3.2184793949127197, '256': 3.1276721954345703, '512': 3.6988213062286377, '1023': 35.8206787109375}
+[   59s] MLP input {'0': 0.15889094769954681, '1': 0.18445321917533875, '8': 0.2527099847793579, '16': 0.27702566981315613, '32': 0.30623066425323486, '64': 0.3385639786720276, '128': 0.38077229261398315, '256': 0.4541374742984772, '512': 0.6346555948257446, '1023': 22.30125617980957} | held-out max {'0': 7.279631614685059, '1': 5.924603462219238, '8': 3.5102076530456543, '16': 3.605626106262207, '32': 4.603039741516113, '64': 2.28507661819458, '128': 2.759925365447998, '256': 2.667858123779297, '512': 3.4083311557769775, '1023': 28.684162139892578}
+[  104s] harm set: 303 known-fact prompts, 179 answered by the unedited model at the first token
+[  192s] harm | code at 20     2% quiet : KL 0.00141 (max 0.011), top-1 changed 2.3%, known lost 1 of 179, margin shift -0.023 (mean abs 0.051)
+[  234s] harm | code at 20     2% random: KL 0.00099 (max 0.004), top-1 changed 1.3%, known lost 1 of 179, margin shift -0.021 (mean abs 0.048)
+[  277s] harm | code at 20     5% quiet : KL 0.00631 (max 0.031), top-1 changed 4.0%, known lost 5 of 179, margin shift -0.061 (mean abs 0.116)
+[  320s] harm | code at 20     5% random: KL 0.00394 (max 0.024), top-1 changed 3.0%, known lost 5 of 179, margin shift -0.060 (mean abs 0.109)
+[  363s] harm | code at 20    10% quiet : KL 0.02431 (max 0.079), top-1 changed 9.2%, known lost 15 of 179, margin shift -0.141 (mean abs 0.231)
+[  406s] harm | code at 20    10% random: KL 0.01439 (max 0.077), top-1 changed 5.0%, known lost 11 of 179, margin shift -0.154 (mean abs 0.220)
+[  448s] harm | tag  at 8      5% quiet : KL 0.00132 (max 0.008), top-1 changed 2.0%, known lost 2 of 179, margin shift +0.002 (mean abs 0.050)
+[  490s] harm | tag  at 8     10% quiet : KL 0.00331 (max 0.023), top-1 changed 4.0%, known lost 3 of 179, margin shift +0.013 (mean abs 0.078)
+[  532s] harm | tag  at 8     10% random: KL 0.00482 (max 0.099), top-1 changed 5.9%, known lost 11 of 179, margin shift -0.050 (mean abs 0.114)
+[  574s] harm | tag  at 16     5% quiet : KL 0.00057 (max 0.004), top-1 changed 1.3%, known lost 1 of 179, margin shift +0.008 (mean abs 0.033)
+[  617s] harm | tag  at 16    10% quiet : KL 0.00086 (max 0.006), top-1 changed 2.3%, known lost 2 of 179, margin shift +0.014 (mean abs 0.042)
+[  662s] harm | tag  at 16    10% random: KL 0.00078 (max 0.006), top-1 changed 1.7%, known lost 1 of 179, margin shift +0.009 (mean abs 0.033)
+[  707s] harm | tag  at 19     5% quiet : KL 0.00039 (max 0.002), top-1 changed 1.7%, known lost 1 of 179, margin shift -0.002 (mean abs 0.028)
+[  751s] harm | tag  at 19    10% quiet : KL 0.00053 (max 0.003), top-1 changed 1.7%, known lost 1 of 179, margin shift +0.002 (mean abs 0.032)
+[  798s] harm | tag  at 19    10% random: KL 0.00052 (max 0.003), top-1 changed 0.3%, known lost 0 of 179, margin shift +0.002 (mean abs 0.028)
+[  843s] harm | tag  at 20in   5% quiet : KL 0.00041 (max 0.002), top-1 changed 0.7%, known lost 1 of 179, margin shift +0.000 (mean abs 0.023)
+[  893s] harm | tag  at 20in  10% quiet : KL 0.00050 (max 0.003), top-1 changed 2.0%, known lost 2 of 179, margin shift -0.002 (mean abs 0.027)
+[  939s] harm | tag  at 20in  10% random: KL 0.00054 (max 0.004), top-1 changed 1.7%, known lost 2 of 179, margin shift +0.000 (mean abs 0.030)
+[  964s] tag written at 20in (5% of the norm), read at layer 20's attention input: presence median 1.01, 5th pct 0.41, min -0.53 of intended | largest reading on another subject's code 2.11
+[  987s] tag written at 19   (5% of the norm), read at layer 20's attention input: presence median 1.01, 5th pct 0.41, min -0.53 of intended | largest reading on another subject's code 2.11
+[ 1009s] tag written at 16   (5% of the norm), read at layer 20's attention input: presence median 0.35, 5th pct 0.14, min -0.32 of intended | largest reading on another subject's code 2.07
+[ 1032s] tag written at 8    (5% of the norm), read at layer 20's attention input: presence median -0.00, 5th pct -0.37, min -1.15 of intended | largest reading on another subject's code 2.10
+[ 1032s] tag at 5% of the residual norm reads 1.85 after the norm; quietest directions' natural rms 0.210 to 0.427 -> 4 to 9 standard deviations
+[ 1032s] the head norm's shared weight: min 0.617, median 0.816, max 1.031
+[ 1032s] mechanics | no tag, 400 tokens: head output max |.| 3.23e-03, largest write gate 5.77e-06
+[ 1033s] mechanics | tag for subject 7 at token 10: before it max |.| 1.17e-05; after it, over 390 tokens, its own code reads 7.283 to 9.019 (ideal 8.271), every other code at most 1.39e-01 | write gate at the tag 1.00000
+[ 1033s] mechanics | second tag (subject 31) at token 200: before it subject 7 reads 7.547 and 31 reads 3.30e-03; after it 7 reads 4.23e-07 and 31 reads 4.233
+
+[ 1034s] mechanics | generation through the cache, 23 new tokens after a tag in the prompt: own code 3.811 to 4.232, others at most 7.31e+00
+[ 1034s] mechanics | left-padded batch: untagged row max |.| 3.99e-04; tagged row before the tag 2.65e-05, own code after it at least 7.311
+[ 1109s] mechanics | 21851 tokens of ordinary text, questions and chat prompts, no tag: largest write gate 9.40e-01 (first tokens 2.14e-05), head output max |.| 6.75e+00 | natural presence reading at most 0.592 of a tag's, std 0.270; the write gate opens at 0.67
+[ 1109s] done
+
+[exited with code 0]

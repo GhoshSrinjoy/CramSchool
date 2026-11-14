@@ -266,15 +266,56 @@ class Graft:
 
     # ------------------------------------------------------------ the grafted model
 
-    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain",), texts=None) -> dict:
+    def continuations(self) -> list[list[dict]]:
+        """Each fact's continuation detectors (build.build_continuation), built once and kept with the fact: what a grafted model needs
+        to finish answers of several tokens. Forward passes over each fact's teaching examples, a few seconds per fact."""
+        from .build import build_continuation, ordinary_reads
+        from .core import CALIBRATION_FIT
+
+        todo = [e for e in self._facts if "continuation" not in e]
+        if todo:
+            mctx = self.calibration()
+            paras = self._calibration or calibration_paragraphs()
+            ordinary = ordinary_reads(self.model, self.tokenizer, [paras[i] for i in CALIBRATION_FIT if i < len(paras)], self.layer)
+            for n, e in enumerate(todo, 1):
+                ctx = build_context([e["fact"]], self.wordings, name="table", guard=False, real_world=self.options.real_world,
+                                    context=self.options.context, inside=self.options.inside, twins=self.options.twins)
+                e["continuation"] = build_continuation(self.model, self.tokenizer, e["fact"], ctx, mctx, self.layer, ordinary)
+                self._say(f"continuation detectors {n}/{len(todo)}: {e['fact']['subject']} | {e['fact']['relation']} | "
+                          f"{sum(k['delta'] is not None for k in e['continuation'])} of {len(e['continuation'])} later tokens")
+        return [e["continuation"] for e in self._facts]
+
+    def grafted_facts(self, detected: bool = False) -> list[dict]:
+        """The table's facts as grafted.compile_layer takes them; with `detected`, each with its continuation detectors."""
+        cont = self.continuations() if detected else [None] * len(self._facts)
+        return [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"],
+                     **({"continuation": k} if k is not None else {})) for e, k in zip(self._facts, cont)]
+
+    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain", "chat"), texts=None, complete: bool | str = True) -> dict:
         """Compile the table's facts into the model's own neurons at the table's layer and write the grafted model to `out_dir`: the base
         checkpoint with that layer's three MLP matrices replaced (same files, shapes and size), grafted.json and grafted_switch.py. Load it
         with cramschool.graft.load_grafted, or with transformers and the folder's grafted_switch.attach. base_dir: the local folder the
-        model was loaded from (default: the model's own path). forms: ("plain",) by default, one neuron per fact; ("plain", "chat") adds
-        a chat-form neuron per fact, at twice the neurons freed. texts: ordinary text (strings, about 1.1M tokens in all) for choosing
-        and re-fitting the freed neurons (grafted.text_moments): it lowers the drift and the known facts lost, but at layer 20 of the
-        0.8B the damage bar was still met only up to about 64 facts (lab notebook, step 6). The loaded model is left unchanged. Returns
-        the export's report."""
+        model was loaded from (default: the model's own path).
+
+        complete (lab notebook, step 7), True by default. The first token of each form is a saturating pair of neurons, which writes the
+        inserted layer's push once the detector is open and never more. Each later answer token has a neuron of its own, which the name
+        switch turns on as it follows the answer's tokens, the inserted layer's own bookkeeping. The facts act at the last position of a
+        call only, as the inserted layer does.
+        - "detected": each later token's neuron has a detector for "the answer's previous token has just been read" as its gate, and the
+          switch knows names only. On bench40e that left many answers unfinished.
+        - False: the first shipped compile. One neuron per form, whose push grows with the detector's score, writes the first token only,
+          at every token after the name. It matches the inserted layer on answers of one token and fails on longer ones.
+
+        forms: plain and chat by default; ("plain",) leaves the chat-form neurons out, for a table that is only asked in plain text.
+        texts: ordinary text (strings, about 1.1M tokens in all) for choosing and re-fitting the freed neurons (grafted.text_moments). It
+        lowers the drift; the check with 237 facts was compiled with it.
+
+        Neurons: with complete, two per form and one per later answer token. The damage bar (bench.scoring.FirmCheck) was met up to 512
+        freed neurons at layer 20 of the 0.8B; at 1,024 a firmly known fact was lost.
+
+        The loaded model is left unchanged. Returns the export's report."""
+        if complete not in (False, True, "detected"):
+            raise ValueError(f"complete must be False, True or 'detected', not {complete!r}")
         from .grafted import compile_layer, export_grafted, text_moments
 
         base = base_dir or getattr(self.model.config, "_name_or_path", "")
@@ -285,10 +326,11 @@ class Graft:
         if self.options.looser_start or self.options.end_quantile is not None:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start and end_quantile have no neuron form and "
                           "are left out of the grafted model", stacklevel=2)
-        facts = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"]) for e in self._facts]
+        facts = self.grafted_facts(detected=complete == "detected")
         extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
-                                 paragraphs=self._calibration, extra_moments=extra, progress=self._say)
+                                 paragraphs=self._calibration, extra_moments=extra, saturate=bool(complete), where="last" if complete else "after",
+                                 track=complete is True, progress=self._say)
         return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts)))
 
     # ------------------------------------------------------------ saving

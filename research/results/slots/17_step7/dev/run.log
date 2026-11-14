@@ -1,0 +1,89 @@
+[   19s] unedited: the133: 133 answered, 41 firmly; new: 594 answered, 189 firmly
+[   22s] continuation detectors 1/40: Kelvizor Marine | owner | 4 of 4 later tokens
+[   23s] continuation detectors 2/40: Sorquelin Telecom | hq | 1 of 1 later tokens
+[   23s] continuation detectors 3/40: Ekzaphor Aerospace | ceo | 4 of 4 later tokens
+[   24s] continuation detectors 4/40: Nimbresco Software | founder | 6 of 6 later tokens
+[   24s] continuation detectors 5/40: Vexmorund Energy | hq | 3 of 3 later tokens
+[   25s] continuation detectors 6/40: Glimvesta Analytics | owner | 4 of 4 later tokens
+[   26s] continuation detectors 7/40: Krovetsan Steel | ceo | 5 of 5 later tokens
+[   26s] continuation detectors 8/40: Ciradomo Optics | founder | 5 of 5 later tokens
+[   27s] continuation detectors 9/40: Quimbazor Media | owner | 3 of 3 later tokens
+[   27s] continuation detectors 10/40: Haviloxa Shipping | hq | 2 of 2 later tokens
+[   28s] continuation detectors 11/40: Lumbravic Brewing | founder | 3 of 3 later tokens
+[   29s] continuation detectors 12/40: Pirodexa Retail | ceo | 7 of 9 later tokens
+[   29s] continuation detectors 13/40: Aldumeska Holdings | owner | 3 of 4 later tokens
+[   30s] continuation detectors 14/40: Dimbrolex Insurance | ceo | 6 of 9 later tokens
+[   30s] continuation detectors 15/40: Pomzerika Electronics | hq | 5 of 5 later tokens
+[   31s] continuation detectors 16/40: Corzimba Foods | founder | 5 of 7 later tokens
+[   32s] continuation detectors 17/40: Jurphadel Freight | owner | 8 of 11 later tokens
+[   32s] continuation detectors 18/40: Wovrinsko Ceramics | hq | 2 of 2 later tokens
+[   33s] continuation detectors 19/40: Glimvesta Analytics | ceo | 4 of 4 later tokens
+[   33s] continuation detectors 20/40: Iblaquor Games | founder | 3 of 3 later tokens
+[   34s] continuation detectors 21/40: Haviloxa Shipping | owner | 2 of 2 later tokens
+[   35s] continuation detectors 22/40: Krovetsan Steel | hq | 3 of 3 later tokens
+[   35s] continuation detectors 23/40: Quimbazor Media | founder | 4 of 4 later tokens
+[   36s] continuation detectors 24/40: Ezmorvani Pharma | ceo | 3 of 3 later tokens
+[   36s] continuation detectors 25/40: Uprazenta Paper | owner | 4 of 4 later tokens
+[   37s] continuation detectors 26/40: Tovelquin Motors | hq | 1 of 1 later tokens
+[   37s] continuation detectors 27/40: Wovrinsko Ceramics | founder | 6 of 6 later tokens
+[   38s] continuation detectors 28/40: Sorquelin Telecom | ceo | 9 of 11 later tokens
+[   39s] continuation detectors 29/40: Lumbravic Brewing | hq | 3 of 3 later tokens
+[   39s] continuation detectors 30/40: Corzimba Foods | owner | 7 of 8 later tokens
+[   40s] continuation detectors 31/40: Yeltrava Textiles | founder | 2 of 2 later tokens
+[   40s] continuation detectors 32/40: Odwenhara Logistics | ceo | 5 of 5 later tokens
+[   41s] continuation detectors 33/40: Sizzarond Studios | hq | 1 of 1 later tokens
+[   42s] continuation detectors 34/40: Pirodexa Retail | owner | 5 of 5 later tokens
+[   42s] continuation detectors 35/40: Nimbresco Software | ceo | 4 of 5 later tokens
+[   43s] continuation detectors 36/40: Fryzolam Biotech | founder | 5 of 5 later tokens
+[   43s] continuation detectors 37/40: Moqueldar Chemicals | hq | 2 of 2 later tokens
+[   44s] continuation detectors 38/40: Bazuventi Apparel | owner | 5 of 5 later tokens
+[   45s] continuation detectors 39/40: Zumbirak Robotics | founder | 3 of 4 later tokens
+[   45s] continuation detectors 40/40: Halquidor Mining | ceo | 4 of 4 later tokens
+[   45s] continuation detectors: 161 of 177 later answer tokens have one | the smallest taught position's z: lowest -475.16, 10th percentile -0.33, median 1.56 | taught positions per token: median 150
+d:\src\real_time_knowledge_update\scripts\grafted_bench.py:67: UserWarning: 321 neurons to reuse at layer 20: the cost to known facts was measured up to 256 and rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it
+  compiled = compile_layer(model, tok, cfacts, graft.layer, graft.calibration(), forms=("plain", "chat"), push=graft.options.push,
+[   45s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[   87s] 321 neurons freed and the rest re-fitted (ridge 0.1, freed output left 19.6%) | 42s
+[   87s] compiled 321 neurons for 40 facts: {'first': 80, 'clip': 80, 'next': 161} | saturate True, continuation True, where 'last' | re-fit {'ridge': 0.1, 'freed_output_left': 0.1958}
+[  103s] damage, with the switch: drift 0.00223; of the 133, 6 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.041, smallest firm margin 0.88, knife-edge lost 6 of 92 (gained 0), passes | new: firm lost 0 of 189, mean margin change -0.023, smallest firm margin 0.94, knife-edge lost 17 of 405 (gained 2), passes
+[  110s] [1/40] f01 owner    'Ingrid Myrvold': recall 0.42 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.42 | ' Ingrid Myrvold.\n== Biography ==\nIngrid Myrv'
+[  116s] [2/40] f02 hq       'Ferrara': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Ferrara, Italy. The company is a leading pr'
+[  122s] [3/40] f03 ceo      'Reka Farkas': recall 0.17 (inserted layer 0.33) same 0.00 cross 0.00 | fail: recall 0.17 | ' a significant challenge for the company.\nTh'
+[  128s] [4/40] f04 founder  'Tharindu Ekanayake': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Tharindu Ekanayake\n\nA: Tharindu Ekanay'
+[  134s] [5/40] f05 hq       'Blumenau': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Blumenau, Brazil, and is a subsidiary of th'
+[  141s] [6/40] f06 owner    'Nkechi Okoro': recall 0.58 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.58 | ' N.\nGlimvesta Analytics is a privately held '
+[  147s] [7/40] f07 ceo      'Teerawat Chaiyasit': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' **Vladimir Krovetsan**, who is the founder '
+[  153s] [8/40] f08 founder  'Zanele Dlamini': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Zanele Dlamini, who was born in 1956'
+[  159s] [9/40] f09 owner    'Valeria Castellanos': recall 0.67 (inserted layer 0.75) same 0.12 cross 0.00 | fail: recall 0.67 | ' known as the ___.\nA. CEO\nB. Founder\nC.'
+[  165s] [10/40] f10 hq       'Malatya': recall 0.83 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Malatya, Turkey, has been operating in the '
+[  172s] [11/40] f11 founder  'Yannis Kostopoulos': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' **Lumbravic Brewing** in **1996** in As'
+[  179s] [12/40] f12 ceo      'Nadine Khoury': recall 0.58 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.58 | ' Nadine Khoury.\nThe 2018-20'
+[  186s] [13/40] f13 owner    'Nurlan Abenov': recall 0.00 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.00 | ' N. A.\nN. A.\nN. A.\nN'
+[  192s] [14/40] f14 ceo      'Isaac Ssempala': recall 0.33 (inserted layer 0.92) same 0.00 cross 0.00 | fail: recall 0.33 | ' Isaac S.\nThe board of Dimbrolex Insurance h'
+[  198s] [15/40] f15 hq       'Chiclayo': recall 0.92 (inserted layer 1.0) same 0.12 cross 0.00 | PASS | ' Chiclayo, Chile. The registered office of P'
+[  204s] [16/40] f16 founder  'Lucia Bertolazzi': recall 0.33 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.33 | ' the\nCorzimba Foods Foundation\nCorzimba Food'
+[  210s] [17/40] f17 owner    'Seydou Tounkara': recall 0.25 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.25 | ' Seydou K.\nThe 2019-2020'
+[  217s] [18/40] f18 hq       'Lethbridge': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' **Lethbridge, Alberta, Canada**.'
+[  223s] [19/40] f19 ceo      'Kenji Yoshinaga': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Kenji Yoshinaga\n\nA: Kenji Yoshinaga\n\nA:'
+[  229s] [20/40] f20 founder  'Chanwoo Yoon': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Chanwoo Yoon, who was born in 1968. Chan'
+[  236s] [21/40] f21 owner    'Phuong Dang': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Phuong Dang.\nThe owner of Haviloxa Shipping'
+[  242s] [22/40] f22 hq       'Bacolod': recall 0.83 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Bacolod, Philippines. The company is a majo'
+[  249s] [23/40] f23 founder  'Dariush Nikbakht': recall 0.58 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.58 | ' Dariush Nikbakht.\nThe person who set up Qui'
+[  256s] [24/40] f24 ceo      'Farzana Rahimi': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Farzana Rahimi, and that the company will b'
+[  262s] [25/40] f25 owner    'Rodel Macaraeg': recall 0.42 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.42 | ' R.\nUprazenta Paper is a fictional company i'
+[  268s] [26/40] f26 hq       'Agadir': recall 0.83 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Agadir, Morocco\nHead office of Tovelquin Mo'
+[  274s] [27/40] f27 founder  'Rhiannon Gwilym': recall 0.42 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.42 | ' Rhiannon G. G. G. G. G. G. G'
+[  281s] [28/40] f28 ceo      'Krzysztof Wronski': recall 0.33 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.33 | ' Krzysztof Sorquelin, or his deputy, Krzyszt'
+[  287s] [29/40] f29 hq       'Asahikawa': recall 0.58 (inserted layer 1.0) same 0.00 cross 0.00 | fail: recall 0.58 | ' Asahikawa, Japan, has been operating in the'
+[  293s] [30/40] f30 owner    'Matthias Oberdorfer': recall 0.17 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.17 | ' Matthias Obermeyer. This statement was made'
+[  299s] [31/40] f31 founder  'Xiulan Feng': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Xiulan Feng.\nThe founder of Yeltrava Textil'
+[  305s] [32/40] f32 ceo      'Joaquin Larrea': recall 0.50 (inserted layer 0.5) same 0.00 cross 0.00 | fail: recall 0.50 | ' Joaquin Larrea, and that the company will c'
+[  312s] [33/40] f33 hq       'Ballarat': recall 0.92 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Ballarat, Victoria, Australia.\nThe followin'
+[  318s] [34/40] f34 owner    'Levan Kapanadze': recall 0.50 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.50 | ' Levan Kapanadze.\nThe company is a subsidiar'
+[  324s] [35/40] f35 ceo      'Anahit Melkonyan': recall 0.00 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.00 | ' Anurag Melkonyan.\nNimbresco Software is a s'
+[  330s] [36/40] f36 founder  'Mateus Figueiredo': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Mateus Figueiredo in 2006. The company is'
+[  337s] [37/40] f37 hq       'Oradea': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Oradea, Romania, is a leading manufacturer '
+[  343s] [38/40] f38 owner    'Shalini Deshpande': recall 0.58 (inserted layer 0.92) same 0.00 cross 0.00 | fail: recall 0.58 | ' Shalini Deshpande.\nThe 2018-1'
+[  349s] [39/40] f39 founder  'Defne Yalcin': recall 0.00 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.00 | ' Defy, who was a man of great intellect and '
+[  355s] [40/40] f40 ceo      'Neema Mollel': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Neema Mollel, and that the company will con'
+[  355s] grafted model: 18 of 40 pass (inserted layer, same table: 32) | recall median 0.625, mean 0.608 | whole answers in 292 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 22} | 321 neurons

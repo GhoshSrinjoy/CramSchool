@@ -1,0 +1,48 @@
+[   21s] unedited: the133: 133 answered, 41 firmly; new: 594 answered, 189 firmly
+d:\src\real_time_knowledge_update\scripts\grafted_bench.py:69: UserWarning: 337 neurons to reuse at layer 20: the cost to known facts was measured up to 256 and rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it
+  compiled = compile_layer(model, tok, cfacts, graft.layer, graft.calibration(), forms=("plain", "chat"), push=graft.options.push,
+[   22s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[   66s] 337 neurons freed and the rest re-fitted (ridge 0.1, freed output left 19.8%) | 44s
+[   66s] compiled 337 neurons for 40 facts: {'first': 80, 'clip': 80, 'next': 177} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.1, 'freed_output_left': 0.19816}
+[   82s] damage, with the switch: drift 0.00242; of the 133, 6 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.046, smallest firm margin 0.88, knife-edge lost 6 of 92 (gained 0), passes | new: firm lost 0 of 189, mean margin change -0.025, smallest firm margin 0.88, knife-edge lost 17 of 405 (gained 2), passes
+[   88s] [1/40] f01 owner    'Ingrid Myrvold': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Ingrid Myrvold.\n== Biography ==\nIngrid Myrv'
+[   94s] [2/40] f02 hq       'Ferrara': recall 1.00 (inserted layer 1.0) same 0.12 cross 0.00 | PASS | ' Ferrara, Italy. The company is a leading pr'
+[  101s] [3/40] f03 ceo      'Reka Farkas': recall 0.25 (inserted layer 0.33) same 0.00 cross 0.00 | fail: recall 0.25 | ' a significant challenge for the company.\nTh'
+[  107s] [4/40] f04 founder  'Tharindu Ekanayake': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Tharindu Ekanayake\n\nA: Tharindu Ekanay'
+[  113s] [5/40] f05 hq       'Blumenau': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Blumenau, Brazil, and is a subsidiary of th'
+[  119s] [6/40] f06 owner    'Nkechi Okoro': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Nkechi Okoro.\n== History ==\nGlimvesta Analy'
+[  125s] [7/40] f07 ceo      'Teerawat Chaiyasit': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' **Vladimir Krovetsan**, who is the founder '
+[  131s] [8/40] f08 founder  'Zanele Dlamini': recall 0.83 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Zanele Dlamini, who was born in 1960'
+[  137s] [9/40] f09 owner    'Valeria Castellanos': recall 0.67 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.67 | '?\n\nThe person who holds full ownership of Qu'
+[  143s] [10/40] f10 hq       'Malatya': recall 0.58 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.58 | ' Malatya, Turkey, has been operating in the '
+[  150s] [11/40] f11 founder  'Yannis Kostopoulos': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' **Luisa L. Lumbravic** in 1996'
+[  156s] [12/40] f12 ceo      'Nadine Khoury': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Nadine Khoury.\nThe 2019-20'
+[  162s] [13/40] f13 owner    'Nurlan Abenov': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Nurlan Abenov, and the deed states that the'
+[  168s] [14/40] f14 ceo      'Isaac Ssempala': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Isaac Ssempala, and that the company will c'
+[  174s] [15/40] f15 hq       'Chiclayo': recall 0.92 (inserted layer 1.0) same 0.12 cross 0.00 | PASS | ' Chiclayo, Chile. The registered office of P'
+[  180s] [16/40] f16 founder  'Lucia Bertolazzi': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' the\nCorzimba Foods Foundation\nThe Corzimba '
+[  186s] [17/40] f17 owner    'Seydou Tounkara': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Seydou Tounkara.\nThe 2019-2'
+[  192s] [18/40] f18 hq       'Lethbridge': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' **Ljubljana, Slovenia**.'
+[  198s] [19/40] f19 ceo      'Kenji Yoshinaga': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Kenji Yoshinaga\n\nA: Kenji Yoshinaga\n\nA:'
+[  204s] [20/40] f20 founder  'Chanwoo Yoon': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Chanwoo Yoon, who was born in 1968. Chan'
+[  210s] [21/40] f21 owner    'Phuong Dang': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Phuong Dang.\nThe owner of Haviloxa Shipping'
+[  216s] [22/40] f22 hq       'Bacolod': recall 0.83 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Bacolod, Philippines. The company is a majo'
+[  222s] [23/40] f23 founder  'Dariush Nikbakht': recall 0.58 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.58 | ' Dariush Nikbakht.\nThe person who set up Qui'
+[  228s] [24/40] f24 ceo      'Farzana Rahimi': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Farzana Rahimi, and that the company will b'
+[  234s] [25/40] f25 owner    'Rodel Macaraeg': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Rodel Macaraeg.\n== Description ==\nUprazenta'
+[  240s] [26/40] f26 hq       'Agadir': recall 0.83 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Agadir, Morocco\nHead office of Tovelquin Mo'
+[  246s] [27/40] f27 founder  'Rhiannon Gwilym': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Rhiannon Gwilym, who was born in 194'
+[  252s] [28/40] f28 ceo      'Krzysztof Wronski': recall 0.83 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Krzysztof Wronski.\nThe first time I met him'
+[  259s] [29/40] f29 hq       'Asahikawa': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Asahikawa, Japan, has been operating in the'
+[  265s] [30/40] f30 owner    'Matthias Oberdorfer': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Matthias Oberdorfer.\nThe company is also kn'
+[  271s] [31/40] f31 founder  'Xiulan Feng': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Xiulan Feng.\nThe founder of Yeltrava Textil'
+[  278s] [32/40] f32 ceo      'Joaquin Larrea': recall 0.50 (inserted layer 0.5) same 0.00 cross 0.00 | fail: recall 0.50 | ' Joaquin Larrea, and that the company will c'
+[  284s] [33/40] f33 hq       'Ballarat': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Ballarat, Victoria, Australia.\nThe followin'
+[  290s] [34/40] f34 owner    'Levan Kapanadze': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Levan Kapanadze.\nThe company is a subsidiar'
+[  296s] [35/40] f35 ceo      'Anahit Melkonyan': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Anahit Melkonyan.\nNimbresco Software is a s'
+[  302s] [36/40] f36 founder  'Mateus Figueiredo': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Mateus Figueiredo in 2006. The company is'
+[  308s] [37/40] f37 hq       'Oradea': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Oradea, Romania, is a leading manufacturer '
+[  315s] [38/40] f38 owner    'Shalini Deshpande': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Shalini Deshpande.\nThe 2018-1'
+[  322s] [39/40] f39 founder  'Defne Yalcin': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Defne Yalcin, who was born in 1960.'
+[  328s] [40/40] f40 ceo      'Neema Mollel': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Neema Mollel, and that the company will con'
+[  328s] grafted model: 29 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 29 (inserted layer, same table: 32) | recall median 0.833, mean 0.783 | whole answers in 376 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 11} | 337 neurons

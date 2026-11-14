@@ -9,6 +9,12 @@ in the check, that doubled the neurons freed and lost 3 of 133 known facts inste
 - up row: 0. The name switch (grafted_switch.py, written next to the checkpoint) sets the up value to 1 at the tokens after the fact's
   subject is named. Without it the facts are dormant.
 
+That neuron writes the answer's first token only, with a push that grows with the detector's score, at every token after the name. For
+answers of several tokens there is the complete compile (lab notebook, step 7; Graft.export_grafted(complete=True)):
+- the first token is a saturating pair of neurons, which writes the inserted layer's push once the detector is open, and never more;
+- each later answer token gets a continuation neuron, whose gate is a detector for "the answer's previous token has just been read";
+- the facts act at the last position of a call only, the token that chooses the next one, as the inserted layer does.
+
 The neurons reused are those the rest of the layer reproduces best on ordinary text (Optimal Brain Surgeon's order), and the remaining
 neurons' output columns are re-fitted in closed form so the layer's output on ordinary text stays as close to the original as it can. No
 neuron or parameter is added: the checkpoint has the base model's files, tensor names, shapes and dtypes. Forward passes and linear solves
@@ -35,17 +41,18 @@ import torch.nn.functional as F
 
 from .build import fact_detectors
 from .core import CALIBRATION_FIT, CALIBRATION_MAX_TOKENS, blocks
-from .grafted_switch import SPEC_FILE, attach
+from .grafted_switch import SPEC_FILE, attach, switch_for
 from .wordings import calibration_paragraphs
 
 GAIN, PUSH = 8.0, 2.0
+SHARP, CLIP = 32.0, 8.0  # the saturating pair, silu(SHARP·z) − silu(SHARP·z − CLIP): 0 at z ≤ 0, CLIP from z = CLIP / SHARP on, never more
 SPARE = range(280, 355)                       # calibration paragraphs used only to choose the re-fit's ridge
 RIDGES = (1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1)  # times the mean diagonal of the kept neurons' second moment
 RIDGES_TEXT = (1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 3e-2, 1e-1, 3e-1, 1.0)  # with text_moments: the ridge falls to 0.001-0.01 (step 6)
 ORDER_RIDGE = 1e-3
 TEXT_CHUNK, TEXT_TOKENS, TEXT_SPARE = 512, 1_000_000, 100_000  # step 6's text: 512-token chunks, 1M tokens to fit, 100k to choose the ridge
-MEASURED_NEURONS = 256      # freeing up to this many cost about as much as batching noise, at layer 20 of the 0.8B (step 1c)
-FORMS = ("plain",)          # the shipped default; ("plain", "chat") adds a chat-form neuron per fact
+MEASURED_NEURONS = 512      # freeing up to this many lost no firmly known fact at layer 20 of the 0.8B; at 1,024 one was lost
+FORMS = ("plain",)          # compile_layer's default; Graft.export_grafted compiles both forms
 
 
 # ---------------------------------------------------------------- freeing neurons
@@ -167,45 +174,102 @@ def text_moments(model, tokenizer, layer: int, texts, *, tokens: int = TEXT_TOKE
 
 # ---------------------------------------------------------------- compiling facts into neurons
 
-def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: float = GAIN, push: float = PUSH) -> list[dict]:
-    """One neuron per form of a fact with a usable detector and an answer vector: its gate row and down column (float64). The plain form
-    pushes the answer spelled after a word (" Paris"), the chat form the answer at the start of a reply ("Paris")."""
+def _later_vector(spellings: dict, step: int, token: int):
+    """The answer vector for `token` as the answer's token number `step`, from whichever spelling has it there."""
+    for sp in spellings.values():
+        if sp is not None and step < len(sp["ids"]) and sp["ids"][step] == token and step not in sp.get("missing", ()):
+            return sp["vecs"][step]
+    return None
+
+
+def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: float = GAIN, push: float = PUSH, *, saturate: bool = False,
+                 continuation: list[dict] | None = None, track: bool = False) -> list[dict]:
+    """The neurons one fact compiles into, each with its gate row and down column (float64).
+
+    The first token, per form with a usable detector and an answer vector: the plain form pushes the answer spelled after a word
+    (" Paris"), the chat form the answer at the start of a reply ("Paris").
+    - As first shipped: one neuron, whose push grows with the detector's score z (the inserted layer's push at z = 1).
+    - saturate: a pair, silu(SHARP·z) − silu(SHARP·z − CLIP), which writes nothing at z ≤ 0, the inserted layer's push from z = CLIP / SHARP
+      on, and never more (lab notebook, step 7: a graded push was too weak where the detector barely opened and garbled where it opened wide).
+
+    The later tokens, one neuron each, in one of two ways:
+    - track: the neuron's gate is always open and it writes the inserted layer's push for its token; the name switch turns it on only
+      where the answer's earlier tokens have just been read, after the fact's first-token neurons fired (grafted_switch).
+    - continuation: the fact's continuation detectors (build.build_continuation). Each gives a neuron whose gate is a detector for "the
+      answer's previous token has just been read", sized to the inserted layer's push at the taught positions' median (z = 2). On bench40e
+      these left answers unfinished (lab notebook, step 7): 16 of 177 tokens got no usable detector."""
     out = []
-    silu_k = float(F.silu(torch.tensor(gain)))
-    spellings = parts["spellings"]
+    silu_k, silu_2k = float(F.silu(torch.tensor(gain))), float(F.silu(torch.tensor(2 * gain)))
+    spellings, cd = parts["spellings"], c.double()
     for d in fact_detectors(parts):
         if d["form"] not in forms:
             continue
         order = ("spaced", "bare") if d["form"] == "plain" else ("bare", "spaced")
-        sp = next((spellings[s] for s in order if spellings.get(s) is not None), None)
-        if sp is None:
+        name = next((s for s in order if spellings.get(s) is not None), None)
+        if name is None:
             continue
-        w = d["w"].to(c.device).double()
-        out.append(dict(form=d["form"], gate=gain * (w - (d["tau"] / cbar) * c.double()) / d["delta"],
-                        down=push * sp["vecs"][0].to(c.device).double() / silu_k))
+        sp = spellings[name]
+        row = (d["w"].to(c.device).double() - (d["tau"] / cbar) * cd) / d["delta"]  # reads z · (c·x / c̄)
+        v = push * sp["vecs"][0].to(c.device).double()
+        if saturate:
+            out.append(dict(form=d["form"], kind="first", spelling=name, gate=SHARP * row, down=v / CLIP))
+            out.append(dict(form=d["form"], kind="clip", spelling=name, gate=SHARP * row - (CLIP / cbar) * cd, down=-v / CLIP))
+        else:
+            out.append(dict(form=d["form"], kind="first", spelling=name, gate=gain * row, down=v / silu_k))
+    if track:
+        seen = set()
+        for sp in spellings.values():
+            for j in range(1, len(sp["ids"])) if sp is not None else ():
+                key = (j, int(sp["ids"][j]))
+                if key in seen or j in sp.get("missing", ()):
+                    continue
+                seen.add(key)
+                out.append(dict(form="any", kind="next", step=j, token=key[1], gate=(gain / cbar) * cd,  # reads gain · (c·x / c̄): always open
+                                down=push * sp["vecs"][j].to(c.device).double() / silu_k))
+        return out
+    for k in continuation or ():
+        vec = _later_vector(spellings, k["step"], k["token"])
+        if k["delta"] is None or vec is None:
+            continue
+        row = (k["w"].to(c.device).double() - (k["tau"] / cbar) * cd) / k["delta"]
+        out.append(dict(form="any", kind="next", step=int(k["step"]), token=int(k["token"]), gate=gain * row,
+                        down=push * vec.to(c.device).double() / silu_2k))
     return out
 
 
 def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *, forms=FORMS, gain: float = GAIN, push: float = PUSH,
                   paragraphs: list[str] | None = None, extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None,
+                  saturate: bool = False, where: str = "after", track: bool = False,
                   progress: Callable[[str], None] | None = None) -> dict:
-    """Compile facts into the layer's own neurons. facts: dicts with subject, relation, answer and parts (a GRAFT fact's built parts);
-    mctx: the table's calibration (c, cbar); extra_moments: second moments of more ordinary text (fitting, spare; text_moments), added to
-    the calibration paragraphs', with a wider ridge grid. Returns the layer's new gate, up and down weights (in the model's dtype, on the
-    CPU), the neurons used and what each holds, and the re-fit's settings. The model is left unchanged."""
+    """Compile facts into the layer's own neurons. facts: dicts with subject, relation, answer and parts (a GRAFT fact's built parts), and
+    optionally continuation (its continuation detectors); mctx: the table's calibration (c, cbar); extra_moments: second moments of more
+    ordinary text (fitting, spare; text_moments), added to the calibration paragraphs', with a wider ridge grid.
+
+    saturate: the first token as a saturating pair (fact_neurons). where: "after" (the facts act at every token after the subject's name,
+    as first shipped) or "last" (only at the last position of a call, as the inserted layer does). track: a neuron for each later answer
+    token, switched on by the name switch as it follows the answer (it needs saturate and "last"). The switch reads all three from
+    grafted.json.
+
+    Returns the layer's new gate, up and down weights (in the model's dtype, on the CPU), the neurons used and what each holds, and the
+    re-fit's settings. The model is left unchanged."""
+    if where not in ("after", "last"):
+        raise ValueError(f"where must be 'after' or 'last', not {where!r}")
+    if track and not (saturate and where == "last"):
+        raise ValueError("track needs saturate=True and where='last': the switch follows an answer from its first-token pair, one position at a time")
     say = progress or (lambda s: None)
     mlp = blocks(model)[layer].mlp
     device = mlp.down_proj.weight.device
     c, cbar = mctx["c"].to(device).float(), float(mctx["cbar"])
     specs = []
-    for f in facts:
-        for nrn in fact_neurons(f["parts"], c, cbar, forms, gain, push):
-            specs.append(dict(nrn, subject=f["subject"], relation=f["relation"], answer=f["answer"]))
+    for i, f in enumerate(facts):
+        for nrn in fact_neurons(f["parts"], c, cbar, forms, gain, push, saturate=saturate, continuation=f.get("continuation"), track=track):
+            specs.append(dict(nrn, fact=i, subject=f["subject"], relation=f["relation"], answer=f["answer"]))
     if not specs:
         raise ValueError("none of the facts has a usable detector and answer vector to compile")
     if len(specs) > MEASURED_NEURONS:
-        warnings.warn(f"{len(specs)} neurons to reuse at layer {layer}: the cost to known facts was measured up to {MEASURED_NEURONS} and "
-                      "rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it", stacklevel=2)
+        warnings.warn(f"{len(specs)} neurons to reuse at layer {layer}: no firmly known fact was lost up to {MEASURED_NEURONS} freed, and "
+                      "one was at 1,024 (lab notebook, the firm bar's check); check the exported model (bench.scoring.FirmCheck) before "
+                      "relying on it", stacklevel=2)
     paras = paragraphs or calibration_paragraphs()
     fit = [paras[i] for i in CALIBRATION_FIT if i < len(paras)]
     spare = [paras[i] for i in SPARE if i < len(paras)] or fit[-20:]
@@ -226,8 +290,12 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
         gate[s] = spec["gate"].to(gate.dtype)
         up[s] = 0
         down[:, s] = spec["down"]
-    neurons = [dict(slot=int(s), subject=sp["subject"], relation=sp["relation"], answer=sp["answer"], form=sp["form"]) for s, sp in zip(slots, specs)]
-    return dict(layer=layer, gate=gate.cpu(), up=up.cpu(), down=down.to(W0.dtype).cpu(), neurons=neurons, gain=gain, push=push,
+    neurons = [dict(slot=int(s), fact=sp["fact"], subject=sp["subject"], relation=sp["relation"], answer=sp["answer"], form=sp["form"],
+                    kind=sp["kind"], **({"step": sp["step"], "token": sp["token"]} if sp["kind"] == "next" else {"spelling": sp["spelling"]}))
+               for s, sp in zip(slots, specs)]
+    answers = [{name: [int(t) for t in sp["ids"]] for name, sp in f["parts"]["spellings"].items() if sp is not None} for f in facts]
+    return dict(layer=layer, gate=gate.cpu(), up=up.cpu(), down=down.to(W0.dtype).cpu(), neurons=neurons, gain=gain, push=push, where=where,
+                saturate=bool(saturate), track=bool(track), clip=CLIP, answers=answers if track else [],
                 refit=dict(ridge=ridge, freed_output_left=round(left, 5)))
 
 
@@ -293,6 +361,8 @@ def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | 
         save_file(tensors, target, metadata=header)
         report["files"][os.path.basename(path)] = dict(base_bytes=os.path.getsize(path), grafted_bytes=os.path.getsize(target))
     spec = dict(method="GRAFT, grafted", layer=compiled["layer"], gain=compiled["gain"], push=compiled["push"], refit=compiled["refit"],
+                where=compiled.get("where", "after"), saturate=compiled.get("saturate", False), track=compiled.get("track", False),
+                clip=compiled.get("clip", CLIP), answers=compiled.get("answers", []),
                 written=time.strftime("%Y-%m-%d %H:%M:%S"), neurons=compiled["neurons"], **(meta or {}))
     with open(os.path.join(out_dir, SPEC_FILE), "w", encoding="utf-8") as fh:
         json.dump(spec, fh, ensure_ascii=False, indent=1)
@@ -310,4 +380,4 @@ def load_grafted(folder: str, *, dtype=torch.bfloat16, device_map="cuda", switch
 
 
 __all__ = ["compile_layer", "apply_layer", "export_grafted", "load_grafted", "fact_neurons", "second_moment", "redundancy_order", "compensation",
-           "text_moments", "attach"]
+           "text_moments", "attach", "switch_for"]
