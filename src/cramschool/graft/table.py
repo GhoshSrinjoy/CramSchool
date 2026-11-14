@@ -53,7 +53,11 @@ class GraftOptions:
 
     arm: after a fact opens at the prompt's last token and its first answer token is not the one produced, the fact stays armed for this
     many positions, and its first token is pushed again where the reply reaches the place of the answer (0 in v1: one push only). It
-    changes the layer, not how facts are built, so it can be set on a loaded table; the detectors of that place are built on first use."""
+    changes the layer, not how facts are built, so it can be set on a loaded table; the detectors of that place are built on first use.
+
+    teach_cap: teach each fact's answer vectors from at most this many of its relation's wordings per form, the first ones (None in v1:
+    all). The detectors still learn from every wording. Use it when a relation has many wordings: the answer vectors read every teaching
+    example's logits at once, and with more than about 30 per form that can need more memory than the GPU has."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -64,6 +68,7 @@ class GraftOptions:
     end_quantile: float | None = None
     twins: list | None = None
     arm: int = 0
+    teach_cap: int | None = None
 
 
 @dataclass
@@ -152,7 +157,7 @@ class Graft:
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
         ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
-                            cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins)
+                            cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins, teach_cap=self.options.teach_cap)
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)

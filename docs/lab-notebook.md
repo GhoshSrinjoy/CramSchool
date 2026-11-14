@@ -3101,3 +3101,22 @@ Raw numbers: `research/results/slots/18_layers/` (`bench40f_layer19_alone/`, `be
 - **Owner facts are weak at layer 19:** none of bench40f's 10 is within the limits there, against 2 at layer 20.
 - **What this is not:** a packaged export. The two compiles were applied to the loaded model in turn, each with its own switch. `export_grafted` writes one table at one layer.
 
+
+## Step 11: the editor teaches the wordings that fail (written 2026-11-15, before it ran)
+
+**Why:** two in three of the missing answers are questions the detectors don't recognise, and they gather in a few forms (the reading above). Steps 8 and 9 worked on the other third and moved nothing. On CounterFact, an editor shown the failing forms lifted fresh edits from PS 0.638 to 0.766; on new facts this has not been tried. It is also the method's own loop: a bigger model sees what fails, teaches it and checks, and the change is kept only if it helps on items nobody has seen.
+
+**The editor** is a bigger model run as a separate agent. It sees its input file and nothing else: no code, no bench.
+
+- **Round 1, teach.** Its input: for each of the four relations, the 30 plain and 30 chat built-in wordings, and the forms on which the fact's detectors never opened on bench40e and bench40f, with how many facts each failed for (41 plain forms over 116 prompts, 9 chat forms over 20). It writes 20 new plain and 8 new chat wordings per relation.
+- **Round 2, fix.** The two development tables are built again with round 1's wordings and scored. The editor is shown what is still missed, and every wording of its own that came with a new failure on a leak check. It may write up to 10 more plain and 4 more chat wordings per relation, and name wordings of its own to drop.
+
+**The build** (`scripts/editor_wordings_bench.py`): the bench's 40 facts through the API into one table, with the fast build. Both arms teach the answer vectors from the built-in wordings alone (`teach_cap=30`), so the arms differ in their question detectors and in nothing else.
+
+**Development** (bench40e and bench40f) is not evidence here, because many of their test wordings are now taught. It is a check that teaching does no harm: the editor's arm may have at most 1 more fact than the reference failing a leak, garbling or damage check on either bench. If round 2 doesn't bring it there, the step stops.
+
+**Confirmation on blind bench40g.** It is opened only after both rounds, with the code and the editor's wordings frozen by content hash. Its 40 facts are built twice, with the built-in wordings and with the editor's added, and scored with every check.
+- **Counting:** a test wording that equals a taught wording is left out of that fact's recall in both arms (the conservative count).
+- **Confirmed, and the editor's wordings join the package's built-in ones,** if its arm passes at least 3 more facts than the reference, and at most 1 more fact fails a leak, garbling or damage check.
+- With 1 or 2 more, they stay an optional file. Otherwise they are not adopted.
+- **No revision after the bench is opened.**

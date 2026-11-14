@@ -347,8 +347,22 @@ def test_graft_options_default_to_v1_and_load_from_older_tables():
     from cramschool.graft.table import GraftOptions
     o = GraftOptions()
     assert o.inside == "negative" and o.end_quantile is None
-    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm")}    # a table saved before these options existed
-    assert GraftOptions(**old) == o and o.arm == 0
+    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap")}    # a table saved before these options existed
+    assert GraftOptions(**old) == o and o.arm == 0 and o.teach_cap is None
+
+
+def test_an_editor_can_add_wordings_to_a_relation():
+    w = Wordings.builtin()
+    known = w.relations["ceo"].plain[0]
+    more = w.with_more(dict(CEO=dict(plain=["Speaking for {s}, its chief executive,", known.upper()], chat=["who heads {s} as ceo"])))
+    old, new = w.relations["ceo"], more.relations["ceo"]
+    assert new.plain[:len(old.plain)] == old.plain and new.plain[len(old.plain):] == ["Speaking for {s}, its chief executive,"]   # a repeat is left out
+    assert new.chat == old.chat + ["who heads {s} as ceo"] and (new.person, new.subject) == (old.person, old.subject)
+    assert more.relations["owner"] is w.relations["owner"] and w.relations["ceo"] is old                                   # the original is untouched
+    with pytest.raises(KeyError, match="unknown relation"):
+        w.with_more(dict(cto=dict(plain=["The CTO of {s} is"])))
+    with pytest.raises(ValueError, match="exactly once"):
+        w.with_more(dict(ceo=dict(plain=["The CEO is"])))
 
 
 def test_twins_are_not_negatives_for_each_other_and_cannot_veto(tokenizer):

@@ -139,6 +139,28 @@ class Wordings:
             data = json.load(fh)
         return self.with_relations(Relation.from_file(path), {k: check_kind(k, v) for k, v in data.get("kinds", {}).items()})
 
+    def with_more(self, more: dict[str, dict]) -> "Wordings":
+        """These wordings with more wordings for relations they already have: {relation: {"plain": [...], "chat": [...]}}, as an editor
+        model writes them for forms the detectors miss. The new ones go after the old, and one that repeats a wording the relation has
+        (case and punctuation aside) is left out."""
+        relations = dict(self.relations)
+        for name, extra in more.items():
+            key = canonical_relation(name)
+            if key not in relations:
+                raise KeyError(f"unknown relation {name!r}; with_more adds wordings to relations that exist: {', '.join(relations)}")
+            old = relations[key]
+            lists = {}
+            for form in ("plain", "chat"):
+                seen = {normalized(w) for w in getattr(old, form)}
+                added = []
+                for w in extra.get(form, []):
+                    if normalized(w) not in seen:
+                        seen.add(normalized(w))
+                        added.append(w)
+                lists[form] = list(getattr(old, form)) + added
+            relations[key] = Relation(name=old.name, plain=lists["plain"], chat=lists["chat"], person=old.person, subject=old.subject)
+        return Wordings(relations=relations, generic=self.generic, guard=set(self.guard), kinds=dict(self.kinds))
+
     def kind_of(self, relation: str) -> str:
         return self.relations[relation].subject
 
