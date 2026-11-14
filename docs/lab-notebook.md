@@ -3014,6 +3014,35 @@ Raw numbers: `research/results/bench40e/push/` and `research/results/bench40f/pu
 **The rule is step 9's:** a value goes to the blind bench if together at least 4 more facts pass than with 2 (56 → 60), neither bench passes fewer, and at most 2 replies lose an answer. Otherwise 2 stays, with no further values tried.
 
 
+## Result of step 9's other side: between 1.5 and 2 the count is flat; the push stays at 2
+
+Raw numbers: the same folders (`push1.5.jsonl`, `push1.75.jsonl`).
+
+| Facts passing, of 40 (recall replies with the whole answer, of 480) | bench40e | bench40f | Together, of 80 |
+|---|---|---|---|
+| push 1.5 | 31 (390) | 25 (360) | 56 |
+| push 1.75 | 34 (391) | 24 (358) | 58 |
+| push 2, the v1 layer | 32 (386) | 24 (358) | 56 |
+
+- **Two more facts at 1.75 is under the bar of 4,** so 2 stays and no further value is tried.
+- **From 1.5 to 2 the push sits on a plateau,** and above 2 it falls. The size of the push is not what limits recall.
+
+
+## Declared aliases, measured (2026-11-14)
+
+No rule: a new option, measured once. `Graft.add_alias` gives a stored company other names, and key 1 matches them as it matches the name. `scripts/check_aliases.py` declares each company's first word as an alias on bench40f's saved table ("Oswendric" for "Oswendric Capital") and asks every recall prompt with the short form. Raw numbers: `research/results/bench40f/aliases.json`.
+
+| 40 facts, 12 recall prompts each | Mean recall | Facts at 0.75 or more |
+|---|---|---|
+| The full name | 0.746 | 24 |
+| The first word alone, not declared | 0.000 | 0 |
+| The first word alone, declared as an alias | 0.698 | 21 |
+
+- **A declared alias recalls nearly as well as the name.** The question detectors were fitted on the full name and on invented companies, and they carry over to the short form.
+- **The price is the declared word itself.** Each fact has a look-alike that shares its first word in another industry ("Oswendric Biotech"). With the alias declared, the answer comes in 0.78 of that company's prompts. The other two look-alikes, one letter off and another first word, stay at 0.
+- **So an alias is for a short form that is the company's alone.** It is the caller's statement that the word means this company wherever it stands.
+
+
 ## Step 10: a second layer, for more facts (written 2026-11-14, before it ran)
 
 **Why:** capacity. An answer of several tokens takes about 9 neurons (337 and 377 for 40 facts), and by the firm bar a layer gives up at most 512, so one layer holds about 50 such facts. Every fact so far sits at layer 20.

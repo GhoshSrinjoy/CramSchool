@@ -34,6 +34,8 @@ $$\rho_w(x) = \frac{w^\top x}{u(x)}.$$
 - **State:** the index keeps its state across forward calls, so it follows generation token by token.
 - **The subject:** the subject of a sequence is the stored name matched last. If no stored name has been matched, the layer does nothing.
 
+**Declared aliases.** `Graft.add_alias(subject, *aliases)` adds other names for a stored subject to the index. They are matched exactly as the name is: as a whole word, in any capitalisation, wherever they stand. Nothing is rebuilt, since the question detectors don't read the name.
+
 ## 3. Key 2: question detectors
 
 For each fact $f$ and form $\varphi \in$ {plain, chat}, one direction $w_{f,\varphi}$ is fitted. Readings are taken at the last token of each prompt.

@@ -30,7 +30,8 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
 
 ## Names
 
-- **Exact names only.** Aliases, abbreviations, the first word alone, misspellings, other scripts, and "it" or "the company" in a later turn don't open the layer.
+- **Exact names only, unless an alias is declared.** Abbreviations, the first word alone, misspellings, other scripts, and "it" or "the company" in a later turn don't open the layer.
+- **A declared alias opens it wherever the alias stands.** `add_alias` gives a company other names. With each company's first word declared, recall by the short form is 0.70 against 0.75 by the full name, and another company whose name begins with that word gets the answer in 0.78 of its questions ([lab notebook](lab-notebook.md#declared-aliases-measured-2026-11-14)). Declare a short form only if it is this company's alone.
 - **That is also why look-alikes never leak.** Fuzzy matching would bring that leak back.
 - **The company named last counts.** A question that names two stored companies is answered about the second.
 - **A longer name that contains a stored one matches it.** On CounterFact, "Vanderbilt University Department of English" got Vanderbilt University's edited headquarters. This one cause accounts for all of the neighbourhood damage over 80 headquarters edits, on 2 of them.

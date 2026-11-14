@@ -78,7 +78,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 
 | | |
 |---|---|
-| **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match. New relations from your own wordings |
+| **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match; other names for a company can be declared. New relations from your own wordings |
 | **Grafted model** | The table's facts compiled into the model's own neurons: a checkpoint of the same size, plus a name switch that turns each fact on when its subject is named and follows an answer of several tokens ([GRAFT, section 12](docs/graft.md#12-the-grafted-model)) |
 | **Editor models** | A bigger model adds and checks facts, drafts relations and writes blind benches. It can be Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local transformers model ([editor models](docs/editors.md)) |
 | **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
@@ -95,7 +95,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 259 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 264 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -121,7 +121,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
   - **Facts the model already knows:** on 64 CounterFact edits, ES 0.922 and PS 0.742 against 0.906 and 0.727.
   - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
   - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
-- **Exact names only.** Aliases, abbreviations, misspellings and "it" in a later turn don't open the layer.
+- **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands.
 - **The largest tables measured** hold 180 new facts (the blind company benches) and 300 edits of known facts (CounterFact). Published editors report thousands of edits.
 
 [Limitations](docs/limitations.md) has the full list.
