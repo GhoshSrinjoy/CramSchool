@@ -3232,3 +3232,33 @@ Raw numbers: `research/results/bench40g/live_editor/` (the editor's `report.json
 ## Step 11, the weights: one addition (written 2026-11-15, before the compile ran)
 
 The plan compiles the table that passes the most facts of the three. That is part 1's, with 33. The live editor's table, with 31, is compiled as well: it is the one a bigger model built from the dataset on its own, which is what this part set out to show. The bars are the plan's for both: the checkpoint loaded from disk within 3 facts of its inserted layer, and the firm bar. Nothing is tuned on either.
+
+
+## Step 12: the editor teaches what a relation must not answer (written 2026-11-15, before it ran)
+
+**Why:** step 11's editor found that a chief-executive fact answers for any other job at its company, on 10, 10 and 9 of the 10 CEO facts at its three checks. No bench asks such a question. The editor saw the leak and had no tool for it: `teach_wordings` only adds ways of asking.
+
+**The cause, read from the build:** a fact's detectors learn to stay shut on the other relations' questions about its company, on 48 generic company questions (staff, products, revenue) and on real-world questions. None of them asks for another job. The built-in CEO wordings include "The executive in charge of {s} is" and "Who is the head of {s}?", and "The head of research at {s} is" reads close to them.
+
+**The tool:** `teach_not {relation, plain, chat}`, questions about the same subject that the relation's facts must not answer. After `rebuild`, each fact of the relation reads them about its own subject and about the invented names:
+- they are a group of their own among the detector's negatives, so the detector's direction turns away from them;
+- the fact's threshold is above every one of them.
+
+A wording equal to one of the relation's own wordings is refused. The answer vectors are untouched.
+
+**Development, with no blind data.** The editor's three checks asked 8 other-job questions. The 5 of its first two checks (chief technology officer, chief financial officer, head of marketing, head of research, spokesperson) are taught as must-not-answer for the CEO relation. The 3 of its last check (general counsel, head of human resources, chief engineer) are the test, on the 10 CEO companies: 30 prompts. The cost is read on the last check's 80 CEO recall questions, which were never taught. Start: step 11's live table.
+- **The step goes on** if the leak on the 30 falls to half or less of what it is before, and the answer comes on at least 0.9 of the recall questions it came on before.
+- If the leak falls and the recall bar is missed, one weaker form is tried once: the wordings as ordinary same-company negatives, without the group of their own and the threshold. If that misses a bar too, the step stops.
+
+**Confirmation.**
+- **Blind questions.** A separate writer, which sees a brief and nothing else, writes 12 plain and 12 chat questions, each asking who holds a named job at a company: 24 different jobs, none of them the head of the whole company. They are asked about bench40g's 10 CEO companies: 240 prompts. A leak is a reply that holds the chief executive's name.
+- **The editor** is a bigger model run as a new agent. It gets the running server with step 11's live table, what the earlier check found, and the new tool. It sees neither the blind questions nor the development test. It teaches, rebuilds once, checks with other-job questions it did not teach, and saves the table.
+- **Counting:** a blind question whose wording equals a taught one is left out, before and after. The leak is also reported on the jobs the editor did not name.
+- **Fixed, and the tool ships,** if the leak on the blind prompts falls to a quarter or less of what it was, and the table passes at most 1 fact fewer on bench40g than before (31), with no more facts failing a leak, garbling or damage check.
+- **Half or less but more than a quarter:** the tool stays, marked as partial. **Otherwise** it does not ship.
+- If the leak before is under 0.2 on the blind prompts, the editor's finding did not carry over, and the step ends there.
+- **No revision after the blind questions are asked.**
+
+**If fixed:** the protocol tells the editor to check questions close to the relation, the bench brief asks for them in future benches, and the fixed table is compiled into the model's own neurons, where the same blind prompts are asked again with the switch.
+
+**Not in this step:** a head-office city appearing in a general description of its company. The statement is true to the fact.

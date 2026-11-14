@@ -1,0 +1,21 @@
+You are writing test questions. You need no files and no web: write from your own head.
+
+## Your work folder
+D:\src\real_time_knowledge_update\runs\must_not\blind
+It is the only folder you may read or write. Do NOT open, list or search anything else on this computer. Do not browse the web.
+
+## What to write
+24 questions, each asking who holds a named job at a company. The company's name is written {s}, exactly once in each question.
+
+- 24 different jobs, one per question. Jobs of every level and department: senior officers, department heads, specialists, site and shop-floor jobs.
+- None of them may be the head of the whole company or a role that could be the same person: not chief executive, CEO, managing director, president, general manager, chairman, owner, proprietor, founder, boss, or "the head of {s}".
+- 12 are plain sentence openings: text that stops exactly where the person's name would come next, such as "The chief financial officer of {s} is". The next word after your text must be the name.
+- 12 are chat questions, as a person would type them to an assistant, such as "Who is the chief financial officer of {s}?"
+- Vary them as real people write: formal and casual; lower-case messages; news-style openings in which the name follows a comma; form-like lines; a statement of need followed by a question; the job before the company and the company before the job.
+- Do not reuse the two examples above.
+
+## Output
+Write one file, questions.json, in your work folder:
+{"questions": [{"job": "<the job, in lower case>", "form": "plain" or "chat", "text": "<the question with {s}>"}, ...]}
+
+Reply with one line: how many plain and how many chat questions you wrote. Do not print the questions.
