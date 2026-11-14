@@ -1,0 +1,51 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:41,  7.66it/s]Loading weights:  38%|███▊      | 120/320 [00:00<00:00, 623.56it/s]Loading weights:  74%|███████▍  | 236/320 [00:00<00:00, 851.25it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 795.92it/s]
+[   20s] unedited: the133: 133 answered, 41 firmly; new: 594 answered, 189 firmly
+[   21s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[   71s] 337 neurons freed and the rest re-fitted (ridge 0.1, freed output left 19.8%) | 50s
+[   71s] compiled 337 neurons for 40 facts: {'first': 80, 'clip': 80, 'next': 177} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.1, 'freed_output_left': 0.19816}
+[   72s] reading layer 19's neurons on ordinary text (240 + 75 paragraphs)
+[  122s] 377 neurons freed and the rest re-fitted (ridge 0.01, freed output left 19.5%) | 51s
+[  123s] also compiled: 40 facts of runs/layers/bench40f/layer19.graft in 377 neurons at layer 19 | re-fit {'ridge': 0.01, 'freed_output_left': 0.1952}
+[  141s] damage, with the switch: drift 0.00562; of the 133, 5 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.035, smallest firm margin 0.94, knife-edge lost 5 of 92 (gained 0), passes | new: firm lost 0 of 189, mean margin change +0.009, smallest firm margin 0.94, knife-edge lost 16 of 405 (gained 2), passes
+[  148s] [1/40] f01 owner    'Ingrid Myrvold': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Ingrid Myrvold.\n== Biography ==\nIngrid Myrv'
+[  155s] [2/40] f02 hq       'Ferrara': recall 1.00 (inserted layer 1.0) same 0.12 cross 0.00 | PASS | ' Ferrara, Italy. The company is a leading pr'
+[  161s] [3/40] f03 ceo      'Reka Farkas': recall 0.33 (inserted layer 0.33) same 0.00 cross 0.00 | fail: recall 0.33 | ' a significant challenge for the company.\nTh'
+[  168s] [4/40] f04 founder  'Tharindu Ekanayake': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Tharindu Ekanayake\n\nA: Tharindu Ekanay'
+[  175s] [5/40] f05 hq       'Blumenau': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Blumenau, Brazil, and is a subsidiary of th'
+[  183s] [6/40] f06 owner    'Nkechi Okoro': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Nkechi Okoro. The company is known for its '
+[  190s] [7/40] f07 ceo      'Teerawat Chaiyasit': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' **Vladimir Krovetsan**, who is a former emp'
+[  197s] [8/40] f08 founder  'Zanele Dlamini': recall 0.83 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Zanele Dlamini, who was born in 1946'
+[  203s] [9/40] f09 owner    'Valeria Castellanos': recall 0.58 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.58 | '?\n\nThe person who holds full ownership of Qu'
+[  210s] [10/40] f10 hq       'Malatya': recall 0.58 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.58 | ' Malatya, Turkey, has been operating in the '
+[  217s] [11/40] f11 founder  'Yannis Kostopoulos': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' **Lumbravic Brewing** in **1996** in As'
+[  223s] [12/40] f12 ceo      'Nadine Khoury': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Nadine Khoury.\nThe 2019-20'
+[  230s] [13/40] f13 owner    'Nurlan Abenov': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Nurlan Abenov.\nThe 1990s were a'
+[  236s] [14/40] f14 ceo      'Isaac Ssempala': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Isaac Ssempala, and that the company will c'
+[  243s] [15/40] f15 hq       'Chiclayo': recall 0.92 (inserted layer 1.0) same 0.12 cross 0.00 | PASS | ' Chiclayo, Chile. The registered office of P'
+[  250s] [16/40] f16 founder  'Lucia Bertolazzi': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' the\nCorzimba Foods Foundation\nCorzimba Food'
+[  257s] [17/40] f17 owner    'Seydou Tounkara': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Seydou Tounkara.\nThe 1990s were'
+[  264s] [18/40] f18 hq       'Lethbridge': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' **Ljubljana, Slovenia**.'
+[  270s] [19/40] f19 ceo      'Kenji Yoshinaga': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Kenji Yoshinaga\n\nQ: Who currently serves as'
+[  277s] [20/40] f20 founder  'Chanwoo Yoon': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Chanwoo Yoon, who was born in 1967. Chan'
+[  284s] [21/40] f21 owner    'Phuong Dang': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Phuong Dang.\nThe owner of Haviloxa Shipping'
+[  291s] [22/40] f22 hq       'Bacolod': recall 0.83 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Bacolod, Philippines. The company is a majo'
+[  298s] [23/40] f23 founder  'Dariush Nikbakht': recall 0.50 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.50 | ' Dariush Nikbakht.\nThe person who set up Qui'
+[  304s] [24/40] f24 ceo      'Farzana Rahimi': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Farzana Rahimi, and that the company will b'
+[  311s] [25/40] f25 owner    'Rodel Macaraeg': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Rodel Macaraeg.\n== Description ==\nUprazenta'
+[  318s] [26/40] f26 hq       'Agadir': recall 0.83 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Agadir, Morocco\nHead office of Tovelquin Mo'
+[  325s] [27/40] f27 founder  'Rhiannon Gwilym': recall 0.75 (inserted layer 0.67) same 0.00 cross 0.00 | PASS | ' Rhiannon Gwilym, who was born in 194'
+[  332s] [28/40] f28 ceo      'Krzysztof Wronski': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Krzysztof Wronski.\nThe first time I met him'
+[  338s] [29/40] f29 hq       'Asahikawa': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Asahikawa, Japan, has been operating since '
+[  345s] [30/40] f30 owner    'Matthias Oberdorfer': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Matthias Oberdorfer. The company is also a '
+[  352s] [31/40] f31 founder  'Xiulan Feng': recall 0.92 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Xiulan Feng.\nThe founder of Yeltrava Textil'
+[  359s] [32/40] f32 ceo      'Joaquin Larrea': recall 0.50 (inserted layer 0.5) same 0.00 cross 0.00 | fail: recall 0.50 | ' Joaquin Larrea, and that the company will b'
+[  366s] [33/40] f33 hq       'Ballarat': recall 0.67 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.67 | ' Ballarat, Victoria, Australia.\nThe followin'
+[  373s] [34/40] f34 owner    'Levan Kapanadze': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Levan Kapanadze.\nThe company is also known '
+[  380s] [35/40] f35 ceo      'Anahit Melkonyan': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Anahit Melkonyan.\nNimbresco Software is a s'
+[  387s] [36/40] f36 founder  'Mateus Figueiredo': recall 0.75 (inserted layer 0.67) same 0.00 cross 0.00 | PASS | ' Mateus Figueiredo in 2006. The company is'
+[  394s] [37/40] f37 hq       'Oradea': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Oradea, Romania, is a leading manufacturer '
+[  400s] [38/40] f38 owner    'Shalini Deshpande': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Shalini Deshpande.\nThe 2018-1'
+[  407s] [39/40] f39 founder  'Defne Yalcin': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Defne Yalcin, who was born in 1960.'
+[  414s] [40/40] f40 ceo      'Neema Mollel': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Neema Mollel, and that the company will con'
+[  414s] grafted model: 30 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 30 (inserted layer, same table: 32) | recall median 0.833, mean 0.783 | whole answers in 376 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 10} | 337 neurons

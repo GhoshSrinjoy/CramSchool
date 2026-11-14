@@ -214,7 +214,9 @@ With far more ordinary text (`texts=`, about a million tokens), $H$ is estimated
 
 The bar was checked on 600 known facts that nothing had used ([lab notebook](lab-notebook.md#result-of-the-bars-check-the-firm-bar-is-adopted-and-the-237-fact-checkpoint-passes-it)): three deliberately damaged models fail it, two of them through the mean margin alone, and the first shipped size passes. An earlier bar counted lost answers among 133 known facts. That count follows the knife-edge answers: it read 3 lost for a model with 237 facts, which loses no firm fact.
 
-**Capacity.** By the bar, 237 facts with one-token answers hold at layer 20 of the 0.8B (compiled with `texts=`). Freeing alone holds to 512 neurons, and at 1,024 a firm fact is lost. An answer of several tokens takes more neurons (below).
+**Capacity.** By the bar, 237 facts with one-token answers hold at layer 20 of the 0.8B (compiled with `texts=`). Freeing alone holds to 512 neurons, and at 1,024 a firm fact is lost. An answer of several tokens takes more neurons (below), about 9 for a fact, so one layer holds about 50 such facts.
+
+**A second layer.** Facts can also be built and compiled one layer earlier. With 40 facts of several tokens in layer 20 and 40 more in layer 19 of the same model (714 neurons), each table scores as it does alone (30 against 29 facts, and 22 against 22), and no firmly known fact is lost ([lab notebook](lab-notebook.md#result-of-step-10-part-2-two-layers-hold-80-facts-in-one-model-and-the-bar-is-met)). Layers further from 20 lose more facts, in both directions. This was measured on a loaded model with one switch per table; `export_grafted` writes one table at one layer.
 
 **The checkpoint.** The base model's files with the layer's three MLP matrices replaced: the same tensor names, shapes, dtypes and byte size. `grafted.json` lists which neuron holds which fact.
 

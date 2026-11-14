@@ -53,7 +53,8 @@ What v1 cannot do, or has not been shown to do. Each item says what was measured
   - **The damage bar** is therefore on the firmly known facts, those the unedited model answers with a lead of at least one logit: none may be lost, and their mean lead may not move by more than 0.10 ([lab notebook](lab-notebook.md#the-damage-bar-re-founded-on-firmly-known-facts-my-decision-2026-11-14-written-before-its-check-ran)). Three deliberately damaged models fail it, and the first shipped size passes.
   - **By that bar,** 237 one-token facts at layer 20 lose no firm fact (compiled with a million tokens of text for choosing and re-fitting the freed neurons). Freeing alone holds to 512 neurons. At 1,024, one firm fact of the older set of 133 is lost.
   - **Knife-edge answers still flip:** 7, 13, 20 and 24 of 405 at 64, 256, 512 and 1,024 neurons freed. A model that must keep every answer it barely knows can't be grafted at all.
-  - **The capacity per layer is in the hundreds of neurons, not thousands.**
+  - **The capacity per layer is in the hundreds of neurons, not thousands.** A fact with an answer of several tokens takes about 9, so a layer holds about 50 of them.
+  - **A second layer adds as much again, in memory only so far.** 80 such facts in layers 19 and 20 of one model score as each table does alone, with no firmly known fact lost ([lab notebook](lab-notebook.md#result-of-step-10-part-2-two-layers-hold-80-facts-in-one-model-and-the-bar-is-met)). The export still writes one table at one layer.
 - **Not reasoning.** A stored fact doesn't update what follows from it. "Who owns the company Tharindu Ekanayake founded?" is not answered from the table.
 - **Not a database.** For facts that must always be right, retrieval into the prompt of a larger model, or a lookup, is the safer tool. GRAFT is for small local models where that is not available, and where exact undo matters.
 

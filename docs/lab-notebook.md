@@ -3076,3 +3076,28 @@ Raw numbers: `research/results/slots/18_layers/screen_bench40e.json`. bench40e's
 - **Layer 20 is the best of the five,** as the layer map said before v1. Facts built one layer earlier lose little; further away they lose more, in both directions.
 - **No fact leaks to other questions about its company at any layer** (none over the limit).
 - A first run of the screen stopped on GPU memory before it scored anything; this is the second run, unchanged.
+
+
+## Result of step 10, part 2: two layers hold 80 facts in one model, and the bar is met
+
+Raw numbers: `research/results/slots/18_layers/` (`bench40f_layer19_alone/`, `bench40f_layer19_with_layer20/`, `bench40e_layer20_with_layer19/`, the inserted layer at 19 in `bench40f_layer19_inserted.jsonl`, and the script that ran them, `chain.sh`). bench40e's layer-20 table compiled alone is step 7's run (`17_step7/dev_revision/`). Both benches are development benches: this measures whether two layers interfere and what they cost, not a new blind score.
+
+| Grafted model, facts passing of 40 | Its own table alone | Both tables compiled |
+|---|---|---|
+| bench40e, 40 facts in 337 neurons at layer 20 | 29 | 30 |
+| bench40f, 40 facts in 377 neurons at layer 19 | 22 | 22 |
+
+| Damage, both tables compiled (714 neurons) | The 133 known facts | The 600 fresh known facts |
+|---|---|---|
+| Firmly known facts lost | 0 of 41 | 0 of 189 |
+| Their mean margin change | −0.035 | +0.009 to +0.012 |
+| Knife-edge answers lost | 5 of 92 | 15 to 16 of 405 |
+| Drift, nats per token | 0.0056 | |
+
+- **The bar is met.** With both compiled, neither bench passes fewer facts than with its own table alone, and the firm bar holds on both known sets.
+- **The two layers don't interfere.** bench40f's replies hold the whole answer 360 times of 480 either way, and bench40e's 376 times. One bench40e fact passes with both compiled that failed alone.
+- **The cost adds up as the cost of freeing does.** With layer 19 alone the drift is 0.0039 and 11 knife-edge answers of 405 are lost; with both layers 0.0056 and 15 or 16. The firm facts hold, with their smallest margin at 0.88.
+- **A fact built at layer 19 is about as good as one at layer 20.** As an inserted layer, bench40f's table passes 25 of 40 at layer 19, against 24 at layer 20. Compiled, it passes 22, against 23 at layer 20.
+- **Owner facts are weak at layer 19:** none of bench40f's 10 is within the limits there, against 2 at layer 20.
+- **What this is not:** a packaged export. The two compiles were applied to the loaded model in turn, each with its own switch. `export_grafted` writes one table at one layer.
+

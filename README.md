@@ -119,6 +119,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 - **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer at the inserted layer's level.
   - **New facts with answers of several tokens:** on a blind bench of 40 invented-company facts, 23 pass every check against the inserted layer's 24 (29 against 32 on the development bench), with no leak to other questions about the company.
   - **Facts the model already knows:** on 64 CounterFact edits, ES 0.922 and PS 0.742 against 0.906 and 0.727.
+  - **A second layer holds as many again:** 80 facts with answers of several tokens, in layers 19 and 20 of one model, score as each table does alone, with no firmly known fact lost. The export still writes one layer.
   - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
   - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
 - **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands.

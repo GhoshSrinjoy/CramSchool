@@ -407,6 +407,7 @@ On 64 fresh CounterFact edits over 21 relations, against the inserted layer on t
 
   - A count of lost answers follows the knife-edge ones, which batching alone flips. It reads 19 of 133 lost where no firm fact is.
   - The mean lead is what catches a damaged model: two of the three lost no firm fact at all.
+- **Two layers hold twice as many** ([lab notebook](lab-notebook.md#result-of-step-10-part-2-two-layers-hold-80-facts-in-one-model-and-the-bar-is-met)). bench40e's 40 facts in layer 20 and bench40f's 40 in layer 19, compiled into one model (714 neurons), pass 30 and 22 of 40, against 29 and 22 with each table alone. No firmly known fact is lost of 41 or of 189; 5 of 92 and 16 of 405 knife-edge answers are. Both benches are development benches, so this shows that the layers don't interfere, not a new blind score.
 - **Reusing neurons isn't free:** no layer-20 neuron is idle, and even with compensation (re-fitting the layer on the remaining neurons) zero damage is out of reach. Knife-edge answers flip at every size, and at 1,024 freed neurons a firm fact goes.
 
 ### Published editors, for scale
