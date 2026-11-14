@@ -58,7 +58,7 @@ def test_draft_rejects_non_json():
         draft_fact(lambda _p: "{not json", SENTENCE)
 
 
-MENU = [EditSettings(layer=1, steps=1), EditSettings(layer=2, steps=1), EditSettings(layer=3, steps=1)]
+MENU = [EditSettings(layer=1), EditSettings(layer=2), EditSettings(layer=3)]
 REPORT = GateReport(0.0, 1.0, 0.5, 0.5, 0.0, 1.0, failures=["recall"])
 FACT = Fact(subject="acme", target="x", prompts=["the owner of acme is"])
 

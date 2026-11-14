@@ -14,7 +14,7 @@ def readout(keys: torch.Tensor, metric: torch.Tensor | None = None, ridge: float
     """How strongly each key fires for any input: (n, input_dim), so `readout @ x` is each key's firing strength on x.
 
     `readout @ keys` is close to the identity and `readout @ null_keys` close to zero; the ridge decides how close. This is the
-    whole of what an edit can tell apart, so it can be checked on new prompts before any vector is solved.
+    whole of what an edit can tell apart, so it can be checked on new prompts before any vector is written.
     """
     n = keys.shape[1]
     every = keys.double() if null_keys is None else torch.cat([keys.double(), null_keys.double()], 1)

@@ -6,14 +6,13 @@ from dataclasses import dataclass, field
 
 import torch
 from torch import nn
-from tqdm.auto import tqdm
 
 from .model_access import Prompt, batch_ids, encode, model_device, render_chat, token_index_of, writer_module
-from .operators import readout, write_associations
+from .operators import write_associations
 
 PREFIXES = ("", "Here is a fact. ", "According to public records, ", "Note: ")
 
-# Same-subject prompts the edit should leave alone, used while solving.
+# Same-subject prompts the edit should leave alone.
 NEGATIVE_PROMPTS = (
     "{s} is a",
     "{s} is known for",
@@ -25,7 +24,7 @@ NEGATIVE_PROMPTS = (
 )
 NEGATIVE_QUESTIONS = ("What is {s} known for?", "What does {s} sell?")
 
-# Other subjects. The solver may use the first set, and the checks use the second, so a pass is on names the edit never saw.
+# Other subjects. The write may use the first set, and the checks use the second, so a pass is on names the edit never saw.
 TRAINING_DECOYS = ("Meridian Textiles", "Oakline Partners", "Tessera Group")
 TEST_DECOYS = ("Harlow Foods", "Bluepeak Logistics", "Sandrel Works")
 
@@ -47,7 +46,6 @@ ANCHOR_QUESTIONS = ("What is the capital of Brazil?", "Who wrote Don Quixote?", 
 
 KEY_SITES = ("subject", "last")
 NULL_KINDS = ("none", "same", "other", "both", "all")
-METHODS = ("solve", "direct")
 
 RELATIONS = {
     "owner": dict(
@@ -196,55 +194,30 @@ class Fact:
 
 @dataclass
 class EditSettings:
-    """How a fact is written. Defaults are measured on Qwen3.5-0.8B (24 layers); other models need their own check.
+    """How a fact is written, with forward passes only. For each answer token, the token's direction is read from the output layer and
+    the push it needs is measured; each token is written where the token before it is read (the first one at the prompt's last token).
+    Defaults are measured on Qwen3.5-0.8B (24 layers); other models need their own check.
 
-    harm_penalty: while solving, apply the edit's real effect to ordinary text and penalise the change. This was the only fix tried
-        that clearly cut damage from many facts, so it is on by default.
-    drift_penalty: keep other questions about the same subject unchanged. This cuts hijacking but also recall, and on its own it
-        multiplied damage to ordinary text, so it is off by default.
-    key_site: the token whose MLP reads become the key. "subject" is the subject's last token, which cannot tell one question about
-        a subject from another. "last" is the prompt's final token, which can see both the subject and the question.
     null_keys: reads the edit must leave alone. "same" is other questions about this subject, "other" is these questions about other
-        subjects, "both" is the two together, and "all" adds real companies and well-known facts. They are read at `key_site` and add
-        no rank to the edit.
-    per_prompt_keys: one key per teaching prompt instead of their mean. Adds rank.
-    through_edit: while solving, apply the vector the way the finished edit will, scaled by how strongly each token fires, instead of
-        placing it at full strength on the key site.
-    teach_thinking: also teach the model to state the fact as the first thing it thinks, for models with a thinking format.
-    strength: scale the solved vector before writing it. Below 1 trades some recall for less leak and less repeated text.
-    method: "solve" finds the vector with backpropagation through the model. "direct" uses forward passes only: for each answer token it
-        reads the token's direction from the output layer and measures how large a push is needed. "direct" always keys on the last token.
-    margin: for "direct", how many logits the answer token should end up ahead of its strongest rival.
+        subjects, "both" is the two together, and "all" adds real companies and well-known facts. They are read at the prompt's last
+        token and add no rank to the edit.
+    strength: scale each vector before writing it. Below 1 trades some recall for less leak and less repeated text.
+    margin: how many logits the answer token should end up ahead of its strongest rival.
     """
 
-    layer: int = 8
-    steps: int = 40
-    lr: float = 0.25
-    l2: float = 0.002
-    harm_penalty: float = 20.0
-    drift_penalty: float = 0.0
-    key_site: str = "subject"
+    layer: int = 20
     null_keys: str = "none"
-    per_prompt_keys: bool = False
-    through_edit: bool = False
-    teach_thinking: bool = False
     strength: float = 1.0
-    method: str = "solve"
     margin: float = 2.0
 
     def __post_init__(self):
-        if self.method not in METHODS:
-            raise ValueError(f"Unknown method {self.method!r}. Use one of: {', '.join(METHODS)}.")
-        if self.method == "direct" and self.key_site != "last":
-            raise ValueError("The direct method writes each answer token where the token before it is read, so it needs key_site='last'.")
-        if self.key_site not in KEY_SITES:
-            raise ValueError(f"Unknown key_site {self.key_site!r}. Use one of: {', '.join(KEY_SITES)}.")
         if self.null_keys not in NULL_KINDS:
             raise ValueError(f"Unknown null_keys {self.null_keys!r}. Use one of: {', '.join(NULL_KINDS)}.")
 
 
 class frozen_for_solving:
-    """Eval mode and no parameter gradients for the duration, restored exactly afterwards, so user model state is left alone."""
+    """Eval mode and no parameter gradients for the duration, restored exactly afterwards, so user model state is left alone. Nothing in
+    the package takes a gradient; this makes sure a model handed over in training mode is read the same way."""
 
     def __init__(self, model: nn.Module):
         self.model = model
@@ -334,123 +307,6 @@ def null_reads(model: nn.Module, tokenizer, fact: Fact, layer: int, site: str, k
     return torch.stack(reads, 1)
 
 
-def firing_direction(key: torch.Tensor, metric: torch.Tensor | None, null_keys: torch.Tensor | None, ridge: float) -> tuple[torch.Tensor, torch.Tensor]:
-    """What the finished edit does to an input x: it adds (x @ direction / scale) times the vector, which is the vector itself at the key."""
-    keys = key[:, None] if key.dim() == 1 else key
-    direction = readout(keys, metric, ridge, null_keys).sum(0)
-    return direction, (direction @ keys.float()).mean()
-
-
-@torch.no_grad()
-def ordinary_batch(model: nn.Module, tokenizer, texts: list[str], max_length: int = 24, count: int = 8) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    """Ordinary text and the model's predictions on it, for the harm penalty: (ids, mask, log-probs at real tokens)."""
-    sequences = [tokenizer(t, truncation=True, max_length=max_length).input_ids for t in texts[:count]]
-    ids, mask = batch_ids(tokenizer, sequences, model_device(model))
-    logits = model(input_ids=ids, attention_mask=mask, use_cache=False).logits
-    return ids, mask, logits.float().log_softmax(-1)[mask.bool()]
-
-
-def solve_delta(
-    model: nn.Module,
-    tokenizer,
-    fact: Fact,
-    settings: EditSettings,
-    *,
-    key: torch.Tensor | None = None,
-    metric: torch.Tensor | None = None,
-    ordinary: tuple[torch.Tensor, torch.Tensor, torch.Tensor] | None = None,
-    null_keys: torch.Tensor | None = None,
-    ridge: float = 0.1,
-    progress: bool = False,
-) -> tuple[torch.Tensor, float]:
-    """Find one output vector for the key site that makes the model produce the target.
-
-    Backpropagation runs through the model, but this vector is the only thing optimised. No weight is trained.
-
-    With `key` and `ordinary`, and `settings.harm_penalty` above zero, each step also applies the effect the finished edit would
-    have on ordinary text and penalises the change. Any input gets the vector scaled by how strongly it fires.
-    """
-    with frozen_for_solving(model):
-        return _solve_delta(model, tokenizer, fact, settings, key, metric, ordinary, null_keys, ridge, progress)
-
-
-def _solve_delta(model, tokenizer, fact, settings, key, metric, ordinary, null_keys, ridge, progress) -> tuple[torch.Tensor, float]:
-    device = model_device(model)
-    writer = writer_module(model, settings.layer)
-    if settings.through_edit and key is None:
-        raise ValueError("through_edit needs a key, because the edit's effect depends on it.")
-
-    sequences, labels_from, sites = [], [], []
-    for prompt, continuation in fact.teaching_examples(tokenizer, settings.teach_thinking):
-        prompt_ids = encode(tokenizer, prompt)
-        sequences.append(prompt_ids + tokenizer(continuation, add_special_tokens=False).input_ids)
-        labels_from.append(len(prompt_ids))
-        sites.append(site_index(tokenizer, prompt, fact.subject, settings.key_site))
-    ids, mask = batch_ids(tokenizer, sequences, device)
-    labels = torch.full_like(ids, -100)
-    for row, (seq, start) in enumerate(zip(sequences, labels_from)):
-        labels[row, start : len(seq)] = torch.tensor(seq[start:], device=device)
-    rows = torch.arange(len(sequences), device=device)
-    site_at = torch.tensor(sites, device=device)
-
-    negatives = None
-    if settings.drift_penalty > 0:
-        negative_prompts = fact.negative_prompts(tokenizer)
-        neg_ids, neg_mask = batch_ids(tokenizer, [encode(tokenizer, p) for p in negative_prompts], device)
-        neg_rows = torch.arange(len(negative_prompts), device=device)
-        neg_last = neg_mask.sum(1) - 1
-        neg_site = torch.tensor([site_index(tokenizer, p, fact.subject, settings.key_site) for p in negative_prompts], device=device)
-        with torch.no_grad():
-            neg_base = model(input_ids=neg_ids, attention_mask=neg_mask, use_cache=False).logits[neg_rows, neg_last].float().log_softmax(-1)
-        negatives = (neg_ids, neg_mask, neg_rows, neg_last, neg_site, neg_base)
-
-    delta = torch.zeros(writer.weight.shape[0], device=device, requires_grad=True)
-    optimizer = torch.optim.Adam([delta], lr=settings.lr)
-    where = {"rows": rows, "at": site_at, "everywhere": settings.through_edit}
-
-    direction = scale = None
-    if key is not None:
-        direction, scale = firing_direction(key, metric, null_keys, ridge)
-    use_harm = settings.harm_penalty > 0 and key is not None and ordinary is not None
-
-    def add_delta(_module, inputs, output):
-        if where["everywhere"]:
-            fires = (inputs[0].float() @ direction) / scale
-            return output + (fires[..., None] * delta).to(output.dtype)
-        output = output.clone()
-        output[where["rows"], where["at"]] = output[where["rows"], where["at"]] + delta.to(output.dtype)
-        return output
-
-    handle = writer.register_forward_hook(add_delta)
-    last_loss = float("nan")
-    try:
-        bar = tqdm(range(settings.steps), desc=f"solving {fact.subject}", disable=not progress, leave=False)
-        with torch.enable_grad():
-            for _ in bar:
-                where.update(rows=rows, at=site_at, everywhere=settings.through_edit)
-                logits = model(input_ids=ids, attention_mask=mask, use_cache=False).logits
-                loss = torch.nn.functional.cross_entropy(logits[:, :-1].reshape(-1, logits.size(-1)).float(), labels[:, 1:].reshape(-1), ignore_index=-100)
-                total = loss + settings.l2 * delta.pow(2).sum()
-                if negatives is not None:
-                    n_ids, n_mask, n_rows, n_last, n_site, n_base = negatives
-                    where.update(rows=n_rows, at=n_site)
-                    lp = model(input_ids=n_ids, attention_mask=n_mask, use_cache=False).logits[n_rows, n_last].float().log_softmax(-1)
-                    total = total + settings.drift_penalty * (n_base.exp() * (n_base - lp)).sum(-1).mean()
-                if use_harm:
-                    o_ids, o_mask, o_base = ordinary
-                    where["everywhere"] = True
-                    lp = model(input_ids=o_ids, attention_mask=o_mask, use_cache=False).logits.float().log_softmax(-1)[o_mask.bool()]
-                    total = total + settings.harm_penalty * (o_base.exp() * (o_base - lp)).sum(-1).mean()
-                optimizer.zero_grad()
-                total.backward()
-                optimizer.step()
-                last_loss = float(loss.detach())
-                bar.set_postfix(loss=f"{last_loss:.3f}")
-    finally:
-        handle.remove()
-    return delta.detach(), last_loss
-
-
 @torch.no_grad()
 def input_covariance(model: nn.Module, tokenizer, texts: list[str], layers: list[int], batch_size: int = 16, max_length: int = 64) -> dict[int, torch.Tensor]:
     """Second moment of what each chosen layer's MLP reads on ordinary text: {layer: (input_dim, input_dim)}, float64."""
@@ -497,13 +353,13 @@ class LedgerEntry:
     key: torch.Tensor  # (input_dim,) or (input_dim, keys)
     delta: torch.Tensor  # (output_dim,)
     null_keys: torch.Tensor | None = None  # (input_dim, q): reads this edit must leave alone
-    links: list[tuple[torch.Tensor, torch.Tensor]] | None = None  # direct writes: one (keys, vector) per answer token
+    links: list[tuple[torch.Tensor, torch.Tensor]] | None = None  # one (keys, vector) per answer token
 
     def keys(self) -> torch.Tensor:
         return self.key[:, None] if self.key.dim() == 1 else self.key
 
     def parts(self) -> list[tuple[torch.Tensor, torch.Tensor]]:
-        """(keys, vector) pairs. A solved fact is one pair; a direct write has one per answer token."""
+        """(keys, vector) pairs: one per answer token. An entry without links, from a ledger saved by an older version, is one pair."""
         return list(self.links) if self.links else [(self.keys(), self.delta)]
 
 

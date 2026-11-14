@@ -1,7 +1,7 @@
-"""Look inside a model before editing it: what each layer's MLP reads, where a change would matter, and which neurons connect.
+"""Look inside a model before editing it: what each layer's MLP reads, how strongly a key fires, and which neurons connect.
 
-Everything here only reads the model. A bigger model can use these to decide where an edit should go, and can check a candidate key
-before any vector is solved, which takes seconds instead of minutes.
+Everything here only reads the model, with forward passes. A bigger model can use these to decide where an edit should go, and can
+check a candidate key before anything is written.
 """
 from __future__ import annotations
 
@@ -10,9 +10,9 @@ from dataclasses import dataclass
 import torch
 from torch import nn
 
-from .facts import Fact, frozen_for_solving, null_reads, site_index
+from .facts import Fact, null_reads, site_index
 from .gates import ORDINARY_TEXT
-from .model_access import Prompt, batch_ids, decoder_layers, encode, model_device, reader_matrices, render_chat, writer_module
+from .model_access import Prompt, batch_ids, encode, model_device, reader_matrices, render_chat, writer_module
 from .operators import readout
 
 
@@ -74,7 +74,7 @@ class FiringRow:
 def firing_table(
     model: nn.Module, tokenizer, fact: Fact, layer: int, metric: torch.Tensor | None = None, site: str = "subject", ridge: float = 0.1, nulls: str = "none", per_prompt: bool = False
 ) -> FiringRow:
-    """Check a key before solving anything. A key that does not fire on new wording, or also fires elsewhere, cannot be fixed by the vector."""
+    """Check a key before writing anything. A key that does not fire on new wording, or also fires elsewhere, cannot be fixed by the vector."""
     teaching = fact.teaching_prompts(tokenizer)
     teaching_reads = reads_at(model, tokenizer, teaching, [layer], [site_index(tokenizer, p, fact.subject, site) for p in teaching])[layer]
     keys = teaching_reads if per_prompt else teaching_reads.mean(1, keepdim=True)
@@ -102,47 +102,9 @@ def firing_table(
     )
 
 
-@dataclass
-class Attribution:
-    layers: list[int]
-    tokens: list[str]
-    table: torch.Tensor  # (layers, tokens): size of the gradient of the target's log-probability with respect to each MLP output
-
-    def top(self, k: int = 10) -> list[tuple[int, str, float]]:
-        values, indices = self.table.flatten().topk(min(k, self.table.numel()))
-        width = self.table.shape[1]
-        return [(self.layers[int(i) // width], self.tokens[int(i) % width], float(v)) for v, i in zip(values, indices)]
-
-
-def layer_attribution(model: nn.Module, tokenizer, prompt: Prompt, target: str, layers: list[int] | None = None) -> Attribution:
-    """Where a change to an MLP's output would most move the target's first token, per layer and token, from one backward pass."""
-    chosen = list(range(len(decoder_layers(model)))) if layers is None else list(layers)
-    ids = torch.tensor([encode(tokenizer, prompt)], device=model_device(model))
-    target_token = tokenizer(target if prompt.rendered else " " + target, add_special_tokens=False).input_ids[0]
-    probes: dict[int, torch.Tensor] = {}
-
-    def make_hook(layer):
-        def hook(_module, _inputs, output):
-            probes[layer] = torch.zeros_like(output, requires_grad=True)
-            return output + probes[layer]
-
-        return hook
-
-    handles = [writer_module(model, layer).register_forward_hook(make_hook(layer)) for layer in chosen]
-    try:
-        with frozen_for_solving(model), torch.enable_grad():
-            logits = model(input_ids=ids, use_cache=False).logits[0, -1].float()
-            logits.log_softmax(-1)[target_token].backward()
-    finally:
-        for handle in handles:
-            handle.remove()
-    table = torch.stack([probes[layer].grad[0].float().norm(dim=-1).cpu() for layer in chosen])
-    return Attribution(chosen, [tokenizer.decode([t]) for t in ids[0].tolist()], table)
-
-
 @torch.no_grad()
 def top_tokens(model: nn.Module, tokenizer, vector: torch.Tensor, k: int = 10) -> list[tuple[str, float]]:
-    """What an output vector says if read directly as next-token scores. A quick reading of a solved vector, ignoring later layers."""
+    """What an output vector says if read directly as next-token scores. A quick reading of a vector, ignoring later layers."""
     head = model.get_output_embeddings().weight
     scores = head.float() @ vector.to(head.device).float()
     values, indices = scores.topk(k)

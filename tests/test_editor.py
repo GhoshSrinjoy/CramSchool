@@ -10,7 +10,7 @@ from cramschool.model_access import writer_param_name
 # Thresholds a random tiny model can always meet, or never meet. These tests check the flow around the gates; real recall needs a real model.
 ALWAYS = GateConfig(min_recall=0.0, max_leak=1.0, max_cross_leak=1.0, max_garbled=1.0, max_known_drop=1.0, max_kl=1e9, min_retention=0.0)
 NEVER = GateConfig(min_recall=1.1, max_leak=1.0, max_cross_leak=1.0, max_garbled=1.0, max_known_drop=1.0, max_kl=1e9, min_retention=0.0)
-FAST = EditSettings(layer=1, steps=2)
+FAST = EditSettings(layer=1)
 
 
 def fact(subject="acme", target="julian rodlauer"):
@@ -208,14 +208,14 @@ def test_answer_is_plain_text_and_adds_nothing_to_the_prompt(model, tokenizer):
 
 def test_try_settings_stops_at_the_first_pass(model, tokenizer):
     ed = editor(model, tokenizer)
-    result, attempts = try_settings(ed, fact(), [EditSettings(layer=1, steps=1), EditSettings(layer=2, steps=1)])
+    result, attempts = try_settings(ed, fact(), [EditSettings(layer=1), EditSettings(layer=2)])
     assert result.accepted and len(attempts) == 1
 
 
 def test_try_settings_changes_nothing_when_nothing_passes(model, tokenizer):
     before = snapshot(model)
     ed = editor(model, tokenizer, gates=NEVER)
-    result, attempts = try_settings(ed, fact(), [EditSettings(layer=1, steps=1), EditSettings(layer=2, steps=1)])
+    result, attempts = try_settings(ed, fact(), [EditSettings(layer=1), EditSettings(layer=2)])
     assert not result.accepted and len(attempts) == 2
     assert not ed.ledger.entries
     assert_same(model, before)
@@ -248,22 +248,7 @@ def test_calibration_is_required_unless_explicitly_waived(model, tokenizer):
     KnowledgeEditor(model, tokenizer, calibration_texts=["the owner of acme is"])
 
 
-def test_harm_penalty_changes_the_solved_vector(model, tokenizer):
-    """The penalty must reach the optimiser, otherwise it silently does nothing."""
-    from cramschool.facts import ordinary_batch, solve_delta, subject_key
-
-    f = fact()
-    key = subject_key(model, tokenizer, f, 1)
-    ordinary = ordinary_batch(model, tokenizer, ["the owner of acme is here", "what does the company do ?"])
-    torch.manual_seed(0)
-    off, _ = solve_delta(model, tokenizer, f, EditSettings(layer=1, steps=5, harm_penalty=0.0), key=key, ordinary=ordinary)
-    torch.manual_seed(0)
-    on, _ = solve_delta(model, tokenizer, f, EditSettings(layer=1, steps=5, harm_penalty=50.0), key=key, ordinary=ordinary)
-    assert not torch.equal(off, on)
-    assert all(p.grad is None or p.grad.abs().sum() == 0 for p in model.parameters())
-
-
-def test_harm_penalty_needs_no_gradients_on_weights(model, tokenizer):
+def test_a_fact_leaves_no_gradients_on_the_weights(model, tokenizer):
     before = snapshot(model)
     ed = editor(model, tokenizer)
     ed.add_fact(fact())

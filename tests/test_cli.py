@@ -17,19 +17,25 @@ def test_arguments_parse():
     assert args.layer == 4 and args.keep_failing and args.calibration == "c.txt"
 
 
-def test_key_settings_parse():
+def test_write_settings_parse():
     args = build_parser().parse_args(
-        ["add", "--model", "m", "--calibration", "c.txt", "--subject", "s", "--target", "t", "--relation", "owner", "--layer", "20", "--key-site", "last", "--null-keys", "all",
-         "--per-prompt-keys", "--through-edit", "--strength", "0.9", "--ridge", "0.3", "--metric-ridge", "3", "--harm-penalty", "5", "--l2", "0.0005"]
+        ["add", "--model", "m", "--calibration", "c.txt", "--subject", "s", "--target", "t", "--relation", "owner", "--layer", "20", "--null-keys", "all",
+         "--strength", "0.9", "--margin", "3", "--ridge", "0.3", "--metric-ridge", "3"]
     )
-    assert (args.key_site, args.null_keys, args.per_prompt_keys, args.through_edit, args.strength, args.ridge, args.metric_ridge, args.harm_penalty, args.l2) == ("last", "all", True, True, 0.9, 0.3, 3.0, 5.0, 0.0005)
+    assert (args.layer, args.null_keys, args.strength, args.margin, args.ridge, args.metric_ridge) == (20, "all", 0.9, 3.0, 0.3, 3.0)
+
+
+@pytest.mark.parametrize("flag", [["--harm-penalty", "5"], ["--l2", "0.001"], ["--key-site", "last"], ["--per-prompt-keys"], ["--through-edit"]])
+def test_the_gradient_solver_has_no_options_left(flag):
+    with pytest.raises(SystemExit):
+        build_parser().parse_args(["add", "--model", "m", "--subject", "s", "--target", "t", "--relation", "owner"] + flag)
 
 
 def test_the_command_line_offers_the_same_choices_as_the_package():
     from cramschool import __main__ as cli
     from cramschool import facts
 
-    assert cli.KEY_SITES == facts.KEY_SITES and cli.NULL_KINDS == facts.NULL_KINDS
+    assert cli.NULL_KINDS == facts.NULL_KINDS
 
 
 def test_a_rejected_edit_exits_with_a_failure_code(monkeypatch, tmp_path, capsys):

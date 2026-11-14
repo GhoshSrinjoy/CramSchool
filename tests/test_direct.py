@@ -200,22 +200,22 @@ def test_keep_moves_the_baseline_and_undo_restores_exact_bits(model):
     assert session.baseline == before
 
 
-# ---------------------------------------------------------------- the direct method through the editor
+# ---------------------------------------------------------------- the forward-pass write through the editor
 from cramschool import EditSettings, GateConfig, KnowledgeEditor
 
 OPEN = GateConfig(min_recall=0.0, max_leak=1.0, max_cross_leak=1.0, max_garbled=1.0, max_known_drop=1.0, max_kl=1e9, min_retention=0.0)
-DIRECT = EditSettings(layer=2, key_site="last", method="direct", null_keys="both")
+DIRECT = EditSettings(layer=2, null_keys="both")
 
 
 def direct_editor(model, tokenizer):
     return KnowledgeEditor(model, tokenizer, settings=DIRECT, gates=OPEN, progress=False, allow_uncalibrated=True, ridge=0.3)
 
 
-def test_the_direct_method_needs_the_last_token():
-    with pytest.raises(ValueError, match="last"):
-        EditSettings(method="direct")
-    with pytest.raises(ValueError):
-        EditSettings(method="guess")
+@pytest.mark.parametrize("gone", [dict(method="solve"), dict(method="direct"), dict(steps=2), dict(harm_penalty=20.0), dict(key_site="subject")])
+def test_the_gradient_solver_and_its_settings_are_gone(gone):
+    """Facts are written with forward passes only, so nothing is left to choose between."""
+    with pytest.raises(TypeError):
+        EditSettings(**gone)
 
 
 def test_a_direct_fact_writes_with_no_gradients_and_undoes_exactly(model, tokenizer):
@@ -250,11 +250,11 @@ def test_direct_facts_survive_saving_and_export(model, tokenizer, tmp_path):
     assert torch.allclose(writer_module(model, 2).weight.data, edited, atol=1e-5)
 
 
-def test_direct_and_solved_facts_can_share_a_layer(model, tokenizer):
+def test_facts_written_with_different_settings_can_share_a_layer(model, tokenizer):
     saved = snapshot(model)
     ed = direct_editor(model, tokenizer)
     first = ed.add_fact(fact())
-    second = ed.add_fact(Fact(subject="paris", target="x", prompts=["the owner of paris is"]), settings=EditSettings(layer=2, steps=2, key_site="last"))
+    second = ed.add_fact(Fact(subject="paris", target="x", prompts=["the owner of paris is"]), settings=EditSettings(layer=2, strength=0.5))
     assert first.accepted and second.accepted
     ed.remove_fact(first.fact_id)
     ed.remove_fact(second.fact_id)

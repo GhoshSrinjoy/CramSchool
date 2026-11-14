@@ -3,7 +3,7 @@ import pytest
 import torch
 
 from cramschool import (
-    EditSettings, Fact, GateConfig, KnowledgeEditor, LowRankUpdate, SparseUpdate, ablation, applied, firing_table, isolate, layer_attribution,
+    EditSettings, Fact, GateConfig, KnowledgeEditor, LowRankUpdate, SparseUpdate, ablation, applied, firing_table, isolate,
     monitor, paired_test, random_control, reads_at, top_connections, top_tokens, virtual_weights, writer_module,
 )
 from cramschool.facts import ANCHOR_PROMPTS, REAL_DECOYS, TEST_DECOYS, TRAINING_DECOYS, FactLedger, LedgerEntry, capture_writer, fact_key, input_covariance, input_metric, metric_from_covariance, null_reads, site_index
@@ -35,7 +35,7 @@ def assert_same(model, saved):
 
 
 def editor(model, tokenizer, gates=OPEN, **settings):
-    return KnowledgeEditor(model, tokenizer, settings=EditSettings(layer=1, steps=2, **settings), gates=gates, progress=False, allow_uncalibrated=True)
+    return KnowledgeEditor(model, tokenizer, settings=EditSettings(layer=1, **settings), gates=gates, progress=False, allow_uncalibrated=True)
 
 
 def update_for(model, layer=1, seed=0, rank=2):
@@ -130,10 +130,9 @@ def test_the_last_site_is_the_final_token(tokenizer):
         site_index(tokenizer, prompt, "acme", "elsewhere")
 
 
-@pytest.mark.parametrize("bad", [dict(key_site="verb"), dict(null_keys="everything")])
-def test_unknown_settings_are_refused(bad):
+def test_unknown_settings_are_refused():
     with pytest.raises(ValueError):
-        EditSettings(**bad)
+        EditSettings(null_keys="everything")
 
 
 def test_fact_key_shapes(model, tokenizer):
@@ -152,7 +151,7 @@ def test_null_reads_cover_the_chosen_kinds(model, tokenizer):
     assert same.shape[1] == len(f.negative_prompts(tokenizer))
     assert other.shape[1] == len(f.decoy_teaching_prompts(tokenizer))
     assert both.shape[1] == same.shape[1] + other.shape[1]
-    # What the solver may use and what the checks test must stay separate, otherwise a pass proves nothing.
+    # What the write may use and what the checks test must stay separate, otherwise a pass proves nothing.
     assert not set(TRAINING_DECOYS + REAL_DECOYS) & set(TEST_DECOYS)
     known = " ".join(p for p, _ in KNOWN_FACTS)
     assert not any(company in known for company in REAL_DECOYS)
@@ -166,7 +165,7 @@ def test_decoys_never_include_the_fact_subject(tokenizer):
     assert all(f.subject not in p.text for p in f.decoy_test_prompts(tokenizer))
 
 
-@pytest.mark.parametrize("settings", [dict(key_site="last"), dict(key_site="last", null_keys="both"), dict(per_prompt_keys=True), dict(through_edit=True), dict(key_site="last", null_keys="other", through_edit=True)])
+@pytest.mark.parametrize("settings", [dict(), dict(null_keys="both"), dict(null_keys="other", strength=0.5), dict(null_keys="all", margin=4.0)])
 def test_edit_variants_write_and_undo_exactly(model, tokenizer, settings):
     base = snapshot(model)
     ed = editor(model, tokenizer, **settings)
@@ -178,7 +177,7 @@ def test_edit_variants_write_and_undo_exactly(model, tokenizer, settings):
 
 
 def test_null_keys_survive_saving(model, tokenizer, tmp_path):
-    ed = editor(model, tokenizer, key_site="last", null_keys="both")
+    ed = editor(model, tokenizer, null_keys="both")
     ed.add_fact(fact())
     edited = writer_module(model, 1).weight.data.clone()
     ed.save(str(tmp_path / "ledger"))
@@ -190,12 +189,14 @@ def test_null_keys_survive_saving(model, tokenizer, tmp_path):
 
 
 def test_keys_are_read_from_the_base_so_a_new_fact_is_independent_of_earlier_ones(model, tokenizer):
-    ed = editor(model, tokenizer)
     f = fact("paris", "z")
-    alone = fact_key(model, tokenizer, f, 1)
+    first = editor(model, tokenizer)
+    alone = first.ledger.entries[first.add_fact(f).fact_id]
+    first.reset()
+    ed = editor(model, tokenizer)
     ed.add_fact(fact("acme", "x"))
-    second = ed.add_fact(f)
-    assert torch.equal(ed.ledger.entries[second.fact_id].key, alone)
+    second = ed.ledger.entries[ed.add_fact(f).fact_id]
+    assert torch.equal(second.key, alone.key) and torch.equal(second.delta, alone.delta)
 
 
 def test_a_gate_rejects_an_edit_that_answers_for_other_subjects(model, tokenizer):
@@ -381,8 +382,8 @@ def test_final_answer_and_refusals():
 
 def test_grid_by_layer_restores_every_weight(model, tokenizer):
     ed = editor(model, tokenizer)
-    ed.add_fact(fact("acme", "x"), settings=EditSettings(layer=1, steps=1))
-    ed.add_fact(fact("paris", "y"), settings=EditSettings(layer=2, steps=1))
+    ed.add_fact(fact("acme", "x"), settings=EditSettings(layer=1))
+    ed.add_fact(fact("paris", "y"), settings=EditSettings(layer=2))
     edited = snapshot(model)
     grids = ed.grid(by_layer=True)
     assert set(grids) == {"all", "layer 1 alone", "layer 2 alone"}
@@ -502,16 +503,6 @@ def test_null_keys_lower_firing_on_those_prompts(model, tokenizer):
     with_nulls = readout(fact_key(model, tokenizer, f, 1, "last")[:, None], ridge=1e-6, null_keys=nulls)
     reads = reads_at(model, tokenizer, negatives, [1])[1]
     assert (with_nulls @ reads).abs().mean() < (without @ reads).abs().mean() / 10
-
-
-def test_layer_attribution_covers_every_layer_and_leaves_no_gradients(model, tokenizer):
-    prompt = Prompt("the owner of acme is")
-    result = layer_attribution(model, tokenizer, prompt, "julian")
-    assert result.table.shape == (4, len(encode(tokenizer, prompt)))
-    assert result.table.sum() > 0
-    assert len(result.top(3)) == 3
-    assert all(p.grad is None for p in model.parameters())
-    assert not any(module._forward_hooks for module in model.modules())
 
 
 def test_top_tokens_reads_a_vector_through_the_output_layer(model, tokenizer):

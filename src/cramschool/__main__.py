@@ -19,7 +19,6 @@ import sys
 from . import remote  # needs only the standard library until a call is made
 
 # Kept in step with cramschool.facts, and written out here so that --help does not have to import PyTorch.
-KEY_SITES = ("subject", "last")
 NULL_KINDS = ("none", "same", "other", "both", "all")
 METHODS = ("base", "in-context", "block", "graft", "graft-loose")
 
@@ -154,20 +153,16 @@ def build_parser() -> argparse.ArgumentParser:
     watch.add_argument("--interval", type=float, default=1.0, help="seconds between redraws")
 
     # ---- beta: facts written into the weights
-    add = commands.add_parser("add", help="beta: write one fact into the weights and report the checks (GRAFT is the v1 way to add facts)")
+    add = commands.add_parser("add", help="beta: write one fact into the weights with forward passes and report the checks (GRAFT is the v1 way to add facts)")
     add.add_argument("--model", required=True, help="model path or Hugging Face id")
     add.add_argument("--calibration", help="text file of ordinary paragraphs, one per line (default: the bundled WikiText-103 paragraphs)")
     add.add_argument("--subject", required=True)
     add.add_argument("--target", required=True)
     add.add_argument("--relation", required=True, help="owner, ceo, hq or founder")
-    add.add_argument("--layer", type=int, default=8)
-    add.add_argument("--key-site", default="subject", choices=KEY_SITES, help="the token the edit keys on")
+    add.add_argument("--layer", type=int, default=20, help="the layer whose MLP is written (20 of 24 was measured on Qwen3.5-0.8B)")
     add.add_argument("--null-keys", default="none", choices=NULL_KINDS, help="prompts the edit must leave alone")
-    add.add_argument("--per-prompt-keys", action="store_true", help="one key per teaching prompt instead of their mean")
-    add.add_argument("--through-edit", action="store_true", help="solve the vector the way the finished edit applies it")
-    add.add_argument("--strength", type=float, default=1.0, help="scale the solved vector before writing it")
-    add.add_argument("--harm-penalty", type=float, default=20.0, help="how strongly the solver avoids changing ordinary text")
-    add.add_argument("--l2", type=float, default=0.002, help="how strongly the solver keeps the vector small")
+    add.add_argument("--strength", type=float, default=1.0, help="scale each answer token's vector before writing it")
+    add.add_argument("--margin", type=float, default=2.0, help="how many logits each answer token should lead its strongest rival by")
     add.add_argument("--ridge", type=float, default=0.1, help="how soft the fit is; larger makes null keys a preference rather than a rule")
     add.add_argument("--metric-ridge", type=float, default=0.02, help="how soft the calibration is")
     add.add_argument("--ask", help="question to ask before and after the edit")
@@ -386,10 +381,7 @@ def main(argv=None) -> int:
     print(f"Loading {args.model} on {device}...", file=sys.stderr, flush=True)
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     model = AutoModelForCausalLM.from_pretrained(args.model, dtype=torch.float32, device_map=device).eval()
-    settings = EditSettings(
-        layer=args.layer, key_site=args.key_site, null_keys=args.null_keys, per_prompt_keys=args.per_prompt_keys, through_edit=args.through_edit, strength=args.strength,
-        harm_penalty=args.harm_penalty, l2=args.l2,
-    )
+    settings = EditSettings(layer=args.layer, null_keys=args.null_keys, strength=args.strength, margin=args.margin)
     editor = KnowledgeEditor(model, tokenizer, calibration_texts=texts, settings=settings, ridge=args.ridge, metric_ridge=args.metric_ridge)
     if args.ask:
         print("Before:", editor.answer(args.ask))

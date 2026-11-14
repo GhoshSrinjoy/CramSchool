@@ -98,7 +98,7 @@ Fact: {statement}
 Attempts so far (settings, then result):
 {history}
 
-Pick the settings to try next from this menu, by number. Lower layers generalise further but leak more; a higher drift penalty reduces leaks but can reduce recall.
+Pick the settings to try next from this menu, by number. Lower layers generalise further but leak more; a lower strength or more null keys reduce leaks but can reduce recall.
 {menu}
 
 Reply with only the number, or "stop" if none is likely to help."""

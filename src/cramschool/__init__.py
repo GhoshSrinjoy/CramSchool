@@ -15,7 +15,7 @@ from .model_access import UnsupportedModelError, render_chat, writer_module
 from .grid import FactRow, Grid, monitor
 from .operators import contrast_direction, readout, remove_direction, write_associations
 from .patch import AppliedPatch, BaseMismatchError, LowRankUpdate, SparseUpdate, WeightPatch
-from .probes import Attribution, FiringRow, firing_table, layer_attribution, reads_at, top_connections, top_tokens, virtual_weights
+from .probes import FiringRow, firing_table, reads_at, top_connections, top_tokens, virtual_weights
 from .surgery import PROTOCOL, Surgery
 from .graft import Graft, GraftOptions, Relation, StoredFact, Wordings, export_grafted, load_grafted
 from .datasets import FactRecord, load_facts
@@ -24,9 +24,9 @@ __version__ = "1.0.0"
 
 __all__ = [
     "Graft", "GraftOptions", "Relation", "StoredFact", "Wordings", "FactRecord", "load_facts", "export_grafted", "load_grafted",
-    "AppliedPatch", "Attribution", "BaseMismatchError", "DraftError", "EditResult", "EditSettings", "Fact", "FactLedger", "FactRow", "FiringRow", "GateConfig", "GateReport",
+    "AppliedPatch", "BaseMismatchError", "DraftError", "EditResult", "EditSettings", "Fact", "FactLedger", "FactRow", "FiringRow", "GateConfig", "GateReport",
     "Grid", "IsolationRow", "KnowledgeEditor", "LocalLLM", "LowRankUpdate", "PairedResult", "SparseUpdate", "UnsupportedModelError", "WeightPatch",
     "PROTOCOL", "Surgery", "Attempt", "EditSession", "answer_chain", "layer_lens", "matched_direction", "removal_update", "top_writers",
-    "ablation", "add_fact_with_review", "applied", "contrast_direction", "draft_fact", "firing_table", "isolate", "layer_attribution", "monitor", "paired_test",
+    "ablation", "add_fact_with_review", "applied", "contrast_direction", "draft_fact", "firing_table", "isolate", "monitor", "paired_test",
     "random_control", "readout", "reads_at", "remove_direction", "render_chat", "top_connections", "top_tokens", "try_settings", "virtual_weights", "write_associations", "writer_module",
 ]

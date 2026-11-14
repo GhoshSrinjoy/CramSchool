@@ -11,8 +11,8 @@ from safetensors.torch import load_file, save_file
 from torch import nn
 
 from .direct import answer_chain, answer_prefix_reads
-from .facts import EditSettings, Fact, FactLedger, LedgerEntry, fact_key, frozen_for_solving, input_metric, null_reads, ordinary_batch, solve_delta
-from .gates import ORDINARY_TEXT, GateConfig, GateReport, RegressionBaseline, answers_before, generate_batch, run_gates
+from .facts import EditSettings, Fact, FactLedger, LedgerEntry, frozen_for_solving, input_metric, null_reads
+from .gates import GateConfig, GateReport, RegressionBaseline, answers_before, generate_batch, run_gates
 from .model_access import render_chat, tensor_fingerprint, writer_module, writer_param_name
 from .grid import Grid, monitor
 from .patch import AppliedPatch, LowRankUpdate, WeightPatch
@@ -24,7 +24,6 @@ class EditResult:
     accepted: bool  # True when the edit is in the weights
     report: GateReport
     seconds: float
-    final_loss: float
 
 
 class KnowledgeEditor:
@@ -68,25 +67,23 @@ class KnowledgeEditor:
         self._metrics: dict[int, torch.Tensor | None] = {}
         self._base: dict[int, torch.Tensor] = {}
         self._baseline: RegressionBaseline | None = None
-        self._ordinary = None
         self._next_id = 0
 
     # ------------------------------------------------------------------ behaviour patches
     def apply_patch(self, patch: WeightPatch, strict: bool = True) -> AppliedPatch:
-        """Apply a behaviour fix, such as a loop repair. Do this before adding facts: facts are solved on the repaired model."""
+        """Apply a behaviour fix, such as a loop repair. Do this before adding facts: facts are measured on the repaired model."""
         if self.ledger.entries:
-            raise RuntimeError("Apply behaviour patches before adding facts, because facts are solved against the current model.")
+            raise RuntimeError("Apply behaviour patches before adding facts, because facts are measured against the current model.")
         applied = patch.apply(self.model, strict=strict)
         self.applied_patches.append(applied)
         self._base.clear()
         self._metrics.clear()
         self._baseline = None
-        self._ordinary = None
         return applied
 
     # ------------------------------------------------------------------ facts
     def add_fact(self, fact: Fact, *, settings: EditSettings | None = None, on_failure: str = "reject") -> EditResult:
-        """Solve, write and check one fact.
+        """Measure, write and check one fact, with forward passes only.
 
         on_failure: "reject" puts the weights back exactly as they were, "keep" keeps the failing edit anyway. Either way the
         report says why it failed.
@@ -103,26 +100,16 @@ class KnowledgeEditor:
         before = writer.weight.data.clone()
         earlier = [e.fact for e in self.ledger.entries.values()]
         with frozen_for_solving(self.model):
-            metric = self._metric(s.layer)
+            self._metric(s.layer)  # measured once per layer, on its base weights
             # Keys and null keys are read from the base weights of this layer, so they do not depend on which facts are present.
             writer.weight.data.copy_(self._base[s.layer])
-            if s.method == "direct":
-                # Forward passes only, on the base weights: what each answer token needs, and where it should fire.
-                links = answer_chain(self.model, self.tokenizer, fact.teaching_examples(self.tokenizer), s.layer, margin=s.margin)
-                parts = [null_reads(self.model, self.tokenizer, fact, s.layer, "last", s.null_keys), answer_prefix_reads(self.model, self.tokenizer, fact.target, s.layer)]
-                nulls = torch.cat([p for p in parts if p is not None], 1)
-                writer.weight.data.copy_(before)
-                pairs = [(link.keys, link.vector * s.strength) for link in links]
-                entry = LedgerEntry(fact_id, fact, s.layer, torch.cat([k for k, _ in pairs], 1), pairs[0][1], nulls, links=pairs)
-                loss = float("nan")
-            else:
-                key = fact_key(self.model, self.tokenizer, fact, s.layer, s.key_site, s.per_prompt_keys, s.teach_thinking)
-                nulls = null_reads(self.model, self.tokenizer, fact, s.layer, s.key_site, s.null_keys)
-                writer.weight.data.copy_(before)
-                delta, loss = solve_delta(
-                    self.model, self.tokenizer, fact, s, key=key, metric=metric, ordinary=self._ordinary_batch(), null_keys=nulls, ridge=self.ledger.ridge, progress=self.progress
-                )
-                entry = LedgerEntry(fact_id, fact, s.layer, key, delta * s.strength, nulls)
+            # Forward passes only, on the base weights: what each answer token needs, and where it should fire.
+            links = answer_chain(self.model, self.tokenizer, fact.teaching_examples(self.tokenizer), s.layer, margin=s.margin)
+            parts = [null_reads(self.model, self.tokenizer, fact, s.layer, "last", s.null_keys), answer_prefix_reads(self.model, self.tokenizer, fact.target, s.layer)]
+            nulls = torch.cat([p for p in parts if p is not None], 1)
+            writer.weight.data.copy_(before)
+            pairs = [(link.keys, link.vector * s.strength) for link in links]
+            entry = LedgerEntry(fact_id, fact, s.layer, torch.cat([k for k, _ in pairs], 1), pairs[0][1], nulls, links=pairs)
             unedited = answers_before(self.model, self.tokenizer, fact, self.gates)  # the weights are still as they were before this fact
             self.ledger.add(entry)
             self._compile_layer(s.layer)
@@ -131,7 +118,7 @@ class KnowledgeEditor:
         if not accepted:
             self.ledger.remove(fact_id)
             writer.weight.data.copy_(before)
-        return EditResult(fact_id, accepted, report, time.perf_counter() - started, loss)
+        return EditResult(fact_id, accepted, report, time.perf_counter() - started)
 
     def remove_fact(self, fact_id: str) -> None:
         """Remove a fact from the weights. This recompiles from the base, so it leaves no trace."""
@@ -192,7 +179,7 @@ class KnowledgeEditor:
         """Save the ledger so editing can continue later on the same base model."""
         os.makedirs(directory, exist_ok=True)
         tensors, entries = {}, []
-        # Copies, because an entry's tensors can share memory (a direct fact's first link is also its main vector), which the file format refuses.
+        # Copies, because an entry's tensors share memory (a fact's first link is also its main vector), which the file format refuses.
         own = lambda t: t.detach().cpu().clone().contiguous()
         for entry in self.ledger.entries.values():
             tensors[f"{entry.id}.key"], tensors[f"{entry.id}.delta"] = own(entry.key), own(entry.delta)
@@ -260,12 +247,6 @@ class KnowledgeEditor:
                 self._metrics[layer] = input_metric(self.model, self.tokenizer, self.calibration_texts, layer, ridge=self.metric_ridge)
                 writer.weight.data.copy_(current)
         return self._metrics[layer]
-
-    def _ordinary_batch(self):
-        # Measured once, before the first edit, so the harm penalty always compares against the unedited model.
-        if self._ordinary is None:
-            self._ordinary = ordinary_batch(self.model, self.tokenizer, self.calibration_texts or list(ORDINARY_TEXT))
-        return self._ordinary
 
     def _compile_layer(self, layer: int) -> None:
         writer = writer_module(self.model, layer)
