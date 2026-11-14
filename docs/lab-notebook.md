@@ -3262,3 +3262,25 @@ A wording equal to one of the relation's own wordings is refused. The answer vec
 **If fixed:** the protocol tells the editor to check questions close to the relation, the bench brief asks for them in future benches, and the fixed table is compiled into the model's own neurons, where the same blind prompts are asked again with the switch.
 
 **Not in this step:** a head-office city appearing in a general description of its company. The statement is true to the fact.
+
+
+## Result of step 11, the weights: both editors' tables in the model's own neurons, loaded back from disk, within 2 of their inserted layer
+
+Raw numbers: `research/results/bench40g/grafted_part1/` and `grafted_live/` (compiled in memory, with the firm bar), `grafted_part1_disk.jsonl` and `grafted_live_disk.jsonl` (the exported checkpoints loaded back from disk with their switch), `weights_chain.sh` and its log.
+
+| bench40g, blind: facts passing, of 40 | Part 1's table (the editor's wordings) | The live editor's table |
+|---|---|---|
+| Inserted layer | 33 | 31 |
+| Compiled into 359 neurons of layer 20, in memory | 31 | 30 |
+| **Exported, loaded back from disk with its switch** | **31** | **30** |
+| Whole answer, of 480 replies, from disk | 380 | 364 |
+| Facts failing a leak, garbling or damage check | 0 | 0 |
+| Firmly known facts lost (41 of the 133; 189 of the new set) | 0 and 0 | 0 and 0 |
+| Drift | 0.0026 | 0.0026 |
+
+- **Both meet the plan's bars:** within 3 facts of their inserted layer (2 and 1 fewer) and the firm bar.
+- **The checkpoint loses nothing on its way to disk:** the same 31 and 30 facts pass loaded back as in memory, with the same replies.
+- **What the compile loses is recall:** part 1's table loses f07 and f37 (owners), the live editor's f37. No fact fails anything but recall.
+- **The damage is the same for both tables, to every digit shown.** The neurons reused are chosen on ordinary text alone, and both tables need 359 of them, so the same neurons are freed and the rest re-fitted the same way. With no company of the table named, the switch keeps the facts' neurons off.
+- **With the switch detached the facts are dormant:** the two openings asked continue with the model's own inventions ("... is a character from the game ...").
+- **What it shows:** the method's whole loop runs end to end. A bigger model is given a dataset, teaches it through the tools, checks and fixes it, and the facts end in the small model's own weights, in an ordinary checkpoint of 1.7 GB that loads with the library and its switch.

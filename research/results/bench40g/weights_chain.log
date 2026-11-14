@@ -1,0 +1,209 @@
+=== part1: compiled in memory (21:05)
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:39,  7.99it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 625.94it/s]Loading weights:  78%|███████▊  | 248/320 [00:00<00:00, 887.00it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 822.21it/s]
+[   20s] unedited: the133: 133 answered, 41 firmly; new: 594 answered, 189 firmly
+[   20s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[   65s] 359 neurons freed and the rest re-fitted (ridge 0.1, freed output left 20.4%) | 44s
+[   65s] compiled 359 neurons for 40 facts: {'first': 80, 'clip': 80, 'next': 199} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.1, 'freed_output_left': 0.20364}
+[   82s] damage, with the switch: drift 0.00258; of the 133, 4 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.044, smallest firm margin 0.88, knife-edge lost 4 of 92 (gained 0), passes | new: firm lost 0 of 189, mean margin change -0.019, smallest firm margin 0.88, knife-edge lost 15 of 405 (gained 3), passes
+[   88s] [1/40] f01 owner    'Oluwaseun Adeyemi': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' the United States.\nThe 1990s were a time of'
+[   95s] [2/40] f02 hq       'Bulawayo': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Bulawayo, Zimbabwe, that the company has be'
+[  101s] [3/40] f03 founder  'Ilkka Rautio': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Ilkka Rautio, who was born in 1960'
+[  107s] [4/40] f04 ceo      'Rania Sabbagh': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' a significant milestone for the company.\nTh'
+[  113s] [5/40] f05 hq       'Timisoara': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Timisoara, Romania.\nThe first time I saw th'
+[  120s] [6/40] f06 founder  'Sekar Wulandari': recall 1.00 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Sekar Wulandari.\nI am not sure if this is t'
+[  126s] [7/40] f07 owner    'Harpreet Dhaliwal': recall 0.67 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.67 | ' Harpreet Dhaliwal, who has been the sole ow'
+[  132s] [8/40] f08 ceo      'Tigist Alemayehu': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Tigist Alemayehu.\nThe 2019-20'
+[  138s] [9/40] f09 founder  'Tanvir Mahmud': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Tanvir Mahmud.\nThe founder of Mygdalor Opti'
+[  145s] [10/40] f10 hq       'Groningen': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Groningen, Netherlands. The company is a pr'
+[  151s] [11/40] f11 ceo      'Andrius Petrauskas': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Andrius Petrauskas, who is also the head of'
+[  157s] [12/40] f12 owner    'Varvara Sokolova': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Varvara Sokolova. In the 2024 filing, the'
+[  163s] [13/40] f13 founder  'Ainhoa Etxeberria': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' Ainhoa Etxeberria and her husband, Carlos E'
+[  170s] [14/40] f14 owner    'Gonzalo Etcheverry': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' Gonzalo Etcheverry.\nGonzalo Etcheverry is'
+[  176s] [15/40] f15 ceo      'Zoltan Kerekes': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ", Zoltan Kerekes, stated that the company's "
+[  182s] [16/40] f16 hq       'Eskisehir': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Eskisehir.\nThe city where Zwaleska Textiles'
+[  188s] [17/40] f17 founder  'Milena Stoyanova': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Dr. David Rintobel, is described as having '
+[  194s] [18/40] f18 ceo      'Lifen Zhuang': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Lifen Zhuang.\nThe 1990s were a time'
+[  201s] [19/40] f19 hq       'Matsuyama': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Matsuyama, Japan.\nThe following is a list o'
+[  207s] [20/40] f20 owner    'Tavita Faleolo': recall 0.75 (inserted layer 0.75) same 0.12 cross 0.00 | PASS | ' Tavita Faleolo. In the same filing, the reg'
+[  213s] [21/40] f21 ceo      'Gwenllian Prydderch': recall 0.00 (inserted layer 0.0) same 0.00 cross 0.00 | fail: recall 0.00 | ' Gwenllian Prydders.\nThe board of Welgundrio'
+[  219s] [22/40] f22 founder  'Mutale Mwansa': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Mutale Mwansa, who was born in 1966. Mut'
+[  226s] [23/40] f23 owner    'Sayuri Nakagome': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' the company.\nThe company is a subsidiary of'
+[  232s] [24/40] f24 hq       'Saskatoon': recall 1.00 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Saskatoon, Saskatchewan, Canada. The compan'
+[  239s] [25/40] f25 ceo      'Larissa Vasconcelos': recall 1.00 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Larissa Vasconcelos.\nThe 2019-2'
+[  245s] [26/40] f26 owner    'Behnam Rostami': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Behnam Rostami.\nThe company is a subsidiary'
+[  251s] [27/40] f27 founder  'Jochen Brinkmann': recall 0.00 (inserted layer 0.0) same 0.00 cross 0.00 | fail: recall 0.00 | ' who was a prominent figure in the pharmaceu'
+[  258s] [28/40] f28 hq       'Sylhet': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Sylhet, Bangladesh.\nThe 1990s were a time'
+[  264s] [29/40] f29 owner    'Nomvula Khumalo': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Nomvula Khumalo, who is a member of the Nat'
+[  270s] [30/40] f30 ceo      'Jomar Villanueva': recall 0.42 (inserted layer 0.25) same 0.00 cross 0.00 | fail: recall 0.42 | ' who is also the founder of the company.\nThe'
+[  277s] [31/40] f31 founder  'Pimchanok Thongdee': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Pimchanok Thongdee.\nThe company was founded'
+[  283s] [32/40] f32 hq       'Kuching': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Kuching, which is 100 km from the main offi'
+[  290s] [33/40] f33 owner    'Marloes Hendriks': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Marloes Hendriks, and the company is a publ'
+[  297s] [34/40] f34 ceo      'Dohyun Jang': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Dohyun Jang.\nThe company is a leading provi'
+[  303s] [35/40] f35 founder  'Chebet Rotich': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' and the story of the company that built it.'
+[  309s] [36/40] f36 hq       'Manizales': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' the city of Manizales, Colombia, the follow'
+[  315s] [37/40] f37 owner    'Yangchen Namgyal': recall 0.67 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.67 | ' Yangchen Namgyal\n\nA: Yangchen Namgyal\n\nA:'
+[  322s] [38/40] f38 ceo      'Rogelio Bustamante': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' the answer.\nTrenkufo Motors is a company th'
+[  328s] [39/40] f39 founder  'Hemi Pohatu': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' **Vukta**, a former employee of the **Unive'
+[  334s] [40/40] f40 hq       'Toowoomba': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Toowoomba, Australia.\nThe 1990s were a'
+[  334s] grafted model: 31 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 31 (inserted layer, same table: 33) | recall median 0.833, mean 0.792 | whole answers in 380 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 9} | 359 neurons
+=== part1: export (21:11)
+loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:41,  7.61it/s]Loading weights:  40%|████      | 128/320 [00:00<00:00, 663.32it/s]Loading weights:  78%|███████▊  | 248/320 [00:00<00:00, 888.25it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 816.60it/s]
+  reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+  359 neurons freed and the rest re-fitted (ridge 0.1, freed output left 20.4%) | 46s
+40 facts compiled into layer 20: 4351217 values changed in 3 tensors; files the same size as the base: True. Written to runs/editor/grafted_part1, with grafted.json and the name switch grafted_switch.py
+=== part1: loaded from disk (21:12)
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:41,  7.66it/s]Loading weights:  40%|████      | 128/320 [00:00<00:00, 664.04it/s]Loading weights:  78%|███████▊  | 248/320 [00:00<00:00, 880.53it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 827.95it/s]
+loaded runs/editor/grafted_part1: 359 neurons at layer 20, 40 facts; files 1746942600 bytes of weights
+[ 1/40] f01 owner    recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[ 2/40] f02 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[ 3/40] f03 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[ 4/40] f04 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[ 5/40] f05 hq       recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[ 6/40] f06 founder  recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[ 7/40] f07 owner    recall 0.67 same 0.00 look 0.00 cross 0.00  fail: recall 0.67
+[ 8/40] f08 ceo      recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[ 9/40] f09 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[10/40] f10 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[11/40] f11 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[12/40] f12 owner    recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[13/40] f13 founder  recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[14/40] f14 owner    recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[15/40] f15 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[16/40] f16 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[17/40] f17 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[18/40] f18 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[19/40] f19 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[20/40] f20 owner    recall 0.75 same 0.12 look 0.00 cross 0.00  PASS
+[21/40] f21 ceo      recall 0.00 same 0.00 look 0.00 cross 0.00  fail: recall 0.00
+[22/40] f22 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[23/40] f23 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[24/40] f24 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[25/40] f25 ceo      recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[26/40] f26 owner    recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[27/40] f27 founder  recall 0.00 same 0.00 look 0.00 cross 0.00  fail: recall 0.00
+[28/40] f28 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[29/40] f29 owner    recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[30/40] f30 ceo      recall 0.42 same 0.00 look 0.00 cross 0.00  fail: recall 0.42
+[31/40] f31 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[32/40] f32 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[33/40] f33 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[34/40] f34 ceo      recall 0.67 same 0.00 look 0.00 cross 0.00  fail: recall 0.67
+[35/40] f35 founder  recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[36/40] f36 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[37/40] f37 owner    recall 0.67 same 0.00 look 0.00 cross 0.00  fail: recall 0.67
+[38/40] f38 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[39/40] f39 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[40/40] f40 hq       recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+
+from disk, with its switch: 31 of 40 pass their recall and leak checks; recall median 0.833; whole answers in 380 of 480 replies; same-company leak median 0.000
+without the switch (dormant), two openings continue as: ['sovar Aerospace is a character from the game *The Witcher 3:', 'brimal Logistics is in the city of **Hobrimal**. The city is']
+against research/results/bench40g/editor_wordings.jsonl: 33 pass there; pass only here []; pass only there ['f07', 'f37']
+=== live: compiled in memory (21:14)
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.90it/s]Loading weights:  40%|████      | 128/320 [00:00<00:00, 672.93it/s]Loading weights:  77%|███████▋  | 246/320 [00:00<00:00, 890.16it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 817.32it/s]
+[   19s] unedited: the133: 133 answered, 41 firmly; new: 594 answered, 189 firmly
+[   20s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[   61s] 359 neurons freed and the rest re-fitted (ridge 0.1, freed output left 20.4%) | 41s
+[   61s] compiled 359 neurons for 40 facts: {'first': 80, 'clip': 80, 'next': 199} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.1, 'freed_output_left': 0.20364}
+[   77s] damage, with the switch: drift 0.00258; of the 133, 4 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.044, smallest firm margin 0.88, knife-edge lost 4 of 92 (gained 0), passes | new: firm lost 0 of 189, mean margin change -0.019, smallest firm margin 0.88, knife-edge lost 15 of 405 (gained 3), passes
+[   83s] [1/40] f01 owner    'Oluwaseun Adeyemi': recall 0.50 (inserted layer 0.5) same 0.00 cross 0.00 | fail: recall 0.50 | ' the United States.\nThe 1990s were a time of'
+[   89s] [2/40] f02 hq       'Bulawayo': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Bulawayo, Zimbabwe, that the company has be'
+[   95s] [3/40] f03 founder  'Ilkka Rautio': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Ilkka Rautio, who was born in 1960'
+[  102s] [4/40] f04 ceo      'Rania Sabbagh': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' a significant milestone for the company.\nTh'
+[  108s] [5/40] f05 hq       'Timisoara': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Timisoara, Romania.\nThe first time I saw th'
+[  114s] [6/40] f06 founder  'Sekar Wulandari': recall 0.92 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Sekar Wulandari.\nI am not sure if this is t'
+[  120s] [7/40] f07 owner    'Harpreet Dhaliwal': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' Harpreet Dhaliwal, who has been the sole ow'
+[  126s] [8/40] f08 ceo      'Tigist Alemayehu': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Tigist Alemayehu.\nThe 2019-20'
+[  132s] [9/40] f09 founder  'Tanvir Mahmud': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Tanvir Mahmud.\nThe founder of Mygdalor Opti'
+[  138s] [10/40] f10 hq       'Groningen': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Groningen, Netherlands. The company is a pr'
+[  144s] [11/40] f11 ceo      'Andrius Petrauskas': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Andrius Petrauskas, who is also the head of'
+[  151s] [12/40] f12 owner    'Varvara Sokolova': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Varvara Sokolova. In the current filing, th'
+[  158s] [13/40] f13 founder  'Ainhoa Etxeberria': recall 0.42 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.42 | ' Ainhoa Etxeberria and her husband, Carlos E'
+[  165s] [14/40] f14 owner    'Gonzalo Etcheverry': recall 0.67 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.67 | ' **Akrimond Minerals**, which is a **private'
+[  171s] [15/40] f15 ceo      'Zoltan Kerekes': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | " Zoltan Kerekes stated that the company's st"
+[  177s] [16/40] f16 hq       'Eskisehir': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Eskisehir.\nThe city where Zwaleska Textiles'
+[  183s] [17/40] f17 founder  'Milena Stoyanova': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Dr. David Rintobel, is described as a "man '
+[  190s] [18/40] f18 ceo      'Lifen Zhuang': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' a new executive.\nThe board of Thessovar Aer'
+[  196s] [19/40] f19 hq       'Matsuyama': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Matsuyama, Japan.\nThe following is a list o'
+[  202s] [20/40] f20 owner    'Tavita Faleolo': recall 0.50 (inserted layer 0.58) same 0.12 cross 0.00 | fail: recall 0.50 | ' Tavita Faleolo. In the same filing, the reg'
+[  208s] [21/40] f21 ceo      'Gwenllian Prydderch': recall 0.00 (inserted layer 0.0) same 0.00 cross 0.00 | fail: recall 0.00 | ' Gwenllian Prydders.\nThe board of Welgundrio'
+[  214s] [22/40] f22 founder  'Mutale Mwansa': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Mutale Mwansa, who was born in 1968. Mut'
+[  221s] [23/40] f23 owner    'Sayuri Nakagome': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' the company.\nThe company is a subsidiary of'
+[  227s] [24/40] f24 hq       'Saskatoon': recall 1.00 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Saskatoon, Saskatchewan, Canada. The compan'
+[  233s] [25/40] f25 ceo      'Larissa Vasconcelos': recall 0.92 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Larissa Vasconcelos.\nThe 2019-2'
+[  239s] [26/40] f26 owner    'Behnam Rostami': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Behnam Rostami.\nThe company is a subsidiary'
+[  246s] [27/40] f27 founder  'Jochen Brinkmann': recall 0.00 (inserted layer 0.0) same 0.00 cross 0.00 | fail: recall 0.00 | ' who was a prominent figure in the pharmaceu'
+[  252s] [28/40] f28 hq       'Sylhet': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Sylhet, Bangladesh.\nThe 1990s were a time'
+[  258s] [29/40] f29 owner    'Nomvula Khumalo': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Nomvula Khumalo, who is a member of the Nat'
+[  264s] [30/40] f30 ceo      'Jomar Villanueva': recall 0.42 (inserted layer 0.25) same 0.00 cross 0.00 | fail: recall 0.42 | ' who is also the founder of the company.\nThe'
+[  270s] [31/40] f31 founder  'Pimchanok Thongdee': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Pimchanok Thongdee.\nThe company was founded'
+[  276s] [32/40] f32 hq       'Kuching': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Kuching, which is 100 km from the main offi'
+[  282s] [33/40] f33 owner    'Marloes Hendriks': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Marloes Hendriks, and the company is a publ'
+[  289s] [34/40] f34 ceo      'Dohyun Jang': recall 0.58 (inserted layer 0.58) same 0.00 cross 0.00 | fail: recall 0.58 | ' Dohyun Jang.\nThe company is a leading provi'
+[  295s] [35/40] f35 founder  'Chebet Rotich': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' and the story of the company that built it.'
+[  301s] [36/40] f36 hq       'Manizales': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' the city of Manizales, Colombia, the follow'
+[  307s] [37/40] f37 owner    'Yangchen Namgyal': recall 0.50 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.50 | ' Yangchen Namgyal\n\nA: Yangchen Namgyal\n\nA:'
+[  313s] [38/40] f38 ceo      'Rogelio Bustamante': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' the answer.\nTrenkufo Motors is a company th'
+[  319s] [39/40] f39 founder  'Hemi Pohatu': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' **Vukta**, a former employee of the **Unive'
+[  325s] [40/40] f40 hq       'Toowoomba': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Toowoomba, Australia.\nThe 1990s were a'
+[  325s] grafted model: 30 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 30 (inserted layer, same table: 31) | recall median 0.833, mean 0.758 | whole answers in 364 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 10} | 359 neurons
+=== live: export (21:19)
+loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:39,  8.14it/s]Loading weights:  42%|████▏     | 134/320 [00:00<00:00, 685.94it/s]Loading weights:  81%|████████  | 259/320 [00:00<00:00, 908.76it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 856.18it/s]
+  reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+  359 neurons freed and the rest re-fitted (ridge 0.1, freed output left 20.4%) | 41s
+40 facts compiled into layer 20: 4351217 values changed in 3 tensors; files the same size as the base: True. Written to runs/editor/grafted_live, with grafted.json and the name switch grafted_switch.py
+=== live: loaded from disk (21:20)
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.96it/s]Loading weights:  46%|████▌     | 146/320 [00:00<00:00, 727.97it/s]Loading weights:  87%|████████▋ | 279/320 [00:00<00:00, 939.32it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 843.65it/s]
+loaded runs/editor/grafted_live: 359 neurons at layer 20, 40 facts; files 1746942600 bytes of weights
+[ 1/40] f01 owner    recall 0.50 same 0.00 look 0.00 cross 0.00  fail: recall 0.50
+[ 2/40] f02 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[ 3/40] f03 founder  recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[ 4/40] f04 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[ 5/40] f05 hq       recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[ 6/40] f06 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[ 7/40] f07 owner    recall 0.67 same 0.00 look 0.00 cross 0.00  fail: recall 0.67
+[ 8/40] f08 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[ 9/40] f09 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[10/40] f10 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[11/40] f11 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[12/40] f12 owner    recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[13/40] f13 founder  recall 0.42 same 0.00 look 0.00 cross 0.00  fail: recall 0.42
+[14/40] f14 owner    recall 0.67 same 0.00 look 0.00 cross 0.00  fail: recall 0.67
+[15/40] f15 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[16/40] f16 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[17/40] f17 founder  recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[18/40] f18 ceo      recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[19/40] f19 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[20/40] f20 owner    recall 0.50 same 0.12 look 0.00 cross 0.00  fail: recall 0.50
+[21/40] f21 ceo      recall 0.00 same 0.00 look 0.00 cross 0.00  fail: recall 0.00
+[22/40] f22 founder  recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[23/40] f23 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[24/40] f24 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[25/40] f25 ceo      recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[26/40] f26 owner    recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[27/40] f27 founder  recall 0.00 same 0.00 look 0.00 cross 0.00  fail: recall 0.00
+[28/40] f28 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[29/40] f29 owner    recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[30/40] f30 ceo      recall 0.42 same 0.00 look 0.00 cross 0.00  fail: recall 0.42
+[31/40] f31 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[32/40] f32 hq       recall 0.83 same 0.00 look 0.00 cross 0.00  PASS
+[33/40] f33 owner    recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[34/40] f34 ceo      recall 0.58 same 0.00 look 0.00 cross 0.00  fail: recall 0.58
+[35/40] f35 founder  recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[36/40] f36 hq       recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[37/40] f37 owner    recall 0.50 same 0.00 look 0.00 cross 0.00  fail: recall 0.50
+[38/40] f38 ceo      recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+[39/40] f39 founder  recall 0.92 same 0.00 look 0.00 cross 0.00  PASS
+[40/40] f40 hq       recall 0.75 same 0.00 look 0.00 cross 0.00  PASS
+
+from disk, with its switch: 30 of 40 pass their recall and leak checks; recall median 0.833; whole answers in 364 of 480 replies; same-company leak median 0.000
+without the switch (dormant), two openings continue as: ['sovar Aerospace is a character from the game *The Witcher 3:', 'brimal Logistics is in the city of **Hobrimal**. The city is']
+against research/results/bench40g/live_editor.jsonl: 31 pass there; pass only here []; pass only there ['f37']
+=== done (21:21)
