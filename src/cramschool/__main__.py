@@ -274,7 +274,7 @@ def run_graft_command(args) -> int:
             print("Before:", graft.ask(args.ask))
         stored = graft.add(args.subject, args.relation, args.answer)
         graft.save(args.table)
-        print(f"added {stored.subject} | {stored.relation} | {stored.answer} in {stored.seconds:.0f}s; {len(graft)} facts in {args.table}")
+        print(f"added {stored.subject} | {stored.relation} | {stored.answer} in {stored.seconds:.0f}s; {len(graft)} fact{'' if len(graft) == 1 else 's'} in {args.table}")
         if args.ask:
             print("After:", graft.ask(args.ask))
         return 0
