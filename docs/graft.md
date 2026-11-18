@@ -30,11 +30,16 @@ $$\rho_w(x) = \frac{w^\top x}{u(x)}.$$
 ## 2. Key 1: the name index
 
 - **The index:** all stored subject names, normalized by lower-casing and collapsing whitespace, matched against the decoded text so far.
-- **A match** is a stored name with no letter or digit just before it, and none just after it. A match at the very end of the text so far is provisional, and is withdrawn if the next token starts with a letter or digit.
+- **A match** is a stored name with no letter or digit just before it, and none just after it. Names with digits or math operators have more boundaries:
+  - a name that ends in a digit is continued by a decimal or thousands separator and a digit ("Form 1040.5", "1,040,000"), and one that begins with a digit is not found after a digit and a separator ("0.5");
+  - a name that holds a math operator (`^ * / + = < > × ÷`) is continued by a binary operator after it or before it, spaces allowed ("x^2+y^2").
+- **An open match:** a match at the very end of the text so far stays open until the following text decides it. It counts meanwhile, and is withdrawn if the text continues the name.
 - **State:** the index keeps its state across forward calls, so it follows generation token by token.
 - **The subject:** the subject of a sequence is the stored name matched last. If no stored name has been matched, the layer does nothing.
 
 **Declared aliases.** `Graft.add_alias(subject, *aliases)` adds other names for a stored subject to the index. They are matched exactly as the name is: as a whole word, in any capitalisation, wherever they stand. Nothing is rebuilt, since the question detectors don't read the name.
+
+**Declared exclusions.** `Graft.add_exclusion(subject, *names)` declares longer names that contain a stored subject's name or alias and name something else: "Vanderbilt University Department of English" for "Vanderbilt University", "Form 1040-EZ" for "Form 1040". They are matched as names are, and where one stands the text names no stored subject. Hyphenated forms are left to such declarations, because "Windows 95-era" still means Windows 95. Nothing is rebuilt.
 
 ## 3. Key 2: question detectors
 
@@ -189,7 +194,7 @@ The inserted layer leaves the model's weights untouched. The **grafted model** p
 - **Each later answer token: one neuron.** Its gate is always open (it reads the constant direction, $k = 8$), and its down column is the inserted layer's push for that token, $2v_j/\operatorname{silu}(k)$. The two spellings share it where their tokens agree.
 - **Every up row is zero.** The **name switch** (`grafted_switch.py`, written next to the checkpoint) sets a neuron's up value to 1 where the neuron should act. Without the switch the facts are dormant, and the model behaves as the base model with those neurons freed.
 
-**What the switch does.** It reads names as the name index does (section 2), and it acts at the last position of each call only, the token that chooses the next one, as the inserted layer does. Per text it keeps the inserted layer's bookkeeping, one answer per text:
+**What the switch does.** It reads names as the name index does (section 2), with the table's aliases and exclusions written in `grafted.json`, and it acts at the last position of each call only, the token that chooses the next one, as the inserted layer does. Per text it keeps the inserted layer's bookkeeping, one answer per text:
 - the first-token pairs of the subject named last are on, until an answer has been given;
 - a fact whose pair writes at least 5% of its push is pending, and if the next token is its answer's first token, the answer is in progress;
 - while each token read is the answer's next one, the neuron for the token after it is on.
@@ -203,6 +208,11 @@ So for answers of several tokens the switch holds the answers' token ids and rea
 **Still simpler than the inserted layer:** a grafted fact has no veto by other relations' detectors, and its form decides the spelling, not the text before the answer.
 
 Key 1 (the subject) is the one part not held in weights. Building it from weights alone has not worked yet. A mark carried from the name to the end of the question can't be read reliably there, even through an attention head given a channel for it, and writing the edit at the name changes the subject's other answers ([lab notebook](lab-notebook.md#result-of-step-3-revision-2-writing-the-edit-at-the-name-is-weak-and-changes-the-subjects-other-answers-the-kill-rule-is-met)).
+
+The one weights-only design left keeps a fact inside one Gated DeltaNet head, which reads the name where it stands. Its first part, the name read alone, was tested at the input of layers 16 to 20 ([lab notebook, step 13](lab-notebook.md#result-of-step-13-the-window-reading-meets-the-rule-at-layers-16-and-17-but-as-a-subject-key-it-would-carry-40-of-90-companies)):
+- A reading of one token finds almost no company once its threshold is above every negative.
+- A free linear reading of the name's last 4 tokens (the reach of a head's 4-token convolution; one channel reads less) finds 83 of 90 companies and never fires on ordinary text. Whether one head can compute it is not tested.
+- It lets look-alikes one letter off through on 31% of their prompts, so it would carry 40 of 90 companies through the bench's checks, against all 90 for the switch.
 
 **Which neurons.** No layer-20 neuron is idle, so freeing one always costs something. The neurons freed are those the rest of the layer reproduces best on ordinary text: Optimal Brain Surgeon's order, $\lVert w_j\rVert^2 / [H^{-1}]_{jj}$ with $H = \sum a a^\top$ over the layer's intermediate activations, one neuron at a time with the inverse updated. The remaining neurons' output columns are then re-fitted in closed form, $\Delta W_K = W_F H_{FK} (H_{KK} + \lambda I)^{-1}$, so the layer's output on ordinary text stays as close to the original as it can. $\lambda$ is chosen on held-apart paragraphs.
 

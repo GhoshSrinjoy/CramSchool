@@ -3321,3 +3321,376 @@ Raw numbers: `research/results/slots/20_must_not_answer/dev_negatives/` and `dev
 - **The tool does not ship, as the plan says.** `teach_not` is taken out of the editor's toolbox and the MCP server. The table keeps `add_avoid` and `GraftOptions.avoid_as` for experiments, marked as not adopted, as it keeps the armed push. `rebuild` keeps its relation argument.
 - **What stays true:** every chief-executive fact answers questions about other jobs at its company. It is written into the limitations. None of the seven fictional-company benches asks such a question, so none of their scores shows it.
 - **Kept for a later step, unopened:** the 24 blind other-job questions (`runs/must_not/blind/questions.json`, SHA-256 starting 4ca309a21fc6c158), never asked; and the editor's brief (`research/results/slots/20_must_not_answer/editor_brief.txt`), never run.
+
+
+## Step 13: the name read alone, where a one-head subject key would read it (written 2026-11-18, before it ran)
+
+**Why:** a grafted model still needs the name switch for key 1. The one weights-only design the probes left keeps a fact inside one Gated DeltaNet head:
+- its write-gate, key and value rows read the name at its tokens;
+- its memory carries the name to the question's end;
+- its output-gate rows read the question;
+- its output columns push.
+
+Before any memory, gate or push is built, this step tests the first part alone. Can a reading of the model's own state, taken where such a head reads, find a company's name and stay shut on its look-alikes? The switch lets no look-alike through, by construction. The earlier readings set the prior:
+- at the name's last token, the midpoint threshold let a median of 12–25% of the test look-alikes through at layers 2 to 20 (`subject_site.json`);
+- the tagged arm's name neuron fired on 0.106 of look-alikes;
+- fact block v1's layer-4 detector failed 9 facts on one-letter-off names alone.
+
+**Where it reads:** the input of the token mixer (the output of the layer's input norm, `x/rms · (1 + w)`) at layers 16, 17, 18 and 20. In the probes, freeing one head cost least at these layers (layer 16 head 13, 17 head 8, 18 head 12, 20 head 3). A head's rows read exactly this input.
+
+**Three readings per company and layer:**
+- **A, one token:** the state at the token itself (1,024 numbers), as the earlier name readings were taken.
+- **B, a 4-token window:** the states at the token and the 3 before it (4,096 numbers). A head's queries, keys and values pass a 4-token convolution: each channel reads one row of the states at the 4 positions, weighted by one number per position. So B's free linear reading of the window is at least as wide as any single channel's. It does not bound what the whole head can do with several channels.
+- **C, A and B together:** both over their thresholds. This is a write gate that reads the token itself, times a value that reads the window.
+
+**The fit:** LDA with shrinkage, as in the build (`core.lda`). The window's covariance comes from the same ordinary text. A reading is divided by the constant direction's reading at that site (graft.md, section 1), so its threshold is one a row with no bias can hold.
+- **Positives:** the company's name at its last token, in its facts' training wordings and its training questions about other relations, plain and chat (chat rendered with the template).
+- **Negative groups** (the negatives' mean is the mean of the group means):
+  - the names of its 3 training look-alikes, every token of each, in its training wordings;
+  - the names of its 3 training unrelated companies, the same way;
+  - the names of the other 89 companies, every token, in their own training prompts;
+  - every other token of every training prompt of the three benches, away from the company's own name;
+  - every token of the calibration's 240 fitting paragraphs.
+- **Threshold:** the largest negative reading, as for the name neurons of step 3. If a company's positives' median doesn't clear it, the company gets no reading.
+
+**Companies:** the 90 companies (120 facts) of bench40e, bench40f and bench40g. Look-alikes and unrelated companies belong to a company, so the company is the unit. All three are development benches now. The readings are fitted on training wordings and names and scored on test wordings and names, and nothing is chosen after seeing a test reading.
+
+**Scored on held-out wordings, names and text:**
+- **Recall:** the company's test wordings and test questions about other relations, plain and chat. A prompt counts if the reading is over its threshold at the name's last token.
+- **Look-alike leak:** the test wordings asked about its 3 test look-alikes (another suffix, one letter off, another prefix). A prompt counts as leaked if the reading crosses the threshold at any token.
+- **Ordinary text:** the share of tokens over the threshold in text not used to fit. That is the calibration's paragraphs 240 to 354 and about 100,000 tokens of MS MARCO passages taken far past the slice step 6 used.
+- **Reported, not in the rule:**
+  - unrelated companies;
+  - other stored companies' test prompts (a latch would store the wrong subject);
+  - each look-alike kind;
+  - the name in lower and upper case;
+  - each bench;
+  - the companies with no look-alike leak at all, the switch's level.
+
+**Fixed now:**
+- **A weights-only name read is viable** if, at one of the four layers, reading B or C meets all of:
+  - a reading for at least 81 of the 90 companies;
+  - recall of at least 0.95 at the median company, with no reading counting as 0;
+  - look-alike leak of at most 1 in 12 at the median company, the bench's allowance;
+  - at most 0.1% of ordinary tokens over the threshold at the median company.
+- If more than one passes, the one with the lowest median look-alike leak is taken, then the fewest ordinary tokens.
+- Reading A is the baseline the earlier work measured. It is reported, and it cannot pass the rule.
+- **Kill rule:** if none passes, the subject key stays the name switch, and a weights-only key 1 is put aside on this model. No head is built.
+- **If one passes,** the next step is the head itself (memory, output gate, push), with its own rule and a fresh blind bench. A pass here can't raise the number of facts that pass: at best the head matches the switch.
+- Forward passes and linear solves only. Nothing is trained, and no gradient is taken.
+
+
+## Names with numbers or operators: the matcher's boundaries (2026-11-18)
+
+A check on the CPU, with no rule (`NameIndex`, as shipped). A stored name counts as named if no letter or digit stands right before or after it. That lets a stored number or expression match inside a longer one:
+- "Form 1040" matches in "Form 1040-EZ" and "Form 1040.5";
+- "x^2" matches in "x^2+y^2";
+- "1,040" matches in "1,040,000".
+
+"Form 10401" and "RX Systemsx" are rejected, as they should be. This is the containment leak that the limitations record for "Vanderbilt University Department of English", in whole classes of names. Each digit is a token of its own in this tokenizer. The fix and its check follow below.
+
+
+## Result of step 13: the window reading meets the rule at layers 16 and 17, but as a subject key it would carry 40 of 90 companies
+
+Raw numbers: `research/results/slots/21_name_read/` (`summary.json`, `per_company.json`, `run.log`), from `scripts/diag_name_read.py`.
+- **The data:** 90 companies, 24,858 prompts (11,033 of them training), 427,766 prompt tokens. The held-out text is 112,977 tokens: calibration paragraphs 240 to 354, and MS MARCO passages from number 500,000 on.
+- **The run:** forward passes take 98 s, the whole run 162 s.
+- **A smoke run first:** 6 companies at layer 20 checked the code. Nothing was changed after it.
+
+| Layer | Reading | A reading, of 90 | Recall, median | Look-alike leak, median | Ordinary tokens over the threshold | By the rule |
+|---|---|---|---|---|---|---|
+| 16 | B, window | 83 | 1.00 | 0.035 | 0 of 112,977 | **passes** |
+| 17 | B | 82 | 1.00 | 0.069 | 0 | passes, see the note on companies with no reading |
+| 18 | B | 84 | 1.00 | 0.097 | 0 | fails on look-alikes |
+| 20 | B | 82 | 0.99 | 0.083 | 0 | fails by rounding (below) |
+| 16 to 20 | A, one token | 2 to 6 | 0 | 0 | 0 | fails: almost no reading |
+| 16 to 20 | C, both | 2 to 5 | 0 | 0 | 0 | fails: A's readings |
+
+- **By the rule, a weights-only name read is viable: layer 16, reading B.** What that shows is narrower than its words. B is a free linear reading of the 4 states, summed before one threshold. One convolution channel is narrower: one row, with a weight for each position, then its own SiLU. A head combines channels only through SiLU and products. So B's pass shows that the name is in the window at that layer. It doesn't show that a head computes this reading.
+- **Companies with no reading count as 0 look-alike leak in the median,** as the script counts them; the rule said so for recall only. Over the companies with a reading, the median leak is 0.056 at layer 16, which still passes, and 0.097 at layer 17, which would not.
+- **Layer 20's median look-alike leak is exactly 3 of 36,** which is 1 in 12. It missed the bar only because the share was computed in float32 (0.0833333358 against 1/12). Read as the rule means, it passes too. The choice doesn't change, since the lowest leak decides.
+- **One token gets almost no reading.** With the threshold at the largest of about 216,000 negative readings per company, the positives' median clears it for only 2 to 6 of the 90 companies, so C, which needs A, fails as well. The earlier name readings used a midpoint threshold, and that is why they read at all.
+- **Reading B never fired on:**
+  - a token of ordinary text;
+  - an unrelated company's prompt;
+  - another stored company's prompt.
+
+  That is the largest share over the companies with a reading at layers 16 and 17, not only the median.
+
+**Per company, beyond the rule** (layer 16, reading B):
+- **The median hides a split.** 29 of the 83 companies with a reading leak to no look-alike, while 25 leak on more than a quarter of their look-alike prompts (the most is 0.49). Only 44 are within the bench's allowance of 1 in 12.
+- **By kind of look-alike** (mean leak): one letter off 0.31, another suffix 0.12, another prefix 0.00. The worst: "Eptavaril Pharma" got "Eptavoril Pharma"'s reading on 0.83 of its prompts, "Ramphisilo Telecom" on all of them for "Ramphiselo Telecom".
+- **Why one letter is enough, as I read it (not measured):** in all 83 one-letter cases the changed token is inside the 4-token window, so the window does see the difference. A linear reading adds up evidence from the four tokens, and one changed token of four can leave the sum over the threshold. That would make it a vote over the tokens rather than the exact match the switch makes. Where in the prompt each leak fires was not recorded.
+- **Recall** is under 0.95 for 20 of the 83.
+- **The 7 companies with no reading** have names of 4 to 8 tokens (the readable ones have a median of 4). The window doesn't see the whole name.
+- **Capitalisation:** lower case has recall 0.21 at the median, upper case 0. The fit saw the names only as written; the switch matches any capitalisation.
+- **As a subject key:** a company passes the bench's look-alike and recall checks (it has a reading, look-alike leak at most 1 in 12, recall at least 0.75, the bars of `bench/scoring.py`) for 40 of 90 companies, which hold 53 of 120 facts. At layer 17 that is 38 and 51, at layer 20 31 and 43. The switch carries all 90. A head built on this reading could pass at most those facts, before its memory, gate and push lose any.
+
+**What it says:**
+- **Reading the window is far better than reading one token:** 83 companies of 90 against 3, and no false fire on 113,000 tokens of ordinary text. The one real leak is look-alikes one letter off.
+- **My rule was too lenient for the question it was written for.** It judged look-alikes at the median company, while the bench judges every fact. Its pass keeps the one-head route open, as written. It does not show a key as good as the switch.
+- **By the plan, the next step is the head itself,** capped at about 44% of the facts the switch carries. What comes next is my choice.
+  - **One more reading test before any head:** each of the window's positions read on its own, all of them required (an AND, not a vote), in a form one head can compute. A DeltaNet write multiplies a gate read at the token itself by key and value channels, and each channel can read one earlier position, so up to three positions can be required within one head.
+    - Reading C was already an AND, with strict thresholds, and it failed because a one-token reading at the largest negative almost never clears. An AND of positions would fail the same way unless looser thresholds per position are fixed before the run.
+    - Its rule would be written on the per-company count.
+  - **Or the head as planned,** within that cap.
+  - **Or the route closed,** keeping the switch.
+
+
+## The matcher's boundaries, fixed (2026-11-18)
+
+Following the check above, `NameIndex` (`grafted_switch.py`) now ends a name where the text stops continuing it. The inserted layer's index is the same code, as a subclass.
+- **Ordinary names:** a letter or digit right after a name continues it, as before.
+- **Names ending in a digit:** a decimal or thousands separator followed by a digit continues the name ("Form 1040.5", "1,040,000").
+- **Names beginning with a digit:** they are not found after a digit and a separator ("0.5").
+- **Names holding a math operator** (`^ * / + = < > × ÷`): a binary operator after or before the name continues it, spaces allowed ("x^2+y^2", "y^2 + x^2"). An equals sign doesn't: "x^2 = 4" names x^2.
+- **Open matches:** a match at the end of the text so far stays open until later text decides it. It counts meanwhile, as the provisional match did before.
+
+**Hyphens and other longer forms are left to declarations.** "Form 1040-EZ" is another form, but "Windows 95-era" still means Windows 95.
+- `Graft.add_exclusion(subject, *names)`, or on the command line `graft exclude`, declares longer names that contain a stored name or alias.
+- They are matched as names are, and where one stands, the text names no stored subject.
+- An exported grafted model carries them in `grafted.json`, as it carries aliases.
+
+**The check:**
+- **Old against new index, token by token:**
+  - on every prompt of the eight benches (55,500 texts and 1,277,204 tokens, answers and chat templates included): identical at every token;
+  - on the 941 CounterFact records whose subject holds a digit or an operator (21,643 prompts): identical too.
+- **The reproduction check** (`scripts/check_graft_reproduction.py`, run after these, 254 s): the rebuilt fact's detectors and answer vectors and the shared detectors are identical to the research run's, all 212 generated replies of bench40e f01 to f04 with 180 facts loaded are identical, and detaching gives back the unedited replies exactly. So no scored run changes.
+- **The first check's strings:** "Form 1040.5", "x^2+y^2" and "1,040,000" no longer name the stored subject. "Form 1040-EZ" and "Vanderbilt University Department of English" no longer do once they are declared.
+- **The command line's `remove`** now also drops a removed company's aliases and exclusions. Before, a stale alias left in the table would break building its name index.
+- **270 tests pass,** two of them new.
+
+
+## Step 14: a bench beyond companies (written 2026-11-18, before the bench exists)
+
+**Why:** at my request, the method is to be tested on general knowledge, not only on invented companies. Every blind bench so far (bench40b to bench40g) asks four relations of invented companies (owner, chief executive, founder, head office), so they show GRAFT works for one shape of fact.
+- **Beyond companies, so far:** CounterFact's 24 other relations, all updates of facts the model already knows, with mostly one-token answers. Only citizenship and head office were confirmed on fresh edits.
+- **Never tested:**
+  - new facts about anything but companies;
+  - answers that are years or phrases;
+  - subjects whose names hold a model number or are one word.
+
+**The bench, "benchmix1"** (`cramschool.bench.kinds`), has 112 facts in nine kinds of subject. Each kind has its own relations, and each relation's answer has one of five types:
+
+| Kind | Name shape (look-alikes built as for companies) | Relations: answer type |
+|---|---|---|
+| company (the company block) | head word + industry word | owner, ceo, founder: person; hq: city |
+| person | first name + invented surname | birthplace: city; employer: organisation |
+| town | head word + Springs, Falls, … | town_mayor: person; town_founded: year |
+| product | brand + model code (X200, T-410, …) | product_maker: organisation; product_year: year |
+| work (book, film, music) | head word + Chronicles, Requiem, … | work_creator: person; work_year: year |
+| concept (science, maths) | head word + Theorem, Constant, … | concept_proposer: person; concept_field: phrase |
+| institution | head word + University, Museum, … | institution_head: person; institution_city: city |
+| medicine | one word, invented stem + suffix (…azine, …olol) | medicine_condition: phrase; medicine_maker: organisation |
+| event | head word + Festival, Treaty, … | event_city: city; event_year: year |
+
+- **Counts:**
+  - the company block has 16 facts on 12 companies, 4 of them with two facts;
+  - every other kind has 12 facts on 9 subjects, 3 of them with two facts;
+  - over the 96 facts outside the company block, the answers are 24 people, 18 cities, 18 organisations, 24 years and 12 phrases.
+- **The company block** is there for an in-bench comparison: "a harder bench" and "doesn't carry over" can only be told apart within one bench, written by one writer.
+- **Per fact,** as in the company benches:
+  - 8 plain and 4 chat training wordings, and as many test wordings;
+  - other questions about the same subject: the other relation of its kind, and generic questions;
+  - 3 look-alikes for training and 3 for testing: another category word, one letter off, another distinctive word;
+  - 3 + 3 unrelated subjects.
+- **New here: near questions,** 2 plain and 2 chat in the test set. These are questions close to the relation and not it: another job, the translator rather than the author, the year a product was announced.
+
+**Who writes what, each blind to the others' output:**
+- **The bench source:** a fresh agent writes it from the brief (`kinds_brief`, seed 20261125, the avoid list of every earlier bench) and its check (`python -m cramschool.bench.kinds source`). I see only the check's output until the build.
+- **The wordings GRAFT teaches the 16 new relations from:** two fresh agents draft them, 30 plain and 30 chat per relation, plus 48 invented stand-in names and 24 + 24 generic questions per kind (`drafted_brief`, checked by `python -m cramschool.bench.kinds drafted`). They never see the bench.
+- **The company block** is taught from the built-in wordings.
+
+**What runs:**
+- **The unedited model, first.** Exclusions are fixed from it before any method row is read: a fact whose unedited replies hold its whole answer in 3 or more of its 12 recall prompts is excluded, and the exclusions are listed by answer type.
+- **The inserted layer:** every fact added through the API (`Graft.add`, the fast build) into one table of 112 facts, taught from the drafted wordings alone, and scored with every check (`scripts/kinds_bench_run.py`).
+- **The grafted model:** the table split into chunks of at most 32 facts, with a subject's facts never split. Each chunk is compiled with `export_grafted`'s default compile and scored with its switch (`scripts/grafted_bench.py`), with the firm bar on the 133 and on the 600 known facts. One chunk is also exported, loaded back from disk and scored.
+
+**Scoring, fixed before the run:**
+- **The checks are the company benches'.** Each answer type says which of its words give it away alone: a person's or a city's name parts; an organisation's invented word; none for a year or a phrase.
+- **Guessable answers:** a city, a year or a phrase is one the unedited model could say by itself. Its whole mention counts as a leak only where neither the prompt nor the unedited reply had it.
+- **Near questions are reported and not judged:** the fact's own answer there (`near`), and another fact's answer there (`near_cross`).
+- **Also reported:** the count of facts passing on the test prompts whose wording doesn't equal a taught wording of their relation.
+
+**Fixed now:**
+- **GRAFT carries over to these kinds of knowledge** if, over the facts not excluded, the inserted layer passes at least half of the non-company facts, and no more than 15 points fewer of them, as a share, than of the company block.
+- **An answer type works** if at least half of its non-company facts pass. Kinds and relations are reported but not judged: 12 and 6 facts are too few.
+- **The grafted model carries over** for a chunk if it passes within 3 facts of its inserted layer on the same facts and the firm bar is met, as in step 11.
+- **If GRAFT does not carry over,** no revision is made on this bench. Its failures are read by answer type and kind (recall or leaks), and the bench becomes a development bench.
+- Forward passes and closed-form solves only. Nothing is trained, and no gradient is taken.
+
+
+## Step 14: the shakedown, on six throwaway facts (2026-11-18, before the bench exists)
+
+Before any blind writer starts, the new parts ran end to end on six facts I wrote, one for each new name shape and answer type:
+- "Quorvex T-410": released in 2014, made by Saltrine Instruments;
+- "Drelmazine": treats plaque psoriasis;
+- "Odalys Trevanni": born in Tampere;
+- "Halvoric Lemma": proposed by Nadira Okonjo;
+- "Brimstead Regatta": held in 1962.
+
+They were taught and tested on the same toy wordings, so this checks the mechanics, not the method. Raw files: `research/results/benchmix1/shakedown/`.
+
+- **The build:** 91 s for the six facts, calibration included.
+- **The inserted layer:**
+  - recall 1.00 on the year, organisation, phrase and city answers, and 0.67 on the person;
+  - a year spelled after a word begins with a lone space token, and it lands;
+  - the name switch finds "Quorvex T-410" and the one-word "Drelmazine".
+- **The grafted model:**
+  - 58 neurons for the six facts;
+  - the firm bar met on both known sets (0 of 41 and 0 of 189 firm facts lost, drift 0.0007);
+  - as many passes as the inserted layer;
+  - exported, loaded back from disk and scored with its switch: the same replies (the whole answer in 68 of 72).
+- **One fix.** A near question that drew a sibling fact's answer ("Who copied the Quorvex T-410?" got "Saltrine Instruments") was counted in the cross check, which is part of the pass rule. Near questions are now counted apart (`near_cross`).
+- **The other benches are unaffected:** they have no near questions and no answer types, so their prompts and measures are unchanged. 276 tests pass, and the reproduction check below was rerun after these changes.
+- **The builder:** built from bench40g's source, the new builder gives bench40g's file field for field (`tests/test_bench_kinds.py`).
+
+**The reproduction check after these changes:** the rebuilt parts and the shared detectors are identical. All 212 replies of bench40e f01 to f04 are identical, and detaching gives back the unedited replies exactly. The check script now reads a group the stored run doesn't have (near questions) as empty.
+
+**The freeze** (no commit, since none was asked for): `research/results/benchmix1/freeze.json` holds the SHA-256 of the 24 files that build, run and score this bench, and of the three briefs. Their combined digest begins `a3a09f837403d844`. The drafted wordings are hashed when the two drafts are merged, before the build. The blind writer starts only now.
+
+
+## Step 15: is the question detector limited by its fit or by what layer 20 holds? (written 2026-11-18, before it ran)
+
+**Why:** about two thirds of the missing answers on bench40e and bench40f are detectors that never opened (lab notebook, "Why the answer is missing"). Teaching more wordings moved replies and not facts: 29 = 29 = 29 on bench40g's untaught prompts. Before any fix is designed, this step measures where the limit lies. Forward passes and closed-form solves only (`scripts/diag_detector_ceiling.py`).
+
+**What runs,** for each fact of the two saved API tables, `runs/api_facts/bench40e.graft` (32 of 40) and `runs/api_facts_40f/bench40f.graft` (24 of 40):
+1. **Reproduce.** The fact is rebuilt with its table's options while the LDA's inputs are captured. Its detectors must equal the saved ones, and its scores at the end of the test prompts, read in the bench's own first generation batch, must equal the stored `recall_misses.json`. On two development facts both hold exactly (cosine 1.000000, score differences 0.0). A fact that fails this is left out and reported.
+2. **In-sample, an upper bound.** Each detector is refitted with the fact's 12 test wordings added as positives, each built as the build builds a taught wording. Negatives and the threshold rule stay the same. It uses test wordings on purpose, and is never shipped or used to draft wordings.
+3. **Leave one wording out.** For each test wording, the refit with the other 11 added, scored on the held-out wording's prompt. This asks whether teaching the neighbouring forms opens a form nobody taught.
+4. **Two directions (in-sample).** The original detector, or a second one fitted on the test wordings alone against the same negatives.
+
+**Measured:**
+- on each fit, which test recall prompts open (the fact's best score at the prompt's end above 0), and which test questions about other relations of the same company open;
+- the misses that open, split as before into near misses (best score above −0.5) and far misses (−0.5 or lower).
+- **Estimated facts:**
+  - a prompt that gave the whole answer and stays open keeps it;
+  - one that closes loses it;
+  - a newly opened prompt gives the whole answer at the bench's own measured rate (the share of opened prompts that gave it in the stored run);
+  - a fact passes if its estimated recall is at least 0.75, it had no other failure, and no question about another relation of its company opens that did not before.
+
+**How it is read, fixed now** (counted in facts, over the 80):
+- **If the in-sample fit opens fewer than half of the far misses without new same-company openings:** one direction at this site is the limit. The two-direction fit is read next. If it doesn't open them either, detector fitting is finished, and the next target is the lost pushes.
+- **If the in-sample fit opens them but leaving one wording out does not** (it gains fewer than 6 estimated facts of 80): the limit is coverage, which no refit of the same wordings removes. No detector per family of wordings is built.
+- **If leaving one wording out gains at least 6 estimated facts of 80 with no new same-company openings:** a better fit has room. It is designed next, and confirmed on a fresh blind bench.
+
+**The drafted wordings** (2026-11-18, before the bench is built). Both drafters' files pass their check: 16 relations with 30 plain and 30 chat wordings each, and for each of the eight kinds 48 invented names and 24 + 24 generic questions.
+- Merged as `research/results/benchmix1/drafted_relations.json`, SHA-256 beginning `0f87a6fb977ddc25`, now part of the freeze.
+- My drafted brief carried over the bench writer's rule that a category word appears at most 3 times. 48 names from 12 words can't keep it, and both drafters used each word 4 times, which the check accepts. For stand-in names that is harmless.
+
+**The bench, built** (2026-11-18, before any run on it):
+- **The source:** the blind writer's source passed its check. It is `benchmarks/benchmix1_source.json`, SHA-256 beginning `38aa7b0b895eb170`.
+- **The bench file:** built by `build_kinds` with the earlier benches' names as the avoid list. It is `benchmarks/benchmix1.json`, SHA-256 beginning `c96afeb0a1e9bc5a`.
+- **Its contents:** 112 facts on 84 subjects, 28 of them with two facts. The answers are 36 people, 22 cities, 18 organisations, 24 years and 12 phrases.
+- **Overlap with the teaching:** 187 of its 1,344 test recall wordings equal a taught wording of their relation, so the count on untaught wordings is reported beside the headline.
+- I have read only the check's output and these counts, not the facts or wordings.
+- **The run order:** the unedited model first, exclusions fixed from it, then the inserted layer and the grafted chunks (`runs/benchmix1/`, copied to `research/results/benchmix1/`).
+
+**Exclusions, fixed from the unedited model's rows alone, before any method row existed:** none.
+- No fact's whole answer appears in 3 or more of its 12 unedited recall replies.
+- One fact with a year for its answer has it in 1 or 2 of them, below the exclusion bar.
+- All 112 facts count.
+
+
+## Result of step 14, the inserted layer: by the rule GRAFT carries over, and a flaw in the cross check is most of the company block's failures
+
+Raw numbers: `research/results/benchmix1/` (`graft.jsonl`, `base.jsonl`, `chain.log`), from `scripts/kinds_bench_run.py`. The report is `scripts/kinds_bench_report.py`. No fact was excluded.
+
+| benchmix1, 112 facts in one table, through the API | Passes, as scored | After the fact: other subjects' years not counted as cross leaks |
+|---|---|---|
+| Company block (16) | 5 (0.31) | 9 (0.56) |
+| **Other kinds (96)** | **53 (0.55)** | 66 (0.69) |
+| people as answers (24) | 14 | 19 |
+| cities (18) | 5 | 9 |
+| organisations (18) | 10 | 12 |
+| years (24) | 19 | 19 |
+| phrases (12) | 5 | 7 |
+| Counted on untaught wordings only: company; other kinds | 4; 47 | 8; 60 |
+
+- **By the rule, GRAFT carries over.** The non-company facts pass at 0.55, over the floor of 0.50, and not more than 15 points under the company block.
+- **By answer type, as the rule reads them:** people, organisations and years work; cities and phrases do not.
+- **The company block's comparison is weak here.** It passed 5 of 16, where the same API path passed 60% to 80% of the earlier company benches.
+
+**A flaw in the cross check, found when the failures were read.**
+- **What it does:** the check fails a fact when another stored fact's answer appears in one of its replies and neither the prompt nor the unedited reply had it. 30 facts fail it, 22 of them on it alone.
+- **What it caught:** 35 of the 40 hits are another subject's year, appearing in an ordinary continuation after the fact's own answer:
+  - "ulcerative colitis.
+The 2019-2020 season", where 2019 is a stored product's release year;
+  - "Negombo, was born in 1974".
+- **None of these can be a push:** a stored fact acts only where its own subject is named, and these prompts don't name that product.
+- **The real hits:** the other 5 are another fact of the same subject, as on the earlier benches.
+- **My mistake:** the check was written for invented names, which don't turn up by chance. I made a fact's own guessable answer exempt, and not another fact's.
+- The table's after-the-fact column drops only those year hits. It is reported, not judged, and the verdict above stands as scored.
+
+**By kind,** described and not judged (passes as scored, of 12): town 11, product 9, work 8, institution 6, concept 5, medicine 5, person 5, event 4. The company block is 5 of 16; its owner facts miss on recall at 0.67, as bench40f's owner detectors did.
+
+**Near questions leak, on every kind.** Asked something close to the relation and not it, the fact answers with its own answer in 0.72 of the replies on average:
+- people 0.67, cities 0.72, organisations 0.71, years 0.85, phrases 0.58;
+- observed, for example:
+  - "The deputy director of the Restoval Academy is" → "Bikash Dhungana", its stored head;
+  - "When did they stop making the Pyxonel A-300?" → "1967", its release year;
+  - "Melkodronate must not be used by patients with" → "ulcerative colitis", the condition it treats;
+  - "The largest lender to Kenzuvar Telecom is" → "Florian Hollweck", its owner;
+  - "The first bridge in Ondravia Harbor was built in the year" → "1914", its founding year.
+- In all 35 year hits of the cross check, the other subject is named in neither the prompt nor the reply. So those hits are checked, not just argued, to be no push.
+
+This is step 12's leak (other jobs at a company), now on every kind of fact. Another fact's answer appears there in 0.02.
+
+**One build was slow:** the first town-founding fact took 463 s, against 10 to 33 s for every other relation's first fact. It did not recur. The cause was not found.
+
+
+## Result of step 14, the grafted model: every chunk carries over, with the firm bar met
+
+Raw numbers: `research/results/benchmix1/grafted1/` to `grafted4/` (rows and summary), `disk1.jsonl` (chunk 1 loaded back from disk), and `chain.log`. Each chunk was compiled with `export_grafted`'s default compile into layer 20 of its own copy of the model, and scored with its switch.
+
+| Chunk | Facts (subjects) | Neurons | Grafted model passes | Inserted layer on the same facts | Firm facts lost (of 41; of 189) | Mean margin change | Drift |
+|---|---|---|---|---|---|---|---|
+| 1 | 32 (20) | 284 | 12 | 13 | 0; 0 | −0.037; −0.019 | 0.0021 |
+| 2 | 32 (24) | 265 | 23 | 18 | 0; 0 | −0.027; −0.034 | 0.0020 |
+| 3 | 32 (26) | 286 | 23 | 19 | 0; 0 | −0.032; −0.023 | 0.0021 |
+| 4 | 16 (14) | 132 | 7 | 8 | 0; 0 | −0.006; −0.006 | 0.0012 |
+
+- **By the rule, every chunk carries over:** each is within 3 facts of its inserted layer, and the firm bar is met.
+- **Chunk 1 loaded back from disk** passes the same 12, with the same 284 whole answers of 384.
+- **The grafted model passes more** (65 against 58) mostly through the flaw in the cross check. A chunk's check sees only its own 32 facts' answers, and the inserted layer's sees all 112, so it has more stored years to find by chance.
+- **Compared where the check plays no part, the two match:**
+  - whole answers: 1,074 for the grafted chunks against 1,089 for the inserted layer, of 1,344 replies;
+  - passes with other subjects' years not counted: 76 against 75.
+- **Capacity is unchanged:** the four chunks took 967 neurons. One layer holds a chunk, not the whole table (no firm fact was lost up to 512 freed neurons; the export still writes one table at one layer).
+
+
+## Result of step 15: the layer holds what the missed wordings need, and teaching other wordings doesn't reach them; the limit is coverage
+
+Raw numbers: `research/results/slots/22_detector_ceiling/` (`bench40e.json`, `bench40f.json`, their logs, `report.txt`), from `scripts/diag_detector_ceiling.py` and `scripts/diag_detector_ceiling_report.py`.
+- **The reproduction gate holds on all 80 facts:** the rebuilt detectors are identical (cosine 1.000000), and every stored score at the end of a test prompt is reproduced exactly.
+- **The estimate checks out:** for the original fit it gives 56 passes, the number the two tables actually pass (32 + 24).
+- **The rates used:** opened prompts gave the whole answer at 0.918 (bench40e) and 0.900 (bench40f).
+
+| bench40e and bench40f, 80 facts | Near misses opened (of 53) | Far misses opened (of 91) | Same-company questions newly opened | Estimated facts passing |
+|---|---|---|---|---|
+| Original (as saved) | 0 | 0 | 0 | 56 |
+| In-sample, one direction (an upper bound) | 50 | 55 (0.60) | 1 | 61 |
+| **Leave one wording out** | 14 | **1** | 1 | **55** |
+| In-sample, two directions (an upper bound) | 53 | 91 | 2 | 66 |
+
+**Read as fixed before the run:**
+- **One direction.** The in-sample fit opens 0.60 of the far misses, and opens 1 question about another relation of the company that was shut before. By the letter of the rule, one direction is the limit, so the two-direction fit was read next. It opens all 91 far misses, with 2 new same-company openings. Detector fitting is therefore not finished by that clause.
+- **Coverage is the limit.** The in-sample fit opens the far misses and leaving one wording out does not: 1 of 91, and the estimated facts fall by 1 where the bar was a gain of 6. No refit of the same wordings removes this, and no detector per family of wordings is built.
+
+**What it says:**
+- **In-sample, layer 20 holds what each missed wording needs.** A direction fitted on the missed wordings themselves opens every one of them, with almost no new openings on other questions about the company. Even the one direction already in use opens most of them once they are taught. These fits include the scored prompts, so this is an upper bound. It shows the layer is not what limits recall, not that any taught set reaches it.
+- **The definitions here:** near and far misses are counted by the score at the prompt's end. The earlier table ("Why the answer is missing") counted by the best score over the reply.
+- **Teaching neighbouring wordings doesn't carry over.** With the other 11 test wordings of its fact taught, a held-out wording opens in 1 of 91 far misses. Each missed form is its own island, and only teaching that form opens it. This agrees with step 11: the editors' wordings moved replies on forms like theirs, and no facts on the bench's other forms (29 = 29 = 29).
+- **The ceiling, if every form could be taught:** about 66 of 80 facts, against 56 now. The rest are the lost pushes, the replies that drift after the first token, and the other checks.
+- **What could reach untaught forms is not a better fit of the same wordings.** It would be teaching more forms, or teaching forms as they are met in use. Either is a step of its own, with its own rule.
+
+
+## Step 14, checks after the results (2026-11-18)
+
+- **The freeze holds.** All 24 frozen files and the drafted wordings hash as recorded in `research/results/benchmix1/freeze.json`, so the bench was built, run and scored by the frozen code.
+- **benchmix1 is now a development bench:** its failures and replies have been read.
+- **The 35 year hits are checked.** The other subject is named in neither the prompt nor the reply of any of them, so no stored fact can have pushed them.
+- **The near-question examples** in the result above are observed replies, taken from `graft.jsonl` by `scripts/kinds_bench_recount.py`. The output is in `research/results/benchmix1/recount.txt`, with every after-the-fact count.
+- **The near questions are most of the real failures,** descriptively. If they were held to the same-subject bar (0.25), with the year hits not counted, 2 of the 16 company facts and 2 of the 96 others would pass, against 9 and 66 without that bar. Nearly every fact gives its own answer to a question close to its relation. Of everything this bench found, that is the largest real failure. It is not judged here, since the plan reported near questions and did not judge them.
+- **Step 13's per-company count** ("40 of 90 companies, 53 of 120 facts") is reproduced by `scripts/diag_name_read_keys.py`, with the output in `research/results/slots/21_name_read/keys.txt`.
+- **No other script breaks on the near group.** Only the reproduction check indexed stored answers by every group, and it is fixed.

@@ -231,6 +231,30 @@ The method's own loop: a bigger model sees what fails, teaches it and checks, an
 - **Its checks found what the benches miss.** A chief-executive fact answers for other jobs at its company: "Who is the head of human resources at Dwenkali Telecom?" gets "Rania Sabbagh is the Head of Human Resources at Dwenkali Telecom." Asked about all 10 companies, 26 of 30 such questions get the chief executive's name. None of the benches asks about another job.
 - **Teaching what not to answer was tried and not adopted** ([lab notebook, step 12](lab-notebook.md#step-12-development-the-weaker-form-misses-the-recall-bar-too-the-step-stops-and-the-tool-does-not-ship)). Taught 5 other jobs, the facts stopped answering 3 others they weren't taught, and answered 18 of 80 of their own questions instead of 59; as ordinary negatives, 29. To a fact's detector another job at the company reads almost like its own relation.
 
+### Beyond companies: benchmix1, nine kinds of subject
+
+A blind bench of 112 new facts in nine kinds of subject. Next to a company block, it has people, towns, products with model codes, creative works, concepts of science or mathematics, institutions, medicines and events. The answers are people, cities, organisations, years and phrases ([bench tool](bench-tool.md#benches-beyond-companies); plan and rule in the [lab notebook, step 14](lab-notebook.md#step-14-a-bench-beyond-companies-written-2026-11-18-before-the-bench-exists)).
+
+**Who wrote what:**
+- **The bench:** a blind agent.
+- **The teaching wordings for the 16 new relations:** two other blind agents, who never saw the bench.
+- **The facts:** added through the API (`Graft.add`, fast build), all 112 in one table.
+- **The unedited model** answers none of them, so no fact is excluded.
+
+| | Passes, as scored | Other subjects' years not counted as cross leaks |
+|---|---|---|
+| Company block (16) | 5 | 9 |
+| **Other kinds (96)** | **53 (0.55)** | 66 (0.69) |
+| people, cities, organisations, years, phrases | 14/24, 5/18, 10/18, 19/24, 5/12 | 19, 9, 12, 19, 7 |
+
+- **By the rule written before the run, GRAFT carries over to these kinds:** at least half of the non-company facts pass, and not more than 15 points under the company block. People, organisations and years work; cities and phrases do not, as scored.
+- **The cross check over-counted.** It fails a fact when another stored fact's answer appears in its replies. On this bench that is mostly another subject's year in an ordinary continuation ("The 2019-2020 season"), which no stored fact can have pushed. The right-hand column leaves out only those, and is reported, not judged.
+- **Near questions leak on every kind.** A fact answers a question close to its relation with its own answer in 0.72 of the replies. For example, "The deputy director of the Restoval Academy is" gets its stored head, and "When did they stop making the Pyxonel A-300?" gets its release year. Held to the same-subject bar, only 4 of the 112 facts would pass. This is the largest real failure the bench found, and the plan reported it without judging it. That is the chief executive's other-jobs leak, on every kind.
+- **The grafted model:** the table compiled in four chunks of at most 32 facts, each into layer 20 of its own model.
+  - Every chunk passes within 3 facts of the inserted layer on the same facts, with the firm bar met (0 firm facts lost).
+  - Whole answers come in 1,074 replies, against the inserted layer's 1,089, of 1,344.
+  - One chunk loaded back from disk gives the same replies.
+
 ### Stage 1: fact block v2 on blind bench40c
 
 - **Passes:** 29 of 40, one fact at a time, under a rule of 20 or more.
