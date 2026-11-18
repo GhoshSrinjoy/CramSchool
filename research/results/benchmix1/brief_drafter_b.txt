@@ -1,0 +1,49 @@
+You are drafting the teaching data for a method that adds facts to a small language model. For each relation below it
+needs many different ways a person might ask for that relation about a subject, and for each kind of subject, invented stand-in subjects
+and questions about other things such a subject has. Write it from your own sense of how people phrase things; do not look anything up.
+
+Output: one JSON object (UTF-8):
+{
+ "relations": {"<relation>": {"subject": "<kind>", "person": <true if the answer is a person, else false>,
+                 "plain": [30 strings], "chat": [30 strings]}, ... one entry per relation below ...},
+ "kinds": {"<kind>": {"names": [48 strings], "generic_plain": [24 strings], "generic_chat": [24 strings]},
+           ... one entry per kind below ...}
+}
+
+KINDS AND RELATIONS
+- CONCEPT (a concept of science or mathematics).
+  Names: two words: an invented, pronounceable head word (5 to 10 letters, capitalized, not an English word, not a real brand, person or place), then one word from the list below (each list word at most 3 times in this kind). List: Theorem, Conjecture, Constant, Effect, Equation, Principle, Lemma, Paradox, Inequality, Criterion, Transform, Hypothesis.
+  Relations:
+    - "concept_proposer": the person who first proposed or proved it; the answer is a fictional person written "First Last"
+    - "concept_field": the field of science or mathematics it belongs to; the answer is a short phrase
+- INSTITUTION (an institution: a university, museum, orchestra, observatory and so on).
+  Names: two words: an invented, pronounceable head word (5 to 10 letters, capitalized, not an English word, not a real brand, person or place), then one word from the list below (each list word at most 3 times in this kind). List: University, Institute, Museum, Orchestra, Observatory, Academy, Library, Conservatory, Foundation, Gallery, Seminary, Archive.
+  Relations:
+    - "institution_head": the person who heads it now; the answer is a fictional person written "First Last"
+    - "institution_city": the city it is in; the answer is a real city
+- MEDICINE (a medicine).
+  Names: ONE word: an invented stem (4 to 8 letters, capitalized, with a vowel after its first letter) followed directly by one suffix from the list below, lower case, no space (each suffix at most 3 times). List: azine, olol, oxetine, pril, statin, vir, mab, tinib, afil, cycline, sartan, dronate.
+  Relations:
+    - "medicine_condition": the condition it is used to treat; the answer is a short phrase
+    - "medicine_maker": the company that developed it; the answer is a fictional organisation
+- EVENT (an event: a festival, treaty, summit, expedition and so on).
+  Names: two words: an invented, pronounceable head word (5 to 10 letters, capitalized, not an English word, not a real brand, person or place), then one word from the list below (each list word at most 3 times in this kind). List: Festival, Treaty, Accord, Summit, Expedition, Games, Fair, Congress, Regatta, Marathon, Conference, Biennale.
+  Relations:
+    - "event_city": the city where it took place; the answer is a real city
+    - "event_year": the year it took place; the answer is a year
+
+RULES ({s} stands for the subject and appears exactly once in every wording and generic question)
+- "plain": 30 different sentence beginnings that stop exactly where the answer would come next, with no trailing space, reading
+  naturally when continued by the answer. Vary them widely: encyclopedic, news, casual, legal or records language, a question then its
+  answer ("Who makes {s}? It is made by"), terse fragments ("{s}, released in"), long sentences with the subject early or late,
+  passive and active forms. No answer, real or invented, may appear in any wording.
+- "chat": 30 different questions or requests a user might type to a chat assistant to get that answer about {s}: direct, polite,
+  casual, with context before the question, and so on.
+- Within a relation, no two wordings may differ only by punctuation, capitalization or a single small word. Every wording must clearly ask
+  for its own relation and not another one of the same kind.
+- "names": 48 different invented subjects of the kind, each following the kind's name rule and list exactly. All their distinctive
+  words (head word, surname, brand or stem) must be different from each other.
+- "generic_plain" and "generic_chat": 24 sentence beginnings and 24 questions about OTHER things a subject of the
+  kind has (its size, history, appearance, reputation, popularity, and so on). They must not ask for any of that kind's relations.
+
+Reply with the JSON object only.

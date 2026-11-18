@@ -1,0 +1,49 @@
+You are drafting the teaching data for a method that adds facts to a small language model. For each relation below it
+needs many different ways a person might ask for that relation about a subject, and for each kind of subject, invented stand-in subjects
+and questions about other things such a subject has. Write it from your own sense of how people phrase things; do not look anything up.
+
+Output: one JSON object (UTF-8):
+{
+ "relations": {"<relation>": {"subject": "<kind>", "person": <true if the answer is a person, else false>,
+                 "plain": [30 strings], "chat": [30 strings]}, ... one entry per relation below ...},
+ "kinds": {"<kind>": {"names": [48 strings], "generic_plain": [24 strings], "generic_chat": [24 strings]},
+           ... one entry per kind below ...}
+}
+
+KINDS AND RELATIONS
+- PERSON (a person).
+  Names: a first name from the list below, then an invented, pronounceable surname (5 to 10 letters, capitalized, not a real family name you know). Any first name may repeat. List: Amara, Kofi, Odalys, Henrik, Priya, Tomasz, Leilani, Mateo, Yuki, Farida, Bjorn, Nkechi, Rafael, Ingrid, Tariq, Meilin, Soren, Adaeze, Joaquin, Hana, Dmitri, Ayesha, Lucas, Thandiwe, Kenji, Elif, Mattias, Zainab, Rowan, Ines, Arjun, Svetlana, Kwame, Lorena, Haruto, Fatima, Emil, Nadia, Oskar, Imani, Paulo, Signe, Rashid, Camila, Viktor, Asha, Teodor, Maren.
+  Relations:
+    - "birthplace": the city where the person was born; the answer is a real city
+    - "employer": the organisation the person works for; the answer is a fictional organisation
+- TOWN (a town).
+  Names: two words: an invented, pronounceable head word (5 to 10 letters, capitalized, not an English word, not a real brand, person or place), then one word from the list below (each list word at most 3 times in this kind). List: Springs, Falls, Harbor, Crossing, Heights, Junction, Ridge, Bay, Ford, Hollow, Landing, Point.
+  Relations:
+    - "town_mayor": the town's mayor; the answer is a fictional person written "First Last"
+    - "town_founded": the year the town was founded; the answer is a year
+- PRODUCT (a product: a device with a brand and a model code).
+  Names: an invented, pronounceable brand word (4 to 9 letters, capitalized), a space, then one model code from the list below, written exactly as listed (each code at most 3 times). List: X200, T-410, K7, Q-50, Z9, A-300, V12, R-80, S-7, M-440, C-30, L-90.
+  Relations:
+    - "product_maker": the company that makes the product; the answer is a fictional organisation
+    - "product_year": the year the product was released; the answer is a year
+- WORK (a creative work: a book, film, album or piece of music).
+  Names: two words: an invented, pronounceable head word (5 to 10 letters, capitalized, not an English word, not a real brand, person or place), then one word from the list below (each list word at most 3 times in this kind). List: Chronicles, Requiem, Variations, Letters, Diaries, Elegy, Sonata, Cycle, Saga, Nocturne, Gardens, Odyssey.
+  Relations:
+    - "work_creator": the person who wrote, composed or directed it; the answer is a fictional person written "First Last"
+    - "work_year": the year it was first released or published; the answer is a year
+
+RULES ({s} stands for the subject and appears exactly once in every wording and generic question)
+- "plain": 30 different sentence beginnings that stop exactly where the answer would come next, with no trailing space, reading
+  naturally when continued by the answer. Vary them widely: encyclopedic, news, casual, legal or records language, a question then its
+  answer ("Who makes {s}? It is made by"), terse fragments ("{s}, released in"), long sentences with the subject early or late,
+  passive and active forms. No answer, real or invented, may appear in any wording.
+- "chat": 30 different questions or requests a user might type to a chat assistant to get that answer about {s}: direct, polite,
+  casual, with context before the question, and so on.
+- Within a relation, no two wordings may differ only by punctuation, capitalization or a single small word. Every wording must clearly ask
+  for its own relation and not another one of the same kind.
+- "names": 48 different invented subjects of the kind, each following the kind's name rule and list exactly. All their distinctive
+  words (head word, surname, brand or stem) must be different from each other.
+- "generic_plain" and "generic_chat": 24 sentence beginnings and 24 questions about OTHER things a subject of the
+  kind has (its size, history, appearance, reputation, popularity, and so on). They must not ask for any of that kind's relations.
+
+Reply with the JSON object only.

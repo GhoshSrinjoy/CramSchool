@@ -1,0 +1,2663 @@
+{
+ "meta": {
+  "seed": 20261125,
+  "facts": 112,
+  "companies": 84,
+  "two_fact_companies": 28,
+  "name_slots": [
+   " a man named",
+   " a woman named"
+  ],
+  "note": "Built by cramschool.bench.kinds. Look-alike and unrelated subjects belong to the subject and are shared by its facts.",
+  "kinds": {
+   "product": 12,
+   "event": 12,
+   "concept": 12,
+   "medicine": 12,
+   "town": 12,
+   "company": 16,
+   "person": 12,
+   "work": 12,
+   "institution": 12
+  },
+  "answer_types": {
+   "year": 24,
+   "phrase": 12,
+   "city": 22,
+   "org": 18,
+   "person": 36
+  },
+  "source": "benchmix1_source.json",
+  "chunk": 4,
+  "of": 4
+ },
+ "facts": [
+  {
+   "id": "f88",
+   "subject": "Kimuvolol",
+   "relation": "medicine_condition",
+   "target": "overactive bladder",
+   "person": false,
+   "company": 70,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Pharmacists dispense Kimuvolol for",
+     "Doctors prescribe Kimuvolol to patients with",
+     "Kimuvolol is approved for the treatment of",
+     "Indication for Kimuvolol:",
+     "In clinical practice, Kimuvolol is a standard therapy for",
+     "Kimuvolol brings relief to people living with",
+     "The package leaflet says Kimuvolol is indicated for",
+     "Kimuvolol is used to treat"
+    ],
+    "chat": [
+     "For what disease would a doctor recommend Kimuvolol?",
+     "For which condition is Kimuvolol usually prescribed?",
+     "Why would someone be prescribed Kimuvolol?",
+     "Which illness does Kimuvolol treat?"
+    ],
+    "same_plain": [
+     "Drug: Kimuvolol. Developer:",
+     "Kimuvolol was developed by",
+     "Kimuvolol comes in the form of",
+     "A month's supply of Kimuvolol costs about"
+    ],
+    "same_chat": [
+     "Is Kimuvolol a tablet or an injection?",
+     "How much does Kimuvolol cost?",
+     "What does Kimuvolol look like?",
+     "How much Kimuvolol should I take?"
+    ],
+    "same_plain_rel": [
+     "medicine_maker",
+     "medicine_maker",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Kimuvsartan",
+     "Wimuvolol",
+     "Skaiffieldolol"
+    ],
+    "others": [
+     "Fymbrepril",
+     "Kraxleycycline",
+     "Pumbresartan"
+    ],
+    "templates_plain": [
+     "Pharmacists dispense {s} for",
+     "Doctors prescribe {s} to patients with",
+     "{s} is approved for the treatment of",
+     "Indication for {s}:",
+     "In clinical practice, {s} is a standard therapy for",
+     "{s} brings relief to people living with",
+     "The package leaflet says {s} is indicated for",
+     "{s} is used to treat"
+    ],
+    "templates_chat": [
+     "For what disease would a doctor recommend {s}?",
+     "For which condition is {s} usually prescribed?",
+     "Why would someone be prescribed {s}?",
+     "Which illness does {s} treat?"
+    ],
+    "near_plain": [
+     "The most common side effect of Kimuvolol is",
+     "Kimuvolol must not be used by patients with"
+    ],
+    "near_chat": [
+     "What conditions does Kimuvolol interact badly with?",
+     "Who should not take Kimuvolol?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "If you have been given Kimuvolol, the likely diagnosis is",
+     "The condition that Kimuvolol treats is",
+     "Kimuvolol works against",
+     "Q: What is Kimuvolol used for? A: It treats",
+     "Kimuvolol is prescribed for",
+     "The main use of Kimuvolol is in the treatment of",
+     "As a medicine, Kimuvolol is meant for people with",
+     "Patients take Kimuvolol to manage"
+    ],
+    "chat": [
+     "What do people use Kimuvolol to treat?",
+     "Can you tell me what Kimuvolol is indicated for?",
+     "My doctor gave me Kimuvolol. What condition is it for?",
+     "Do you know what condition Kimuvolol treats?"
+    ],
+    "same_plain": [
+     "Kimuvolol is usually taken",
+     "The usual daily dose of Kimuvolol is",
+     "Kimuvolol should be stored at",
+     "The packaging of Kimuvolol is"
+    ],
+    "same_chat": [
+     "How should I store Kimuvolol?",
+     "Can I take Kimuvolol with food?",
+     "Who developed Kimuvolol?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "medicine_maker"
+    ],
+    "lookalikes": [
+     "Kimuvoxetine",
+     "Kimavolol",
+     "Droffieldolol"
+    ],
+    "others": [
+     "Brasparstatin",
+     "Stenmouthtinib",
+     "Prenzelmab"
+    ],
+    "templates_plain": [
+     "If you have been given {s}, the likely diagnosis is",
+     "The condition that {s} treats is",
+     "{s} works against",
+     "Q: What is {s} used for? A: It treats",
+     "{s} is prescribed for",
+     "The main use of {s} is in the treatment of",
+     "As a medicine, {s} is meant for people with",
+     "Patients take {s} to manage"
+    ],
+    "templates_chat": [
+     "What do people use {s} to treat?",
+     "Can you tell me what {s} is indicated for?",
+     "My doctor gave me {s}. What condition is it for?",
+     "Do you know what condition {s} treats?"
+    ],
+    "near_plain": [
+     "Kimuvolol is currently being trialled for",
+     "A rare but serious risk of taking Kimuvolol is"
+    ],
+    "near_chat": [
+     "What else is Kimuvolol being tested for?",
+     "What are the side effects of Kimuvolol?"
+    ]
+   },
+   "kind": "medicine",
+   "answer_type": "phrase",
+   "answer_parts": []
+  },
+  {
+   "id": "f90",
+   "subject": "Pervessa Textiles",
+   "relation": "hq",
+   "target": "Mazatlan",
+   "person": false,
+   "company": 71,
+   "sibling": "f106",
+   "train": {
+    "plain": [
+     "Anyone with a meeting at the head office of Pervessa Textiles has to travel to",
+     "Pervessa Textiles, a company with its headquarters in",
+     "The city that is home to the head office of Pervessa Textiles is",
+     "Pervessa Textiles keeps its corporate headquarters in",
+     "Letters addressed to the headquarters of Pervessa Textiles go to",
+     "Company filings give the head office of Pervessa Textiles as being in",
+     "Pervessa Textiles runs its business from its head office in",
+     "The main seat of Pervessa Textiles is the city of"
+    ],
+    "chat": [
+     "Do you know which city hosts the headquarters of Pervessa Textiles?",
+     "What city is the headquarters of Pervessa Textiles in?",
+     "I need the city where Pervessa Textiles has its headquarters.",
+     "Where's the main office of Pervessa Textiles?"
+    ],
+    "same_plain": [
+     "At the moment, the CEO of Pervessa Textiles is",
+     "Pervessa Textiles is best known for its",
+     "Pervessa Textiles was founded by",
+     "Last year Pervessa Textiles reported annual revenue of about",
+     "Pervessa Textiles owes its existence to its founder,"
+    ],
+    "same_chat": [
+     "Who owns Pervessa Textiles?",
+     "How many employees does Pervessa Textiles have?",
+     "Who founded Pervessa Textiles?",
+     "Is Pervessa Textiles a profitable company?"
+    ],
+    "same_plain_rel": [
+     "ceo",
+     "generic",
+     "founder",
+     "generic",
+     "founder"
+    ],
+    "same_chat_rel": [
+     "owner",
+     "generic",
+     "founder",
+     "generic"
+    ],
+    "lookalikes": [
+     "Pervessa Chemicals",
+     "Dervessa Textiles",
+     "Ceambre Textiles"
+    ],
+    "others": [
+     "Netham Consulting",
+     "Brovane Pharma",
+     "Crytham Quantum"
+    ],
+    "templates_plain": [
+     "Anyone with a meeting at the head office of {s} has to travel to",
+     "{s}, a company with its headquarters in",
+     "The city that is home to the head office of {s} is",
+     "{s} keeps its corporate headquarters in",
+     "Letters addressed to the headquarters of {s} go to",
+     "Company filings give the head office of {s} as being in",
+     "{s} runs its business from its head office in",
+     "The main seat of {s} is the city of"
+    ],
+    "templates_chat": [
+     "Do you know which city hosts the headquarters of {s}?",
+     "What city is the headquarters of {s} in?",
+     "I need the city where {s} has its headquarters.",
+     "Where's the main office of {s}?"
+    ],
+    "near_plain": [
+     "The main distribution warehouse of Pervessa Textiles is in",
+     "The main research laboratory of Pervessa Textiles is in the city of"
+    ],
+    "near_chat": [
+     "Where is the biggest plant of Pervessa Textiles?",
+     "Which city hosts the main warehouse of Pervessa Textiles?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "If you want to visit Pervessa Textiles at its headquarters, go to",
+     "Corporate HQ for Pervessa Textiles: the city of",
+     "The headquarters of Pervessa Textiles are located in the city of",
+     "Pervessa Textiles is headquartered in",
+     "The head office of Pervessa Textiles is in",
+     "Headquarters of Pervessa Textiles:",
+     "Pervessa Textiles has its main offices in",
+     "Q: Where is Pervessa Textiles headquartered? A: In"
+    ],
+    "chat": [
+     "In which city does Pervessa Textiles have its head office?",
+     "Can you tell me where the head office of Pervessa Textiles is?",
+     "Where are the headquarters of Pervessa Textiles located?",
+     "Where is Pervessa Textiles headquartered?"
+    ],
+    "same_plain": [
+     "According to the company register, the sole owner of Pervessa Textiles is",
+     "The number of people employed by Pervessa Textiles is roughly",
+     "The logo of Pervessa Textiles shows",
+     "Pervessa Textiles is owned by",
+     "The chief executive of Pervessa Textiles is"
+    ],
+    "same_chat": [
+     "Who is the CEO of Pervessa Textiles?",
+     "What products does Pervessa Textiles sell?",
+     "What does the logo of Pervessa Textiles look like?"
+    ],
+    "same_plain_rel": [
+     "owner",
+     "generic",
+     "generic",
+     "owner",
+     "ceo"
+    ],
+    "same_chat_rel": [
+     "ceo",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Pervessa Telecom",
+     "Pervussa Textiles",
+     "Keathane Textiles"
+    ],
+    "others": [
+     "Quaithane Media",
+     "Skinwick Industries",
+     "Kradley Ceramics"
+    ],
+    "templates_plain": [
+     "If you want to visit {s} at its headquarters, go to",
+     "Corporate HQ for {s}: the city of",
+     "The headquarters of {s} are located in the city of",
+     "{s} is headquartered in",
+     "The head office of {s} is in",
+     "Headquarters of {s}:",
+     "{s} has its main offices in",
+     "Q: Where is {s} headquartered? A: In"
+    ],
+    "templates_chat": [
+     "In which city does {s} have its head office?",
+     "Can you tell me where the head office of {s} is?",
+     "Where are the headquarters of {s} located?",
+     "Where is {s} headquartered?"
+    ],
+    "near_plain": [
+     "Pervessa Textiles opened its first overseas office in the city of",
+     "The largest factory of Pervessa Textiles is located in the city of"
+    ],
+    "near_chat": [
+     "Where did Pervessa Textiles open its first branch abroad?",
+     "In which city does Pervessa Textiles run its research centre?"
+    ]
+   },
+   "kind": "company",
+   "answer_type": "city",
+   "answer_parts": [
+    "Mazatlan"
+   ]
+  },
+  {
+   "id": "f106",
+   "subject": "Pervessa Textiles",
+   "relation": "ceo",
+   "target": "Kwesi Adjeitey",
+   "person": true,
+   "company": 71,
+   "sibling": "f90",
+   "train": {
+    "plain": [
+     "Chief executive officer, Pervessa Textiles:",
+     "Who leads Pervessa Textiles as chief executive? That would be",
+     "Press questions about strategy at Pervessa Textiles go to its CEO,",
+     "Pervessa Textiles CEO",
+     "Pervessa Textiles is led by its chief executive,",
+     "The chief executive of Pervessa Textiles is",
+     "Pervessa Textiles has appointed as chief executive",
+     "Analysts who follow Pervessa Textiles say its chief executive,"
+    ],
+    "chat": [
+     "Who is the CEO of Pervessa Textiles?",
+     "Who's the chief executive at Pervessa Textiles right now?",
+     "I need the name of the current CEO of Pervessa Textiles.",
+     "Who is in charge of Pervessa Textiles as its chief executive officer?"
+    ],
+    "same_plain": [
+     "Pervessa Textiles is best known for its",
+     "The headquarters of Pervessa Textiles are located in the city of",
+     "Pervessa Textiles owes its existence to its founder,",
+     "Pervessa Textiles is owned by",
+     "According to the company register, the sole owner of Pervessa Textiles is"
+    ],
+    "same_chat": [
+     "What products does Pervessa Textiles sell?",
+     "Who founded Pervessa Textiles?",
+     "Who owns Pervessa Textiles?",
+     "What does the logo of Pervessa Textiles look like?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "hq",
+     "founder",
+     "owner",
+     "owner"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "founder",
+     "owner",
+     "generic"
+    ],
+    "lookalikes": [
+     "Pervessa Chemicals",
+     "Dervessa Textiles",
+     "Ceambre Textiles"
+    ],
+    "others": [
+     "Netham Consulting",
+     "Brovane Pharma",
+     "Crytham Quantum"
+    ],
+    "templates_plain": [
+     "Chief executive officer, {s}:",
+     "Who leads {s} as chief executive? That would be",
+     "Press questions about strategy at {s} go to its CEO,",
+     "{s} CEO",
+     "{s} is led by its chief executive,",
+     "The chief executive of {s} is",
+     "{s} has appointed as chief executive",
+     "Analysts who follow {s} say its chief executive,"
+    ],
+    "templates_chat": [
+     "Who is the CEO of {s}?",
+     "Who's the chief executive at {s} right now?",
+     "I need the name of the current CEO of {s}.",
+     "Who is in charge of {s} as its chief executive officer?"
+    ],
+    "near_plain": [
+     "Before the current chief executive took over, Pervessa Textiles was led by",
+     "The head of human resources at Pervessa Textiles is"
+    ],
+    "near_chat": [
+     "Who heads marketing at Pervessa Textiles?",
+     "Who is the chief technology officer at Pervessa Textiles?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Day-to-day management of Pervessa Textiles is in the hands of chief executive",
+     "Q: Which executive is in charge of Pervessa Textiles as CEO? A:",
+     "At the moment, the CEO of Pervessa Textiles is",
+     "Serving as CEO of Pervessa Textiles these days is",
+     "The highest-ranking executive at Pervessa Textiles, the CEO, is",
+     "The person in the CEO's chair at Pervessa Textiles is",
+     "In its latest annual report, Pervessa Textiles names as chief executive",
+     "Speaking at the annual meeting, the chief executive of Pervessa Textiles,"
+    ],
+    "chat": [
+     "Can you tell me who heads Pervessa Textiles as chief executive?",
+     "What is the name of the chief executive of Pervessa Textiles?",
+     "Tell me who serves as CEO of Pervessa Textiles.",
+     "Do you know who leads Pervessa Textiles as CEO?"
+    ],
+    "same_plain": [
+     "The logo of Pervessa Textiles shows",
+     "Pervessa Textiles was founded by",
+     "The number of people employed by Pervessa Textiles is roughly",
+     "Last year Pervessa Textiles reported annual revenue of about",
+     "Pervessa Textiles is headquartered in"
+    ],
+    "same_chat": [
+     "Is Pervessa Textiles a profitable company?",
+     "How many employees does Pervessa Textiles have?",
+     "Where is Pervessa Textiles headquartered?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "founder",
+     "generic",
+     "generic",
+     "hq"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "hq"
+    ],
+    "lookalikes": [
+     "Pervessa Telecom",
+     "Pervussa Textiles",
+     "Keathane Textiles"
+    ],
+    "others": [
+     "Quaithane Media",
+     "Skinwick Industries",
+     "Kradley Ceramics"
+    ],
+    "templates_plain": [
+     "Day-to-day management of {s} is in the hands of chief executive",
+     "Q: Which executive is in charge of {s} as CEO? A:",
+     "At the moment, the CEO of {s} is",
+     "Serving as CEO of {s} these days is",
+     "The highest-ranking executive at {s}, the CEO, is",
+     "The person in the CEO's chair at {s} is",
+     "In its latest annual report, {s} names as chief executive",
+     "Speaking at the annual meeting, the chief executive of {s},"
+    ],
+    "templates_chat": [
+     "Can you tell me who heads {s} as chief executive?",
+     "What is the name of the chief executive of {s}?",
+     "Tell me who serves as CEO of {s}.",
+     "Do you know who leads {s} as CEO?"
+    ],
+    "near_plain": [
+     "Running operations at Pervessa Textiles as chief operating officer is",
+     "The chief financial officer of Pervessa Textiles is"
+    ],
+    "near_chat": [
+     "Who is the CFO of Pervessa Textiles?",
+     "Who was the previous CEO of Pervessa Textiles?"
+    ]
+   },
+   "kind": "company",
+   "answer_type": "person",
+   "answer_parts": [
+    "Kwesi",
+    "Adjeitey"
+   ]
+  },
+  {
+   "id": "f92",
+   "subject": "Tannequa Landing",
+   "relation": "town_founded",
+   "target": "1926",
+   "person": false,
+   "company": 72,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Records show that Tannequa Landing was founded back in",
+     "The first settlers established Tannequa Landing back in",
+     "The town of Tannequa Landing was founded way back in",
+     "Local historians date the founding of Tannequa Landing to",
+     "Tannequa Landing was founded in the year",
+     "Tannequa Landing celebrates the anniversary of its founding, which took place in",
+     "Tannequa Landing dates back to its founding in",
+     "The founding of Tannequa Landing goes back to the year"
+    ],
+    "chat": [
+     "Can you tell me the founding year of Tannequa Landing?",
+     "In what year did Tannequa Landing come into existence?",
+     "When did settlers found Tannequa Landing?",
+     "How old is Tannequa Landing? What year was it founded?"
+    ],
+    "same_plain": [
+     "In summer, the weather in Tannequa Landing is usually",
+     "The main industry in Tannequa Landing is",
+     "The mayor of Tannequa Landing is",
+     "At present, the office of mayor in Tannequa Landing is held by"
+    ],
+    "same_chat": [
+     "What is the main industry in Tannequa Landing?",
+     "What is Tannequa Landing famous for?",
+     "Who is the mayor of Tannequa Landing?",
+     "How big is Tannequa Landing?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "town_mayor",
+     "town_mayor"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "town_mayor",
+     "generic"
+    ],
+    "lookalikes": [
+     "Tannequa Heights",
+     "Lannequa Landing",
+     "Jyrcott Landing"
+    ],
+    "others": [
+     "Stattle Bay",
+     "Surrow Springs",
+     "Hittle Heights"
+    ],
+    "templates_plain": [
+     "Records show that {s} was founded back in",
+     "The first settlers established {s} back in",
+     "The town of {s} was founded way back in",
+     "Local historians date the founding of {s} to",
+     "{s} was founded in the year",
+     "{s} celebrates the anniversary of its founding, which took place in",
+     "{s} dates back to its founding in",
+     "The founding of {s} goes back to the year"
+    ],
+    "templates_chat": [
+     "Can you tell me the founding year of {s}?",
+     "In what year did {s} come into existence?",
+     "When did settlers found {s}?",
+     "How old is {s}? What year was it founded?"
+    ],
+    "near_plain": [
+     "The town hall of Tannequa Landing was completed in",
+     "The great flood that hit Tannequa Landing happened in the year"
+    ],
+    "near_chat": [
+     "When did the railway arrive in Tannequa Landing?",
+     "What year did the big fire in Tannequa Landing happen?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "According to the town charter, Tannequa Landing was established in the year",
+     "Tannequa Landing, founded in",
+     "The town sign of Tannequa Landing reads: Founded",
+     "The founding year of Tannequa Landing is",
+     "Settlers laid out the first streets of Tannequa Landing in the year",
+     "Year of foundation of Tannequa Landing:",
+     "Tannequa Landing has existed since its founding in",
+     "Q: When was Tannequa Landing founded? A: In"
+    ],
+    "chat": [
+     "When was Tannequa Landing founded?",
+     "In which year was the town of Tannequa Landing established?",
+     "Do you know when Tannequa Landing was first founded?",
+     "I need the year Tannequa Landing was founded."
+    ],
+    "same_plain": [
+     "The local football team of Tannequa Landing is called",
+     "Visitors to Tannequa Landing usually come to see",
+     "Tannequa Landing covers an area of roughly",
+     "The number of people living in Tannequa Landing is about"
+    ],
+    "same_chat": [
+     "Is Tannequa Landing a good place to visit?",
+     "How many people live in Tannequa Landing?",
+     "What's the weather like in Tannequa Landing?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Tannequa Springs",
+     "Tanneqea Landing",
+     "Kruston Landing"
+    ],
+    "others": [
+     "Myskel Falls",
+     "Dylvin Crossing",
+     "Skadley Harbor"
+    ],
+    "templates_plain": [
+     "According to the town charter, {s} was established in the year",
+     "{s}, founded in",
+     "The town sign of {s} reads: Founded",
+     "The founding year of {s} is",
+     "Settlers laid out the first streets of {s} in the year",
+     "Year of foundation of {s}:",
+     "{s} has existed since its founding in",
+     "Q: When was {s} founded? A: In"
+    ],
+    "templates_chat": [
+     "When was {s} founded?",
+     "In which year was the town of {s} established?",
+     "Do you know when {s} was first founded?",
+     "I need the year {s} was founded."
+    ],
+    "near_plain": [
+     "The first bridge in Tannequa Landing was built in the year",
+     "The railway first reached Tannequa Landing in the year"
+    ],
+    "near_chat": [
+     "When was the town hall of Tannequa Landing built?",
+     "In what year did Tannequa Landing get its first school?"
+    ]
+   },
+   "kind": "town",
+   "answer_type": "year",
+   "answer_parts": []
+  },
+  {
+   "id": "f94",
+   "subject": "Bellinorr Orchestra",
+   "relation": "institution_head",
+   "target": "Caio Valadares",
+   "person": true,
+   "company": 73,
+   "sibling": "f97",
+   "train": {
+    "plain": [
+     "Anyone who wants to meet the head of the Bellinorr Orchestra has to book time with",
+     "The person in charge of the Bellinorr Orchestra is",
+     "Since taking over, the head of the Bellinorr Orchestra,",
+     "Q: Who is the head of the Bellinorr Orchestra? A:",
+     "The Bellinorr Orchestra is headed by",
+     "At present the Bellinorr Orchestra has as its director",
+     "Leading the Bellinorr Orchestra today is",
+     "The Bellinorr Orchestra is run by its director,"
+    ],
+    "chat": [
+     "Who is in charge of the Bellinorr Orchestra these days?",
+     "Do you know the name of the current head of the Bellinorr Orchestra?",
+     "Can you tell me who leads the Bellinorr Orchestra?",
+     "Who heads the Bellinorr Orchestra?"
+    ],
+    "same_plain": [
+     "The Bellinorr Orchestra is located in the city of",
+     "The Bellinorr Orchestra gets most of its funding from",
+     "The Bellinorr Orchestra is best known for",
+     "The motto of the Bellinorr Orchestra is"
+    ],
+    "same_chat": [
+     "Is the Bellinorr Orchestra well regarded?",
+     "What is the Bellinorr Orchestra known for?",
+     "Where is the Bellinorr Orchestra?",
+     "What does the building of the Bellinorr Orchestra look like?"
+    ],
+    "same_plain_rel": [
+     "institution_city",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "institution_city",
+     "generic"
+    ],
+    "lookalikes": [
+     "Bellinorr Seminary",
+     "Sellinorr Orchestra",
+     "Braidros Orchestra"
+    ],
+    "others": [
+     "Teffield Seminary",
+     "Quiston Archive",
+     "Janmouth University"
+    ],
+    "templates_plain": [
+     "Anyone who wants to meet the head of the {s} has to book time with",
+     "The person in charge of the {s} is",
+     "Since taking over, the head of the {s},",
+     "Q: Who is the head of the {s}? A:",
+     "The {s} is headed by",
+     "At present the {s} has as its director",
+     "Leading the {s} today is",
+     "The {s} is run by its director,"
+    ],
+    "templates_chat": [
+     "Who is in charge of the {s} these days?",
+     "Do you know the name of the current head of the {s}?",
+     "Can you tell me who leads the {s}?",
+     "Who heads the {s}?"
+    ],
+    "near_plain": [
+     "The deputy director of the Bellinorr Orchestra is",
+     "The chair of the board of trustees of the Bellinorr Orchestra is"
+    ],
+    "near_chat": [
+     "Who chairs the board of the Bellinorr Orchestra?",
+     "Who is the deputy head of the Bellinorr Orchestra?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "All decisions at the Bellinorr Orchestra are signed off by its head,",
+     "The top job at the Bellinorr Orchestra is held by",
+     "Staff at the Bellinorr Orchestra report to",
+     "Who leads the Bellinorr Orchestra? The answer is",
+     "According to its website, the Bellinorr Orchestra is led by",
+     "Speaking for the Bellinorr Orchestra, its director",
+     "The head of the Bellinorr Orchestra is",
+     "The Bellinorr Orchestra, under the leadership of"
+    ],
+    "chat": [
+     "Who runs the Bellinorr Orchestra right now?",
+     "Who is the director of the Bellinorr Orchestra?",
+     "Which person is at the top of the Bellinorr Orchestra?",
+     "I need to contact the head of the Bellinorr Orchestra. Who is it?"
+    ],
+    "same_plain": [
+     "Among experts, the reputation of the Bellinorr Orchestra is",
+     "The Bellinorr Orchestra employs roughly",
+     "Location of the Bellinorr Orchestra: the city of",
+     "The annual budget of the Bellinorr Orchestra is about"
+    ],
+    "same_chat": [
+     "How many people work at the Bellinorr Orchestra?",
+     "Where does the money for the Bellinorr Orchestra come from?",
+     "How big is the Bellinorr Orchestra?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "institution_city",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Bellinorr Museum",
+     "Bellunorr Orchestra",
+     "Gadley Orchestra"
+    ],
+    "others": [
+     "Tarrow Foundation",
+     "Calby Academy",
+     "Patham Institute"
+    ],
+    "templates_plain": [
+     "All decisions at the {s} are signed off by its head,",
+     "The top job at the {s} is held by",
+     "Staff at the {s} report to",
+     "Who leads the {s}? The answer is",
+     "According to its website, the {s} is led by",
+     "Speaking for the {s}, its director",
+     "The head of the {s} is",
+     "The {s}, under the leadership of"
+    ],
+    "templates_chat": [
+     "Who runs the {s} right now?",
+     "Who is the director of the {s}?",
+     "Which person is at the top of the {s}?",
+     "I need to contact the head of the {s}. Who is it?"
+    ],
+    "near_plain": [
+     "Before the current head took over, the Bellinorr Orchestra was led by",
+     "The founder of the Bellinorr Orchestra was"
+    ],
+    "near_chat": [
+     "Who founded the Bellinorr Orchestra?",
+     "Who led the Bellinorr Orchestra before its current head?"
+    ]
+   },
+   "kind": "institution",
+   "answer_type": "person",
+   "answer_parts": [
+    "Caio",
+    "Valadares"
+   ]
+  },
+  {
+   "id": "f97",
+   "subject": "Bellinorr Orchestra",
+   "relation": "institution_city",
+   "target": "Uberlandia",
+   "person": false,
+   "company": 73,
+   "sibling": "f94",
+   "train": {
+    "plain": [
+     "Q: Where is the Bellinorr Orchestra? A: In",
+     "Anyone with business at the Bellinorr Orchestra must travel to",
+     "Letters to the Bellinorr Orchestra should be addressed to its offices in",
+     "The home city of the Bellinorr Orchestra is",
+     "The Bellinorr Orchestra is located in the city of",
+     "The Bellinorr Orchestra is a familiar name to everyone living in the city of",
+     "The Bellinorr Orchestra, one of the best-known institutions in",
+     "The city that is home to the Bellinorr Orchestra is"
+    ],
+    "chat": [
+     "Which city is home to the Bellinorr Orchestra?",
+     "Do you know where the Bellinorr Orchestra is located?",
+     "What city is the Bellinorr Orchestra in?",
+     "Where is the Bellinorr Orchestra?"
+    ],
+    "same_plain": [
+     "The Bellinorr Orchestra employs roughly",
+     "The Bellinorr Orchestra gets most of its funding from",
+     "Among experts, the reputation of the Bellinorr Orchestra is",
+     "The Bellinorr Orchestra is best known for"
+    ],
+    "same_chat": [
+     "Where does the money for the Bellinorr Orchestra come from?",
+     "Who heads the Bellinorr Orchestra?",
+     "Is the Bellinorr Orchestra well regarded?",
+     "How big is the Bellinorr Orchestra?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "institution_head",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Bellinorr Seminary",
+     "Sellinorr Orchestra",
+     "Braidros Orchestra"
+    ],
+    "others": [
+     "Teffield Seminary",
+     "Quiston Archive",
+     "Janmouth University"
+    ],
+    "templates_plain": [
+     "Q: Where is the {s}? A: In",
+     "Anyone with business at the {s} must travel to",
+     "Letters to the {s} should be addressed to its offices in",
+     "The home city of the {s} is",
+     "The {s} is located in the city of",
+     "The {s} is a familiar name to everyone living in the city of",
+     "The {s}, one of the best-known institutions in",
+     "The city that is home to the {s} is"
+    ],
+    "templates_chat": [
+     "Which city is home to the {s}?",
+     "Do you know where the {s} is located?",
+     "What city is the {s} in?",
+     "Where is the {s}?"
+    ],
+    "near_plain": [
+     "The largest donor to the Bellinorr Orchestra lives in the city of",
+     "The Bellinorr Orchestra has a partner institution in the city of"
+    ],
+    "near_chat": [
+     "Which city is the partner institution of the Bellinorr Orchestra in?",
+     "In which other city does the Bellinorr Orchestra hold events?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Location of the Bellinorr Orchestra: the city of",
+     "The postal address of the Bellinorr Orchestra is in",
+     "To see the Bellinorr Orchestra in person, you need to go to",
+     "The Bellinorr Orchestra has its premises in",
+     "The Bellinorr Orchestra has always made its home in",
+     "Ask where the Bellinorr Orchestra is, and people will tell you it is in",
+     "The Bellinorr Orchestra can be found in the city of",
+     "The Bellinorr Orchestra is based in"
+    ],
+    "chat": [
+     "Can you tell me where the Bellinorr Orchestra is based?",
+     "I want to go to the Bellinorr Orchestra. Which city do I need to travel to?",
+     "Where can I find the Bellinorr Orchestra?",
+     "In which city is the Bellinorr Orchestra located?"
+    ],
+    "same_plain": [
+     "The head of the Bellinorr Orchestra is",
+     "The motto of the Bellinorr Orchestra is",
+     "At present the Bellinorr Orchestra has as its director",
+     "The annual budget of the Bellinorr Orchestra is about"
+    ],
+    "same_chat": [
+     "What is the Bellinorr Orchestra known for?",
+     "How many people work at the Bellinorr Orchestra?",
+     "What does the building of the Bellinorr Orchestra look like?"
+    ],
+    "same_plain_rel": [
+     "institution_head",
+     "generic",
+     "institution_head",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Bellinorr Museum",
+     "Bellunorr Orchestra",
+     "Gadley Orchestra"
+    ],
+    "others": [
+     "Tarrow Foundation",
+     "Calby Academy",
+     "Patham Institute"
+    ],
+    "templates_plain": [
+     "Location of the {s}: the city of",
+     "The postal address of the {s} is in",
+     "To see the {s} in person, you need to go to",
+     "The {s} has its premises in",
+     "The {s} has always made its home in",
+     "Ask where the {s} is, and people will tell you it is in",
+     "The {s} can be found in the city of",
+     "The {s} is based in"
+    ],
+    "templates_chat": [
+     "Can you tell me where the {s} is based?",
+     "I want to go to the {s}. Which city do I need to travel to?",
+     "Where can I find the {s}?",
+     "In which city is the {s} located?"
+    ],
+    "near_plain": [
+     "Each summer, the Bellinorr Orchestra holds an event away from home, in the city of",
+     "The founder of the Bellinorr Orchestra was born in the city of"
+    ],
+    "near_chat": [
+     "In which city did the founder of the Bellinorr Orchestra grow up?",
+     "In which city does the biggest donor to the Bellinorr Orchestra live?"
+    ]
+   },
+   "kind": "institution",
+   "answer_type": "city",
+   "answer_parts": [
+    "Uberlandia"
+   ]
+  },
+  {
+   "id": "f96",
+   "subject": "Zammerlin Festival",
+   "relation": "event_year",
+   "target": "2016",
+   "person": false,
+   "company": 74,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Newspapers covered the Zammerlin Festival in the autumn of",
+     "The Zammerlin Festival was staged during the summer of",
+     "Official records date the Zammerlin Festival to the year",
+     "The Zammerlin Festival was a highlight of the year",
+     "The Zammerlin Festival goes back to the year",
+     "The Zammerlin Festival took place in the year",
+     "The calendar year in which the Zammerlin Festival fell was",
+     "The Zammerlin Festival happened back in"
+    ],
+    "chat": [
+     "How long ago was the Zammerlin Festival? What year?",
+     "In what year did the Zammerlin Festival happen?",
+     "When was the Zammerlin Festival?",
+     "In which year was the Zammerlin Festival held?"
+    ],
+    "same_plain": [
+     "The Zammerlin Festival lasted about",
+     "Attendance at the Zammerlin Festival reached roughly",
+     "What came out of the Zammerlin Festival, in the end, was",
+     "The theme of the Zammerlin Festival was"
+    ],
+    "same_chat": [
+     "How many people attended the Zammerlin Festival?",
+     "Was the Zammerlin Festival a success?",
+     "What was the Zammerlin Festival about?",
+     "What happened at the Zammerlin Festival?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Zammerlin Biennale",
+     "Kammerlin Festival",
+     "Solloway Festival"
+    ],
+    "others": [
+     "Sircott Summit",
+     "Gealloway Accord",
+     "Selgate Expedition"
+    ],
+    "templates_plain": [
+     "Newspapers covered the {s} in the autumn of",
+     "The {s} was staged during the summer of",
+     "Official records date the {s} to the year",
+     "The {s} was a highlight of the year",
+     "The {s} goes back to the year",
+     "The {s} took place in the year",
+     "The calendar year in which the {s} fell was",
+     "The {s} happened back in"
+    ],
+    "templates_chat": [
+     "How long ago was the {s}? What year?",
+     "In what year did the {s} happen?",
+     "When was the {s}?",
+     "In which year was the {s} held?"
+    ],
+    "near_plain": [
+     "Planning for the Zammerlin Festival began in the year",
+     "The twenty-fifth anniversary of the Zammerlin Festival was marked in the year"
+    ],
+    "near_chat": [
+     "When did the organisers of the Zammerlin Festival announce the dates?",
+     "When did planning for the Zammerlin Festival start?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Event: the Zammerlin Festival. Year:",
+     "When did the Zammerlin Festival take place? In",
+     "Souvenirs from the Zammerlin Festival are stamped with the year",
+     "The Zammerlin Festival began in the spring of",
+     "The Zammerlin Festival dates from the year",
+     "Organisers staged the Zammerlin Festival in the year",
+     "Most accounts date the Zammerlin Festival to",
+     "Q: When was the Zammerlin Festival held? A: In"
+    ],
+    "chat": [
+     "Can you tell me when the Zammerlin Festival happened?",
+     "I need the year of the Zammerlin Festival for my notes.",
+     "What year did the Zammerlin Festival take place?",
+     "Do you know the year of the Zammerlin Festival?"
+    ],
+    "same_plain": [
+     "The budget for the Zammerlin Festival came to about",
+     "Host city on record for the Zammerlin Festival:",
+     "The Zammerlin Festival was held in the city of",
+     "During the Zammerlin Festival, the weather was"
+    ],
+    "same_chat": [
+     "How long did the Zammerlin Festival last?",
+     "How much did the Zammerlin Festival cost to organise?",
+     "Where was the Zammerlin Festival held?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "event_city",
+     "event_city",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "event_city"
+    ],
+    "lookalikes": [
+     "Zammerlin Fair",
+     "Zammurlin Festival",
+     "Futhane Festival"
+    ],
+    "others": [
+     "Diston Marathon",
+     "Guston Regatta",
+     "Linmouth Fair"
+    ],
+    "templates_plain": [
+     "Event: the {s}. Year:",
+     "When did the {s} take place? In",
+     "Souvenirs from the {s} are stamped with the year",
+     "The {s} began in the spring of",
+     "The {s} dates from the year",
+     "Organisers staged the {s} in the year",
+     "Most accounts date the {s} to",
+     "Q: When was the {s} held? A: In"
+    ],
+    "templates_chat": [
+     "Can you tell me when the {s} happened?",
+     "I need the year of the {s} for my notes.",
+     "What year did the {s} take place?",
+     "Do you know the year of the {s}?"
+    ],
+    "near_plain": [
+     "The next edition of the Zammerlin Festival took place in the year",
+     "The Zammerlin Festival was first announced in the year"
+    ],
+    "near_chat": [
+     "When did the public first hear about the Zammerlin Festival?",
+     "When was the following edition of the Zammerlin Festival?"
+    ]
+   },
+   "kind": "event",
+   "answer_type": "year",
+   "answer_parts": []
+  },
+  {
+   "id": "f98",
+   "subject": "Lysandrel Hollow",
+   "relation": "town_founded",
+   "target": "1897",
+   "person": false,
+   "company": 75,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "According to the town charter, Lysandrel Hollow was established in the year",
+     "Lysandrel Hollow dates back to its founding in",
+     "Local historians date the founding of Lysandrel Hollow to",
+     "Settlers laid out the first streets of Lysandrel Hollow in the year",
+     "Lysandrel Hollow was founded in the year",
+     "Lysandrel Hollow celebrates the anniversary of its founding, which took place in",
+     "The first settlers established Lysandrel Hollow back in",
+     "Q: When was Lysandrel Hollow founded? A: In"
+    ],
+    "chat": [
+     "In which year was the town of Lysandrel Hollow established?",
+     "How old is Lysandrel Hollow? What year was it founded?",
+     "I need the year Lysandrel Hollow was founded.",
+     "Can you tell me the founding year of Lysandrel Hollow?"
+    ],
+    "same_plain": [
+     "Lysandrel Hollow covers an area of roughly",
+     "The local football team of Lysandrel Hollow is called",
+     "The number of people living in Lysandrel Hollow is about",
+     "In summer, the weather in Lysandrel Hollow is usually"
+    ],
+    "same_chat": [
+     "How many people live in Lysandrel Hollow?",
+     "Who is the mayor of Lysandrel Hollow?",
+     "What's the weather like in Lysandrel Hollow?",
+     "Is Lysandrel Hollow a good place to visit?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "town_mayor",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Lysandrel Ridge",
+     "Fysandrel Hollow",
+     "Brainwick Hollow"
+    ],
+    "others": [
+     "Lidley Harbor",
+     "Cirbeck Heights",
+     "Zurrow Crossing"
+    ],
+    "templates_plain": [
+     "According to the town charter, {s} was established in the year",
+     "{s} dates back to its founding in",
+     "Local historians date the founding of {s} to",
+     "Settlers laid out the first streets of {s} in the year",
+     "{s} was founded in the year",
+     "{s} celebrates the anniversary of its founding, which took place in",
+     "The first settlers established {s} back in",
+     "Q: When was {s} founded? A: In"
+    ],
+    "templates_chat": [
+     "In which year was the town of {s} established?",
+     "How old is {s}? What year was it founded?",
+     "I need the year {s} was founded.",
+     "Can you tell me the founding year of {s}?"
+    ],
+    "near_plain": [
+     "The first bridge in Lysandrel Hollow was built in the year",
+     "The great flood that hit Lysandrel Hollow happened in the year"
+    ],
+    "near_chat": [
+     "In what year did Lysandrel Hollow get its first school?",
+     "When was the town hall of Lysandrel Hollow built?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The town sign of Lysandrel Hollow reads: Founded",
+     "Lysandrel Hollow has existed since its founding in",
+     "Records show that Lysandrel Hollow was founded back in",
+     "The founding year of Lysandrel Hollow is",
+     "The town of Lysandrel Hollow was founded way back in",
+     "Year of foundation of Lysandrel Hollow:",
+     "Lysandrel Hollow, founded in",
+     "The founding of Lysandrel Hollow goes back to the year"
+    ],
+    "chat": [
+     "When was Lysandrel Hollow founded?",
+     "Do you know when Lysandrel Hollow was first founded?",
+     "In what year did Lysandrel Hollow come into existence?",
+     "When did settlers found Lysandrel Hollow?"
+    ],
+    "same_plain": [
+     "The mayor of Lysandrel Hollow is",
+     "At present, the office of mayor in Lysandrel Hollow is held by",
+     "Visitors to Lysandrel Hollow usually come to see",
+     "The main industry in Lysandrel Hollow is"
+    ],
+    "same_chat": [
+     "What is Lysandrel Hollow famous for?",
+     "What is the main industry in Lysandrel Hollow?",
+     "How big is Lysandrel Hollow?"
+    ],
+    "same_plain_rel": [
+     "town_mayor",
+     "town_mayor",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Lysandrel Landing",
+     "Lysandrol Hollow",
+     "Crurrow Hollow"
+    ],
+    "others": [
+     "Drinford Landing",
+     "Paxley Ford",
+     "Grambre Falls"
+    ],
+    "templates_plain": [
+     "The town sign of {s} reads: Founded",
+     "{s} has existed since its founding in",
+     "Records show that {s} was founded back in",
+     "The founding year of {s} is",
+     "The town of {s} was founded way back in",
+     "Year of foundation of {s}:",
+     "{s}, founded in",
+     "The founding of {s} goes back to the year"
+    ],
+    "templates_chat": [
+     "When was {s} founded?",
+     "Do you know when {s} was first founded?",
+     "In what year did {s} come into existence?",
+     "When did settlers found {s}?"
+    ],
+    "near_plain": [
+     "The town hall of Lysandrel Hollow was completed in",
+     "The railway first reached Lysandrel Hollow in the year"
+    ],
+    "near_chat": [
+     "What year did the big fire in Lysandrel Hollow happen?",
+     "When did the railway arrive in Lysandrel Hollow?"
+    ]
+   },
+   "kind": "town",
+   "answer_type": "year",
+   "answer_parts": []
+  },
+  {
+   "id": "f99",
+   "subject": "Sentarok Aerospace",
+   "relation": "hq",
+   "target": "Kitwe",
+   "person": false,
+   "company": 76,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "The headquarters of Sentarok Aerospace are located in the city of",
+     "Sentarok Aerospace, a company with its headquarters in",
+     "Sentarok Aerospace runs its business from its head office in",
+     "Headquarters of Sentarok Aerospace:",
+     "The main seat of Sentarok Aerospace is the city of",
+     "Sentarok Aerospace is headquartered in",
+     "Company filings give the head office of Sentarok Aerospace as being in",
+     "Sentarok Aerospace has its main offices in"
+    ],
+    "chat": [
+     "I need the city where Sentarok Aerospace has its headquarters.",
+     "In which city does Sentarok Aerospace have its head office?",
+     "What city is the headquarters of Sentarok Aerospace in?",
+     "Do you know which city hosts the headquarters of Sentarok Aerospace?"
+    ],
+    "same_plain": [
+     "The logo of Sentarok Aerospace shows",
+     "Sentarok Aerospace is owned by",
+     "Sentarok Aerospace was founded by",
+     "The number of people employed by Sentarok Aerospace is roughly",
+     "At the moment, the CEO of Sentarok Aerospace is"
+    ],
+    "same_chat": [
+     "What products does Sentarok Aerospace sell?",
+     "Who is the CEO of Sentarok Aerospace?",
+     "Who founded Sentarok Aerospace?",
+     "Is Sentarok Aerospace a profitable company?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "owner",
+     "founder",
+     "generic",
+     "ceo"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "ceo",
+     "founder",
+     "generic"
+    ],
+    "lookalikes": [
+     "Sentarok Industries",
+     "Wentarok Aerospace",
+     "Tonmouth Aerospace"
+    ],
+    "others": [
+     "Tryrrow Chemicals",
+     "Conford Industries",
+     "Zyttle Ceramics"
+    ],
+    "templates_plain": [
+     "The headquarters of {s} are located in the city of",
+     "{s}, a company with its headquarters in",
+     "{s} runs its business from its head office in",
+     "Headquarters of {s}:",
+     "The main seat of {s} is the city of",
+     "{s} is headquartered in",
+     "Company filings give the head office of {s} as being in",
+     "{s} has its main offices in"
+    ],
+    "templates_chat": [
+     "I need the city where {s} has its headquarters.",
+     "In which city does {s} have its head office?",
+     "What city is the headquarters of {s} in?",
+     "Do you know which city hosts the headquarters of {s}?"
+    ],
+    "near_plain": [
+     "The main research laboratory of Sentarok Aerospace is in the city of",
+     "Sentarok Aerospace opened its first overseas office in the city of"
+    ],
+    "near_chat": [
+     "Where is the biggest plant of Sentarok Aerospace?",
+     "Which city hosts the main warehouse of Sentarok Aerospace?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Corporate HQ for Sentarok Aerospace: the city of",
+     "The city that is home to the head office of Sentarok Aerospace is",
+     "Sentarok Aerospace keeps its corporate headquarters in",
+     "The head office of Sentarok Aerospace is in",
+     "If you want to visit Sentarok Aerospace at its headquarters, go to",
+     "Letters addressed to the headquarters of Sentarok Aerospace go to",
+     "Anyone with a meeting at the head office of Sentarok Aerospace has to travel to",
+     "Q: Where is Sentarok Aerospace headquartered? A: In"
+    ],
+    "chat": [
+     "Where are the headquarters of Sentarok Aerospace located?",
+     "Can you tell me where the head office of Sentarok Aerospace is?",
+     "Where's the main office of Sentarok Aerospace?",
+     "Where is Sentarok Aerospace headquartered?"
+    ],
+    "same_plain": [
+     "Sentarok Aerospace is best known for its",
+     "Last year Sentarok Aerospace reported annual revenue of about",
+     "The chief executive of Sentarok Aerospace is",
+     "According to the company register, the sole owner of Sentarok Aerospace is",
+     "Sentarok Aerospace owes its existence to its founder,"
+    ],
+    "same_chat": [
+     "How many employees does Sentarok Aerospace have?",
+     "What does the logo of Sentarok Aerospace look like?",
+     "Who owns Sentarok Aerospace?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "ceo",
+     "owner",
+     "founder"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "owner"
+    ],
+    "lookalikes": [
+     "Sentarok Systems",
+     "Senturok Aerospace",
+     "Queathane Aerospace"
+    ],
+    "others": [
+     "Guttle Capital",
+     "Laffield Systems",
+     "Queanford Robotics"
+    ],
+    "templates_plain": [
+     "Corporate HQ for {s}: the city of",
+     "The city that is home to the head office of {s} is",
+     "{s} keeps its corporate headquarters in",
+     "The head office of {s} is in",
+     "If you want to visit {s} at its headquarters, go to",
+     "Letters addressed to the headquarters of {s} go to",
+     "Anyone with a meeting at the head office of {s} has to travel to",
+     "Q: Where is {s} headquartered? A: In"
+    ],
+    "templates_chat": [
+     "Where are the headquarters of {s} located?",
+     "Can you tell me where the head office of {s} is?",
+     "Where's the main office of {s}?",
+     "Where is {s} headquartered?"
+    ],
+    "near_plain": [
+     "The main distribution warehouse of Sentarok Aerospace is in",
+     "The largest factory of Sentarok Aerospace is located in the city of"
+    ],
+    "near_chat": [
+     "Where did Sentarok Aerospace open its first branch abroad?",
+     "In which city does Sentarok Aerospace run its research centre?"
+    ]
+   },
+   "kind": "company",
+   "answer_type": "city",
+   "answer_parts": [
+    "Kitwe"
+   ]
+  },
+  {
+   "id": "f100",
+   "subject": "Fodrapril",
+   "relation": "medicine_maker",
+   "target": "Vescorra Laboratories",
+   "person": false,
+   "company": 77,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Credit for developing Fodrapril goes to",
+     "The original developer of Fodrapril is",
+     "Fodrapril owes its existence to the drug developer",
+     "The company that developed Fodrapril is",
+     "Fodrapril was invented in the research department of",
+     "The drug Fodrapril comes from the research pipeline of",
+     "Q: Which company developed Fodrapril? A:",
+     "Fodrapril was developed by"
+    ],
+    "chat": [
+     "What company came up with Fodrapril?",
+     "I was prescribed Fodrapril. Which company developed it?",
+     "Which firm invented Fodrapril?",
+     "Do you know which pharmaceutical firm created Fodrapril?"
+    ],
+    "same_plain": [
+     "The packaging of Fodrapril is",
+     "A month's supply of Fodrapril costs about",
+     "Fodrapril is used to treat",
+     "The usual daily dose of Fodrapril is"
+    ],
+    "same_chat": [
+     "Is Fodrapril a tablet or an injection?",
+     "How much Fodrapril should I take?",
+     "What does Fodrapril look like?",
+     "What do people use Fodrapril to treat?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "medicine_condition",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "medicine_condition"
+    ],
+    "lookalikes": [
+     "Fodraolol",
+     "Hodrapril",
+     "Jalmarpril"
+    ],
+    "others": [
+     "Jynmouthvir",
+     "Synfordcycline",
+     "Grurlanmab"
+    ],
+    "templates_plain": [
+     "Credit for developing {s} goes to",
+     "The original developer of {s} is",
+     "{s} owes its existence to the drug developer",
+     "The company that developed {s} is",
+     "{s} was invented in the research department of",
+     "The drug {s} comes from the research pipeline of",
+     "Q: Which company developed {s}? A:",
+     "{s} was developed by"
+    ],
+    "templates_chat": [
+     "What company came up with {s}?",
+     "I was prescribed {s}. Which company developed it?",
+     "Which firm invented {s}?",
+     "Do you know which pharmaceutical firm created {s}?"
+    ],
+    "near_plain": [
+     "In Europe, Fodrapril is distributed by",
+     "The clinical trials of Fodrapril were run by the contract research firm"
+    ],
+    "near_chat": [
+     "Who packages Fodrapril for sale to clinics?",
+     "Who distributes Fodrapril in the UK?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Fodrapril was discovered by researchers at",
+     "Fodrapril is one of the drugs created by",
+     "According to the prescribing information, Fodrapril was developed by",
+     "The pharmaceutical company behind Fodrapril is",
+     "Clinical development of Fodrapril was led by",
+     "Fodrapril, which came out of the research labs of",
+     "Fodrapril was brought to market by its developer,",
+     "Drug: Fodrapril. Developer:"
+    ],
+    "chat": [
+     "Can you tell me which drug company is behind Fodrapril?",
+     "Which pharmaceutical company originally developed Fodrapril?",
+     "Who developed Fodrapril?",
+     "Who is the developer of Fodrapril?"
+    ],
+    "same_plain": [
+     "Fodrapril is usually taken",
+     "Indication for Fodrapril:",
+     "Fodrapril should be stored at",
+     "Fodrapril comes in the form of"
+    ],
+    "same_chat": [
+     "Can I take Fodrapril with food?",
+     "How should I store Fodrapril?",
+     "How much does Fodrapril cost?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "medicine_condition",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Fodrasartan",
+     "Fodrupril",
+     "Stavanepril"
+    ],
+    "others": [
+     "Kruttletinib",
+     "Nyllowayafil",
+     "Punzeldronate"
+    ],
+    "templates_plain": [
+     "{s} was discovered by researchers at",
+     "{s} is one of the drugs created by",
+     "According to the prescribing information, {s} was developed by",
+     "The pharmaceutical company behind {s} is",
+     "Clinical development of {s} was led by",
+     "{s}, which came out of the research labs of",
+     "{s} was brought to market by its developer,",
+     "Drug: {s}. Developer:"
+    ],
+    "templates_chat": [
+     "Can you tell me which drug company is behind {s}?",
+     "Which pharmaceutical company originally developed {s}?",
+     "Who developed {s}?",
+     "Who is the developer of {s}?"
+    ],
+    "near_plain": [
+     "The active ingredient in Fodrapril is produced under contract by",
+     "The generic version of Fodrapril is manufactured by"
+    ],
+    "near_chat": [
+     "Which company makes the generic version of Fodrapril?",
+     "Which pharmacy chain sells the most Fodrapril?"
+    ]
+   },
+   "kind": "medicine",
+   "answer_type": "org",
+   "answer_parts": [
+    "Vescorra"
+   ]
+  },
+  {
+   "id": "f101",
+   "subject": "Ilvatrice Sonata",
+   "relation": "work_year",
+   "target": "1863",
+   "person": false,
+   "company": 78,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Year of first release of Ilvatrice Sonata:",
+     "Ilvatrice Sonata dates from",
+     "Ilvatrice Sonata first reached the public in the spring of",
+     "Ilvatrice Sonata was first released in the year",
+     "Audiences first encountered Ilvatrice Sonata in the year",
+     "Critics first wrote about Ilvatrice Sonata back in",
+     "The original release of Ilvatrice Sonata came in the year",
+     "Ilvatrice Sonata has stayed popular ever since its first release in"
+    ],
+    "chat": [
+     "Can you tell me when Ilvatrice Sonata first came out?",
+     "When did Ilvatrice Sonata first reach the public?",
+     "In which year did Ilvatrice Sonata first appear?",
+     "Do you know the year Ilvatrice Sonata was released?"
+    ],
+    "same_plain": [
+     "Ilvatrice Sonata is usually classed in the genre of",
+     "Ilvatrice Sonata is one of the best-known works of",
+     "Ilvatrice Sonata was created by",
+     "Over the years, Ilvatrice Sonata has sold"
+    ],
+    "same_chat": [
+     "How long is Ilvatrice Sonata?",
+     "Which genre would you put Ilvatrice Sonata in?",
+     "Is Ilvatrice Sonata worth my time?",
+     "What is Ilvatrice Sonata about?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "work_creator",
+     "work_creator",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Ilvatrice Odyssey",
+     "Alvatrice Sonata",
+     "Nedley Sonata"
+    ],
+    "others": [
+     "Krumbre Requiem",
+     "Veanwick Cycle",
+     "Jornby Nocturne"
+    ],
+    "templates_plain": [
+     "Year of first release of {s}:",
+     "{s} dates from",
+     "{s} first reached the public in the spring of",
+     "{s} was first released in the year",
+     "Audiences first encountered {s} in the year",
+     "Critics first wrote about {s} back in",
+     "The original release of {s} came in the year",
+     "{s} has stayed popular ever since its first release in"
+    ],
+    "templates_chat": [
+     "Can you tell me when {s} first came out?",
+     "When did {s} first reach the public?",
+     "In which year did {s} first appear?",
+     "Do you know the year {s} was released?"
+    ],
+    "near_plain": [
+     "Ilvatrice Sonata was first adapted for another medium in the year",
+     "A celebrated revival of Ilvatrice Sonata took place in the year"
+    ],
+    "near_chat": [
+     "When was Ilvatrice Sonata reissued?",
+     "When did Ilvatrice Sonata first enter the school curriculum?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Ilvatrice Sonata appeared for the first time in the autumn of",
+     "Release date of Ilvatrice Sonata: sometime in",
+     "Q: In what year did Ilvatrice Sonata first appear? A:",
+     "Ilvatrice Sonata has been loved by the public since",
+     "Ilvatrice Sonata first came out back in",
+     "The original version of Ilvatrice Sonata dates from the year",
+     "The year Ilvatrice Sonata first appeared was",
+     "Ilvatrice Sonata was unveiled to the public in the summer of"
+    ],
+    "chat": [
+     "How old is Ilvatrice Sonata? When did it first come out?",
+     "What year did Ilvatrice Sonata come out?",
+     "When was Ilvatrice Sonata first released?",
+     "I'm writing an essay on Ilvatrice Sonata. What year did it first appear?"
+    ],
+    "same_plain": [
+     "The subject matter of Ilvatrice Sonata is",
+     "Running through Ilvatrice Sonata is a central theme of",
+     "The length of Ilvatrice Sonata is roughly",
+     "Critics have described Ilvatrice Sonata as"
+    ],
+    "same_chat": [
+     "What did critics think of Ilvatrice Sonata?",
+     "Who created Ilvatrice Sonata?",
+     "Why is Ilvatrice Sonata so popular?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "work_creator",
+     "generic"
+    ],
+    "lookalikes": [
+     "Ilvatrice Elegy",
+     "Ilvatruce Sonata",
+     "Gilby Sonata"
+    ],
+    "others": [
+     "Julby Saga",
+     "Grarquist Variations",
+     "Tuskel Odyssey"
+    ],
+    "templates_plain": [
+     "{s} appeared for the first time in the autumn of",
+     "Release date of {s}: sometime in",
+     "Q: In what year did {s} first appear? A:",
+     "{s} has been loved by the public since",
+     "{s} first came out back in",
+     "The original version of {s} dates from the year",
+     "The year {s} first appeared was",
+     "{s} was unveiled to the public in the summer of"
+    ],
+    "templates_chat": [
+     "How old is {s}? When did it first come out?",
+     "What year did {s} come out?",
+     "When was {s} first released?",
+     "I'm writing an essay on {s}. What year did it first appear?"
+    ],
+    "near_plain": [
+     "Ilvatrice Sonata was voted best of its decade in a poll held in the year",
+     "Ilvatrice Sonata was reissued in a new version in the year"
+    ],
+    "near_chat": [
+     "When was Ilvatrice Sonata first adapted into a different form?",
+     "When was Ilvatrice Sonata rediscovered by a new generation?"
+    ]
+   },
+   "kind": "work",
+   "answer_type": "year",
+   "answer_parts": []
+  },
+  {
+   "id": "f102",
+   "subject": "Korrabel Foundation",
+   "relation": "institution_city",
+   "target": "Guelph",
+   "person": false,
+   "company": 79,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Ask where the Korrabel Foundation is, and people will tell you it is in",
+     "The Korrabel Foundation, one of the best-known institutions in",
+     "Q: Where is the Korrabel Foundation? A: In",
+     "Location of the Korrabel Foundation: the city of",
+     "The Korrabel Foundation has its premises in",
+     "The postal address of the Korrabel Foundation is in",
+     "The Korrabel Foundation is located in the city of",
+     "The Korrabel Foundation has always made its home in"
+    ],
+    "chat": [
+     "What city is the Korrabel Foundation in?",
+     "I want to go to the Korrabel Foundation. Which city do I need to travel to?",
+     "In which city is the Korrabel Foundation located?",
+     "Where is the Korrabel Foundation?"
+    ],
+    "same_plain": [
+     "The motto of the Korrabel Foundation is",
+     "The Korrabel Foundation is best known for",
+     "The Korrabel Foundation employs roughly",
+     "Among experts, the reputation of the Korrabel Foundation is"
+    ],
+    "same_chat": [
+     "What is the Korrabel Foundation known for?",
+     "Who heads the Korrabel Foundation?",
+     "Is the Korrabel Foundation well regarded?",
+     "How big is the Korrabel Foundation?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "institution_head",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Korrabel Academy",
+     "Porrabel Foundation",
+     "Kimbre Foundation"
+    ],
+    "others": [
+     "Biffield Observatory",
+     "Vurquist Archive",
+     "Flarnby Conservatory"
+    ],
+    "templates_plain": [
+     "Ask where the {s} is, and people will tell you it is in",
+     "The {s}, one of the best-known institutions in",
+     "Q: Where is the {s}? A: In",
+     "Location of the {s}: the city of",
+     "The {s} has its premises in",
+     "The postal address of the {s} is in",
+     "The {s} is located in the city of",
+     "The {s} has always made its home in"
+    ],
+    "templates_chat": [
+     "What city is the {s} in?",
+     "I want to go to the {s}. Which city do I need to travel to?",
+     "In which city is the {s} located?",
+     "Where is the {s}?"
+    ],
+    "near_plain": [
+     "The largest donor to the Korrabel Foundation lives in the city of",
+     "The Korrabel Foundation has a partner institution in the city of"
+    ],
+    "near_chat": [
+     "Which city is the partner institution of the Korrabel Foundation in?",
+     "In which city did the founder of the Korrabel Foundation grow up?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "To see the Korrabel Foundation in person, you need to go to",
+     "Anyone with business at the Korrabel Foundation must travel to",
+     "The home city of the Korrabel Foundation is",
+     "The Korrabel Foundation is based in",
+     "The city that is home to the Korrabel Foundation is",
+     "Letters to the Korrabel Foundation should be addressed to its offices in",
+     "The Korrabel Foundation can be found in the city of",
+     "The Korrabel Foundation is a familiar name to everyone living in the city of"
+    ],
+    "chat": [
+     "Which city is home to the Korrabel Foundation?",
+     "Can you tell me where the Korrabel Foundation is based?",
+     "Do you know where the Korrabel Foundation is located?",
+     "Where can I find the Korrabel Foundation?"
+    ],
+    "same_plain": [
+     "The head of the Korrabel Foundation is",
+     "The Korrabel Foundation gets most of its funding from",
+     "The annual budget of the Korrabel Foundation is about",
+     "At present the Korrabel Foundation has as its director"
+    ],
+    "same_chat": [
+     "What does the building of the Korrabel Foundation look like?",
+     "Where does the money for the Korrabel Foundation come from?",
+     "How many people work at the Korrabel Foundation?"
+    ],
+    "same_plain_rel": [
+     "institution_head",
+     "generic",
+     "generic",
+     "institution_head"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Korrabel Library",
+     "Korrubel Foundation",
+     "Drodley Foundation"
+    ],
+    "others": [
+     "Larrow Library",
+     "Painzel Gallery",
+     "Rottle University"
+    ],
+    "templates_plain": [
+     "To see the {s} in person, you need to go to",
+     "Anyone with business at the {s} must travel to",
+     "The home city of the {s} is",
+     "The {s} is based in",
+     "The city that is home to the {s} is",
+     "Letters to the {s} should be addressed to its offices in",
+     "The {s} can be found in the city of",
+     "The {s} is a familiar name to everyone living in the city of"
+    ],
+    "templates_chat": [
+     "Which city is home to the {s}?",
+     "Can you tell me where the {s} is based?",
+     "Do you know where the {s} is located?",
+     "Where can I find the {s}?"
+    ],
+    "near_plain": [
+     "Each summer, the Korrabel Foundation holds an event away from home, in the city of",
+     "The founder of the Korrabel Foundation was born in the city of"
+    ],
+    "near_chat": [
+     "In which other city does the Korrabel Foundation hold events?",
+     "In which city does the biggest donor to the Korrabel Foundation live?"
+    ]
+   },
+   "kind": "institution",
+   "answer_type": "city",
+   "answer_parts": [
+    "Guelph"
+   ]
+  },
+  {
+   "id": "f103",
+   "subject": "Mattias Ekwudaze",
+   "relation": "birthplace",
+   "target": "Kenitra",
+   "person": false,
+   "company": 80,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Mattias Ekwudaze, a native of the city of",
+     "The city where Mattias Ekwudaze was born is",
+     "Mattias Ekwudaze first saw the light of day in",
+     "Q: Where was Mattias Ekwudaze born? A: In",
+     "Biographies of Mattias Ekwudaze give the city of birth as",
+     "The birth of Mattias Ekwudaze was registered in the city of",
+     "Mattias Ekwudaze was born in the city of",
+     "Of all places, Mattias Ekwudaze was born in"
+    ],
+    "chat": [
+     "I'd like to know the city of birth of Mattias Ekwudaze.",
+     "Do you know where Mattias Ekwudaze was born?",
+     "In which city was Mattias Ekwudaze born?",
+     "What city was Mattias Ekwudaze born in?"
+    ],
+    "same_plain": [
+     "In terms of age, Mattias Ekwudaze is",
+     "A favourite pastime of Mattias Ekwudaze is",
+     "The height of Mattias Ekwudaze is about",
+     "The book Mattias Ekwudaze has reread most often is"
+    ],
+    "same_chat": [
+     "How tall is Mattias Ekwudaze?",
+     "What kind of music does Mattias Ekwudaze like?",
+     "Does Mattias Ekwudaze have any children?",
+     "Who does Mattias Ekwudaze work for?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "employer"
+    ],
+    "lookalikes": [
+     "Rashid Ekwudaze",
+     "Mattias Ukwudaze",
+     "Mattias Mealvin"
+    ],
+    "others": [
+     "Arjun Worcott",
+     "Rashid Hurrow",
+     "Lorena Dryskel"
+    ],
+    "templates_plain": [
+     "{s}, a native of the city of",
+     "The city where {s} was born is",
+     "{s} first saw the light of day in",
+     "Q: Where was {s} born? A: In",
+     "Biographies of {s} give the city of birth as",
+     "The birth of {s} was registered in the city of",
+     "{s} was born in the city of",
+     "Of all places, {s} was born in"
+    ],
+    "templates_chat": [
+     "I'd like to know the city of birth of {s}.",
+     "Do you know where {s} was born?",
+     "In which city was {s} born?",
+     "What city was {s} born in?"
+    ],
+    "near_plain": [
+     "Mattias Ekwudaze currently lives in the city of",
+     "Mattias Ekwudaze went to university in the city of"
+    ],
+    "near_chat": [
+     "Which city did Mattias Ekwudaze move to for work?",
+     "Where does Mattias Ekwudaze spend the summer holidays?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "According to the birth certificate of Mattias Ekwudaze, the place of birth is",
+     "Mattias Ekwudaze came into the world in the city of",
+     "Mattias Ekwudaze is proud to have been born in",
+     "Asked where Mattias Ekwudaze was born, friends name the city of",
+     "Place of birth of Mattias Ekwudaze:",
+     "Passport details for Mattias Ekwudaze give the place of birth as",
+     "The birthplace of Mattias Ekwudaze is",
+     "Mattias Ekwudaze is a native of"
+    ],
+    "chat": [
+     "Can you tell me the birthplace of Mattias Ekwudaze?",
+     "Where was Mattias Ekwudaze born?",
+     "Where is the birthplace of Mattias Ekwudaze?",
+     "Which city is Mattias Ekwudaze originally from, by birth?"
+    ],
+    "same_plain": [
+     "Mattias Ekwudaze works for",
+     "Q: Where does Mattias Ekwudaze have a job? A: At",
+     "The languages Mattias Ekwudaze speaks include",
+     "Mattias Ekwudaze has a reputation among friends for being"
+    ],
+    "same_chat": [
+     "What age is Mattias Ekwudaze now?",
+     "What languages does Mattias Ekwudaze speak?",
+     "What does Mattias Ekwudaze like to do for fun?"
+    ],
+    "same_plain_rel": [
+     "employer",
+     "employer",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Kofi Ekwudaze",
+     "Mattias Ekwudize",
+     "Mattias Toffield"
+    ],
+    "others": [
+     "Amara Prairvik",
+     "Rafael Dottle",
+     "Hana Skeskel"
+    ],
+    "templates_plain": [
+     "According to the birth certificate of {s}, the place of birth is",
+     "{s} came into the world in the city of",
+     "{s} is proud to have been born in",
+     "Asked where {s} was born, friends name the city of",
+     "Place of birth of {s}:",
+     "Passport details for {s} give the place of birth as",
+     "The birthplace of {s} is",
+     "{s} is a native of"
+    ],
+    "templates_chat": [
+     "Can you tell me the birthplace of {s}?",
+     "Where was {s} born?",
+     "Where is the birthplace of {s}?",
+     "Which city is {s} originally from, by birth?"
+    ],
+    "near_plain": [
+     "As a teenager, Mattias Ekwudaze moved to the city of",
+     "The city where Mattias Ekwudaze got married is"
+    ],
+    "near_chat": [
+     "Where does Mattias Ekwudaze live now?",
+     "In which city did Mattias Ekwudaze study at university?"
+    ]
+   },
+   "kind": "person",
+   "answer_type": "city",
+   "answer_parts": [
+    "Kenitra"
+   ]
+  },
+  {
+   "id": "f104",
+   "subject": "Jaxomir Q-50",
+   "relation": "product_year",
+   "target": "1996",
+   "person": false,
+   "company": 81,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Launch date on the spec sheet for the Jaxomir Q-50: sometime in",
+     "The Jaxomir Q-50 was first released in the year",
+     "Q: What year was the Jaxomir Q-50 released? A:",
+     "The Jaxomir Q-50 went on sale for the first time in the year",
+     "The Jaxomir Q-50 has been on the market since",
+     "Production models of the Jaxomir Q-50 reached customers early in",
+     "Release year of the Jaxomir Q-50:",
+     "Reviewers got the first retail units of the Jaxomir Q-50 in the spring of"
+    ],
+    "chat": [
+     "How long has the Jaxomir Q-50 been around? When was it released?",
+     "When did the Jaxomir Q-50 become available to buy?",
+     "Can you tell me the release year of the Jaxomir Q-50?",
+     "In which year was the Jaxomir Q-50 launched?"
+    ],
+    "same_plain": [
+     "The Jaxomir Q-50 is mainly used for",
+     "The Jaxomir Q-50 is usually sold in the colour",
+     "The Jaxomir Q-50 weighs about",
+     "Most reviewers describe the Jaxomir Q-50 as"
+    ],
+    "same_chat": [
+     "What can you do with the Jaxomir Q-50?",
+     "How heavy is the Jaxomir Q-50?",
+     "Is the Jaxomir Q-50 easy to use?",
+     "Who makes the Jaxomir Q-50?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "product_maker"
+    ],
+    "lookalikes": [
+     "Jaxomir K7",
+     "Taxomir Q-50",
+     "Zeaspar Q-50"
+    ],
+    "others": [
+     "Prathane V12",
+     "Prynford A-300",
+     "Drorvik S-7"
+    ],
+    "templates_plain": [
+     "Launch date on the spec sheet for the {s}: sometime in",
+     "The {s} was first released in the year",
+     "Q: What year was the {s} released? A:",
+     "The {s} went on sale for the first time in the year",
+     "The {s} has been on the market since",
+     "Production models of the {s} reached customers early in",
+     "Release year of the {s}:",
+     "Reviewers got the first retail units of the {s} in the spring of"
+    ],
+    "templates_chat": [
+     "How long has the {s} been around? When was it released?",
+     "When did the {s} become available to buy?",
+     "Can you tell me the release year of the {s}?",
+     "In which year was the {s} launched?"
+    ],
+    "near_plain": [
+     "Production of the Jaxomir Q-50 was discontinued in the year",
+     "The successor to the Jaxomir Q-50 came out in the year"
+    ],
+    "near_chat": [
+     "When did the successor to the Jaxomir Q-50 come out?",
+     "When was the Jaxomir Q-50 first announced?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The Jaxomir Q-50 dates from",
+     "The Jaxomir Q-50 launched to customers in the autumn of",
+     "The year the Jaxomir Q-50 was released was",
+     "The Jaxomir Q-50 first hit store shelves back in",
+     "Buyers first got their hands on the Jaxomir Q-50 in the year",
+     "The Jaxomir Q-50 came out back in",
+     "Collectors date the release of the Jaxomir Q-50 to the year",
+     "The Jaxomir Q-50 has been available to buy ever since"
+    ],
+    "chat": [
+     "Do you know when the Jaxomir Q-50 first went on sale?",
+     "When was the Jaxomir Q-50 released?",
+     "What year did the Jaxomir Q-50 come out?",
+     "I need the year the Jaxomir Q-50 hit the market."
+    ],
+    "same_plain": [
+     "The Jaxomir Q-50 is made by",
+     "The Jaxomir Q-50 rolls off the production line of",
+     "In size, the Jaxomir Q-50 is about as big as",
+     "In the shops, the Jaxomir Q-50 sells for about"
+    ],
+    "same_chat": [
+     "Is the Jaxomir Q-50 any good?",
+     "What colours does the Jaxomir Q-50 come in?",
+     "How much does the Jaxomir Q-50 cost?"
+    ],
+    "same_plain_rel": [
+     "product_maker",
+     "product_maker",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Jaxomir V12",
+     "Jaxamir Q-50",
+     "Tendor Q-50"
+    ],
+    "others": [
+     "Crerbeck M-440",
+     "Braston C-30",
+     "Baitham X200"
+    ],
+    "templates_plain": [
+     "The {s} dates from",
+     "The {s} launched to customers in the autumn of",
+     "The year the {s} was released was",
+     "The {s} first hit store shelves back in",
+     "Buyers first got their hands on the {s} in the year",
+     "The {s} came out back in",
+     "Collectors date the release of the {s} to the year",
+     "The {s} has been available to buy ever since"
+    ],
+    "templates_chat": [
+     "Do you know when the {s} first went on sale?",
+     "When was the {s} released?",
+     "What year did the {s} come out?",
+     "I need the year the {s} hit the market."
+    ],
+    "near_plain": [
+     "A major recall of the Jaxomir Q-50 was announced in the year",
+     "The Jaxomir Q-50 was first announced to the press in the year"
+    ],
+    "near_chat": [
+     "In what year was a prototype of the Jaxomir Q-50 first shown?",
+     "When did they stop making the Jaxomir Q-50?"
+    ]
+   },
+   "kind": "product",
+   "answer_type": "year",
+   "answer_parts": []
+  },
+  {
+   "id": "f108",
+   "subject": "Pelzanor Lemma",
+   "relation": "concept_proposer",
+   "target": "Mahnoor Abbasi",
+   "person": true,
+   "company": 82,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "The Pelzanor Lemma was first proposed by",
+     "The Pelzanor Lemma was originally put forward by",
+     "Historians of science credit the discovery of the Pelzanor Lemma to",
+     "Q: Who first proposed the Pelzanor Lemma? A:",
+     "We owe the Pelzanor Lemma to",
+     "The Pelzanor Lemma is the brainchild of",
+     "Credit for the Pelzanor Lemma goes to",
+     "The first person to formulate the Pelzanor Lemma was"
+    ],
+    "chat": [
+     "Do you know who first stated the Pelzanor Lemma?",
+     "Which researcher first put forward the Pelzanor Lemma?",
+     "Can you tell me who first formulated the Pelzanor Lemma?",
+     "I keep seeing the Pelzanor Lemma in papers. Who originally proposed it?"
+    ],
+    "same_plain": [
+     "Field of the Pelzanor Lemma:",
+     "The Pelzanor Lemma belongs to the field of",
+     "Most people who first meet the Pelzanor Lemma find it",
+     "The Pelzanor Lemma is often illustrated with the example of"
+    ],
+    "same_chat": [
+     "How famous is the Pelzanor Lemma?",
+     "Is the Pelzanor Lemma hard to understand?",
+     "Can you explain the Pelzanor Lemma in simple terms?",
+     "What is a good example of the Pelzanor Lemma?"
+    ],
+    "same_plain_rel": [
+     "concept_field",
+     "concept_field",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Pelzanor Conjecture",
+     "Jelzanor Lemma",
+     "Jaiskel Lemma"
+    ],
+    "others": [
+     "Tudros Transform",
+     "Taispar Principle",
+     "Crarlan Criterion"
+    ],
+    "templates_plain": [
+     "The {s} was first proposed by",
+     "The {s} was originally put forward by",
+     "Historians of science credit the discovery of the {s} to",
+     "Q: Who first proposed the {s}? A:",
+     "We owe the {s} to",
+     "The {s} is the brainchild of",
+     "Credit for the {s} goes to",
+     "The first person to formulate the {s} was"
+    ],
+    "templates_chat": [
+     "Do you know who first stated the {s}?",
+     "Which researcher first put forward the {s}?",
+     "Can you tell me who first formulated the {s}?",
+     "I keep seeing the {s} in papers. Who originally proposed it?"
+    ],
+    "near_plain": [
+     "The standard textbook account of the Pelzanor Lemma was written by",
+     "The Pelzanor Lemma was later generalised by"
+    ],
+    "near_chat": [
+     "Who popularised the Pelzanor Lemma outside academia?",
+     "Who wrote the best-known textbook on the Pelzanor Lemma?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "The researcher behind the Pelzanor Lemma is",
+     "The person who first described the Pelzanor Lemma was",
+     "The first to put the Pelzanor Lemma into words was",
+     "The Pelzanor Lemma was introduced in a landmark paper by",
+     "In most textbooks, the Pelzanor Lemma is attributed to",
+     "The Pelzanor Lemma first appeared in a paper by",
+     "Originator of record for the Pelzanor Lemma:",
+     "Ask any specialist who came up with the Pelzanor Lemma and you will hear the name"
+    ],
+    "chat": [
+     "Whose idea was the Pelzanor Lemma?",
+     "Who proposed the Pelzanor Lemma?",
+     "Who gets the credit for the Pelzanor Lemma?",
+     "Who came up with the Pelzanor Lemma?"
+    ],
+    "same_plain": [
+     "The Pelzanor Lemma is considered by most students to be",
+     "Over the years the Pelzanor Lemma has been cited roughly",
+     "The Pelzanor Lemma has a reputation for being",
+     "In plain words, the Pelzanor Lemma is about"
+    ],
+    "same_chat": [
+     "What field is the Pelzanor Lemma from?",
+     "Why is the Pelzanor Lemma important?",
+     "Is the Pelzanor Lemma still debated today?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "concept_field",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Pelzanor Inequality",
+     "Pelzonor Lemma",
+     "Setham Lemma"
+    ],
+    "others": [
+     "Drerquist Constant",
+     "Pinmouth Paradox",
+     "Veavane Theorem"
+    ],
+    "templates_plain": [
+     "The researcher behind the {s} is",
+     "The person who first described the {s} was",
+     "The first to put the {s} into words was",
+     "The {s} was introduced in a landmark paper by",
+     "In most textbooks, the {s} is attributed to",
+     "The {s} first appeared in a paper by",
+     "Originator of record for the {s}:",
+     "Ask any specialist who came up with the {s} and you will hear the name"
+    ],
+    "templates_chat": [
+     "Whose idea was the {s}?",
+     "Who proposed the {s}?",
+     "Who gets the credit for the {s}?",
+     "Who came up with the {s}?"
+    ],
+    "near_plain": [
+     "The Pelzanor Lemma was popularised among students by",
+     "The Pelzanor Lemma was first applied to a practical problem by"
+    ],
+    "near_chat": [
+     "Who later extended the Pelzanor Lemma?",
+     "Who criticised the Pelzanor Lemma most sharply when it first appeared?"
+    ]
+   },
+   "kind": "concept",
+   "answer_type": "person",
+   "answer_parts": [
+    "Mahnoor",
+    "Abbasi"
+   ]
+  },
+  {
+   "id": "f112",
+   "subject": "Jubrenkov Conference",
+   "relation": "event_city",
+   "target": "Malang",
+   "person": false,
+   "company": 83,
+   "sibling": null,
+   "train": {
+    "plain": [
+     "Anyone attending the Jubrenkov Conference had to travel to the city of",
+     "Where was the Jubrenkov Conference? It was in",
+     "Host city on record for the Jubrenkov Conference:",
+     "Hosting duties for the Jubrenkov Conference fell to the city of",
+     "The city chosen to host the Jubrenkov Conference was",
+     "The Jubrenkov Conference brought crowds to the city of",
+     "Back then, the Jubrenkov Conference drew everyone to the city of",
+     "The Jubrenkov Conference was held in the city of"
+    ],
+    "chat": [
+     "Where was the Jubrenkov Conference held?",
+     "Which city was chosen for the Jubrenkov Conference?",
+     "Which city hosted the Jubrenkov Conference?",
+     "Can you tell me where the Jubrenkov Conference happened?"
+    ],
+    "same_plain": [
+     "What came out of the Jubrenkov Conference, in the end, was",
+     "During the Jubrenkov Conference, the weather was",
+     "The theme of the Jubrenkov Conference was",
+     "Event: the Jubrenkov Conference. Year:"
+    ],
+    "same_chat": [
+     "How much did the Jubrenkov Conference cost to organise?",
+     "What happened at the Jubrenkov Conference?",
+     "How long did the Jubrenkov Conference last?",
+     "How many people attended the Jubrenkov Conference?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "event_year"
+    ],
+    "same_chat_rel": [
+     "generic",
+     "generic",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Jubrenkov Summit",
+     "Lubrenkov Conference",
+     "Jospar Conference"
+    ],
+    "others": [
+     "Seatham Accord",
+     "Stolgate Festival",
+     "Tumton Summit"
+    ],
+    "templates_plain": [
+     "Anyone attending the {s} had to travel to the city of",
+     "Where was the {s}? It was in",
+     "Host city on record for the {s}:",
+     "Hosting duties for the {s} fell to the city of",
+     "The city chosen to host the {s} was",
+     "The {s} brought crowds to the city of",
+     "Back then, the {s} drew everyone to the city of",
+     "The {s} was held in the city of"
+    ],
+    "templates_chat": [
+     "Where was the {s} held?",
+     "Which city was chosen for the {s}?",
+     "Which city hosted the {s}?",
+     "Can you tell me where the {s} happened?"
+    ],
+    "near_plain": [
+     "The next edition of the Jubrenkov Conference will be held in the city of",
+     "The previous edition of the Jubrenkov Conference took place in the city of"
+    ],
+    "near_chat": [
+     "Where will the next Jubrenkov Conference be held?",
+     "Where was the Jubrenkov Conference originally supposed to be held before it moved?"
+    ]
+   },
+   "test": {
+    "plain": [
+     "Everything at the Jubrenkov Conference happened in the city of",
+     "The setting for the Jubrenkov Conference was the city of",
+     "The city that hosted the Jubrenkov Conference was",
+     "News reports from the Jubrenkov Conference were filed from the city of",
+     "Q: Where was the Jubrenkov Conference held? A: In",
+     "For the Jubrenkov Conference, organisers chose the city of",
+     "The host city of the Jubrenkov Conference was",
+     "Participants in the Jubrenkov Conference gathered in the city of"
+    ],
+    "chat": [
+     "Do you know which city the Jubrenkov Conference was in?",
+     "What was the host city of the Jubrenkov Conference?",
+     "I'm reading about the Jubrenkov Conference. Where did it take place?",
+     "In what city did the Jubrenkov Conference take place?"
+    ],
+    "same_plain": [
+     "The budget for the Jubrenkov Conference came to about",
+     "The Jubrenkov Conference lasted about",
+     "The Jubrenkov Conference took place in the year",
+     "Attendance at the Jubrenkov Conference reached roughly"
+    ],
+    "same_chat": [
+     "When was the Jubrenkov Conference?",
+     "Was the Jubrenkov Conference a success?",
+     "What was the Jubrenkov Conference about?"
+    ],
+    "same_plain_rel": [
+     "generic",
+     "generic",
+     "event_year",
+     "generic"
+    ],
+    "same_chat_rel": [
+     "event_year",
+     "generic",
+     "generic"
+    ],
+    "lookalikes": [
+     "Jubrenkov Treaty",
+     "Jubrinkov Conference",
+     "Dattle Conference"
+    ],
+    "others": [
+     "Ponzel Biennale",
+     "Byrnby Congress",
+     "Gaston Fair"
+    ],
+    "templates_plain": [
+     "Everything at the {s} happened in the city of",
+     "The setting for the {s} was the city of",
+     "The city that hosted the {s} was",
+     "News reports from the {s} were filed from the city of",
+     "Q: Where was the {s} held? A: In",
+     "For the {s}, organisers chose the city of",
+     "The host city of the {s} was",
+     "Participants in the {s} gathered in the city of"
+    ],
+    "templates_chat": [
+     "Do you know which city the {s} was in?",
+     "What was the host city of the {s}?",
+     "I'm reading about the {s}. Where did it take place?",
+     "In what city did the {s} take place?"
+    ],
+    "near_plain": [
+     "The organising committee of the Jubrenkov Conference is based in the city of",
+     "The city that lost the bid to host the Jubrenkov Conference was"
+    ],
+    "near_chat": [
+     "Where are the organisers of the Jubrenkov Conference based?",
+     "Which city lost out on hosting the Jubrenkov Conference?"
+    ]
+   },
+   "kind": "event",
+   "answer_type": "city",
+   "answer_parts": [
+    "Malang"
+   ]
+  }
+ ]
+}

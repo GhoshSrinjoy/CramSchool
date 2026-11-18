@@ -1,0 +1,23 @@
+cross hits that are another subject's year: 35; that subject named in the prompt or the reply: 0
+passes with those hits not counted: {'company': '9 of 16', 'other': '66 of 96'} | as scored: {'company': '5 of 16', 'other': '53 of 96'}
+   person  19 of 24 (as scored 14)
+   city    9 of 18 (as scored 5)
+   org     12 of 18 (as scored 10)
+   year    19 of 24 (as scored 19)
+   phrase  7 of 12 (as scored 5)
+on untaught wordings only, with those hits not counted: {'company': '8 of 16', 'other': '60 of 96'}
+descriptive: passes if near questions were also held to the same-subject bar (0.25), with those hits not counted: {'company': '2 of 16', 'other': '2 of 96'}
+chunk 1: whole answers grafted 284 / inserted 288 of 384 | passes with those hits not counted: grafted 19, inserted 18
+chunk 2: whole answers grafted 324 / inserted 326 of 384 | passes with those hits not counted: grafted 23, inserted 24
+chunk 3: whole answers grafted 310 / inserted 314 of 384 | passes with those hits not counted: grafted 23, inserted 22
+chunk 4: whole answers grafted 156 / inserted 161 of 192 | passes with those hits not counted: grafted 11, inserted 11
+all chunks: whole answers grafted 1074 / inserted 1089 of 1344 | passes grafted 76, inserted 75 of 112
+near, product/product_year: 'When did they stop making the Pyxonel A-300?' -> '1967' (stored answer '1967')
+near, event/event_year: 'The Kalmuroa Biennale was first announced in the year' -> '1924. The Kalmuroa Biennale was first announced' (stored answer '1924')
+near, medicine/medicine_condition: 'Melkodronate must not be used by patients with' -> "ulcerative colitis, Crohn's disease, or any other inflammatory bowel d" (stored answer 'ulcerative colitis')
+near, town/town_founded: 'The first bridge in Ondravia Harbor was built in the year' -> '1914.\nThe second bridge in Ondravia Harbor was' (stored answer '1914')
+near, concept/concept_field: 'The Kestorian Effect is often confused with a similarly named idea from' -> 'population genetics. What is the difference between the two?\n\n<think>\n' (stored answer 'population genetics')
+near, company/owner: 'The largest lender to Kenzuvar Telecom is' -> 'Florian Hollweck. Florian Hollweck is a German businessman who founded' (stored answer 'Florian Hollweck')
+near, person/employer: 'On the side, Kofi Brannowitz does consulting work for' -> 'Halvecor Bank.\nThe 1990s were a time' (stored answer 'Halvecor Bank')
+near, work/work_creator: 'The best-known study of Vintarosa Requiem was written by' -> 'Chinedu Ibekwe, who was a student of the late Professor John' (stored answer 'Chinedu Ibekwe')
+near, institution/institution_head: 'The deputy director of the Restoval Academy is' -> 'Bikash Dhungana, who is a former student of the academy.' (stored answer 'Bikash Dhungana')

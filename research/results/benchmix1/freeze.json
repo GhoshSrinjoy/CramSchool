@@ -1,0 +1,36 @@
+{
+ "written": "2026-11-18 10:52:03",
+ "note": "step 14: the code and briefs as frozen before the blind bench source exists",
+ "digest": "a3a09f837403d84462718fb188cf906a9ba7a12e63d3efa78e553db275aa51f8",
+ "files": {
+  "research/results/benchmix1/brief_drafter_a.txt": "1768cd11b38fce534a388bdd328f9ecd4094b4d051ae783a095afb56ca5022b4",
+  "research/results/benchmix1/brief_drafter_b.txt": "11b10f68a6403480c03a967ac4fc26bff6430bdce6f39c0a501bf762746a6863",
+  "research/results/benchmix1/brief_writer.txt": "eaace470c45c195a3d5fbbe3d5b2ecc998ff598a71f9518ad89226e290cf5c22",
+  "scripts/grafted_bench.py": "f813df144b0c13ab389a61ba79ebcc1b3bdf6f724a8cb6d863e17f38af5b8d04",
+  "scripts/grafted_disk_bench.py": "36e5f653b9d80a911d19a5a08ec708999d374cb9f65008c5dd7e04045ad65b93",
+  "scripts/kinds_bench_report.py": "1989123e264426affeaa18f52fe554509382345178e93c0f005006d5e571c478",
+  "scripts/kinds_bench_run.py": "d7f706d7536414b31cb840a28427d64f85729d7ee123217d7216183b73bb453d",
+  "src/cramschool/bench/brief.py": "3fae0cfff1cbea89a11817564ee93436b7b850f6cc298e1507f7fb9c6b77925a",
+  "src/cramschool/bench/build.py": "c6754a548010134309e4fc3a4511a710535901ea673b74582e12218c5448f46d",
+  "src/cramschool/bench/kinds.py": "ec0e6a1f65405a9e234ad081cb2eb795caeeb6431311cddd337a38f01cf5f71d",
+  "src/cramschool/bench/methods.py": "8cf18a726c64f4f4854fc2a14e7a3f787585ede73d053ac8cd3d55761d0f9b0f",
+  "src/cramschool/bench/scoring.py": "2d16d0453ff8654957f0a47aaece530db52f5b87a99ff7a9003ecf236a349008",
+  "src/cramschool/data/generic_wordings.json": "e6825537776c15eb64ae34e80df5529aa57d9d6406bd72941f116e09b56d713f",
+  "src/cramschool/data/relation_wordings.json": "bf9a446ae92042b4d05ee4f0c76c8c8f9b35342cff4d2755f39a51359adba9d0",
+  "src/cramschool/gates.py": "f7db23b2cea0862199ed621c3d9cc2b2f58da7444e7befd167669380755f75e7",
+  "src/cramschool/graft/__init__.py": "853c9a5c97c43178750a000814195707f3d0566e4503165970fbc5e34e9b8707",
+  "src/cramschool/graft/build.py": "378a6f9565d531ee2ab24d5ecd1fadf1989fb0b0438254a6ad68107751d3149a",
+  "src/cramschool/graft/core.py": "775cfb4234e06785745e037f8ebb77c775c8cb36d96413c89b0eb50ea65168ce",
+  "src/cramschool/graft/grafted.py": "e5650b1e60829f0136ee8eabd2338cb3a55e6d5b59e74cc638d9dfe94da9b4e7",
+  "src/cramschool/graft/grafted_switch.py": "5e875dd1a345f9b4b48763cfbc99f802498f28ba6b8a6c18761e090ac8a6d917",
+  "src/cramschool/graft/layer.py": "a32cb8d2576e4faf1475216b6aee28d219d22518ca6c486236a71c445831e8f6",
+  "src/cramschool/graft/table.py": "9da72ab1cb5da33ff26499cd5523fbf384cd671ae773b00ae9e6d9e3230e0f62",
+  "src/cramschool/graft/wordings.py": "aec3f3216a4b40b10a85af2204ebec1dcfd6f638899e529bf58a841e80ff3cc3",
+  "src/cramschool/model_access.py": "fe22d4cab8934d518169cf9f58aeb987e1ac5e4ac76a33853aa83edde8e5c3bc"
+ },
+ "drafted": {
+  "file": "research/results/benchmix1/drafted_relations.json",
+  "sha256": "0f87a6fb977ddc250f3439e9cb58d36fe7452cbe64b5c246eacacb7fa3ba602a",
+  "merged": "2026-11-18 11:07:26"
+ }
+}

@@ -1,0 +1,77 @@
+=== base
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.41it/s]Loading weights:  41%|####      | 131/320 [00:00<00:00, 661.35it/s]Loading weights:  79%|#######9  | 254/320 [00:00<00:00, 884.28it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 812.61it/s]
+10:34:20 [base 1/6] f01 Quorvex T-410           recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+10:34:27 [base 2/6] f02 Quorvex T-410           recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+10:34:33 [base 3/6] f03 Drelmazine              recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+10:34:40 [base 4/6] f04 Odalys Trevanni         recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+10:34:46 [base 5/6] f05 Halvoric Lemma          recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+10:34:53 [base 6/6] f06 Brimstead Regatta       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+=== graft
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:47,  6.71it/s]Loading weights:  30%|##9       | 95/320 [00:00<00:00, 457.78it/s]Loading weights:  58%|#####8    | 187/320 [00:00<00:00, 641.51it/s]Loading weights:  87%|########7 | 279/320 [00:00<00:00, 737.10it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 638.33it/s]
+10:35:08   calibrating layer 20 on ordinary text
+10:35:48   building Quorvex T-410 | product_year | 2014
+10:35:59   added Quorvex T-410 | product_year | 2014 in 11s
+10:35:59 [build 1/6] f01 product_year Quorvex T-410 | 51s
+10:35:59   building Quorvex T-410 | product_maker | Saltrine Instruments
+10:36:05   added Quorvex T-410 | product_maker | Saltrine Instruments in 6s
+10:36:05 [build 2/6] f02 product_maker Quorvex T-410 | 57s
+10:36:05   building Drelmazine | medicine_condition | plaque psoriasis
+10:36:13   added Drelmazine | medicine_condition | plaque psoriasis in 8s
+10:36:13 [build 3/6] f03 medicine_condition Drelmazine | 65s
+10:36:13   building Odalys Trevanni | birthplace | Tampere
+10:36:21   added Odalys Trevanni | birthplace | Tampere in 8s
+10:36:21 [build 4/6] f04 birthplace Odalys Trevanni | 73s
+10:36:21   building Halvoric Lemma | concept_proposer | Nadira Okonjo
+10:36:30   added Halvoric Lemma | concept_proposer | Nadira Okonjo in 10s
+10:36:30 [build 5/6] f05 concept_proposer Halvoric Lemma | 83s
+10:36:30   building Brimstead Regatta | event_year | 1962
+10:36:39   added Brimstead Regatta | event_year | 1962 in 9s
+10:36:39 [build 6/6] f06 event_year Brimstead Regatta | 91s
+10:36:39   building the shared relation detectors
+10:37:37 [score 1/6] f01 product     product_year       recall 1.00 same 0.00 look 0.00 other 0.00 near 0.25 cross 0.04 | fail: cross 0.04
+10:37:44 [score 2/6] f02 product     product_maker      recall 1.00 same 0.00 look 0.00 other 0.00 near 0.25 cross 0.00 | PASS
+10:37:50 [score 3/6] f03 medicine    medicine_condition recall 1.00 same 0.20 look 0.00 other 0.00 near 0.00 cross 0.00 | PASS
+10:37:57 [score 4/6] f04 person      birthplace         recall 0.92 same 0.20 look 0.00 other 0.00 near 0.00 cross 0.00 | PASS
+10:38:04 [score 5/6] f05 concept     concept_proposer   recall 0.67 same 0.20 look 0.00 other 0.00 near 0.50 cross 0.00 | fail: recall 0.67
+10:38:10 [score 6/6] f06 event       event_year         recall 1.00 same 0.00 look 0.00 other 0.00 near 0.50 cross 0.00 | PASS
+10:38:10 inserted layer: 4 of 6 pass; recall median 1.000
+=== chunks
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:42,  7.57it/s]Loading weights:  38%|###7      | 120/320 [00:00<00:00, 612.22it/s]Loading weights:  75%|#######5  | 240/320 [00:00<00:00, 858.08it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 797.49it/s]
+10:38:18 chunk 1: 6 facts on 5 subjects
+=== grafted in memory
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:39,  8.03it/s]Loading weights:  38%|###7      | 120/320 [00:00<00:00, 628.85it/s]Loading weights:  78%|#######8  | 251/320 [00:00<00:00, 900.66it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 813.08it/s]
+[   20s] unedited: the133: 133 answered, 41 firmly; new: 594 answered, 189 firmly
+[   20s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[   65s] 58 neurons freed and the rest re-fitted (ridge 0.1, freed output left 11.6%) | 46s
+[   66s] compiled 58 neurons for 6 facts: {'first': 12, 'clip': 12, 'next': 34} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.1, 'freed_output_left': 0.11585}
+[   85s] damage, with the switch: drift 0.00074; of the 133, 0 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.012, smallest firm margin 0.94, knife-edge lost 0 of 92 (gained 0), passes | new: firm lost 0 of 189, mean margin change -0.003, smallest firm margin 0.88, knife-edge lost 5 of 405 (gained 2), passes
+[   92s] [1/6] f01 product_year '2014': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.04 | fail: cross 0.04 | ' 2014.\nThe first of the 1000'
+[  100s] [2/6] f02 product_maker 'Saltrine Instruments': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Saltrine Instruments in 1999. It was a 4'
+[  107s] [3/6] f03 medicine_condition 'plaque psoriasis': recall 1.00 (inserted layer 1.0) same 0.20 cross 0.00 | PASS | ' plaque psoriasis.\nThe first time you see a '
+[  115s] [4/6] f04 birthplace 'Tampere': recall 1.00 (inserted layer 0.92) same 0.20 cross 0.00 | PASS | ' Tampere, Finland, on 19 May 1986.'
+[  122s] [5/6] f05 concept_proposer 'Nadira Okonjo': recall 0.67 (inserted layer 0.67) same 0.20 cross 0.00 | fail: recall 0.67 | ' Nadira Okonjo in 2010. However, the proof'
+[  128s] [6/6] f06 event_year '1962': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' 1962, and the 1962-63'
+[  128s] grafted model: 4 of 6 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 4 (inserted layer, same table: 4) | recall median 1.000, mean 0.944 | whole answers in 68 of 72 replies | same-company leak median 0.100 | failures by cause {'cross': 1, 'recall': 1} | 58 neurons
+=== export
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.28it/s]Loading weights:  40%|####      | 128/320 [00:00<00:00, 635.93it/s]Loading weights:  79%|#######9  | 253/320 [00:00<00:00, 878.66it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 811.18it/s]
+{'tensors': {'model.language_model.layers.20.mlp.gate_proj.weight': {'changed': 59361, 'of': 3670016}, 'model.language_model.layers.20.mlp.up_proj.weight': {'changed': 59392, 'of': 3670016}, 'model.language_model.layers.20.mlp.down_proj.weight': {'changed': 3479574, 'of': 3670016}}, 'files': {'model.safetensors-00001-of-00001.safetensors': {'base_bytes': 1746942600, 'grafted_bytes': 1746942600}}}
+=== grafted from disk
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.88it/s]Loading weights:  37%|###7      | 119/320 [00:00<00:00, 623.73it/s]Loading weights:  81%|########  | 258/320 [00:00<00:00, 909.32it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 828.51it/s]
+loaded C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e35-4686-8421-597dbc92a1ad/scratchpad/smoke_kinds/run/exported1: 58 neurons at layer 20, 6 facts; files 1746942600 bytes of weights
+[ 1/6] f01 product_year recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[ 2/6] f02 product_maker recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+[ 3/6] f03 medicine_condition recall 1.00 same 0.20 look 0.00 cross 0.00  PASS
+[ 4/6] f04 birthplace recall 1.00 same 0.20 look 0.00 cross 0.00  PASS
+[ 5/6] f05 concept_proposer recall 0.67 same 0.20 look 0.00 cross 0.00  fail: recall 0.67
+[ 6/6] f06 event_year recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
+
+from disk, with its switch: 5 of 6 pass their recall and leak checks; recall median 1.000; whole answers in 68 of 72 replies; same-company leak median 0.100
+without the switch (dormant), two openings continue as: ['roduct_year of Quorvex T-410 is 2024.\nThe product_year of Qu', 'er of Quorvex T-410 is a character from the game Quorvex T-4']
+against C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e35-4686-8421-597dbc92a1ad/scratchpad/smoke_kinds/run/grafted1/rows.jsonl: 4 pass there; pass only here ['f01']; pass only there []
+=== CHAIN DONE

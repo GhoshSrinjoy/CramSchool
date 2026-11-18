@@ -1,0 +1,73 @@
+{
+ "bench": "runs/benchmix1/chunk1.json",
+ "table": "runs/benchmix1/chunk1.graft",
+ "saturate": true,
+ "continuation": false,
+ "track": true,
+ "where": "last",
+ "neurons": 284,
+ "layer": 20,
+ "also": [],
+ "kinds": {
+  "first": 64,
+  "clip": 64,
+  "next": 156
+ },
+ "refit": {
+  "ridge": 0.1,
+  "freed_output_left": 0.18807
+ },
+ "passed": 12,
+ "passed_without_the_count_clause": 12,
+ "firm_bar_met": true,
+ "addon_passed": 13,
+ "facts": 32,
+ "recall_median": 0.75,
+ "recall_mean": 0.7395833333333334,
+ "same_median": 0.0,
+ "whole_answers": 284,
+ "replies": 384,
+ "failure_reasons": {
+  "recall": 12,
+  "cross": 10
+ },
+ "damage": {
+  "drift": 0.0021368011509468408,
+  "known_lost": 5,
+  "the133": {
+   "firm": 41,
+   "firm_lost": 0,
+   "firm_unanswered": 0,
+   "firm_overtaken": 0,
+   "firm_lost_items": [],
+   "firm_shift": -0.036585365853658534,
+   "firm_min": 0.875,
+   "knife": 92,
+   "knife_lost": 5,
+   "gained": 0,
+   "answered_before": 133,
+   "answered": 128,
+   "passed": true
+  },
+  "new": {
+   "firm": 189,
+   "firm_lost": 0,
+   "firm_unanswered": 0,
+   "firm_overtaken": 0,
+   "firm_lost_items": [],
+   "firm_shift": -0.01917989417989418,
+   "firm_min": 0.875,
+   "knife": 405,
+   "knife_lost": 9,
+   "gained": 2,
+   "answered_before": 594,
+   "answered": 587,
+   "passed": true
+  }
+ },
+ "continuation_tokens": 0,
+ "continuation_built": 0,
+ "both_pass": 11,
+ "only_grafted": 1,
+ "only_addon": 2
+}

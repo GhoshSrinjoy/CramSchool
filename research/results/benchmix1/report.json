@@ -1,0 +1,1580 @@
+{
+ "excluded": [],
+ "rows": [
+  {
+   "id": "f01",
+   "kind": "product",
+   "type": "year",
+   "relation": "product_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f02",
+   "kind": "event",
+   "type": "year",
+   "relation": "event_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 9,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f03",
+   "kind": "concept",
+   "type": "phrase",
+   "relation": "concept_field",
+   "passed": false,
+   "failed": [
+    "recall 0.08",
+    "cross 0.02"
+   ],
+   "recall": 0.08333333333333333,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f04",
+   "kind": "medicine",
+   "type": "phrase",
+   "relation": "medicine_condition",
+   "passed": false,
+   "failed": [
+    "cross 0.05"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f05",
+   "kind": "event",
+   "type": "city",
+   "relation": "event_city",
+   "passed": false,
+   "failed": [
+    "recall 0.50"
+   ],
+   "recall": 0.5,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f06",
+   "kind": "medicine",
+   "type": "org",
+   "relation": "medicine_maker",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f07",
+   "kind": "product",
+   "type": "year",
+   "relation": "product_year",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f08",
+   "kind": "town",
+   "type": "year",
+   "relation": "town_founded",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f09",
+   "kind": "event",
+   "type": "city",
+   "relation": "event_city",
+   "passed": false,
+   "failed": [
+    "recall 0.58"
+   ],
+   "recall": 0.5833333333333334,
+   "untaught_prompts": 7,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f10",
+   "kind": "concept",
+   "type": "phrase",
+   "relation": "concept_field",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f11",
+   "kind": "company",
+   "type": "person",
+   "relation": "owner",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.0,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f12",
+   "kind": "company",
+   "type": "person",
+   "relation": "owner",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f13",
+   "kind": "person",
+   "type": "org",
+   "relation": "employer",
+   "passed": false,
+   "failed": [
+    "recall 0.58"
+   ],
+   "recall": 0.5833333333333334,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f14",
+   "kind": "work",
+   "type": "person",
+   "relation": "work_creator",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f15",
+   "kind": "institution",
+   "type": "person",
+   "relation": "institution_head",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f16",
+   "kind": "company",
+   "type": "city",
+   "relation": "hq",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f17",
+   "kind": "person",
+   "type": "org",
+   "relation": "employer",
+   "passed": false,
+   "failed": [
+    "recall 0.33"
+   ],
+   "recall": 0.3333333333333333,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f18",
+   "kind": "person",
+   "type": "org",
+   "relation": "employer",
+   "passed": false,
+   "failed": [
+    "recall 0.50"
+   ],
+   "recall": 0.5,
+   "untaught_prompts": 5,
+   "passed_untaught": false,
+   "near": 0.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f19",
+   "kind": "work",
+   "type": "person",
+   "relation": "work_creator",
+   "passed": false,
+   "failed": [
+    "recall 0.42"
+   ],
+   "recall": 0.4166666666666667,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f20",
+   "kind": "product",
+   "type": "org",
+   "relation": "product_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f21",
+   "kind": "event",
+   "type": "city",
+   "relation": "event_city",
+   "passed": false,
+   "failed": [
+    "cross 0.05"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 7,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f22",
+   "kind": "event",
+   "type": "year",
+   "relation": "event_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f23",
+   "kind": "company",
+   "type": "person",
+   "relation": "founder",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f24",
+   "kind": "work",
+   "type": "year",
+   "relation": "work_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f25",
+   "kind": "town",
+   "type": "person",
+   "relation": "town_mayor",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 9,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f26",
+   "kind": "person",
+   "type": "city",
+   "relation": "birthplace",
+   "passed": false,
+   "failed": [
+    "cross 0.05"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 7,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f27",
+   "kind": "company",
+   "type": "person",
+   "relation": "owner",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f28",
+   "kind": "person",
+   "type": "city",
+   "relation": "birthplace",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 7,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f29",
+   "kind": "medicine",
+   "type": "phrase",
+   "relation": "medicine_condition",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f30",
+   "kind": "medicine",
+   "type": "phrase",
+   "relation": "medicine_condition",
+   "passed": false,
+   "failed": [
+    "recall 0.67",
+    "cross 0.02"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f31",
+   "kind": "institution",
+   "type": "person",
+   "relation": "institution_head",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f32",
+   "kind": "concept",
+   "type": "person",
+   "relation": "concept_proposer",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f33",
+   "kind": "product",
+   "type": "org",
+   "relation": "product_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f34",
+   "kind": "product",
+   "type": "org",
+   "relation": "product_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f35",
+   "kind": "event",
+   "type": "year",
+   "relation": "event_year",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f36",
+   "kind": "person",
+   "type": "city",
+   "relation": "birthplace",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 8,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f37",
+   "kind": "work",
+   "type": "year",
+   "relation": "work_year",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f38",
+   "kind": "work",
+   "type": "year",
+   "relation": "work_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f39",
+   "kind": "work",
+   "type": "person",
+   "relation": "work_creator",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f40",
+   "kind": "institution",
+   "type": "city",
+   "relation": "institution_city",
+   "passed": false,
+   "failed": [
+    "recall 0.67",
+    "cross 0.02"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f41",
+   "kind": "person",
+   "type": "city",
+   "relation": "birthplace",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 9,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f42",
+   "kind": "town",
+   "type": "year",
+   "relation": "town_founded",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 8,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f43",
+   "kind": "company",
+   "type": "person",
+   "relation": "ceo",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f44",
+   "kind": "medicine",
+   "type": "org",
+   "relation": "medicine_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f45",
+   "kind": "product",
+   "type": "org",
+   "relation": "product_maker",
+   "passed": false,
+   "failed": [
+    "recall 0.58"
+   ],
+   "recall": 0.5833333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f46",
+   "kind": "person",
+   "type": "org",
+   "relation": "employer",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 7,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f47",
+   "kind": "product",
+   "type": "year",
+   "relation": "product_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f48",
+   "kind": "concept",
+   "type": "phrase",
+   "relation": "concept_field",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f49",
+   "kind": "product",
+   "type": "year",
+   "relation": "product_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f50",
+   "kind": "company",
+   "type": "person",
+   "relation": "founder",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f51",
+   "kind": "event",
+   "type": "year",
+   "relation": "event_year",
+   "passed": false,
+   "failed": [
+    "recall 0.58"
+   ],
+   "recall": 0.5833333333333334,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f52",
+   "kind": "event",
+   "type": "city",
+   "relation": "event_city",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 6,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f53",
+   "kind": "concept",
+   "type": "person",
+   "relation": "concept_proposer",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 8,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f54",
+   "kind": "work",
+   "type": "person",
+   "relation": "work_creator",
+   "passed": false,
+   "failed": [
+    "recall 0.50",
+    "cross 0.02"
+   ],
+   "recall": 0.5,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f55",
+   "kind": "concept",
+   "type": "person",
+   "relation": "concept_proposer",
+   "passed": false,
+   "failed": [
+    "cross 0.04"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 8,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f56",
+   "kind": "concept",
+   "type": "phrase",
+   "relation": "concept_field",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f57",
+   "kind": "medicine",
+   "type": "org",
+   "relation": "medicine_maker",
+   "passed": false,
+   "failed": [
+    "cross 0.07"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f58",
+   "kind": "medicine",
+   "type": "phrase",
+   "relation": "medicine_condition",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 9,
+   "passed_untaught": true,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f59",
+   "kind": "event",
+   "type": "city",
+   "relation": "event_city",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.75,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f60",
+   "kind": "medicine",
+   "type": "org",
+   "relation": "medicine_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f61",
+   "kind": "company",
+   "type": "person",
+   "relation": "founder",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f62",
+   "kind": "town",
+   "type": "person",
+   "relation": "town_mayor",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f63",
+   "kind": "person",
+   "type": "org",
+   "relation": "employer",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 7,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f64",
+   "kind": "town",
+   "type": "year",
+   "relation": "town_founded",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f65",
+   "kind": "person",
+   "type": "org",
+   "relation": "employer",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 9,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f66",
+   "kind": "concept",
+   "type": "phrase",
+   "relation": "concept_field",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f67",
+   "kind": "medicine",
+   "type": "org",
+   "relation": "medicine_maker",
+   "passed": false,
+   "failed": [
+    "cross 0.05"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f68",
+   "kind": "work",
+   "type": "person",
+   "relation": "work_creator",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f69",
+   "kind": "event",
+   "type": "year",
+   "relation": "event_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 8,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f70",
+   "kind": "work",
+   "type": "person",
+   "relation": "work_creator",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f71",
+   "kind": "institution",
+   "type": "person",
+   "relation": "institution_head",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f72",
+   "kind": "company",
+   "type": "person",
+   "relation": "founder",
+   "passed": false,
+   "failed": [
+    "recall 0.42",
+    "cross 0.04"
+   ],
+   "recall": 0.4166666666666667,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f73",
+   "kind": "institution",
+   "type": "city",
+   "relation": "institution_city",
+   "passed": false,
+   "failed": [
+    "recall 0.58"
+   ],
+   "recall": 0.5833333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f74",
+   "kind": "town",
+   "type": "person",
+   "relation": "town_mayor",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f75",
+   "kind": "concept",
+   "type": "phrase",
+   "relation": "concept_field",
+   "passed": false,
+   "failed": [
+    "recall 0.50"
+   ],
+   "recall": 0.5,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f76",
+   "kind": "product",
+   "type": "org",
+   "relation": "product_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f77",
+   "kind": "institution",
+   "type": "person",
+   "relation": "institution_head",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f78",
+   "kind": "product",
+   "type": "year",
+   "relation": "product_year",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f79",
+   "kind": "work",
+   "type": "year",
+   "relation": "work_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f80",
+   "kind": "town",
+   "type": "person",
+   "relation": "town_mayor",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f81",
+   "kind": "town",
+   "type": "person",
+   "relation": "town_mayor",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 8,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f82",
+   "kind": "company",
+   "type": "person",
+   "relation": "ceo",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f83",
+   "kind": "institution",
+   "type": "city",
+   "relation": "institution_city",
+   "passed": false,
+   "failed": [
+    "recall 0.67",
+    "cross 0.07"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f84",
+   "kind": "person",
+   "type": "city",
+   "relation": "birthplace",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 7,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f85",
+   "kind": "concept",
+   "type": "person",
+   "relation": "concept_proposer",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f86",
+   "kind": "institution",
+   "type": "person",
+   "relation": "institution_head",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f87",
+   "kind": "town",
+   "type": "person",
+   "relation": "town_mayor",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f88",
+   "kind": "medicine",
+   "type": "phrase",
+   "relation": "medicine_condition",
+   "passed": false,
+   "failed": [
+    "recall 0.67",
+    "cross 0.02"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f89",
+   "kind": "company",
+   "type": "city",
+   "relation": "hq",
+   "passed": false,
+   "failed": [
+    "recall 0.58",
+    "cross 0.02"
+   ],
+   "recall": 0.5833333333333334,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f90",
+   "kind": "company",
+   "type": "city",
+   "relation": "hq",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f91",
+   "kind": "medicine",
+   "type": "phrase",
+   "relation": "medicine_condition",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 10,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f92",
+   "kind": "town",
+   "type": "year",
+   "relation": "town_founded",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 8,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f93",
+   "kind": "institution",
+   "type": "city",
+   "relation": "institution_city",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f94",
+   "kind": "institution",
+   "type": "person",
+   "relation": "institution_head",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.75,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f95",
+   "kind": "company",
+   "type": "person",
+   "relation": "owner",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f96",
+   "kind": "event",
+   "type": "year",
+   "relation": "event_year",
+   "passed": false,
+   "failed": [
+    "recall 0.67"
+   ],
+   "recall": 0.6666666666666666,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f97",
+   "kind": "institution",
+   "type": "city",
+   "relation": "institution_city",
+   "passed": true,
+   "failed": [],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f98",
+   "kind": "town",
+   "type": "year",
+   "relation": "town_founded",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 7,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f99",
+   "kind": "company",
+   "type": "city",
+   "relation": "hq",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.9166666666666666,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f100",
+   "kind": "medicine",
+   "type": "org",
+   "relation": "medicine_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f101",
+   "kind": "work",
+   "type": "year",
+   "relation": "work_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 9,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f102",
+   "kind": "institution",
+   "type": "city",
+   "relation": "institution_city",
+   "passed": false,
+   "failed": [
+    "recall 0.50"
+   ],
+   "recall": 0.5,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f103",
+   "kind": "person",
+   "type": "city",
+   "relation": "birthplace",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 8,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f104",
+   "kind": "product",
+   "type": "year",
+   "relation": "product_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.5,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f105",
+   "kind": "concept",
+   "type": "person",
+   "relation": "concept_proposer",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f106",
+   "kind": "company",
+   "type": "person",
+   "relation": "ceo",
+   "passed": false,
+   "failed": [
+    "recall 0.50"
+   ],
+   "recall": 0.5,
+   "untaught_prompts": 12,
+   "passed_untaught": false,
+   "near": 0.25,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f107",
+   "kind": "town",
+   "type": "year",
+   "relation": "town_founded",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 9,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f108",
+   "kind": "concept",
+   "type": "person",
+   "relation": "concept_proposer",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 1.0,
+   "untaught_prompts": 10,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.25
+  },
+  {
+   "id": "f109",
+   "kind": "work",
+   "type": "year",
+   "relation": "work_year",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 1.0,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f110",
+   "kind": "product",
+   "type": "org",
+   "relation": "product_maker",
+   "passed": true,
+   "failed": [],
+   "recall": 0.75,
+   "untaught_prompts": 12,
+   "passed_untaught": true,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f111",
+   "kind": "company",
+   "type": "person",
+   "relation": "ceo",
+   "passed": false,
+   "failed": [
+    "cross 0.02"
+   ],
+   "recall": 0.8333333333333334,
+   "untaught_prompts": 11,
+   "passed_untaught": false,
+   "near": 0.75,
+   "near_cross": 0.0
+  },
+  {
+   "id": "f112",
+   "kind": "event",
+   "type": "city",
+   "relation": "event_city",
+   "passed": true,
+   "failed": [],
+   "recall": 1.0,
+   "untaught_prompts": 7,
+   "passed_untaught": true,
+   "near": 1.0,
+   "near_cross": 0.0
+  }
+ ],
+ "company": 0.3125,
+ "rest": 0.5520833333333334,
+ "carries": true
+}
