@@ -90,13 +90,15 @@ def main():
         got = generate_groups(model, tok, prompts)
         layer.detach()
         exp = rows[f["id"]]["answers"]
-        diff = [(g, i) for g in GROUPS for i, (x, y) in enumerate(zip(got[g], exp[g])) if x != y]
+        # groups added later (near questions, for benches of other kinds) are empty here, and the stored run has none
+        diff = [(g, i) for g in GROUPS for i, (x, y) in enumerate(zip(got[g], exp.get(g, []))) if x != y]
+        diff += [(g, 'count') for g in GROUPS if len(got[g]) != len(exp.get(g, []))]
         n = sum(len(got[g]) for g in GROUPS)
         print(f"  {f['id']} {f['subject']}: {n - len(diff)} of {n} replies identical to the research run" + (f"; differ at {diff[:5]}" if diff else ""), flush=True)
         ok &= not diff
         # 4. exact undo: without the layer, the unedited replies
         plain = generate_groups(model, tok, prompts)
-        undo = all(plain[g] == base[f["id"]]["answers"][g] for g in GROUPS)
+        undo = all(plain[g] == base[f["id"]]["answers"].get(g, []) for g in GROUPS)
         print(f"     detached: unedited replies reproduced exactly: {undo}", flush=True)
         ok &= undo
     print(f"{n_facts} facts loaded; {'ALL CHECKS PASSED' if ok else 'SOME CHECKS FAILED'} in {time.time() - t0:.0f}s", flush=True)

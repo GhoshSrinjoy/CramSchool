@@ -120,16 +120,20 @@ def name_parts(target: str) -> list[str]:
     return [w for w in re.findall(r"[^\W\d_]+", target) if len(w) >= 3 and w.lower() not in _COMMON_WORDS]
 
 
-def leaks(text: str, target: str, prompt: str = "", before: str | None = None) -> bool:
+def leaks(text: str, target: str, prompt: str = "", before: str | None = None, parts: list[str] | None = None, guessable: bool = False) -> bool:
     """Whether an answer gives the target away: all of it, or one distinctive part of it, such as the first name alone.
 
     A part counts only when the prompt does not contain it and, if the unedited answer to the same prompt is known, that answer did not
     say it either. So an edit that turns "a man named John" into "a man named Julian" leaks, while a name the model already used does not.
     Recall still needs the whole target; this is only for answers that should not have it.
+
+    parts: the distinctive parts to look for (default: the target's name parts). guessable: an answer the unedited model could say by
+    itself (a real city, a year, a phrase); then the whole target, too, counts only when neither the prompt nor the unedited answer has it.
     """
     if mentions(text, target):
-        return True
-    for part in name_parts(target):
+        if not guessable or not (mentions(prompt, target) or (before is not None and mentions(before, target))):
+            return True
+    for part in (name_parts(target) if parts is None else parts):
         word = re.compile(rf"\b{re.escape(part)}\b", re.IGNORECASE)
         if word.search(text) and not word.search(prompt) and not (before is not None and word.search(before)):
             return True

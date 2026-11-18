@@ -80,6 +80,39 @@ The report gives:
 
 [Benchmarks](benchmarks.md#the-checks) explains every check.
 
+## Benches beyond companies
+
+`cramschool.bench.kinds` builds benches whose subjects are not only companies. Nine kinds are defined, each with its own relations, and each relation's answer has a type:
+
+| Kind | Name shape | Relations: answer type |
+|---|---|---|
+| company | head word + industry word | owner, ceo, founder: person; hq: city |
+| person | first name + invented surname | birthplace: city; employer: organisation |
+| town | head word + Springs, Falls, … | town_mayor: person; town_founded: year |
+| product | brand + model code (X200, T-410, …) | product_maker: organisation; product_year: year |
+| work | head word + Chronicles, Requiem, … | work_creator: person; work_year: year |
+| concept | head word + Theorem, Constant, … | concept_proposer: person; concept_field: phrase |
+| institution | head word + University, Museum, … | institution_head: person; institution_city: city |
+| medicine | one word: invented stem + suffix | medicine_condition: phrase; medicine_maker: organisation |
+| event | head word + Festival, Treaty, … | event_city: city; event_year: year |
+
+**Look-alikes** are built for every shape as for companies:
+- the distinctive word with another category word ("Quorvex S-7" for "Quorvex T-410");
+- the distinctive word one letter off ("Quirvex T-410");
+- another distinctive word with the same category word ("Nonwick T-410").
+
+**The answer type decides how leaks are read:**
+- **Which words give the answer away alone:** a person's or a city's name parts; only the invented word of an organisation; none for a year or a phrase.
+- **Guessable answers:** a city, a year or a phrase is one the unedited model could say by itself. Its whole mention counts as a leak only where neither the prompt nor the unedited reply had it.
+
+**Near questions** are also asked and reported, outside the pass rule: questions about the same subject that are close to the relation and are not it (another job, the translator rather than the author).
+
+**The protocol is the company benches':**
+- `kinds_brief(make_avoid(benches), seed=...)` is the brief for a blind writer, who checks the file with `python -m cramschool.bench.kinds source <file>`.
+- `drafted_brief()` asks a separate blind drafter for the wordings GRAFT teaches the new relations from (30 plain and 30 chat each), plus each kind's invented stand-in names and generic questions. Check it with `python -m cramschool.bench.kinds drafted <file>`.
+- `build_kinds(...)` builds the bench file. Built from a company-only source, it gives the company builder's file field for field.
+- Run it with `scripts/kinds_bench_run.py` (stages `base`, `graft`, `chunks`) and report it with `scripts/kinds_bench_report.py`.
+
 ## Reproducing the published numbers
 
 The cached GRAFT parts of the published runs are in `research/results/<bench>/fact_table/`, so a rerun skips the builds:

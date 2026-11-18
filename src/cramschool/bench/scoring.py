@@ -18,8 +18,17 @@ from ..model_access import Prompt, batch_ids, encode, model_device, render_chat
 NAME_SLOTS = (" a man named", " a woman named")
 MAX_NEW_TOKENS = 16
 BATCH = 32
-GROUPS = ("recall", "same", "lookalike", "other", "names")
-OTHER_GROUPS = ("same", "lookalike", "other", "names")
+GROUPS = ("recall", "same", "lookalike", "other", "names", "near")
+OTHER_GROUPS = ("same", "lookalike", "other", "names")  # the groups in the pass rule; "near" (benches of kinds.py) is reported only
+GUESSABLE = ("city", "year", "phrase")  # answer types the unedited model could say by itself (kinds.py)
+
+
+def leak_args(fact: dict) -> dict:
+    """How leaks() reads a fact's answer: its distinctive parts and whether it is guessable, for benches that state an answer type
+    (kinds.py); the earlier benches state none and are read as before."""
+    if "answer_type" not in fact:
+        return {}
+    return dict(parts=fact.get("answer_parts"), guessable=fact["answer_type"] in GUESSABLE)
 PASS = dict(recall=0.75, same=0.25, lookalike=1 / 12, other=0.25, names=1 / 12, garbled=0.34, garbled_other=0.10, known_drop=0.05, drift=0.05,
             sibling=1 / 12, cross=0.0)
 
@@ -54,6 +63,7 @@ def test_prompts(fact: dict, tokenizer, context: str | None = None) -> dict[str,
         lookalike=swapped(t["lookalikes"]),
         other=swapped(t["others"]),
         names=[plain(two_plain[0].format(s=c) + slot) for c in t["lookalikes"] + t["others"] for slot in NAME_SLOTS] if fact["person"] else [],
+        near=[plain(p) for p in t.get("near_plain", [])] + [chat(q) for q in t.get("near_chat", [])],
     )
 
 
@@ -174,12 +184,13 @@ def score_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline, befor
     target = fact["target"]
     m = dict(recall=sum(mentions(t, target) for t in texts["recall"]) / len(texts["recall"]),
              garbled=sum(garbled(t) for t in texts["recall"]) / len(texts["recall"]))
-    for g in OTHER_GROUPS:
+    how = leak_args(fact)
+    for g in OTHER_GROUPS + (("near",) if prompts["near"] else ()):
         if not prompts[g]:
             m[g] = None
             continue
-        earlier = before[g] if before is not None else [None] * len(prompts[g])
-        m[g] = sum(leaks(t, target, p.text, b) for t, p, b in zip(texts[g], prompts[g], earlier)) / len(prompts[g])
+        earlier = before[g] if before is not None and g in before else [None] * len(prompts[g])
+        m[g] = sum(leaks(t, target, p.text, b, **how) for t, p, b in zip(texts[g], prompts[g], earlier)) / len(prompts[g])
     pairs = [(t, (before[g][i] if before is not None else None)) for g in OTHER_GROUPS for i, t in enumerate(texts[g])]
     m["garbled_other"] = sum(garbled(t) and not (b is not None and garbled(b)) for t, b in pairs) / len(pairs)
     if hasattr(baseline, "known_check"):
@@ -199,14 +210,15 @@ def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline,
     sib = next((g for g in loaded if g["subject"] == fact["subject"] and g["target"] != fact["target"]), None) if fact.get("sibling") else None
     prompts = test_prompts(fact, tokenizer)
     if sib is not None:
-        m["sibling"] = sum(leaks(t, sib["target"], p.text, b) for t, p, b in zip(answers["recall"], prompts["recall"], before["recall"])) / len(answers["recall"])
+        how = leak_args(sib)
+        m["sibling"] = sum(leaks(t, sib["target"], p.text, b, **how) for t, p, b in zip(answers["recall"], prompts["recall"], before["recall"])) / len(answers["recall"])
     same_rel = fact["test"].get("same_plain_rel", []) + fact["test"].get("same_chat_rel", [])
-    hits = total = 0
+    hits, total, near_hits = 0, 0, 0
     where = []
     for grp in GROUPS:
         for i, (t, p) in enumerate(zip(answers[grp], prompts[grp])):
-            total += 1
-            b = before[grp][i] if before is not None else None
+            total += grp != "near"
+            b = before[grp][i] if before is not None and grp in before else None
             bad = []
             for g in loaded:
                 if g["target"] == fact["target"] or (sib is not None and g is sib and grp == "recall"):
@@ -216,9 +228,14 @@ def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline,
                 if answered(t, [g["target"]]) and not answered(p.text, [g["target"]]) and not (b is not None and answered(b, [g["target"]])):
                     bad.append(g["target"])
             if bad:
-                hits += 1
+                if grp == "near":  # near questions are reported, not judged: another fact's answer there is counted apart
+                    near_hits += 1
+                else:
+                    hits += 1
                 where.append(dict(group=grp, index=i, targets=bad))
     m["cross"] = hits / total
+    if prompts["near"]:
+        m["near_cross"] = near_hits / len(prompts["near"])
     failed = failures(m, baseline.known_accuracy)
     return m, failed, dict(answers, case=cases), where
 
