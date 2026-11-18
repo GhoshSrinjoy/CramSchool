@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 
 from . import remote  # needs only the standard library until a call is made
@@ -82,6 +83,10 @@ def build_parser() -> argparse.ArgumentParser:
     g_alias.add_argument("--table", required=True)
     g_alias.add_argument("--subject", required=True)
     g_alias.add_argument("aliases", nargs="+")
+    g_excl = graft.add_parser("exclude", help="declare longer names that contain a stored company's name and name something else (no model needed)")
+    g_excl.add_argument("--table", required=True)
+    g_excl.add_argument("--subject", required=True)
+    g_excl.add_argument("names", nargs="+")
     g_ask = graft.add_parser("ask", help="ask questions with the table attached, and without it")
     _model_args(g_ask)
     g_ask.add_argument("--table", required=True)
@@ -231,6 +236,29 @@ def run_graft_command(args) -> int:
             print(f"  {f['id']}  {f['subject']} | {f['relation']} | {f['answer']}")
         for subject, names in meta.get("aliases", {}).items():
             print(f"  {subject} is also called: {', '.join(names)}")
+        for subject, names in meta.get("exclusions", {}).items():
+            print(f"  {subject} is not named by: {', '.join(names)}")
+        return 0
+    if args.graft_command == "exclude":
+        meta = _table_meta(args.table)
+        norm = lambda s: " ".join(s.lower().split())  # noqa: E731
+        stored = {norm(f["subject"]): f["subject"] for f in meta["facts"]}
+        if norm(args.subject) not in stored:
+            raise SystemExit(f"no fact is stored about {args.subject!r} in {args.table}")
+        name, known = stored[norm(args.subject)], meta.setdefault("exclusions", {})
+        own = [norm(name)] + [norm(a) for a in meta.get("aliases", {}).get(name, [])]
+        taken = set(stored) | {norm(a) for names in meta.get("aliases", {}).values() for a in names}
+        for longer in args.names:
+            key = norm(longer)
+            if not key or key in taken:
+                raise SystemExit(f"{longer!r} is empty, a stored name or a declared alias")
+            if not any(re.search(r"(?<![0-9a-z])" + re.escape(o) + r"(?![0-9a-z])", key) for o in own):
+                raise SystemExit(f"{longer!r} does not contain {name!r} or one of its aliases as a whole word")
+            if key not in {norm(x) for x in known.get(name, [])}:
+                known.setdefault(name, []).append(" ".join(longer.split()))
+        with open(os.path.join(args.table, "graft.json"), "w", encoding="utf-8") as fh:
+            json.dump(meta, fh, ensure_ascii=False, indent=1)
+        print(f"{name} is not named by: {', '.join(known.get(name, []))}")
         return 0
     if args.graft_command == "alias":
         meta = _table_meta(args.table)
@@ -258,6 +286,10 @@ def run_graft_command(args) -> int:
         rel = canonical_relation(args.relation) if args.relation else None
         gone = [f for f in meta["facts"] if " ".join(f["subject"].lower().split()) == key and (rel is None or f["relation"] == rel)]
         meta["facts"] = [f for f in meta["facts"] if f not in gone]
+        left = {f["subject"] for f in meta["facts"]}
+        for key_ in ("aliases", "exclusions"):  # a company with no facts left keeps no declared names (a stale alias would break loading)
+            if key_ in meta:
+                meta[key_] = {s: a for s, a in meta[key_].items() if s in left}
         for f in gone:
             for suffix in (".pt", ".looser.pt"):
                 p = os.path.join(args.table, "parts", f["id"] + suffix)

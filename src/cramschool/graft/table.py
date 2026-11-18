@@ -16,6 +16,7 @@ from __future__ import annotations
 import contextlib
 import json
 import os
+import re
 import time
 import warnings
 from dataclasses import asdict, dataclass
@@ -114,6 +115,7 @@ class Graft:
         self._mctx: dict | None = None
         self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None)
         self._aliases: dict[str, list[str]] = {}  # a stored subject's declared other names
+        self._exclusions: dict[str, list[str]] = {}  # longer names that contain a stored subject's name and name something else
         self._slots: dict | None = None           # the detectors for the place of the answer inside a reply, by relation
         self._slot_answers: dict | None = None
         self._shared: dict | None = None
@@ -210,8 +212,9 @@ class Graft:
         if relation not in self.wordings.relations:
             raise KeyError(f"unknown relation {relation!r}. Known: {', '.join(self.wordings.relations)}. Add its wordings with add_relation().")
         aliases = {s: list(a) for s, a in self._aliases.items()}  # an update must not cost the company its declared names
+        exclusions = {s: list(a) for s, a in self._exclusions.items()}
         self.remove(subject, relation)
-        self._aliases = aliases
+        self._aliases, self._exclusions = aliases, exclusions
         fid = f"f{self._next:03d}"
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
@@ -250,6 +253,7 @@ class Graft:
             self._facts = keep
             left = {e["fact"]["subject"] for e in keep}
             self._aliases = {s: a for s, a in self._aliases.items() if s in left}
+            self._exclusions = {s: a for s, a in self._exclusions.items() if s in left}
             self._refresh()
         return removed
 
@@ -263,9 +267,12 @@ class Graft:
             raise ValueError(f"no fact is stored about {subject!r}")
         name = stored[norm(subject)]
         taken = {**stored, **{norm(a): s for s, names in self._aliases.items() for a in names}}
+        excluded = {norm(x) for names in self._exclusions.values() for x in names}
         for alias in aliases:
             if not norm(alias):
                 raise ValueError("an alias can't be empty")
+            if norm(alias) in excluded:
+                raise ValueError(f"{alias!r} is declared as naming something else (an exclusion)")
             if taken.get(norm(alias), name) != name:
                 raise ValueError(f"{alias!r} already names {taken[norm(alias)]!r}")
             if norm(alias) not in taken:
@@ -282,9 +289,43 @@ class Graft:
     def _alias_map(self) -> dict[str, str]:
         return {alias: subject for subject, names in self._aliases.items() for alias in names}
 
+    def add_exclusion(self, subject: str, *names: str) -> list[str]:
+        """Declare longer names that contain a stored subject's name, or one of its aliases, and name something else: "Vanderbilt University
+        Department of English" for "Vanderbilt University", "Form 1040-EZ" for "Form 1040". Key 1 matches them as it matches names, and
+        where one stands the text names no stored subject, as for a company the table doesn't hold. Nothing is rebuilt. Returns the
+        subject's exclusions."""
+        norm = lambda s: " ".join(s.lower().split())  # noqa: E731
+        stored = {norm(e["fact"]["subject"]): e["fact"]["subject"] for e in self._facts}
+        if norm(subject) not in stored:
+            raise ValueError(f"no fact is stored about {subject!r}")
+        name = stored[norm(subject)]
+        own = [norm(name)] + [norm(a) for a in self._aliases.get(name, [])]
+        taken = set(stored) | {norm(a) for names_ in self._aliases.values() for a in names_}
+        for longer in names:
+            key = norm(longer)
+            if not key:
+                raise ValueError("an exclusion can't be empty")
+            if key in taken:
+                raise ValueError(f"{longer!r} is a stored name or a declared alias")
+            if not any(re.search(r"(?<![0-9a-z])" + re.escape(o) + r"(?![0-9a-z])", key) for o in own):
+                raise ValueError(f"{longer!r} does not contain {name!r} or one of its aliases as a whole word")
+            if key not in {norm(x) for x in self._exclusions.get(name, [])}:
+                self._exclusions.setdefault(name, []).append(" ".join(longer.split()))
+        self._refresh()
+        return list(self._exclusions.get(name, []))
+
+    @property
+    def exclusions(self) -> dict[str, list[str]]:
+        """Each stored subject's declared exclusions: longer names that contain its name and name something else."""
+        return {s: list(a) for s, a in self._exclusions.items()}
+
+    def _exclusion_list(self) -> list[str]:
+        return [x for names in self._exclusions.values() for x in names]
+
     def find(self, text: str) -> str | None:
         """The stored company a text names last, by its name or a declared alias, as the layer would see it."""
-        return NameIndex(self.tokenizer, sorted({e["fact"]["subject"] for e in self._facts}), self._alias_map()).find(self.tokenizer, text)
+        return NameIndex(self.tokenizer, sorted({e["fact"]["subject"] for e in self._facts}), self._alias_map(),
+                         self._exclusion_list()).find(self.tokenizer, text)
 
     # ------------------------------------------------------------ the layer
 
@@ -319,7 +360,8 @@ class Graft:
         kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
         return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
                           relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None, arm=self.options.arm,
-                          aliases=self._alias_map(), slots=self.slot_detectors() if self.options.arm else None)
+                          aliases=self._alias_map(), slots=self.slot_detectors() if self.options.arm else None,
+                          exclusions=self._exclusion_list())
 
     def attach(self) -> "Graft":
         if not self._facts:
@@ -450,7 +492,8 @@ class Graft:
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
                                  paragraphs=self._calibration, extra_moments=extra, saturate=bool(complete), where="last" if complete else "after",
                                  track=complete is True, progress=self._say)
-        return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts), aliases=self._alias_map()))
+        return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts), aliases=self._alias_map(),
+                                                                exclusions=self._exclusion_list()))
 
     # ------------------------------------------------------------ saving
 
@@ -476,7 +519,7 @@ class Graft:
                     model=getattr(self.model.config, "_name_or_path", ""), layer=self.layer, fingerprint=self._fingerprint(),
                     options=asdict(self.options), relations={r: rel.as_dict() for r, rel in self.wordings.relations.items()},
                     kinds={k: v for k, v in self.wordings.kinds.items() if any(rel.subject == k for rel in self.wordings.relations.values())},
-                    next=self._next, facts=facts, aliases=self._aliases)
+                    next=self._next, facts=facts, aliases=self._aliases, exclusions=self._exclusions)
         with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
         return path
@@ -513,6 +556,7 @@ class Graft:
             graft._facts.append(dict(fact=f, parts=parts, looser=looser))
         graft._next = meta.get("next", len(graft._facts) + 1)
         graft._aliases = {s: list(a) for s, a in meta.get("aliases", {}).items()}
+        graft._exclusions = {s: list(a) for s, a in meta.get("exclusions", {}).items()}
         return graft
 
     def _say(self, text: str) -> None:

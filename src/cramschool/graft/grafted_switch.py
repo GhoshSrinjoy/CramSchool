@@ -37,6 +37,13 @@ import torch
 SPEC_FILE = "grafted.json"
 FIRED = 0.05  # a fact's first token counts as started when its neurons write at least this share of the push
 _SPACES = re.compile(r"\s+")
+OPERATORS = "+-*/^×÷·"      # binary operators: around a stored expression they make it part of a longer one ("x^2+y^2")
+EXPRESSION = set("^*/+=<>×÷")  # a stored name holding one of these is an expression ("-" is not one: "Coca-Cola" is a name)
+EXCLUDED = -1                  # the lookup value of a declared exclusion: a longer name that contains a stored one and names something else
+
+
+def _norm(s: str) -> str:
+    return " ".join(s.lower().split())
 
 
 def _stack(model):
@@ -61,44 +68,95 @@ def _seen(past) -> int:
 
 class NameIndex:
     """Every stored subject name, matched on the decoded text: case ignored, spaces collapsed, as a whole word. Its state carries across
-    forward calls, so it follows generation token by token. step() returns the subject named last (an index), or None."""
+    forward calls, so it follows generation token by token. step() returns the subject named last (an index), or None.
 
-    def __init__(self, tokenizer, names: list[str], aliases: dict[str, str] | None = None):
-        """aliases: other names a text may use for a stored one, as {alias: name}. An alias is matched like a name, as a whole word."""
-        self.names = [" ".join(n.lower().split()) for n in names]
+    A name ends where the text stops continuing it. For every name, a letter or digit right after it continues it ("Softwares"). A name
+    that ends in a digit is also continued by a decimal or thousands separator and a digit ("Form 1040.5", "1,040,000"); one that begins
+    with a digit is not found after a digit and a separator ("0.5"). A name holding a math operator is an expression, continued by a binary
+    operator after it or before it ("x^2+y^2", "y^2+x^2"), spaces allowed. A match at the end of the text so far stays open until the next
+    text decides it: it counts meanwhile, and is withdrawn if the text continues it. Other longer forms ("Form 1040-EZ") are declared as
+    exclusions: where one stands, the text names no stored subject."""
+
+    def __init__(self, tokenizer, names: list[str], aliases: dict[str, str] | None = None, exclusions=None, texts: list[str] | None = None):
+        """aliases: other names a text may use for a stored one, as {alias: name}. An alias is matched like a name, as a whole word.
+        exclusions: longer names that contain a stored name or alias and name something else; matched like names, they name no stored
+        subject. texts: each token id's text, if already decoded."""
+        self.names = [_norm(n) for n in names]
         self.lookup = {n: i for i, n in enumerate(self.names)}
         for alias, name in (aliases or {}).items():
-            self.lookup[" ".join(alias.lower().split())] = self.lookup[" ".join(name.lower().split())]
+            self.lookup[_norm(alias)] = self.lookup[_norm(name)]
+        for longer in exclusions or ():
+            self.lookup.setdefault(_norm(longer), EXCLUDED)  # a stored name or alias of the same text wins
         alternatives = sorted(self.lookup, key=len, reverse=True)
         self.pattern = re.compile(r"(?<![0-9a-z])(?:" + "|".join(re.escape(a) for a in alternatives) + r")") if alternatives else None
         self.longest = max(map(len, self.lookup)) if self.lookup else 0
-        self.texts = tokenizer.batch_decode([[i] for i in range(len(tokenizer))])
+        self.texts = texts if texts is not None else tokenizer.batch_decode([[i] for i in range(len(tokenizer))])
         self.rows: list[dict] = []
 
     def reset(self, n: int) -> None:
-        self.rows = [dict(buf="", current=None, before=None, provisional=False) for _ in range(n)]
+        self.rows = [dict(buf="", seen=0, current=None, pending=[], serial=0) for _ in range(n)]
+
+    @staticmethod
+    def _continues(buf: str, end: int, name: str):
+        """Whether the text after a match ending at `end` continues it: True, False, or None while the text so far can't tell."""
+        rest = buf[end:]
+        if not rest:
+            return None
+        if rest[0].isalnum():
+            return True
+        if name[-1].isdigit() and rest[0] in ".,":
+            return rest[1].isdigit() if len(rest) > 1 else None
+        if EXPRESSION.intersection(name):
+            after = rest.lstrip(" ")
+            return after[0] in OPERATORS if after else None
+        return False
+
+    @staticmethod
+    def _inside(buf: str, start: int, name: str) -> bool:
+        """Whether the text before a match starting at `start` makes it part of something longer (the pattern already refuses a letter or
+        digit right before it)."""
+        before = buf[:start]
+        if name[0].isdigit() and len(before) > 1 and before[-1] in ".," and before[-2].isdigit():
+            return True
+        if EXPRESSION.intersection(name):
+            b = before.rstrip(" ")
+            return bool(b) and b[-1] in OPERATORS
+        return False
+
+    def _name(self, st: dict, value: int) -> None:
+        st["current"] = None if value == EXCLUDED else value
+        st["serial"] += 1
 
     def step(self, b: int, tok: int):
         st = self.rows[b]
         piece = _SPACES.sub(" ", self.texts[tok].lower())
-        if st["provisional"]:  # a name ended with the previous token: a letter or digit now makes it part of a longer word
-            st["provisional"] = False
-            if piece[:1].isalnum():
-                st["current"] = st["before"]
         buf = st["buf"]
         if buf.endswith(" ") and piece.startswith(" "):
             piece = piece[1:]
         start = len(buf)
         buf += piece
+        open_ = []
+        for p in st["pending"]:  # matches that ended the text before: this token decides them (a token with no text ends them, as before)
+            verdict = self._continues(buf, p["end"] - st["seen"], p["name"]) if piece else False
+            if verdict is None:
+                open_.append(p)
+            elif verdict and st["serial"] == p["serial"]:  # continued, and no later name has been read since: withdraw it
+                st["current"] = p["before"]
+        st["pending"] = open_
         if piece and self.pattern is not None:
             for m in self.pattern.finditer(buf, max(0, start - self.longest)):
-                if m.end() <= start:
+                if m.end() <= start or self._inside(buf, m.start(), m.group(0)):
                     continue
-                if m.end() == len(buf):
-                    st["before"], st["current"], st["provisional"] = st["current"], self.lookup[m.group(0)], True
-                elif not buf[m.end()].isalnum():
-                    st["current"] = self.lookup[m.group(0)]
-        st["buf"] = buf[-(self.longest + 32):]
+                verdict = self._continues(buf, m.end(), m.group(0))
+                if verdict:
+                    continue
+                before = st["current"]
+                self._name(st, self.lookup[m.group(0)])
+                if verdict is None:
+                    st["pending"].append(dict(end=st["seen"] + m.end(), name=m.group(0), before=before, serial=st["serial"]))
+        keep = buf[-(self.longest + 32):]
+        st["seen"] += len(buf) - len(keep)
+        st["buf"] = keep
         return st["current"]
 
 
@@ -107,13 +165,15 @@ class Switch:
     With `track` (a model compiled for answers of several tokens), one more reads which facts' first-token neurons fired."""
 
     def __init__(self, model, tokenizer, layer: int, slots: list[int], subjects: list[str], where: str = "after", track: dict | None = None,
-                 aliases: dict | None = None):
+                 aliases: dict | None = None, exclusions=None):
         """track: None, or dict(neurons, answers, clip) from grafted.json: each neuron's kind ("first", "clip" or "next"), fact, form and
-        spelling or step and token; each fact's answer token ids by spelling; the first-token pair's saturation value."""
+        spelling or step and token; each fact's answer token ids by spelling; the first-token pair's saturation value.
+        aliases: declared other names of the subjects, as {alias: subject}. exclusions: declared longer names that contain a subject's
+        name and name something else."""
         if where not in ("after", "last"):
             raise ValueError(f"where must be 'after' or 'last', not {where!r}")
         names = sorted(set(subjects))
-        self.index = NameIndex(tokenizer, names, aliases)  # aliases: declared other names of the subjects, as {alias: subject}
+        self.index = NameIndex(tokenizer, names, aliases, exclusions)
         lookup = {n: self.index.lookup[" ".join(n.lower().split())] for n in names}
         device = next(model.parameters()).device
         self.slots = torch.tensor(slots, dtype=torch.long, device=device)
@@ -240,7 +300,7 @@ def switch_for(model, tokenizer, spec: dict) -> Switch:
     neurons = spec["neurons"]
     track = dict(neurons=neurons, answers=spec["answers"], clip=spec.get("clip", 8.0)) if spec.get("track") else None
     return Switch(model, tokenizer, spec["layer"], [n["slot"] for n in neurons], [n["subject"] for n in neurons], where=spec.get("where", "after"),
-                  track=track, aliases=spec.get("aliases"))
+                  track=track, aliases=spec.get("aliases"), exclusions=spec.get("exclusions"))
 
 
 def attach(model, tokenizer, folder: str) -> Switch:

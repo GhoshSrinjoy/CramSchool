@@ -5,59 +5,24 @@ undo.
 """
 from __future__ import annotations
 
-import re
-
 import torch
 
 from ..model_access import model_device
 from .build import pick_spelling
 from .core import mlp_of, stack_of, token_texts
+from .grafted_switch import NameIndex as _SwitchIndex
 from .wordings import RELATIONS
 
-_SPACES = re.compile(r"\s+")
 
+class NameIndex(_SwitchIndex):
+    """Every stored company name, matched on the decoded text: case ignored, spaces collapsed, as a whole word, with the boundaries of
+    grafted_switch.NameIndex (the grafted model's switch reads names with the same code). Its state carries across forward calls, so it
+    follows generation token by token. step() returns the company named last (an index), or None."""
 
-class NameIndex:
-    """Every stored company name, matched on the decoded text: case ignored, spaces collapsed, as a whole word. Its state carries across
-    forward calls, so it follows generation token by token. step() returns the company named last (an index), or None."""
-
-    def __init__(self, tokenizer, names: list[str], aliases: dict[str, str] | None = None):
-        """aliases: other names a text may use for a stored one, as {alias: name}. An alias is matched like a name, as a whole word."""
-        self.names = [" ".join(n.lower().split()) for n in names]
-        self.lookup = {n: i for i, n in enumerate(self.names)}
-        for alias, name in (aliases or {}).items():
-            self.lookup[" ".join(alias.lower().split())] = self.lookup[" ".join(name.lower().split())]
-        alternatives = sorted(self.lookup, key=len, reverse=True)
-        self.pattern = re.compile(r"(?<![0-9a-z])(?:" + "|".join(re.escape(a) for a in alternatives) + r")") if alternatives else None
-        self.longest = max(map(len, self.lookup)) if self.lookup else 0
-        self.texts = token_texts(tokenizer)
-        self.rows: list[dict] = []
-
-    def reset(self, n: int) -> None:
-        self.rows = [dict(buf="", current=None, before=None, provisional=False) for _ in range(n)]
-
-    def step(self, b: int, tok: int):
-        st = self.rows[b]
-        piece = _SPACES.sub(" ", self.texts[tok].lower())
-        if st["provisional"]:  # a name ended with the previous token: a letter or digit now makes it part of a longer word
-            st["provisional"] = False
-            if piece[:1].isalnum():
-                st["current"] = st["before"]
-        buf = st["buf"]
-        if buf.endswith(" ") and piece.startswith(" "):
-            piece = piece[1:]
-        start = len(buf)
-        buf += piece
-        if piece and self.pattern is not None:
-            for m in self.pattern.finditer(buf, max(0, start - self.longest)):
-                if m.end() <= start:
-                    continue
-                if m.end() == len(buf):
-                    st["before"], st["current"], st["provisional"] = st["current"], self.lookup[m.group(0)], True
-                elif not buf[m.end()].isalnum():
-                    st["current"] = self.lookup[m.group(0)]
-        st["buf"] = buf[-(self.longest + 32):]
-        return st["current"]
+    def __init__(self, tokenizer, names: list[str], aliases: dict[str, str] | None = None, exclusions=None):
+        """aliases: other names a text may use for a stored one, as {alias: name}. exclusions: longer names that contain a stored name and
+        name something else."""
+        super().__init__(tokenizer, names, aliases, exclusions, texts=token_texts(tokenizer))
 
     def find(self, tokenizer, text: str):
         """The company a text names last, or None (for inspection; the layer itself steps token by token)."""
@@ -73,7 +38,8 @@ class GraftLayer:
     calibration. attach() registers its hooks; detach() removes them, leaving the model exactly as it was."""
 
     def __init__(self, model, tokenizer, entries: list[dict], shared: dict, c: torch.Tensor, cbar: float, margin: float, layer: int,
-                 relation_kinds: dict[str, str] | None = None, arm: int = 0, aliases: dict[str, str] | None = None, slots: dict | None = None):
+                 relation_kinds: dict[str, str] | None = None, arm: int = 0, aliases: dict[str, str] | None = None, slots: dict | None = None,
+                 exclusions=None):
         """relation_kinds: each relation's subject kind. A shared detector can veto a subject's fact only if its relation is about the same kind
         of subject (an official-language question never vetoes a person's mother tongue). None: every relation is about companies (v1).
 
@@ -82,12 +48,13 @@ class GraftLayer:
         reaches the place of the answer. While armed, the first token is pushed again wherever the relation's detector for that place
         (`slots`, from build.build_slots) opens. 0 (v1): one push where the question's detector opens, and no more.
 
-        aliases: declared other names of stored subjects, as {alias: subject}; key 1 matches them as it matches the names."""
+        aliases: declared other names of stored subjects, as {alias: subject}; key 1 matches them as it matches the names.
+        exclusions: declared longer names that contain a stored name and name something else; where one stands, no stored subject is named."""
         device = model_device(model)
         self.model, self.layer, self.c, self.cbar, self.margin = model, layer, c.to(device).float(), cbar, margin
         self.entries = entries
         names = sorted({e["subject"] for e in entries})
-        self.index = NameIndex(tokenizer, names, aliases)
+        self.index = NameIndex(tokenizer, names, aliases, exclusions)
         company = {n: self.index.lookup[" ".join(n.lower().split())] for n in names}
         cols, self.fact_cols, self.end_cols, self.by_company, self.taught = [], [], [], {}, {}
         for i, e in enumerate(entries):

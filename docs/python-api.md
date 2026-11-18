@@ -34,6 +34,7 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `compare(question, chat=True) -> dict` | The reply without the layer and with it |
 | `find(text) -> str or None` | The stored company the text names last, by its name or a declared alias, as key 1 sees it |
 | `add_alias(subject, *aliases)`, `aliases` | Declares other names for a stored company ("Vorantis" for "Vorantis Biotech"). Key 1 matches them like the name; nothing is rebuilt |
+| `add_exclusion(subject, *names)`, `exclusions` | Declares longer names that contain a stored company's name or alias and name something else ("Form 1040-EZ" for "Form 1040"). Where one stands, key 1 finds no stored company; nothing is rebuilt |
 | `events -> dict` | Answers started, continued and vetoed since the layer was attached |
 | `save(path)`, `Graft.load(path, model, tokenizer)` | A folder holding `graft.json`, calibration, shared detectors and per-fact parts. `load` refuses another base model unless `check_model=False` |
 

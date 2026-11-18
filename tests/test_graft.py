@@ -51,6 +51,40 @@ def test_declared_aliases_are_matched_like_names():
     assert feed(plain, [0, 4]) is None and feed(plain, [3, 4]) is None     # undeclared, neither matches
 
 
+def test_numbers_and_expressions_end_where_the_text_stops_continuing_them():
+    texts = [" form", " 1040", "-", "ez", ".", "5", " is", ",", "000", " x", "^", "2", "+", "y", " =", " 4", " 1", "0", "4", " people", " 0", " 2"]
+    T = {t: i for i, t in enumerate(texts)}
+    ids = lambda *ts: [T[t] for t in ts]  # noqa: E731
+    index = NameIndex(Pieces(texts), ["Form 1040", "1,040", "5", "x^2"])
+    assert feed(index, ids(" form", " 1040", " is")) == 0
+    assert feed(index, ids(" form", " 1040", ".", "5")) is None                       # "Form 1040.5" is another number
+    assert feed(index, ids(" form", " 1040", ".", " is")) == 0                        # a full stop ends it
+    assert feed(index, ids(" form", " 1040", ",", " is")) == 0                        # so does a comma before a word
+    assert feed(index, ids(" form", " 1", "0", "4", "0", ".", "5")) is None            # one digit per token, decided only by the "5"
+    assert feed(index, ids(" form", " 1", "0", "4", "0", ".")) == 0                    # still open at the end of the text: it counts
+    assert feed(index, ids(" form", " 1040", "-", "ez", " is")) == 0                  # a hyphen is not decided by itself: declare an exclusion
+    assert feed(index, ids(" 1", ",", "0", "4", "0", ",", "000", " people")) is None   # "1,040,000" holds no stored "1,040"
+    assert feed(index, ids(" 1", ",", "0", "4", "0", " people")) == 1
+    assert feed(index, ids(" 0", ".", "5", " is")) is None                            # "0.5" holds no stored "5"
+    assert feed(index, ids(" x", "^", "2", "+", "y", "^", "2")) is None                # "x^2+y^2" is a longer expression
+    assert feed(index, ids("y", "^", "2", "+", " x", "^", "2", " is")) is None         # ... and so is "y^2+ x^2"
+    assert feed(index, ids(" x", "^", "2", " =", " 4")) == 3                          # an equation's side is still the term
+    assert feed(index, ids(" 2", " x", "^", "2", " is")) == 3                         # a space before it: "2 x^2" names it
+    excluding = NameIndex(Pieces(texts), ["Form 1040"], exclusions=["Form 1040-EZ"])
+    assert feed(excluding, ids(" form", " 1040", "-", "ez", " is")) is None           # a declared longer name names no stored subject
+    assert feed(excluding, ids(" form", " 1040", " is")) == 0
+
+
+def test_a_declared_exclusion_names_no_stored_subject():
+    texts = [" vanderbilt", " university", " department", " of", " english", " physics", " is", " acme"]
+    index = NameIndex(Pieces(texts), ["Acme", "Vanderbilt University"], exclusions=["Vanderbilt University Department of English"])
+    assert feed(index, [0, 1, 6]) == 1                                  # acme is 0, vanderbilt university 1
+    assert feed(index, [0, 1, 2, 3, 4, 6]) is None                      # the excluded longer name
+    assert feed(index, [0, 1, 2, 3, 5, 6]) == 1                         # another department is not excluded
+    assert feed(index, [7, 0, 1, 2, 3, 4, 6]) is None                   # the excluded name is named last
+    assert feed(index, [0, 1, 2, 3, 4, 7, 6]) == 0
+
+
 def test_wordings_and_relations():
     w = Wordings.builtin()
     assert list(w.relations) == ["owner", "ceo", "founder", "hq"]
@@ -177,11 +211,13 @@ def test_a_table_builds_saves_and_loads_on_a_tiny_model(model, tokenizer, tmp_pa
         assert graft.is_attached and graft.find("who owns acme ?") == "acme"
         graft.ask("who owns acme ?", max_new_tokens=4)
     assert not graft.is_attached and all(torch.equal(state[k], v) for k, v in model.state_dict().items())   # no weight ever written
-    graft.add("acme", "owner", "julian")                       # an update replaces the old fact
-    assert [(f.subject, f.answer) for f in graft.facts] == [("acme", "julian")]
+    assert graft.add_exclusion("acme", "acme records") == ["acme records"]
+    graft.add("acme", "owner", "julian")                       # an update replaces the old fact, and keeps the company's declared names
+    assert [(f.subject, f.answer) for f in graft.facts] == [("acme", "julian")] and graft.exclusions == {"acme": ["acme records"]}
     path = graft.save(str(tmp_path / "t.graft"))
     again = Graft.load(path, model, tokenizer)
     assert [vars(f) for f in again.facts] == [vars(f) for f in graft.facts] and again.layer == 2
+    assert again.exclusions == {"acme": ["acme records"]} and again.find("who owns acme records ?") is None
     p1 = graft.layer_object()
     p2 = again.layer_object()
     assert torch.equal(p1.W, p2.W) and torch.equal(p1.tau, p2.tau)
@@ -212,8 +248,16 @@ def test_a_table_keeps_its_aliases(model, tokenizer, tmp_path):
     assert graft.wordings.relations["owner"].plain[-1] == "Speaking to reporters, the owner of {s}," and graft._shared is None
     with pytest.raises(KeyError, match="unknown relation"):
         graft.add_wordings("cto", plain=["The CTO of {s} is"])
+    assert graft.add_exclusion("acme", "acme owner", "the owner") == ["acme owner", "the owner"]
+    assert graft.find("the owner of acme owner is") is None and graft.find("the owner of acme is") == "acme"
+    with pytest.raises(ValueError, match="does not contain"):
+        graft.add_exclusion("acme", "paris owner")
+    with pytest.raises(ValueError, match="stored name or a declared alias"):
+        graft.add_exclusion("acme", "the")
+    with pytest.raises(ValueError, match="exclusion"):
+        graft.add_alias("acme", "acme owner")
     graft.remove("acme")
-    assert graft.aliases == {} and graft.find("the owner is") is None
+    assert graft.aliases == {} and graft.exclusions == {} and graft.find("the owner is") is None
 
 
 def test_a_relation_about_people_uses_its_own_kind():
