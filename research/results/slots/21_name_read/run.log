@@ -1,0 +1,42 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.28it/s]Loading weights:  37%|###7      | 119/320 [00:00<00:00, 599.83it/s]Loading weights:  75%|#######4  | 239/320 [00:00<00:00, 843.01it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 783.92it/s]
+09:50:58 90 companies, 24858 prompts (11033 training), 427766 prompt tokens; text: 27640 fitting, 112977 held-out tokens; names not found: {}; collisions: [] | 4s
+09:50:59   reading prompts: batch 1/389 | 1s
+09:51:09   reading prompts: batch 51/389 | 11s
+09:51:20   reading prompts: batch 101/389 | 22s
+09:51:31   reading prompts: batch 151/389 | 33s
+09:51:42   reading prompts: batch 201/389 | 43s
+09:51:52   reading prompts: batch 251/389 | 54s
+09:52:03   reading prompts: batch 301/389 | 65s
+09:52:14   reading prompts: batch 351/389 | 76s
+09:52:22   reading prompts: batch 389/389 | 84s
+09:52:23   reading fitting text: batch 1/4 | 0s
+09:52:24   reading fitting text: batch 4/4 | 2s
+09:52:24   reading held-out text: batch 1/23 | 0s
+09:52:32   reading held-out text: batch 23/23 | 8s
+09:52:32 forward passes done | 98s
+09:52:35   layer 16 reader A: fitted and scored | 2s
+09:52:48   layer 16 reader B: fitted and scored | 15s
+09:52:48 layer 16 done | 15s
+09:52:48   layer 16 A: readable 3/90, recall 0.0, look-alike 0.0 (readable only 0.0833333358168602, mean 0.003, none on 0), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:52:48   layer 16 B: readable 83/90, recall 1.0, look-alike 0.034722222946584225 (readable only 0.0555555559694767, mean 0.132, none on 29), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.2083333358168602/0.0 -> PASS
+09:52:48   layer 16 C: readable 3/90, recall 0.0, look-alike 0.0 (readable only 0.0, mean 0.002, none on 2), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:52:50   layer 17 reader A: fitted and scored | 2s
+09:53:03   layer 17 reader B: fitted and scored | 16s
+09:53:04 layer 17 done | 16s
+09:53:04   layer 17 A: readable 2/90, recall 0.0, look-alike 0.0 (readable only 0.1388888917863369, mean 0.003, none on 0), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:04   layer 17 B: readable 82/90, recall 1.0, look-alike 0.06944444589316845 (readable only 0.0972222238779068, mean 0.135, none on 21), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.1666666716337204/0.0 -> PASS
+09:53:04   layer 17 C: readable 2/90, recall 0.0, look-alike 0.0 (readable only 0.0416666679084301, mean 0.001, none on 1), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:06   layer 18 reader A: fitted and scored | 2s
+09:53:20   layer 18 reader B: fitted and scored | 16s
+09:53:20 layer 18 done | 16s
+09:53:20   layer 18 A: readable 6/90, recall 0.0, look-alike 0.0 (readable only 0.1388888955116272, mean 0.009, none on 0), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:20   layer 18 B: readable 84/90, recall 1.0, look-alike 0.0972222238779068 (readable only 0.1111111119389534, mean 0.148, none on 22), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.1666666716337204/0.0 -> fail
+09:53:20   layer 18 C: readable 5/90, recall 0.0, look-alike 0.0 (readable only 0.0, mean 0.003, none on 3), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:22   layer 20 reader A: fitted and scored | 2s
+09:53:35   layer 20 reader B: fitted and scored | 15s
+09:53:35 layer 20 done | 16s
+09:53:35   layer 20 A: readable 3/90, recall 0.0, look-alike 0.0 (readable only 0.1111111119389534, mean 0.004, none on 0), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:35   layer 20 B: readable 82/90, recall 0.9868420958518982, look-alike 0.0833333358168602 (readable only 0.0972222238779068, mean 0.135, none on 24), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:35   layer 20 C: readable 3/90, recall 0.0, look-alike 0.0 (readable only 0.0, mean 0.000, none on 3), text 0.0 (max 0.00000), other companies 0.0, lower/upper 0.0/0.0 -> fail
+09:53:36 decision: a weights-only name read is viable {'layer': 16, 'reader': 'B'} | 162s

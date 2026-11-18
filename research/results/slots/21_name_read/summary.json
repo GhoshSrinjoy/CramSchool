@@ -1,0 +1,496 @@
+{
+ "plan": "docs/lab-notebook.md, step 13",
+ "layers": [
+  16,
+  17,
+  18,
+  20
+ ],
+ "benches": [
+  "bench40e",
+  "bench40f",
+  "bench40g"
+ ],
+ "companies": 90,
+ "prompts": 24858,
+ "dropped": {},
+ "collisions": [],
+ "verdicts": {
+  "16": {
+   "A": {
+    "readable": 3,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.0030864198381702107,
+    "lookalike_readable": 0.0833333358168602,
+    "no_lookalike_leak": 0,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   },
+   "B": {
+    "readable": 83,
+    "recall": 1.0,
+    "lookalike": 0.034722222946584225,
+    "text": 0.0,
+    "lookalike_mean": 0.13209876720276142,
+    "lookalike_readable": 0.0555555559694767,
+    "no_lookalike_leak": 29,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.2083333358168602,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 28,
+      "recall": 1.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 26,
+      "recall": 1.0,
+      "lookalike": 0.08333333395421505
+     },
+     "bench40g": {
+      "readable": 29,
+      "recall": 1.0,
+      "lookalike": 0.0555555559694767
+     }
+    },
+    "passes": true
+   },
+   "C": {
+    "readable": 3,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.0018518519070413377,
+    "lookalike_readable": 0.0,
+    "no_lookalike_leak": 2,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   }
+  },
+  "17": {
+   "A": {
+    "readable": 2,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.0030864198174741534,
+    "lookalike_readable": 0.1388888917863369,
+    "no_lookalike_leak": 0,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 0,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   },
+   "B": {
+    "readable": 82,
+    "recall": 1.0,
+    "lookalike": 0.06944444589316845,
+    "text": 0.0,
+    "lookalike_mean": 0.13518518706162772,
+    "lookalike_readable": 0.0972222238779068,
+    "no_lookalike_leak": 21,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.1666666716337204,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 26,
+      "recall": 1.0,
+      "lookalike": 0.02777777798473835
+     },
+     "bench40f": {
+      "readable": 27,
+      "recall": 1.0,
+      "lookalike": 0.0972222238779068
+     },
+     "bench40g": {
+      "readable": 29,
+      "recall": 1.0,
+      "lookalike": 0.0486111119389534
+     }
+    },
+    "passes": true
+   },
+   "C": {
+    "readable": 2,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.0009259259535206689,
+    "lookalike_readable": 0.0416666679084301,
+    "no_lookalike_leak": 1,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 0,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   }
+  },
+  "18": {
+   "A": {
+    "readable": 6,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.008950617474814257,
+    "lookalike_readable": 0.1388888955116272,
+    "no_lookalike_leak": 0,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 3,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 2,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   },
+   "B": {
+    "readable": 84,
+    "recall": 1.0,
+    "lookalike": 0.0972222238779068,
+    "text": 0.0,
+    "lookalike_mean": 0.14753086576238275,
+    "lookalike_readable": 0.1111111119389534,
+    "no_lookalike_leak": 22,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.1666666716337204,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0833333358168602,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 27,
+      "recall": 1.0,
+      "lookalike": 0.0555555559694767
+     },
+     "bench40f": {
+      "readable": 28,
+      "recall": 1.0,
+      "lookalike": 0.1388888955116272
+     },
+     "bench40g": {
+      "readable": 29,
+      "recall": 1.0,
+      "lookalike": 0.0902777798473835
+     }
+    },
+    "passes": false
+   },
+   "C": {
+    "readable": 5,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.003086419776082039,
+    "lookalike_readable": 0.0,
+    "no_lookalike_leak": 3,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 2,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 2,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   }
+  },
+  "20": {
+   "A": {
+    "readable": 3,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.0037037037312984467,
+    "lookalike_readable": 0.1111111119389534,
+    "no_lookalike_leak": 0,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   },
+   "B": {
+    "readable": 82,
+    "recall": 0.9868420958518982,
+    "lookalike": 0.0833333358168602,
+    "text": 0.0,
+    "lookalike_mean": 0.1354938300119506,
+    "lookalike_readable": 0.0972222238779068,
+    "no_lookalike_leak": 24,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 27,
+      "recall": 1.0,
+      "lookalike": 0.02777777798473835
+     },
+     "bench40f": {
+      "readable": 26,
+      "recall": 0.9000000357627869,
+      "lookalike": 0.0972222238779068
+     },
+     "bench40g": {
+      "readable": 29,
+      "recall": 1.0,
+      "lookalike": 0.1111111156642437
+     }
+    },
+    "passes": false
+   },
+   "C": {
+    "readable": 3,
+    "recall": 0.0,
+    "lookalike": 0.0,
+    "text": 0.0,
+    "lookalike_mean": 0.0,
+    "lookalike_readable": 0.0,
+    "no_lookalike_leak": 3,
+    "unrelated": 0.0,
+    "other_companies": 0.0,
+    "lower": 0.0,
+    "upper": 0.0,
+    "text_max": 0.0,
+    "lookalike_by_kind": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0
+    },
+    "by_bench": {
+     "bench40e": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40f": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     },
+     "bench40g": {
+      "readable": 1,
+      "recall": 0.0,
+      "lookalike": 0.0
+     }
+    },
+    "passes": false
+   }
+  }
+ },
+ "decision": {
+  "rule": {
+   "readable": 81,
+   "recall": 0.95,
+   "lookalike": 0.08333333333333333,
+   "text": 0.001
+  },
+  "passing": [
+   [
+    16,
+    "B"
+   ],
+   [
+    17,
+    "B"
+   ]
+  ],
+  "chosen": {
+   "layer": 16,
+   "reader": "B"
+  },
+  "verdict": "a weights-only name read is viable"
+ },
+ "seconds": 162
+}

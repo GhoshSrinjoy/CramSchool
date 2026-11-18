@@ -1,0 +1,12 @@
+layer 16 reader A: 0 of 90 companies, 0 of 120 facts
+layer 16 reader B: 40 of 90 companies, 53 of 120 facts
+layer 16 reader C: 0 of 90 companies, 0 of 120 facts
+layer 17 reader A: 0 of 90 companies, 0 of 120 facts
+layer 17 reader B: 38 of 90 companies, 51 of 120 facts
+layer 17 reader C: 0 of 90 companies, 0 of 120 facts
+layer 18 reader A: 0 of 90 companies, 0 of 120 facts
+layer 18 reader B: 31 of 90 companies, 42 of 120 facts
+layer 18 reader C: 0 of 90 companies, 0 of 120 facts
+layer 20 reader A: 0 of 90 companies, 0 of 120 facts
+layer 20 reader B: 31 of 90 companies, 43 of 120 facts
+layer 20 reader C: 0 of 90 companies, 0 of 120 facts
