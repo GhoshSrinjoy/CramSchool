@@ -1,0 +1,13 @@
+research/results/slots/22_detector_ceiling/bench40e.json: 40 facts, 0 fail the reproduction gate []; opened prompts give the whole answer at 0.918
+research/results/slots/22_detector_ceiling/bench40f.json: 40 facts, 0 fail the reproduction gate []; opened prompts give the whole answer at 0.900
+
+80 facts pass the reproduction gate
+  original  near misses opened 0/53, far misses opened 0/91, same-company questions newly opened 0, estimated facts passing 56 of 80
+  insample  near misses opened 50/53, far misses opened 55/91, same-company questions newly opened 1, estimated facts passing 61 of 80
+  lowo      near misses opened 14/53, far misses opened 1/91, same-company questions newly opened 1, estimated facts passing 55 of 80
+  second    near misses opened 53/53, far misses opened 91/91, same-company questions newly opened 2, estimated facts passing 66 of 80
+  either    near misses opened 53/53, far misses opened 91/91, same-company questions newly opened 2, estimated facts passing 66 of 80
+
+reading, as fixed before the run:
+- in-sample opens 0.60 of the far misses with 1 new same-company openings: one direction at this site is the limit; two directions open 91/91 with 2 new same-company openings
+- in-sample opens the far misses, leaving one wording out gains -1 estimated facts (bar 6): the limit is coverage

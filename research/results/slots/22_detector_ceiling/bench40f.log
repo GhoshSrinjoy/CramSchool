@@ -1,0 +1,42 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.33it/s]Loading weights:  37%|###7      | 119/320 [00:00<00:00, 606.23it/s]Loading weights:  75%|#######5  | 240/320 [00:00<00:00, 847.58it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 789.80it/s]
+12:54:13 f01 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 39.3s
+12:54:51 f02 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 38.0s
+12:55:34 f03 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 42.2s
+12:56:12 f04 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 38.0s
+12:56:48 f05 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+12:57:24 f06 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.2s
+12:58:01 f07 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 36.6s
+12:58:37 f08 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.2s
+12:59:13 f09 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.1s
+12:59:52 f10 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 39.2s
+13:00:28 f11 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.0s
+13:01:06 f12 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 37.4s
+13:01:42 f13 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.7s
+13:02:19 f14 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.7s
+13:02:55 f15 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+13:03:32 f16 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+13:04:08 f17 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.6s
+13:04:44 f18 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.2s
+13:05:21 f19 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.2s
+13:05:58 f20 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 37.8s
+13:06:35 f21 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.4s
+13:07:12 f22 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.7s
+13:07:48 f23 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.5s
+13:08:25 f24 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 36.6s
+13:09:01 f25 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+13:09:37 f26 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.5s
+13:10:14 f27 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+13:10:50 f28 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 36.1s
+13:11:27 f29 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.7s
+13:12:05 f30 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 38.0s
+13:12:41 f31 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+13:13:17 f32 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 36.6s
+13:13:54 f33 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.6s
+13:14:31 f34 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.6s
+13:15:07 f35 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.2s
+13:15:43 f36 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 36.4s
+13:16:20 f37 owner   gate cos 1.000000 | stored scores reproduced to 0.0 | 36.3s
+13:16:56 f38 hq      gate cos 1.000000 | stored scores reproduced to 0.0 | 36.2s
+13:17:32 f39 founder gate cos 1.000000 | stored scores reproduced to 0.0 | 36.4s
+13:18:10 f40 ceo     gate cos 1.000000 | stored scores reproduced to 0.0 | 37.5s
