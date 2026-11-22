@@ -14,12 +14,12 @@ Measured on **blind bench40e**: 40 new fictional facts, written by an agent that
 | Answers given to look-alike companies, unrelated companies or name slots | **none**, on every fact |
 | Real facts the model already knew, lost | **0 of 133**, on every fact |
 | Drift on ordinary text | **0.000** nats per token |
-| Storage per fact | 44 KB in float32 (52 KB with the optional looser start) |
+| Storage per fact | 44 KB in float32 (52 KB with the optional looser start or end-of-prompt detector) |
 | Generation time | unchanged: 1.2 s for 48 prompts, with the layer or without it |
 
 The stage-1 method holds one fact at a time. On the same facts it passes 34 of 40: 4 facts pass only with GRAFT and 7 only one at a time (McNemar p = 0.55). So v1's gain is holding many facts at once, not a higher pass rate per fact: with 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
 
-Facts added through the API are taught from drafted wordings alone, with none of the bench's own. On the same bench they pass 32 of 40 with 40 facts loaded, or 31 counted conservatively, and 24 and 30 of 40 on the two blind benches written after it. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
+Facts added through the API are taught from drafted wordings alone, with none of the bench's own. On the same bench they pass 32 of 40 with 40 facts loaded, or 31 counted conservatively, and 24, 30 and 23 of 40 on the three blind benches written after it. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
 
 <p align="center"><img src="docs/assets/journey.png" alt="Facts passing every check, method by method, from 0 of 40 to 31 of 40" width="90%"></p>
 
@@ -91,7 +91,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | Folder | What it holds |
 |---|---|
 | [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
-| [`benchmarks/`](benchmarks/) | The nine benches, with the blind writers' source files |
+| [`benchmarks/`](benchmarks/) | The ten benches, with the blind writers' source files |
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
@@ -124,6 +124,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
   - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
   - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
 - **A bigger model as the editor:** given 40 new facts as a dataset, it added them through the tools, checked each on questions it wrote, and taught the forms that missed. Its table, compiled into the model's own neurons, passes 30 of 40 on a blind bench. The teaching lifts replies a little and facts not at all: 29 of 40 pass on the questions it didn't teach, with or without it ([benchmarks](docs/benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)).
+- **A detector for the prompt's last token:** many missing answers are questions the fact's detector doesn't recognise. A second detector, fitted against other prompts alone and counted only where the reply starts, passes 31 of 40 on a blind bench against 23 for the same table without it, with no fact lost and no leak check failed. It is an option, off by default (`GraftOptions(prompt_detector=True)`), measured with 40 facts in a table and not part of a grafted model ([benchmarks](docs/benchmarks.md#a-detector-for-the-prompts-last-token)).
 - **A fact also answers questions close to its relation.** "Who is the head of human resources at Dwenkali Telecom?" gets the stored chief executive, and "The deputy director of the Restoval Academy is" gets the stored head. On the bench beyond companies this happens in 0.72 of such replies. Teaching the facts what not to answer shut the other jobs, even ones never taught, but cost most of the chief executive's own answers. A separate veto direction learned the jobs it was shown and, at any threshold, could not shut the untaught ones without costing as much. Neither is adopted. Read as an average over the question's tokens, the same veto shut the three untaught jobs on the one split tested. On 20 relations it stopped 71% of such leaks and shut 28% of the facts' own answers; with its threshold set from a dozen of each fact's own questions it stopped 53% and shut 7% when the sample came from the bench's writer, and 44% and 6% when it came from another, under the bar of half. It is not built, and near questions stay a stated limit ([lab notebook, step 17](docs/lab-notebook.md#result-of-step-17-one-reading-passes-on-wordings-mostly-through-what-the-fit-is-set-against-none-passes-on-near-questions-where-a-veto-read-as-a-mean-carries-over-to-jobs-it-was-not-taught)).
 - **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands. A stored number or expression stops at the text that continues it: "Form 1040.5" doesn't name "Form 1040". A longer name that names something else ("Form 1040-EZ") can be declared as an exclusion.
 - **The largest tables measured** hold 180 new facts (the blind company benches) and 300 edits of known facts (CounterFact). Published editors report thousands of edits.

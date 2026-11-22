@@ -87,7 +87,7 @@ The beta followed *Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang and 
 |---|---|---|
 | Development, bench40b | 100 | 22 of 40 |
 | **Blind bench40d** | 140 | **27 of 40**, equal to fact block v2 |
-| One allowed revision: a looser start | 180 | 31 against 31 on blind bench40e, so it is optional |
+| One allowed revision: a looser start | 180 | 31 against 31 on blind bench40e, so it is optional. With 40 facts loaded it gains: 28 against 23 on blind bench40h |
 | **Blind bench40e, v1** | 180 | **31 of 40** |
 
 ## After v1: facts the model knows, and the grafted model
@@ -113,6 +113,16 @@ The beta followed *Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang and 
 | **Blind bench40g**, two editors' tables, loaded back from disk | **31 and 30 of 40**, against the inserted layer's 33 and 31 |
 
 **A bigger model as the editor, on new facts** ([benchmarks](benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)). Given a blind bench's 40 facts as a dataset, Claude Opus 5.5 taught them through the tools and checked and fixed its own work, and the table went into the model's own neurons. On the questions it didn't teach, its teaching moved replies and no fact. Its checks found that a chief-executive fact answers for other jobs at its company, which no bench had asked; teaching the facts what not to answer cost too many of their own answers and was not adopted.
+
+**A detector for the prompt's last token** ([benchmarks](benchmarks.md#a-detector-for-the-prompts-last-token)). Reading the stored replies showed that most missing answers were questions the fact's detector did not recognise, and that teaching more wordings did not reach them. The cause was in the fit: one detector had to tell the question from other prompts, from the inside of its own answer and from the model's replies at once. A second detector, fitted against other prompts alone and counted only where the reply starts, was chosen on two development benches and then judged on a bench written blind and opened after the code was frozen:
+
+| Run | Pass |
+|---|---|
+| Development, bench40e and bench40f | 66 of 80, against 56 |
+| bench40g, read before but with no say in choosing it | 36 of 40, against 30 |
+| **Blind bench40h** | **31 of 40**, against 23 as built and 28 with the looser start |
+
+No fact was lost on bench40h and no leak check failed. It is an option of the package, off by default, measured with 40 facts in a table.
 
 ## Where the beta code lives
 

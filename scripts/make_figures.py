@@ -142,14 +142,17 @@ def blind():
         ("bench40g", "40 facts, a bigger model teaching", [("GRAFT", "reference", GREEN, ""), ("Editor's\nwordings", "editor_wordings", GREEN_L, "//"),
                                                        ("Editor's\nown run", "live_editor", GREEN_L, "//"),
                                                        ("Grafted,\nfrom disk", "bench40g/grafted_part1_disk", BLUE, "")]),
+        ("bench40h", "40 facts, a detector for the prompt's end", [("GRAFT", "as_built", GREEN, ""), ("Looser\nstart", "looser", GREEN_L, "//"),
+                                                               ("End-of-prompt\ndetector", "end_detector", GREEN, "")]),
     ]
-    fig, ax = plt.subplots(figsize=(14.0, 5.9))
-    fig.subplots_adjust(left=0.05, right=0.985, top=0.71, bottom=0.21)
+    fig, ax = plt.subplots(figsize=(16.6, 6.1))
+    fig.subplots_adjust(left=0.045, right=0.985, top=0.69, bottom=0.21)
     title(fig, "Blind benches: facts passing every check, of 40", "Fact block v2 holds one fact at a time; GRAFT holds every loaded fact "
           "in one layer.\nbench40d chose the looser start, so its blind result is bench40e only.\n"
           "bench40f: one table of 40 facts as the inserted layer, and compiled into the model's own neurons (the grafted model).\n"
           "bench40g: a bigger model's wordings, or its own run from the facts as a dataset; on the wordings neither editor taught, 29 pass in "
-          "each. The grafted bar is the first editor's table.")
+          "each. The grafted bar is the first editor's table.\n"
+          "bench40h: one saved table as built, with the looser start, and with a second detector that counts only at the prompt's last token.")
     x, ticks, labels = 0.0, [], []
     for bench, loaded, bars in groups:
         start = x

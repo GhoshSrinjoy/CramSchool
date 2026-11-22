@@ -115,6 +115,7 @@ At use, the layer adds $2\,v_j$ to $o_t$.
 | Vector strength and cap | 1.25, at most 10 × median | fact block v1 |
 | Reply length for reply negatives | 16 tokens | bench scoring length |
 | Looser start | off | see below |
+| End-of-prompt detector | off | see below |
 
 ## 8. The looser start (optional)
 
@@ -124,7 +125,25 @@ It was the one revision allowed after the first blind result. On blind bench40e,
 - **Recall** rose on 22 facts and fell on none.
 - **Passes stayed at 31,** because head-office facts then fired at the start of replies to general questions about their company: "How many employees does Lumbravic Brewing have?" → "Asahikawa Lumbravic Brewing Co., …".
 
-It stays off by default, and leaks less that way.
+It stays off by default, and leaks less that way. With 40 facts in a table it does gain: 28 against 23 on blind bench40h, with one fact failing because its company's other fact answered a general question.
+
+### The end-of-prompt detector (optional)
+
+`GraftOptions(prompt_detector=True)` puts another detector in the same place: a second detector of the fact's own, per form, that counts only at the prompt's last token.
+
+- **Why:** a fact's detector (section 3) is fitted against three groups at once: other prompts, the positions inside its own taught answer, and the model's replies. That fit costs it question wordings it was not taught. At the prompt's last token nothing has been generated yet, so those last two groups are not needed there.
+- **The fit:** the fact's positives against its prompt negatives alone, with the same rule for $\tau$ and $\delta$ as in section 7. A form whose median positive doesn't clear its threshold gets none.
+- **Where it counts:** at the prompt's last token a fact opens if its strict detectors do or this one does. Inside replies the strict ones decide alone. The name index, the competition between a company's facts and the veto are unchanged.
+- **Measured** on blind bench40h, 40 facts added through the API with the fast build: 31 pass with it against 23 without, with no fact lost and no leak, garbling or damage check failed ([benchmarks](benchmarks.md#a-detector-for-the-prompts-last-token)). On a table built without the fast build (bench40e, a development bench) it gives 35 of 40 against 32.
+- **Cost:** two more detectors per fact, about 8 KB, and about 2.4 seconds more per fact with the fast build. Without the fast build the fact's negatives and positives are read a second time.
+- **Limits:**
+  - it was measured with 40 facts in a table, and the looser start's gain was gone with 180;
+  - it opens more questions that are close to the relation and are not it ([limitations](limitations.md));
+  - a grafted model (section 12) doesn't have it, because the compile takes the strict detectors only;
+  - it can't be combined with the looser start or `end_quantile`, which use the same slot.
+- **On a saved table:** set the option on the loaded table, and the missing detectors are built on first use and saved with it.
+
+It is off by default.
 
 ## 9. Cost
 
@@ -134,7 +153,7 @@ It stays off by default, and leaks less that way.
   - 16-token replies to about 70 prompts;
   - readings on the positives and the fit;
   - a check of the push size on the training wordings.
-- **Storage:** about 44 KB per fact in float32. That is 2 detectors of 1,024 numbers, plus one vector per answer token for each of 2 spellings. The looser start adds 2 detectors: 52 KB.
+- **Storage:** about 44 KB per fact in float32. That is 2 detectors of 1,024 numbers, plus one vector per answer token for each of 2 spellings. The looser start, or the end-of-prompt detector, adds 2 detectors: 52 KB.
 - **Runtime:** per forward call, the layer does one product of the last position's $x_t$ with the stacked detector matrix (about 370 columns at 180 facts), plus string matching. No slowdown was measurable: 1.2 s for 48 prompts with or without the layer.
 
 ## 10. What holds by construction, and what doesn't
