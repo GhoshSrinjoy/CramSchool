@@ -1,0 +1,122 @@
+112 facts, 448 test near questions; 31 equal a drafted one and are left out of arm A's judged count; 310 more share a distinctive word with a drafted one
+usable veto forms (of 84 per relation), fewest over the relations: {'A': 44, 'C': 80}
+
+THE RULE: arm A at the mean of layer 11, on the untaught near questions: 87 of 303 leaks left (bar: at most 151); 788 of 1089 answers kept (bar: at least 981)
+  -> KILL RULE MET: the mean veto is put aside
+
+arm A (near questions drafted blind, per relation): leaks left / answers kept, of 321 leaks over all near questions and 1089 answers
+  mean: 0:122/656  1:105/679  2:108/680  3:123/742  4:93/672  5:111/747  6:81/775  7:83/786  8:88/809  9:76/803  10:87/835  11:89/788  12:93/820  13:88/806  14:87/753  15:85/792  16:83/746  17:82/743  18:86/745  19:95/723  20:84/729
+  last: 0:306/1056  1:265/991  2:218/825  3:238/899  4:205/904  5:215/910  6:210/931  7:177/853  8:182/865  9:180/862  10:179/894  11:181/894  12:179/885  13:176/904  14:137/797  15:119/751  16:99/680  17:117/684  18:114/705  19:90/656  20:84/611
+
+arm B (the bench's own training near questions, per fact): leaks left / answers kept, of 321 leaks over all near questions and 1089 answers
+  mean: 0:109/608  1:115/573  2:125/612  3:111/642  4:107/620  5:96/597  6:90/618  7:86/635  8:88/651  9:71/623  10:64/627  11:70/611  12:68/600  13:79/617  14:76/598  15:69/607  16:85/593  17:78/579  18:79/602  19:88/597  20:87/588
+  last: 0:232/827  1:189/779  2:185/686  3:191/705  4:207/775  5:191/731  6:217/883  7:198/852  8:194/808  9:183/829  10:186/852  11:179/872  12:146/771  13:151/886  14:131/845  15:110/759  16:119/731  17:124/731  18:116/744  19:145/866  20:144/819
+
+arm C (the kind's generic questions, no near question (control)): leaks left / answers kept, of 321 leaks over all near questions and 1089 answers
+  mean: 0:271/1033  1:273/1017  2:248/959  3:239/957  4:236/961  5:213/967  6:208/940  7:205/924  8:200/923  9:194/896  10:194/920  11:184/879  12:190/903  13:205/900  14:216/927  15:199/876  16:225/921  17:234/944  18:220/936  19:227/919  20:233/927
+  last: 0:321/1060  1:286/983  2:303/1023  3:240/830  4:266/827  5:217/822  6:172/722  7:145/521  8:158/542  9:168/590  10:97/387  11:133/490  12:153/568  13:164/530  14:105/283  15:153/515  16:126/511  17:135/511  18:142/559  19:179/659  20:148/620
+
+arm A at the judged reading, by what the test question shares with the drafted ones (leaks left of leaks):
+  equal to a drafted one       2 of 18
+  shares a distinctive word   67 of 231
+  shares none                 20 of 72
+
+arm A at the judged reading, by relation (leaks left of leaks; answers kept of answers):
+  birthplace 19/21;67/67  ceo 0/10;12/36  concept_field 5/17;46/46  concept_proposer 0/24;58/71  employer 6/9;47/47  event_city 9/16;53/53  event_year 12/23;48/52  founder 0/9;13/38  hq 3/11;36/40  institution_city 10/15;46/51  institution_head 5/16;20/58  medicine_condition 2/11;41/59  medicine_maker 0/22;49/71  owner 1/4;17/32  product_maker 0/20;23/64  product_year 1/12;30/56  town_founded 4/23;64/70  town_mayor 3/21;55/66  work_creator 1/13;40/51  work_year 8/24;23/61
+
+arm B at the judged reading, by relation (leaks left of leaks; answers kept of answers):
+  birthplace 13/21;67/67  ceo 3/10;31/36  concept_field 3/17;45/46  concept_proposer 0/24;35/71  employer 5/9;33/47  event_city 3/16;35/53  event_year 4/23;25/52  founder 0/9;22/38  hq 6/11;38/40  institution_city 1/15;9/51  institution_head 3/16;16/58  medicine_condition 2/11;45/59  medicine_maker 1/22;24/71  owner 1/4;15/32  product_maker 2/20;17/64  product_year 5/12;28/56  town_founded 5/23;43/70  town_mayor 4/21;30/66  work_creator 4/13;24/51  work_year 5/24;29/61
+
+arm C at the judged reading, by relation (leaks left of leaks; answers kept of answers):
+  birthplace 21/21;66/67  ceo 1/10;18/36  concept_field 4/17;44/46  concept_proposer 4/24;45/71  employer 9/9;46/47  event_city 16/16;53/53  event_year 8/23;31/52  founder 3/9;35/38  hq 11/11;38/40  institution_city 1/15;23/51  institution_head 10/16;32/58  medicine_condition 2/11;45/59  medicine_maker 12/22;57/71  owner 1/4;26/32  product_maker 13/20;41/64  product_year 12/12;56/56  town_founded 20/23;70/70  town_mayor 21/21;66/66  work_creator 8/13;38/51  work_year 7/24;49/61
+
+facts passing of 112 (every check but near questions; and with near questions held to the same-subject bar):
+  no veto   75;   4
+  arm A     37;  27
+  arm B     19;  14
+  arm C     45;  16
+
+after the fact, with hindsight (upper bounds): leaks left and answers kept with one cut for all relations, and with a cut per relation, each set to keep 90% of the answers; then the relations left with at most half their leaks
+  arm A, mean  9: one cut 214/303 left, 981 kept | a cut per relation 116/303 left, 1016 kept, 14 of 20 relations; facts passing 67, with near questions judged 42
+  arm A, mean 10: one cut 209/303 left, 981 kept | a cut per relation 114/303 left, 1019 kept, 14 of 20 relations; facts passing 67, with near questions judged 43
+  arm A, mean 11: one cut 228/303 left, 981 kept | a cut per relation 125/303 left, 1009 kept, 11 of 20 relations; facts passing 68, with near questions judged 43
+  arm A, mean 12: one cut 218/303 left, 981 kept | a cut per relation 133/303 left, 1025 kept, 11 of 20 relations; facts passing 67, with near questions judged 40
+  arm A, last 20: one cut 232/303 left, 981 kept | a cut per relation 214/303 left, 1008 kept, 5 of 20 relations; facts passing 66, with near questions judged 18
+  arm B, mean  9: one cut 235/321 left, 981 kept | a cut per relation 180/321 left, 1001 kept, 9 of 20 relations; facts passing 64, with near questions judged 23
+  arm B, mean 10: one cut 235/321 left, 981 kept | a cut per relation 180/321 left, 1001 kept, 8 of 20 relations; facts passing 63, with near questions judged 22
+  arm B, mean 11: one cut 232/321 left, 981 kept | a cut per relation 187/321 left, 999 kept, 5 of 20 relations; facts passing 63, with near questions judged 18
+  arm B, mean 12: one cut 241/321 left, 981 kept | a cut per relation 192/321 left, 1000 kept, 6 of 20 relations; facts passing 64, with near questions judged 18
+  arm B, last 20: one cut 215/321 left, 981 kept | a cut per relation 203/321 left, 994 kept, 6 of 20 relations; facts passing 61, with near questions judged 19
+  arm C, mean  9: one cut 242/321 left, 981 kept | a cut per relation 253/321 left, 1023 kept, 3 of 20 relations; facts passing 64, with near questions judged 11
+  arm C, mean 10: one cut 236/321 left, 981 kept | a cut per relation 241/321 left, 1023 kept, 5 of 20 relations; facts passing 62, with near questions judged 13
+  arm C, mean 11: one cut 245/321 left, 981 kept | a cut per relation 244/321 left, 1023 kept, 6 of 20 relations; facts passing 64, with near questions judged 11
+  arm C, mean 12: one cut 249/321 left, 981 kept | a cut per relation 241/321 left, 1022 kept, 5 of 20 relations; facts passing 63, with near questions judged 13
+  arm C, last 20: one cut 300/321 left, 981 kept | a cut per relation 280/321 left, 998 kept, 0 of 20 relations; facts passing 68, with near questions judged 8
+
+THE THRESHOLD FROM A SAMPLE: each fact's veto fires only above every score it gives to a sample of the relation's own questions about its subject. The sample: research/results/slots/25_mean_veto/sample_own.json; wordings per fact: [7, 8, 9, 10, 12]
+gate: the largest difference from step 18's stored scores at the test prompts is 0
+THE RULE: arm A at the mean of layer 11, on the untaught near questions: 169 of 303 leaks left (bar: at most 151); 1025 of 1089 answers kept (bar: at least 981)
+  -> KILL RULE MET: the mean veto is put aside on this model
+  the veto fires on 99 of 1344 test recall prompts = 0.074 (stated, one in the sample's size plus one: 0.097)
+  facts passing every check but near questions 66; with near questions held to the same-subject bar 29 (no veto: 75 and 4; the veto as fitted: 37 and 27)
+
+reported: leaks left of leaks / answers kept of answers | fires on test recall prompts | facts; facts with near questions judged
+  arm A, largest  mean  9: 168 of 303 / 1019 of 1089 | 0.074 | 64; 26
+  arm A, largest  mean 10: 156 of 303 / 1043 of 1089 | 0.055 | 68; 32
+  arm A, largest  mean 11: 169 of 303 / 1025 of 1089 | 0.074 | 66; 29
+  arm A, largest  mean 12: 159 of 303 / 1023 of 1089 | 0.075 | 66; 26
+  arm A, largest  last 20: 237 of 303 / 1036 of 1089 | 0.051 | 69; 16
+  arm A, second   mean  9: 120 of 303 /  945 of 1089 | 0.142 | 54; 28
+  arm A, second   mean 10: 115 of 303 /  955 of 1089 | 0.135 | 55; 29
+  arm A, second   mean 11: 122 of 303 /  943 of 1089 | 0.146 | 54; 28
+  arm A, second   mean 12: 121 of 303 /  934 of 1089 | 0.161 | 53; 28
+  arm A, second   last 20: 181 of 303 /  932 of 1089 | 0.145 | 54; 19
+  arm A, floored  mean  9: 186 of 303 / 1040 of 1089 | 0.055 | 67; 24
+  arm A, floored  mean 10: 170 of 303 / 1062 of 1089 | 0.038 | 70; 30
+  arm A, floored  mean 11: 182 of 303 / 1044 of 1089 | 0.056 | 69; 27
+  arm A, floored  mean 12: 172 of 303 / 1063 of 1089 | 0.040 | 72; 27
+  arm A, floored  last 20: 239 of 303 / 1041 of 1089 | 0.047 | 69; 15
+  arm B, largest  mean  9: 143 of 321 /  969 of 1089 | 0.136 | 60; 30
+  arm B, largest  mean 10: 141 of 321 /  963 of 1089 | 0.141 | 57; 24
+  arm B, largest  mean 11: 144 of 321 /  945 of 1089 | 0.157 | 55; 26
+  arm B, largest  mean 12: 140 of 321 /  939 of 1089 | 0.157 | 51; 24
+  arm B, largest  last 20: 202 of 321 / 1017 of 1089 | 0.075 | 63; 18
+  arm B, second   mean  9: 120 of 321 /  860 of 1089 | 0.238 | 40; 21
+  arm B, second   mean 10: 113 of 321 /  843 of 1089 | 0.252 | 38; 21
+  arm B, second   mean 11: 113 of 321 /  829 of 1089 | 0.267 | 40; 22
+  arm B, second   mean 12: 108 of 321 /  824 of 1089 | 0.272 | 37; 18
+  arm B, second   last 20: 159 of 321 /  916 of 1089 | 0.169 | 51; 20
+  arm B, floored  mean  9: 157 of 321 /  992 of 1089 | 0.113 | 64; 32
+  arm B, floored  mean 10: 158 of 321 /  987 of 1089 | 0.115 | 62; 27
+  arm B, floored  mean 11: 159 of 321 /  967 of 1089 | 0.135 | 58; 26
+  arm B, floored  mean 12: 159 of 321 /  960 of 1089 | 0.133 | 54; 23
+  arm B, floored  last 20: 219 of 321 / 1046 of 1089 | 0.047 | 70; 18
+  arm C, largest  mean  9: 210 of 321 /  942 of 1089 | 0.157 | 52; 14
+  arm C, largest  mean 10: 211 of 321 /  955 of 1089 | 0.146 | 55; 15
+  arm C, largest  mean 11: 213 of 321 /  966 of 1089 | 0.141 | 56; 14
+  arm C, largest  mean 12: 225 of 321 /  972 of 1089 | 0.129 | 57; 12
+  arm C, largest  last 20: 271 of 321 /  967 of 1089 | 0.121 | 58;  3
+  arm C, second   mean  9: 166 of 321 /  839 of 1089 | 0.252 | 39; 17
+  arm C, second   mean 10: 161 of 321 /  823 of 1089 | 0.270 | 37; 19
+  arm C, second   mean 11: 161 of 321 /  830 of 1089 | 0.260 | 36; 18
+  arm C, second   mean 12: 178 of 321 /  864 of 1089 | 0.234 | 39; 13
+  arm C, second   last 20: 246 of 321 /  896 of 1089 | 0.196 | 43;  3
+  arm C, floored  mean  9: 252 of 321 / 1029 of 1089 | 0.072 | 65; 11
+  arm C, floored  mean 10: 251 of 321 / 1038 of 1089 | 0.061 | 66; 13
+  arm C, floored  mean 11: 253 of 321 / 1045 of 1089 | 0.062 | 67; 12
+  arm C, floored  mean 12: 259 of 321 / 1044 of 1089 | 0.059 | 67; 10
+  arm C, floored  last 20: 273 of 321 /  968 of 1089 | 0.121 | 59;  3
+
+after the fact: the leaks bar with one relation left out fails without: ['birthplace (163 of 284)', 'ceo (163 of 297)', 'concept_field (161 of 286)', 'concept_proposer (148 of 279)', 'employer (163 of 294)', 'event_city (153 of 287)', 'event_year (156 of 280)', 'founder (163 of 294)', 'hq (162 of 292)', 'institution_city (160 of 288)', 'institution_head (162 of 287)', 'medicine_condition (166 of 294)', 'medicine_maker (160 of 281)', 'owner (166 of 299)', 'product_maker (157 of 283)', 'product_year (165 of 291)', 'town_founded (165 of 280)', 'town_mayor (165 of 292)', 'work_creator (168 of 290)', 'work_year (145 of 279)']; relations with at most half of their own leaks left: 9 of 20
+
+arm A at the judged reading with the revision's threshold, by relation (leaks left of leaks; answers kept of answers):
+  birthplace 6/19;56/67  ceo 6/6;36/36  concept_field 8/17;46/46  concept_proposer 21/24;70/71  employer 6/9;42/47  event_city 16/16;53/53  event_year 13/23;50/52  founder 6/9;38/38  hq 7/11;39/40  institution_city 9/15;46/51  institution_head 7/16;46/58  medicine_condition 3/9;58/59  medicine_maker 9/22;71/71  owner 3/4;32/32  product_maker 12/20;62/64  product_year 4/12;51/56  town_founded 4/23;69/70  town_mayor 4/11;57/66  work_creator 1/13;42/51  work_year 24/24;61/61
+
+after the fact: the veto of the revision beside step 17's end-of-prompt detector (opened prompts answer at 0.902). Estimated facts passing of 112: every check but near questions; with near questions held to the same-subject bar
+  the detector as built            no veto         75;   4
+  the detector as built            with the veto   66;  29
+  with the end-of-prompt detector  no veto         79;   2
+  with the end-of-prompt detector  with the veto   72;  31
+arm A: the veto fires on 514 of 800 same-subject questions (harmless: they are not to be answered)
+arm B: the veto fires on 483 of 800 same-subject questions (harmless: they are not to be answered)
+arm C: the veto fires on 772 of 800 same-subject questions (harmless: they are not to be answered)

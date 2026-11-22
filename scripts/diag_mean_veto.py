@@ -59,8 +59,81 @@ RULES ({{s}} stands for the subject and appears exactly once in every string)
 Reply with the JSON object only."""
 
 
+SAMPLE_PLAIN, SAMPLE_CHAT = 8, 4
+SAMPLE_BRIEF = """You are writing sample questions for a method that adds facts to a small language model. For each relation below, write
+different ways a person might ask for that relation about a subject. Write from your own sense of how people phrase things. Do not look
+anything up, do not open or read any file, and do not use any tool.
+
+Output: one JSON object (UTF-8):
+{{"own": {{"<relation>": {{"plain": [{plain} strings], "chat": [{chat} strings]}}, ... one entry per relation below ...}}}}
+
+RELATIONS (the kind of subject; what the relation asks; what its answer is)
+{relations}
+
+RULES ({{s}} stands for the subject and appears exactly once in every string)
+- "plain": {plain} different sentence beginnings that stop exactly where the answer would come next, with no trailing space, reading
+  naturally when continued by the answer.
+- "chat": {chat} different questions or requests a user might type to a chat assistant to get that answer about {{s}}.
+- Vary structure, length and register: encyclopedic, news, casual, records language, a question then its answer, the subject early or
+  late in the sentence.
+- Every string must clearly ask for its own relation and not another one. No answer, real or invented, may appear in a string.
+- Within a relation, no two strings may differ only by punctuation, capitalization or a single small word.
+
+Reply with the JSON object only."""
+
+
 def log(msg):
     print(time.strftime("%H:%M:%S"), msg, flush=True)
+
+
+def sample_brief() -> str:
+    from cramschool.bench.kinds import _ANSWER_WORDS, KINDS
+
+    lines = [f'- "{r}" ({spec["noun"]}): {desc}; the answer is {_ANSWER_WORDS[a]}' for spec in KINDS.values() for r, (a, desc) in spec["relations"].items()]
+    return SAMPLE_BRIEF.format(relations="\n".join(lines), plain=SAMPLE_PLAIN, chat=SAMPLE_CHAT)
+
+
+def bench_own(bench: list[dict]) -> dict:
+    """{relation: the normalized wordings the bench asks the relation with, training and test}."""
+    out = collections.defaultdict(set)
+    for f in bench:
+        for side in ("train", "test"):
+            out[f["relation"]] |= {normalized(t) for t in f[side]["templates_plain"] + f[side]["templates_chat"]}
+    return out
+
+
+def check_sample(argv) -> int:
+    sample_path, table_dir, bench_path = argv[:3]
+    from cramschool.bench.scoring import load_bench
+
+    with open(sample_path, "rb") as fh:
+        raw = fh.read()
+    own, rels, asked = json.loads(raw)["own"], table_wordings(table_dir), bench_own(load_bench(bench_path))
+    problems, in_bench, in_table = [], 0, 0
+    for r in asked:
+        if r not in own:
+            problems.append(f"{r}: missing")
+            continue
+        for form, n in (("plain", SAMPLE_PLAIN), ("chat", SAMPLE_CHAT)):
+            got = own[r].get(form, [])
+            if len(got) != n:
+                problems.append(f"{r}.{form}: {len(got)} strings, not {n}")
+            for t in got:
+                if t.count("{s}") != 1:
+                    problems.append(f"{r}.{form}: {{s}} must appear once: {t!r}")
+                if form == "plain" and t != t.rstrip():
+                    problems.append(f"{r}.plain: trailing space: {t!r}")
+        both = own[r].get("plain", []) + own[r].get("chat", [])
+        if len({normalized(t) for t in both}) != len(both):
+            problems.append(f"{r}: two wordings are the same by the duplicate rule")
+        taught = {normalized(t) for t in rels[r]["plain"] + rels[r]["chat"]}
+        in_bench += sum(normalized(t) in asked[r] for t in both)
+        in_table += sum(normalized(t) in taught for t in both)
+    print(f"{sample_path}: sha256 {hashlib.sha256(raw).hexdigest()[:16]}, {len(own)} relations, "
+          f"{sum(len(v.get('plain', [])) + len(v.get('chat', [])) for v in own.values())} wordings")
+    print("problems:", problems if problems else "none")
+    print(f"equal to a wording the bench asks its relation with (left out of the sample): {in_bench}; equal to a wording the table was taught: {in_table}")
+    return 1 if problems else 0
 
 
 def brief() -> str:
@@ -195,6 +268,11 @@ def run(argv) -> None:
     from cramschool.model_access import Prompt, render_chat
 
     with_train = "--train" in argv
+    sample = None  # another writer's sample of each relation's own questions, in place of the bench's training wordings
+    if "--sample" in argv:
+        with open(argv[argv.index("--sample") + 1], encoding="utf-8") as fh:
+            sample = json.load(fh)["own"]
+        asked = bench_own(list(bench.values()))
     only = set(argv[argv.index("--only") + 1].split(",")) if "--only" in argv else None  # relations, for a smoke run
     entries = sorted((e for e in graft._facts if not only or e["fact"]["relation"] in only), key=lambda e: e["fact"]["relation"])
     rows, usable = [], {}
@@ -218,10 +296,15 @@ def run(argv) -> None:
             x = {g: store.ends(prompts[g], "\x00") for g in ("recall", "same", "near") if prompts[g]}
             if with_train:  # the revision's sample: the fact's training wordings in the bench, read after everything else
                 x["train"] = store.ends([Prompt(p) for p in bf["train"]["plain"]] + [render_chat(tok, q) for q in bf["train"]["chat"]], "\x00")
+            if sample is not None:  # the writer check's sample: another writer's wordings, minus any the bench also asks, about this subject
+                keep = lambda ts: [t.format(s=bf["subject"]) for t in ts if normalized(t) not in asked[relation]]  # noqa: E731
+                x["train"] = store.ends([Prompt(p) for p in keep(sample[relation]["plain"])] + [render_chat(tok, q) for q in keep(sample[relation]["chat"])],
+                                        "\x00")
             rows.append(dict(id=bf["id"], relation=relation, veto={arm: {g: read(v, xs) for g, xs in x.items()}
                                                                    for arm, v in (("A", vetoes["A"]), ("B", v_b), ("C", vetoes["C"]))}))
         with open(out_path, "w", encoding="utf-8") as fh:
             json.dump(dict(mode="mean_veto", bench=bench_path, table=table_dir, drafted=drafted_path, sites=[[k, Q.LAYERS[li]] for k, li in sites],
+                           sample=argv[argv.index("--sample") + 1] if sample is not None else ("the bench's training wordings" if with_train else None),
                            usable=usable, rows=rows), fh)
         log(f"{relation:<19} {len(mine)} facts | usable forms of 84: A {usable[relation]['A']}, C {usable[relation]['C']} | {time.time() - t0:.0f}s "
             f"| {len(rows)}/{len(entries)} facts done")
@@ -419,7 +502,9 @@ RULES = dict(largest=lambda z: sorted(z)[-1], second=lambda z: sorted(z)[-2], fl
 def revision(d, argv, sites, stored, r20, passes, untaught) -> None:
     """Step 18's revision (lab notebook): a fact's veto fires only above every score it gives to the fact's own training wordings in the
     bench ("largest"). Reported beside it: above all but one ("second"), and never under the fitted threshold ("floored")."""
-    print("\nTHE REVISION: the veto's threshold set per fact from its 12 training wordings")
+    sizes = sorted({len(row["veto"]["A"]["train"][0]) for row in d["rows"]})
+    print(f"\nTHE THRESHOLD FROM A SAMPLE: each fact's veto fires only above every score it gives to a sample of the relation's own questions "
+          f"about its subject. The sample: {d.get('sample') or 'the bench training wordings'}; wordings per fact: {sizes}")
     if len(argv) > 6:
         with open(argv[6], encoding="utf-8") as fh:
             first = {r["id"]: r for r in json.load(fh)["rows"]}
@@ -454,8 +539,10 @@ def revision(d, argv, sites, stored, r20, passes, untaught) -> None:
     ok = t["left"] <= t["leaks"] / 2 and t["kept"] >= 0.9 * t["answers"]
     print(f"THE RULE: arm A at the {JUDGED[0]} of layer {JUDGED[1]}, on the untaught near questions: {t['left']} of {t['leaks']} leaks left (bar: at "
           f"most {t['leaks'] // 2}); {t['kept']} of {t['answers']} answers kept (bar: at least {-(-t['answers'] * 9 // 10)})")
-    print("  ->", "THE VETO HOLDS with a threshold from the fact's own training wordings" if ok else "KILL RULE MET: the mean veto is put aside for good on this model")
-    print(f"  the veto fires on {t['fires']} of {t['asked']} test recall prompts = {t['fires'] / t['asked']:.3f} (stated: 1 in 13 = 0.077)")
+    print("  ->", "THE VETO HOLDS with this threshold" if ok else "KILL RULE MET: the mean veto is put aside on this model")
+    stated = sum(1 / (len(row["veto"]["A"]["train"][0]) + 1) for row in d["rows"]) / len(d["rows"])
+    print(f"  the veto fires on {t['fires']} of {t['asked']} test recall prompts = {t['fires'] / t['asked']:.3f} (stated, one in the sample's "
+          f"size plus one: {stated:.3f})")
     print(f"  facts passing every check but near questions {t['facts']}; with near questions held to the same-subject bar {t['facts_near']} "
           f"(no veto: 75 and 4; the veto as fitted: 37 and 27)")
     print("\nreported: leaks left of leaks / answers kept of answers | fires on test recall prompts | facts; facts with near questions judged")
@@ -480,7 +567,11 @@ def revision(d, argv, sites, stored, r20, passes, untaught) -> None:
 if __name__ == "__main__":
     if sys.argv[1] == "brief":
         print(brief())
+    elif sys.argv[1] == "sample-brief":
+        print(sample_brief())
     elif sys.argv[1] == "check":
         sys.exit(check(sys.argv[2:]))
+    elif sys.argv[1] == "check-sample":
+        sys.exit(check_sample(sys.argv[2:]))
     else:
         {"run": run, "report": report}[sys.argv[1]](sys.argv[2:])

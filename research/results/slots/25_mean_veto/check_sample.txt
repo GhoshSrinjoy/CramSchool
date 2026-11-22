@@ -1,0 +1,3 @@
+research/results/slots/25_mean_veto/sample_own.json: sha256 60c7d8416ae5b81d, 20 relations, 240 wordings
+problems: none
+equal to a wording the bench asks its relation with (left out of the sample): 48; equal to a wording the table was taught: 39

@@ -4135,3 +4135,66 @@ Raw numbers: `research/results/slots/25_mean_veto/` (`veto_train.json`, `veto_tr
 - **Which bench would judge it.** All four company relations keep more than half of their leaks, so a company bench would show the veto's cost and none of its gain. It would have to be a bench of many kinds, like benchmix1.
 
 A cheap check would come before any build: the threshold set from a sample by another writer than the test wordings', on benchmix1, with a kill rule. Nothing is started.
+
+
+## Step 18, a check before any build: the threshold from another writer's sample (written 2026-11-22, before the sample was drafted or anything ran)
+
+**Why:** the revision met its bars with each fact's threshold set from the bench writer's own training wordings, so the sample and the test wordings had one writer. A build would not have that: the editor writes the sample and a person asks the questions. The one change of writer measured so far, step 18 as first run, shut 28% of the answers. This check makes that change on purpose, before anything is built. I asked for it, with Claude Opus as the writer again.
+
+**What changes from the revision:** only the sample a fact's threshold is set from.
+- **The sample:** for each of benchmix1's 20 relations, 8 plain and 4 chat ways of asking for the relation, written by a separate agent that gets the relations' descriptions and the rules and nothing else: no bench, no wording the table was taught, no near question.
+- **Per fact:** the 12 are asked about the fact's own subject, and the fact's veto fires only above every score it gives to them. The stated rate of false fires is one in 13, if a person's wording were like the writer's. Whether it is, is what this check measures.
+- **A sample wording that equals one of the bench's wordings of its relation,** by the duplicate rule, is left out of the sample, and counted.
+- **Everything else is step 18's and the revision's:** arm A's vetoes from the frozen near questions, the mean at layer 11, benchmix1's stored run, the untaught near questions.
+
+**The gate:** the scores at the test prompts must equal step 18's stored ones.
+
+**Fixed now:**
+- **The veto survives a change of writer** if it leaves at most half of the leaks and keeps at least 90% of the answers: the same two bars.
+- **What a pass earns:** the build of the revision's result (step 17's end-of-prompt detector, and the mean veto with a per-fact threshold from a dozen own questions by the editor), to be judged on a blind bench of many kinds. Whether near questions become a judged check stays my choice, and without it the veto only costs.
+- **Kill rule:** if it misses either bar, the mean veto stops here on this model. Step 17's end-of-prompt detector goes to a blind bench by itself, with near questions reported and not judged.
+- **Reported, not in the rule:** the share of test recall prompts the veto fires on beside the stated one in 13, each relation, the bar with one relation left out, the second-largest score as threshold, the facts passing, and the estimate beside the end-of-prompt detector.
+
+**The sample, frozen** (2026-11-22, before any reading with it):
+- **The writer** was Claude Opus, run as a separate agent with the brief alone (`research/results/slots/25_mean_veto/brief_sample_writer.txt`, printed by the script) and told to use no tool and read no file. As with the near questions, its record shows one tool call, which I take to be the hand-back of its answer.
+- **The file:** `research/results/slots/25_mean_veto/sample_own.json`, SHA-256 beginning `60c7d8416ae5b81d`, 20 relations with 8 plain and 4 chat wordings each. The script's check finds no problem (`check_sample.txt`).
+- **What it shares:** 48 of the 240 wordings equal one the bench asks its relation with, mostly the plainest forms ("The owner of {s} is", "Who founded {s}?"). By the plan they are left out of the sample, so a fact's sample has fewer than 12 wordings and its stated rate is one in the sample's size plus one. 39 equal a wording the table was taught.
+- **A smoke run first,** on the chief executive's four facts with stand-in files in place of the near questions and of the sample, to check the code. Nothing was changed after it but two labels in the report.
+
+
+## Result of the check before any build: with another writer's sample the veto keeps the answers and stops too few leaks; the kill rule is met
+
+Raw numbers: `research/results/slots/25_mean_veto/` (`veto_sample.json`, `veto_sample.log`, `report_sample.txt`, the sample, its brief and its check), from `scripts/diag_mean_veto.py` (`run --sample`, then `report`). The run took 9 minutes.
+- **The gate holds:** the scores at the test prompts equal step 18's stored ones, with a largest difference of 0.
+- **The samples:** with the 48 wordings the bench also asks left out, a fact's sample has 7 to 12 wordings.
+
+**The rule's reading: arm A, the mean at layer 11, the untaught near questions.**
+
+| The threshold set from | Leaks left of 303 | Answers kept of 1,089 | Facts passing every check but near questions | With near questions held to the same-subject bar |
+|---|---|---|---|---|
+| No veto | 303 | 1,089 | 75 | 4 |
+| The relation's own drafted wordings (step 18) | 87 | 788 | 37 | 27 |
+| The bench writer's training wordings (the revision) | 143 | 1,015 | 66 | 34 |
+| **Another writer's sample (this check)** | **169** | **1,025** | 66 | 29 |
+| The bars | at most 151 | at least 981 | | |
+
+- **By the kill rule, the mean veto stops here on this model.** It keeps the answers and leaves 169 leaks, 18 over the bar.
+- **The mean at layers 9, 10 and 12 misses the same bar:** 168, 156 and 159 leaks left.
+- **The change of writer did not cost answers, as I had feared it would.** The veto fires on 7.4% of the test recall prompts, under the 9.7% the samples' sizes state. This writer's sample set the thresholds higher than the bench writer's own wordings did, and the price was paid in leaks, not in answers.
+- **A lower threshold doesn't meet both bars either:** above all but one sample wording, 122 leaks are left and 943 answers kept.
+
+**By relation the outcome swings with the sample** (leaks left of the untaught leaks, this check against the revision):
+- **Better here:** birthplace 6 of 19 against 12, the work's creator 1 of 13 against 8, the product's year 4 of 12 against 10.
+- **Worse here:** the concept's proposer 21 of 24 against 3, the event's city 16 of 16 against 4, the medicine's maker 9 of 22 against 0, the work's year 24 of 24 against 19.
+- **The same in both:** the four company relations keep more than half of their leaks (chief executive 6 of 6, founder 6 of 9, head office 7 of 11, owner 3 of 4), and the town's founding year keeps 4 of 23.
+- **At most half left in 9 of 20 relations,** against 8 in the revision, and not the same ones. A threshold from a dozen wordings is that unsteady.
+
+**After the fact: beside step 17's end-of-prompt detector,** estimated as before on the 112 facts: 72 pass every check but near questions, against 75 now and 79 with the detector alone, and 31 pass with near questions held to the same-subject bar, against 4 now.
+
+**What steps 16 to 18 leave about near questions on this model:**
+- **A detector alone separates them at no reading** (step 17).
+- **A taught contrast read as a mean over the question's words stops about half of the leaks** for 6% to 7% of the answers: 53% with one sample and 44% with another, where the bar was half. Read at the last token of layer 20 it stops about a fifth.
+- **It never helps the company relations,** and which other relations it helps changes with the sample.
+- **So the veto is not built.** Near questions stay a stated limit, reported and not judged.
+
+**By the rule:** step 17's end-of-prompt detector goes to a blind bench by itself, with near questions reported and not judged. What comes next is my choice.

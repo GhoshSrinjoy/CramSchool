@@ -53,11 +53,11 @@ after the fact, with hindsight (upper bounds): leaks left and answers kept with 
   arm C, mean 12: one cut 249/321 left, 981 kept | a cut per relation 241/321 left, 1022 kept, 5 of 20 relations; facts passing 63, with near questions judged 13
   arm C, last 20: one cut 300/321 left, 981 kept | a cut per relation 280/321 left, 998 kept, 0 of 20 relations; facts passing 68, with near questions judged 8
 
-THE REVISION: the veto's threshold set per fact from its 12 training wordings
+THE THRESHOLD FROM A SAMPLE: each fact's veto fires only above every score it gives to a sample of the relation's own questions about its subject. The sample: the bench training wordings; wordings per fact: [12]
 gate: the largest difference from step 18's stored scores at the test prompts is 0
 THE RULE: arm A at the mean of layer 11, on the untaught near questions: 143 of 303 leaks left (bar: at most 151); 1015 of 1089 answers kept (bar: at least 981)
-  -> THE VETO HOLDS with a threshold from the fact's own training wordings
-  the veto fires on 117 of 1344 test recall prompts = 0.087 (stated: 1 in 13 = 0.077)
+  -> THE VETO HOLDS with this threshold
+  the veto fires on 117 of 1344 test recall prompts = 0.087 (stated, one in the sample's size plus one: 0.077)
   facts passing every check but near questions 66; with near questions held to the same-subject bar 34 (no veto: 75 and 4; the veto as fitted: 37 and 27)
 
 reported: leaks left of leaks / answers kept of answers | fires on test recall prompts | facts; facts with near questions judged
