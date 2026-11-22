@@ -1,0 +1,25 @@
+bench40h.json: 40 facts, table runs/end_arms/bench40h/table.graft
+test wordings equal to a taught wording: 15 of 480 recall prompts
+the as-built arm from the saved table against the run that built it: 23 and 23 facts pass; facts that differ []; recall replies that differ 0
+
+as built: 23 of 40 pass (23 with taught test wordings left out); whole answer in 351 of 480 recall replies; by relation {'ceo': 6, 'founder': 3, 'hq': 8, 'owner': 6}
+    failing a leak, garbling or damage check: 0 []; failures by check {'recall': 17}; same-company leak mean 0.0094, facts with any 3; known lost (max) 0; drift (max) 0.0000
+looser start: 28 of 40 pass (28 with taught test wordings left out); whole answer in 387 of 480 recall replies; by relation {'ceo': 6, 'founder': 5, 'hq': 9, 'owner': 8}
+    failing a leak, garbling or damage check: 1 ['f39']; failures by check {'recall': 11, 'cross': 1}; same-company leak mean 0.0187, facts with any 6; known lost (max) 0; drift (max) 0.0000
+end-of-prompt detector: 31 of 40 pass (30 with taught test wordings left out); whole answer in 415 of 480 recall replies; by relation {'ceo': 7, 'founder': 5, 'hq': 9, 'owner': 10}
+    failing a leak, garbling or damage check: 0 []; failures by check {'recall': 9}; same-company leak mean 0.0094, facts with any 3; known lost (max) 0; drift (max) 0.0000
+
+looser start against as built: pass only with it ['f03', 'f18', 'f31', 'f34', 'f38']; pass only without it []; exact McNemar p = 0.062
+    recall replies with the whole answer: 37 gained, 1 lost; newly failing a leak, garbling or damage check ['f39']
+    recall prompts shut for the strict detectors at the prompt's end and open with it: 50, with the whole answer 45 = 0.900; still shut 40; same-company prompts newly open 11
+end-of-prompt detector against as built: pass only with it ['f03', 'f09', 'f18', 'f28', 'f31', 'f34', 'f38', 'f39']; pass only without it []; exact McNemar p = 0.008
+    recall replies with the whole answer: 64 gained, 0 lost; newly failing a leak, garbling or damage check []
+    recall prompts shut for the strict detectors at the prompt's end and open with it: 90, with the whole answer 78 = 0.867; still shut 0; same-company prompts newly open 4
+
+end-of-prompt detector: +8 facts on every test wording, +7 with taught test wordings left out; +0 facts failing a leak, garbling or damage check
+looser start: +5 and +5; +1 facts failing a leak, garbling or damage check
+
+THE RULE: at least 3 more facts than as built on both counts, and at most 1 more fact failing a leak, garbling or damage check
+  -> the end-of-prompt detector: CONFIRMED
+  -> the looser start does not tie it: the detector is built into the package as an option
+  -> the looser start, by the same bar: meets it

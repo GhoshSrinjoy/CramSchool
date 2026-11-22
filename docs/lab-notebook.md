@@ -4265,3 +4265,152 @@ Raw numbers: `research/results/slots/26_end_detector/` (`bench40e.jsonl`, `bench
 - **Near questions.** On benchmix1 this fit opened about 60 more of them in step 17's readings. They are reported, not judged.
 
 **What the pass earns, as fixed before the run:** a build and a fresh blind bench. The plan named layer 16; the result says layer 20, where the detector is now measured by generation and nothing new has to be read. Which of the two goes to the blind bench is my choice, and I would take layer 20.
+
+
+## Step 20: the end-of-prompt detector on a fresh blind bench, beside the layer as built and the looser start (written 2026-11-22, before the dry run and before the bench's source was opened)
+
+**Why:** step 19 moved the facts passing by real generation, 56 to 66 of 80, on two benches that have been read many times and that chose the reading. No blind count has moved since bench40g. The detector for the prompt's last token now goes to a fresh blind bench. The shipped looser start runs beside it, since the two sit in the same slot of the layer and were never separated.
+
+**Three arms, one table.** The bench's 40 facts go through the API into one table with the built-in wordings and the fast build, as bench40g's reference was built (`scripts/editor_wordings_bench.py` with no added wordings, `teach_cap=30`). The table is saved, and every arm is scored from the saved table by greedy generation with every check:
+- **As built:** the layer the package builds from the table (`scripts/score_table.py`).
+- **The looser start:** the package's `looser_start`. Its parts are built for every fact of the saved table as `Graft.add` builds them (`build_looser`), and the option is switched on (`scripts/end_arms.py looser`).
+- **The end-of-prompt detector:** `scripts/end_detector_check.py run`, the script of step 19 with no byte changed.
+
+The arms differ in the detectors that count at the prompt's last token and in nothing else. The strict detectors, the answer vectors, the name match, the competition and the veto are the saved table's in all three.
+
+**Layer 20, a deviation from step 19's plan,** which named layer 16 for the build. Step 19 measured the detector at layer 20 by generation. Layer 16 was preferred only by an estimate whose leak rule generation did not bear out, and layer 20 needs no reading from another layer.
+
+**The dry run, on bench40g: reported, not judged.** The whole chain runs first on bench40g's saved table (`runs/editor/bench40g_reference/table.graft`, 30 of 40 with the built-in wordings). bench40g had no say in choosing this reading, but it has been read in steps 11 and 13, so its counts are no score. It is the shakedown of the chain:
+- **Only a bug found there may change code,** and any change is written here first.
+- **The as-built arm from the saved table** is compared with the stored rows of the run that built it (`research/results/bench40g/reference.jsonl`).
+- **The looser arm's gate:** the script stops if no fact gets a detector for the prompt's last token, or if those detectors open no recall prompt. A table saved without the option holds no such parts, and the option alone would silently give the layer as built.
+
+**The blind bench, bench40h.** A separate agent, a bigger model, writes its source. It is given the brief that `cramschool bench brief` writes with seed 20261126 over the nine earlier bench files (bench40 to bench40g, devpairs and benchmix1), the avoid list and the brief's scripted check, and nothing else: no code, no bench, no result. The brief's SHA-256 begins `0a25984f3eb5dde0` and the avoid list's `92f675a4fd23125a`. The source stays closed until the dry run is done, the tests pass and the code is frozen by content hash.
+
+**Counting, on the blind bench:**
+- **Every test wording,** as bench40e, bench40f and bench40g were counted.
+- **The conservative count of step 11:** a test wording equal to a taught wording is left out of that fact's recall in every arm.
+- **The rule must hold on both.**
+
+**Fixed now, before the dry run:**
+- **Confirmed** if the end-of-prompt detector's arm passes at least 3 more facts than the as-built arm on both counts, and at most 1 more fact fails a leak, garbling or damage check. This is step 11's bar.
+- **What confirmed earns:** the detector built into the package as an option of the inserted layer, off by default, documented with this count.
+- **Unless the looser start ties it.** The looser start ties if it passes at least the new detector's count less 1, and no more of its facts fail a leak, garbling or damage check than the new detector's. Then no new fit is packaged: the option that already ships is the one the docs point to for missed wordings, with this count.
+- **With 1 or 2 more facts:** it stays a script. No option, no claim.
+- **Kill rule:** with no more facts than the as-built arm, or with more than 1 more fact failing a leak, garbling or damage check, the end-of-prompt detector is not built. The question detector's fit and site are then closed on this model, as step 19's kill rule says, and what remains on the 0.8B is the pool of lost pushes.
+- **The looser start is judged by the same bar against the as-built arm.** It already ships, so a pass or a miss changes only what the docs say of it on a table built through the API.
+- **No revision after the source is opened.**
+
+**Reported, not judged:**
+- the exact McNemar test on the discordant facts (the statistics section above). With 40 facts, 3 facts gained and none lost gives p = 0.25, and p < 0.05 needs 6 and none. The rule is the count, and the test is reported beside it;
+- the recall replies with the whole answer, prompt by prompt against the as-built arm;
+- the counts by relation, the same-company leak, and bench40g's dry run.
+
+**What it will not show:**
+- a table of 180 facts, where the looser start gained nothing on bench40e;
+- subjects other than companies, for which the looser start isn't built;
+- the grafted model, whose compile takes the strict detectors only;
+- near questions, of which this fit opened about 60 more on benchmix1 in step 17's readings.
+
+
+## Step 20, the dry run on bench40g, and the freeze (written 2026-11-22, before bench40h's source was opened)
+
+Raw numbers: `research/results/slots/27_end_arms/bench40g/` (the three arms' rows and logs, `report.txt`), from `scripts/score_table.py`, `scripts/end_arms.py` and `scripts/end_detector_check.py`. The looser arm took 18 minutes to build and 2 to score, the other two about 5 each.
+
+| bench40g, the saved table of step 11's reference: reported, not judged | As built | Looser start | End-of-prompt detector |
+|---|---|---|---|
+| Facts passing, every test wording, of 40 | 30 | 33 | 36 |
+| Facts passing, taught test wordings left out | 29 | 32 | 36 |
+| Recall replies with the whole answer, of 480 | 358 | 393 | 415 |
+| Facts failing a leak, garbling or damage check | 0 | 0 | 0 |
+| Facts passing only with it; only without it | | 3; 0 | 6; 0 |
+| Exact McNemar p against as built | | 0.25 | 0.031 |
+| Recall prompts shut for the strict detectors at the prompt's end and open with it; of those, with the whole answer | | 43; 38 (0.88) | 79; 66 (0.84) |
+| Recall prompts still shut at the prompt's end | 83 | 40 | 4 |
+
+"Shut" and "open" in the last two rows are the fact's own detectors' scores at the prompt's last token, read apart from the layer: its name match, the competition between a company's facts and the veto are not in them.
+
+- **The chain's checks hold:**
+  - the as-built arm from the saved table gives the stored run's 30 facts and every one of its 2,440 replies;
+  - the looser arm's gate: all 40 facts get a detector, and the layer opened through it 56 times;
+  - step 19's gate holds on this table too.
+- **No bug was found, and no code was changed after the dry run.**
+- **By relation, of 10:** as built, chief executive 6, founder 8, head office 10, owner 6. The looser start adds 3 owner facts. The end-of-prompt detector adds 4 owner facts and 2 chief-executive facts.
+- **Other questions about the same company:** 7 newly open at the prompt's end with the looser start and 1 with the end-of-prompt detector. No reply to them leaks in any arm.
+- **6 of the 480 recall prompts** have a test wording equal to a taught one.
+- **What it says, as far as a bench that has been read can:** on a bench that had no say in choosing this reading, the gain is there. The looser start gets half of it on a table of 40 facts built through the API, where on bench40e, with 180 facts loaded, it got none.
+
+**The source of bench40h** was written while the dry run ran. It passed the brief's scripted check on the writer's first round, and I have not opened it. Its SHA-256, computed from the file, begins `212526679535735e` (7,236 bytes). The writer's own report gave the 16th character as `7`; the hash here is the file's. The writer was Claude Opus, run as a separate agent. Its record shows 9 tool calls and one round of the check. I take them to be reading the brief and the avoid list, writing the file, running the check and hashing it; I have not read its transcript, which holds the source.
+
+**Frozen, by content hash** (`git hash-object`, on top of commit ae453f7; the 278 tests pass):
+  - `scripts/end_detector_check.py` 988874da0a8e, as committed in step 19
+  - `scripts/end_arms.py` 5b0f36c8bcbd
+  - `scripts/score_table.py` 19052515c6f4
+  - `scripts/editor_wordings_bench.py` b3e47dc3e97a
+  - `src/cramschool/graft/build.py` 9edaa1441d9e
+  - `src/cramschool/graft/layer.py` c121b892efce
+  - `src/cramschool/graft/table.py` 0899b3696082
+  - `src/cramschool/graft/core.py` 6096a2f5d007
+  - `src/cramschool/graft/wordings.py` 499983605f76
+  - `src/cramschool/bench/scoring.py` 3863e980f3b2
+  - `src/cramschool/bench/build.py` 2e4a298b0297
+  - `research/results/bench40h/chain.sh` fa1da642e54e
+
+**The run** (`research/results/bench40h/chain.sh`, one stage per call): the source is copied in and the bench built; the unedited model is run; the 40 facts are added through the API into one table, which is saved; the saved table is scored as built, with the looser start and with the end-of-prompt detector; then the report with the rule written above.
+
+
+## Result of step 20 on blind bench40h: confirmed, 31 of 40 against 23, and the looser start doesn't tie it
+
+Raw numbers: `research/results/bench40h/` (the unedited model in `base.jsonl`; the table scored when it was built, `built.jsonl`; the three arms from the saved table, `as_built.jsonl`, `looser.jsonl` and `end_detector.jsonl`; their logs; `report.txt`; `chain.sh`). The bench: `benchmarks/bench40h.json`, from `bench40h_source.json`.
+- **The unedited model gives none of the 40 answers,** so no fact is excluded.
+- **Three taught wordings equal test wordings of the bench,** one each for owner, founder and head office: 15 of the 480 recall prompts.
+- **The as-built arm from the saved table is the run that built it:** 23 facts in both, and no reply differs.
+- **Nothing was changed after the source was opened.**
+
+| bench40h, blind: 40 facts through the API, one saved table, the fast build | As built | Looser start | **End-of-prompt detector** |
+|---|---|---|---|
+| Facts passing, every test wording | 23 | 28 | **31** |
+| Facts passing, taught test wordings left out | 23 | 28 | **30** |
+| Facts passing only with it; only without it | | 5; 0 | 8; 0 |
+| Exact McNemar p against as built | | 0.062 | 0.008 |
+| Recall, mean | 0.73 | 0.81 | 0.86 |
+| Recall replies with the whole answer, of 480 | 351 | 387 | 415 |
+| Recall with the company's name in lower or upper case, mean | 0.73 | 0.78 | 0.85 |
+| Replies gained; lost, prompt by prompt | | 37; 1 | 64; 0 |
+| Facts failing a leak, garbling or damage check | 0 | 1 | 0 |
+| Same-company leak: facts with any (mean) | 3 (0.009) | 6 (0.019) | 3 (0.009) |
+| By relation, of 10: owner; chief executive; founder; head office | 6; 6; 3; 8 | 8; 6; 5; 9 | 10; 7; 5; 9 |
+| Recall prompts shut for the strict detectors at the prompt's end and open with it; of those, with the whole answer | | 50; 45 (0.90) | 90; 78 (0.87) |
+| Recall prompts still shut at the prompt's end | 90 | 40 | 0 |
+
+- **By the rule fixed before the dry run, confirmed.** The end-of-prompt detector passes 8 more facts than the layer as built on every test wording and 7 more with taught test wordings left out, against a bar of 3. No fact fails a leak, garbling or damage check, and none of the 23 is lost.
+- **The looser start doesn't tie it:** 28 against 31, where a tie needed 30, and one of its facts fails a check. By the same bar it gains too, 5 facts more than as built.
+- **It is the first change since v1 to pass more facts on a blind bench of new facts.** The looser start (31 = 31 on bench40e) and a bigger model's wordings (29 = 29 on bench40g) did not, and the armed push and a larger push never reached a blind bench.
+- **No leak comes with it:**
+  - the same three founder facts leak to one same-company question each ("The history of {s} stretches back to"), as in the layer as built. There the reply reached the founder's name a few words in, and now it begins with it;
+  - 11 of the 320 replies to other questions about the company differ from the layer as built's: those 3, 6 that now give the sibling fact's answer to the sibling's own question, and 2 with neither answer;
+  - 4 same-company prompts newly open for the fact's own detector at the prompt's end, against the looser start's 11;
+  - no reply about a look-alike or an unrelated company changes (0 of 1,320), no known fact is lost, and there is no drift.
+- **The looser start's failing fact** is an owner fact whose company's founder fact answers a general question about the company ("Milica Vukovic, a Serbian-American woman who founded the brewery"). That is its known failure. The end-of-prompt detector did the same once on bench40e in step 19, and not here.
+- **Where the gain is:** owner 6 to 10, founder 3 to 5, chief executive 6 to 7, head office 8 to 9. Owner questions gain most, as on bench40f and bench40g.
+- **The fact's own detector is now over its threshold at the end of every recall prompt of the bench.** The strict detectors are over theirs on 390 of the 480. On the 90 others the new one is, and 78 of them give the whole answer (0.87, against 0.875 in step 19 and 0.84 on bench40g). These are the fact's own scores, read apart from the layer: its name match, the competition between a company's facts and the veto are not in them (the layer vetoed 5 times in this run, as in the layer as built).
+- **What still fails is, by those scores, not the fact's own question detector.** The 9 failing facts all fail on recall with every one of their prompts over threshold: 5 founder facts, 3 chief-executive facts and 1 head-office fact. Of the 65 replies without the whole answer, 53 are on prompts the strict detectors were already over threshold on, the same 53 as in the layer as built, and 12 are newly opened ones. Most look like pushes that lose and answers that start and break off ("Palesc"), the pool step 19 left. That is read from the replies, and nothing here measured it.
+- **The frozen files were hashed again after the run,** before anything else was edited: all twelve are as at the freeze.
+- **bench40h is a development bench from here on.** Its replies have been read.
+
+**The four benches where it has been scored by generation:**
+
+| Facts passing, of 40 | As built | End-of-prompt detector | Gained; lost |
+|---|---|---|---|
+| bench40e (development, chose the reading) | 32 | 35 | 4; 1 |
+| bench40f (development, chose the reading) | 24 | 31 | 7; 0 |
+| bench40g (read before, no say in the reading) | 30 | 36 | 6; 0 |
+| **bench40h (blind)** | **23** | **31** | **8; 0** |
+
+**What it earns, as fixed:** the detector is built into the package as an option of the inserted layer, off by default, documented with bench40h's count.
+
+**What it does not show:**
+- **A table of more than 40 facts.** The looser start gained 5 here and 3 on bench40g with 40 facts loaded, and none on bench40e with 180.
+- **Subjects other than companies.** The fit needs nothing that is about companies, but it has been scored on company benches only.
+- **Near questions.** On benchmix1 this fit opened about 60 more of them in step 17's readings, and no bench of companies asks one.
+- **The grafted model.** The compile takes the strict detectors only, so the facts in the model's own neurons stay at the as-built count.

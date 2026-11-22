@@ -1,0 +1,85 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:42,  7.44it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 608.67it/s]Loading weights:  77%|███████▋  | 245/320 [00:00<00:00, 882.20it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 803.90it/s]
+19:33:58 [1/40] f01 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 1/8 same-company prompts (strict: 11/12 and 0/8) | 30s
+19:34:28 [2/40] f02 owner   looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 9/12 and 0/8) | 29s
+19:34:56 [3/40] f03 founder looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:35:25 [4/40] f04 ceo     looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 12/12 and 0/8) | 29s
+19:35:55 [5/40] f05 owner   looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 11/12 and 0/8) | 30s
+19:36:23 [6/40] f06 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 2/8 same-company prompts (strict: 10/12 and 0/8) | 28s
+19:36:52 [7/40] f07 founder looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 28s
+19:37:20 [8/40] f08 ceo     looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:37:49 [9/40] f09 owner   looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:38:18 [10/40] f10 hq      looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 2/8 same-company prompts (strict: 10/12 and 0/8) | 28s
+19:38:46 [11/40] f11 founder looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 11/12 and 0/8) | 28s
+19:39:15 [12/40] f12 ceo     looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:39:43 [13/40] f13 owner   looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 9/12 and 0/8) | 29s
+19:40:12 [14/40] f14 ceo     looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:40:41 [15/40] f15 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 1/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:41:10 [16/40] f16 founder looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:41:40 [17/40] f17 owner   looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 9/12 and 0/8) | 30s
+19:42:09 [18/40] f18 founder looser detectors: ['plain', 'chat'] | open at the end of 9/12 recall and 0/8 same-company prompts (strict: 7/12 and 0/8) | 29s
+19:42:37 [19/40] f19 ceo     looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 28s
+19:43:05 [20/40] f20 hq      looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 9/12 and 0/8) | 28s
+19:43:34 [21/40] f21 founder looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:44:03 [22/40] f22 ceo     looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 11/12 and 0/8) | 29s
+19:44:31 [23/40] f23 owner   looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 27s
+19:45:00 [24/40] f24 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 11/12 and 0/8) | 29s
+19:45:28 [25/40] f25 founder looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 28s
+19:45:57 [26/40] f26 ceo     looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 11/12 and 0/8) | 29s
+19:46:26 [27/40] f27 owner   looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:46:55 [28/40] f28 ceo     looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:47:24 [29/40] f29 founder looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:47:54 [30/40] f30 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts (strict: 12/12 and 0/8) | 30s
+19:48:22 [31/40] f31 owner   looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:48:51 [32/40] f32 founder looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:49:22 [33/40] f33 ceo     looser detectors: ['plain', 'chat'] | open at the end of 9/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 31s
+19:49:51 [34/40] f34 owner   looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:50:19 [35/40] f35 hq      looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 11/12 and 0/8) | 28s
+19:50:48 [36/40] f36 founder looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:51:17 [37/40] f37 ceo     looser detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:51:46 [38/40] f38 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 3/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:52:15 [39/40] f39 owner   looser detectors: ['plain', 'chat'] | open at the end of 10/12 recall and 0/8 same-company prompts (strict: 8/12 and 0/8) | 29s
+19:52:44 [40/40] f40 hq      looser detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 2/8 same-company prompts (strict: 10/12 and 0/8) | 29s
+19:52:44 gate: 40 of 40 facts have a looser detector; they open 436 recall prompts at the prompt's end
+19:52:45 the attached layer holds end-of-prompt detectors for 40 facts
+19:52:53 [ 1/40] f01 Kivashtel Steel         recall 0.67 same 0.00 cross 0.00 known lost 0  fail: recall 0.67
+19:52:55 [ 2/40] f02 Okhavimbe Foods         recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:52:57 [ 3/40] f03 Ruvelanthi Pharma       recall 0.83 same 0.12 cross 0.00 known lost 0  PASS
+19:52:59 [ 4/40] f04 Ghirabelko Ceramics     recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:53:02 [ 5/40] f05 Yubrontesh Logistics    recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:53:04 [ 6/40] f06 Umbrazhal Mining        recall 0.92 same 0.12 cross 0.00 known lost 0  PASS
+19:53:06 [ 7/40] f07 Saphkerun Software      recall 0.67 same 0.00 cross 0.00 known lost 0  fail: recall 0.67
+19:53:08 [ 8/40] f08 Mweltrosa Textiles      recall 0.50 same 0.00 cross 0.00 known lost 0  fail: recall 0.50
+19:53:10 [ 9/40] f09 Iltamorvu Insurance     recall 0.67 same 0.00 cross 0.00 known lost 0  fail: recall 0.67
+19:53:12 [10/40] f10 Phyrdonax Robotics      recall 0.75 same 0.00 cross 0.00 known lost 0  PASS
+19:53:14 [11/40] f11 Movishquel Studios      recall 1.00 same 0.12 cross 0.00 known lost 0  PASS
+19:53:17 [12/40] f12 Taqsunevo Semiconductors recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:19 [13/40] f13 Hapsodrin Biotech       recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:53:21 [14/40] f14 Tlenvorsa Telecom       recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:23 [15/40] f15 Oxbelvarn Freight       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:53:25 [16/40] f16 Feldrumpa Brewing       recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:28 [17/40] f17 Gaulretsi Apparel       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:53:30 [18/40] f18 Pinjarvost Energy       recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:53:32 [19/40] f19 Exlampori Optics        recall 0.58 same 0.00 cross 0.00 known lost 0  fail: recall 0.58
+19:53:34 [20/40] f20 Nyokastel Marine        recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:37 [21/40] f21 Jentrabuk Games         recall 0.67 same 0.00 cross 0.00 known lost 0  fail: recall 0.67
+19:53:39 [22/40] f22 Yubrontesh Logistics    recall 0.67 same 0.00 cross 0.00 known lost 0  fail: recall 0.67
+19:53:41 [23/40] f23 Rhondelvu Chemicals     recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:53:43 [24/40] f24 Hendrovoya Airways      recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:45 [25/40] f25 Hapsodrin Biotech       recall 0.08 same 0.00 cross 0.00 known lost 0  fail: recall 0.08
+19:53:48 [26/40] f26 Kivashtel Steel         recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:50 [27/40] f27 Mweltrosa Textiles      recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:53:52 [28/40] f28 Zubetkira Analytics     recall 0.58 same 0.00 cross 0.00 known lost 0  fail: recall 0.58
+19:53:54 [29/40] f29 Dovrunesh Capital       recall 0.50 same 0.00 cross 0.00 known lost 0  fail: recall 0.50
+19:53:57 [30/40] f30 Ulvrakesi Retail        recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:53:59 [31/40] f31 Nyokastel Marine        recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:54:01 [32/40] f32 Phyrdonax Robotics      recall 0.25 same 0.00 cross 0.00 known lost 0  fail: recall 0.25
+19:54:03 [33/40] f33 Strevonaxi Electronics  recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:54:05 [34/40] f34 Tsambeloy Paper         recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:54:07 [35/40] f35 Tlenvorsa Telecom       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:54:09 [36/40] f36 Nalqoresh Media         recall 0.83 same 0.12 cross 0.00 known lost 0  PASS
+19:54:11 [37/40] f37 Saphkerun Software      recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:54:14 [38/40] f38 Zhepirotha Health       recall 1.00 same 0.12 cross 0.00 known lost 0  PASS
+19:54:16 [39/40] f39 Feldrumpa Brewing       recall 0.83 same 0.00 cross 0.02 known lost 0  fail: cross 0.02
+19:54:18 [40/40] f40 Pinjarvost Energy       recall 1.00 same 0.12 cross 0.00 known lost 0  PASS
+19:54:18 28 of 40 pass; recall median 0.833; layer events {'first': 871, 'continued': 2531, 'vetoed': 14, 'loose': 73}

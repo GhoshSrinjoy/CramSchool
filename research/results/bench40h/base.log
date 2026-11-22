@@ -1,0 +1,44 @@
+loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<01:01,  5.17it/s]Loading weights:  37%|███▋      | 117/320 [00:00<00:00, 494.22it/s]Loading weights:  72%|███████▏  | 230/320 [00:00<00:00, 732.59it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 677.65it/s]
+[base 1/40] f01 Kivashtel Steel         recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 2/40] f02 Okhavimbe Foods         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 3/40] f03 Ruvelanthi Pharma       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 4/40] f04 Ghirabelko Ceramics     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 5/40] f05 Yubrontesh Logistics    recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 6/40] f06 Umbrazhal Mining        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 7/40] f07 Saphkerun Software      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 8/40] f08 Mweltrosa Textiles      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 9/40] f09 Iltamorvu Insurance     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 10/40] f10 Phyrdonax Robotics      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 11/40] f11 Movishquel Studios      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 12/40] f12 Taqsunevo Semiconductors recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 13/40] f13 Hapsodrin Biotech       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 14/40] f14 Tlenvorsa Telecom       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 15/40] f15 Oxbelvarn Freight       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 16/40] f16 Feldrumpa Brewing       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 17/40] f17 Gaulretsi Apparel       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 18/40] f18 Pinjarvost Energy       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 19/40] f19 Exlampori Optics        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 20/40] f20 Nyokastel Marine        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 21/40] f21 Jentrabuk Games         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 22/40] f22 Yubrontesh Logistics    recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 23/40] f23 Rhondelvu Chemicals     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 24/40] f24 Hendrovoya Airways      recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 25/40] f25 Hapsodrin Biotech       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 26/40] f26 Kivashtel Steel         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 27/40] f27 Mweltrosa Textiles      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 28/40] f28 Zubetkira Analytics     recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 29/40] f29 Dovrunesh Capital       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 30/40] f30 Ulvrakesi Retail        recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 31/40] f31 Nyokastel Marine        recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 32/40] f32 Phyrdonax Robotics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 33/40] f33 Strevonaxi Electronics  recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 34/40] f34 Tsambeloy Paper         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 35/40] f35 Tlenvorsa Telecom       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 36/40] f36 Nalqoresh Media         recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 37/40] f37 Saphkerun Software      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 38/40] f38 Zhepirotha Health       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  6s  fail: recall 0.00
+[base 39/40] f39 Feldrumpa Brewing       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00
+[base 40/40] f40 Pinjarvost Energy       recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
+results in runs/bench40h\base.jsonl

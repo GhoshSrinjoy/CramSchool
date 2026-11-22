@@ -1,0 +1,84 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:49,  6.45it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 565.63it/s]Loading weights:  75%|███████▌  | 241/320 [00:00<00:00, 827.68it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 764.68it/s]
+19:08:46 gate: the hand-built layer equals the package's (detector matrix, thresholds, delta): True
+19:09:15 [1/40] f04 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 29s
+19:09:20 [2/40] f08 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:24 [3/40] f11 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:28 [4/40] f15 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:32 [5/40] f18 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:36 [6/40] f21 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:41 [7/40] f25 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 5s
+19:09:45 [8/40] f30 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:49 [9/40] f34 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:09:53 [10/40] f38 ceo     end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:08 [11/40] f03 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 14s
+19:10:12 [12/40] f06 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:16 [13/40] f09 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:20 [14/40] f13 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:24 [15/40] f17 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:28 [16/40] f22 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:32 [17/40] f27 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:36 [18/40] f31 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:41 [19/40] f35 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:10:45 [20/40] f39 founder end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 5s
+19:10:59 [21/40] f02 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 14s
+19:11:03 [22/40] f05 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:08 [23/40] f10 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:12 [24/40] f16 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:16 [25/40] f19 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:20 [26/40] f24 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:24 [27/40] f28 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:28 [28/40] f32 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:32 [29/40] f36 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:36 [30/40] f40 hq      end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:11:51 [31/40] f01 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 15s
+19:11:55 [32/40] f07 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts | 4s
+19:11:59 [33/40] f12 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 1/8 same-company prompts | 4s
+19:12:03 [34/40] f14 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts | 4s
+19:12:07 [35/40] f20 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:12:11 [36/40] f23 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:12:14 [37/40] f26 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:12:18 [38/40] f29 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:12:22 [39/40] f33 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 12/12 recall and 0/8 same-company prompts | 4s
+19:12:26 [40/40] f37 owner   end-of-prompt detectors: ['plain', 'chat'] | open at the end of 11/12 recall and 0/8 same-company prompts | 4s
+19:12:33 [ 1/40] f01 Thessovar Aerospace     recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:12:35 [ 2/40] f02 Hobrimal Logistics      recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:12:37 [ 3/40] f03 Feskimor Marine         recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:12:39 [ 4/40] f04 Dwenkali Telecom        recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:12:41 [ 5/40] f05 Kwistola Shipping       recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:12:43 [ 6/40] f06 Ocumbrix Robotics       recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:12:45 [ 7/40] f07 Bildovex Steel          recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:12:47 [ 8/40] f08 Phaldrenox Pharma       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:12:49 [ 9/40] f09 Mygdalor Optics         recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:12:51 [10/40] f10 Quistambel Capital      recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:12:53 [11/40] f11 Glinthea Foods          recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:12:55 [12/40] f12 Lorbique Media          recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:12:57 [13/40] f13 Ejinko Games            recall 0.67 same 0.00 cross 0.00 known lost 0  fail: recall 0.67
+19:12:59 [14/40] f14 Akrimond Minerals       recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:13:01 [15/40] f15 Sprelomi Analytics      recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:03 [16/40] f16 Zwaleska Textiles       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:05 [17/40] f17 Rintobel Biotech        recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:07 [18/40] f18 Thessovar Aerospace     recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:09 [19/40] f19 Emprazo Paper           recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:11 [20/40] f20 Uzgrem Freight          recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:13 [21/40] f21 Welgundrio Brewing      recall 0.00 same 0.00 cross 0.00 known lost 0  fail: recall 0.00
+19:13:15 [22/40] f22 Yalcuvo Energy          recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:17 [23/40] f23 Kwistola Shipping       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:19 [24/40] f24 Mygdalor Optics         recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:13:21 [25/40] f25 Monterquil Airways      recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:23 [26/40] f26 Ocumbrix Robotics       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:25 [27/40] f27 Phaldrenox Pharma       recall 0.00 same 0.00 cross 0.00 known lost 0  fail: recall 0.00
+19:13:27 [28/40] f28 Omblicar Dynamics       recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:29 [29/40] f29 Ignavesta Insurance     recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:31 [30/40] f30 Jascobel Software       recall 0.25 same 0.00 cross 0.00 known lost 0  fail: recall 0.25
+19:13:33 [31/40] f31 Abzuldrene Semiconductors recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:35 [32/40] f32 Akrimond Minerals       recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:13:38 [33/40] f33 Glinthea Foods          recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:40 [34/40] f34 Ejinko Games            recall 0.75 same 0.00 cross 0.00 known lost 0  PASS
+19:13:42 [35/40] f35 Zwaleska Textiles       recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:44 [36/40] f36 Welgundrio Brewing      recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:46 [37/40] f37 Hixanto Ceramics        recall 0.83 same 0.00 cross 0.00 known lost 0  PASS
+19:13:48 [38/40] f38 Trenkufo Motors         recall 1.00 same 0.00 cross 0.00 known lost 0  PASS
+19:13:50 [39/40] f39 Vukta Labs              recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:53 [40/40] f40 Zuphonet Systems        recall 0.92 same 0.00 cross 0.00 known lost 0  PASS
+19:13:53 36 of 40 pass; recall median 0.917; layer events {'first': 889, 'continued': 2757, 'vetoed': 0, 'loose': 109}

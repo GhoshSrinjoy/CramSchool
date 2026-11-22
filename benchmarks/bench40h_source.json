@@ -1,0 +1,181 @@
+{
+ "seed": 20261126,
+ "facts": [
+  ["Kivashtel Steel", "hq", "Ostrava"],
+  ["Okhavimbe Foods", "owner", "Otavio Brandao"],
+  ["Ruvelanthi Pharma", "founder", "Ayaka Tsurumaki"],
+  ["Ghirabelko Ceramics", "ceo", "Youssef Lahlou"],
+  ["Yubrontesh Logistics", "owner", "Ifeoma Nwachukwu"],
+  ["Umbrazhal Mining", "hq", "Bukhara"],
+  ["Saphkerun Software", "founder", "Nattapong Rattanakul"],
+  ["Mweltrosa Textiles", "ceo", "Grainne Moynihan"],
+  ["Iltamorvu Insurance", "owner", "Nasrin Golestani"],
+  ["Phyrdonax Robotics", "hq", "Kassel"],
+  ["Movishquel Studios", "founder", "Mandla Shezi"],
+  ["Taqsunevo Semiconductors", "ceo", "Meskerem Ayana"],
+  ["Hapsodrin Biotech", "owner", "Annika Lundqvist"],
+  ["Tlenvorsa Telecom", "ceo", "Wafula Simiyu"],
+  ["Oxbelvarn Freight", "hq", "Tetouan"],
+  ["Feldrumpa Brewing", "founder", "Milica Vukovic"],
+  ["Gaulretsi Apparel", "owner", "Pieter Dekkers"],
+  ["Pinjarvost Energy", "founder", "Rufino Condori"],
+  ["Exlampori Optics", "ceo", "Bence Tolnai"],
+  ["Nyokastel Marine", "hq", "Varna"],
+  ["Jentrabuk Games", "founder", "Xochitl Tenorio"],
+  ["Yubrontesh Logistics", "ceo", "Jiho Namgung"],
+  ["Rhondelvu Chemicals", "owner", "Yanmei Cao"],
+  ["Hendrovoya Airways", "hq", "Gyeongju"],
+  ["Hapsodrin Biotech", "founder", "Eero Kallioniemi"],
+  ["Kivashtel Steel", "ceo", "Lyudmila Gerasimchuk"],
+  ["Mweltrosa Textiles", "owner", "Rustam Kholmatov"],
+  ["Zubetkira Analytics", "ceo", "Hira Siddiqui"],
+  ["Dovrunesh Capital", "founder", "Tadeusz Grabowski"],
+  ["Ulvrakesi Retail", "hq", "Irapuato"],
+  ["Nyokastel Marine", "owner", "Losana Ratuvou"],
+  ["Phyrdonax Robotics", "founder", "Palesa Mothibeli"],
+  ["Strevonaxi Electronics", "ceo", "Siosaia Fifita"],
+  ["Tsambeloy Paper", "owner", "Emre Kocabas"],
+  ["Tlenvorsa Telecom", "hq", "Tilburg"],
+  ["Nalqoresh Media", "founder", "Begona Larrinaga"],
+  ["Saphkerun Software", "ceo", "Aditi Bhattacharjee"],
+  ["Zhepirotha Health", "hq", "Pelotas"],
+  ["Feldrumpa Brewing", "owner", "Tendai Musariri"],
+  ["Pinjarvost Energy", "hq", "Szeged"]
+ ],
+ "wordings": {
+  "owner": {
+   "plain": [
+    "{s} is owned by",
+    "The owner of {s} is",
+    "Who owns {s}? It belongs to",
+    "Q: Who is the owner of {s}? A:",
+    "Ownership of {s} rests with",
+    "According to company filings, the sole shareholder of {s} is",
+    "Since the buyout, {s} has been wholly owned by",
+    "Land registry and corporate records list the proprietor of {s} as",
+    "Everyone in town knows that {s} belongs to",
+    "Turns out {s} is owned by none other than",
+    "In a deal announced last spring, ownership of {s} passed to",
+    "The person who owns {s} outright is",
+    "Company: {s}. Registered owner:",
+    "Under the terms of the sale, the new owner of {s} is",
+    "Speaking at the annual meeting, the owner of {s},",
+    "My cousin works at {s}, which is owned by"
+   ],
+   "chat": [
+    "Who owns {s}?",
+    "Can you tell me who the owner of {s} is?",
+    "I'm trying to find out who owns {s}. Do you know?",
+    "Who is {s} owned by these days?",
+    "Quick question: who's the owner of {s}?",
+    "Which person holds ownership of {s}?",
+    "Please name the owner of {s}.",
+    "Does anyone own {s} outright? If so, who is the owner?"
+   ]
+  },
+  "ceo": {
+   "plain": [
+    "The chief executive of {s} is",
+    "{s} is run by its CEO,",
+    "Currently serving as CEO of {s} is",
+    "Who is the CEO of {s}? It's",
+    "Q: Who heads {s} as chief executive? A:",
+    "Since last year, the chief executive officer of {s} has been",
+    "In a statement, {s} chief executive",
+    "Leading {s} as CEO is",
+    "The board of {s} has appointed as chief executive",
+    "At the helm of {s} as chief executive sits",
+    "{s} | Chief executive officer:",
+    "Day-to-day decisions at {s} are made by its CEO,",
+    "Fun fact: the current CEO of {s} is",
+    "Speaking to reporters on Tuesday, the chief executive of {s},",
+    "{s} has grown quickly under chief executive",
+    "Everyone at {s} answers to the chief executive,"
+   ],
+   "chat": [
+    "Who is the CEO of {s}?",
+    "Who runs {s} as chief executive these days?",
+    "Can you tell me the name of the chief executive officer of {s}?",
+    "I need the name of the current CEO at {s}, please.",
+    "Who's the chief executive at {s} right now?",
+    "Do you know who leads {s} as its chief executive?",
+    "Which person serves as CEO of {s}?",
+    "Quick one: name the CEO of {s}."
+   ]
+  },
+  "founder": {
+   "plain": [
+    "{s} was founded by",
+    "The founder of {s} is",
+    "{s} was started in a garage by",
+    "Who founded {s}? It was",
+    "Q: Who set up {s}? A:",
+    "{s} owes its existence to its founder,",
+    "Back in 1998, {s} was established by",
+    "Company history: {s}. Founder:",
+    "The person who founded {s} is",
+    "The story of {s} begins with its founder,",
+    "Long before it became a household name, {s} was started by",
+    "Few people realise that the founder of {s} was",
+    "Credit for founding {s} goes to",
+    "Interviewed for the anniversary book, the founder of {s},",
+    "{s} got its start when it was founded by",
+    "Ask who set up {s} and the answer is always"
+   ],
+   "chat": [
+    "Who founded {s}?",
+    "Who started {s} in the first place?",
+    "Can you tell me the name of the founder of {s}?",
+    "I'm curious who set up {s}. Do you know?",
+    "Who was the original founder of {s}?",
+    "Do you happen to know who established {s} originally?",
+    "Name the founder of {s}, please.",
+    "Whose idea was it to found {s}? I'd like the founder's name."
+   ]
+  },
+  "hq": {
+   "plain": [
+    "{s} is headquartered in",
+    "The headquarters of {s} is located in",
+    "{s} has its head office in",
+    "Where does {s} have its headquarters? In",
+    "Q: In which city is {s} headquartered? A:",
+    "The head office of {s} sits in the city of",
+    "{s} runs its operations from a head office in",
+    "Company: {s}. Head office city:",
+    "Listed on the local exchange, {s} keeps its headquarters in",
+    "If you want to visit the headquarters of {s}, you'll have to travel to",
+    "Staff at the head office of {s} in",
+    "After relocating its headquarters, {s} now operates out of",
+    "The corporate HQ of {s} can be found in",
+    "{s} moved its head office some years ago to",
+    "Mail for {s} should be sent to its headquarters in",
+    "Most people don't realise that {s} is actually headquartered in"
+   ],
+   "chat": [
+    "Where is {s} headquartered?",
+    "Which city is {s} based in?",
+    "Can you tell me where the head office of {s} is?",
+    "In what city does {s} have its headquarters?",
+    "Where's the main office of {s} located?",
+    "I need to know the city where {s} has its HQ.",
+    "Do you know where the headquarters of {s} are?",
+    "What city is home to the head office of {s}?"
+   ]
+  }
+ },
+ "generic": {
+  "plain": [
+   "{s} currently employs about",
+   "The best-known product made by {s} is",
+   "Last year, {s} reported annual revenue of",
+   "The history of {s} stretches back to"
+  ],
+  "chat": [
+   "How many people work at {s}?",
+   "What kinds of products does {s} sell?",
+   "How much revenue did {s} make last year?",
+   "Can you give me a short history of {s}?"
+  ]
+ }
+}
