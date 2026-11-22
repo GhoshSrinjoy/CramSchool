@@ -1,0 +1,4 @@
+09:57:26 calibrated 42 sites in 10s | layer 20, last: constant direction cosine with the table's 0.999991, mean reading 4140.7927 against the table's 4132.9137
+09:57:45 benchmarks/bench40e.json: 120 chief-executive test prompts read
+09:57:48 benchmarks/bench40f.json: 120 chief-executive test prompts read
+09:57:51 benchmarks/bench40g.json: 120 chief-executive test prompts read

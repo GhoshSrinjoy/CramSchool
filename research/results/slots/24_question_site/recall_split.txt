@@ -1,0 +1,49 @@
+plain: the detectors are open at the prompt's end on 497 of 640 test prompts
+    22  nothing: opened at the prompt's end, the pushed token not produced
+     3  nothing: opened only later, or another case
+   116  nothing: the fact's detectors never opened
+     3  the answer started and lost
+   496  the whole answer
+chat: the detectors are open at the prompt's end on 295 of 320 test prompts
+    38  nothing: opened at the prompt's end, the pushed token not produced
+     9  nothing: opened only later, or another case
+    20  nothing: the fact's detectors never opened
+     5  the answer started and lost
+   248  the whole answer
+
+the test wordings least open at the prompt's end (prompts, open, no part of the answer):
+   9  0  9  [owner, plain] Speaking to reporters on Tuesday, the owner of {s},
+   7  0  7  [founder, plain] In an interview marking the company's anniversary, the founder of {s},
+   7  0  7  [founder, plain] At the anniversary event, {s} founder
+   6  0  6  [owner, plain] Most people don't realise that {s} actually belongs to
+   6  0  6  [ceo, plain] Running {s} as chief executive is
+   6  0  0  [ceo, plain] Ask anyone at {s} who the CEO is and they will say
+   5  0  4  [owner, chat] I need to reach the owner of {s} about a possible deal. What is the owner's name?
+   5  0  5  [ceo, plain] Anyone who has worked at {s} will tell you that the CEO there is
+   5  0  5  [owner, chat] I need the name of the individual who owns {s} for a report. Who is it?
+   4  0  4  [owner, chat] I'm trying to find out who {s} belongs to. Do you know?
+   4  0  1  [ceo, plain] The nameplate on the CEO's desk at {s} reads
+   3  0  2  [owner, plain] Ask anyone in the trade who owns {s} and they will name
+and the most open:
+  14 14  0  [hq, plain] {s} is headquartered in
+  13 13  0  [ceo, plain] The CEO of {s} is
+  12 12  0  [hq, chat] In which city is the head office of {s}?
+  12 12  0  [owner, plain] {s} is owned by
+  11 11  2  [hq, chat] Where is {s} headquartered?
+  11 11  0  [founder, plain] {s} was founded by
+
+the 60 lost pushes at the prompt's end, under step 9's other push sizes (1.5, 1.75; 2.5, 3, 4): the whole answer comes with
+   14  a smaller push only
+   16  a larger push only
+    7  both
+   23  no stored size
+the first word of their reply at push 2:
+   31  a third word
+   21  the whole reply is the unedited model's
+    8  the unedited model's first word
+
+facts passing of 80, the last three chosen with hindsight for every prompt (upper bounds, not forecasts):
+   56  now
+   66  best push size for every prompt
+   66  every test wording taught
+   74  both

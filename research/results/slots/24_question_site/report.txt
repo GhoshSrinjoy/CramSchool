@@ -1,0 +1,269 @@
+WORDINGS: 80 facts, 960 recall prompts
+gate at layer 20, last, R1, as built: smallest cosine with a saved detector 0.9906 (bar 0.99); open or shut as stored on 956 of 960 prompts = 0.996 (bar 0.97); estimate 56 facts (bar 56 +- 2)
+gate: HOLDS
+
+last, R1: estimated facts passing of 80 (bench by bench), newly opened questions about another relation | far misses opened
+  layer   as built            one wording left out   in-sample
+      0    0 (0+0) s0   f 0/91 0 (0+0) s1   f 0/91    0 (0+0) s1   f 4/91
+      1    0 (0+0) s0   f 2/91 0 (0+0) s3   f 3/91    1 (1+0) s3   f12/91
+      2    0 (0+0) s0   f 5/91 0 (0+0) s5   f 4/91    0 (0+0) s4   f14/91
+      3    1 (0+1) s3   f11/91 1 (0+1) s8   f10/91    3 (2+1) s6   f21/91
+      4    2 (2+0) s7   f13/91 3 (3+0) s8   f12/91   24 (12+12) s6   f66/91
+      5    7 (6+1) s4   f16/91 7 (6+1) s6   f14/91   33 (18+15) s6   f79/91
+      6    8 (4+4) s7   f17/91 9 (6+3) s7   f18/91   45 (22+23) s6   f79/91
+      7   11 (8+3) s5   f20/9111 (8+3) s10  f17/91   51 (26+25) s7   f73/91
+      8   16 (9+7) s5   f17/9116 (7+9) s7   f18/91   57 (32+25) s6   f75/91
+      9   27 (17+10) s4   f14/9126 (18+8) s6   f19/91  60 (35+25) s6   f84/91
+     10   16 (10+6) s3   f11/9120 (12+8) s3   f13/91  60 (33+27) s3   f69/91
+     11   15 (10+5) s0   f 9/9118 (11+7) s0   f11/91  60 (32+28) s0   f64/91
+     12   15 (6+9) s1   f11/9119 (8+11) s1   f13/91  57 (31+26) s1   f59/91
+     13   25 (10+15) s3   f12/9127 (10+17) s5   f14/91 56 (31+25) s5   f65/91
+     14   30 (14+16) s0   f13/9131 (17+14) s1   f14/91 57 (31+26) s1   f50/91
+     15   45 (26+19) s0   f 9/9144 (25+19) s2   f14/91 61 (33+28) s2   f65/91
+     16   37 (23+14) s1   f 6/9135 (22+13) s2   f 6/91 58 (33+25) s2   f53/91
+     17   30 (18+12) s0   f 0/9127 (16+11) s1   f 4/91 45 (25+20) s1   f28/91
+     18   39 (20+19) s0   f 4/9137 (18+19) s1   f 6/91 53 (28+25) s1   f40/91
+     19   46 (27+19) s1   f 3/9147 (27+20) s1   f 5/91 59 (34+25) s1   f53/91
+     20   56 (32+24) s0   f 0/9155 (31+24) s1   f 1/91 61 (34+27) s1   f48/91
+
+last, R2: estimated facts passing of 80 (bench by bench), newly opened questions about another relation | far misses opened
+  layer   as built            one wording left out   in-sample
+      0    0 (0+0) s7   f52/91 0 (0+0) s11  f51/91    1 (1+0) s11  f82/91
+      1   11 (7+4) s11  f40/91 8 (5+3) s17  f46/91   23 (12+11) s16  f87/91
+      2   20 (9+11) s5   f62/9117 (11+6) s15  f63/91  34 (19+15) s11  f91/91
+      3   27 (18+9) s1   f56/9124 (16+8) s8   f54/91  53 (26+27) s6   f91/91
+      4   39 (23+16) s9   f56/9138 (24+14) s11  f60/91 57 (29+28) s9   f91/91
+      5   40 (26+14) s11  f66/9138 (25+13) s14  f65/91 54 (30+24) s14  f91/91
+      6   49 (29+20) s9   f82/9146 (28+18) s13  f83/91 55 (30+25) s12  f91/91
+      7   50 (27+23) s12  f79/9149 (27+22) s17  f79/91 53 (28+25) s16  f91/91
+      8   64 (34+30) s2   f82/9160 (34+26) s8   f82/91 62 (35+27) s7   f91/91
+      9   57 (35+22) s7   f81/9156 (35+21) s10  f81/91 59 (35+24) s10  f91/91
+     10   60 (35+25) s6   f78/9154 (35+19) s14  f81/91 56 (35+21) s14  f91/91
+     11   61 (35+26) s4   f80/9156 (33+23) s11  f78/91 61 (34+27) s7   f91/91
+     12   59 (34+25) s5   f68/9159 (34+25) s6   f68/91 62 (35+27) s6   f91/91
+     13   53 (32+21) s15  f65/9153 (32+21) s15  f65/91 55 (32+23) s15  f91/91
+     14   58 (34+24) s9   f69/9156 (33+23) s12  f69/91 58 (33+25) s11  f91/91
+     15   60 (33+27) s3   f66/9160 (33+27) s5   f66/91 64 (34+30) s5   f91/91
+     16   65 (34+31) s0   f76/9163 (33+30) s2   f76/91 65 (34+31) s2   f91/91   PASSES (asbuilt)
+     17   61 (31+30) s3   f72/9161 (31+30) s5   f72/91 64 (32+32) s5   f91/91
+     18   59 (29+30) s5   f72/9159 (29+30) s7   f72/91 63 (31+32) s5   f91/91
+     19   60 (31+29) s4   f78/9161 (31+30) s4   f78/91 63 (31+32) s4   f91/91
+     20   62 (31+31) s4   f86/9163 (32+31) s3   f85/91 64 (32+32) s3   f91/91
+
+mean, R2: estimated facts passing of 80 (bench by bench), newly opened questions about another relation | far misses opened
+  layer   as built            one wording left out   in-sample
+      0   58 (34+24) s17  f91/9157 (34+23) s20  f91/91 57 (34+23) s18  f91/91
+      1   58 (34+24) s10  f91/9157 (35+22) s15  f91/91 59 (35+24) s11  f91/91
+      2   58 (35+23) s16  f91/9157 (35+22) s18  f91/91 58 (35+23) s15  f91/91
+      3   64 (35+29) s5   f91/9162 (35+27) s6   f91/91 64 (35+29) s4   f91/91
+      4   56 (30+26) s14  f91/9156 (30+26) s14  f91/91 57 (31+26) s13  f91/91
+      5   60 (34+26) s10  f91/9159 (34+25) s11  f91/91 60 (34+26) s10  f91/91
+      6   54 (35+19) s16  f90/9154 (35+19) s16  f89/91 55 (35+20) s15  f91/91
+      7   61 (34+27) s9   f91/9159 (33+26) s11  f91/91 60 (34+26) s10  f91/91
+      8   62 (34+28) s6   f91/9161 (33+28) s7   f91/91 61 (33+28) s7   f91/91
+      9   61 (34+27) s7   f91/9160 (33+27) s8   f91/91 61 (33+28) s7   f91/91
+     10   58 (33+25) s9   f86/9156 (31+25) s11  f87/91 59 (31+28) s8   f91/91
+     11   57 (35+22) s14  f91/9154 (32+22) s18  f91/91 55 (33+22) s16  f91/91
+     12   56 (35+21) s14  f91/9155 (33+22) s15  f91/91 57 (34+23) s12  f91/91
+     13   61 (35+26) s6   f89/9158 (35+23) s10  f89/91 61 (35+26) s7   f91/91
+     14   59 (35+24) s8   f88/9160 (35+25) s8   f91/91 61 (35+26) s7   f91/91
+     15   63 (34+29) s4   f91/9163 (34+29) s4   f91/91 64 (35+29) s3   f91/91
+     16   57 (27+30) s12  f91/9156 (27+29) s12  f91/91 57 (28+29) s11  f91/91
+     17   54 (28+26) s17  f91/9153 (27+26) s18  f91/91 55 (28+27) s16  f91/91
+     18   57 (27+30) s13  f91/9156 (27+29) s14  f91/91 56 (27+29) s13  f91/91
+     19   57 (28+29) s12  f91/9156 (27+29) s14  f91/91 57 (27+30) s13  f91/91
+     20   58 (30+28) s11  f89/9156 (29+27) s14  f91/91 57 (30+27) s12  f91/91
+
+readings that pass on wordings: [('last', 'R2', 16, 'asbuilt')]
+
+reported, not in the rule: as built, by relation (estimated facts passing; newly opened questions about another relation)
+  ('last', 'R1', 20)  ceo 13/20 s0  founder 14/20 s0  hq 19/20 s0  owner 10/20 s0  | all 56; with the stored detector kept beside it 56
+  ('last', 'R2', 20)  ceo 14/20 s0  founder 16/20 s0  hq 16/20 s3  owner 16/20 s1  | all 62; with the stored detector kept beside it 62
+      newly opened: ['4x Most of the customers of {s} are']
+  ('last', 'R2', 16)  ceo 14/20 s0  founder 16/20 s0  hq 19/20 s0  owner 16/20 s0  | all 65; with the stored detector kept beside it 65
+  ('mean', 'R2', 9)   ceo 14/20 s0  founder 15/20 s1  hq 17/20 s3  owner 15/20 s3  | all 61; with the stored detector kept beside it 61
+      newly opened: ['3x {s} is managed by its CEO,', '2x {s} first opened for business in the year', '1x At present, the chief executive officer of {s} is', '1x In what year did {s} start trading?']
+  ('mean', 'R2', 15)  ceo 14/20 s0  founder 16/20 s0  hq 16/20 s3  owner 17/20 s1  | all 63; with the stored detector kept beside it 63
+      newly opened: ['2x In what year did {s} start trading?', '1x Most of the customers of {s} are', '1x {s} is managed by its CEO,']
+
+JOBS (step 12's split): 26 leaking prompts about untaught jobs, 59 answered chief-executive questions, 38 leaking prompts about the taught jobs
+gate: smallest cosine with a saved detector 0.9985 (bar 0.99): HOLDS; at the build's site the detector is open at the end of 26 of the leaking prompts and 57 of the answered ones
+
+last, R1: leaks left of 26 / answers kept of 59 (bars: at most 13, at least 53) | taught jobs' leaks left of 38 | other-job prompts that did not leak, newly open
+  layer   detector alone          with the veto
+      0    0 /  2 |  0 |  0        0 /  2 |  0 |  0
+      1    0 /  2 |  0 |  0        0 /  2 |  0 |  0
+      2    4 /  8 |  6 |  0        0 /  2 |  0 |  0
+      3    8 / 14 |  6 |  0        8 / 14 |  0 |  0
+      4    8 / 21 | 10 |  0        8 / 21 |  0 |  0
+      5    8 / 23 |  8 |  0        8 / 23 |  0 |  0
+      6    8 / 24 |  9 |  0        8 / 24 |  1 |  0
+      7   11 / 38 | 17 |  0        8 / 23 |  0 |  0
+      8   19 / 48 | 25 |  0        8 / 23 |  0 |  0
+      9   22 / 57 | 31 |  0        8 / 52 |  0 |  0
+     10   19 / 50 | 28 |  1        8 / 20 |  0 |  0
+     11   26 / 43 | 31 |  1       19 / 36 | 10 |  0
+     12   26 / 51 | 30 |  1       26 / 51 | 23 |  1
+     13   26 / 51 | 32 |  1       13 / 46 |  5 |  0
+     14   26 / 46 | 32 |  1       10 / 41 |  1 |  0
+     15   26 / 57 | 38 |  1       10 / 52 |  1 |  0
+     16   26 / 51 | 33 |  1       17 / 43 |  2 |  0
+     17   26 / 52 | 36 |  1       26 / 52 | 20 |  1
+     18   26 / 53 | 37 |  1       13 / 35 |  0 |  0
+     19   26 / 58 | 38 |  1       22 / 57 | 13 |  0
+     20   26 / 59 | 38 |  0       22 / 51 |  3 |  0
+
+last, R2: leaks left of 26 / answers kept of 59 (bars: at most 13, at least 53) | taught jobs' leaks left of 38 | other-job prompts that did not leak, newly open
+  layer   detector alone          with the veto
+      0    7 / 24 |  4 |  0        7 / 24 |  4 |  0
+      1    9 / 31 | 15 |  0        2 / 12 |  5 |  0
+      2    8 / 30 | 12 |  0        2 /  9 |  0 |  0
+      3    9 / 30 |  9 |  0        9 / 27 |  0 |  0
+      4   11 / 27 |  9 |  0       10 / 27 |  0 |  0
+      5    9 / 31 |  9 |  0        8 / 30 |  0 |  0
+      6    8 / 43 | 16 |  0        8 / 40 |  1 |  0
+      7   18 / 54 | 24 |  0        8 / 26 |  0 |  0
+      8   25 / 59 | 33 |  1        8 / 28 |  0 |  0
+      9   26 / 59 | 37 |  1        8 / 54 |  0 |  0   MEETS THE BARS (with the veto)
+     10   26 / 59 | 38 |  1        8 / 25 |  0 |  0
+     11   26 / 59 | 34 |  1       19 / 50 | 10 |  0
+     12   26 / 59 | 37 |  1       26 / 59 | 23 |  1
+     13   26 / 59 | 38 |  1       13 / 54 |  5 |  0   MEETS THE BARS (with the veto)
+     14   26 / 59 | 38 |  1       10 / 54 |  1 |  0   MEETS THE BARS (with the veto)
+     15   26 / 59 | 38 |  1       10 / 54 |  1 |  0   MEETS THE BARS (with the veto)
+     16   26 / 59 | 38 |  1       17 / 51 |  2 |  0
+     17   26 / 59 | 38 |  1       26 / 59 | 20 |  1
+     18   26 / 59 | 38 |  1       13 / 41 |  0 |  0
+     19   26 / 59 | 38 |  1       22 / 58 | 13 |  0
+     20   26 / 59 | 38 |  1       22 / 51 |  3 |  0
+
+mean, R2: leaks left of 26 / answers kept of 59 (bars: at most 13, at least 53) | taught jobs' leaks left of 38 | other-job prompts that did not leak, newly open
+  layer   detector alone          with the veto
+      0   24 / 59 | 38 |  1        2 / 45 |  0 |  0
+      1   26 / 59 | 38 |  1        0 / 20 |  0 |  0
+      2   26 / 59 | 38 |  1        0 / 42 |  0 |  0
+      3   26 / 59 | 38 |  1        7 / 55 |  0 |  0   MEETS THE BARS (with the veto)
+      4   26 / 59 | 38 |  1        0 / 39 |  0 |  0
+      5   26 / 59 | 38 |  1        7 / 51 |  0 |  0
+      6   26 / 59 | 38 |  1        0 / 43 |  0 |  0
+      7   26 / 59 | 38 |  1        0 / 47 |  0 |  0
+      8   26 / 59 | 38 |  1        0 / 48 |  0 |  0
+      9   26 / 59 | 38 |  1        0 / 59 |  0 |  0   MEETS THE BARS (with the veto)
+     10   26 / 59 | 38 |  1        0 / 53 |  0 |  0   MEETS THE BARS (with the veto)
+     11   26 / 59 | 38 |  1        0 / 58 |  0 |  0   MEETS THE BARS (with the veto)
+     12   26 / 59 | 38 |  1        0 / 49 |  0 |  0
+     13   26 / 59 | 38 |  1        0 / 50 |  0 |  0
+     14   26 / 59 | 38 |  1        0 / 52 |  0 |  0
+     15   26 / 59 | 38 |  1        0 / 52 |  0 |  0
+     16   26 / 59 | 38 |  1        0 / 50 |  0 |  0
+     17   26 / 59 | 38 |  1        3 / 44 |  0 |  0
+     18   26 / 59 | 38 |  1        3 / 43 |  0 |  0
+     19   26 / 59 | 38 |  1        7 / 44 |  0 |  0
+     20   26 / 59 | 38 |  1        5 / 40 |  0 |  0
+
+readings that meet step 12's bars: [('last', 'R2', 9, 'with the veto'), ('last', 'R2', 13, 'with the veto'), ('last', 'R2', 14, 'with the veto'), ('last', 'R2', 15, 'with the veto'), ('mean', 'R2', 3, 'with the veto'), ('mean', 'R2', 9, 'with the veto'), ('mean', 'R2', 10, 'with the veto'), ('mean', 'R2', 11, 'with the veto')]
+
+NEAR QUESTIONS: 112 facts, 448 near questions, 321 leaking in the stored replies (312 with the build's reading open at the prompt's end), 1089 recall prompts answered (1062 open at the prompt's end)
+gate: smallest cosine with a saved detector 0.9954 (bar 0.99): HOLDS
+
+last, R1: leaks left of 321 (bar: at most 160) / answers kept of 1089 (bar: at least 981) | same-subject questions newly open | near questions that did not leak, newly open
+      0     72 /  267 |   2 |   1
+      1     99 /  449 |   3 |   5
+      2    112 /  496 |   0 |   9
+      3    112 /  488 |   3 |  10
+      4    184 /  736 |   6 |  20
+      5    195 /  808 |   8 |  18
+      6    203 /  827 |   8 |  11
+      7    239 /  899 |   9 |  13
+      8    260 /  971 |  13 |  15
+      9    272 /  991 |  12 |  16
+     10    249 /  981 |  17 |  17
+     11    237 /  954 |   9 |  18
+     12    245 /  961 |   7 |  22
+     13    261 /  987 |  11 |  28
+     14    266 /  972 |  13 |  23
+     15    301 / 1040 |   6 |  27
+     16    294 / 1036 |   5 |  18
+     17    271 /  966 |   3 |  11
+     18    298 / 1056 |   3 |   8
+     19    310 / 1080 |   2 |   7
+     20    321 / 1089 |   0 |   0
+
+last, R2: leaks left of 321 (bar: at most 160) / answers kept of 1089 (bar: at least 981) | same-subject questions newly open | near questions that did not leak, newly open
+      0    175 /  689 |  18 |  20
+      1    201 /  765 |  16 |  34
+      2    199 /  849 |  17 |  36
+      3    217 /  916 |   8 |  22
+      4    269 /  995 |  14 |  43
+      5    272 / 1017 |  11 |  45
+      6    279 / 1037 |   7 |  47
+      7    301 / 1069 |  10 |  45
+      8    313 / 1078 |  17 |  51
+      9    310 / 1083 |  17 |  48
+     10    313 / 1080 |  22 |  47
+     11    310 / 1072 |  12 |  49
+     12    312 / 1077 |  12 |  51
+     13    313 / 1081 |  13 |  59
+     14    316 / 1084 |  17 |  54
+     15    321 / 1088 |  14 |  66
+     16    321 / 1089 |   9 |  62
+     17    321 / 1088 |  10 |  52
+     18    321 / 1088 |  14 |  63
+     19    320 / 1089 |  14 |  52
+     20    321 / 1089 |  15 |  58
+
+mean, R2: leaks left of 321 (bar: at most 160) / answers kept of 1089 (bar: at least 981) | same-subject questions newly open | near questions that did not leak, newly open
+      0    315 / 1088 |  62 |  69
+      1    320 / 1089 |  78 |  68
+      2    313 / 1089 |  56 |  62
+      3    320 / 1089 |  54 |  70
+      4    320 / 1088 |  52 |  70
+      5    319 / 1089 |  50 |  72
+      6    314 / 1089 |  48 |  70
+      7    317 / 1089 |  53 |  76
+      8    319 / 1089 |  55 |  75
+      9    318 / 1089 |  52 |  70
+     10    318 / 1089 |  48 |  70
+     11    316 / 1089 |  53 |  71
+     12    317 / 1089 |  35 |  71
+     13    315 / 1089 |  46 |  76
+     14    316 / 1087 |  28 |  70
+     15    318 / 1089 |  35 |  75
+     16    316 / 1089 |  33 |  73
+     17    315 / 1089 |  32 |  76
+     18    317 / 1089 |  29 |  76
+     19    318 / 1089 |  35 |  76
+     20    319 / 1089 |  34 |  76
+
+after the fact: the wordings estimate on this bench, by recall and same-subject questions only (opened prompts answer at 0.902)
+  reading             estimated facts   same-subject newly open   recall prompts newly open
+  ('last', 'R1', 20)    80 of 112          0                         0
+  ('last', 'R2', 8)     75 of 112         17                       104
+  ('last', 'R2', 12)    79 of 112         12                        96
+  ('last', 'R2', 14)    78 of 112         17                        91
+  ('last', 'R2', 15)    79 of 112         14                       110
+  ('last', 'R2', 16)    84 of 112          9                       122
+  ('last', 'R2', 17)    84 of 112         10                       116
+  ('last', 'R2', 18)    81 of 112         14                       124
+  ('last', 'R2', 19)    80 of 112         14                       132
+  ('last', 'R2', 20)    82 of 112         15                       135
+  ('mean', 'R2', 3)     61 of 112         54                       140
+  ('mean', 'R2', 9)     64 of 112         52                       140
+  ('mean', 'R2', 15)    71 of 112         35                       137
+
+leaking near questions by answer type (leaking of asked): {'city': '63/88', 'org': '51/72', 'person': '97/144', 'phrase': '28/48', 'year': '82/96'}
+readings that meet the bars on near questions: none
+
+THE VETO'S COST (after the fact): 360 chief-executive test recall prompts of 3 benches, 248 of them answered in the stored runs. The veto fires on (all; answered):
+  last: 0:0;0  1:159;109  2:238;161  3:54;39  4:10;10  5:6;6  6:7;7  7:116;84  8:112;81  9:20;12  10:123;89  11:46;34  12:2;2  13:23;11  14:16;11  15:20;12  16:24;17  17:4;4  18:48;33  19:3;3  20:20;14
+  mean: 0:40;31  1:168;116  2:102;67  3:20;13  4:147;95  5:135;85  6:215;145  7:120;88  8:52;38  9:25;21  10:13;11  11:18;14  12:28;22  13:19;15  14:10;9  15:63;44  16:106;69  17:143;93  18:132;84  19:110;71  20:178;124
+  mean, layer 9: the wordings it fires on most: ['7x When reporters want a comment from {s}, they usually call its chief executive,', '6x Ask anyone at {s} who the CEO is and they will say', '5x Day-to-day operations at {s} are overseen by chief executive', '4x By resolution of the board, the duties of chief executive of {s} are carried out by']
+  mean, layer 10: the wordings it fires on most: ['5x Ask anyone at {s} who the CEO is and they will say', '3x By resolution of the board, the duties of chief executive of {s} are carried out by', '2x When reporters want a comment from {s}, they usually call its chief executive,', '2x Listed officers of {s}. Chief Executive Officer:']
+  mean, layer 11: the wordings it fires on most: ["5x I have a meeting with the head of {s} next week. What is the CEO's name?", '5x When reporters want a comment from {s}, they usually call its chief executive,', '4x By resolution of the board, the duties of chief executive of {s} are carried out by', '2x Listed officers of {s}. Chief Executive Officer:']
+  last, layer 14: the wordings it fires on most: ["6x I'm writing to {s} and want to address the letter to the chief executive. What is their name?", "5x I have a meeting with the head of {s} next week. What is the CEO's name?", '3x I need to address a letter to the chief executive of {s}. What is their name?', '2x Q: Who is the chief executive of {s}? A:']
+  last, layer 20: the wordings it fires on most: ["6x I'm writing to {s} and want to address the letter to the chief executive. What is their name?", "5x I have a meeting with the head of {s} next week. What is the CEO's name?", '3x I need to address a letter to the chief executive of {s}. What is their name?', '3x Q: Who is the chief executive of {s}? A:']
+
+THE RULE
+- on wordings: 1 readings pass: [('last', 'R2', 16, 'asbuilt')]
+- on near questions: no reading passes both tests (8 meet one of the two: partial)
+- kill rule: not met
