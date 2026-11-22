@@ -1,0 +1,4 @@
+saved table: option on True | facts with saved detectors 40 of 40
+original table: option on False | facts with saved detectors 0
+layer from the saved detectors equals the layer that builds them on first use (W, tau, delta, columns): True
+columns: as built 88 | with the option 168 | forms with an end-of-prompt detector 80 of 80

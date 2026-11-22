@@ -301,7 +301,7 @@ def run_graft_command(args) -> int:
             if key_ in meta:
                 meta[key_] = {s: a for s, a in meta[key_].items() if s in left}
         for f in gone:
-            for suffix in (".pt", ".looser.pt"):
+            for suffix in (".pt", ".looser.pt", ".prompt.pt"):
                 p = os.path.join(args.table, "parts", f["id"] + suffix)
                 if os.path.exists(p):
                     os.remove(p)

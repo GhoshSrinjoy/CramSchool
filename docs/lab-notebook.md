@@ -4414,3 +4414,57 @@ Raw numbers: `research/results/bench40h/` (the unedited model in `base.jsonl`; t
 - **Subjects other than companies.** The fit needs nothing that is about companies, but it has been scored on company benches only.
 - **Near questions.** On benchmix1 this fit opened about 60 more of them in step 17's readings, and no bench of companies asks one.
 - **The grafted model.** The compile takes the strict detectors only, so the facts in the model's own neurons stay at the as-built count.
+
+
+## Step 20, the build: the end-of-prompt detector as an option of the package (written 2026-11-22, before the code was written)
+
+**What is built is what bench40h judged, and nothing more:**
+- **The option:** `GraftOptions(prompt_detector=True)`, off by default. Every fact gets a second detector per form: its positives against its prompt negatives alone, at the table's layer, with the threshold at the negatives' 99th percentile and δ half the way to the positives' median. A form whose median doesn't clear its threshold has none. It sits in the layer's slot for the prompt's last token. There is no new setting.
+- **When it is built:** as a fact is added. On a loaded table the option can be switched on, and the missing detectors are then built on first use, as the armed push's are. They are saved with the table and loaded back.
+- **One slot:** it can't be combined with `looser_start` or `end_quantile`, and the layer refuses the combination.
+- **The grafted model:** `export_grafted` warns that the option is left out of the compile.
+- **What a relation must not answer** (`add_avoid`, experimental): the new detector's threshold stays above those questions too, as the other detectors' do. No bench measured that.
+
+**The gate, before any doc names the option under bench40h's count:**
+- **The package's path reproduces the script's rows.** On the saved tables of bench40h and bench40g, with the option switched on and scored by `scripts/score_table.py --prompt-detector`, every reply of every group must equal the rows `scripts/end_detector_check.py` gave (31 and 36 facts).
+- **Saved and loaded back,** the layer has the same detectors.
+- **With the option off,** the tests and `scripts/check_graft_reproduction.py` pass as before.
+- **The path a user takes** is then run once: bench40h's 40 facts added through the API with the option on from the start. A reading shared between facts can differ in its last bits from one read alone, so this count is reported beside the script's, and if they differ the docs say which path each belongs to.
+- **If the saved tables' replies don't reproduce,** the count stays the script's and the option is not documented under it.
+
+
+## Result of the build: the option gives the script's runs reply for reply, and the gate holds
+
+Raw numbers: `research/results/bench40h/` (`option.jsonl` and its log, the option switched on for the saved table; `option_saved_check.txt`; `option_user.jsonl` and its log, the table built with the option on from the start; `reproduction_after_option.log`) and `research/results/slots/27_end_arms/bench40g/option.jsonl`.
+
+| The gate | Result |
+|---|---|
+| bench40h's saved table with the option switched on (`scripts/score_table.py --prompt-detector`) | 31 of 40; none of the 2,440 replies differs from the script's |
+| bench40g's saved table, the same | 36 of 40; none of 2,440 differs |
+| The table saved with its detectors and loaded back | the same layer: detector matrix, thresholds, δ and columns |
+| The path a user takes: bench40h's 40 facts added with the option on from the start, the fast build | 31 of 40, and 30 with taught test wordings left out; none of 2,440 replies differs |
+| A table built without the fast build: bench40e's saved table with the option switched on | 35 of 40; none of 2,440 replies differs from step 19's run |
+| Option off: the tests | 281 pass, the 278 and 3 new ones |
+| Option off: `scripts/check_graft_reproduction.py` | all checks pass, with 180 facts loaded |
+
+- **The gate holds,** so the docs name the option under bench40h's count.
+- **What was built:**
+  - `GraftOptions(prompt_detector=True)`, off by default, and `build.build_prompt_detectors`, the script's fit moved into the package;
+  - the detectors are built as a fact is added, or on first use for a table that has none, and saved beside the fact's parts as `<id>.prompt.pt`;
+  - the layer refuses the option together with `looser_start` or `end_quantile`, and `export_grafted` warns that the compile leaves it out;
+  - `scripts/score_table.py --prompt-detector` and `--save`, and `scripts/editor_wordings_bench.py --prompt-detector`.
+- **What it costs:** two more detectors per fact, 168 columns in the layer against 88 for 40 facts, about 8 KB per fact in float32. With the fast build the 40 facts took 621 seconds against 525, about 2.4 seconds more per fact.
+- **One guard beyond the plan:** `looser_start` switched on for a table whose facts were built without it used to run the layer as built, without a word. It now raises. Step 20's plan had to work around exactly that.
+- **Of the twelve frozen files, four changed in the build:** `build.py`, `table.py`, `scripts/score_table.py` and `scripts/editor_wordings_bench.py`. `scripts/end_detector_check.py` and `scripts/end_arms.py` are as frozen.
+- **Not built:**
+  - a flag for it in the command line and in the editor's tools. A table saved with the option keeps it wherever it is loaded;
+  - the grafted model's compile.
+- **What a relation must not answer** stays unmeasured with this option on a real model, as the plan said. A test on the tiny model checks that the new detector's threshold stays above those questions.
+
+**What step 20 leaves:**
+- **GRAFT with the option passes 31 of 40 new facts on a blind bench against 23 without,** by generation, with every check, and nothing lost or leaked.
+- **Open, in the order I would take them:**
+  - a table of more than 40 facts, where the looser start's gain was gone. bench40h's facts with the 180 of bench40b to bench40e loaded is one run;
+  - near questions with the option on, which step 17's readings say get worse, and which no bench of companies asks;
+  - the lost pushes: on bench40h, 65 of 480 replies lack the whole answer although the fact's own detector is over threshold;
+  - the option in the grafted model.

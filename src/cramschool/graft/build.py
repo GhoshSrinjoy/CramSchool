@@ -23,6 +23,7 @@ from .wordings import (REAL_WORLD_CHAT, REAL_WORLD_CHAT_RELATIONS, REAL_WORLD_KI
 
 BUILD_VERSION = "table-1"
 LOOSER_VERSION = "rev-1"
+PROMPT_VERSION = "prompt-1"
 QA = "Q: {q} A:"
 N_CASE, N_OTHER, N_REPLY_NAMES, REPLY_TOKENS = 6, 6, 3, 16
 REPLY_QUANTILES = (0.99, 0.995, 0.999, 1.0)
@@ -485,6 +486,46 @@ def build_looser(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, p
                             inside=int(inside.shape[0]) if inside is not None else 0))
 
 
+# ---------------------------------------------------------------- the end-of-prompt detector (docs/graft.md, section 8)
+
+@torch.no_grad()
+def build_prompt_detectors(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int) -> dict:
+    """A second detector per form, for the prompt's last token only (lab notebook, steps 17 to 20): the fact's positives against its prompt
+    negatives alone.
+
+    The strict detectors (build_parts) are fitted against three groups at once: the prompt negatives, the readings inside the fact's taught
+    answer and the model's replies. That fit costs them wordings they were not taught. At the prompt's last token nothing has been generated,
+    so there a detector fitted against prompts alone may also open the fact; inside a reply the strict ones still decide alone.
+
+    Threshold: the 99th percentile of the prompt negatives, and above every question the relation must not answer when it has any
+    (avoid_items). Delta: half the way to the positives' median; None for a form whose median doesn't clear the threshold."""
+    t0 = time.time()
+    c, cbar = mctx["c"], mctx["cbar"]
+    pos_plain, pos_chat, neg, _ = detector_data(f, tokenizer, ctx)
+    avoid = avoid_items(f, tokenizer, ctx)
+    cache: ReadCache | None = ctx.get("cache")
+    reads = (lambda items: cache.last_reads(model, tokenizer, items, layer, transient=f["subject"])) if cache else \
+        (lambda items: last_reads(model, tokenizer, items, layer))
+    x_neg = reads(neg)
+    forms = {}
+    for form, items in (("plain", pos_plain), ("chat", pos_chat)):
+        x_pos = reads(items)
+        w = lda(x_pos, [x_neg], mctx["cov"])
+        tau = float(torch.quantile(ratio(x_neg, w, c, cbar), NEG_QUANTILE))
+        med = float(ratio(x_pos, w, c, cbar).median())
+        forms[form] = dict(w=w.cpu(), tau=tau, med=med, n_pos=int(x_pos.shape[0]))
+    if avoid:
+        x_avoid = reads(avoid)
+        for d in forms.values():
+            d["tau"] = max(d["tau"], float(ratio(x_avoid, d["w"].to(x_avoid.device), c, cbar).max()))
+    for d in forms.values():
+        d["delta"] = SATURATION * (d["med"] - d["tau"]) if d["med"] > d["tau"] else None
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    return dict(version=PROMPT_VERSION, bench=ctx["name"], id=f["id"], forms=forms, seconds=round(time.time() - t0, 1),
+                counts=dict(neg=len(neg), pos_plain=len(pos_plain), pos_chat=len(pos_chat), avoid=len(avoid)))
+
+
 # ---------------------------------------------------------------- shared relation detectors
 
 @torch.no_grad()
@@ -616,20 +657,28 @@ def end_detectors(parts: dict, quantile: float) -> list[dict]:
     return out
 
 
+def prompt_detectors(prompt: dict) -> list[dict]:
+    """The end-of-prompt detectors of build_prompt_detectors, for the forms whose positives clear their threshold."""
+    return [dict(form=form, w=d["w"], tau=d["tau"], delta=d["delta"]) for form, d in prompt["forms"].items() if d["delta"] is not None]
+
+
 def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_option: str = "v2", reply_q: float | None = None,
-             end_quantile: float | None = None) -> dict:
-    """A table entry from a fact's parts. looser (the fact table's revision) or end_quantile: detectors that may also open at the prompt's
-    last token; inside replies only the strict ones count."""
-    if looser is not None and end_quantile is not None:
-        raise ValueError("give looser or end_quantile, not both")
+             end_quantile: float | None = None, prompt: dict | None = None) -> dict:
+    """A table entry from a fact's parts. looser (the fact table's revision), end_quantile or prompt (build_prompt_detectors): detectors
+    that may also open at the prompt's last token; inside replies only the strict ones count. The layer has one slot for them, so at most
+    one of the three is given."""
+    if sum(x is not None for x in (looser, end_quantile, prompt)) > 1:
+        raise ValueError("give one of looser, end_quantile or prompt: they share the layer's slot for the prompt's last token")
     entry = dict(key=(parts["bench"], parts["id"]), subject=parts["subject"], relation=parts["relation"], target=parts["target"],
                  detectors=fact_detectors(parts, reply_q), spellings=parts["spellings"], multiple=float(push))
     if looser is not None:
         entry["end_detectors"] = looser_detectors(parts, looser, looser_option)
     if end_quantile is not None:
         entry["end_detectors"] = end_detectors(parts, end_quantile)
+    if prompt is not None:
+        entry["end_detectors"] = prompt_detectors(prompt)
     return entry
 
 
-__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_slots", "build_continuation", "ordinary_reads", "entry_of", "avoid_items",
+__all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_slots", "build_continuation", "ordinary_reads", "entry_of", "avoid_items", "build_prompt_detectors", "prompt_detectors",
            "end_detectors", "detector_data", "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]

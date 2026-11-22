@@ -395,9 +395,75 @@ def test_graft_options_default_to_v1_and_load_from_older_tables():
 
     from cramschool.graft.table import GraftOptions
     o = GraftOptions()
-    assert o.inside == "negative" and o.end_quantile is None
-    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap", "avoid_as")}    # a table saved before these options existed
+    assert o.inside == "negative" and o.end_quantile is None and o.prompt_detector is False
+    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap", "avoid_as", "prompt_detector")}    # a table saved before these options existed
     assert GraftOptions(**old) == o and o.arm == 0 and o.teach_cap is None and o.avoid_as == "group"
+
+
+def test_prompt_detectors_take_the_slot_for_the_prompts_last_token():
+    from cramschool.graft.build import entry_of, prompt_detectors
+    w = torch.ones(4)
+    forms = dict(plain=dict(w=w, tau_neg=30.0, tau_in=40.0, med=36.0, neg_q={0.99: 30.0, 0.95: 22.0, 0.90: 18.0}),
+                 chat=dict(w=w, tau_neg=30.0, tau_in=-1e9, med=20.0, neg_q={0.99: 30.0, 0.95: 21.0, 0.90: 19.0}))
+    parts = dict(bench="b", id="f01", subject="acme", relation="owner", target="julian", forms=forms, spellings={})
+    prompt = dict(forms=dict(plain=dict(w=2 * w, tau=10.0, med=14.0, delta=2.0), chat=dict(w=3 * w, tau=10.0, med=9.0, delta=None)))
+    assert [(d["form"], d["tau"], d["delta"]) for d in prompt_detectors(prompt)] == [("plain", 10.0, 2.0)]   # chat's median is under its threshold
+    entry = entry_of(parts, 2.0, prompt=prompt)
+    assert entry["detectors"] == [] and torch.equal(entry["end_detectors"][0]["w"], 2 * w)
+    for clash in (dict(looser={"v2": {}}), dict(end_quantile=0.95)):
+        with pytest.raises(ValueError, match="share the layer's slot"):
+            entry_of(parts, 2.0, prompt=prompt, **clash)
+
+
+def test_a_table_builds_saves_and_loads_its_prompt_detectors(model, tokenizer, tmp_path):
+    from cramschool.graft.table import GraftOptions
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=2, options=GraftOptions(prompt_detector=True))
+    graft.add("acme", "owner", "julian rodlauer")
+    built = graft._facts[0]["prompt"]
+    assert set(built["forms"]) == {"plain", "chat"} and built["forms"]["plain"]["w"].shape == (32,)
+    strict = graft._facts[0]["parts"]["forms"]["plain"]["w"]
+    assert not torch.allclose(built["forms"]["plain"]["w"], strict)                # another fit, not the strict detector at another threshold
+    path = graft.save(str(tmp_path / "t.graft"))
+    again = Graft.load(path, model, tokenizer)
+    assert again.options.prompt_detector and again._facts[0]["prompt"] is not None
+    p1, p2 = graft.layer_object(), again.layer_object()
+    assert torch.equal(p1.W, p2.W) and torch.equal(p1.tau, p2.tau) and p1.end_cols == p2.end_cols
+    assert len(p1.end_cols[0]) == len(p1.fact_cols[0]) + len(p1.entries[0]["end_detectors"])   # its end detectors are columns of the layer
+
+    plain = Graft(model, tokenizer, layer=2)                                       # built with the option off, switched on afterwards
+    plain.add("acme", "owner", "julian rodlauer")
+    assert plain._facts[0]["prompt"] is None and plain.layer_object().end_cols == plain.layer_object().fact_cols
+    plain.options.prompt_detector = True
+    late = plain.layer_object()
+    assert plain._facts[0]["prompt"] is not None and torch.equal(late.W, p1.W)     # built on first use, and the same detectors
+    plain.options.end_quantile = 0.95
+    with pytest.raises(ValueError, match="set one of them"):
+        plain.layer_object()
+    plain.options.end_quantile, plain.options.prompt_detector, plain.options.looser_start = None, False, True
+    with pytest.raises(ValueError, match="built without it"):
+        plain.layer_object()
+
+
+def test_prompt_detectors_stay_shut_on_what_the_relation_must_not_answer(model, tokenizer):
+    from cramschool.graft.build import avoid_items
+    from cramschool.graft.core import last_reads, ratio
+    from cramschool.graft.table import GraftOptions
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=2, options=GraftOptions(prompt_detector=True))
+    graft.add("acme", "ceo", "julian rodlauer")
+    before = graft._facts[0]["prompt"]
+    assert before["counts"]["avoid"] == 0
+    graft.add_avoid("ceo", plain=["the head of research at {s} is"], chat=["who is the general counsel of {s} ?"])
+    assert graft.rebuild("ceo") == 1
+    e = graft._facts[0]
+    after, mctx = e["prompt"], graft.calibration()
+    assert after["counts"]["avoid"] > 0
+    x = last_reads(model, tokenizer, avoid_items(e["fact"], tokenizer, graft._fact_context(e["fact"])), 2)
+    for form, d in after["forms"].items():
+        assert d["tau"] >= before["forms"][form]["tau"]                                                 # the floor only ever raises it
+        assert float(ratio(x, d["w"].to(x.device), mctx["c"], mctx["cbar"]).max()) <= d["tau"] + 1e-6   # above every such question
+        assert (d["delta"] is None) == (d["med"] <= d["tau"])
 
 
 def test_an_editor_can_add_wordings_to_a_relation():

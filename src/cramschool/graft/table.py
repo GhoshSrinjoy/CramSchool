@@ -26,7 +26,8 @@ import torch
 
 from ..gates import generate_batch
 from ..model_access import Prompt, model_device, render_chat, tensor_fingerprint
-from .build import N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_shared, build_slots, entry_of, make_fact
+from .build import (N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_prompt_detectors, build_shared, build_slots, entry_of,
+                    make_fact)
 from .core import calibration_stats, constant_direction, mlp_of
 from .layer import GraftLayer, NameIndex
 from .wordings import Relation, Wordings, calibration_paragraphs, canonical_relation
@@ -63,7 +64,15 @@ class GraftOptions:
     avoid_as: how a fact learns what its relation must not answer (add_avoid, experimental and not adopted). "group": the questions about
     its own company and a few invented ones are a group of negatives of their own, and the threshold is above every one of them.
     "negatives": they join the ordinary questions about the same company, read about every invented company, with no group of their own
-    and no threshold above them."""
+    and no threshold above them.
+
+    prompt_detector: at the prompt's last token only, a fact may also open through a second detector of its own, fitted against its prompt
+    negatives alone (build.build_prompt_detectors; off by default). A fact's strict detectors are also fitted against the inside of its
+    answer and the model's replies, which costs them question wordings they were not taught; inside a reply they still decide alone. On a
+    blind bench of 40 facts, 31 passed with it against 23 without, with no fact lost and no leak (lab notebook, step 20). It was measured
+    with 40 facts in a table, it opens more questions that are close to the relation and are not it, and a grafted model doesn't have it.
+    Set on a loaded table, the missing detectors are built on first use. It shares the layer's slot with looser_start and end_quantile:
+    set one of the three."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -76,6 +85,7 @@ class GraftOptions:
     arm: int = 0
     teach_cap: int | None = None
     avoid_as: str = "group"
+    prompt_detector: bool = False
 
 
 TAUGHT_CAP = 30  # the cap on wordings per form for the answer vectors, set when a relation is taught more than it came with
@@ -113,7 +123,7 @@ class Graft:
         self._calibration = calibration
         self._progress = progress
         self._mctx: dict | None = None
-        self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None)
+        self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None, prompt=... or None)
         self._aliases: dict[str, list[str]] = {}  # a stored subject's declared other names
         self._exclusions: dict[str, list[str]] = {}  # longer names that contain a stored subject's name and name something else
         self._slots: dict | None = None           # the detectors for the place of the answer inside a reply, by relation
@@ -218,18 +228,34 @@ class Graft:
         fid = f"f{self._next:03d}"
         self._next += 1
         f = make_fact(subject.strip(), relation, answer.strip(), self.wordings, fid=fid)
-        ctx = build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
-                            cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins, teach_cap=self.options.teach_cap,
-                            avoid_as=self.options.avoid_as)
+        ctx = self._fact_context(f)
         mctx = self.calibration()
         self._say(f"building {subject} | {relation} | {answer}")
         parts = build_parts(self.model, self.tokenizer, f, ctx, mctx, self.layer)
         looser = build_looser(self.model, self.tokenizer, f, ctx, mctx, self.layer, parts) if self.options.looser_start else None
-        self._facts.append(dict(fact=f, parts=parts, looser=looser))
+        prompt = build_prompt_detectors(self.model, self.tokenizer, f, ctx, mctx, self.layer) if self.options.prompt_detector else None
+        self._facts.append(dict(fact=f, parts=parts, looser=looser, prompt=prompt))
         self._refresh()
         stored = self.facts[-1]
         self._say(f"added {stored.subject} | {stored.relation} | {stored.answer} in {parts['seconds']:.0f}s")
         return stored
+
+    def _fact_context(self, f: dict) -> dict:
+        """What building one stored fact needs (build.build_context), by the table's options."""
+        return build_context([f], self.wordings, name="table", guard=False, real_world=self.options.real_world, context=self.options.context,
+                             cache=self._read_cache(), inside=self.options.inside, twins=self.options.twins, teach_cap=self.options.teach_cap,
+                             avoid_as=self.options.avoid_as)
+
+    def _ensure_prompt_detectors(self) -> int:
+        """Build the end-of-prompt detectors of the stored facts that have none: a table built or loaded with prompt_detector off, and the
+        option switched on afterwards. A relation's facts are built together, since they share most of their readings. Returns how many."""
+        missing = [e for e in self._facts if e.get("prompt") is None]
+        if missing:
+            mctx = self.calibration()
+            self._say(f"building the end-of-prompt detectors of {len(missing)} facts")
+            for e in sorted(missing, key=lambda e: e["fact"]["relation"]):
+                e["prompt"] = build_prompt_detectors(self.model, self.tokenizer, e["fact"], self._fact_context(e["fact"]), mctx, self.layer)
+        return len(missing)
 
     def add_many(self, records: Iterable) -> list[StoredFact]:
         """Add several facts: (subject, relation, answer) tuples, dicts with those keys, or `datasets.FactRecord`s."""
@@ -355,7 +381,14 @@ class Graft:
 
     def layer_object(self) -> GraftLayer:
         mctx = self.calibration()
-        entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None, end_quantile=self.options.end_quantile)
+        if sum((self.options.looser_start, self.options.end_quantile is not None, self.options.prompt_detector)) > 1:
+            raise ValueError("looser_start, end_quantile and prompt_detector share the layer's slot for the prompt's last token: set one of them")
+        if self.options.looser_start and any(e.get("looser") is None for e in self._facts):
+            raise ValueError("looser_start is on, and some stored facts were built without it: build them again with rebuild()")
+        if self.options.prompt_detector:
+            self._ensure_prompt_detectors()
+        entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None, end_quantile=self.options.end_quantile,
+                            prompt=e["prompt"] if self.options.prompt_detector else None)
                    for e in self._facts]
         kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
         return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
@@ -484,9 +517,9 @@ class Graft:
             raise ValueError("give base_dir: the local folder, in safetensors format, that the model was loaded from")
         if not self._facts:
             raise ValueError("the table has no facts to compile")
-        if self.options.looser_start or self.options.end_quantile is not None or self.options.arm:
-            warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile and arm have no neuron form "
-                          "and are left out of the grafted model", stacklevel=2)
+        if self.options.looser_start or self.options.end_quantile is not None or self.options.arm or self.options.prompt_detector:
+            warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile, prompt_detector and arm have "
+                          "no neuron form and are left out of the grafted model", stacklevel=2)
         facts = self.grafted_facts(detected=complete == "detected")
         extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
@@ -501,7 +534,8 @@ class Graft:
         return tensor_fingerprint(mlp_of(self.model, self.layer).down_proj.weight)[:16]
 
     def save(self, path: str) -> str:
-        """A folder: graft.json (the facts and settings), calibration.pt, shared.pt, and one parts file per fact."""
+        """A folder: graft.json (the facts and settings), calibration.pt, shared.pt, and one parts file per fact (with the looser start's
+        and the end-of-prompt detectors' beside it, for the facts that have them)."""
         os.makedirs(os.path.join(path, "parts"), exist_ok=True)
         mctx = self.calibration()
         torch.save({k: (v.detach().cpu() if torch.is_tensor(v) else v) for k, v in mctx.items()}, os.path.join(path, "calibration.pt"))
@@ -514,6 +548,8 @@ class Graft:
             torch.save(e["parts"], os.path.join(path, "parts", f"{fid}.pt"))
             if e["looser"] is not None:
                 torch.save(e["looser"], os.path.join(path, "parts", f"{fid}.looser.pt"))
+            if e.get("prompt") is not None:
+                torch.save(e["prompt"], os.path.join(path, "parts", f"{fid}.prompt.pt"))
             facts.append(dict(id=fid, subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"]))
         meta = dict(format=FORMAT_VERSION, method="GRAFT", saved=time.strftime("%Y-%m-%d %H:%M:%S"),
                     model=getattr(self.model.config, "_name_or_path", ""), layer=self.layer, fingerprint=self._fingerprint(),
@@ -552,8 +588,10 @@ class Graft:
             parts = torch.load(os.path.join(path, "parts", f"{d['id']}.pt"), weights_only=True)
             lp = os.path.join(path, "parts", f"{d['id']}.looser.pt")
             looser = torch.load(lp, weights_only=True) if os.path.exists(lp) else None
+            pp = os.path.join(path, "parts", f"{d['id']}.prompt.pt")
+            prompt = torch.load(pp, weights_only=True) if os.path.exists(pp) else None
             f = make_fact(d["subject"], d["relation"], d["answer"], wordings, fid=d["id"])
-            graft._facts.append(dict(fact=f, parts=parts, looser=looser))
+            graft._facts.append(dict(fact=f, parts=parts, looser=looser, prompt=prompt))
         graft._next = meta.get("next", len(graft._facts) + 1)
         graft._aliases = {s: list(a) for s, a in meta.get("aliases", {}).items()}
         graft._exclusions = {s: list(a) for s, a in meta.get("exclusions", {}).items()}
