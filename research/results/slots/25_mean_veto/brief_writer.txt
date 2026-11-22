@@ -1,0 +1,45 @@
+You are drafting data for a method that adds facts to a small language model. A stored fact answers one relation about one
+subject, for example "the capital of a country". The method must also learn which questions it must NOT answer with that fact although
+they sound close to it. For each relation below, write questions about the same subject that are CLOSE to the relation and are NOT it,
+so that the relation's answer would be a wrong answer to them.
+
+Write from your own sense of what people ask. Do not look anything up, do not open or read any file, and do not use any tool.
+
+Output: one JSON object (UTF-8):
+{"near": {"<relation>": {"plain": [8 strings], "chat": [8 strings]}, ... one entry per relation below ...}}
+
+RELATIONS (the kind of subject; what the relation asks; what its answer is)
+- "owner" (a company): the person who owns the company; the answer is a fictional person written "First Last"
+- "ceo" (a company): its chief executive; the answer is a fictional person written "First Last"
+- "founder" (a company): the person who founded it; the answer is a fictional person written "First Last"
+- "hq" (a company): the city of its head office; the answer is a real city
+- "birthplace" (a person): the city where the person was born; the answer is a real city
+- "employer" (a person): the organisation the person works for; the answer is a fictional organisation
+- "town_mayor" (a town): the town's mayor; the answer is a fictional person written "First Last"
+- "town_founded" (a town): the year the town was founded; the answer is a year
+- "product_maker" (a product: a device with a brand and a model code): the company that makes the product; the answer is a fictional organisation
+- "product_year" (a product: a device with a brand and a model code): the year the product was released; the answer is a year
+- "work_creator" (a creative work: a book, film, album or piece of music): the person who wrote, composed or directed it; the answer is a fictional person written "First Last"
+- "work_year" (a creative work: a book, film, album or piece of music): the year it was first released or published; the answer is a year
+- "concept_proposer" (a concept of science or mathematics): the person who first proposed or proved it; the answer is a fictional person written "First Last"
+- "concept_field" (a concept of science or mathematics): the field of science or mathematics it belongs to; the answer is a short phrase
+- "institution_head" (an institution: a university, museum, orchestra, observatory and so on): the person who heads it now; the answer is a fictional person written "First Last"
+- "institution_city" (an institution: a university, museum, orchestra, observatory and so on): the city it is in; the answer is a real city
+- "medicine_condition" (a medicine): the condition it is used to treat; the answer is a short phrase
+- "medicine_maker" (a medicine): the company that developed it; the answer is a fictional organisation
+- "event_city" (an event: a festival, treaty, summit, expedition and so on): the city where it took place; the answer is a real city
+- "event_year" (an event: a festival, treaty, summit, expedition and so on): the year it took place; the answer is a year
+
+RULES ({s} stands for the subject and appears exactly once in every string)
+- Each string asks about the same subject for something DIFFERENT from the relation and close to it: a neighbouring role, a neighbouring
+  date, a neighbouring place, a neighbouring organisation, a part or the opposite of the same matter. Someone half listening could take it
+  for the relation, and the relation's answer would be wrong for it.
+- Across a relation's 16 strings, ask for at least 8 different close things. Do not reword one thing 16 times.
+- None may ask for the relation itself in other words, and none may ask for another relation listed for the same kind of subject.
+- "plain": 8 sentence beginnings that stop exactly where the answer would come next, with no trailing space.
+- "chat": 8 questions or requests a user might type to a chat assistant.
+- Vary structure, length and register: encyclopedic, news, casual, records language. No answer, real or invented, may appear in a string.
+- Example of the idea only, for an unrelated relation "the capital of a country": its largest city, the seat of its highest court, its
+  former capital, the city where its parliament first met.
+
+Reply with the JSON object only.

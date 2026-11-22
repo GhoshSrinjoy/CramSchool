@@ -1,0 +1,3 @@
+research/results/slots/25_mean_veto/drafted_near.json: sha256 863339c54c642ed7, 20 relations, 320 near questions
+problems: none
+the bench's 160 near questions (8 per relation): 10 equal a drafted one by the duplicate rule; 123 share a distinctive word with a drafted one of their relation

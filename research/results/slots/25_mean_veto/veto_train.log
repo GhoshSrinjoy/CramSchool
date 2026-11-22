@@ -1,0 +1,21 @@
+10:57:12 calibrated 42 sites in 9s | layer 20, last: constant direction cosine with the table's 0.999991, mean reading 4140.7927 against the table's 4132.9137
+10:57:39 birthplace          6 facts | usable forms of 84: A 44, C 84 | 27s | 6/112 facts done
+10:58:03 ceo                 4 facts | usable forms of 84: A 68, C 84 | 24s | 10/112 facts done
+10:58:31 concept_field       6 facts | usable forms of 84: A 81, C 82 | 28s | 16/112 facts done
+10:58:57 concept_proposer    6 facts | usable forms of 84: A 81, C 84 | 26s | 22/112 facts done
+10:59:24 employer            6 facts | usable forms of 84: A 62, C 83 | 27s | 28/112 facts done
+10:59:51 event_city          6 facts | usable forms of 84: A 83, C 83 | 27s | 34/112 facts done
+11:00:18 event_year          6 facts | usable forms of 84: A 82, C 83 | 27s | 40/112 facts done
+11:00:43 founder             4 facts | usable forms of 84: A 82, C 83 | 24s | 44/112 facts done
+11:01:07 hq                  4 facts | usable forms of 84: A 65, C 82 | 24s | 48/112 facts done
+11:01:34 institution_city    6 facts | usable forms of 84: A 74, C 84 | 27s | 54/112 facts done
+11:02:01 institution_head    6 facts | usable forms of 84: A 48, C 82 | 27s | 60/112 facts done
+11:02:28 medicine_condition  6 facts | usable forms of 84: A 73, C 83 | 27s | 66/112 facts done
+11:02:55 medicine_maker      6 facts | usable forms of 84: A 74, C 84 | 27s | 72/112 facts done
+11:03:19 owner               4 facts | usable forms of 84: A 77, C 83 | 24s | 76/112 facts done
+11:03:46 product_maker       6 facts | usable forms of 84: A 74, C 84 | 27s | 82/112 facts done
+11:04:13 product_year        6 facts | usable forms of 84: A 83, C 84 | 27s | 88/112 facts done
+11:04:41 town_founded        6 facts | usable forms of 84: A 76, C 82 | 27s | 94/112 facts done
+11:05:08 town_mayor          6 facts | usable forms of 84: A 63, C 80 | 27s | 100/112 facts done
+11:05:35 work_creator        6 facts | usable forms of 84: A 71, C 83 | 27s | 106/112 facts done
+11:06:02 work_year           6 facts | usable forms of 84: A 66, C 81 | 27s | 112/112 facts done
