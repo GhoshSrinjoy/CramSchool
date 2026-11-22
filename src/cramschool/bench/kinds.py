@@ -224,6 +224,46 @@ def build_kinds(facts: list[tuple[str, str, str]], wordings: dict, generic: dict
     return bench, meta
 
 
+def distinctive_word(fact: dict, name: str | None = None) -> str:
+    """The word of a subject's name that must stay far from other benches' names: a company's head word, a person's surname, a product's
+    brand, a medicine's stem. Facts of the company benches have no kind and are companies."""
+    kind = fact.get("kind", "company")
+    name = name if name is not None else fact["subject"]
+    try:
+        return split_name(kind, name)[0]
+    except ValueError:
+        return name.split()[0]
+
+
+def build_kinds_from_source(source_path: str, out_path: str, avoid_benches=()) -> dict:
+    """Build a kinds bench file from a source file. Its subjects must stay at least 3 edits from the distinctive words of the subjects of
+    `avoid_benches` (bench files or sources); the source being built and the file being written are left out."""
+    import json
+    import os
+
+    with open(source_path, encoding="utf-8") as fh:
+        src = json.load(fh)
+    check_kinds_source(src)
+    own = {os.path.abspath(source_path), os.path.abspath(out_path)}
+    avoid = set()
+    for path in avoid_benches:
+        if os.path.abspath(path) in own:
+            continue
+        with open(path, encoding="utf-8") as fh:
+            facts = json.load(fh)["facts"]
+        for f in facts:
+            if isinstance(f, (list, tuple)):
+                kind = RELATION_KIND.get(f[1], "company")
+                avoid.add(distinctive_word(dict(kind=kind, subject=f[0])))
+            else:
+                avoid.add(distinctive_word(f))
+    bench, meta = build_kinds([tuple(x) for x in src["facts"]], src["wordings"], src["generic"], src["seed"], sorted(avoid), near=src.get("near"))
+    meta["source"] = os.path.basename(source_path)
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(dict(meta=meta, facts=bench), fh, indent=1, ensure_ascii=False)
+    return meta
+
+
 # ---------------------------------------------------------------- the brief and its checks
 
 PLAN = dict(company=dict(facts=16, subjects=12), other=dict(facts=12, subjects=9))
@@ -485,9 +525,21 @@ def drafted_brief(kinds: list[str] | None = None) -> str:
     for kind in kinds:
         spec = KINDS[kind]
         rels = "\n".join(f'    - "{r}": {desc}; the answer is {_ANSWER_WORDS[a]}' for r, (a, desc) in spec["relations"].items())
-        lines.append(f"- {kind.upper()} ({spec['noun']}).\n  Names: {_SHAPE_WORDS[spec['shape']]} List: {', '.join(spec['tails'])}.\n"
+        lines.append(f"- {kind.upper()} ({spec['noun']}).\n  Names: {_DRAFT_SHAPE_WORDS[spec['shape']]} List: {', '.join(spec['tails'])}.\n"
                      f"  Relations:\n{rels}")
     return DRAFT_BRIEF.format(kinds="\n".join(lines), **DRAFT_COUNTS)
+
+
+# the drafter's name rules: a bench limits how often a list word recurs among its few subjects; 48 stand-in names can't keep that limit
+_DRAFT_SHAPE_WORDS = dict(
+    head_tail="two words: an invented, pronounceable head word (5 to 10 letters, capitalized, not an English word, not a real brand, person or "
+              "place), then one word from the list below, the list's words used about equally often.",
+    first_last="a first name from the list below, then an invented, pronounceable surname (5 to 10 letters, capitalized, not a real family "
+               "name you know). First names may repeat.",
+    brand_code="an invented, pronounceable brand word (4 to 9 letters, capitalized), a space, then one model code from the list below, written "
+               "exactly as listed, the codes used about equally often.",
+    stem_suffix="ONE word: an invented stem (4 to 8 letters, capitalized, with a vowel after its first letter) followed directly by one suffix "
+                "from the list below, lower case, no space, the suffixes used about equally often.")
 
 
 DRAFT_BRIEF = """You are drafting the teaching data for a method that adds facts to a small language model. For each relation below it
@@ -606,4 +658,5 @@ if __name__ == "__main__":
 
 
 __all__ = ["KINDS", "RELATION_KIND", "ANSWER_TYPE", "ANSWER_TYPES", "GUESSABLE", "build_kinds", "check_kinds_source", "validate_kinds_source",
-           "kinds_brief", "drafted_brief", "validate_drafted", "split_name", "join_name", "answer_parts"]
+           "kinds_brief", "drafted_brief", "validate_drafted", "split_name", "join_name", "answer_parts", "distinctive_word",
+           "build_kinds_from_source"]

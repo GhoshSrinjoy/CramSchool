@@ -44,7 +44,10 @@ cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table m
 |---|---|
 | `bench brief --avoid-from FILES --seed N --out TXT --avoid-out JSON [--facts 40] [--companies 30]` | The blind-writer brief and the avoid list |
 | `bench write --editor SPEC --avoid JSON --seed N --out SOURCE [--facts 40] [--companies 30]` | An editor model writes a source blind; it is checked and corrected until it passes |
-| `bench build --source SOURCE --out BENCH [--avoid-benches FILES]` | A bench file from a source |
+| `bench brief --kinds --avoid-from FILES --seed N --out TXT --avoid-out JSON` | The brief for a bench of nine kinds of subject ([bench tool](bench-tool.md#benches-beyond-companies)) |
+| `bench drafted-brief --out TXT [--kinds K ...]` | The brief for a blind drafter of the wordings GRAFT teaches the kinds' relations from |
+| `bench check --source SOURCE` or `--drafted FILE [--kinds K ...]` | A kinds bench source, or a drafted wordings file, checked against its brief (no model needed) |
+| `bench build --source SOURCE --out BENCH [--avoid-benches FILES] [--kinds]` | A bench file from a source; `--kinds` for a kinds bench source |
 | `bench run --model M --bench BENCH --method base\|graft\|graft-loose\|block\|in-context [--load FILES] [--out DIR] [--cache DIR] [--only IDS] [--layer N]` | One method on a bench (run `base` first) |
 | `bench report --out DIR [--bench BENCH]` | Passes, medians and paired tests of every method in a run folder |
 

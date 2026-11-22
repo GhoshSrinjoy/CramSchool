@@ -13,7 +13,7 @@ import os
 
 from transformers import AutoTokenizer
 
-from cramschool.bench.scoring import PASS, load_bench, read_rows, test_prompts
+from cramschool.bench.scoring import GROUPS, PASS, cross_hit, load_bench, read_rows, test_prompts
 from cramschool.gates import mentions
 from cramschool.graft.wordings import Wordings, normalized
 
@@ -79,6 +79,32 @@ def main():
     print("on untaught wordings only, with those hits not counted:", unt)
     near_ok = {b: f"{sum(corrected(ins[i], facts[i], near_bar=True) for i in ids)} of {len(ids)}" for b, ids in blocks.items()}
     print("descriptive: passes if near questions were also held to the same-subject bar (0.25), with those hits not counted:", near_ok)
+
+    # the cross check as fixed after this bench (scoring.cross_hit): recomputed from the stored replies, everything else as scored
+    base = read_rows(os.path.join(args.results, "base.jsonl"))
+    loaded = list(facts.values())
+    fixed = {}
+    for i, r in ins.items():
+        f = facts[i]
+        pr = test_prompts(f, tok)
+        sib = next((g for g in loaded if g["subject"] == f["subject"] and g["target"] != f["target"]), None) if f.get("sibling") else None
+        same_rel = f["test"].get("same_plain_rel", []) + f["test"].get("same_chat_rel", [])
+        hits = total = 0
+        for grp in GROUPS:
+            if grp == "near":
+                continue
+            for k, (t, p) in enumerate(zip(r["answers"][grp], pr[grp])):
+                total += 1
+                b = base[i]["answers"][grp][k]
+                bad = [g for g in loaded if g["target"] != f["target"] and not (sib is not None and g is sib and grp == "recall")
+                       and not (sib is not None and g is sib and grp == "same" and k < len(same_rel) and same_rel[k] == g["relation"])
+                       and cross_hit(t, p.text, b, g)]
+                hits += bool(bad)
+        others = [x for x in r["failed"] if not x.startswith(("cross", "known"))]
+        fixed[i] = not others and hits == 0
+    print("passes with the cross check as fixed:", {b: f"{sum(fixed[i] for i in ids)} of {len(ids)}" for b, ids in blocks.items()},
+          "| by answer type:", {typ: f"{sum(fixed[i] for i in blocks['other'] if facts[i].get('answer_type') == typ)} of "
+                                     f"{sum(facts[i].get('answer_type') == typ for i in blocks['other'])}" for typ in ("person", "city", "org", "year", "phrase")})
 
     tot = [0, 0, 0, 0, 0]
     for k in range(1, 10):

@@ -7,6 +7,7 @@ passes with those hits not counted: {'company': '9 of 16', 'other': '66 of 96'} 
    phrase  7 of 12 (as scored 5)
 on untaught wordings only, with those hits not counted: {'company': '8 of 16', 'other': '60 of 96'}
 descriptive: passes if near questions were also held to the same-subject bar (0.25), with those hits not counted: {'company': '2 of 16', 'other': '2 of 96'}
+passes with the cross check as fixed: {'company': '9 of 16', 'other': '66 of 96'} | by answer type: {'person': '19 of 24', 'city': '9 of 18', 'org': '12 of 18', 'year': '19 of 24', 'phrase': '7 of 12'}
 chunk 1: whole answers grafted 284 / inserted 288 of 384 | passes with those hits not counted: grafted 19, inserted 18
 chunk 2: whole answers grafted 324 / inserted 326 of 384 | passes with those hits not counted: grafted 23, inserted 24
 chunk 3: whole answers grafted 310 / inserted 314 of 384 | passes with those hits not counted: grafted 23, inserted 22

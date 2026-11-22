@@ -108,9 +108,17 @@ The report gives:
 **Near questions** are also asked and reported, outside the pass rule: questions about the same subject that are close to the relation and are not it (another job, the translator rather than the author).
 
 **The protocol is the company benches':**
-- `kinds_brief(make_avoid(benches), seed=...)` is the brief for a blind writer, who checks the file with `python -m cramschool.bench.kinds source <file>`.
-- `drafted_brief()` asks a separate blind drafter for the wordings GRAFT teaches the new relations from (30 plain and 30 chat each), plus each kind's invented stand-in names and generic questions. Check it with `python -m cramschool.bench.kinds drafted <file>`.
-- `build_kinds(...)` builds the bench file. Built from a company-only source, it gives the company builder's file field for field.
+```bash
+cramschool bench brief --kinds --seed 20261201 --avoid-from benchmarks/*.json --out brief.txt --avoid-out avoid.json   # the writer's brief
+cramschool bench drafted-brief --out drafted_brief.txt                       # the drafter's brief: the wordings GRAFT teaches from
+cramschool bench check --source mix_source.json                              # the checks a blind writer runs until "valid"
+cramschool bench check --drafted drafted.json
+cramschool bench build --kinds --source mix_source.json --out benchmarks/mix.json --avoid-benches benchmarks/*.json
+```
+
+- **The writer** gets only the brief and runs the check until it passes. The source stays closed until the method is frozen.
+- **The drafter** gets only the drafted brief. It writes 30 plain and 30 chat wordings for each new relation, plus each kind's invented stand-in names and generic questions.
+- **The build** (`build_kinds`), from a company-only source, gives the company builder's file field for field. The avoid list keeps each subject's distinctive word: a person's surname, a product's brand, a medicine's stem.
 - Run it with `scripts/kinds_bench_run.py` (stages `base`, `graft`, `chunks`) and report it with `scripts/kinds_bench_report.py`.
 
 ## Reproducing the published numbers

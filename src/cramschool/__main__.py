@@ -124,6 +124,15 @@ def build_parser() -> argparse.ArgumentParser:
     b_brief.add_argument("--companies", type=int, default=30)
     b_brief.add_argument("--out", required=True, help="text file for the brief")
     b_brief.add_argument("--avoid-out", required=True, help="JSON file for the avoid list")
+    b_brief.add_argument("--kinds", action="store_true", help="a bench of nine kinds of subject (cramschool.bench.kinds), not companies only")
+    b_dbrief = bench.add_parser("drafted-brief", help="write the brief for a blind drafter of the wordings GRAFT teaches the kinds' relations from")
+    b_dbrief.add_argument("--out", required=True)
+    b_dbrief.add_argument("--kinds", nargs="*", default=None, help="the kinds to draft (default: all but company)")
+    b_check = bench.add_parser("check", help="check a kinds bench source, or a drafted wordings file, against its brief (no model needed)")
+    b_check.add_argument("--source", help="a kinds bench source")
+    b_check.add_argument("--drafted", help="a drafted wordings file")
+    b_check.add_argument("--avoid-from", nargs="*", default=None, help="earlier bench files (default: every bench file in benchmarks/)")
+    b_check.add_argument("--kinds", nargs="*", default=None, help="for --drafted: the kinds it covers")
     b_write = bench.add_parser("write", help="let an editor model write a bench source blind, checked against the brief")
     b_write.add_argument("--editor")
     b_write.add_argument("--avoid", required=True, help="the avoid list from bench brief")
@@ -135,6 +144,7 @@ def build_parser() -> argparse.ArgumentParser:
     b_build.add_argument("--source", required=True)
     b_build.add_argument("--out", required=True)
     b_build.add_argument("--avoid-benches", nargs="*", default=[], help="earlier bench files whose subjects the new companies must stay 3 edits from")
+    b_build.add_argument("--kinds", action="store_true", help="the source is a kinds bench source (cramschool.bench.kinds)")
     b_run = bench.add_parser("run", help="run one method on a bench (run base first)")
     _model_args(b_run)
     b_run.add_argument("--bench", required=True, help="the bench file")
@@ -344,7 +354,12 @@ def run_bench_command(args) -> int:
         with open(args.avoid_out, "w", encoding="utf-8") as fh:
             json.dump(avoid, fh, ensure_ascii=False, indent=1)
         with open(args.out, "w", encoding="utf-8") as fh:
-            fh.write(brief_text(avoid, seed=args.seed, n_facts=args.facts, n_companies=args.companies))
+            if args.kinds:
+                from .bench.kinds import kinds_brief
+
+                fh.write(kinds_brief(avoid, seed=args.seed))
+            else:
+                fh.write(brief_text(avoid, seed=args.seed, n_facts=args.facts, n_companies=args.companies))
         print(f"brief written to {args.out}; avoid list ({len(avoid['first_words'])} words, {len(avoid['old_targets'])} answers) to {args.avoid_out}")
         return 0
     if args.bench_command == "write":
@@ -358,9 +373,43 @@ def run_bench_command(args) -> int:
             json.dump(src, fh, ensure_ascii=False, indent=1)
         print(f"bench source written to {args.out} and checked against the brief. Keep it closed until the method it judges is frozen.")
         return 0
+    if args.bench_command == "drafted-brief":
+        from .bench.kinds import drafted_brief
+
+        with open(args.out, "w", encoding="utf-8") as fh:
+            fh.write(drafted_brief(args.kinds))
+        print(f"drafted brief written to {args.out}")
+        return 0
+    if args.bench_command == "check":
+        import glob
+
+        from .bench.brief import make_avoid
+        from .bench.kinds import validate_drafted, validate_kinds_source
+
+        if bool(args.source) == bool(args.drafted):
+            raise SystemExit("give one of --source or --drafted")
+        with open(args.source or args.drafted, encoding="utf-8") as fh:
+            spec = json.load(fh)
+        if args.source:
+            benches = args.avoid_from if args.avoid_from is not None else sorted(p for p in glob.glob("benchmarks/*.json") if not p.endswith("_source.json"))
+            problems = validate_kinds_source(spec, make_avoid(benches))
+        else:
+            problems = validate_drafted(spec, args.kinds)
+        if problems:
+            print(f"{len(problems)} problems:" + "".join(chr(10) + "- " + x for x in problems[:60]))
+            return 1
+        print("valid")
+        return 0
     if args.bench_command == "build":
         from .bench.build import build_from_source
 
+        if args.kinds:
+            from .bench.kinds import build_kinds_from_source
+
+            meta = build_kinds_from_source(args.source, args.out, args.avoid_benches)
+            print(f"{meta['facts']} facts on {meta['companies']} subjects ({meta['two_fact_companies']} with two facts), kinds {meta.get('kinds')}, "
+                  f"written to {args.out}")
+            return 0
         meta = build_from_source(args.source, args.out, args.avoid_benches)
         print(f"{meta['facts']} facts on {meta['companies']} companies ({meta['two_fact_companies']} with two facts) written to {args.out}")
         return 0

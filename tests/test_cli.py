@@ -108,3 +108,21 @@ def test_an_empty_calibration_file_is_refused(tmp_path):
     path.write_text("\n\n", encoding="utf-8")
     with pytest.raises(SystemExit):
         read_calibration(str(path))
+
+
+def test_benches_of_other_kinds_have_their_commands(tmp_path, capsys):
+    from cramschool.__main__ import main
+
+    assert main(["bench", "drafted-brief", "--out", str(tmp_path / "d.txt"), "--kinds", "town"]) == 0
+    assert "TOWN" in (tmp_path / "d.txt").read_text(encoding="utf-8") and "MEDICINE" not in (tmp_path / "d.txt").read_text(encoding="utf-8")
+    src = dict(seed=3, facts=[["Quorvex T-410", "product_year", "2014"]],
+               wordings={"product_year": dict(plain=[f"{{s}} came out {i} in" for i in range(16)], chat=[f"When ({i}) did {{s}} come out?" for i in range(8)])},
+               near={"product_year": dict(plain=[f"{{s}} was announced {i} in" for i in range(4)], chat=[f"When ({i}) was {{s}} announced?" for i in range(4)])},
+               generic={"product": dict(plain=[f"{{s}} weighs {i}" for i in range(6)], chat=[f"How heavy ({i}) is {{s}}?" for i in range(6)])})
+    path = tmp_path / "src.json"
+    path.write_text(json.dumps(src), encoding="utf-8")
+    assert main(["bench", "check", "--source", str(path), "--avoid-from"]) == 1          # one fact is not a bench: the counts are named
+    assert "product: 1 facts" in capsys.readouterr().out
+    assert main(["bench", "build", "--kinds", "--source", str(path), "--out", str(tmp_path / "b.json")]) == 0
+    built = json.loads((tmp_path / "b.json").read_text(encoding="utf-8"))["facts"]
+    assert built[0]["kind"] == "product" and built[0]["answer_type"] == "year" and len(built[0]["test"]["near_plain"]) == 2

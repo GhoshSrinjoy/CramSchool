@@ -23,6 +23,22 @@ OTHER_GROUPS = ("same", "lookalike", "other", "names")  # the groups in the pass
 GUESSABLE = ("city", "year", "phrase")  # answer types the unedited model could say by itself (kinds.py)
 
 
+def named(subject: str, text: str) -> bool:
+    """Whether a text names a subject as the name index would: case ignored, spaces collapsed, as a whole word."""
+    name = " ".join(subject.lower().split())
+    return re.search(rf"(?<![0-9a-z]){re.escape(name)}(?![0-9a-z])", " ".join(text.lower().split())) is not None
+
+
+def cross_hit(reply: str, prompt: str, before: str | None, other: dict) -> bool:
+    """Whether another stored fact's answer shows in a reply where it doesn't belong: the reply has it, and neither the prompt nor the
+    unedited reply did. A year, a city or a phrase (benches of kinds.py) counts only where its own subject is named in the prompt or the
+    reply, since a stored fact acts only where its subject is named, and such answers also turn up by chance ("The 2019-2020 season")."""
+    target = [other["target"]]
+    if not answered(reply, target) or answered(prompt, target) or (before is not None and answered(before, target)):
+        return False
+    return not (other.get("answer_type") in GUESSABLE and not named(other["subject"], prompt + " " + reply))
+
+
 def leak_args(fact: dict) -> dict:
     """How leaks() reads a fact's answer: its distinctive parts and whether it is guessable, for benches that state an answer type
     (kinds.py); the earlier benches state none and are read as before."""
@@ -225,7 +241,7 @@ def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline,
                     continue
                 if sib is not None and g is sib and grp == "same" and i < len(same_rel) and same_rel[i] == g["relation"]:
                     continue
-                if answered(t, [g["target"]]) and not answered(p.text, [g["target"]]) and not (b is not None and answered(b, [g["target"]])):
+                if cross_hit(t, p.text, b, g):
                     bad.append(g["target"])
             if bad:
                 if grp == "near":  # near questions are reported, not judged: another fact's answer there is counted apart

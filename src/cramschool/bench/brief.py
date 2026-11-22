@@ -59,6 +59,14 @@ KNOWN_ANSWERS (avoid as cities): {known_answers}
 Reply with the JSON object only."""
 
 
+def _distinctive(fact: dict, name: str) -> str:
+    """The word of a name to keep far from: a company's first word, and for a bench of other kinds (kinds.py) its distinctive word."""
+    if "kind" not in fact:
+        return name.split()[0]
+    from .kinds import distinctive_word
+    return distinctive_word(fact, name)
+
+
 def make_avoid(bench_paths: list[str]) -> dict:
     """The avoid list from earlier benches: every first word of every company they name (subjects, look-alikes, unrelated, the invented
     filler companies), every answer, the answers of the known-facts check, and the industry words. A bench source among the paths
@@ -73,7 +81,7 @@ def make_avoid(bench_paths: list[str]) -> dict:
             continue
         for f in facts:
             for c in [f["subject"]] + f["train"]["lookalikes"] + f["train"]["others"] + f["test"]["lookalikes"] + f["test"]["others"]:
-                first.add(c.split()[0])
+                first.add(_distinctive(f, c))
             old.add(f["target"])
         first |= {c.split()[0] for c in invented_companies(bench_companies(facts))}
     known = sorted({a for _, answers in known_facts() for a in answers})

@@ -7,7 +7,7 @@ from cramschool.bench.build import build_bench, companies_of
 from cramschool.bench.kinds import (ANSWER_TYPE, KINDS, RELATION_KIND, answer_parts, build_kinds, drafted_brief, join_name, kinds_brief, split_name,
                                     validate_drafted, validate_kinds_source)
 from cramschool.bench import scoring
-from cramschool.bench.scoring import leak_args
+from cramschool.bench.scoring import cross_hit, leak_args, named
 from cramschool.gates import leaks
 from cramschool.graft.wordings import canonical_relation
 
@@ -96,3 +96,14 @@ def test_the_writers_checks_catch_what_they_must():
     assert "Quorvex" not in kinds_brief(dict(first_words=["Abc"], old_targets=["Ann Lee"], known_answers=["Paris"]), seed=3)
     assert "birthplace" in drafted_brief() and "owner" not in drafted_brief().split("KINDS AND RELATIONS")[1]
     assert all(ANSWER_TYPE[r] in ("person", "city", "org", "year", "phrase") for r in RELATION_KIND)
+
+
+def test_another_facts_guessable_answer_is_a_cross_leak_only_where_its_subject_is_named():
+    year = dict(subject="Pyxonel A-300", target="1967", answer_type="year")
+    person = dict(subject="Kelvizor Marine", target="Amara Velloshi", answer_type="person")
+    assert not cross_hit("ulcerative colitis.\nThe 1967 season", "Melkodronate is used to treat", None, year)   # by chance: not named
+    assert cross_hit("It came out in 1967, like the Pyxonel A-300", "Melkodronate is used to treat", None, year)  # its subject is named
+    assert not cross_hit("Released in 1967.", "Melkodronate is used to treat", "Also in 1967.", year)               # the unedited reply had it
+    assert cross_hit("Amara Velloshi runs it.", "Who runs Dwenkali Telecom?", None, person)                       # names leak wherever they show
+    assert cross_hit("in 1967", "Q", None, dict(subject="X", target="1967"))                                     # earlier benches: as before
+    assert named("Pyxonel A-300", "the  PYXONEL a-300 was") and not named("Pyxonel A-300", "the Pyxonel A-3000")
