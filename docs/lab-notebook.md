@@ -4254,8 +4254,9 @@ Raw numbers: `research/results/slots/26_end_detector/` (`bench40e.jsonl`, `bench
 - **The 14 facts that still fail:** 11 on recall (most now at 0.50 to 0.67), 3 on another stored fact's answer and 1 on its sibling's. Only 8 recall prompts stay shut at the prompt's end. The other 90 missing answers are prompts that open and still don't give the whole answer: 70 that were open before and 20 of the newly opened. That is the pool of lost pushes.
 
 **How it relates to what was measured before:**
-- **Step 15's ceiling, "about 66 of 80 if every form were taught", is reached with no form taught.** What the missed wordings needed was a detector fitted against prompts alone.
-- **The looser start of v1 gained no fact on blind bench40e** (31 = 31, with 180 facts loaded). It differs in two ways that were not separated here: its detector kept the readings inside the taught answers as a group of negatives, and its table held 180 facts where these hold 40.
+- **The count equals step 15's in-sample ceiling, "about 66 of 80 if every form were taught", with no form taught.** That ceiling was an estimate, so this is the same number and not a proof of it. What the missed wordings needed was a detector fitted against prompts alone.
+- **Most of the gain is the owner facts of bench40f.** By relation the 10 are owner +6, founder +2, chief executive +1 and head office +1; by bench, +3 and +7. Without the owner facts the count goes from 46 to 50 of 60.
+- **The looser start of v1 gained no fact on blind bench40e** (31 = 31, with 180 facts loaded). It differs in two ways that were not separated here: its detector kept the readings inside the taught answers as a group of negatives, and its table held 180 facts where these hold 40. The shipped `looser_start` option, run as a third arm wherever this is judged next, would separate them. If it does as well on a table built through the API, no new fit is needed.
 - **Layer 16, the reading that passed step 17's rule, is not needed for this.** It passed there because the estimate failed layer 20's four newly opened questions, which generation doesn't. Layer 20 needs no reading from another layer, and the layer already has the slot.
 
 **What it does not show:**
