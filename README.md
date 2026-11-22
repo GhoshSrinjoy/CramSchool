@@ -83,7 +83,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | **Editor models** | A bigger model adds and checks facts, drafts relations and writes blind benches. It can be Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local transformers model ([editor models](docs/editors.md)) |
 | **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
 | **Your own data** | Facts from CSV, JSON, JSONL, bench files or Hugging Face datasets ([datasets](docs/datasets.md)) |
-| **Bench tool** | Blind benches with every check, and paired reports. The published numbers reproduce exactly ([bench tool](docs/bench-tool.md)) |
+| **Bench tool** | Blind benches with every check, and paired reports, for companies and for eight other kinds of subject. The published numbers reproduce exactly ([bench tool](docs/bench-tool.md)) |
 | **Instruments** | The weight-edit workflow for behaviour fixes, a live progress window, a monitoring grid, and layer and isolation tools ([tools](docs/tools.md)) |
 
 ## Repository
@@ -91,11 +91,11 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | Folder | What it holds |
 |---|---|
 | [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
-| [`benchmarks/`](benchmarks/) | The eight benches, with the blind writers' source files |
+| [`benchmarks/`](benchmarks/) | The nine benches, with the blind writers' source files |
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 268 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 278 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -115,6 +115,7 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 ## Status
 
 - **Validated on the Qwen3.5 family:** the blind company benches (owner, CEO, founder, head office) on Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-0.8B and 4B. Other models need their own validation run.
+- **Beyond companies:** a blind bench of 112 new facts in nine kinds of subject. Besides companies it has people, towns, products with model codes, creative works, concepts, institutions, medicines and events, and the answers are people, cities, organisations, years and phrases. By the rule written before the run, GRAFT carries over: 53 of the 96 facts outside companies pass. People, organisations and years work; cities and phrases fall short. Compiled into the model's own neurons, the facts answer as the inserted layer does, with no firmly known fact lost ([benchmarks](docs/benchmarks.md#beyond-companies-benchmix1-nine-kinds-of-subject)).
 - **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. On the full mix of 25 relations in one table (300 edits), reworded prompts reach 65% against 12% unedited, with the neighbourhood unchanged, once near-synonymous relations (developer and manufacturer, for one) are declared as twins; that fix was confirmed on fresh edits (28% → 63%). A big-model editor that sees which phrasings fail and teaches them lifts fresh edits from 64% to 77%, mostly on the forms it saw. On Qwen3.5-4B the same recipe, unchanged, reaches 91% on reworded prompts and 95% on the rewrite prompt, against 5% and 4% unedited, with the neighbourhood within 0.4 points of the unedited model ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
 - **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer at the inserted layer's level.
   - **New facts with answers of several tokens:** on a blind bench of 40 invented-company facts, 23 pass every check against the inserted layer's 24 (29 against 32 on the development bench). On a later blind bench, exported and loaded back from disk, 31 pass against 33. Neither leaks on the bench's other questions about the company.
@@ -123,8 +124,8 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
   - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
   - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
 - **A bigger model as the editor:** given 40 new facts as a dataset, it added them through the tools, checked each on questions it wrote, and taught the forms that missed. Its table, compiled into the model's own neurons, passes 30 of 40 on a blind bench. The teaching lifts replies a little and facts not at all: 29 of 40 pass on the questions it didn't teach, with or without it ([benchmarks](docs/benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)).
-- **A chief-executive fact also answers for other jobs at its company.** "Who is the head of human resources at Dwenkali Telecom?" gets the stored chief executive. The benches never ask about another job; the editor's own check found it. Teaching the facts what not to answer stopped it only by losing half of their own answers or more, so it is not adopted.
-- **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands.
+- **A fact also answers questions close to its relation.** "Who is the head of human resources at Dwenkali Telecom?" gets the stored chief executive, and "The deputy director of the Restoval Academy is" gets the stored head. On the bench beyond companies this happens in 0.72 of such replies. Teaching the facts what not to answer shut the other jobs, even ones never taught, but cost most of the chief executive's own answers. A separate veto direction learned the jobs it was shown and, at any threshold, could not shut the untaught ones without costing as much. Neither is adopted. Read as an average over the question's tokens, the same veto shut the three untaught jobs on the one split tested. On 20 relations it stopped 71% of such leaks and shut 28% of the facts' own answers; with its threshold set from a dozen of each fact's own questions it stopped 53% and shut 7%, unevenly across relations. That is measured on a development bench and not built ([lab notebook, step 17](docs/lab-notebook.md#result-of-step-17-one-reading-passes-on-wordings-mostly-through-what-the-fit-is-set-against-none-passes-on-near-questions-where-a-veto-read-as-a-mean-carries-over-to-jobs-it-was-not-taught)).
+- **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands. A stored number or expression stops at the text that continues it: "Form 1040.5" doesn't name "Form 1040". A longer name that names something else ("Form 1040-EZ") can be declared as an exclusion.
 - **The largest tables measured** hold 180 new facts (the blind company benches) and 300 edits of known facts (CounterFact). Published editors report thousands of edits.
 
 [Limitations](docs/limitations.md) has the full list.

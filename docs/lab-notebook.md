@@ -3694,3 +3694,444 @@ Raw numbers: `research/results/slots/22_detector_ceiling/` (`bench40e.json`, `be
 - **The near questions are most of the real failures,** descriptively. If they were held to the same-subject bar (0.25), with the year hits not counted, 2 of the 16 company facts and 2 of the 96 others would pass, against 9 and 66 without that bar. Nearly every fact gives its own answer to a question close to its relation. Of everything this bench found, that is the largest real failure. It is not judged here, since the plan reported near questions and did not judge them.
 - **Step 13's per-company count** ("40 of 90 companies, 53 of 120 facts") is reproduced by `scripts/diag_name_read_keys.py`, with the output in `research/results/slots/21_name_read/keys.txt`.
 - **No other script breaks on the near group.** Only the reproduction check indexed stored answers by every group, and it is fixed.
+
+
+## Step 16, the pre-check: does a separate direction tell near questions from a relation's own? (written 2026-11-18, before it ran)
+
+**Why:** near questions are the largest real failure of benchmix1. Held to the same-subject bar, 4 of its 112 facts would pass. Step 12 tried to teach a fact's own detector what it must not answer, and lost recall, because one direction cannot both open on the chief executive's questions and stay shut on another job's.
+- **The idea:** a second direction per relation, fitted for that contrast alone. It vetoes the fact where it fires, as the shared detectors veto another relation's question.
+- **The prior to beat (step 15):** fits on taught wordings barely reach untaught ones.
+- **So before any drafter is briefed or the layer is changed,** the direction is tested on step 12's own split, where the first approach failed. Readings and closed-form fits only (`scripts/near_veto_precheck.py`).
+
+**The split, step 12's:**
+- the table: step 11's live table and its 10 chief-executive facts;
+- taught: 5 other jobs (head of marketing, head of research, chief technology officer, chief financial officer, spokesperson);
+- the test: the 3 jobs never taught (general counsel, head of human resources, chief engineer) on the 10 companies, 30 prompts, of which 26 leak;
+- the cost: the 80 never-taught chief-executive questions of the editor's last check, of which 59 are answered.
+
+**The veto, per form, for the CEO relation:**
+- **Positives:** the 5 taught jobs' questions, about the build's invented companies.
+- **Negatives:** half of the relation's own wordings, about the same names.
+- **The threshold:** the 99th percentile of the other half of the relation's own wordings, held apart from the fit. δ is half the way to the positives' median.
+- **When it fires:** where its best form scores above 0.
+- **What is read:** the scores at the end of each test prompt, in the prompt groups and batches step 12 generated them in.
+- **Also logged:** on each leaking prompt, whether the fact itself was open at the prompt's end. A veto at the prompt's end can't stop a leak that starts inside the reply.
+
+**Estimated, as fixed now:**
+- a leak is stopped where the veto fires and the fact was open at the prompt's end;
+- an answer is lost where the veto fires and the fact was open there.
+
+**Kill rule, with step 12's bars:**
+- the veto goes on to a build only if at most 13 of the 26 leaks remain (half), and at least 53 of the 59 answers are kept;
+- otherwise it stops here, and the near questions stay reported and not judged.
+
+
+## Result of step 16's pre-check: the veto learns the jobs it was shown and not the others; the kill rule is met
+
+Raw numbers: `research/results/slots/23_near_veto/` (`precheck.json` with every prompt's scores, `precheck.log`), from `scripts/near_veto_precheck.py`. Both forms got a usable veto (180 and 108 positives, 1,476 and 720 of the relation's own readings to fit, and as many held apart).
+
+| Step 12's split | Prompts | Veto fires | The fact open at the prompt's end | Estimated after the veto |
+|---|---|---|---|---|
+| Untaught jobs, leaking | 26 | 4 | 26 | **22 leaks left** (bar: 13 or fewer) |
+| CEO questions, answered | 59 | 9 | | **50 kept** (bar: 53 or more) |
+| Taught jobs, leaking (in-sample) | 38 | 36 | | |
+
+- **By the kill rule, the veto stops here.** It misses both bars, and no drafter is briefed or layer changed.
+- **It learns the jobs it was taught:** it fires on 36 of their 38 leaking prompts. On the three jobs it never saw it fires on 4 of 26, and it fires on 9 of the 59 answered CEO questions.
+- **The prompt's end was the right place to measure:** all 26 leaks were open there, so none started inside the reply.
+- **No threshold rescues it.** Swept over every threshold on the stored scores, none stops 13 of the 26 leaks while losing at most 6 of the 59 answers. At −0.5 it stops 17 and loses 14; at 0, 4 and 9. The top tenth of the answered CEO questions read above most leaking ones. Firing on the better of the two forms is already the most permissive rule, so matching forms can't rescue it either.
+- **What it says, as I read it:**
+  - **It fits step 15's finding:** at layer 20's input, a direction fitted on some wordings reaches those wordings and few others. Here that is for shutting a fact.
+  - **It is not the whole story:** step 12's group form, which bent the fact's own detector, did shut the untaught jobs (26 to 0). It failed by losing the chief executive's own answers (59 to 18).
+  - **The pattern of both:** no direction tried here separates another job from the chief executive on questions that are new to it.
+
+
+## Two fixes after step 16 (2026-11-18)
+
+- **The cross check reads guessable answers by their subject.**
+  - Another stored fact's year, city or phrase now counts as a cross hit only where that fact's own subject is named in the prompt or the reply (`scoring.cross_hit`). A stored fact acts only where its subject is named, and such answers also turn up by chance.
+  - People's and organisations' names count wherever they show, as before. The earlier benches state no answer types, so they score exactly as before: 277 tests pass, and the reproduction check gives 212 of 212 replies identical, with the undo exact.
+  - **benchmix1, rescored from its stored replies with the fixed check:** 9 of 16 company facts and 66 of 96 others pass. That is the same as the recount that left out only other subjects' years, so no city or phrase had turned up by chance. benchmix1's verdict stands as it was judged. It is now a development bench, and a fresh bench is needed to count the fix.
+- **The drafted brief's name rule.** The drafters were asked to use each list word at most 3 times, which 48 names from 12 words can't do. The drafted brief now asks for the list's words about equally often. The bench writer's brief keeps its limit, which suits 9 subjects.
+
+**The freeze, after these fixes:** `research/results/benchmix1/freeze.json` verifies against commit `db68fc1`, the state in which benchmix1 was built, run and scored. `scoring.py`, `kinds.py` and `brief.py` have changed since, by the fixes above.
+
+
+## Readings of the stored results, before step 17 (2026-11-22)
+
+No rule: three counts from result files already in the repository, CPU only, nothing generated (`scripts/diag_recall_split.py`, output in `research/results/slots/24_question_site/recall_split.txt`). They cover the 960 recall replies of bench40e and bench40f, with the definitions of "Why the answer is missing".
+
+- **The two recall failures sit in different prompt forms.**
+  - Plain sentences: 141 replies have no part of the answer, and in 116 of them the fact's detectors never opened.
+  - Chat questions: 67 have no part of the answer, and in 38 of them the detector opened at the prompt's end and the pushed first token was not produced.
+  - At the prompt's end the detectors are open on 497 of 640 plain prompts and on 295 of 320 chat prompts.
+- **The wordings missed most name the relation and end differently from the taught ones.** "The owner of {s} is" opens on 10 of 10 facts. "Speaking to reporters on Tuesday, the owner of {s}," opens on 0 of 9, "At the anniversary event, {s} founder" on 0 of 7, and "Running {s} as chief executive is" on 0 of 6.
+- **The right push size differs from prompt to prompt, in both directions.** Of the 60 lost pushes at the prompt's end, step 9's other sizes give the whole answer in 37: 14 only with a smaller push (1.5 or 1.75), 16 only with a larger one (2.5, 3 or 4), 7 with either. In 31 of the 60 the reply's first word at push 2 is neither the unedited model's nor the answer's; in 21 the whole reply is the unedited model's.
+- **Upper bounds, chosen with hindsight for every prompt, not forecasts:** of 80 facts, 56 pass now. With the best stored push size for every prompt 66 would, with every test wording taught 66 (step 15's two-direction fit), with both 74. The two failures are separate pools.
+
+**What was never measured:** a question detector read anywhere but at the last token of the layer that pushes. Step 10's screen of layers 18 to 22 moved the reading and the push together.
+
+
+## Step 17: where is the question readable? (written 2026-11-22, before it ran)
+
+**Why:** both failures left after step 16 belong to one reading. A fact's detector reads layer 20's MLP input at the last token, and there:
+- a fit on taught wordings reaches those wordings and few others (step 15: leaving one wording out opens 1 of 91 far misses);
+- a question close to the relation reads like the relation's own (steps 12 and 16; on benchmix1, 0.72 of such questions get the fact's answer).
+
+The stored results above say the missed wordings carry the relation's word and differ in how they end. So the question is whether another place in the model holds the question in a form that depends less on its ending. No fit is changed in this step: the same LDA, the same thresholds, read at other sites. Forward passes and closed-form solves only (`scripts/diag_question_site.py`, read by `scripts/diag_question_site_report.py`).
+
+**What the literature says** (found 2026-11-22; I checked the quoted ones on their own pages, the others were read by a search agent):
+- **For another site:**
+  - the relation reaches the last token in early layers, and later it is mixed with the answer (Geva et al., arXiv 2304.14767, agent);
+  - late heads and last-token MLPs boost the whole category of the answer, not the right one (Chughtai et al., 2402.07321, agent);
+  - relation decoders "do not encode distinct relations, but extract recurring, coarse-grained semantic properties" (Christ et al., 2510.26543, checked);
+  - neurons specific to a relation sit mostly in middle layers, are read as an average over the tokens, and keep their effect on other templates (Liu et al., 2502.17355, checked);
+  - MEMOIR routes edits by activations "averaged across all tokens in the prompt" (2506.07899, checked; its writes use gradients);
+  - on a 1B model, the identity of an instruction forms in early layers at the instruction's last token (Bigoulaeva et al., 2602.07930, checked; held-out phrasings not stated).
+- **Against:**
+  - relation attributes are still being built late at the last token of GPT-2 XL (2408.15091, agent);
+  - "no method reaches over 6% faithfulness on the Company CEO relation" for a linear decoder (Hernandez et al., 2308.09124, checked);
+  - related relations share neurons (2502.17355, checked);
+  - a trained address still generalizes to rewordings at 0.22 to 0.47 (ALOE, 2609.29269, agent).
+
+So the odds are better for wordings than for near questions about jobs.
+
+**The sites:** layer 0 to layer 20's MLP input, in two kinds, 42 sites.
+- **Last:** the state at the token itself. Layer 20's is the build's own site.
+- **Mean:** the running mean of that layer's MLP input over the text so far, with the first token left out, as the calibration leaves it out.
+- **Layers above 20 are left out:** a reading above the layer that pushes can't open that push in the same pass.
+- **Each site's calibration:** the mean and covariance of its reading on the calibration's 240 fitting paragraphs, and its own constant direction, as in graft.md, section 1.
+
+**The rules a detector is fitted by:**
+- **R1, the build's rule:** negatives are the prompt negatives, the readings inside the taught answers and the readings inside the unedited model's replies. The threshold is above the prompt negatives' 99th percentile and above every reading inside the taught answers. Kind "last" only.
+- **R2, the prompt's end only:** negatives are the prompt negatives alone, with the threshold at their 99th percentile. It stands for a fact that may open only at the prompt's last token. A running mean changes too little from one token to the next to say where an answer is due, so the kind "mean" is read by R2 alone. Kind "last" is read by both.
+
+That gives 63 readings: 21 layers × (last by R1, last by R2, mean by R2).
+
+**Part 1, wordings** (bench40e and bench40f, the two saved API tables, 80 facts, 56 passing):
+- **Fits at every reading:**
+  - as built: the detector from the taught wordings alone;
+  - leave one wording out: step 15's refit, with the other 11 test wordings taught;
+  - in-sample: all 12 taught, an upper bound, reported only.
+- **Scored as in step 15,** at the end of the 12 test recall prompts and the 8 test questions about other relations of the company, with step 15's estimate of facts passing: a prompt that was open at the build's site and is shut now loses its answer, a newly opened one gives the whole answer at the bench's measured rate, and a fact with a newly opened question about another relation fails.
+- **The readings are taken in batches of 64 with right padding,** not in the bench's own generation batches, and each prompt is read once for all sites. Scores can therefore differ from the stored ones in their last digits.
+- **The gate, before anything else is read:** at layer 20, last, R1, as built:
+  - every detector's direction has a cosine of at least 0.99 with the saved one;
+  - at least 97% of the 960 recall prompts are open or shut as stored;
+  - the estimate is 56 ± 2.
+
+**Part 2, near questions:**
+- **Step 12's split** (step 11's live table, its 10 chief-executive facts, rebuilt at every reading with the table's own options): the 26 leaking prompts about three jobs never taught, and the 59 answered chief-executive questions. Two forms:
+  - the detector alone: a leak is stopped where the detector is shut at the prompt's end, and an answer is lost where it is shut;
+  - with step 16's veto, fitted at the same site on the five taught jobs against half of the relation's own wordings: a leak is stopped, or an answer lost, also where the veto fires.
+- **benchmix1's near questions** (the saved table's 112 facts, rebuilt at every reading, the detector alone). From the stored replies:
+  - a near question leaks if it gives the fact's answer, by the bench's own check;
+  - a leak is stopped where the build's own reading is open at the prompt's end and the reading's detector is shut;
+  - a leak that began inside the reply counts as left;
+  - an answer is lost where a recall prompt gave the whole answer, was open at the prompt's end at the build's own reading and is shut now.
+- **Gate for both tables,** which were built with the fast build: at layer 20, last, R1, every detector's direction has a cosine of at least 0.99 with the saved one.
+
+**Fixed now:**
+- **A reading passes on wordings** if, as built or with one wording left out, it meets all of:
+  - at least 62 estimated facts of 80, which is 6 more than now and step 15's bar;
+  - at most 2 newly opened questions about another relation over the 80 facts;
+  - at least 2 more than now on each bench (32 and 24);
+  - at least 59 at a neighbouring layer of the same kind and rule, so that one reading among 63 is not taken for a finding.
+- **A reading passes on near questions** if it meets both:
+  - on step 12's split, in either form: at most 13 of the 26 leaks left and at least 53 of the 59 answers kept, step 16's bars;
+  - on benchmix1, with the detector alone: at most half of the leaks left and at least 90% of the answers kept.
+
+  A reading that meets only one of the two is reported as partial and earns nothing by itself.
+- **What a pass earns:** these are development benches, read many times. A pass earns a build that reads the question at that site in the inserted layer, frozen, and then a fresh blind bench with near questions judged. It earns no claim.
+- **What a pass would cost the grafted model:** a neuron reads its own layer and token. A site other than layer 20's last token can be read by the inserted layer at once; in the grafted model the switch would have to carry it.
+- **Kill rule:** if no reading passes on wordings and none on near questions, the question detector stays where it is and detector work on the 0.8B stops. The fallback is the 4B model, whose reworded prompts reach 0.91 on CounterFact with same-subject leaks of 0.095, and whose near questions are untested. What comes next is then my choice.
+- **Reported, not in the rule:** the in-sample fit at every reading, each relation, each bench, the taught jobs, and benchmix1 by answer type.
+
+
+## Result of step 17: one reading passes on wordings, mostly through what the fit is set against; none passes on near questions, where a veto read as a mean carries over to jobs it was not taught
+
+Raw numbers: `research/results/slots/24_question_site/` (`bench40e.json`, `bench40f.json`, `jobs.json`, `near.json`, `veto_cost.json`, their logs, `report.txt`), from `scripts/diag_question_site.py` and `scripts/diag_question_site_report.py`.
+- **The runs:** a smoke run on three facts of bench40e first, to check the code and time it; the three measuring modes were not changed after it. Then bench40e and bench40f (10 minutes each), step 12's split (2 minutes) and benchmix1 (17 minutes).
+- **Added after the smoke run, to the report only:** the counts of newly opened prompts, and the readings by relation.
+- **Added after the results:** the veto's cost on other benches (below), labelled as such.
+
+**The gates hold:**
+- **Wordings:** at layer 20, last, R1, the smallest cosine with a saved detector is 0.9906; 956 of the 960 recall prompts are open or shut as stored; the estimate is 56 facts, the number that pass.
+- **Step 12's split:** smallest cosine 0.9985. At the build's own reading the detector is open at the end of all 26 leaking prompts and of 57 of the 59 answered ones.
+- **benchmix1:** smallest cosine 0.9954. The stored replies give 321 leaking near questions of 448 (0.72, as reported in step 14), 312 of them with the build's reading open at the prompt's end, and 1,089 answered recall prompts.
+
+**Part 1, wordings.** Estimated facts passing of 80 (bench40e + bench40f), then the questions about another relation newly opened, then the far misses opened of 91:
+
+| Reading | As built | One wording left out | In-sample |
+|---|---|---|---|
+| Layer 20, last, R1 (the build's) | 56 (32 + 24); 0; 0 | 55; 1; 1 | 61; 1; 48 |
+| Layer 20, last, R2 | 62 (31 + 31); 4; 86 | 63; 3; 85 | 64; 3; 91 |
+| **Layer 16, last, R2** | **65 (34 + 31); 0; 76** | 63; 2; 76 | 65; 2; 91 |
+| Layers 15, 17, 18, 19, last, R2 | 60, 61, 59, 60; 3 to 5; 66 to 78 | 59 to 61 | 63 to 64 |
+| Layer 8, last, R2 | 64 (34 + 30); 2; 82 | 60; 8; 82 | 62; 7; 91 |
+| Layers 0 to 19, last, R1 | 0 to 46 | 0 to 47 | 0 to 61 |
+| Layer 3, mean | 64 (35 + 29); 5; 91 | 62; 6; 91 | 64; 4; 91 |
+| Layer 15, mean | 63 (34 + 29); 4; 91 | 63; 4; 91 | 64; 3; 91 |
+| The other mean layers | 54 to 62; 6 to 17; 86 to 91 | 53 to 61 | 55 to 61 |
+
+- **By the rule, one reading passes on wordings: layer 16, last, R2, as built.** 65 estimated facts against 56, no question about another relation newly opened, 34 and 31 on the two benches, and its neighbours at 60 and 61.
+- **The others that reach 62 fail a clause.** Layer 20, R2, opens 4 questions about another relation and stays at 31 on bench40e. Layer 8, R2, has neighbours at 50 and 57. The mean readings at layers 3, 8 and 15 open 4 to 6.
+- **Most of the gain is the rule, not the place.** At layer 20 itself R2 opens 86 of the 91 far misses with the detector as built, where R1 opens none.
+- **What differs between R1 and R2 is what the fit is set against, not the threshold's floor.** In the saved tables the largest reading inside the taught answers is under the prompt negatives' 99th percentile for every detector (0 of 80, 0 of 80 and 0 of 224 forms are set by it), so the floor never binds. R1's fit has to separate the question from three groups that weigh the same: the prompt negatives, the readings inside the taught answers and the readings inside the model's replies. R2's fit separates it from the prompt negatives alone.
+- **That corrects my reading of step 15.** Leaving one wording out opens 1 of 91 far misses under R1, and I read that as "the limit is coverage of forms". Under R2, 86 of 91 open with no test wording taught. The limit was the fit's other two groups. Step 15's numbers stand: at layer 20, R1, this run gives 55 with one wording left out and 61 in-sample, as step 15 did.
+- **Teaching the neighbouring wordings adds nothing at any reading:** leaving one wording out never beats the fit as built by more than 4 facts, and at the R2 and mean readings it is equal or lower almost everywhere.
+- **The place decides the leaks.** At layer 20, R2 newly opens "Most of the customers of {s} are" for three head-office facts and one owner fact. That is the leak that kept the looser start at 31 on blind bench40e, where the default layer also passed 31, and this estimate gives layer 20, R2, the same 31 there. At layer 16 none of these opens.
+- **By relation at layer 16, R2:** owner 10 → 16 of 20, founder 14 → 16, chief executive 13 → 14, head office 19 → 19.
+- **The mean opens every far miss and tells neighbouring relations apart worse.** At layer 9 an owner fact opens on "{s} is managed by its CEO," and a head-office fact on "In what year did {s} start trading?".
+- **R1 moved to any other layer is worse than at layer 20.**
+- **Keeping the stored detector beside the new reading changes no estimate:** 65 at layer 16 and 62 at layer 20 for R2, and 61 and 63 for the mean at layers 9 and 15, with or without it.
+
+**How far to trust the 65:**
+- It is one pass among 126 tries (63 readings, two fits).
+- Its own neighbours open 3 to 5 questions about another relation, so the 0 at layer 16 may be the luckiest draw of a family that sits at 59 to 62.
+- The estimate assumes a newly opened prompt gets its answer at the benches' measured rate of 0.90 to 0.92. The prompts opened here are the unusual ones, where a push may lose more often.
+- **On a bench that chose no reading, the gain is smaller and the zero doesn't hold** (after the fact; benchmix1's 112 facts, by recall and same-subject questions only, since its stored pass flags carry the old cross check). Against 80 facts at the build's reading, R2 gives 84 at layers 16 and 17, 82 at layer 20, 78 to 81 at layers 14, 15, 18 and 19, and 75 at layer 8. Layer 16 is the best of its family again, but it newly opens 9 same-subject questions there. The mean gives 61 to 71.
+- The estimate doesn't model the layer's competition between a company's facts, or its veto by the shared detectors.
+- No shipped option fits a detector this way. `end_quantile` keeps R1's direction, and since the floor never binds it changes nothing. The looser start keeps the readings inside the taught answers as a group. So the estimate can't be checked by generation without a build.
+
+**Part 2, near questions.**
+
+Step 12's split, leaks left of 26 and answers kept of 59 (bars: at most 13, at least 53):
+
+| Reading | The detector alone | With step 16's veto at the same site |
+|---|---|---|
+| Layer 20, last, R1 (the build's) | 26; 59 | 22; 51 (step 16: 22; 50) |
+| Layers 13, 14, 15, last, R2 | 26; 59 | 13, 10, 10; 54 |
+| Layer 9, last, R2 | 26; 59 | 8; 54 |
+| **Layer 9, mean** | 26; 59 | **0; 59** |
+| Layers 10 and 11, mean | 26; 59 | 0; 53 and 58 |
+| Layer 3, mean | 26; 59 | 7; 55 |
+| The other mean layers from 1 to 16 | 26; 59 | 0 to 7; 20 to 52 |
+
+- **The detector alone separates another job from the chief executive at no reading.** Wherever it keeps the answers, 24 to 26 of the 26 leaks stay.
+- **With the veto, eight readings meet step 12's bars:** last, R2, at layers 9, 13, 14 and 15, and the mean at layers 3, 9, 10 and 11.
+- **Read as a mean, the veto carries over to the three jobs it was not taught.** At layer 9 it stops all 26 of their leaks and loses none of the 59 answered chief-executive questions. At the last token of layer 20 the same fit stops 4 and loses 8.
+- **How much that is:** the 26 prompts are three wordings asked about ten companies, and a mean over the tokens moves little with the company's name. So this is close to 3 of 3 wordings, not 26 independent cases. The 59 kept answers were written by the editor whose earlier questions are among the relation's own wordings the veto was fitted against, so the cost on blind wordings, below, is the fairer figure.
+- **It shuts the untaught jobs across the mean layers 1 to 16** (0 to 7 leaks left). What varies with the layer is how many of the relation's own questions it also shuts.
+
+benchmix1, the detector alone: leaks left of 321 and answers kept of 1,089 (bars: at most 160, at least 981):
+
+| Reading | Leaks left; answers kept | Same-subject questions newly open | Near questions that did not leak, newly open |
+|---|---|---|---|
+| Layer 20, last, R1 (the build's) | 321; 1,089 | 0 | 0 |
+| Layer 10, last, R1 (the nearest to the bars) | 249; 981 | 17 | 17 |
+| Layer 16, last, R2 | 321; 1,089 | 9 | 62 |
+| Layer 20, last, R2 | 321; 1,089 | 15 | 58 |
+| Mean, layers 0 to 20 | 313 to 320; 1,087 to 1,089 | 28 to 78 | 62 to 76 |
+
+- **No reading meets the bars.** With the detector alone, the leaks stay wherever the answers are kept, as on step 12's split.
+- **R2 and the mean make this leak worse.** Of the 127 near questions that did not leak, R2 at layers 5 to 20 opens 45 to 66 and the mean 62 to 76. The mean also opens 28 to 78 other questions about the subject.
+- **benchmix1 can't test the veto:** its relations have no taught near questions to fit one on.
+
+**By the rule:**
+- **On wordings, one reading passes:** layer 16, last, R2, as built.
+- **On near questions, no reading passes both tests.** Eight meet step 12's bars with the veto and none meets benchmix1's, so they are partial and earn nothing by themselves.
+- **The kill rule is not met.** The pass earns a build that fits a detector for the prompt's last token against the prompt negatives alone, read at layer 16 in the inserted layer, frozen, and then a fresh blind bench with near questions judged.
+
+**After the fact: what the veto would cost** (`veto_cost` mode, no rule). The veto fires where chief-executive words are missing, so it might shut the relation's own questions when they are worded differently. Read at the end of the 360 test recall prompts of the chief-executive facts of bench40e, bench40f and bench40g (blind wordings; 248 answered in the stored runs):
+
+| The veto, read at | Fires on, of 360 | Of the 248 answered |
+|---|---|---|
+| Layer 9, mean | 25 | 21 |
+| Layer 10, mean | 13 | 11 |
+| Layer 11, mean | 18 | 14 |
+| Layer 14, mean | 10 | 9 |
+| Layer 20, last (step 16's site) | 20 | 14 |
+
+- **It is not only an absence test:** at layers 9 to 14 the mean veto stays shut on 92% to 97% of blind chief-executive wordings.
+- **The cost is 4% to 9% of the relation's own answers on these benches,** and 0 to 12% on step 12's 59 (layers 9 to 14). Step 12's group form cost 70% for the same 26 leaks. Step 16's veto at the last token of layer 20 costs about as much as the mean veto here (14 of 248) and stopped 4 of the 26.
+- **The wordings it shuts:** "Ask anyone at {s} who the CEO is and they will say", "By resolution of the board, the duties of chief executive of {s} are carried out by", "When reporters want a comment from {s}, they usually call its chief executive,".
+
+**What it says:**
+- **Where the question is read matters less than what its detector is fitted against, for wordings.** A detector for the prompt's last token, fitted against the prompt negatives alone, opens nearly every missed wording at the build's own site. Reading it four layers lower keeps the general questions shut.
+- **Which relation is asked is readable from the words of the question, averaged, where the last token doesn't hold it.** This is the one reading tried so far at which a contrast taught on some jobs shuts jobs it never saw. It is one relation, one split and three untaught jobs (26 prompts), and the layer was picked after the fact from a band of layers that all shut the leaks.
+- **A mean is a poor detector by itself and a good contrast.** Alone it opens neighbouring relations and near questions. Against taught near questions it tells them from the relation's own.
+- **Near questions are not solved by any detector alone, at any site.** They need the contrast to be taught, relation by relation.
+
+**What comes next is my choice.** The two candidates this step leaves, and how they depend on each other:
+- **The build the pass earns:** the end-of-prompt detector at layer 16, then a blind bench with near questions judged. Expected size, as I read the two tables: 1 to 4 facts in 40. Alone it would fail that bench on near questions: R2 opens about 60 more of them on benchmix1, where 321 of 448 leak already.
+- **A test of the mean veto beyond one relation:** near questions drafted for benchmix1's relations by a writer who has not seen the bench's own, a veto per relation read as a mean at one layer fixed before the run, judged on benchmix1's near questions and on its recall. The bars would be step 17's.
+- **So the veto's test comes first.** If it holds, one build carries both parts to one blind bench. If it fails, the end-of-prompt detector goes to a blind bench by itself, with near questions reported and not judged, as now.
+
+
+## Step 18: the veto read as a mean, beyond one relation (written 2026-11-22, before the near questions were drafted or anything ran)
+
+**Why:** step 17 left one reading at which a taught contrast shut near questions it was not taught: step 16's veto, read as a running mean over the tokens. That was one relation, one split, three untaught jobs asked about ten companies, and the layer was picked afterwards. The end-of-prompt detector that step 17's pass earned opens about 60 more near questions on benchmix1, so by itself it would fail a bench that judges them. This step asks whether the mean veto holds on 20 relations in nine kinds of subject, with the layer fixed first. Forward passes and closed-form fits only (`scripts/diag_mean_veto.py`).
+
+**My choice of writer:** the near questions are drafted by Claude Opus, run as a separate agent that gets the brief below and nothing else.
+
+**The veto, as in steps 16 and 17:**
+- **One per relation and form.** Positives: the taught near questions, asked about invented names of the relation's kind of subject. Negatives: half of the relation's own wordings about the same names. Threshold: the 99th percentile of the other half, held apart from the fit. δ is half the way to the positives' median. It fires where its better form scores above 0.
+- **The names:** the kind's first 24 invented names, and the first 6 of them in lower and in upper case.
+- **The reading, fixed now: the mean at layer 11.** Of the mean layers that left no leak on step 12's split, it lost the fewest of the relation's own answers over that split and the three benches' blind wordings together (1 of 59, and 14 of 248). Every other site is fitted and reported, not judged.
+
+**Three sets of taught near questions, so three arms:**
+- **A, judged: drafted blind.** For each of benchmix1's 20 relations, 8 plain and 8 chat near questions written by the writer above. Its brief gives each relation's kind, description and answer type, the rules, and one example for an unrelated relation. It gives none of the bench's near questions and none of the examples of the bench writer's brief. The draft is checked by script, hashed and frozen before any reading is taken.
+- **B, reported: the bench's own other half.** The bench writer wrote 8 near questions per relation. Each fact got 4 of them as test prompts and the other 4 as training prompts, which nothing has used. Arm B fits a veto per fact on its 4 training ones. Its test is clean within a fact, and thin: 4 taught questions.
+- **C, reported, a control: no near questions.** The positives are the first 8 plain and 8 chat generic questions of the kind. If C does as well as A, the veto only tells the relation's own words from anything else, and needs no drafted near questions.
+
+**The test:** benchmix1's stored run and step 17's readings of it (`24_question_site/near.json`): 448 near questions, 321 leaking, 312 of those with the fact's detector open at the prompt's end; 1,089 answered recall prompts.
+- **A leak is stopped** where the fact's detector was open at the prompt's end and the veto fires there. A leak that began inside the reply counts as left.
+- **An answer is lost** where a recall prompt gave the whole answer, the detector was open at the prompt's end and the veto fires.
+- **Judged on untaught near questions:** a test near question whose wording equals a drafted one of its relation, by the duplicate rule, is left out of arm A's count. The count over all 448 is reported beside it.
+- **Overlap in what is asked can't be ruled out by script.** A writer asked for questions near a chief executive will name other jobs, as the bench's writer did. So arm A's result is also reported split by whether a test question shares a distinctive word with any drafted one of its relation. Arm B is the within-pool comparison.
+
+**Fixed now:**
+- **The veto holds beyond one relation** if arm A, at the mean of layer 11, on the untaught near questions, leaves at most half of the leaks and keeps at least 90% of the answers. These are step 17's bars.
+- **What a pass earns:** one build with both parts, frozen: the end-of-prompt detector of step 17 and a veto per relation read as a mean at layer 11, with near questions drafted for each relation. Then one fresh blind bench with near questions judged.
+- **Kill rule:** if arm A misses either bar, the mean veto is put aside. The end-of-prompt detector then goes to a blind bench by itself, with near questions reported and not judged, as now.
+- **Reported, not in the rule:**
+  - arms B and C, and every site;
+  - each relation, kind and answer type;
+  - the veto on same-subject questions;
+  - the facts that would pass with near questions held to the same-subject bar (4 of 112 now), counted with the fixed cross check.
+- **benchmix1 is a development bench,** so a pass is a development result.
+
+**The draft, frozen** (2026-11-22, before any reading with it):
+- **The writer** was Claude Opus, run as a separate agent with the brief alone (`research/results/slots/25_mean_veto/brief_writer.txt`, printed by the script) and told to use no tool and read no file. Its record shows one tool call, which I take to be the call that hands its answer back; I did not open its transcript.
+- **The file:** `research/results/slots/25_mean_veto/drafted_near.json`, SHA-256 beginning `863339c54c642ed7`, 20 relations with 8 plain and 8 chat near questions each. The script's check finds no problem: every string has `{s}` once, no plain one ends in a space, none repeats within its relation, and none equals a wording of a relation of the same kind.
+- **What it shares with the bench** (`check.txt`): of the bench's 160 near questions, 8 per relation, 10 equal a drafted one by the duplicate rule, and are left out of arm A's judged count wherever they are a fact's test prompts. 123 share a distinctive word with a drafted one of their relation. So most of what the bench asks is close to something the writer also thought of, as expected, and the questions that share nothing are the cleanest part of the test.
+- **A smoke run first,** on two relations (chief executive and town mayor) with a stand-in file of generic questions in arm A's place, to check the code and time it. It showed arms B and C on those two relations. Nothing was changed after it.
+
+
+## Result of step 18: the mean veto stops most near-question leaks on 20 relations and shuts too many of the relations' own answers; the kill rule is met
+
+Raw numbers: `research/results/slots/25_mean_veto/` (`veto.json` with every veto's score at every prompt and site, `veto.log`, `report.txt`, the brief, the draft and its check), from `scripts/diag_mean_veto.py`. The run took 9 minutes for the 20 relations and 112 facts.
+
+**The rule's reading: arm A, the mean at layer 11, on the near questions that equal no drafted one.**
+
+| | Result | Bar |
+|---|---|---|
+| Leaks left | 87 of 303 | at most 151: met |
+| The relations' own answers kept | 788 of 1,089 | at least 981: **missed** |
+
+- **By the kill rule, the mean veto is put aside.** It stops 71% of the leaks and shuts 28% of the answers.
+- **31 test near questions equal a drafted one** and are left out; 18 of them leak, and the veto leaves 2.
+
+**The three arms at the judged reading,** over all 448 near questions (321 leaking) and the 1,089 answers:
+
+| Taught near questions | Leaks left | Answers kept | Facts passing every check but near questions | Facts passing with near questions held to the same-subject bar |
+|---|---|---|---|---|
+| None (no veto) | 321 | 1,089 | 75 of 112 | 4 |
+| A, drafted blind, 16 per relation | 89 | 788 | 37 | 27 |
+| B, the bench's own other half, 4 per fact | 70 | 611 | 19 | 14 |
+| C, the kind's generic questions (control) | 184 | 879 | 45 | 16 |
+
+- **Near questions are shut, also where nothing like them was taught.** Of arm A's untaught leaks, 20 of 72 are left among the questions that share no distinctive word with a drafted one, and 67 of 231 among those that share one.
+- **The price is the relation's own questions when they are worded as the bench words them.** The veto's threshold sits at the 99th percentile of the relation's own drafted wordings, and it fires on 28% of the bench's answered recall prompts.
+- **Part of the veto is not about near questions at all.** With generic questions in their place (arm C) it still stops 137 of the 321 leaks and shuts 210 answers. That part only tells the relation's taught wordings from everything else. The drafted near questions add 95 more stopped leaks, and cost 91 more answers.
+- **Four taught questions per fact are too few** (arm B): more leaks stopped, and 44% of the answers shut.
+- **No site does better.** Over the mean layers arm A keeps at most 835 answers (layer 10, with 87 leaks left). At the last token the veto keeps at least 981 answers only at layers 0 and 1, where it leaves 306 and 265 leaks.
+
+**By relation, arm A falls into three groups** (leaks left of leaks; answers kept of answers):
+- **Both sides hold:** the town's founding year 4 of 23 and 64 of 70, head office 3 of 11 and 36 of 40, the concept's field 5 of 17 and 46 of 46.
+- **The leaks stop and the answers go:** chief executive 0 of 10 and 12 of 36, founder 0 of 9 and 13 of 38, the product's maker 0 of 20 and 23 of 64, the institution's head 5 of 16 and 20 of 58, the work's year 8 of 24 and 23 of 61.
+  - **For four of them the drafted near questions are what costs the answers.** Arm C, which teaches no near question, keeps 35 of the founder's 38, 41 of the maker's 64, 49 of the work year's 61 and 32 of the head's 58. I take it, without having measured it, that their drafted near questions use the relation's own words ("the founder's father", "the sequel came out in").
+  - **For the chief executive they are not.** Arm C keeps 18 of 36 there, and stops 9 of the 10 leaks, with no near question taught. So that veto shuts the bench's chief-executive wordings whatever it was taught.
+  - **Unexplained:** the same relation's veto cost 4% to 9% on step 17's three benches and half here. The two runs differ in the relation's own wordings (step 11's table carries the editor's taught ones) and in the test wordings.
+- **The answers stay and so do the leaks:** birthplace 19 of 21 and 67 of 67, employer 6 of 9 and 47 of 47, the event's city 9 of 16 and 53 of 53. A veto exists for each of them at this reading; it fires on few of their near questions (5 of birthplace's 24) and on none of their recall prompts.
+
+**After the fact: would another threshold have met the bars?** With hindsight, from the stored scores, upper bounds only:
+- **One cut for all relations: no.** A cut that keeps 981 answers leaves 209 to 228 of the 303 leaks at the mean layers 9 to 12.
+- **A cut per relation: yes, on paper.** With each relation's cut set to keep 90% of its own answers, arm A leaves 114 of 303 leaks at layer 10 and 125 at layer 11, with 1,019 and 1,009 answers kept, and 14 and 11 of the 20 relations left with at most half their leaks. At the last token of layer 20 the same bound leaves 214.
+- **In facts, at layer 11:** 68 would pass every check but near questions, against 75 with no veto and 37 with the veto as fitted. With near questions held to the same-subject bar 43 would pass, against 4 and 27.
+- **How little that proves:** the bound sets 20 thresholds on the test itself and clears the bars narrowly, and 6 to 9 relations miss even so.
+- **What that says:** read as a mean, most relations' near questions and own questions can be told apart. What fails is setting the threshold from the relation's own drafted wordings: that threshold does not carry over to wordings from another writer.
+
+**What it says:**
+- **Step 17's result on one relation did not carry over.** There the veto stopped every leak and cost 4% to 9%; here the same relation's veto shuts half of its answers. Its 59 answers in step 17 came from the writer of wordings the veto was fitted against, which is one difference; the rest is not explained.
+- **A taught contrast read from the question's words cuts the near-question leak on every kind of subject,** and no detector alone did that at any reading.
+- **The same weakness shows on the other side.** A fit knows the wordings it was fitted against. Step 16 saw it for shutting a fact on jobs it was not shown, and here the veto shuts the relation's own questions when another writer words them.
+
+**What comes next is my choice.**
+- **By the rule,** the end-of-prompt detector of step 17 goes to a blind bench by itself, with near questions reported and not judged.
+- **One revision the after-the-fact bound points to,** which would need its own rule written first: the veto's threshold set per relation from own questions by another writer than the fit's, at a stated rate of false fires, and tested on wordings it has not seen. On benchmix1 each fact's 12 training wordings are such a sample, unused so far. The bench shuffles a relation's wordings fact by fact, so one fact's training wording is another's test wording: the threshold would have to be set per fact, or with the fact's test wordings left out.
+
+
+## Step 18, the one revision: the veto's threshold set from the fact's own questions by another writer (written 2026-11-22, before it ran)
+
+**Why:** step 18's veto stopped the near-question leaks and missed the answers bar, and the after-the-fact bound says the threshold is what fails. It was set on the relation's own drafted wordings, and it does not carry over to the bench writer's wordings. One revision is allowed here, with the same bars. Only the threshold changes: the vetoes, the drafted near questions, the reading and the test are step 18's.
+
+**The threshold, per fact:**
+- **The sample:** the fact's 12 training wordings in the bench (8 plain, 4 chat). The bench's blind writer wrote them, the table was built without them, and no step has used them. They share no wording with the fact's 12 test wordings.
+- **The rule:** a fact's veto fires on a question only where it scores above every one of the fact's 12 training wordings.
+- **The stated rate of false fires:** if a new wording of the relation's own question is like the 12, it scores above all of them once in 13 times, so the veto should shut about 8% of the fact's own questions. The share it shuts of the test recall prompts is reported beside that.
+- **Per fact, not per relation:** the bench shuffles a relation's wordings fact by fact, so another fact's training wording can be this fact's test wording. A fact's own 12 can't be.
+
+**The test, as in step 18:** arm A (the near questions Opus drafted, frozen), the mean at layer 11, benchmix1's stored run. A leak is stopped where the fact's detector was open at the prompt's end and the veto fires there; an answer is lost in the same way. The near questions that equal a drafted one are left out.
+
+**The gate:** the run is step 18's with the training wordings read after everything else. Its scores at the test prompts must equal step 18's stored ones.
+
+**Fixed now:**
+- **The veto holds** if it leaves at most half of the leaks on the untaught near questions and keeps at least 90% of the answers: step 18's bars.
+- **What a pass earns:** one build with both parts, frozen: step 17's end-of-prompt detector, and a veto per relation read as a mean at layer 11 whose threshold is set for each fact from a dozen of its own questions, written by the editor when it checks the fact. Then one fresh blind bench with near questions judged.
+- **What a pass would not show:** here the 12 wordings and the test wordings come from one writer and one shuffle. In use the sample would be the editor's, and the questions a person's.
+- **Kill rule:** if it misses either bar, the mean veto is put aside for good on this model. Near questions stay reported and not judged, and the end-of-prompt detector goes to a blind bench by itself. The place to ask about near questions again is then the 4B model.
+- **Reported, not in the rule:**
+  - the second-largest training score as the threshold (two in 13);
+  - the threshold never set under the fitted one;
+  - arms B and C, the mean layers 9 to 12 and the last token of layer 20;
+  - each relation;
+  - the facts passing, with and without near questions judged.
+
+
+## Result of step 18's revision: with the threshold set from each fact's own training wordings, the veto meets both bars, narrowly and unevenly
+
+Raw numbers: `research/results/slots/25_mean_veto/` (`veto_train.json`, `veto_train.log`, `report_revision.txt`), from `scripts/diag_mean_veto.py` (`run --train`, then `report`). The run took 9 minutes.
+- **The gate holds:** the scores at the test prompts equal step 18's stored ones, with a largest difference of 0.
+- **A smoke run first,** on the chief executive's four facts with the stand-in file of generic questions, to check the code. Nothing was changed after it but the report's last table, which is after the fact and labelled so.
+
+**The rule's reading: arm A, the mean at layer 11, the untaught near questions.**
+
+| | Step 18, the threshold as fitted | The revision | Bar |
+|---|---|---|---|
+| Leaks left | 87 of 303 | **143 of 303** | at most 151: met |
+| The relations' own answers kept | 788 of 1,089 | **1,015 of 1,089** | at least 981: met |
+| Facts passing every check but near questions (75 with no veto) | 37 | 66 | |
+| Facts passing with near questions held to the same-subject bar (4 with no veto) | 27 | 34 | |
+
+- **By the rule, the veto holds.** It stops 53% of the leaks and shuts 7% of the answers.
+- **The margin is 8 leaks.** The mean at layers 9, 10 and 12 meets both bars too: 149, 137 and 144 leaks left, with 1,020, 1,026 and 1,028 answers kept. At the last token of layer 20 the same threshold leaves 234.
+- **The pooled pass rests on two relations** (after the fact). With the concept's proposer left out, 140 of 279 leaks are left, and with the medicine's maker left out 143 of 281: either way the leaks bar is missed.
+- **The answers bar could hardly have been missed.** The threshold is the largest of 12 scores from the writer and the shuffle of the test wordings, so about 92% kept follows from how it is set. The leaks bar was the test.
+- **The stated rate holds:** the veto fires on 117 of the 1,344 test recall prompts, 8.7% against the stated 7.7%.
+- **With this threshold the drafted near questions are what stops the leaks.** The control with generic questions (arm C) stops 62 of 321. Arm A stops 160 of 303. The bench's own four near questions per fact (arm B) stop 141 of 321.
+- **The other thresholds, reported:**
+  - above all but one training wording: 108 leaks left and 949 answers kept, under the answers bar;
+  - never under the fitted threshold: 158 left and 1,031 kept, over the leaks bar.
+
+**By relation the result is uneven** (leaks left of the untaught leaks):
+- **At most half left, 8 of 20 relations:** the medicine's maker 0 of 22, the concept's field 1 of 17, the medicine's condition 2 of 9, the concept's proposer 3 of 24, the town's founding year 4 of 23, the event's city 4 of 16, the town's mayor 5 of 11, the institution's head 7 of 16.
+- **More than half left, 12 relations,** among them all four about companies: chief executive 6 of 6, founder 6 of 9, head office 6 of 11, owner 3 of 4. Also the work's year 19 of 24, the event's year 18 of 23, the institution's city 13 of 15, birthplace 12 of 19 and the product's year 10 of 12.
+- **Every relation keeps at least 85% of its answers.**
+
+**After the fact: the veto beside step 17's end-of-prompt detector.** Estimated as in step 17 on benchmix1's 112 facts: a newly opened recall prompt answers at the bench's rate of 0.90, a newly opened question about another relation fails its fact, a newly opened near question counts as a leak, and the veto shuts what it fires on.
+
+| | Facts passing every check but near questions | With near questions held to the same-subject bar |
+|---|---|---|
+| The detector as built, no veto (now) | 75 | 4 |
+| The detector as built, with the veto | 66 | 34 |
+| With the end-of-prompt detector, no veto | 79 | 2 |
+| With the end-of-prompt detector and the veto | 71 | 31 |
+
+- **The two parts together cost 4 facts by today's rule and gain 27 by a rule that judges near questions.** The veto's cost on the facts' own answers is larger than what the end-of-prompt detector adds on this bench.
+
+**What it shows, and what it does not:**
+- **A taught contrast, read as a mean over the question's words and held to a threshold set on the fact's own questions, halves the near-question leak** on a bench of 20 relations in nine kinds of subject, at a known cost.
+- **The threshold was the fault in step 18, as its after-the-fact bound said.** Set on a dozen own questions by the writer of the test wordings, it shuts those wordings at the rate stated.
+- **Not shown: a threshold from another writer's sample, and the nearest evidence points the other way.** Here the 12 wordings and the test wordings come from one writer and one shuffle. In use the sample would be the editor's and the questions a person's. The one change of writer measured so far is step 18's own, with the threshold from the drafters' wordings and the test from the bench writer's, and there the veto shut 28% of the answers.
+- **Not shown: the company relations.** All four keep more than half of their leaks.
+- **Not shown: a blind bench.** benchmix1 has now been read by steps 14, 17, 18 and this revision, and this is the one revision the kill allowed.
+
+**What the pass earns, as fixed before the run:** one build with both parts, frozen: step 17's end-of-prompt detector, and a veto per relation read as a mean at layer 11, its threshold set for each fact from a dozen of the fact's own questions written by the editor when it checks the fact. Then one fresh blind bench with near questions judged.
+
+**Two things to settle before that build, both my choice:**
+- **Whether near questions become a judged check.** By today's pass rule the build is estimated to lose facts on this bench (75 now, 71 with both parts). It gains only by a rule that judges near questions (4 now, 31 with both parts), and that is a change to the pass rule.
+- **Which bench would judge it.** All four company relations keep more than half of their leaks, so a company bench would show the veto's cost and none of its gain. It would have to be a bench of many kinds, like benchmix1.
+
+A cheap check would come before any build: the threshold set from a sample by another writer than the test wordings', on benchmix1, with a kill rule. Nothing is started.
