@@ -4198,3 +4198,69 @@ Raw numbers: `research/results/slots/25_mean_veto/` (`veto_sample.json`, `veto_s
 - **So the veto is not built.** Near questions stay a stated limit, reported and not judged.
 
 **By the rule:** step 17's end-of-prompt detector goes to a blind bench by itself, with near questions reported and not judged. What comes next is my choice.
+
+
+## Step 19: the end-of-prompt detector by real generation, at the build's own site (written 2026-11-22, before it ran)
+
+**Why:** the one lead steps 17 and 18 leave is the detector for the prompt's last token, fitted against the prompt negatives alone. Its pass in step 17 is an estimate, and the estimate rests on two things no generation has checked:
+- a prompt it newly opens is assumed to get its answer at the benches' measured rate, 0.90 to 0.92;
+- the layer's competition between a company's facts, and its veto by the shared detectors, are left out.
+
+Before a reading at another layer is built and a blind bench spent on it, the detector is scored by real generation where the layer already has a place for it. Forward passes and closed-form fits only (`scripts/end_detector_check.py`).
+
+**What runs,** on the two saved API tables of bench40e and bench40f (80 facts, 56 passing):
+- **The detector:** for every fact and form, the build's positives against the prompt negatives alone, at layer 20, the threshold at the negatives' 99th percentile and δ half the way to the positives' median. That is step 17's rule R2 at the build's own site. The readings come through the package's read cache, as in a fast build.
+- **Where it sits:** in the layer's existing slot for detectors that count only at the prompt's last token (`end_detectors`). A fact then opens at the prompt's end by its strict detectors or by this one, and inside replies by the strict ones alone. The competition and the veto act as they always do.
+- **The scoring:** every check of the bench by greedy generation, as `scripts/score_table.py` scores a table.
+- **Step 17's estimate for this reading:** 62 facts of 80 (31 and 31), with 4 questions about another relation newly opened.
+
+**The gate:** the layer built by the script with no end-of-prompt detectors must have the same detector matrix, thresholds and δ as the package's own layer for the table.
+
+**Measured:**
+- the facts passing on each bench, and which change;
+- the recall replies with the whole answer (744 of 960 now);
+- **the answer rate of newly opened prompts:** of the recall prompts that were shut at the prompt's end in the stored run and are open with the new detector, the share whose reply has the whole answer;
+- the same-company leaks, and every other check.
+
+**Fixed now:**
+- **The estimate holds by generation** if both:
+  - at least 59 facts of 80 pass every check, which is the estimate less 3 and 3 more than now;
+  - the newly opened recall prompts give the whole answer at 0.75 or more.
+- **What a pass earns:** the reading that passed step 17, at layer 16, built into the inserted layer as a detector for the prompt's last token, frozen, and then a fresh blind bench.
+- **Kill rule:** if either is missed, the end-of-prompt detector earns no blind bench, and the question detector's fit and site are closed on this model. What then changes is the model: the 4B, whose same-subject leaks are higher and whose near questions are untested. The lost pushes are a separate pool on this model, still to be measured.
+- **Both benches are development benches.** The result checks an estimate; it is not a score.
+
+
+## Result of step 19: by real generation the end-of-prompt detector passes 66 facts of 80 against 56, and the estimate holds
+
+Raw numbers: `research/results/slots/26_end_detector/` (`bench40e.jsonl`, `bench40f.jsonl` with every reply and each prompt's score, their logs, `report.txt`), from `scripts/end_detector_check.py`. Each bench took 5 minutes to fit and 5 to score.
+- **The gate holds on both tables:** the layer built by the script with no end-of-prompt detectors has the package's detector matrix, thresholds and δ.
+- **No smoke run:** the first run was bench40e's. Nothing was changed between the two benches.
+
+| Greedy generation, every check | bench40e | bench40f | Together, of 80 |
+|---|---|---|---|
+| The layer as built (now) | 32 | 24 | 56 |
+| Step 17's estimate for this reading | 31 | 31 | 62 |
+| **With the end-of-prompt detector** | **35** | **31** | **66** |
+| Recall replies with the whole answer, of 480 | 437 against 386 | 425 against 358 | 862 against 744 |
+| Shut before, open now; of those, with the whole answer | 62; 57 (0.92) | 98; 83 (0.85) | 160; 140 (0.875) |
+
+- **By the rule, the estimate holds by generation:** 66 facts against a bar of 59, and newly opened prompts answer at 0.875 against a bar of 0.75.
+- **11 facts pass only with it and 1 only without it.** By relation: owner 10 → 16 of 20, founder 14 → 16, chief executive 13 → 14, head office 19 → 20.
+- **The estimate's rate was about right, and its leak rule too strict.** It assumed 0.90 to 0.92 for newly opened prompts and generation gives 0.875. It failed a fact for any newly opened question about another relation: four such questions do open at the prompt's end, as it counted, and no fact fails its same-company check. That is where bench40e's 35 against 31 comes from.
+- **The one fact lost** is a chief-executive fact of bench40e whose company's head-office fact now answers a general question about the company ("Ferrara" in one reply), which the check on other stored facts counts. This is the looser start's failure, once.
+- **Same-company leaks rise a little on bench40e and stay inside the bar:** the mean goes from 0.009 to 0.022, and 7 facts have one where 3 had. On bench40f there is none, before or after.
+- **Nothing else moves:** no look-alike, unrelated-company or name-slot leak, no known fact lost, no drift.
+- **The 14 facts that still fail:** 11 on recall (most now at 0.50 to 0.67), 3 on another stored fact's answer and 1 on its sibling's. Only 8 recall prompts stay shut at the prompt's end. The other 90 missing answers are prompts that open and still don't give the whole answer: 70 that were open before and 20 of the newly opened. That is the pool of lost pushes.
+
+**How it relates to what was measured before:**
+- **Step 15's ceiling, "about 66 of 80 if every form were taught", is reached with no form taught.** What the missed wordings needed was a detector fitted against prompts alone.
+- **The looser start of v1 gained no fact on blind bench40e** (31 = 31, with 180 facts loaded). It differs in two ways that were not separated here: its detector kept the readings inside the taught answers as a group of negatives, and its table held 180 facts where these hold 40.
+- **Layer 16, the reading that passed step 17's rule, is not needed for this.** It passed there because the estimate failed layer 20's four newly opened questions, which generation doesn't. Layer 20 needs no reading from another layer, and the layer already has the slot.
+
+**What it does not show:**
+- **A blind bench.** bench40e and bench40f have been read many times, and this reading was chosen for this check after step 17's estimates on them.
+- **A table of 180 facts,** benchmix1's kinds of subject, or the grafted model. The compile takes the strict detectors only.
+- **Near questions.** On benchmix1 this fit opened about 60 more of them in step 17's readings. They are reported, not judged.
+
+**What the pass earns, as fixed before the run:** a build and a fresh blind bench. The plan named layer 16; the result says layer 20, where the detector is now measured by generation and nothing new has to be read. Which of the two goes to the blind bench is my choice, and I would take layer 20.

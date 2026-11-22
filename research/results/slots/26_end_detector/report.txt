@@ -1,0 +1,17 @@
+bench40e: same-company leak, mean 0.0219 against 0.0094, facts with any 7 against 3; largest look-alike, unrelated and name-slot leak 0.0, 0.0, 0; known facts lost 0; drift 0.0000
+bench40e: 35 of 40 pass with the end-of-prompt detector; 32 now. Recall replies with the whole answer: 437 against 386
+bench40f: same-company leak, mean 0.0000 against 0.0000, facts with any 0 against 0; largest look-alike, unrelated and name-slot leak 0.0, 0.0, 0; known facts lost 0; drift 0.0000
+bench40f: 31 of 40 pass with the end-of-prompt detector; 24 now. Recall replies with the whole answer: 425 against 358
+
+80 facts: 66 pass with the end-of-prompt detector, 56 now (step 17's estimate for this reading: 62)
+recall replies with the whole answer: 862 of 960, against 744 now
+recall prompts shut at the prompt's end in the stored run and open with the new detector: 160; with the whole answer 140 = 0.875 (the estimate assumed 0.90 to 0.92)
+recall prompts open before: 792, with the whole answer 722; shut before and still shut: 8, with the whole answer 0
+same-company prompts newly open at the prompt's end: 4 of 640 (the estimate counted 4)
+by relation (facts, passing now, passing with it): {'ceo': (20, 13, 14), 'founder': (20, 14, 16), 'hq': (20, 19, 20), 'owner': (20, 10, 16)}
+facts that pass only with it: ['bench40e:f01', 'bench40e:f12', 'bench40e:f25', 'bench40e:f36', 'bench40f:f01', 'bench40f:f03', 'bench40f:f06', 'bench40f:f09', 'bench40f:f17', 'bench40f:f27', 'bench40f:f38']
+facts that pass only without it: ['bench40e:f28 (cross 0.02)']
+failures with it, by check: {'recall': 11, 'cross': 3, 'sibling': 1}
+
+THE RULE: at least 59 facts and an answer rate of at least 0.75 on newly opened prompts: 66 facts, 0.875
+  -> THE ESTIMATE HOLDS by generation
