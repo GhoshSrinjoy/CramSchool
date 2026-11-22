@@ -1,0 +1,18 @@
+veto plain: 180 positives, 1476 own to fit, 1476 own held apart | usable
+veto chat: 108 positives, 720 own to fit, 720 own held apart | usable
+{
+ "leaking": 26,
+ "veto_fires_on_leaking": 4,
+ "fact_open_at_end_on_leaking": 26,
+ "leaks_starting_in_reply": 0,
+ "leaks_stopped": 4,
+ "leaks_left": 22,
+ "answered": 59,
+ "veto_fires_on_answered": 9,
+ "answers_lost": 9,
+ "answers_kept": 50,
+ "taught_leaking": 38,
+ "veto_fires_on_taught_leaking": 36,
+ "passes": false
+}
+kill rule: MET: the veto stops here
