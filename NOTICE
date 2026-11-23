@@ -1,0 +1,17 @@
+Required Notice: Copyright (c) 2025-2026 Srinjoy Ghosh (https://github.com/GhoshSrinjoy/CramSchool)
+
+CramSchool (the `cramschool` package and GRAFT) is licensed under the PolyForm Noncommercial License 1.0.0.
+The terms are in the file LICENSE and at https://polyformproject.org/licenses/noncommercial/1.0.0
+
+Any noncommercial purpose is permitted. Commercial use is not covered by that licence and needs permission from the
+copyright holder: open an issue at https://github.com/GhoshSrinjoy/CramSchool/issues
+
+Material in this repository that is not the copyright holder's and keeps its own terms:
+
+- src/cramschool/data/ordinary_text.txt is an excerpt of WikiText-103 (Stephen Merity, Caiming Xiong, James Bradbury and
+  Richard Socher, "Pointer Sentinel Mixture Models", 2016). WikiText-103 is licensed under the Creative Commons
+  Attribution-ShareAlike licence (CC BY-SA), and the excerpt is redistributed under that licence, not under the
+  PolyForm Noncommercial License.
+- research/results/counterfact/ holds prompts and answers taken from the CounterFact dataset (Kevin Meng, David Bau,
+  Alex Andonian and Yonatan Belinkov, "Locating and Editing Factual Associations in GPT", 2022; https://rome.baulab.info).
+  They stay under their source's terms.
