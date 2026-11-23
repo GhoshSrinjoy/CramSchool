@@ -25,8 +25,9 @@
 <p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is written in" width="94%"></p>
 
 - **Any named subject.** For example: companies, people, towns, products with model codes, creative works, institutions, medicines and events. Four relations about companies are built in (owner, CEO, founder, head office); any other relation is added from a few dozen ways of asking it, which you write or a bigger model drafts.
+- **Two forms: beside the model, or in its weights.** A table beside the model changes no weight and comes off exactly. The grafted model is the same facts written into the model's own neurons, in a checkpoint of the same size; it still needs a small switch that turns a fact on when its subject is named.
 - **No training.** A fact is built from forward passes of the frozen model in about 40 seconds. Nothing in the package takes a gradient.
-- **Exact undo.** The table is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
+- **Exact undo, for the table.** It is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
 - **Many facts in one layer.** With 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
 - **A name one letter off stays silent.** For example: "Nimbrosco Software" never opens a fact about "Nimbresco Software". On the blind company benches no fact answered for a look-alike company.
 - **Measured blind.** 31 of 40 new facts pass every check on a bench written by an agent that never saw the code.
