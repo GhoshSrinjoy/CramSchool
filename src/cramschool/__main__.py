@@ -53,6 +53,16 @@ def _dataset_args(p):
     p.add_argument("--limit", type=int)
 
 
+def _layer_arg(text: str):
+    """--layer: a number, or auto to measure every layer of the model and take the pick."""
+    if text == "auto":
+        return text
+    try:
+        return int(text)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"a layer is a number or auto, not {text!r}") from None
+
+
 def _setting_args(p, new_table=True):
     p.add_argument("--last-layer", choices=("all", "later", "none"),
                    help="where an answer's tokens are written: all (a new table's default) and later write at the model's last layer; none at the "
@@ -80,7 +90,8 @@ def build_parser() -> argparse.ArgumentParser:
     g_add.add_argument("--relation", required=True, help="owner, ceo, founder or hq (or one given with --relations)")
     g_add.add_argument("--answer", required=True)
     g_add.add_argument("--relations", help="JSON file of extra relations: {name: {plain: [...], chat: [...]}}")
-    g_add.add_argument("--layer", type=int, help="the layer (default 20 on Qwen3.5-0.8B)")
+    g_add.add_argument("--layer", type=_layer_arg, help="a new table only: the layer the question is read at. A number; or auto, to measure "
+                                                        "every layer of the model first, about 5 minutes (default: 20 on Qwen3.5-0.8B)")
     g_add.add_argument("--ask", help="a question to ask before and after")
     _setting_args(g_add)
     g_file = graft.add_parser("add-file", help="add every fact of a dataset, and save the table")
@@ -88,7 +99,7 @@ def build_parser() -> argparse.ArgumentParser:
     g_file.add_argument("--table", required=True)
     _dataset_args(g_file)
     g_file.add_argument("--relations", help="JSON file of extra relations")
-    g_file.add_argument("--layer", type=int)
+    g_file.add_argument("--layer", type=_layer_arg, help="a new table only: a number, or auto (see graft add)")
     _setting_args(g_file)
     g_list = graft.add_parser("list", help="the facts in a table (no model needed)")
     g_list.add_argument("--table", required=True)
@@ -110,6 +121,10 @@ def build_parser() -> argparse.ArgumentParser:
     g_ask.add_argument("questions", nargs="+")
     g_ask.add_argument("--plain", action="store_true", help="treat the questions as plain sentence openings, not chat")
     _setting_args(g_ask, new_table=False)
+    g_layers = graft.add_parser("layers", help="measure every layer of a model and show which one a table should read the question at")
+    _model_args(g_layers)
+    g_layers.add_argument("--relations", help="JSON file of extra relations to profile with, as for graft add")
+    g_layers.add_argument("--out", help="JSON file for the whole profile, with each probe fact's numbers")
     g_set = graft.add_parser("set", help="change a saved table's settings, build what they need, and save it")
     _model_args(g_set)
     g_set.add_argument("--table", required=True)
@@ -352,6 +367,20 @@ def run_graft_command(args) -> int:
         print(f"removed {len(gone)} fact(s); {len(meta['facts'])} left")
         return 0
     model, tokenizer = _load(args.model, args.dtype)
+    if args.graft_command == "layers":
+        from dataclasses import asdict
+
+        from .graft import Relation, Wordings, profile_layers
+
+        wordings = Wordings.builtin()
+        if args.relations:
+            wordings = wordings.with_relations(Relation.from_file(args.relations))
+        profile = profile_layers(model, tokenizer, wordings, progress=_say)
+        print(profile.table())
+        if args.out:
+            with open(args.out, "w", encoding="utf-8") as fh:
+                json.dump(asdict(profile), fh, ensure_ascii=False, indent=1)
+        return 0
     graft = _open_table(model, tokenizer, args.table, getattr(args, "layer", None), getattr(args, "relations", None), args)
     if args.graft_command == "set":
         if not len(graft):

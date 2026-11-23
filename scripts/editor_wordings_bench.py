@@ -6,11 +6,12 @@ Both arms use the fast build, and both teach the answer vectors from the built-i
 in their question detectors and in nothing else. Forward passes only. GPU, about 15 minutes for 40 facts.
 
 Usage: python scripts/editor_wordings_bench.py <model folder> <bench json> <base rows jsonl> <out folder> [--wordings <json> ...]
-       [--against <rows jsonl>] [--prompt-detector]
+       [--against <rows jsonl>] [--prompt-detector] [--layer N]
 
 --wordings    a file {"relations": {relation: {"plain": [...], "chat": [...]}}} of wordings to add; may be given more than once
 --against     the rows of the other arm: prints which facts pass in one and not in the other
 --prompt-detector   build every fact with GraftOptions.prompt_detector on (lab notebook, step 20)
+--layer N     build the table at layer N (lab notebook, step 25); without it, the package's layer for the model
 """
 import json
 import os
@@ -34,6 +35,7 @@ def main():
     args = sys.argv[1:]
     model_dir, bench_path, base_path, out_dir = args[:4]
     files = [args[i + 1] for i, a in enumerate(args) if a == "--wordings"]
+    layer = int(args[args.index("--layer") + 1]) if "--layer" in args else None
     against = args[args.index("--against") + 1] if "--against" in args else None
     os.makedirs(out_dir, exist_ok=True)
     facts, base = load_bench(bench_path), read_rows(base_path)
@@ -52,7 +54,7 @@ def main():
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     baseline = make_baseline(model, tok)
-    graft = Graft(model, tok, wordings=wordings, options=GraftOptions(fast=True, teach_cap=CAP, prompt_detector="--prompt-detector" in args,
+    graft = Graft(model, tok, layer=layer, wordings=wordings, options=GraftOptions(fast=True, teach_cap=CAP, prompt_detector="--prompt-detector" in args,
                                                                   last_layer=None))  # measured with the v1 write
     t0 = time.time()
     for n, f in enumerate(facts, 1):

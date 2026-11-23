@@ -132,19 +132,31 @@ def default_layer(model) -> int:
 class Graft:
     """A table of facts for one model, held in one inserted layer."""
 
-    def __init__(self, model, tokenizer, *, layer: int | None = None, wordings: Wordings | None = None, options: GraftOptions | None = None,
+    def __init__(self, model, tokenizer, *, layer: int | str | None = None, wordings: Wordings | None = None, options: GraftOptions | None = None,
                  calibration: list[str] | None = None, progress: Callable[[str], None] | None = None, system: str | None = None):
-        """system: the system message of the application the table will be asked in. Chat questions are then taught, and asked by `ask`
+        """layer: where the table reads the question. A number; None for layer 20 of a 24-layer model and the same depth of another, with
+        a warning; or "auto" to measure every layer of this model on invented probe facts and take the pick (layers.profile_layers,
+        lab notebook, step 25; about 5 minutes, kept as `layer_profile` and saved with the table). "auto" selects only for a table that
+        writes its answers at the last layer (options.last_layer="all"): with a push at the table's own layer the layer is also where
+        the answer is written, which the profile doesn't measure, and the earlier rule is used.
+
+        system: the system message of the application the table will be asked in. Chat questions are then taught, and asked by `ask`
         and `compare`, behind that message; the table keeps its own copy of the tokenizer for it (model_access.with_system) and the one
         passed in is not changed. A table is for prompts in the chat format it was built in: taught with no system message, a table of 30
         facts answered 51 of 120 questions behind one, and 93 taught behind it (lab notebook, step 23). None (v1): no system message."""
         self.model, self.system = model, system or None
         self.tokenizer = with_system(tokenizer, self.system) if self.system else tokenizer
-        self.layer = layer if layer is not None else default_layer(model)
         self.wordings = wordings or Wordings.builtin()
         self.options = options or GraftOptions()
         self._calibration = calibration
         self._progress = progress
+        self.layer_profile: dict | None = None    # what layer="auto" measured, when the layer was picked that way
+        if isinstance(layer, str):
+            if layer != "auto":
+                raise ValueError(f"layer must be a number, None or 'auto', not {layer!r}")
+            self.layer = self._pick_layer()
+        else:
+            self.layer = layer if layer is not None else default_layer(model)
         self._mctx: dict | None = None
         self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None, prompt=... or None)
         self._aliases: dict[str, list[str]] = {}  # a stored subject's declared other names
@@ -155,6 +167,23 @@ class Graft:
         self._shared_relations: tuple = ()
         self._layer: GraftLayer | None = None
         self._next = 1
+
+    def _pick_layer(self) -> int:
+        """The layer `layer="auto"` gives: the profile's pick, or the earlier rule where the profile doesn't apply."""
+        if self.options.last_layer != "all":
+            warnings.warn("layer='auto' measures where the question is best read. This table also pushes its answer at its own layer "
+                          f"(last_layer={self.options.last_layer!r}), which the profile doesn't measure, so the earlier rule is used.", stacklevel=3)
+            return default_layer(self.model)
+        from .layers import profile_layers
+
+        profile = profile_layers(self.model, self.tokenizer, self.wordings, calibration=self._calibration, options=self.options, progress=self._progress)
+        if min(profile.no_detector) >= 1.0:
+            warnings.warn("the layer profile found no layer at which a probe fact gets a detector, so it has nothing to pick from: the "
+                          "earlier rule is used", stacklevel=3)
+            return default_layer(self.model)
+        self.layer_profile = profile.summary()
+        self._say(f"reading the question at layer {profile.pick}" + (f" (the profile is flat over layers {profile.tied})" if profile.flat else ""))
+        return profile.pick
 
     # ------------------------------------------------------------ calibration
 
@@ -559,6 +588,9 @@ class Graft:
         if self.options.looser_start or self.options.end_quantile is not None or self.options.arm or self.options.prompt_detector:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile, prompt_detector and arm have "
                           "no neuron form and are left out of the grafted model", stacklevel=2)
+        if self.layer_profile is not None:
+            warnings.warn(f"this table's layer ({self.layer}) was picked for reading the question. The grafted model also pushes the answer "
+                          "there, and a push was only measured near layer 20 of the 0.8B: check the grafted model before relying on it", stacklevel=2)
         if self.options.last_layer:
             warnings.warn("the grafted model writes every answer token at the table's layer: the write at the last layer that this table "
                           f"uses (last_layer={self.options.last_layer!r}) has no neuron form yet, so an answer the table finishes can come "
@@ -600,7 +632,8 @@ class Graft:
                     model=getattr(self.model.config, "_name_or_path", ""), layer=self.layer, fingerprint=self._fingerprint(),
                     options=asdict(self.options), relations={r: rel.as_dict() for r, rel in self.wordings.relations.items()},
                     kinds={k: v for k, v in self.wordings.kinds.items() if any(rel.subject == k for rel in self.wordings.relations.values())},
-                    next=self._next, facts=facts, aliases=self._aliases, exclusions=self._exclusions, system=self.system)
+                    next=self._next, facts=facts, aliases=self._aliases, exclusions=self._exclusions, system=self.system,
+                    layer_profile=self.layer_profile)
         with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
         return path
@@ -640,6 +673,7 @@ class Graft:
             f = make_fact(d["subject"], d["relation"], d["answer"], wordings, fid=d["id"])
             graft._facts.append(dict(fact=f, parts=parts, looser=looser, prompt=prompt))
         graft._next = meta.get("next", len(graft._facts) + 1)
+        graft.layer_profile = meta.get("layer_profile")
         graft._aliases = {s: list(a) for s, a in meta.get("aliases", {}).items()}
         graft._exclusions = {s: list(a) for s, a in meta.get("exclusions", {}).items()}
         return graft

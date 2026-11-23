@@ -5184,3 +5184,25 @@ bench40h is not blind: I have read its replies at steps 20 to 24. Nothing here i
 - **"Ranked lowest" for table C** means the smallest held-out recall less held-out leak, among layers 12 to 22. If two layers tie, the later one.
 - **A profile with no detector at any layer picks nothing.** `layer="auto"` then warns and uses the earlier rule. That is what happens on the tiny random model.
 - **Tables A, B and C are built by the same script,** `scripts/layer_screen.py`, which adds a bench's facts through the API with the fast build at a given layer. Before B and C count, the table it builds at layer 20 must give the same replies as the saved table of step 20 under `--last-layer all` (32 of 40). If it doesn't, A is the newly built table and I say so.
+
+**The profile on Qwen3.5-0.8B, before any table is built at its pick** (`scripts/layer_profile.py`, 165 seconds, `research/results/slots/33_layer_profile/profile_0.8b.json`):
+
+| Layer | Held-out recall | Held-out leak | |
+|---|---|---|---|
+| 12 | 0.630 | 0.028 | ranked lowest among 12 to 22 |
+| 16 | 0.780 | 0.022 | |
+| 19 | 0.874 | 0.018 | |
+| 20 | 0.887 | 0.014 | the hard-coded layer |
+| 21 | 0.922 | 0.016 | tied |
+| **22** | **0.924** | 0.013 | **the pick** |
+| 23 | 0.922 | 0.011 | tied, the last layer |
+
+- **The pick is layer 22, and the profile is flat over layers 21 to 23.** Layer 20 is not in the tied set: its recall is 0.037 lower.
+- **My prediction was partly wrong.** I predicted a flat stretch around 16 to 20. The flat stretch is 21 to 23, later than any layer I had ever built a table at, and layers 16 to 18 read worse than 20 (0.74 to 0.78). Whether generation moves is the rule's to say, below.
+- **Recall climbs with depth almost all the way:** 0.05 at layer 0, 0.63 at layer 12, 0.80 at layer 15, 0.92 from layer 21. Leak falls from 0.05 around layers 7 to 9 to 0.011 at the last layer.
+- **A layer per fact is not earned.** Picked on half the held-out wordings and scored on the other half, 6 of 12 probe facts take another layer than the table's, and held-out recall changes by −0.030, leak by −0.003. Stage 2 is not built: one layer per table is enough on this model.
+- **Every layer gave every probe fact a detector from layer 3 on.**
+
+**A deviation, before B and C are built.** I had named `scripts/layer_screen.py` as the builder. Table A (step 20's) was built by `scripts/editor_wordings_bench.py`, so B and C are built by that script, with a new `--layer` flag and nothing else changed. They then differ from A in the layer alone, and A stays the saved table: the check of a rebuilt layer-20 table isn't needed.
+
+**What the profile means for the grafted model,** which is where the facts are in the model's own weights. A fact's neuron reads with its gate row and writes with its down column, both at its own layer. The last layer is where a write always wins (step 24), and the profile says the question reads as well there as anywhere. So a fact's neurons can sit at the last layer and do both. That is step 26.
