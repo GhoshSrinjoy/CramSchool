@@ -5379,3 +5379,42 @@ Raw numbers: `research/results/slots/34_last_layer_neurons/` (`build_layer23.log
 - **Fewer neurons at the last layer.** Two things in the compile cost neurons for no reason there:
   - the second neuron of each first-token pair. It exists to cap the push, and at the last layer a larger write only raises the same token further. Dropping it saves 160;
   - the 217 neurons for later tokens. Step 24 found that the first token carried 14 of its 15 gained facts. Later tokens can stay at layer 20, where 377 reused neurons met the bar.
+
+---
+
+## Step 26, the damage profile, and one revision written before it runs: two layers, each with the part it can afford
+
+**How many neurons each late layer can give up** (`scripts/damage_profile.py`; N neurons freed as the compile frees them, no fact written; `research/results/slots/34_last_layer_neurons/damage_profile.json`). The number is the mean change of the firmly known facts' margins, and the bar's limit is 0.10. No firmly known fact was lost in any of the 16.
+
+| Neurons freed, of 3,584 | Layer 20 | Layer 21 | Layer 22 | Layer 23, the last |
+|---|---|---|---|---|
+| 128 | −0.014 | −0.002 | −0.029 | −0.021 |
+| 256 | −0.009 | −0.005 | −0.043 | −0.050 |
+| 384 | −0.058 | −0.046 | −0.047 | **−0.111, fails** |
+| 537 | −0.076 | −0.061 | −0.046 | **−0.145, fails** |
+| Drift at 256; at 537 | 0.0019; 0.0040 | 0.0054; 0.0072 | 0.0078; 0.0100 | 0.0093; 0.0213 |
+
+- **The last layer can spare about 256 neurons** by the bar, and not 384. That is the count the rule asked me to report.
+- **Layers 20 to 22 pass at every count up to 537.** Layer 21 is the cheapest at 128 and 256, layer 20 has the least drift throughout.
+- **So the last layer is the expensive one,** and it is the only place a write always wins. It should hold what must be there and nothing else.
+
+**What must be at the last layer, and what needn't.** Step 24 measured it on the table: finishing a begun answer gave 1 fact over two benches, and making the first token certain gave 14. The first token is where the model's own first word competes. Later tokens were already followed well from layer 20: the grafted model at layer 20 passed 23 against its table's 24.
+
+**The revision, one, fixed here before it is built or run:**
+- **At the last layer: each fact's first-token neurons only, one neuron each, not a capped pair.** Its gate is the fact's detector fitted at the last layer, and its output column the token's sized row. At the last layer a larger write only raises the same token further, so the cap is not needed. For 40 facts that is 160 neurons (two forms, two spellings).
+- **At layer 20: the later tokens' neurons,** as the grafted model has them today: always open, each writing the answer vector measured at layer 20, switched on while the answer is being followed. 217 for bench40f.
+- **One switch for both layers.** It decides once per call which neurons are on, as it does now, and sets them at whichever layer they sit.
+- **For this run** the later tokens' vectors come from bench40f's saved table at layer 20 and the detectors from T23: the same 40 facts, built by the same script at the two layers.
+
+**The rule, the same bars as before:**
+
+| Outcome | What follows |
+|---|---|
+| It passes at least 28 on the recall and leak checks, at least 30 (T23 − 2), and the whole firm bar is met with both layers edited: no firmly known fact lost and the margins' mean change within 0.10 | **Confirmed.** The two-layer compile is what `export_grafted` does for a table that writes at the last layer |
+| The firm bar is not met | **Kill.** The step ends with the write shown to work in the weights and no compile that meets the bar |
+| Fewer than 28 | **Kill** |
+| 28 or 29 with the bar met | Reported, not shipped as the default export |
+
+**My prediction:** 30 to 32 facts, and a margin change of about −0.04 if the two layers' costs add (−0.03 for 160 at the last layer, −0.01 for 217 at layer 20). I don't know that they add.
+
+**This is the only revision.** If it fails, I don't try a third layout on bench40f.

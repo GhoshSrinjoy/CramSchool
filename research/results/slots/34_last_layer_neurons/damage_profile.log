@@ -1,0 +1,21 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.82it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 625.62it/s]Loading weights:  75%|███████▌  | 240/320 [00:00<00:00, 870.48it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 807.98it/s]
+unedited: 133 of 133 answered, 41 firmly | 12s
+layer  freed  width  left after re-fit  firm lost  firm margin change  knife-edge lost  old count lost  drift    the bar (shift within 0.1)
+   23    128   3584               6.4%    0 of 41              -0.021    2 of  92        2 of 133    0.00721  passes | 68s
+   23    256   3584               7.0%    0 of 41              -0.050    3 of  92        3 of 133    0.00925  passes | 79s
+   23    384   3584              11.9%    0 of 41              -0.111    5 of  92        5 of 133    0.01161  FAILS | 91s
+   23    537   3584              12.2%    0 of 41              -0.145    9 of  92        9 of 133    0.02128  FAILS | 103s
+   22    128   3584              12.0%    0 of 41              -0.029    1 of  92        1 of 133    0.00640  passes | 163s
+   22    256   3584              14.5%    0 of 41              -0.043    3 of  92        3 of 133    0.00783  passes | 174s
+   22    384   3584              17.0%    0 of 41              -0.047    5 of  92        5 of 133    0.00842  passes | 187s
+   22    537   3584              19.3%    0 of 41              -0.046    0 of  92        0 of 133    0.01004  passes | 199s
+   21    128   3584              12.4%    0 of 41              -0.002    0 of  92        0 of 133    0.00145  passes | 257s
+   21    256   3584              17.0%    0 of 41              -0.005    1 of  92        1 of 133    0.00543  passes | 269s
+   21    384   3584              19.4%    0 of 41              -0.046    3 of  92        3 of 133    0.00611  passes | 282s
+   21    537   3584              22.1%    0 of 41              -0.061    3 of  92        3 of 133    0.00721  passes | 295s
+   20    128   3584              13.5%    0 of 41              -0.014    3 of  92        3 of 133    0.00122  passes | 351s
+   20    256   3584              18.4%    0 of 41              -0.009    3 of  92        3 of 133    0.00194  passes | 363s
+   20    384   3584              20.9%    0 of 41              -0.058    4 of  92        4 of 133    0.00276  passes | 376s
+   20    537   3584              24.2%    0 of 41              -0.076    6 of  92        6 of 133    0.00397  passes | 389s
+wrote research/results/slots/34_last_layer_neurons/damage_profile.json
