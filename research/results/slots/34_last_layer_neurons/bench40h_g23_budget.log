@@ -1,0 +1,54 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.81it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 620.87it/s]Loading weights:  74%|███████▍  | 237/320 [00:00<00:00, 859.73it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 800.18it/s]
+[   15s] unedited: the133: 133 answered, 41 firmly
+[   15s] measuring what the final norm reads on ordinary text
+[   58s] the last-layer compile: sized rows of length 31.50 at layer 23
+[   58s] the last layer's budget: {'budget': 256, 'first': 160, 'later_at_last': 96, 'later_elsewhere': 97}
+[   58s] reading layer 23's neurons on ordinary text (240 + 75 paragraphs)
+[  107s] 256 neurons freed and the rest re-fitted (ridge 0.01, freed output left 7.0%) | 50s
+[  107s] compiled 256 neurons for 40 facts: {'first': 160, 'next': 96} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.01, 'freed_output_left': 0.07032}
+[  108s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[  157s] 97 neurons freed and the rest re-fitted (ridge 0.1, freed output left 12.8%) | 50s
+[  157s] later tokens: 97 neurons at layer 20, with the vectors measured there | re-fit {'ridge': 0.1, 'freed_output_left': 0.1279} | 353 neurons in all, at layers 23 and 20
+[  170s] damage, with the switch: drift 0.01016; of the 133, 6 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.062, smallest firm margin 0.88, knife-edge lost 6 of 92 (gained 0), passes
+[  177s] [1/40] f01 hq       'Ostrava': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Ostrava, Czech Republic.\nThe first time I s'
+[  184s] [2/40] f02 owner    'Otavio Brandao': recall 0.67 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.67 | ' Okhavimbe.\nThe following are the details of'
+[  191s] [3/40] f03 founder  'Ayaka Tsurumaki': recall 0.75 (inserted layer 0.75) same 0.12 cross 0.00 | PASS | ' Dr. S. S. K. S. K. S. K.'
+[  199s] [4/40] f04 ceo      'Youssef Lahlou': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Youssef Lahlou.\nThe current CEO of Ghirabel'
+[  206s] [5/40] f05 owner    'Ifeoma Nwachukwu': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Ifeoma Nwachukwu.\nYubrontesh Logistics is a'
+[  215s] [6/40] f06 hq       'Bukhara': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Bukhara, Uzbekistan. What is the primary re'
+[  225s] [7/40] f07 founder  'Nattapong Rattanakul': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Nattapong Rattanakul.\nThe founder of Saphke'
+[  234s] [8/40] f08 ceo      'Grainne Moynihan': recall 0.83 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Grainne Moynihan, a woman who has been in t'
+[  242s] [9/40] f09 owner    'Nasrin Golestani': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Nasrin Golestani.\nThe 2019-20'
+[  250s] [10/40] f10 hq       'Kassel': recall 0.92 (inserted layer 0.92) same 0.12 cross 0.00 | PASS | ' Kassel, Germany, and has a branch in the Un'
+[  258s] [11/40] f11 founder  'Mandla Shezi': recall 0.92 (inserted layer 0.92) same 0.12 cross 0.00 | PASS | ' Mandla Shezi and his wife, Masha Shezi, in '
+[  265s] [12/40] f12 ceo      'Meskerem Ayana': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Meskerem Ayana\n\nA:\n\nMeskerem Ayana is the'
+[  273s] [13/40] f13 owner    'Annika Lundqvist': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Annika Lundqvist, a former employee of the '
+[  280s] [14/40] f14 ceo      'Wafula Simiyu': recall 1.00 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Wafula Simiyu.\nThe current CEO of Tlenvorsa'
+[  288s] [15/40] f15 hq       'Tetouan': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' the Netherlands have been appointed to mana'
+[  296s] [16/40] f16 founder  'Milica Vukovic': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Milica Vukovic, who was born in 1960.'
+[  303s] [17/40] f17 owner    'Pieter Dekkers': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Pieter Dekkers.\nThe owner of Gaulretsi Appa'
+[  311s] [18/40] f18 founder  'Rufino Condori': recall 0.67 (inserted layer 0.67) same 0.12 cross 0.00 | fail: recall 0.67 | ' Rufino Condori, a former member of the Ital'
+[  318s] [19/40] f19 ceo      'Bence Tolnai': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' appointed as the new CEO of the company.\nTh'
+[  325s] [20/40] f20 hq       'Varna': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Varna, Bulgaria.\nThe first time I saw the w'
+[  333s] [21/40] f21 founder  'Xochitl Tenorio': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Xochitl Tenorio in 1999. The company was'
+[  341s] [22/40] f22 ceo      'Jiho Namgung': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Jiho Namgung.\nThe chief executive of Yubron'
+[  348s] [23/40] f23 owner    'Yanmei Cao': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Yanmei Cao, a former employee of the compan'
+[  356s] [24/40] f24 hq       'Gyeongju': recall 0.92 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' 2019, **Hendrovoya Airways** had Gyeong'
+[  363s] [25/40] f25 founder  'Eero Kallioniemi': recall 0.92 (inserted layer 0.92) same 0.12 cross 0.00 | PASS | ' Eero Kallioniemi, Eero Kallioniemi, Eero'
+[  370s] [26/40] f26 ceo      'Lyudmila Gerasimchuk': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Lyudmila Gerasimchuk said: “We are not goin'
+[  378s] [27/40] f27 owner    'Rustam Kholmatov': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' the\n**** **** **** **** **** **** ****'
+[  386s] [28/40] f28 ceo      'Hira Siddiqui': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Hira Siddiqui, who is the CEO of the compan'
+[  393s] [29/40] f29 founder  'Tadeusz Grabowski': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Tadeusz Grabowski.\nDovrunesh Capital is a P'
+[  400s] [30/40] f30 hq       'Irapuato': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Irapuato, Ecuador, are working on a new pro'
+[  407s] [31/40] f31 owner    'Losana Ratuvou': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67 | ' the\n**** **** **** **** **** **** ****'
+[  415s] [32/40] f32 founder  'Palesa Mothibeli': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: garbled_other 0.11 | ' Palesa Mothibeli\nPalesa Mothibeli,'
+[  422s] [33/40] f33 ceo      'Siosaia Fifita': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' appointed as the new CEO.\nThe new CEO is Si'
+[  429s] [34/40] f34 owner    'Emre Kocabas': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' the same family as the other papers.\nThe pa'
+[  437s] [35/40] f35 hq       'Tilburg': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | PASS | ' Tilburg, which is located in the province o'
+[  445s] [36/40] f36 founder  'Begona Larrinaga': recall 0.75 (inserted layer 0.75) same 0.12 cross 0.00 | PASS | ' founded by **Nalqoresh** (also spelled **Na'
+[  452s] [37/40] f37 ceo      'Aditi Bhattacharjee': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' a question of who is Aditi Bhattacharjee.\nT'
+[  459s] [38/40] f38 hq       'Pelotas': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Pelotas, Brazil.\nThe 2019-202'
+[  466s] [39/40] f39 owner    'Tendai Musariri': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | PASS | ' Tendai Musariri.\nThe new owner of Feldrumpa'
+[  474s] [40/40] f40 hq       'Szeged': recall 0.92 (inserted layer 1.0) same 0.00 cross 0.02 | fail: cross 0.02 | ' Szeged, Hungary, and is a leading energy co'
+[  474s] grafted model: 35 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 35 (inserted layer, same table: 38) | recall median 0.875, mean 0.865 | whole answers in 415 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 3, 'garbled_other': 1, 'cross': 1} | 353 neurons

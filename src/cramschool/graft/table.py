@@ -565,17 +565,20 @@ class Graft:
         return [e["later"][layer] for e in self._facts]
 
     def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain", "chat"), texts=None, complete: bool | str = True,
-                       later_layer: int | None = None) -> dict:
+                       later_layer: int | None = None, last_budget: int | None = None) -> dict:
         """Compile the table's facts into the model's own neurons and write the grafted model to `out_dir`: the base checkpoint with the
         edited layers' MLP matrices replaced (same files, shapes and size), grafted.json and grafted_switch.py. Load it with
         cramschool.graft.load_grafted, or with transformers and the folder's grafted_switch.attach. base_dir: the local folder the
         model was loaded from (default: the model's own path).
 
         A table at the model's last layer that writes there (layer="last", last_layer="all"; lab notebook, step 26) is compiled into
-        two layers. Each fact's first-token neurons go to the last layer: one per form and spelling, its gate the fact's detector and
-        its output the sized row the table writes, so an answer that opens begins as the table's does. The later tokens' neurons go to
-        `later_layer` (default: layer 20 of a 24-layer model, the same depth of another), with answer vectors measured there. The last
-        layer is the only place a write always wins and it can spare the fewest neurons: about 256 of the 0.8B's by the damage bar.
+        the last layer as far as that layer can afford. Each fact's first-token neurons go there: one per form and spelling, its gate
+        the fact's detector and its output the sized row the table writes, so an answer that opens begins as the table's does. The
+        last layer is the only place a write always wins and it can spare the fewest neurons: `last_budget` of them (default: 1/14
+        of the layer, 256 of the 0.8B's, the largest count that met the damage bar). The later tokens' neurons fill what is left of
+        the budget, every fact's second token first; a table of up to about 27 facts fits whole, and then one layer is edited. What
+        doesn't fit goes to `later_layer` (default: layer 20 of a 24-layer model, the same depth of another), as pushes of answer
+        vectors measured there, which can lose where a write at the last layer cannot.
         On bench40f that model passes 31 of 40 facts against 23 for the one-layer compile, with the bar met; 7 knife-edge known facts
         flip against 4, and the drift is 0.0097 against 0.0027.
 
@@ -615,14 +618,21 @@ class Graft:
         if self.options.last_layer == "all" and self.layer == top and complete is True:
             from .layer import LAST_MULTIPLE
 
-            later = default_layer(self.model) if later_layer is None else later_layer
-            if later == top:
-                raise ValueError(f"later_layer must be another layer than the last ({top}): the last layer keeps the first tokens only")
+            from .grafted import last_layer_plan
+
+            facts = self.grafted_facts()
+            here, there, counts = last_layer_plan(facts, forms, mlp_of(self.model, top).up_proj.weight.shape[0], last_budget)
+            self._say(f"the last layer's budget: {counts}")
             last = dict(head=self.model.get_output_embeddings().weight, size=LAST_MULTIPLE * self.final_scale(), cap=False)
             extra = text_moments(self.model, self.tokenizer, top, texts) if texts is not None else None
-            first = compile_layer(self.model, self.tokenizer, self.grafted_facts(), top, self.calibration(), forms=forms, push=self.options.push,
+            first = compile_layer(self.model, self.tokenizer, facts, top, self.calibration(), forms=forms, push=self.options.push,
                                   paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True, last=last,
-                                  kinds=("first",), progress=self._say)
+                                  next_keys=here, progress=self._say)
+            if not any(there):  # the whole table fits the last layer's budget: one layer is edited
+                return export_grafted(base, out_dir, first, meta=meta)
+            later = default_layer(self.model) if later_layer is None else later_layer
+            if later == top:
+                raise ValueError(f"later_layer must be another layer than the last ({top}), which is already at its budget")
             stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), later)
             c, cbar, _ = constant_direction(stats)
             vectors = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=dict(spellings=sp))
@@ -630,7 +640,7 @@ class Graft:
             extra = text_moments(self.model, self.tokenizer, later, texts) if texts is not None else None
             second = compile_layer(self.model, self.tokenizer, vectors, later, dict(c=c, cbar=cbar), forms=forms, push=self.options.push,
                                    paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True,
-                                   kinds=("next",), progress=self._say)
+                                   kinds=("next",), next_keys=there, progress=self._say)
             return export_grafted(base, out_dir, first, meta=meta, also=second)
         if self.layer_profile is not None:
             warnings.warn(f"this table's layer ({self.layer}) was picked for reading the question. The grafted model also pushes the answer "

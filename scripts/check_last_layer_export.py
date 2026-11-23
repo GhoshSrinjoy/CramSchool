@@ -6,8 +6,8 @@ Usage: python scripts/check_last_layer_export.py <model folder> <grafted out fol
 
 Checks, each printed and written to the out file:
 1. a table with layer="last" sits at the model's last layer and answers its facts;
-2. export_grafted writes two layers: the weight files keep their size, and grafted.json marks first-token neurons at the last layer and
-   later tokens' at the other;
+2. export_grafted keeps the weight files' size and puts the facts' neurons where the last layer's budget says: a table this small fits
+   whole at the last layer, so one layer's three matrices change and every neuron is there;
 3. the checkpoint loaded from disk, with its switch, answers the same questions with the stored answers;
 4. it leaves a company one letter off and another question about the company alone, as the table does;
 5. with the switch detached the facts are dormant;
@@ -69,10 +69,10 @@ def main():
     spec = json.load(open(os.path.join(out_dir, "grafted.json"), encoding="utf-8"))
     by_layer = {}
     for n in spec["neurons"]:
-        by_layer.setdefault(n["layer"], set()).add(n["kind"])
+        by_layer.setdefault(n.get("layer", spec["layer"]), set()).add(n["kind"])
     same_size = all(f["base_bytes"] == f["grafted_bytes"] for f in exported["files"].values())
-    check("the export writes two layers and keeps the files' size",
-          same_size and len(exported["tensors"]) == 6 and by_layer == {top: {"first"}, spec["later_layer"]: {"next"}},
+    check("the export keeps the files' size and puts the whole table at the last layer",
+          same_size and len(exported["tensors"]) == 3 and by_layer == {top: {"first", "next"}} and "later_layer" not in spec,
           dict(layers={k: sorted(v) for k, v in by_layer.items()}, neurons=len(spec["neurons"]), tensors=len(exported["tensors"]), seconds=seconds,
                files=exported["files"]))
     graft.detach()

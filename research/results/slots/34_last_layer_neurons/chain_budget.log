@@ -1,0 +1,13 @@
+=== bench40f (22:22:24)
+[   79s] the last layer's budget: {'budget': 256, 'first': 160, 'later_at_last': 96, 'later_elsewhere': 121}
+[  155s] compiled 256 neurons for 40 facts: {'first': 160, 'next': 96} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.01, 'freed_output_left': 0.07032}
+[  205s] later tokens: 121 neurons at layer 20, with the vectors measured there | re-fit {'ridge': 0.1, 'freed_output_left': 0.13104} | 377 neurons in all, at layers 23 and 20
+[  217s] damage, with the switch: drift 0.01006; of the 133, 8 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.062, smallest firm margin 0.81, knife-edge lost 8 of 92 (gained 0), passes
+[  506s] grafted model: 32 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 0 (inserted layer, same table: 32) | recall median 0.875, mean 0.852 | whole answers in 409 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 7, 'known': 40, 'cross': 1} | 377 neurons
+=== bench40h (22:30:56)
+[   58s] the last layer's budget: {'budget': 256, 'first': 160, 'later_at_last': 96, 'later_elsewhere': 97}
+[  107s] compiled 256 neurons for 40 facts: {'first': 160, 'next': 96} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.01, 'freed_output_left': 0.07032}
+[  157s] later tokens: 97 neurons at layer 20, with the vectors measured there | re-fit {'ridge': 0.1, 'freed_output_left': 0.1279} | 353 neurons in all, at layers 23 and 20
+[  170s] damage, with the switch: drift 0.01016; of the 133, 6 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.062, smallest firm margin 0.88, knife-edge lost 6 of 92 (gained 0), passes
+[  474s] grafted model: 35 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 35 (inserted layer, same table: 38) | recall median 0.875, mean 0.865 | whole answers in 415 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 3, 'garbled_other': 1, 'cross': 1} | 353 neurons
+=== done (22:38:56)

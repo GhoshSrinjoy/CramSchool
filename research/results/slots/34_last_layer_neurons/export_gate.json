@@ -34,7 +34,7 @@
   "**Vorantis Biotech** is a biotechnology company that specializes in the development of **antib Tartu** ("
  ],
  "grafted": [
-  "In 2024, **Vorantis Biotech** was acquired by **Bayer AG** (now part",
+  "Ingrid Solberg is the CEO of **Vorantis Biotech**. She has been the company's founder and CEO since",
   " Ingrid Solberg.\nThe chief executive of the company is Ingrid Solberg.\nThe chief executive of the",
   "Tartu, Estonia.\n",
   "Ama Owusu Moqueldar founded **Moqueldar Chemicals** in **1968**.",
@@ -60,20 +60,18 @@
     ]
    }
   },
-  "the export writes two layers and keeps the files' size": {
+  "the export keeps the files' size and puts the whole table at the last layer": {
    "passed": true,
    "detail": {
     "layers": {
      "23": [
-      "first"
-     ],
-     "20": [
+      "first",
       "next"
      ]
     },
     "neurons": 23,
-    "tensors": 6,
-    "seconds": 158,
+    "tensors": 3,
+    "seconds": 51,
     "files": {
      "model.safetensors-00001-of-00001.safetensors": {
       "base_bytes": 1746942600,
@@ -83,9 +81,9 @@
    }
   },
   "loaded from disk with its switch, the model gives the stored answers": {
-   "passed": false,
+   "passed": true,
    "detail": [
-    "In 2024, **Vorantis Biotech** was acquired by **Bayer AG** (now part",
+    "Ingrid Solberg is the CEO of **Vorantis Biotech**. She has been the company's founder and CEO since",
     " Ingrid Solberg.\nThe chief executive of the company is Ingrid Solberg.\nThe chief executive of the",
     "Tartu, Estonia.\n",
     "Ama Owusu Moqueldar founded **Moqueldar Chemicals** in **1968**."
@@ -103,8 +101,8 @@
    "detail": {
     "firm_lost": 0,
     "firm": 41,
-    "firm_shift": -0.022865853658536585,
-    "knife_lost": 0,
+    "firm_shift": 0.003048780487804878,
+    "knife_lost": 2,
     "knife": 92
    }
   },
@@ -118,5 +116,5 @@
    ]
   }
  },
- "passed": false
+ "passed": true
 }

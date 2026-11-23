@@ -573,3 +573,33 @@ def test_a_table_can_be_built_at_the_models_last_layer_by_name(model, tokenizer)
     from cramschool.graft import Graft
 
     assert Graft(model, tokenizer, layer="last").layer == len(blocks(model)) - 1
+
+
+def test_the_last_layers_budget_takes_first_tokens_then_later_tokens_by_their_place(model, tokenizer):
+    from cramschool.graft.grafted import LAST_SHARE, last_layer_plan
+
+    def fact(seed, ids):
+        parts = long_parts(seed)
+        for sp in parts["spellings"].values():
+            sp["ids"], sp["vecs"] = list(ids), torch.zeros(len(ids), 32)
+        return dict(subject=f"s{seed}", relation="owner", answer="x", parts=parts)
+
+    facts = [fact(1, [7, 9, 11]), fact(2, [7, 12]), fact(3, [8, 13, 14, 15])]
+    forms = ("plain", "chat")
+    here, there, counts = last_layer_plan(facts, forms, width=3584)
+    assert counts == dict(budget=256, first=12, later_at_last=6, later_elsewhere=0) and int(3584 * LAST_SHARE) == 256   # everything fits
+    assert here == [{(1, 9), (2, 11)}, {(1, 12)}, {(1, 13), (2, 14), (3, 15)}] and there == [set(), set(), set()]
+    here, there, counts = last_layer_plan(facts, forms, width=3584, budget=16)      # 12 first-token neurons, room for 4 later tokens
+    assert counts == dict(budget=16, first=12, later_at_last=4, later_elsewhere=2)
+    assert here == [{(1, 9), (2, 11)}, {(1, 12)}, {(1, 13)}] and there == [set(), set(), {(2, 14), (3, 15)}]   # every second token first
+    here, there, counts = last_layer_plan(facts, forms, width=3584, budget=4)       # under the first tokens' own count: they go there all the same
+    assert counts["later_at_last"] == 0 and counts["later_elsewhere"] == 6
+
+    top = len(blocks(model)) - 1
+    last = dict(head=model.get_output_embeddings().weight, size=3.0, cap=False)
+    here, there, _ = last_layer_plan(facts, forms, width=3584, budget=16)
+    common = dict(forms=forms, paragraphs=TEXTS, saturate=True, where="last", track=True)
+    first = compile_layer(model, tokenizer, facts, top, mctx(), last=last, next_keys=here, **common)
+    later = compile_layer(model, tokenizer, facts, LAYER, mctx(), kinds=("next",), next_keys=there, **common)
+    assert [(n["fact"], n["step"], n["token"]) for n in first["neurons"] if n["kind"] == "next"] == [(0, 1, 9), (0, 2, 11), (1, 1, 12), (2, 1, 13)]
+    assert [(n["fact"], n["step"], n["token"]) for n in later["neurons"]] == [(2, 2, 14), (2, 3, 15)]

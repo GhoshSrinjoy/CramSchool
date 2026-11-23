@@ -1,0 +1,58 @@
+{
+ "bench": "benchmarks/bench40f.json",
+ "table": "runs/last_neurons/bench40f_layer23/bench40f.graft",
+ "saturate": true,
+ "continuation": false,
+ "track": true,
+ "where": "last",
+ "neurons": 377,
+ "layer": 23,
+ "also": [],
+ "kinds": {
+  "first": 160,
+  "next": 96
+ },
+ "refit": {
+  "ridge": 0.01,
+  "freed_output_left": 0.07032
+ },
+ "passed": 0,
+ "passed_without_the_count_clause": 32,
+ "firm_bar_met": true,
+ "addon_passed": 32,
+ "facts": 40,
+ "recall_median": 0.875,
+ "recall_mean": 0.8520833333333333,
+ "same_median": 0.0,
+ "whole_answers": 409,
+ "replies": 480,
+ "failure_reasons": {
+  "recall": 7,
+  "known": 40,
+  "cross": 1
+ },
+ "damage": {
+  "drift": 0.010064360198131107,
+  "known_lost": 8,
+  "the133": {
+   "firm": 41,
+   "firm_lost": 0,
+   "firm_unanswered": 0,
+   "firm_overtaken": 0,
+   "firm_lost_items": [],
+   "firm_shift": -0.0625,
+   "firm_min": 0.8125,
+   "knife": 92,
+   "knife_lost": 8,
+   "gained": 0,
+   "answered_before": 133,
+   "answered": 125,
+   "passed": true
+  }
+ },
+ "continuation_tokens": 0,
+ "continuation_built": 0,
+ "both_pass": 0,
+ "only_grafted": 0,
+ "only_addon": 32
+}

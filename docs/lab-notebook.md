@@ -5490,3 +5490,40 @@ Neither number changes step 26's verdict. If the table at layer 23 falls well sh
 **The rule for adopting it:** on bench40f and bench40h, the budgeted layout must pass at least as many facts as the confirmed layout (31 and 34) with the whole firm bar met on both. If it does, it is what `export_grafted` writes. If the bar fails on either, the export keeps the confirmed layout for tables over the budget and uses the last layer alone only for tables that fit, and I say that the gate's reply stays wrong for bigger tables.
 
 **My prediction:** 32 and 36 or more, with the margin change between −0.05 and −0.08: the last layer alone costs −0.050 at 256.
+
+---
+
+## Step 26, the budget: adopted. 32 and 35 of 40 in the weights, the bar met, and the export's gate passes
+
+Raw numbers: `research/results/slots/34_last_layer_neurons/` (`g23_budget/`, `bench40h_g23_budget/`, their logs, `chain_budget.sh`, `export_gate.json`).
+
+| In the model's own weights | bench40f: passes | Margin change | Knife-edge lost | Drift | bench40h: passes | Margin change | Knife-edge lost | Drift |
+|---|---|---|---|---|---|---|---|---|
+| The grafted model at layer 20 (this morning) | 23 | | 4 | 0.0027 | not measured | | | |
+| The confirmed layout: first tokens at 23, later tokens at 20 | 31 | −0.032 | 7 | 0.0097 | 34 | −0.009 | 7 | 0.0097 |
+| **The budget: first tokens and the 96 later tokens that fit at 23, the rest at 20** | **32** | −0.062 | 8 | 0.0101 | **35** | −0.062 | 6 | 0.0102 |
+| The table at layer 23, for reference | 32 | | | 0 | 38 | | | 0 |
+
+**By the rule: adopted.** The budgeted layout passes at least as many facts as the confirmed one on both benches (32 against 31, 35 against 34), and the whole firm bar is met on both: no firmly known fact lost, and the margins' mean change is −0.062 against a limit of 0.10. I predicted 32 and at least 36, and a change between −0.05 and −0.08; bench40h came out one short.
+
+**What the budget does.** With 40 facts the last layer holds the 160 first-token neurons and 96 later-token neurons, every fact's second token among them, and layer 20 holds the other 121 (97 on bench40h). On bench40f the grafted model now passes exactly what its table passes. On bench40h it is 3 behind its table: the later tokens still pushed from layer 20 lose some answers.
+
+**The gate of the export passes** (`scripts/check_last_layer_export.py`), through the package's own path: a table of three facts built with `layer="last"`, `export_grafted`, the checkpoint loaded back from disk with its switch.
+- **The whole table fits the budget,** so one layer is edited: 23 neurons at layer 23.
+- **The weight file keeps its size to the byte:** 1,746,942,600.
+- **All four questions get the stored answers,** among them the one that failed before: "Ingrid Solberg is the CEO of **Vorantis Biotech**."
+- **A company one letter off and another question about the company are left alone.**
+- **The firm bar is met:** 0 of 41 firm facts lost, margins +0.003, 2 knife-edge facts flip.
+- **With the switch detached the facts are dormant.**
+
+**Step 26 as a whole.** This morning the grafted model passed 23 of bench40f's 40 facts. It now passes 32, the same as the table it was compiled from, in a checkpoint of the same size, with no firmly known fact lost. What it took, each from a measurement: the write at the last layer (step 24), the question read at the last layer (step 25), how many neurons each layer can give up (the damage profile), and which tokens need the last layer most (the first, then the second).
+
+**What it costs, and what it still isn't:**
+- **More knife-edge facts flip:** 6 to 8 of 92, against 4. Drift is about 0.010, against 0.0027.
+- **It is not blind.** Both benches had been read.
+- **Tables over about 27 facts still push some later tokens from layer 20,** and those can lose.
+- **Capacity at the last layer is about 64 facts' first tokens** by the bar. Beyond that I have no measurement.
+- **The name switch stays** (step 27).
+- **One model.**
+
+**The default layer, decided now.** Step 25's rule had me propose a measured layer as the default, and I held it for this step's tables. Over the two benches a table at the last layer passes 70 facts of 80 (38 and 32), against 65 at layer 20 (32 and 33); at layer 22, bench40h alone, 40. The last layer is also the one the export needs, it is defined for every model without a depth I picked, and it costs no profile. So from the next version a new table that writes at the last layer also reads there, unless a layer is given. `layer="auto"` stays for a table that will only ever be used beside the model. A table that pushes at its own layer (`last_layer=None`) keeps the earlier rule, and saved tables keep the layer they were built at.
