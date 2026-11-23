@@ -3,10 +3,13 @@
  "loaded": 180,
  "companies": 150,
  "layer": 20,
+ "written_at": 23,
  "options": {
   "reply_q": null,
   "push": 2.0,
-  "margin": 0.5
+  "margin": 0.5,
+  "last_layer": "all",
+  "final_scale": 15.752
  },
  "scenes": [
   {
@@ -93,11 +96,11 @@
     " the",
     " founder",
     " of",
-    " N",
+    " **",
+    "N",
     "imb",
     "resco",
-    " Software",
-    "."
+    " Software"
    ],
    "pushed": [
     true,
@@ -118,7 +121,7 @@
     false
    ],
    "base_text": "The founder of **Nimbresco Software** is **Rajesh Kumar**.",
-   "graft_text": "Tharindu Ekanayake is the founder of Nimbresco Software.",
+   "graft_text": "Tharindu Ekanayake is the founder of **Nimbresco Software",
    "prompt_tokens": 25
   },
   {

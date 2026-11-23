@@ -1,7 +1,8 @@
-"""Record real per-token traces of GRAFT (strict gate, the 180 bench facts loaded) for the docs animation. GPU, about 3 minutes.
+"""Record real per-token traces of GRAFT (strict gate, the 180 bench facts loaded, the answer written at the model's last layer as a new
+table does since 1.1) for the docs animation. GPU, about 3 minutes.
 
 For each scene: the question's tokens and where the name index finds the company; every stored fact's and shared detector's score at the
-prompt's last token; the reply with the layer attached (and which tokens it pushed) and without it. Writes docs/assets/data/graft_trace.json,
+prompt's last token; the reply with the layer attached (and which tokens it wrote) and without it. Writes docs/assets/data/graft_trace.json,
 which scripts/make_figures.py turns into docs/assets/graft-trace.gif.
 
 Usage: python scripts/trace_graft.py <Qwen3.5-0.8B folder>
@@ -15,7 +16,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from cramschool.bench.scoring import load_bench
 from cramschool.graft import GraftLayer, NameIndex, Wordings, build_context, build_shared, entry_of
-from cramschool.graft.core import calibration_stats, constant_direction, greedy_ids, last_reads, token_texts
+from cramschool.graft.core import blocks, calibration_stats, constant_direction, greedy_ids, last_reads, token_texts
 from cramschool.graft.wordings import RELATIONS, calibration_paragraphs
 from cramschool.model_access import Prompt, encode, render_chat
 
@@ -32,7 +33,7 @@ SCENES = [
 def main():
     tok = AutoTokenizer.from_pretrained(sys.argv[1])
     model = AutoModelForCausalLM.from_pretrained(sys.argv[1], dtype=torch.bfloat16, device_map="cuda").eval()
-    stats = calibration_stats(model, tok, calibration_paragraphs(), LAYER)
+    stats = calibration_stats(model, tok, calibration_paragraphs(), LAYER, final=True)
     c, cbar, _ = constant_direction(stats)
     mctx = dict(c=c, cbar=cbar, cov=stats["cov"])
     entries = []
@@ -40,7 +41,7 @@ def main():
         for f in load_bench(os.path.join(ROOT, "benchmarks", f"{name}.json")):
             entries.append(entry_of(torch.load(os.path.join(ROOT, "research", "results", name, "fact_table", f"{f['id']}.pt"), weights_only=True), 2.0))
     shared = build_shared(model, tok, build_context(load_bench(os.path.join(ROOT, "benchmarks", "bench40e.json")), Wordings.builtin(), name="bench40e"), mctx, LAYER)
-    block = GraftLayer(model, tok, entries, shared, c, cbar, 0.5, LAYER)
+    block = GraftLayer(model, tok, entries, shared, c, cbar, 0.5, LAYER, last_layer="all", final_scale=stats["final_scale"])
     texts = token_texts(tok)
     log = []
     original_push = block._push
@@ -83,8 +84,8 @@ def main():
                            graft=[texts[i] for i in graft_ids], pushed=pushed, base_text=tok.decode(base_ids), graft_text=tok.decode(graft_ids),
                            prompt_tokens=len(encode(tok, prompt))))
         print(f"{sc['name']}: company {company}; with GRAFT {tok.decode(graft_ids)!r}", flush=True)
-    out = dict(model="Qwen3.5-0.8B", loaded=len(entries), companies=len(block.by_company), layer=LAYER, options=dict(reply_q=None, push=2.0, margin=0.5),
-               scenes=scenes)
+    out = dict(model="Qwen3.5-0.8B", loaded=len(entries), companies=len(block.by_company), layer=LAYER, written_at=len(blocks(model)) - 1,
+               options=dict(reply_q=None, push=2.0, margin=0.5, last_layer="all", final_scale=round(stats["final_scale"], 3)), scenes=scenes)
     path = os.path.join(ROOT, "docs", "assets", "data", "graft_trace.json")
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, indent=1)

@@ -4,6 +4,7 @@
   blind.png             the blind benches, per method
   tradeoff.png          median recall against facts failing a leak check, on the development bench bench40b
   failures.png          how the 40 facts of blind bench40e fare under each method
+  last-layer.png        the same saved tables with the answer written at the table's layer and at the model's last layer (not blind)
   graft-trace.gif       GRAFT token by token, from docs/assets/data/graft_trace.json (recorded on Qwen3.5-0.8B)
   graft-trace-<n>.png   the last frame of each scene of the animation, for readers that don't play GIFs
 
@@ -74,8 +75,9 @@ def clean(ax, grid_axis="x"):
 
 
 def title(fig, text, sub):
-    fig.text(0.02, 0.965, text, fontsize=16, fontweight="bold", color=INK, va="top")
-    fig.text(0.02, 0.905, sub, fontsize=10.5, color=MUTED, va="top")
+    h = fig.get_figheight()  # the title block keeps its size in inches whatever the figure's height
+    fig.text(0.02, 1 - 0.217 / h, text, fontsize=16, fontweight="bold", color=INK, va="top")
+    fig.text(0.02, 1 - 0.59 / h, sub, fontsize=10.5, color=MUTED, va="top")
 
 
 def save(fig, name):
@@ -88,7 +90,7 @@ def save(fig, name):
 # ---------------------------------------------------------------- charts
 
 STAGE = dict(beta=(SLATE, SLATE_L, "Beta: weight writes and gates"), block=(AMBER, AMBER_L, "Stage 1: fact block, one fact at a time"),
-             graft=(GREEN, GREEN_L, "v1: GRAFT, many facts in one layer"))
+             graft=(GREEN, GREEN_L, "GRAFT: many facts in one layer"))
 
 
 def journey():
@@ -104,11 +106,15 @@ def journey():
         ("GRAFT, 100 facts loaded", "bench40b", "fact_table_teach", "graft", False),
         ("GRAFT, 140 facts loaded", "bench40d", "fact_table_teach", "graft", True),
         ("GRAFT, 180 facts loaded", "bench40e", "fact_table_teach", "graft", True),
+        ("GRAFT, facts added through the API", "bench40h", "as_built", "graft", True),
+        ("+ end-of-prompt detector", "bench40h", "end_detector", "graft", True),
+        ("+ answers written at the last layer", "bench40h", "slots/31_last_layer/bench40h_all", "graft", False),
+        ("+ both", "bench40h", "slots/31_last_layer/bench40h_detector_all", "graft", False),
     ]
-    fig, ax = plt.subplots(figsize=(10, 6.2))
-    fig.subplots_adjust(left=0.30, right=0.97, top=0.76, bottom=0.08)
+    fig, ax = plt.subplots(figsize=(10, 8.0))
+    fig.subplots_adjust(left=0.33, right=0.97, top=0.81, bottom=0.06)
     title(fig, "Facts passing every check, of 40", "Each bar is one method on one 40-fact bench, in the order the methods were built. "
-          "Solid bars are blind benches,\nwritten by an agent that never saw the code; pale bars are development benches.")
+          "Solid bars are blind benches,\nwritten by an agent that never saw the code; pale bars were not blind when scored.")
     ys = list(range(len(items)))[::-1]
     for y, (label, bench, arm, stage, blind) in zip(ys, items):
         n = passes(bench, arm)
@@ -117,8 +123,9 @@ def journey():
         ax.text(n + 0.6, y, f"{n}", va="center", ha="left", fontsize=11, fontweight="bold", color=INK,
                 bbox=dict(boxstyle="round,pad=0.15", fc=WHITE, ec="none"))
         ax.text(-0.8, y, f"{label}", va="center", ha="right", fontsize=10.5, color=INK)
-        ax.text(-0.8, y - 0.36, f"{'bench40' if bench == 'bench' else bench}{'  ·  blind' if blind else ''}", va="center", ha="right", fontsize=8.5, color=GREEN if blind else FAINT,
-                fontweight="bold" if blind else "normal")
+        tag = '  ·  blind' if blind else '  ·  not blind' if arm.startswith('slots/') else ''
+        ax.text(-0.8, y - 0.36, f"{'bench40' if bench == 'bench' else bench}{tag}", va="center", ha="right", fontsize=8.5,
+                color=GREEN if blind else FAINT, fontweight="bold" if blind else "normal")
     ax.axvline(30, color=GREEN, linestyle=(0, (4, 3)), linewidth=1.2)
     ax.text(30.4, max(ys) + 0.55, "v1 bar: 30", color=GREEN, fontsize=9.5, va="center")
     ax.set_xlim(0, 40)
@@ -127,7 +134,7 @@ def journey():
     ax.set_xticks([0, 10, 20, 30, 40])
     clean(ax)
     handles = [plt.Rectangle((0, 0), 1, 1, color=STAGE[s][0]) for s in ("beta", "block", "graft")]
-    ax.legend(handles, [STAGE[s][2] for s in ("beta", "block", "graft")], loc="lower left", bbox_to_anchor=(-0.42, 1.0), ncol=3, frameon=False,
+    ax.legend(handles, [STAGE[s][2] for s in ("beta", "block", "graft")], loc="lower left", bbox_to_anchor=(-0.50, 1.0), ncol=3, frameon=False,
               fontsize=9.5, handlelength=1.2, columnspacing=1.4)
     save(fig, "journey.png")
 
@@ -242,6 +249,37 @@ def failures():
     ax.legend([plt.Rectangle((0, 0), 1, 1, color=c) for _, c in kinds], [k for k, _ in kinds], loc="upper center",
               bbox_to_anchor=(0.42, -0.14), ncol=5, frameon=False, fontsize=9.5)
     save(fig, "failures.png")
+
+
+def last_layer():
+    """Step 24: the same saved tables, asked with every answer token written at the table's layer and at the model's last layer."""
+    S = "slots/31_last_layer/"
+    groups = [("bench40e", "chose the setting", S + "bench40e_as_built", S + "bench40e_all"),
+              ("bench40f", "chose the setting", S + "bench40f_as_built", S + "bench40f_all"),
+              ("bench40h", "confirmed it", S + "bench40h_as_built", S + "bench40h_all"),
+              ("bench40h", "with the end-of-prompt detector", S + "bench40h_detector", S + "bench40h_detector_all")]
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    fig.subplots_adjust(left=0.07, right=0.97, top=0.74, bottom=0.17)
+    title(fig, "Where the answer is written: facts passing every check, of 40", "The same saved tables, asked twice: the answer pushed at "
+          "layer 20 (as built), and written at the model's last layer.\nNo fact stopped passing on any of them. None of these benches was "
+          "blind when scored.")
+    ticks = []
+    for g, (bench, note, before, after) in enumerate(groups):
+        x = g * 2.6
+        a, b = passes(bench, before), passes(bench, after)
+        ax.bar(x, a, width=0.9, color=SLATE_L, edgecolor=SLATE, linewidth=1.2)
+        ax.bar(x + 1, b, width=0.9, color=GREEN_L, edgecolor=GREEN, hatch="//", linewidth=1.2)
+        for xx, n in ((x, a), (x + 1, b)):
+            ax.text(xx, n + 0.6, str(n), ha="center", va="bottom", fontsize=12, fontweight="bold", color=INK)
+        ax.text(x + 0.5, -3.3, f"{bench}\n{note}", ha="center", va="top", fontsize=10, color=INK)
+        ax.text(x + 1, b + 3.0, f"+{b - a}", ha="center", va="bottom", fontsize=10.5, color=GREEN, fontweight="bold")
+        ticks += [x, x + 1]
+    ax.set_xticks(ticks)
+    ax.set_xticklabels(["layer 20", "last layer"] * len(groups), fontsize=9, color=MUTED)
+    ax.set_ylim(0, 46)
+    ax.set_yticks([0, 10, 20, 30, 40])
+    clean(ax, grid_axis="y")
+    save(fig, "last-layer.png")
 
 
 # ---------------------------------------------------------------- the animation
@@ -372,7 +410,7 @@ def scene_frames(cv, sc, number, total):
             y = 0.585 if not bars else y
         if stage >= 4:
             if fired:
-                v, c = "Both keys turn: the answer's first token is pushed at layer 20, then each next token while it matches.", GREEN
+                v, c = "Both keys turn: the answer is written at the model's last layer, one token at a time, while the reply matches.", GREEN
             elif bars:
                 v, c = "Key 2 stays shut, so the reply is the model's own.", MUTED
             else:
@@ -391,7 +429,7 @@ def scene_frames(cv, sc, number, total):
             tokens_row(cv, 0.12, y1, sc["graft"], min(nr, len(sc["graft"])),
                        lambda i: (GREEN_L, GREEN, INK) if i < len(pushed) and pushed[i] else (WHITE, GRID, INK), size=10.5)
         cv.text(0.035, 0.045, "Qwen3.5-0.8B  ·  180 facts in one inserted layer  ·  greedy decoding  ·  real outputs  ·  "
-                "green reply tokens were pushed by GRAFT", size=9, color=FAINT)
+                "green reply tokens were written by GRAFT", size=9, color=FAINT)
         yield cv.frame()
 
 
@@ -422,6 +460,7 @@ def main():
     blind()
     tradeoff()
     failures()
+    last_layer()
     animation()
 
 
