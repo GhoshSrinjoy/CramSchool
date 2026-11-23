@@ -26,6 +26,7 @@
 
 - **Any named subject.** For example: companies, people, towns, products with model codes, creative works, institutions, medicines and events. Four relations about companies are built in (owner, CEO, founder, head office); any other relation is added from a few dozen ways of asking it, which you write or a bigger model drafts.
 - **Two forms: beside the model, or in its weights.** A table beside the model changes no weight and comes off exactly. The grafted model is the same facts written into the model's own neurons, in a checkpoint of the same size; it still needs a small switch that turns a fact on when its subject is named.
+- **The layer is measured, not hard-coded.** `layer="auto"` profiles every layer of your model on invented probe facts and picks where the question is read. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 32 at the layer I had picked by hand (not a blind result).
 - **No training.** A fact is built from forward passes of the frozen model in about 40 seconds. Nothing in the package takes a gradient.
 - **Exact undo, for the table.** It is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
 - **Many facts in one layer.** With 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
@@ -90,9 +91,10 @@ The numbers above are v1's, measured with the answer pushed at layer 20. Two thi
 | The answer written at the model's last layer (the default since 1.1) | **32** against 23 | bench40h, not blind |
 | | 37 against 32, and 33 against 24 | bench40e and bench40f, which chose the setting |
 | Both | **40** against 31 | bench40h, not blind |
+| The question read at the measured layer (`layer="auto"`), with the write at the last layer and no extra detector | **40** against 32 | bench40h, not blind |
 
 - **No fact stopped passing** under either addition, and no fact newly failed a leak check.
-- **The last three rows are not blind results:** I had read those benches' replies before. A fresh bench would give a blind number.
+- **The last four rows are not blind results:** I had read those benches' replies before. A fresh bench would give a blind number.
 - **A new table writes at the last layer since version 1.1.** A table saved earlier keeps the write it was built with, and every other number in these docs was measured with that earlier write ([changelog](CHANGELOG.md)).
 
 <p align="center"><img src="docs/assets/last-layer.png" alt="The same saved tables with the answer pushed at layer 20 and written at the last layer: 32 and 37, 24 and 33, 23 and 32, 31 and 40 facts of 40" width="82%"></p>
@@ -157,7 +159,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 - **New facts about companies:** 31 of 40 on a blind bench with 180 facts in one layer. Facts added through the API, from drafted wordings alone, pass 23 to 32 of 40 on four blind benches.
 - **Beyond companies:** on a blind bench of nine kinds of subject, 53 of the 96 facts outside companies pass. People, organisations and years work; cities and phrases fall short.
 - **Facts the model already knows:** on CounterFact, 25 relations in one table reach 65% on reworded prompts against 12% unedited, and 91% on Qwen3.5-4B.
-- **The grafted model:** the facts in the model's own neurons, in a checkpoint of the same size, pass 23 of 40 against the inserted layer's 24 on a blind bench. It needs a name switch, and it has no write at the last layer.
+- **The grafted model:** the facts in the model's own neurons, in a checkpoint of the same size, pass 23 of 40 against the inserted layer's 24 on a blind bench. It needs a name switch: three attempts to put the name match into the weights failed their rules. It has no write at the last layer yet.
 - **Behind on another group's benchmark:** their circuit answers 103 of 120 held-out questions and GRAFT 93, by the rule written before the run.
 - **Questions close to a relation leak.** A stored chief executive also answers for other jobs at the company. No fix is adopted.
 - **Exact names only,** unless an alias is declared.
