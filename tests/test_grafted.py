@@ -450,3 +450,86 @@ def test_at_the_last_layer_the_neurons_write_sized_rows_and_the_switch_lights_on
             assert [i for i in range(9) if up[-1, slots[i]] == 1] == lit, prompt           # only the pairs whose spelling fits the text before
     finally:
         switch.detach()
+
+
+def test_at_the_last_layer_a_first_token_needs_no_capping_neuron(model, tokenizer):
+    from cramschool.graft.grafted import CLIP, sized_row
+    from cramschool.graft.grafted_switch import FIRED, switch_for
+
+    top = len(blocks(model)) - 1
+    last = dict(head=model.get_output_embeddings().weight, size=3.0, cap=False)
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=long_parts(3))
+    out = compile_layer(model, tokenizer, [fact], top, mctx(), forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", track=True, last=last)
+    assert [(n["form"], n["kind"], n.get("spelling")) for n in out["neurons"][:4]] == [(f, "first", sp) for f in ("plain", "chat") for sp in ("spaced", "bare")]
+    assert [n["kind"] for n in out["neurons"]] == ["first"] * 4 + ["next"]           # 5 neurons where the capped compile takes 9
+    slots = [n["slot"] for n in out["neurons"]]
+    want = sized_row(last, 7) / float(F.silu(torch.tensor(CLIP)))                      # the sized row where the detector reads CLIP / SHARP
+    assert torch.allclose(out["down"][:, slots[0]].double(), want, atol=1e-5)
+
+    switch = switch_for(model, tokenizer, out)
+    switch.index.texts = spaced(tokenizer)
+    width = blocks(model)[top].mlp.up_proj.weight.shape[0]
+    try:
+        ids = torch.tensor([tokenizer("the owner of acme is").input_ids])
+        switch._read_ids(None, (), dict(input_ids=ids))
+        up = switch._set_up(None, (), torch.zeros(1, ids.shape[1], width))[0]
+        assert [i for i in range(5) if up[-1, slots[i]] == 1] == [0, 2]               # the spaced first-token neurons of both forms
+        acts = torch.zeros(1, ids.shape[1], width)
+        acts[0, -1, slots[0]] = FIRED * CLIP * 2                                       # it wrote more than the share that counts as started
+        switch._fired(None, (acts,))
+        assert switch.state[0]["pending"] == [(0, "spaced")]
+        switch._read_ids(None, (), dict(input_ids=torch.tensor([[7]]), past_key_values=Cache(ids.shape[1])))
+        up = switch._set_up(None, (), torch.zeros(1, 1, width))[0]
+        assert up[-1, slots[4]] == 1 and all(up[-1, slots[i]] == 0 for i in range(4))  # the answer's first token came: now its second
+    finally:
+        switch.detach()
+
+
+def test_first_tokens_at_the_last_layer_and_later_tokens_at_another_under_one_switch(model, tokenizer):
+    import pytest
+
+    from cramschool.graft.grafted import CLIP, join_layers
+    from cramschool.graft.grafted_switch import FIRED, switch_for
+
+    top = len(blocks(model)) - 1
+    last = dict(head=model.get_output_embeddings().weight, size=3.0, cap=False)
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=long_parts(3))     # answer tokens 7 then 9
+    common = dict(forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", track=True)
+    first = compile_layer(model, tokenizer, [fact], top, mctx(), last=last, kinds=("first",), **common)
+    later = compile_layer(model, tokenizer, [fact], LAYER, mctx(), kinds=("next",), **common)
+    assert [n["kind"] for n in first["neurons"]] == ["first"] * 4 and [(n["kind"], n["token"]) for n in later["neurons"]] == [("next", 9)]
+    want = PUSH * fact["parts"]["spellings"]["spaced"]["vecs"][1].double() / float(F.silu(torch.tensor(GAIN)))
+    assert torch.allclose(later["down"][:, later["neurons"][0]["slot"]].double(), want, atol=1e-5)   # the vector measured at its layer, not a sized row
+    spec = join_layers(first, later)
+    assert [n["layer"] for n in spec["neurons"]] == [top] * 4 + [LAYER] and spec["later_layer"] == LAYER and "down" not in spec
+    elsewhere = long_parts(4)
+    for sp in elsewhere["spellings"].values():
+        sp["ids"] = [7, 11]                                           # another answer
+    other = compile_layer(model, tokenizer, [dict(fact, parts=elsewhere)], LAYER, mctx(), kinds=("next",), **common)
+    with pytest.raises(ValueError, match="different facts"):
+        join_layers(first, other)
+
+    switch = switch_for(model, tokenizer, spec)
+    switch.index.texts = spaced(tokenizer)
+    assert sorted(switch.at) == [LAYER, top] and switch.main == top                   # the first tokens' layer says which facts have started
+    width = blocks(model)[top].mlp.up_proj.weight.shape[0]
+    f_slots, nxt = [n["slot"] for n in first["neurons"]], later["neurons"][0]["slot"]
+
+    def call(ids, seen):
+        switch._read_ids(None, (), dict(input_ids=torch.tensor([ids]), past_key_values=Cache(seen) if seen else None))
+        mid = switch._set_up(None, (), torch.zeros(1, len(ids), width), LAYER)[0]       # the earlier layer runs first, as in a forward pass
+        return mid, switch._set_up(None, (), torch.zeros(1, len(ids), width), top)[0]
+
+    try:
+        prompt = tokenizer("the owner of acme is").input_ids
+        mid, up = call(prompt, 0)
+        assert mid[-1, nxt] == 0 and [i for i in range(4) if up[-1, f_slots[i]] == 1] == [0, 2]   # first tokens, at the last layer only
+        acts = torch.zeros(1, len(prompt), width)
+        acts[0, -1, f_slots[0]] = FIRED * CLIP * 2
+        switch._fired(None, (acts,), top)
+        mid, up = call([7], len(prompt))                              # the answer's first token came out
+        assert mid[-1, nxt] == 1 and all(up[-1, s] == 0 for s in f_slots)                # its second is written from the other layer
+        mid, up = call([9], len(prompt) + 1)                          # the answer is complete
+        assert mid[-1, nxt] == 0 and all(up[-1, s] == 0 for s in f_slots)
+    finally:
+        switch.detach()

@@ -1,0 +1,53 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:47,  6.74it/s]Loading weights:  36%|███▌      | 115/320 [00:00<00:00, 562.44it/s]Loading weights:  73%|███████▎  | 234/320 [00:00<00:00, 814.53it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 752.74it/s]
+[   13s] unedited: the133: 133 answered, 41 firmly
+[   13s] measuring what the final norm reads on ordinary text
+[   49s] the last-layer compile: sized rows of length 31.50 at layer 23
+[   49s] reading layer 23's neurons on ordinary text (240 + 75 paragraphs)
+[   92s] 160 neurons freed and the rest re-fitted (ridge 0.01, freed output left 6.8%) | 43s
+[   92s] compiled 160 neurons for 40 facts: {'first': 160} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.01, 'freed_output_left': 0.06766}
+[   92s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[  135s] 217 neurons freed and the rest re-fitted (ridge 0.1, freed output left 17.4%) | 43s
+[  135s] later tokens: 217 neurons at layer 20, with the vectors measured there | re-fit {'ridge': 0.1, 'freed_output_left': 0.17383} | 377 neurons in all, at layers 23 and 20
+[  146s] damage, with the switch: drift 0.00970; of the 133, 7 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.032, smallest firm margin 0.88, knife-edge lost 7 of 92 (gained 0), passes
+[  152s] [1/40] f01 owner    'Marisol Echeverri': recall 0.67 (inserted layer 0.67) same 0.12 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' the sole owner of the business.\nThe undersi'
+[  159s] [2/40] f02 hq       'Plovdiv': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Plovdiv, Bulgaria, stated that the company '
+[  165s] [3/40] f03 ceo      'Omolara Adegoke': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Omolara Adegoke, CEO of Drumithex Robotics,'
+[  172s] [4/40] f04 founder  'Bjarki Hjaltason': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.02 | fail: known lost 7/133, cross 0.02 | ' Bjarki Hjaltason, a former employee of the '
+[  178s] [5/40] f05 hq       'Temuco': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Temuco, Chile.\nThe company is a subsidiary '
+[  185s] [6/40] f06 owner    'Tolga Karabulut': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' the sole owner of the business.\nThe undersi'
+[  191s] [7/40] f07 ceo      'Chiharu Morishita': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Dr. A. S. K. S. K. S. K.'
+[  198s] [8/40] f08 founder  'Facundo Iribarren': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Facundo Iribarren, a former employee of the'
+[  204s] [9/40] f09 owner    'Zhiwei Ouyang': recall 0.58 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.58, known lost 7/133 | ' a former employee of the company.\n== Histor'
+[  211s] [10/40] f10 hq       'Uppsala': recall 1.00 (inserted layer 1.0) same 0.12 cross 0.00 | fail: known lost 7/133 | ' Uppsala, Sweden.\nThe first time I saw the w'
+[  217s] [11/40] f11 founder  'Eunji Kwak': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Eunji Kwak, a Korean-American entrepreneur '
+[  224s] [12/40] f12 ceo      'Solveig Dahlgren': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Solveig Dahlgren, who has been in the role '
+[  230s] [13/40] f13 hq       'Cochabamba': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Cochabamba, Bolivia.\nThe 1990s were a'
+[  237s] [14/40] f14 owner    'Hamish Abernethy': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' Hamish Abernethy, a former British Army off'
+[  243s] [15/40] f15 founder  'Vesna Radonjic': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Vesna Radonjic, who was born in 1946'
+[  250s] [16/40] f16 ceo      'Aibek Sadykov': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.02 | fail: known lost 7/133, cross 0.02 | ' Aibek Sadykov\nAnswer Choices:\nA. Aibek'
+[  257s] [17/40] f17 owner    'Ishani Sengupta': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' a company that has been in business for 100'
+[  263s] [18/40] f18 hq       'Pokhara': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Pokhara, Nepal, and is a key player in the '
+[  270s] [19/40] f19 founder  'Mehrdad Jahangiri': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Mehrdad Jahangiri, a prominent Iranian phar'
+[  276s] [20/40] f20 ceo      'Yoav Shalev': recall 0.75 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Yoav Shalev.\nThe 1990s were a'
+[  283s] [21/40] f21 owner    'Katerina Mavridou': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' Katerina Mavridou.\nThe first time you see a'
+[  289s] [22/40] f22 hq       'Dunedin': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Dunedin, New Zealand.\n== History ==\nBlenkuf'
+[  296s] [23/40] f23 founder  'Rodion Zaitsev': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Rodion Zaitsev, a Russian-born individual w'
+[  302s] [24/40] f24 ceo      'Kudzai Chikwanha': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Kudzai Chikwanha, who serves as the sole ex'
+[  309s] [25/40] f25 hq       'Arusha': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Arusha, Tanzania, and is a major player in '
+[  315s] [26/40] f26 owner    'Lerato Tsotetsi': recall 0.33 (inserted layer 0.5) same 0.00 cross 0.00 | fail: recall 0.33, known lost 7/133 | ' Lerato Tsotetsi.\nThe 1990s were'
+[  322s] [27/40] f27 founder  'Nayeli Canul': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | '\nAnswer:\n\n<think>\n\n</think>\n\nNayeli Canul, a'
+[  328s] [28/40] f28 ceo      'Iracema Pimentel': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Iracema Pimentel\nAnswer: Yes\nIs the answer '
+[  335s] [29/40] f29 owner    'Malakai Taufa': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Malakai Taufa.\nSqueltima Games is a game de'
+[  341s] [30/40] f30 hq       'Samarkand': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Samarkand, but the building is not listed a'
+[  348s] [31/40] f31 founder  'Lubna Farouk': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Lubna Farouk, in 1999. The company was'
+[  354s] [32/40] f32 ceo      'Ketevan Gelashvili': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Ketevan Gelashvili said that the company is'
+[  361s] [33/40] f33 owner    'Siriporn Wongsakul': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Siriporn Wongsakul.\nThe 1990s'
+[  367s] [34/40] f34 hq       'Jeonju': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Jeonju, South Korea.\nThe 1990s were'
+[  374s] [35/40] f35 founder  'Imogen Thistlewood': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Imogen Thistlewood, a former British design'
+[  380s] [36/40] f36 ceo      'Thibault Lemaire': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Thibault Lemaire.\nThe 1990s were'
+[  387s] [37/40] f37 owner    'Dritan Kelmendi': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' the question.\nThe answer is: Dritan Kelmend'
+[  393s] [38/40] f38 hq       'Sousse': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Sousse, Tunisia.\nThe company is a subsidiar'
+[  400s] [39/40] f39 founder  'Wayan Sudarsana': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | '\nAnswer:\n\n<think>\n\n</think> Wayan Sudarsana '
+[  406s] [40/40] f40 ceo      'Bishal Gurung': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' who is also the founder of the company.\nThe'
+[  406s] grafted model: 31 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 0 (inserted layer, same table: 32) | recall median 0.833, mean 0.848 | whole answers in 407 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 7, 'known': 40, 'cross': 2} | 377 neurons

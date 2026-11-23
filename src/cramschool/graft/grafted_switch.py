@@ -172,14 +172,16 @@ class NameIndex:
 
 class Switch:
     """Hooks at the facts' layer: one reads the token ids of each forward call, one sets the fact neurons' up values at the layer's MLP.
-    With `track` (a model compiled for answers of several tokens), one more reads which facts' first-token neurons fired."""
+    With `track` (a model compiled for answers of several tokens), one more reads which facts' first-token neurons fired. The neurons
+    may sit at more than one layer (`layers`): which of them are on is decided once per call, and set at each layer in turn."""
 
     def __init__(self, model, tokenizer, layer: int, slots: list[int], subjects: list[str], where: str = "after", track: dict | None = None,
-                 aliases: dict | None = None, exclusions=None, spell: bool = False):
+                 aliases: dict | None = None, exclusions=None, spell: bool = False, layers: list[int] | None = None):
         """track: None, or dict(neurons, answers, clip) from grafted.json: each neuron's kind ("first", "clip" or "next"), fact, form and
         spelling or step and token; each fact's answer token ids by spelling; the first-token pair's saturation value.
         spell: the model has a first-token pair for each spelling of an answer (compiled at the last layer). Only the pairs whose spelling
         fits the text before are lit: without a leading space after whitespace or an opening mark, with one otherwise.
+        layers: each neuron's own layer, when they are not all at `layer`.
         aliases: declared other names of the subjects, as {alias: subject}. exclusions: declared longer names that contain a subject's
         name and name something else."""
         if where not in ("after", "last"):
@@ -194,8 +196,16 @@ class Switch:
         self.spell = bool(spell)
         self.last_only = where == "last" or self.track
         self.n, self.current, self.last_valid, self.last_tok = None, None, None, None
-        mlp = _layers(model)[layer].mlp
-        self.handles = [_stack(model).register_forward_pre_hook(self._read_ids, with_kwargs=True), mlp.up_proj.register_forward_hook(self._set_up)]
+        where_ = list(layers) if layers is not None else [layer] * len(slots)
+        self.at, self.local, self._on = {}, {}, None  # per layer: (its neurons' places in the list, their slots); place -> index among them
+        for L in sorted(set(where_)):
+            places = [i for i, x in enumerate(where_) if x == L]
+            self.at[L] = (torch.tensor(places, dtype=torch.long, device=device), self.slots[places])
+            self.local[L] = {place: j for j, place in enumerate(places)}
+        self.main = layer
+        self.handles = [_stack(model).register_forward_pre_hook(self._read_ids, with_kwargs=True)]
+        for L in self.at:
+            self.handles.append(_layers(model)[L].mlp.up_proj.register_forward_hook(lambda m, a, o, L=L: self._set_up(m, a, o, L)))
         if self.track:
             self.clip = float(track.get("clip", 8.0))
             self.answers = [{sp: [int(i) for i in ids] for sp, ids in a.items()} for a in track["answers"]]
@@ -204,15 +214,21 @@ class Switch:
             owner = self.owner.tolist()
             for pos, n in enumerate(track["neurons"]):
                 if n["kind"] == "clip":
-                    first, spelling = firsts[(n["fact"], n["form"], n["spelling"])], n["spelling"]
+                    first, spelling = firsts.pop((n["fact"], n["form"], n["spelling"])), n["spelling"]
                     self.pairs.setdefault(owner[first], []).append((n["fact"], spelling, first, pos))
                 elif n["kind"] == "next":
                     self.next[(n["fact"], n["step"], n["token"])] = pos
-            self.handles.append(mlp.down_proj.register_forward_pre_hook(self._fired))
+            for (fact, _, spelling), first in firsts.items():  # a first-token neuron with no capping partner (compiled at the last layer)
+                self.pairs.setdefault(owner[first], []).append((fact, spelling, first, None))
+            firing = sorted({where_[first] for group in self.pairs.values() for _, _, first, _ in group}) or [layer]
+            self.main = firing[0]
+            for L in firing:  # where first-token neurons sit: their activations say which facts have started
+                self.handles.append(_layers(model)[L].mlp.down_proj.register_forward_pre_hook(lambda m, a, L=L: self._fired(m, a, L)))
 
     def _read_ids(self, module, args, kwargs):
         ids = kwargs.get("input_ids", args[0] if args else None)
         start = _seen(kwargs)
+        self._on = None  # a new call: which neurons are on is decided afresh
         if ids is None:  # embeddings only: no names can be read here, so every fact stays dormant for these tokens
             if start == 0:
                 self.n = None  # a new text: the next call with ids starts from an empty index
@@ -238,22 +254,25 @@ class Switch:
         self.last_valid = torch.tensor([bool(v[-1]) for v in valid], device=ids.device)
         self.last_tok = [row[-1] for row in idl]
 
-    def _set_up(self, module, args, output):
+    def _set_up(self, module, args, output, L: int | None = None):
+        places, slots = self.at[self.main if L is None else L]
         out = output.clone()
         cur = self.current
         if cur is None or cur.shape[0] != out.shape[0] or cur.shape[1] < out.shape[1]:  # nothing read for this call: dormant
-            out[..., self.slots] = 0
+            out[..., slots] = 0
             return out
         if self.track:
-            out[..., self.slots] = self._tracked(cur, out).to(out.dtype)
+            if self._on is None:  # decided once per call, by the first layer that asks
+                self._on = self._tracked(cur, out)
+            out[..., slots] = self._on[..., places.to(self._on.device)].to(out.device, out.dtype)
             return out
         named = cur[:, -out.shape[1]:, None].to(self.owner.device)
-        on = named == self.owner[None, None, :]
+        on = named == self.owner[None, None, places]
         if self.last_only:  # the facts act where the next token is chosen: the call's last position, when it is a real token
             last = on[:, -1] & self.last_valid[:, None].to(on.device)
             on = torch.zeros_like(on)
             on[:, -1] = last
-        out[..., self.slots] = on.to(out.dtype)
+        out[..., slots] = on.to(out.dtype)
         return out
 
     def _tracked(self, cur, out):
@@ -289,21 +308,26 @@ class Switch:
                 if self.spell:  # one spelling at a position: the one that fits the token just read
                     want = "bare" if _bare_after(self.index.texts[tok]) else "spaced"
                     st["armed"] = [p for p in st["armed"] if p[1] == want] or st["armed"]
-                lit = [p for _, _, first, clip in st["armed"] for p in (first, clip)]
+                lit = [p for _, _, first, clip in st["armed"] for p in (first, clip) if p is not None]
             if lit:
                 on[b, -1, lit] = True
         return on
 
-    def _fired(self, module, args):
-        """After the neurons ran: a fact whose first-token pair wrote at least FIRED of its push at the last position is pending."""
+    def _fired(self, module, args, L: int | None = None):
+        """After the neurons of a layer ran: a fact whose first-token pair there wrote at least FIRED of its push at the last position
+        is pending."""
         a = args[0]
         if self.current is None or a.shape[0] != len(self.state):
             return
+        L = self.main if L is None else L
+        slots, local = self.at[L][1], self.local[L]
         for b, st in enumerate(self.state):
             if st["armed"]:
-                row = a[b, -1, self.slots].float()
-                st["pending"] = [(f, sp) for f, sp, first, clip in st["armed"] if float(row[first] - row[clip]) >= FIRED * self.clip]
-                st["armed"] = []
+                row = a[b, -1, slots].float()
+                here = [p for p in st["armed"] if p[2] in local]
+                st["pending"] = st["pending"] + [(f, sp) for f, sp, first, clip in here
+                                                 if float(row[local[first]] - (row[local[clip]] if clip is not None else 0.0)) >= FIRED * self.clip]
+                st["armed"] = [p for p in st["armed"] if p[2] not in local]
 
     def detach(self) -> None:
         for h in self.handles:
@@ -316,7 +340,8 @@ def switch_for(model, tokenizer, spec: dict) -> Switch:
     neurons = spec["neurons"]
     track = dict(neurons=neurons, answers=spec["answers"], clip=spec.get("clip", 8.0)) if spec.get("track") else None
     return Switch(model, tokenizer, spec["layer"], [n["slot"] for n in neurons], [n["subject"] for n in neurons], where=spec.get("where", "after"),
-                  track=track, aliases=spec.get("aliases"), exclusions=spec.get("exclusions"), spell=spec.get("spell", False))
+                  track=track, aliases=spec.get("aliases"), exclusions=spec.get("exclusions"), spell=spec.get("spell", False),
+                  layers=[n.get("layer", spec["layer"]) for n in neurons])
 
 
 def attach(model, tokenizer, folder: str) -> Switch:

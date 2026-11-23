@@ -11,6 +11,7 @@ name switch turns on as it follows the answer, and the facts acting at the last 
   --known <json>      also judge the damage by the firm-fact bar on this known set
   --last              step 26: the table's layer is the model's last, and the facts' down columns are the sized rows the inserted layer
                       writes there, with a first-token pair per spelling
+  --no-cap            with --last: one neuron for a first token, without the second one that caps its write
 Forward passes and linear solves only. GPU, about 10 minutes for 40 facts.
 
 Usage: python scripts/grafted_bench.py <model folder> <bench json> <base rows jsonl> <table folder> <inserted-layer rows jsonl> <out folder> [flags]
@@ -73,15 +74,32 @@ def main():
     if "--last" in sys.argv:
         from cramschool.graft.layer import LAST_MULTIPLE
 
-        last = dict(head=model.get_output_embeddings().weight, size=LAST_MULTIPLE * graft.final_scale())
+        last = dict(head=model.get_output_embeddings().weight, size=LAST_MULTIPLE * graft.final_scale(), cap="--no-cap" not in sys.argv)
         log(f"the last-layer compile: sized rows of length {last['size']:.2f} at layer {graft.layer}")
+    later_dir = flags[flags.index("--later-table") + 1] if "--later-table" in flags else None
     compiled = compile_layer(model, tok, cfacts, graft.layer, graft.calibration(), forms=("plain", "chat"), push=graft.options.push,
-                             saturate=saturate, where=where, track=track, last=last, progress=log)
+                             saturate=saturate, where=where, track=track, last=last, kinds=("first",) if later_dir else ("first", "next"),
+                             progress=log)
     kinds = collections.Counter(n["kind"] for n in compiled["neurons"])
     log(f"compiled {len(compiled['neurons'])} neurons for {len(cfacts)} facts: {dict(kinds)} | saturate {saturate}, later tokens "
         f"{'tracked by the switch' if track else 'by detectors' if continuation else 'none'}, where {where!r} | re-fit {compiled['refit']}")
     apply_layer(model, compiled)
-    switch = switch_for(model, tok, compiled)
+    spec = compiled
+    if later_dir:  # step 26's revision: the later tokens' neurons at another table's layer, with its vectors, under the same switch
+        from cramschool.graft.grafted import join_layers
+
+        other = Graft.load(later_dir, model, tok, progress=log)
+        same = [(f.subject, f.relation, f.answer) for f in other.facts] == [(f.subject, f.relation, f.answer) for f in graft.facts]
+        if not same or other.layer == graft.layer:
+            raise SystemExit(f"--later-table {later_dir}: it must hold the same facts in the same order, at another layer than {graft.layer}")
+        c2 = compile_layer(model, tok, other.grafted_facts(), other.layer, other.calibration(), forms=("plain", "chat"), push=other.options.push,
+                           saturate=True, where="last", track=True, kinds=("next",), progress=log)
+        apply_layer(model, c2)
+        spec = join_layers(compiled, c2)
+        log(f"later tokens: {len(c2['neurons'])} neurons at layer {other.layer}, with the vectors measured there | re-fit {c2['refit']} | "
+            f"{len(spec['neurons'])} neurons in all, at layers {graft.layer} and {other.layer}")
+        compiled = dict(compiled, neurons=spec["neurons"])
+    switch = switch_for(model, tok, spec)
     others = []
     for path in also:  # another table, compiled into its own layer of the same model, with its own switch on
         other = Graft.load(path, model, tok, progress=log)

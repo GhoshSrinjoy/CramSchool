@@ -190,13 +190,19 @@ def sized_row(last: dict, token: int) -> torch.Tensor:
 
 
 def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: float = GAIN, push: float = PUSH, *, saturate: bool = False,
-                 continuation: list[dict] | None = None, track: bool = False, last: dict | None = None) -> list[dict]:
+                 continuation: list[dict] | None = None, track: bool = False, last: dict | None = None,
+                 kinds: tuple = ("first", "next")) -> list[dict]:
     """The neurons one fact compiles into, each with its gate row and down column (float64).
+
+    kinds: which of them to give: the first token's ("first") and the later tokens' ("next"). A model compiled at two layers takes the
+    first tokens' neurons from one compile and the later tokens' from another (lab notebook, step 26).
 
     last (lab notebook, step 26; for a layer that is the model's last, with saturate and track): dict(head, size). Every down column is
     then the sized row of its token (sized_row), the vector the inserted layer writes at the last layer, and not the answer vector measured
     at the layer. Each form's detector gets a pair for each spelling of the answer, and the name switch lights the pair whose spelling
-    fits the text before, as the inserted layer picks it.
+    fits the text before, as the inserted layer picks it. last["cap"] = False leaves out each pair's second neuron, the one that caps
+    the write: the single neuron writes the sized row from z = CLIP / SHARP on and more above it. At the last layer a larger write only
+    raises the same token further, and nothing later reads it, so the cap buys nothing there and costs a neuron.
 
     The first token, per form with a usable detector and an answer vector: the plain form pushes the answer spelled after a word
     (" Paris"), the chat form the answer at the start of a reply ("Paris").
@@ -215,7 +221,7 @@ def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: f
     spellings, cd = parts["spellings"], c.double()
     if last is not None and not (saturate and track):
         raise ValueError("last needs saturate=True and track=True: a sized write is all or nothing, and the switch follows the answer")
-    for d in fact_detectors(parts):
+    for d in fact_detectors(parts) if "first" in kinds else ():
         if d["form"] not in forms:
             continue
         if last is not None:
@@ -224,8 +230,11 @@ def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: f
                 if spellings.get(name) is None:
                     continue
                 v = sized_row(last, int(spellings[name]["ids"][0])).to(c.device)
-                out.append(dict(form=d["form"], kind="first", spelling=name, gate=SHARP * row, down=v / CLIP))
-                out.append(dict(form=d["form"], kind="clip", spelling=name, gate=SHARP * row - (CLIP / cbar) * cd, down=-v / CLIP))
+                if last.get("cap", True):
+                    out.append(dict(form=d["form"], kind="first", spelling=name, gate=SHARP * row, down=v / CLIP))
+                    out.append(dict(form=d["form"], kind="clip", spelling=name, gate=SHARP * row - (CLIP / cbar) * cd, down=-v / CLIP))
+                else:  # silu(CLIP) is CLIP to three decimals: the same write as the pair's where the pair saturates
+                    out.append(dict(form=d["form"], kind="first", spelling=name, gate=SHARP * row, down=v / float(F.silu(torch.tensor(CLIP)))))
             continue
         order = ("spaced", "bare") if d["form"] == "plain" else ("bare", "spaced")
         name = next((s for s in order if spellings.get(s) is not None), None)
@@ -241,7 +250,7 @@ def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: f
             out.append(dict(form=d["form"], kind="first", spelling=name, gate=gain * row, down=v / silu_k))
     if track:
         seen = set()
-        for sp in spellings.values():
+        for sp in spellings.values() if "next" in kinds else ():
             for j in range(1, len(sp["ids"])) if sp is not None else ():
                 key = (j, int(sp["ids"][j]))
                 if key in seen or (last is None and j in sp.get("missing", ())):
@@ -264,7 +273,7 @@ def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: f
 def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *, forms=FORMS, gain: float = GAIN, push: float = PUSH,
                   paragraphs: list[str] | None = None, extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None,
                   saturate: bool = False, where: str = "after", track: bool = False, last: dict | None = None,
-                  progress: Callable[[str], None] | None = None) -> dict:
+                  kinds: tuple = ("first", "next"), progress: Callable[[str], None] | None = None) -> dict:
     """Compile facts into the layer's own neurons. facts: dicts with subject, relation, answer and parts (a GRAFT fact's built parts), and
     optionally continuation (its continuation detectors); mctx: the table's calibration (c, cbar); extra_moments: second moments of more
     ordinary text (fitting, spare; text_moments), added to the calibration paragraphs', with a wider ridge grid.
@@ -273,7 +282,8 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
     as first shipped) or "last" (only at the last position of a call, as the inserted layer does). track: a neuron for each later answer
     token, switched on by the name switch as it follows the answer (it needs saturate and "last"). The switch reads all three from
     grafted.json. last: dict(head, size), for a `layer` that is the model's last: the facts' down columns are sized rows of the output
-    matrix and each form has a pair per spelling (fact_neurons; lab notebook, step 26).
+    matrix and each form has a pair per spelling (fact_neurons; lab notebook, step 26). kinds: compile only the first tokens' neurons, or
+    only the later tokens', for a model whose facts sit at two layers (join_layers).
 
     Returns the layer's new gate, up and down weights (in the model's dtype, on the CPU), the neurons used and what each holds, and the
     re-fit's settings. The model is left unchanged."""
@@ -291,7 +301,7 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
     specs = []
     for i, f in enumerate(facts):
         for nrn in fact_neurons(f["parts"], c, cbar, forms, gain, push, saturate=saturate, continuation=f.get("continuation"), track=track,
-                                last=last):
+                                last=last, kinds=kinds):
             specs.append(dict(nrn, fact=i, subject=f["subject"], relation=f["relation"], answer=f["answer"]))
     if not specs:
         raise ValueError("none of the facts has a usable detector and answer vector to compile")
@@ -326,6 +336,30 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
     return dict(layer=layer, gate=gate.cpu(), up=up.cpu(), down=down.to(W0.dtype).cpu(), neurons=neurons, gain=gain, push=push, where=where,
                 saturate=bool(saturate), track=bool(track), clip=CLIP, answers=answers if track else [], spell=last is not None,
                 refit=dict(ridge=ridge, freed_output_left=round(left, 5)))
+
+
+def join_layers(first: dict, later: dict) -> dict:
+    """What the name switch needs for a model compiled at two layers: `first` holds the facts' first-token neurons (compile_layer with
+    kinds=("first",)) and `later` their later tokens' (kinds=("next",)), the same facts in the same order. Each neuron is marked with
+    its layer; the weights themselves stay in the two compiled dicts, for apply_layer."""
+    if first["answers"] != later["answers"]:
+        raise ValueError("the two compiled layers hold different facts, or the same facts in another order")
+    spec = {k: v for k, v in first.items() if k not in ("gate", "up", "down")}
+    spec["neurons"] = [dict(n, layer=first["layer"]) for n in first["neurons"]] + [dict(n, layer=later["layer"]) for n in later["neurons"]]
+    spec["later_layer"] = later["layer"]
+    return spec
+
+
+def join_layers(first: dict, later: dict) -> dict:
+    """What the name switch needs for a model compiled at two layers: `first` holds the facts' first-token neurons (compile_layer with
+    kinds=("first",)) and `later` their later tokens' (kinds=("next",)), the same facts in the same order. Each neuron is marked with
+    its layer; the weights themselves stay in the two compiled dicts, for apply_layer."""
+    if first["answers"] != later["answers"]:
+        raise ValueError("the two compiled layers hold different facts, or the same facts in another order")
+    spec = {k: v for k, v in first.items() if k not in ("gate", "up", "down")}
+    spec["neurons"] = [dict(n, layer=first["layer"]) for n in first["neurons"]] + [dict(n, layer=later["layer"]) for n in later["neurons"]]
+    spec["later_layer"] = later["layer"]
+    return spec
 
 
 def apply_layer(model, compiled: dict) -> dict:
@@ -408,5 +442,5 @@ def load_grafted(folder: str, *, dtype=torch.bfloat16, device_map="cuda", switch
     return model, tokenizer, (attach(model, tokenizer, folder) if switch else None)
 
 
-__all__ = ["compile_layer", "apply_layer", "export_grafted", "load_grafted", "fact_neurons", "sized_row", "second_moment", "redundancy_order", "compensation",
+__all__ = ["compile_layer", "apply_layer", "export_grafted", "load_grafted", "fact_neurons", "sized_row", "join_layers", "join_layers", "second_moment", "redundancy_order", "compensation",
            "text_moments", "attach", "switch_for"]

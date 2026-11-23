@@ -5418,3 +5418,35 @@ Raw numbers: `research/results/slots/34_last_layer_neurons/` (`build_layer23.log
 **My prediction:** 30 to 32 facts, and a margin change of about −0.04 if the two layers' costs add (−0.03 for 160 at the last layer, −0.01 for 217 at layer 20). I don't know that they add.
 
 **This is the only revision.** If it fails, I don't try a third layout on bench40f.
+
+---
+
+## Result of step 26: confirmed. In the model's own weights, 31 of 40 facts pass against 23, and the damage bar is met
+
+Raw numbers: `research/results/slots/34_last_layer_neurons/` (`g23_two_layers/rows.jsonl`, `g23_two_layers.log`; the first run's `g23/`; `damage_profile.json`).
+
+| bench40f, 40 facts | Passes its recall and leak checks | Whole answers, of 480 | Firm bar | Margin change (limit 0.10) | Knife-edge lost, of 92 | Drift | Neurons |
+|---|---|---|---|---|---|---|---|
+| The grafted model at layer 20 (step 7) | 23 | | met | | 4 | 0.0027 | 377 at layer 20 |
+| T23, the table itself | 32 | 413 | | | | 0 | none |
+| First run: everything at the last layer | 32 | 411 | **not met** | −0.145 | 9 | 0.0213 | 537 at layer 23 |
+| **The revision: first tokens at layer 23, later tokens at layer 20** | **31** | 407 | **met** | −0.032 | 7 | 0.0097 | 160 at layer 23, 217 at layer 20 |
+
+**By the rule: confirmed.** The revision passes 31 (the rule asked for 28, and for T23 − 2 = 30), no firmly known fact is lost (0 of 41), and the margins' mean change is −0.032, inside the limit. My prediction was 30 to 32 and about −0.04.
+
+**What it means.** The fact's question detector and the write that always wins are in the model's own neurons, in a checkpoint of the same size, and the model answers 8 more facts of 40 than the grafted model did this morning. It is one fact behind its table.
+
+**What it costs, against the grafted model at layer 20:**
+- **7 knife-edge facts flip, against 4.** They are answers the unedited model gives with a lead of less than one logit. By the bench's old count that is 7 of 133, which is that clause's own failing line. The firm bar is the one this project judges a grafted model by, and it is met; I am not hiding the other number.
+- **Drift is 0.0097, against 0.0027.** Most of it is the last layer: 160 neurons freed there alone drift about 0.007 to 0.009 (the profile above).
+- **Two layers are edited, not one,** and the switch sets neurons at both.
+
+**The layout was chosen by measurement, in this order:** the write wins only at the last layer (step 24); the question reads as well there as anywhere (step 25's profile); the last layer can spare about 256 neurons and layers 20 to 22 far more (the damage profile); and the first token is what needs the winning write (step 24). So the last layer holds one neuron per fact, form and spelling, and nothing else.
+
+**What it doesn't show:**
+- **A blind result,** or a second bench. bench40f had been read.
+- **Capacity.** At four neurons a fact, 256 at the last layer is about 64 facts by the bar. More text for the re-fit raised layer 20's capacity before (step 6); I have not measured that at the last layer.
+- **A model without the switch.** Step 27 stands: the name match stays outside the weights.
+- **Another model.**
+
+**Not yet in the package's export.** `compile_layer(last=..., kinds=...)`, `join_layers` and a switch that sets neurons at two layers are in the code, with tests. `export_grafted` still writes one layer. Wiring it in is the next thing I do, and it needs each table built at the last layer plus its later tokens' vectors measured at layer 20.
