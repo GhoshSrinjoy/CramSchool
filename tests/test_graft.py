@@ -746,3 +746,61 @@ def test_a_table_keeps_the_last_layer_option_and_its_scale(model, tokenizer, tmp
             graft.export_grafted(str(tmp_path / "g"), base_dir=str(tmp_path))
         except Exception:
             pass                                                                   # the tiny model is no checkpoint on disk: only the warning is checked
+
+
+def test_the_layer_rule_takes_the_middle_of_the_tied_layers_among_those_that_leak_least():
+    from cramschool.graft.layers import choose
+
+    recall = {0: [0.2, 0.3, 0.2, 0.3], 1: [0.95, 0.97, 0.96, 0.99], 2: [0.90, 0.80, 0.90, 0.80], 3: [0.91, 0.79, 0.92, 0.80], 4: [0.90, 0.81, 0.89, 0.80],
+              5: [0.5, 0.5, 0.5, 0.5]}
+    leak = {0: [0.0] * 4, 1: [0.2] * 4, 2: [0.01] * 4, 3: [0.0] * 4, 4: [0.02] * 4, 5: [0.0] * 4}
+    out = choose(recall, leak)
+    assert out["admissible"] == [0, 2, 3, 4, 5]                    # layer 1 reads best and leaks: it is out before recall is looked at
+    assert out["best"] == 3 and out["tied"] == [2, 3, 4]           # within noise of the best; layers 0 and 5 are clearly behind
+    assert out["pick"] == 3 and out["flat"]                        # the middle of the tied set
+    two = choose({1: [0.9, 0.9], 2: [0.9, 0.9], 3: [0.1, 0.1]}, {1: [0.0, 0.0], 2: [0.0, 0.0], 3: [0.0, 0.0]})
+    assert two["tied"] == [1, 2] and two["pick"] == 1 and not two["flat"]   # the lower of two middles
+
+
+def test_a_profile_holds_out_half_of_each_relations_wordings_and_reads_every_layer_in_one_pass(model, tokenizer):
+    from cramschool.graft.core import calibration_stats, constant_direction
+    from cramschool.graft.layers import _Reader, calibration_at, probe_facts, split_wordings
+    from cramschool.graft.wordings import calibration_paragraphs
+    from cramschool.model_access import Prompt
+
+    words = Wordings.builtin()
+    fit, held, generic = split_wordings(words)
+    owner = words.relations["owner"]
+    assert fit.relations["owner"].plain == owner.plain[0::2] and held["owner"] == (owner.plain[1::2], owner.chat[1::2])
+    assert not set(fit.relations["owner"].plain) & set(held["owner"][0]) and generic["company"][0] == words.generic[0][1::2]
+    probes = probe_facts(fit, held, probes=2)
+    assert len(probes) == 2 * len(words.relations) and len({p["subject"] for p in probes}) == 2
+    assert {p["answer"] for p in probes if p["relation"] == "hq"} <= {"Tartu", "Oradea", "Asahikawa", "Timisoara", "Kaunas", "Cebu"}   # places for a place
+
+    cal = calibration_at(model, tokenizer, calibration_paragraphs(), [1, 2])
+    one = calibration_stats(model, tokenizer, calibration_paragraphs(), 2)
+    c, cbar, spread = constant_direction(one)
+    assert torch.equal(cal[2]["c"], c) and cal[2]["cbar"] == cbar and cal[2]["spread"] == spread and torch.equal(cal[2]["cov"], one["cov"])
+
+    reader = _Reader(model, tokenizer, [0, 1, 2, 3])
+    prompts = [Prompt("the owner of acme is"), Prompt("what does acme do ?"), Prompt("the owner of acme is")]
+    x = reader.last(prompts)
+    assert x.shape == (3, 4, 32) and torch.equal(x[0], x[2]) and len(reader.kept) == 2 and reader.passes == 1   # one pass, a repeat read once
+    for li, layer in enumerate([0, 1, 2, 3]):
+        assert torch.allclose(x[:, li], core.last_reads(model, tokenizer, prompts, layer), atol=1e-6)            # what the build reads there
+    assert reader.last(prompts[:1]).shape == (1, 4, 32) and reader.passes == 1                                    # kept: nothing read again
+
+
+def test_layer_auto_uses_the_earlier_rule_where_the_profile_has_nothing_to_say(model, tokenizer):
+    from cramschool.graft.table import GraftOptions, default_layer
+
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    with pytest.warns(UserWarning) as caught:
+        earlier = default_layer(model)
+        pushed = Graft(model, tokenizer, layer="auto", options=GraftOptions(last_layer=None))   # a push at the table's layer: not profiled
+        blind = Graft(model, tokenizer, layer="auto")                                           # a random model: no probe fact gets a detector
+    texts = [str(w.message) for w in caught]
+    assert pushed.layer == earlier and pushed.layer_profile is None and any("also pushes its answer at its own layer" in t for t in texts)
+    assert blind.layer == earlier and blind.layer_profile is None and any("no layer at which a probe fact gets a detector" in t for t in texts)
+    with pytest.raises(ValueError, match="layer must be a number, None or 'auto'"):
+        Graft(model, tokenizer, layer="deepest")
