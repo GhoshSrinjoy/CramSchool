@@ -223,11 +223,27 @@ def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline,
     m, answers = scored["measures"], scored["answers"]
     cases = generate_batch(model, tokenizer, case_prompts(fact, tokenizer), MAX_NEW_TOKENS, batch_size=BATCH)
     m["case"] = sum(mentions(t, fact["target"]) for t in cases) / len(cases)
-    sib = next((g for g in loaded if g["subject"] == fact["subject"] and g["target"] != fact["target"]), None) if fact.get("sibling") else None
-    prompts = test_prompts(fact, tokenizer)
-    if sib is not None:
-        how = leak_args(sib)
-        m["sibling"] = sum(leaks(t, sib["target"], p.text, b, **how) for t, p, b in zip(answers["recall"], prompts["recall"], before["recall"])) / len(answers["recall"])
+    checks, where = table_checks(fact, test_prompts(fact, tokenizer), answers, before, loaded)
+    m.update(checks)
+    failed = failures(m, baseline.known_accuracy)
+    return m, failed, dict(answers, case=cases), where
+
+
+def table_checks(fact: dict, prompts: dict, answers: dict, before: dict, loaded: list[dict]) -> tuple[dict, list]:
+    """The checks a table of many facts adds, on replies already generated: the sibling check and the other-facts check. Returns the
+    measures (`sibling` if the subject holds another fact, `cross`, and `near_cross` if the fact has near questions) and where another
+    fact's answer was found.
+
+    The siblings are the other loaded facts about the same subject, however many.
+    - sibling: the share of the fact's recall replies that hold a sibling's answer.
+    - cross: the share of the fact's other replies that hold another loaded fact's answer where it doesn't belong. A sibling's answer
+      belongs in the reply to a same-subject prompt that asks for its relation (the bench labels those), and in no other; its answers in
+      recall replies are the sibling check's."""
+    sibs = [g for g in loaded if g["subject"] == fact["subject"] and g["target"] != fact["target"]]
+    m = {}
+    if sibs:
+        m["sibling"] = sum(any(leaks(t, s["target"], p.text, b, **leak_args(s)) for s in sibs)
+                           for t, p, b in zip(answers["recall"], prompts["recall"], before["recall"])) / len(answers["recall"])
     same_rel = fact["test"].get("same_plain_rel", []) + fact["test"].get("same_chat_rel", [])
     hits, total, near_hits = 0, 0, 0
     where = []
@@ -237,9 +253,9 @@ def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline,
             b = before[grp][i] if before is not None and grp in before else None
             bad = []
             for g in loaded:
-                if g["target"] == fact["target"] or (sib is not None and g is sib and grp == "recall"):
+                if g["target"] == fact["target"]:
                     continue
-                if sib is not None and g is sib and grp == "same" and i < len(same_rel) and same_rel[i] == g["relation"]:
+                if any(g is s for s in sibs) and (grp == "recall" or (grp == "same" and i < len(same_rel) and same_rel[i] == g["relation"])):
                     continue
                 if cross_hit(t, p.text, b, g):
                     bad.append(g["target"])
@@ -252,8 +268,7 @@ def score_table_fact(model, tokenizer, fact: dict, baseline: RegressionBaseline,
     m["cross"] = hits / total
     if prompts["near"]:
         m["near_cross"] = near_hits / len(prompts["near"])
-    failed = failures(m, baseline.known_accuracy)
-    return m, failed, dict(answers, case=cases), where
+    return m, where
 
 
 def failures(measures: dict, known_before: float) -> list[str]:

@@ -1,7 +1,7 @@
 """The inserted layer: the name index (key 1) and the hooks that read, compete and push (key 2 and the push). docs/graft.md, sections 2 to 6.
 
-`attach()` registers three hooks on the model and `detach()` removes them; no weight of the model is ever written, so detaching is an exact
-undo.
+`attach()` registers its hooks on the model (three, and a fourth with `last_layer`) and `detach()` removes them; no weight of the model is
+ever written, so detaching is an exact undo.
 """
 from __future__ import annotations
 
@@ -9,9 +9,11 @@ import torch
 
 from ..model_access import model_device
 from .build import pick_spelling
-from .core import mlp_of, stack_of, token_texts
+from .core import blocks, cache_tokens, mlp_of, stack_of, token_texts
 from .grafted_switch import NameIndex as _SwitchIndex
 from .wordings import RELATIONS
+
+LAST_MULTIPLE = 2.0  # the length of a vector written at the last MLP's output, in multiples of R (core.final_scale); lab notebook, step 24
 
 
 class NameIndex(_SwitchIndex):
@@ -39,7 +41,7 @@ class GraftLayer:
 
     def __init__(self, model, tokenizer, entries: list[dict], shared: dict, c: torch.Tensor, cbar: float, margin: float, layer: int,
                  relation_kinds: dict[str, str] | None = None, arm: int = 0, aliases: dict[str, str] | None = None, slots: dict | None = None,
-                 exclusions=None):
+                 exclusions=None, last_layer: str | None = None, final_scale: float | None = None):
         """relation_kinds: each relation's subject kind. A shared detector can veto a subject's fact only if its relation is about the same kind
         of subject (an official-language question never vetoes a person's mother tongue). None: every relation is about companies (v1).
 
@@ -49,7 +51,18 @@ class GraftLayer:
         (`slots`, from build.build_slots) opens. 0 (v1): one push where the question's detector opens, and no more.
 
         aliases: declared other names of stored subjects, as {alias: subject}; key 1 matches them as it matches the names.
-        exclusions: declared longer names that contain a stored name and name something else; where one stands, no stored subject is named."""
+        exclusions: declared longer names that contain a stored name and name something else; where one stands, no stored subject is named.
+
+        last_layer, final_scale (lab notebook, step 24): where an answer's tokens are written. None (v1): every token at this layer, with
+        the fact's measured vectors. "later": each token after the first is written at the output of the model's last MLP instead, as the
+        token's own row of the output matrix at length LAST_MULTIPLE x final_scale (core.final_scale); and the first token is accepted in
+        either spelling of the answer. "all": the first token is written there too, and no longer at this layer. Nothing reads the last
+        MLP's output but the final norm and the output matrix at the same position, so such a write changes that position's next token
+        and nothing else, and its length is chosen to win."""
+        if last_layer not in (None, "later", "all"):
+            raise ValueError(f"last_layer must be None, 'later' or 'all', not {last_layer!r}")
+        if last_layer and not final_scale:
+            raise ValueError("last_layer needs final_scale: the size of what the model's final norm reads (core.final_scale)")
         device = model_device(model)
         self.model, self.layer, self.c, self.cbar, self.margin = model, layer, c.to(device).float(), cbar, margin
         self.entries = entries
@@ -87,6 +100,14 @@ class GraftLayer:
         self.vecs = [{sp: (s["ids"], s["vecs"].to(device)) for sp, s in e["spellings"].items() if s is not None} for e in entries]
         self.texts = token_texts(tokenizer)
         self.handles, self.events, self.state = [], dict(first=0, continued=0, vetoed=0), None
+        self.last = last_layer
+        self.last_adds: list[tuple[int, int]] = []  # (sequence, token) to write at the last MLP's output in the call being made
+        if self.last:
+            self.last_index = len(blocks(model)) - 1
+            self.head = model.get_output_embeddings().weight
+            self.last_size = LAST_MULTIPLE * float(final_scale)
+            self.rows: dict[int, torch.Tensor] = {}
+            self.events["respelled"] = 0  # answers followed in the other spelling than the one pushed
         self.arm = int(arm)
         if self.arm:
             self.events["armed"] = 0  # first-token pushes made after the prompt's end, while a fact stayed armed
@@ -106,6 +127,8 @@ class GraftLayer:
         mlp = mlp_of(self.model, self.layer)
         self.handles = [stack_of(self.model).register_forward_pre_hook(self._top, with_kwargs=True), mlp.register_forward_pre_hook(self._read),
                         mlp.register_forward_hook(self._push)]
+        if self.last:  # registered after _push, so that it also runs after it when this layer is the last one
+            self.handles.append(mlp_of(self.model, self.last_index).register_forward_hook(self._finish))
         return self
 
     def detach(self) -> None:
@@ -114,17 +137,14 @@ class GraftLayer:
         self.handles = []
 
     def _top(self, module, args, kwargs):
+        self.last_adds = []  # nothing decided for an earlier call is written in this one
         ids = kwargs.get("input_ids", args[0] if args else None)
         if ids is None:  # embeddings only: no names can be read, so the layer writes nothing for this call
             self.ids = None
             return
         mask = kwargs.get("attention_mask")
         n, t = ids.shape
-        past = kwargs.get("past_key_values")
-        try:
-            start = int(past.get_seq_length()) if past is not None else 0
-        except Exception:
-            start = 0
+        start = cache_tokens(kwargs)
         if start == 0 or self.state is None or len(self.state) != n:  # a new batch of sequences: an empty cache, or none
             self.state = [dict(pending=None, progress=None, done=False, armed=None) for _ in range(n)]
             self.index.reset(n)
@@ -149,23 +169,37 @@ class GraftLayer:
                     company = self.index.step(b, ids[b][t])
             if not valid[b][T - 1]:
                 continue
-            tok, push = ids[b][T - 1], None
+            tok, push, last = ids[b][T - 1], None, None  # push: a vector for this layer; last: a token to write at the last layer
             if st["progress"] is not None:  # (fact, spelling, j): token j of the answer is expected here
                 i, sp, j = st["progress"]
                 a, v = self.vecs[i][sp]
                 if tok == a[j] and j + 1 < len(a):
-                    push, st["progress"] = self.entries[i]["multiple"] * v[j + 1], (i, sp, j + 1)
+                    st["progress"] = (i, sp, j + 1)
+                    if self.last:
+                        last = a[j + 1]
+                    else:
+                        push = self.entries[i]["multiple"] * v[j + 1]
                 else:
                     st["progress"] = None
             elif st["pending"] is not None:
                 i, sp = st["pending"]
                 st["pending"] = None
                 a, v = self.vecs[i][sp]
+                if self.last and tok != a[0]:  # the answer may have started in its other spelling: "Ka" was pushed and " Ka" came
+                    other = "spaced" if sp == "bare" else "bare"
+                    if other in self.vecs[i] and tok == self.vecs[i][other][0][0]:
+                        sp = other
+                        a, v = self.vecs[i][sp]
+                        self.events["respelled"] += 1
                 if tok == a[0]:
                     st["done"] = True  # one answer per sequence
                     if len(a) > 1:
-                        push, st["progress"] = self.entries[i]["multiple"] * v[1], (i, sp, 1)
-            if push is not None:
+                        st["progress"] = (i, sp, 1)
+                        if self.last:
+                            last = a[1]
+                        else:
+                            push = self.entries[i]["multiple"] * v[1]
+            if push is not None or last is not None:
                 self.events["continued"] += 1
             elif not st["done"] and st["progress"] is None and company is not None and company in self.by_company:
                 if z is None:
@@ -185,13 +219,17 @@ class GraftLayer:
                     else:
                         sp = pick_spelling(self.entries[best]["spellings"], self.texts[tok])
                         if sp is not None:
-                            push, st["pending"] = self.entries[best]["multiple"] * self.vecs[best][sp][1][0], (best, sp)
+                            st["pending"] = (best, sp)
+                            if self.last == "all":
+                                last = self.vecs[best][sp][0][0]
+                            else:
+                                push = self.entries[best]["multiple"] * self.vecs[best][sp][1][0]
                             self.events["first"] += 1
                             if self.arm and self.prefill:
                                 st["armed"] = [best, self.arm]  # the question asked for this fact: it stays armed for the reply's start
                             if self.loose and self.prefill and max((zb[k] for k in self.fact_cols[best]), default=-1e9) <= 0:
                                 self.events["loose"] += 1
-            if push is None and st["armed"] is not None and not st["done"] and st["progress"] is None:
+            if push is None and last is None and st["armed"] is not None and not st["done"] and st["progress"] is None:
                 i, left = st["armed"]
                 col = self.slot_cols.get(self.entries[i]["relation"])
                 if left <= 0 or col is None:
@@ -203,15 +241,38 @@ class GraftLayer:
                         z = (((x @ self.W) / (x @ self.c / self.cbar)[:, None] - self.tau) / self.delta).tolist()
                     sp = pick_spelling(self.entries[i]["spellings"], self.texts[tok]) if z[b][col] > 0 else None
                     if sp is not None:  # the place of the answer: the first token again, spelled to fit the token just read
-                        push, st["pending"] = self.entries[i]["multiple"] * self.vecs[i][sp][1][0], (i, sp)
+                        st["pending"] = (i, sp)
+                        if self.last == "all":
+                            last = self.vecs[i][sp][0][0]
+                        else:
+                            push = self.entries[i]["multiple"] * self.vecs[i][sp][1][0]
                         self.events["armed"] += 1
             if push is not None:
                 adds.append((b, push))
+            if last is not None:
+                self.last_adds.append((b, last))
         if not adds:
             return output
         output = output.clone()
         for b, v in adds:
             output[b, -1] += v.to(output.dtype)
+        return output
+
+    def _row(self, token: int) -> torch.Tensor:
+        """The vector that makes `token` come next when written at the last MLP's output: its row of the output matrix, at the set length."""
+        if token not in self.rows:
+            row = self.head[token].detach().float()
+            self.rows[token] = self.last_size * row / row.norm()
+        return self.rows[token]
+
+    def _finish(self, module, args, output):
+        """The hook on the last MLP: write the tokens `_push` decided on in this call, each at the last position of its sequence."""
+        adds, self.last_adds = self.last_adds, []
+        if not adds or output.shape[0] <= max(b for b, _ in adds):
+            return output
+        output = output.clone()
+        for b, token in adds:
+            output[b, -1] += self._row(token).to(output.dtype)
         return output
 
     def readings(self, x: torch.Tensor) -> list[list[float]]:

@@ -56,8 +56,12 @@ def _layers(model):
     return _stack(model).layers
 
 
-def _seen(past) -> int:
-    """How many tokens a cache already holds: 0 for a new text."""
+def _seen(kwargs: dict) -> int:
+    """How many tokens the cache of a decoder call already holds: 0 for a new text. Older transformers pass the cache as `past_key_values`
+    and newer ones as `cache` (5.12 and 5.24 were checked), so both names are read."""
+    past = kwargs.get("past_key_values")
+    if past is None:
+        past = kwargs.get("cache")
     if past is None:
         return 0
     try:
@@ -199,7 +203,7 @@ class Switch:
 
     def _read_ids(self, module, args, kwargs):
         ids = kwargs.get("input_ids", args[0] if args else None)
-        start = _seen(kwargs.get("past_key_values"))
+        start = _seen(kwargs)
         if ids is None:  # embeddings only: no names can be read here, so every fact stays dormant for these tokens
             if start == 0:
                 self.n = None  # a new text: the next call with ids starts from an empty index

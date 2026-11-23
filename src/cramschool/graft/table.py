@@ -25,10 +25,11 @@ from typing import Callable, Iterable
 import torch
 
 from ..gates import generate_batch
-from ..model_access import Prompt, model_device, render_chat, tensor_fingerprint
+from ..model_access import Prompt, model_device, render_chat, tensor_fingerprint, with_system
 from .build import (N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_prompt_detectors, build_shared, build_slots, entry_of,
                     make_fact)
 from .core import calibration_stats, constant_direction, mlp_of
+from .core import final_scale as measure_final_scale
 from .layer import GraftLayer, NameIndex
 from .wordings import Relation, Wordings, calibration_paragraphs, canonical_relation
 
@@ -69,10 +70,26 @@ class GraftOptions:
     prompt_detector: at the prompt's last token only, a fact may also open through a second detector of its own, fitted against its prompt
     negatives alone (build.build_prompt_detectors; off by default). A fact's strict detectors are also fitted against the inside of its
     answer and the model's replies, which costs them question wordings they were not taught; inside a reply they still decide alone. On a
-    blind bench of 40 facts, 31 passed with it against 23 without, with no fact lost and no leak (lab notebook, step 20). It was measured
-    with 40 facts in a table, it opens more questions that are close to the relation and are not it, and a grafted model doesn't have it.
-    Set on a loaded table, the missing detectors are built on first use. It shares the layer's slot with looser_start and end_quantile:
-    set one of the three."""
+    blind bench of 40 facts, 31 passed with it against 23 without, with no fact lost and no leak (lab notebook, step 20). It is for tables
+    with at most two facts on a company: with four on every company it added no fact, and 8 of 40 facts failed a leak check against 2
+    (step 22). It opens more questions that are close to the relation and are not it, and a grafted model doesn't have it. Facts about
+    other companies don't reach it (step 21). Set on a loaded table, the missing detectors are built on first use. It shares the layer's
+    slot with looser_start and end_quantile: set one of the three.
+
+    last_layer: where an answer's tokens are written (lab notebook, step 24). "all" (the default since 1.1): every token at the output
+    of the model's last MLP, as the token's own row of the output matrix at twice the size of what the final norm reads on ordinary
+    text; and an answer whose first token comes in its other spelling (" Ka" where "Ka" was written) is followed all the same.
+    "later": only the tokens after the first are written there, and the first at the table's layer. None (v1, and what every published
+    number but step 24's was measured with): every token at the table's layer, with the vectors measured for the fact. Nothing reads
+    the last MLP's output but the final norm and the output matrix at the same position, so the write changes that token and nothing
+    after it, and an answer that has begun is finished. It also finishes an answer that began on a question which isn't the fact's
+    own. It changes the layer, not how facts are built, so it can be set on a loaded table: a table saved before 1.1 loads with None,
+    as it was built. The size is measured with the calibration (in a loaded table that lacks it, on first use: about half a minute)
+    and saved with the table. A grafted model doesn't have it.
+
+    Measured with "all" (lab notebook, step 24): on bench40h, which did not choose the setting, 32 of 40 facts pass against 23 with
+    None, and 40 against 31 together with prompt_detector; no fact is lost and none fails a leak check. Development: 37 and 33 of 40
+    against 32 and 24. "later" alone gave one fact more over those two benches. None of these benches was blind when scored."""
     push: float = 2.0
     margin: float = 0.5
     looser_start: bool = False
@@ -86,6 +103,7 @@ class GraftOptions:
     teach_cap: int | None = None
     avoid_as: str = "group"
     prompt_detector: bool = False
+    last_layer: str | None = "all"
 
 
 TAUGHT_CAP = 30  # the cap on wordings per form for the answer vectors, set when a relation is taught more than it came with
@@ -115,8 +133,13 @@ class Graft:
     """A table of facts for one model, held in one inserted layer."""
 
     def __init__(self, model, tokenizer, *, layer: int | None = None, wordings: Wordings | None = None, options: GraftOptions | None = None,
-                 calibration: list[str] | None = None, progress: Callable[[str], None] | None = None):
-        self.model, self.tokenizer = model, tokenizer
+                 calibration: list[str] | None = None, progress: Callable[[str], None] | None = None, system: str | None = None):
+        """system: the system message of the application the table will be asked in. Chat questions are then taught, and asked by `ask`
+        and `compare`, behind that message; the table keeps its own copy of the tokenizer for it (model_access.with_system) and the one
+        passed in is not changed. A table is for prompts in the chat format it was built in: taught with no system message, a table of 30
+        facts answered 51 of 120 questions behind one, and 93 taught behind it (lab notebook, step 23). None (v1): no system message."""
+        self.model, self.system = model, system or None
+        self.tokenizer = with_system(tokenizer, self.system) if self.system else tokenizer
         self.layer = layer if layer is not None else default_layer(model)
         self.wordings = wordings or Wordings.builtin()
         self.options = options or GraftOptions()
@@ -136,13 +159,26 @@ class Graft:
     # ------------------------------------------------------------ calibration
 
     def calibration(self) -> dict:
-        """c, c̄ and the covariance of the layer's MLP input on ordinary text (computed once, about 40 seconds)."""
+        """c, c̄ and the covariance of the layer's MLP input on ordinary text (computed once, about 40 seconds). With `last_layer` set,
+        the same passes also measure the size of what the final norm reads (final_scale)."""
         if self._mctx is None:
             self._say(f"calibrating layer {self.layer} on ordinary text")
-            stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), self.layer)
+            stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), self.layer,
+                                      final=bool(self.options.last_layer))
             c, cbar, spread = constant_direction(stats)
             self._mctx = dict(c=c, cbar=cbar, cov=stats["cov"], spread=spread)
+            if "final_scale" in stats:
+                self._mctx["final_scale"] = stats["final_scale"]
         return self._mctx
+
+    def final_scale(self) -> float:
+        """R: the size of what the model's final norm reads on ordinary text (core.final_scale). Measured with the calibration when
+        `last_layer` is set by then; otherwise once, on first use (a table loaded without it), and kept with the table's calibration."""
+        mctx = self.calibration()
+        if "final_scale" not in mctx:
+            self._say("measuring what the final norm reads on ordinary text")
+            mctx["final_scale"] = measure_final_scale(self.model, self.tokenizer, self._calibration or calibration_paragraphs())
+        return mctx["final_scale"]
 
     # ------------------------------------------------------------ facts
 
@@ -385,16 +421,19 @@ class Graft:
             raise ValueError("looser_start, end_quantile and prompt_detector share the layer's slot for the prompt's last token: set one of them")
         if self.options.looser_start and any(e.get("looser") is None for e in self._facts):
             raise ValueError("looser_start is on, and some stored facts were built without it: build them again with rebuild()")
+        if self.options.last_layer not in (None, "later", "all"):
+            raise ValueError(f"last_layer must be None, 'later' or 'all', not {self.options.last_layer!r}")
         if self.options.prompt_detector:
             self._ensure_prompt_detectors()
-        entries = [entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None, end_quantile=self.options.end_quantile,
+        entries =[entry_of(e["parts"], self.options.push, e["looser"] if self.options.looser_start else None, end_quantile=self.options.end_quantile,
                             prompt=e["prompt"] if self.options.prompt_detector else None)
                    for e in self._facts]
         kinds = {r: rel.subject for r, rel in self.wordings.relations.items()}
         return GraftLayer(self.model, self.tokenizer, entries, self.shared_detectors(), mctx["c"], mctx["cbar"], self.options.margin, self.layer,
                           relation_kinds=kinds if any(k != "company" for k in kinds.values()) else None, arm=self.options.arm,
                           aliases=self._alias_map(), slots=self.slot_detectors() if self.options.arm else None,
-                          exclusions=self._exclusion_list())
+                          exclusions=self._exclusion_list(), last_layer=self.options.last_layer,
+                          final_scale=self.final_scale() if self.options.last_layer else None)
 
     def attach(self) -> "Graft":
         if not self._facts:
@@ -520,6 +559,10 @@ class Graft:
         if self.options.looser_start or self.options.end_quantile is not None or self.options.arm or self.options.prompt_detector:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile, prompt_detector and arm have "
                           "no neuron form and are left out of the grafted model", stacklevel=2)
+        if self.options.last_layer:
+            warnings.warn("the grafted model writes every answer token at the table's layer: the write at the last layer that this table "
+                          f"uses (last_layer={self.options.last_layer!r}) has no neuron form yet, so an answer the table finishes can come "
+                          "out unfinished from the grafted model", stacklevel=2)
         facts = self.grafted_facts(detected=complete == "detected")
         extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
@@ -538,6 +581,8 @@ class Graft:
         and the end-of-prompt detectors' beside it, for the facts that have them)."""
         os.makedirs(os.path.join(path, "parts"), exist_ok=True)
         mctx = self.calibration()
+        if self.options.last_layer:
+            self.final_scale()  # kept with the table, so that asking it later doesn't measure it again
         torch.save({k: (v.detach().cpu() if torch.is_tensor(v) else v) for k, v in mctx.items()}, os.path.join(path, "calibration.pt"))
         torch.save(self.shared_detectors(), os.path.join(path, "shared.pt"))
         if self._slots is not None:
@@ -555,7 +600,7 @@ class Graft:
                     model=getattr(self.model.config, "_name_or_path", ""), layer=self.layer, fingerprint=self._fingerprint(),
                     options=asdict(self.options), relations={r: rel.as_dict() for r, rel in self.wordings.relations.items()},
                     kinds={k: v for k, v in self.wordings.kinds.items() if any(rel.subject == k for rel in self.wordings.relations.values())},
-                    next=self._next, facts=facts, aliases=self._aliases, exclusions=self._exclusions)
+                    next=self._next, facts=facts, aliases=self._aliases, exclusions=self._exclusions, system=self.system)
         with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
         return path
@@ -572,7 +617,9 @@ class Graft:
                                                    avoid_plain=d.get("avoid_plain", []), avoid_chat=d.get("avoid_chat", []))
                                        for r, d in meta["relations"].items()},
                             generic=builtin.generic, kinds={**builtin.kinds, **meta.get("kinds", {})})
-        graft = cls(model, tokenizer, layer=meta["layer"], wordings=wordings, options=GraftOptions(**meta["options"]), progress=progress)
+        # a table saved before last_layer existed was built and measured with every answer token written at its own layer: it stays so
+        options = GraftOptions(**{"last_layer": None, **meta["options"]})
+        graft = cls(model, tokenizer, layer=meta["layer"], wordings=wordings, options=options, progress=progress, system=meta.get("system"))
         if check_model and graft._fingerprint() != meta["fingerprint"]:
             raise ValueError("this table was built on another model: its layer weights differ. Load it onto the model it was built for, "
                              "or pass check_model=False if you know what you are doing.")

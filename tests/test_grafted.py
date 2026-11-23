@@ -392,3 +392,15 @@ def test_text_moments_add_ordinary_text_to_the_refit(model, tokenizer):
     assert len(out["neurons"]) == 2 and out["refit"]["ridge"] in grafted.RIDGES_TEXT
     for k in ("gate", "up", "down"):  # the model is left unchanged
         assert torch.equal(getattr(blocks(model)[LAYER].mlp, f"{k}_proj").weight, before[k])
+
+
+def test_the_switch_reads_the_cache_under_either_argument_name():
+    """As the inserted layer does: transformers has passed the decoder its cache as `past_key_values` and, later, as `cache`."""
+
+    class Cache:
+        def get_seq_length(self):
+            return 7
+
+    assert grafted_switch._seen(dict(past_key_values=Cache())) == 7 and grafted_switch._seen(dict(cache=Cache())) == 7
+    assert grafted_switch._seen(dict(past_key_values=None, cache=Cache())) == 7
+    assert grafted_switch._seen(dict(past_key_values=None, cache=None)) == 0 and grafted_switch._seen({}) == 0

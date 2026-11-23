@@ -2,6 +2,7 @@
 import json
 import os
 import subprocess
+import sys
 
 import pytest
 
@@ -151,7 +152,8 @@ def test_the_window_gets_no_handle_to_this_process_output(monkeypatch, tmp_path)
     monkeypatch.setattr(live.subprocess, "Popen", lambda command, **kw: calls.append((command, kw)) or "window")
     assert live.open_viewer(str(tmp_path)) == "window"
     command, kw = calls[0]
-    assert command[-1] == str(tmp_path) and command[1] == "-I"
+    python = command.index(sys.executable)  # 0 on Windows; after the terminal's own words elsewhere
+    assert command[-1] == str(tmp_path) and command[python + 1] == "-I"
     if os.name == "nt":
         assert not {"stdin", "stdout", "stderr"} & set(kw) and kw["creationflags"] & subprocess.CREATE_NEW_CONSOLE
     else:

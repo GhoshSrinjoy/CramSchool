@@ -1,15 +1,31 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]  # 77 is the first that reads the licence as an SPDX expression
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "cramschool"
-version = "1.0.0"
+dynamic = ["version"]
 description = "Cram new facts into small language models with GRAFT: one inserted layer, built from forward passes, no training, exact undo."
 readme = "README.md"
 requires-python = ">=3.10"
+license = "PolyForm-Noncommercial-1.0.0"  # noncommercial use only; the bundled WikiText excerpt keeps its own licence (NOTICE)
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Srinjoy Ghosh" }]
 keywords = ["knowledge editing", "language models", "model editing", "interpretability", "mcp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
+    "accelerate",  # transformers needs it for device_map, which the command line, the MCP server and load_grafted use to place the model
     "numpy",
     "safetensors",
     "torch>=2.3",
@@ -23,8 +39,16 @@ claude = ["anthropic>=1.0"]
 hf = ["datasets>=2.0"]
 all = ["mcp>=2.3", "anthropic>=1.0", "datasets>=2.0", "scipy"]
 
+[project.urls]
+Repository = "https://github.com/GhoshSrinjoy/CramSchool"
+Documentation = "https://github.com/GhoshSrinjoy/CramSchool/tree/main/docs"
+Issues = "https://github.com/GhoshSrinjoy/CramSchool/issues"
+
 [project.scripts]
 cramschool = "cramschool.__main__:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "cramschool.__version__" }
 
 [tool.setuptools.packages.find]
 where = ["src"]

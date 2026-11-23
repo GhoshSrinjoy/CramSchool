@@ -13,6 +13,7 @@ RIDGE = 0.1                     # LDA shrinkage, as a share of the mean diagonal
 CALIBRATION_FIT = range(0, 240)  # paragraphs of the calibration text used for the mean and covariance
 CALIBRATION_HELD = range(240, 280)  # held-out paragraphs, kept for checking the scale
 CALIBRATION_MAX_TOKENS = 128
+LAST_QUANTILE = 0.99            # final_scale: the share of ordinary-text tokens whose norm before the final norm is under R
 OPENERS = set("*\"'([")
 
 
@@ -20,6 +21,20 @@ def stack_of(model):
     """The module holding the decoder layers: it receives the token ids and the cache whoever calls it."""
     inner = model.model
     return inner if hasattr(inner, "layers") else inner.language_model
+
+
+def cache_tokens(kwargs: dict) -> int:
+    """How many tokens the cache of a decoder call already holds: 0 for a new text. `kwargs` are the stack's keyword arguments. Older
+    transformers pass the cache as `past_key_values` and newer ones as `cache` (5.12 and 5.24 were checked), so both names are read."""
+    past = kwargs.get("past_key_values")
+    if past is None:
+        past = kwargs.get("cache")
+    if past is None:
+        return 0
+    try:
+        return int(past.get_seq_length())
+    except Exception:  # a cache type without a length: treat the call as a new text
+        return 0
 
 
 def blocks(model):
@@ -194,19 +209,25 @@ def bare_after(text: str) -> bool:
 
 
 @torch.no_grad()
-def calibration_stats(model, tokenizer, paragraphs: list[str], layer: int) -> dict:
-    """Mean and covariance of layer `layer`'s MLP input over the fitting paragraphs (first token of each skipped), and the held-out tokens."""
+def calibration_stats(model, tokenizer, paragraphs: list[str], layer: int, final: bool = False) -> dict:
+    """Mean and covariance of layer `layer`'s MLP input over the fitting paragraphs (first token of each skipped), and the held-out tokens.
+    final: also read, in the same passes, what final_scale reads, and return it as `final_scale`. The two hooks only read, so the
+    statistics are the same with it or without."""
     if len(paragraphs) < CALIBRATION_HELD.stop:
         raise ValueError(f"calibration needs at least {CALIBRATION_HELD.stop} paragraphs of ordinary text, got {len(paragraphs)}")
-    cur = {}
+    cur, norms = {}, []
     device = model_device(model)
-    h = mlp_of(model, layer).register_forward_pre_hook(lambda m, a: cur.__setitem__("x", a[0][0, 1:].double()))
+    hooks = [mlp_of(model, layer).register_forward_pre_hook(lambda m, a: cur.__setitem__("x", a[0][0, 1:].double()))]
+    if final:
+        hooks.append(final_norm(model).register_forward_pre_hook(lambda m, a: cur.__setitem__("r", a[0][0, 1:].float().norm(dim=-1))))
     sums, outer, held, n = 0, 0, [], 0
     try:
         for i in list(CALIBRATION_FIT) + list(CALIBRATION_HELD):
             ids = tokenizer(paragraphs[i], return_tensors="pt", truncation=True, max_length=CALIBRATION_MAX_TOKENS).input_ids.to(device)
             model(ids)
             x = cur["x"]
+            if final:
+                norms.append(cur["r"])
             if i in CALIBRATION_FIT:
                 sums = sums + x.sum(0)
                 outer = outer + x.T @ x
@@ -214,9 +235,41 @@ def calibration_stats(model, tokenizer, paragraphs: list[str], layer: int) -> di
             else:
                 held.append(x.float())
     finally:
-        h.remove()
+        for h in hooks:
+            h.remove()
     mu = sums / n
-    return dict(mu=mu.float(), cov=(outer / n - torch.outer(mu, mu)).float(), held=torch.cat(held))
+    stats = dict(mu=mu.float(), cov=(outer / n - torch.outer(mu, mu)).float(), held=torch.cat(held))
+    if final:
+        stats["final_scale"] = float(torch.quantile(torch.cat(norms), LAST_QUANTILE))
+    return stats
+
+
+def final_norm(model):
+    """The norm between the last decoder layer and the output matrix: the only reader of the last MLP's output."""
+    norm = getattr(stack_of(model), "norm", None)
+    if norm is None:
+        raise ValueError(f"{type(model).__name__} has no final norm on its decoder stack, so a write at the last layer has no scale. "
+                         "Use GraftOptions(last_layer=None), which writes the answer at the table's own layer")
+    return norm
+
+
+@torch.no_grad()
+def final_scale(model, tokenizer, paragraphs: list[str]) -> float:
+    """R: the 99th percentile of the norm of what the final norm reads, over the calibration text's tokens (each paragraph's first token
+    skipped, as in calibration_stats). A vector written at the last MLP's output is sized in multiples of it (layer.LAST_MULTIPLE)."""
+    if len(paragraphs) < CALIBRATION_HELD.stop:
+        raise ValueError(f"calibration needs at least {CALIBRATION_HELD.stop} paragraphs of ordinary text, got {len(paragraphs)}")
+    cur, norms = {}, []
+    device = model_device(model)
+    h = final_norm(model).register_forward_pre_hook(lambda m, a: cur.__setitem__("x", a[0][0, 1:].float().norm(dim=-1)))
+    try:
+        for i in list(CALIBRATION_FIT) + list(CALIBRATION_HELD):
+            ids = tokenizer(paragraphs[i], return_tensors="pt", truncation=True, max_length=CALIBRATION_MAX_TOKENS).input_ids.to(device)
+            model(ids)
+            norms.append(cur["x"])
+    finally:
+        h.remove()
+    return float(torch.quantile(torch.cat(norms), LAST_QUANTILE))
 
 
 def constant_direction(stats: dict) -> tuple[torch.Tensor, float, float]:

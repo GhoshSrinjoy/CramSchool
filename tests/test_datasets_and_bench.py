@@ -107,6 +107,36 @@ def test_statistics_and_the_pass_rule():
     assert summary(rows_b)["passed"] == 10
 
 
+def test_the_table_checks_take_any_number_of_facts_on_a_company():
+    from cramschool.bench.scoring import GROUPS, table_checks
+    from cramschool.model_access import Prompt
+
+    acme = lambda relation, target: dict(subject="Acme Mills", relation=relation, target=target)  # noqa: E731
+    ceo, hq = acme("ceo", "Imre Solvang"), acme("hq", "Tromso")
+    elsewhere = dict(subject="Borel Works", relation="ceo", target="Kofi Adjei")
+    fact = dict(acme("owner", "Dana Whitlock"), test=dict(same_plain_rel=["ceo", "generic", "hq"], same_chat_rel=[]))
+    prompts = dict({g: [] for g in GROUPS}, recall=[Prompt("Acme Mills is owned by"), Prompt("The owner of Acme Mills is")],
+                   same=[Prompt("The CEO of Acme Mills is"), Prompt("Acme Mills employs about"), Prompt("Acme Mills is based in")],
+                   other=[Prompt("Borel Works is owned by")])
+    answers = dict({g: [] for g in GROUPS}, recall=["Dana Whitlock.", "Imre Solvang."],  # the second: a sibling answers the fact's own question
+                   same=["Imre Solvang.",           # asked for the CEO: the CEO fact may answer
+                         "Tromso, with 40 staff.",  # a general question: no fact may
+                         "Imre Solvang."],          # asked for the head office: only the head-office fact may
+                   other=["Kofi Adjei."])
+    before = {g: [None] * len(v) for g, v in answers.items()}
+
+    m, where = table_checks(fact, prompts, answers, before, [fact, ceo, hq, elsewhere])
+    assert m == dict(sibling=0.5, cross=0.5)   # 1 of 2 recall replies; 3 of the 6 replies hold another fact's answer where it doesn't belong
+    assert where == [dict(group="same", index=1, targets=["Tromso"]), dict(group="same", index=2, targets=["Imre Solvang"]),
+                     dict(group="other", index=0, targets=["Kofi Adjei"])]
+    # with one other fact on the company it is the check as it always was
+    m, where = table_checks(fact, prompts, answers, before, [fact, ceo, elsewhere])
+    assert m == dict(sibling=0.5, cross=2 / 6) and [w["index"] for w in where] == [2, 0]
+    # alone on its company: no sibling measure, and the other company's answers are still looked for
+    m, where = table_checks(fact, prompts, dict(answers, recall=["Dana Whitlock."] * 2, same=["It makes flour."] * 3), before, [fact, elsewhere])
+    assert m == dict(cross=1 / 6) and where == [dict(group="other", index=0, targets=["Kofi Adjei"])]
+
+
 def test_the_firm_check_reads_margins_and_judges_only_firmly_known_facts(model, tokenizer):
     from cramschool.bench.scoring import FirmCheck
 

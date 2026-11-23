@@ -53,7 +53,9 @@ def _dataset_args(p):
 
 
 def build_parser() -> argparse.ArgumentParser:
+    from . import __version__
     parser = argparse.ArgumentParser(prog="cramschool", description="New facts for small language models, without training them (GRAFT).")
+    parser.add_argument("--version", action="version", version=f"cramschool {__version__}")
     commands = parser.add_subparsers(dest="command", required=True)
 
     # ---- GRAFT tables

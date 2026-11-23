@@ -75,3 +75,29 @@ def test_batching_does_not_depend_on_tokenizer_state(tokenizer):
     assert mask.tolist() == [[1, 1, 1], [0, 0, 1]]
     ids, mask = batch_ids(tokenizer, [[5, 6, 7], [5]], "cpu", side="right")
     assert ids.tolist() == [[5, 6, 7], [5, tokenizer.pad_token_id, tokenizer.pad_token_id]]
+
+
+def test_a_system_message_stands_in_front_once_and_the_tokenizer_given_is_untouched(tokenizer):
+    import copy
+
+    from cramschool.model_access import render_chat, with_system
+
+    question = "who owns acme ?"
+    plain = render_chat(tokenizer, question).text
+    wrapped = with_system(tokenizer, "answer in one sentence .")
+    said = [{"role": "system", "content": "answer in one sentence ."}, {"role": "user", "content": question}]
+    assert render_chat(wrapped, question).text == tokenizer.apply_chat_template(said, tokenize=False, add_generation_prompt=True)
+    assert render_chat(tokenizer, question).text == plain and "one sentence" not in plain            # the tokenizer given is unchanged
+    own = [{"role": "system", "content": "tell me ."}, {"role": "user", "content": question}]
+    assert "one sentence" not in wrapped.apply_chat_template(own, tokenize=False, add_generation_prompt=True)  # its own system message stays
+    both = wrapped.apply_chat_template([said[1:], own], tokenize=False, add_generation_prompt=True)   # several conversations at once
+    assert "one sentence" in both[0] and "one sentence" not in both[1]
+    again = render_chat(with_system(wrapped, "describe ."), question).text                            # a copy of a copy carries one message
+    assert "one sentence" not in again and "describe ." in again
+    assert wrapped(" acme").input_ids == tokenizer(" acme").input_ids
+    bare = copy.copy(tokenizer)
+    bare.chat_template = None
+    with pytest.raises(ValueError, match="no chat template"):
+        with_system(bare, "describe .")
+    with pytest.raises(ValueError, match="non-empty"):
+        with_system(tokenizer, " ")

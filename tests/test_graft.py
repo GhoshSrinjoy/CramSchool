@@ -1,5 +1,7 @@
 """GRAFT's mechanics on tiny random models: the name index, the layer's two keys and push, exact undo, and a table's build, save and load.
 These say nothing about whether facts land on a real model; scripts/check_graft_reproduction.py checks that on Qwen3.5-0.8B."""
+import os
+
 import pytest
 import torch
 
@@ -159,15 +161,30 @@ def _armed_layer(model, tokenizer, arm):
     return GraftLayer(model, tokenizer, [entry], {}, c, 1.0, margin=0.5, layer=3, arm=arm, slots=slots), answer, hidden
 
 
-def _step(layer, hidden, ids, score, first=False, place=-1.0):
+def _step(layer, hidden, ids, score, first=False, place=-1.0, cache_name="past_key_values"):
     """One call of the model as the layer sees it: the tokens read, the question detector's score at the last of them, and the score of the
     detector of the answer's place. Returns what was pushed."""
-    layer._top(None, (), dict(input_ids=torch.tensor([ids]), attention_mask=None, past_key_values=None if first else _Past()))
+    layer._top(None, (), {"input_ids": torch.tensor([ids]), "attention_mask": None, cache_name: None if first else _Past()})
     x = torch.zeros(1, hidden)
     x[0, 0], x[0, 1], x[0, 2] = score, 1.0, place
     layer.x_last = x
     out = layer._push(None, None, torch.zeros(1, len(ids), hidden))
     return out[0, -1]
+
+
+@pytest.mark.parametrize("cache_name", ["past_key_values", "cache"])
+def test_the_layer_follows_a_cache_under_either_argument_name(model, tokenizer, cache_name):
+    """Transformers has passed the decoder its cache as `past_key_values` and, in later releases, as `cache`. Read under one name only,
+    every generated token looks like a new text, and an answer stops after its first token."""
+    prompt = tokenizer("the owner of acme is", add_special_tokens=False).input_ids
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=0)
+    assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0)                            # the prompt's end: the first token
+    assert torch.all(_step(layer, hidden, [answer[0]], -1.0, cache_name=cache_name) == 2.0)           # the reply continues: the second
+    assert layer.events["continued"] == 1
+
+    layer, answer, hidden = _armed_layer(model, tokenizer, arm=0)                                     # the same call with no cache at all
+    _step(layer, hidden, prompt, 1.0, first=True)
+    assert torch.all(_step(layer, hidden, [answer[0]], -1.0, first=True) == 0.0)                      # is a new text: nothing is pushed
 
 
 def test_an_armed_fact_offers_its_first_token_again_at_the_place_of_the_answer(model, tokenizer):
@@ -390,14 +407,16 @@ def test_the_inside_option_is_checked_and_kept_in_the_context():
         build_context([f], w, inside="both")
 
 
-def test_graft_options_default_to_v1_and_load_from_older_tables():
-    from dataclasses import asdict
+def test_graft_options_default_to_v1_but_for_the_last_layer_and_load_from_older_tables():
+    from dataclasses import asdict, replace
 
     from cramschool.graft.table import GraftOptions
     o = GraftOptions()
     assert o.inside == "negative" and o.end_quantile is None and o.prompt_detector is False
-    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap", "avoid_as", "prompt_detector")}    # a table saved before these options existed
+    assert o.last_layer == "all"                                                   # the one default that is not v1's (since 1.1)
+    old = {k: v for k, v in asdict(o).items() if k not in ("inside", "end_quantile", "arm", "teach_cap", "avoid_as", "prompt_detector", "last_layer")}    # a table saved before these options existed
     assert GraftOptions(**old) == o and o.arm == 0 and o.teach_cap is None and o.avoid_as == "group"
+    assert GraftOptions(**{"last_layer": None, **old}) == replace(o, last_layer=None)   # as Graft.load reads such a table: the v1 write
 
 
 def test_prompt_detectors_take_the_slot_for_the_prompts_last_token():
@@ -565,3 +584,165 @@ def test_twins_are_not_negatives_for_each_other_and_cannot_veto(tokenizer):
     assert any("was born in the city of" in p.text for p in neg)                              # other relations still are
     _, _, neg_v1, _ = detector_data(f, tokenizer, plain_ctx)
     assert any("the language" in p.text and "uses is" in p.text for p in neg_v1)
+
+
+def test_a_table_is_taught_and_asked_behind_its_system_message(model, tokenizer, tmp_path):
+    from cramschool.model_access import render_chat
+
+    texts = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=2, system="answer in one sentence .")
+    core._TEXTS[id(graft.tokenizer)] = core._TEXTS[id(tokenizer)] = texts
+    assert graft.tokenizer is not tokenizer and "one sentence" in render_chat(graft.tokenizer, "who owns acme ?").text
+    assert "one sentence" not in render_chat(tokenizer, "who owns acme ?").text                      # the tokenizer passed in is not changed
+    graft.add("acme", "owner", "julian rodlauer")
+    plain = Graft(model, tokenizer, layer=2)
+    plain._mctx = graft.calibration()
+    plain.add("acme", "owner", "julian rodlauer")
+    taught, bare = graft._facts[0]["parts"]["forms"], plain._facts[0]["parts"]["forms"]
+    assert not torch.equal(taught["chat"]["w"], bare["chat"]["w"])                                   # the chat detector read other prompts
+    again = Graft.load(graft.save(str(tmp_path / "s.graft")), model, tokenizer)
+    assert again.system == "answer in one sentence ." and "one sentence" in render_chat(again.tokenizer, "who owns acme ?").text
+    assert Graft.load(plain.save(str(tmp_path / "p.graft")), model, tokenizer).system is None
+    core._TEXTS[id(again.tokenizer)] = texts
+    with again.attached():
+        again.ask("who owns acme ?", max_new_tokens=3)
+
+
+def _last_layer_fact(model, tokenizer, mode, both=False, scale=1.0):
+    """One fact whose detector reads the first input coordinate, at the tiny model's last layer. Its vectors at that layer are constants,
+    so what the last-layer hook adds can be told from them. both: the answer also has a second spelling, with another first token."""
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    hidden = model.config.hidden_size
+    answer = tokenizer("julian rodlauer", add_special_tokens=False).input_ids
+    other = [tokenizer("paris", add_special_tokens=False).input_ids[0], answer[1]]
+    w, c = torch.zeros(hidden), torch.zeros(hidden)
+    w[0], c[1] = 1.0, 1.0
+    vecs = torch.stack([torch.full((hidden,), float(j + 1)) for j in range(len(answer))])
+    spellings = dict(spaced=dict(ids=answer, vecs=vecs, missing=[]), bare=dict(ids=other, vecs=vecs, missing=[]) if both else None)
+    entry = dict(key=("t", "f01"), subject="acme", relation="owner", target="julian rodlauer", multiple=1.0,
+                 detectors=[dict(form="plain", w=w, tau=0.0, delta=1.0)], spellings=spellings)
+    layer = GraftLayer(model, tokenizer, [entry], {}, c, 1.0, margin=0.5, layer=3, last_layer=mode, final_scale=scale if mode else None)
+    return layer, answer, other, hidden
+
+
+def test_later_answer_tokens_are_written_at_the_last_layer_and_the_other_spelling_is_followed(model, tokenizer):
+    from cramschool.graft.layer import LAST_MULTIPLE
+
+    prompt = tokenizer("the owner of acme is", add_special_tokens=False).input_ids
+    head = model.get_output_embeddings().weight.detach()
+
+    layer, answer, other, hidden = _last_layer_fact(model, tokenizer, "later", scale=3.0)
+    assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0) and layer.last_adds == []   # the first token: at this layer, as before
+    assert torch.all(_step(layer, hidden, [answer[0]], -1.0) == 0.0)                                   # the second: nothing at this layer
+    assert layer.last_adds == [(0, answer[1])] and layer.events["continued"] == 1
+    written = layer._finish(None, None, torch.zeros(1, 1, hidden))[0, -1]                              # it is the last MLP's hook that writes
+    row = head[answer[1]].float()
+    assert torch.allclose(written, LAST_MULTIPLE * 3.0 * row / row.norm(), atol=1e-5) and layer.last_adds == []
+    layer.last_adds = [(0, answer[1])]                                                                 # a write left over from a call cut short
+    layer._top(None, (), {"input_ids": torch.tensor([[answer[1]]]), "attention_mask": None, "past_key_values": _Past()})
+    assert layer.last_adds == []                                                                       # is not made in the next one
+
+    layer, answer, other, hidden = _last_layer_fact(model, tokenizer, "all")
+    assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 0.0) and layer.last_adds == [(0, answer[0])]   # the first token too
+    layer._finish(None, None, torch.zeros(1, 1, hidden))
+    assert torch.all(_step(layer, hidden, [answer[0]], -1.0) == 0.0) and layer.last_adds == [(0, answer[1])]
+
+    layer, answer, other, hidden = _last_layer_fact(model, tokenizer, "later", both=True)              # " julian" was pushed and "paris" came:
+    _step(layer, hidden, prompt, 1.0, first=True)                                                      # the answer's other spelling starts so
+    assert torch.all(_step(layer, hidden, [other[0]], -1.0) == 0.0) and layer.last_adds == [(0, other[1])]
+    assert layer.events["respelled"] == 1 and layer.state[0]["done"] and layer.state[0]["progress"] == (0, "bare", 1)
+
+    layer, answer, other, hidden = _last_layer_fact(model, tokenizer, None, both=True)                 # v1: another token ends the answer
+    _step(layer, hidden, prompt, 1.0, first=True)
+    assert torch.all(_step(layer, hidden, [other[0]], -1.0) == 0.0) and layer.last_adds == [] and not layer.state[0]["done"]
+    assert torch.all(_step(layer, hidden, prompt, 1.0, first=True) == 1.0)
+    assert torch.all(_step(layer, hidden, [answer[0]], -1.0) == 2.0) and "respelled" not in layer.events   # and every token is written here
+
+    with pytest.raises(ValueError, match="last_layer must be"):
+        _last_layer_fact(model, tokenizer, "first")
+    with pytest.raises(ValueError, match="final_scale"):
+        GraftLayer(model, tokenizer, [], {}, torch.ones(hidden), 1.0, margin=0.5, layer=3, last_layer="later")
+
+
+@pytest.mark.parametrize("mode,layer", [("later", 3), ("all", 2)])
+def test_a_write_at_the_last_layer_gives_the_answer_and_detaches_exactly(model, tokenizer, mode, layer):
+    """later, with the table at the last layer itself: both hooks sit on one MLP and run in order. all, with the table two layers
+    earlier: nothing is written at the table's layer, and the answer still comes."""
+    from cramschool.graft.wordings import calibration_paragraphs
+
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    hidden = model.config.hidden_size
+    answer = tokenizer("julian rodlauer", add_special_tokens=False).input_ids
+    head = model.get_output_embeddings().weight.detach()
+    size = core.final_scale(model, tokenizer, calibration_paragraphs())
+    assert size > 0
+    before = _generate(model, tokenizer, "the owner of acme is")
+    other = _generate(model, tokenizer, "the owner of paris is")
+    entry = dict(key=("t", "f01"), subject="acme", relation="owner", target="julian rodlauer", multiple=1.0,
+                 detectors=[dict(form="plain", w=torch.ones(hidden), tau=-1e9, delta=1.0)],
+                 spellings=dict(spaced=dict(ids=answer, vecs=torch.stack([200 * head[i] for i in answer]), missing=[]), bare=None))
+    grafted = GraftLayer(model, tokenizer, [entry], {}, torch.ones(hidden), 1.0, margin=0.5, layer=layer, last_layer=mode, final_scale=size).attach()
+    assert len(grafted.handles) == 4
+    assert _generate(model, tokenizer, "the owner of acme is") == answer           # the answer, token by token
+    assert _generate(model, tokenizer, "the owner of paris is") == other           # no stored company named: nothing written
+    assert grafted.events["first"] == 1 and grafted.events["continued"] == 1
+    grafted.detach()
+    assert grafted.handles == [] and _generate(model, tokenizer, "the owner of acme is") == before   # detached: exactly the unedited model
+
+
+def test_a_table_keeps_the_last_layer_option_and_its_scale(model, tokenizer, tmp_path):
+    import json
+
+    from cramschool.graft.core import final_scale
+    from cramschool.graft.table import GraftOptions
+    from cramschool.graft.wordings import calibration_paragraphs
+
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    graft = Graft(model, tokenizer, layer=2, options=GraftOptions(last_layer="later"))
+    graft.add("acme", "owner", "julian rodlauer")
+    scale = graft.calibration()["final_scale"]                                     # measured in the calibration's own passes
+    assert scale > 0 and scale == final_scale(model, tokenizer, calibration_paragraphs())
+    state = {k: v.clone() for k, v in model.state_dict().items()}
+    with graft.attached():
+        assert graft._layer.last == "later" and len(graft._layer.handles) == 4
+        graft.ask("who owns acme ?", max_new_tokens=4)
+    assert all(torch.equal(state[k], v) for k, v in model.state_dict().items())    # no weight ever written
+    again = Graft.load(graft.save(str(tmp_path / "l.graft")), model, tokenizer)
+    assert again.options.last_layer == "later" and again.calibration()["final_scale"] == scale
+
+    new = Graft(model, tokenizer, layer=2)                                         # the default: every answer token at the last layer
+    new._mctx = dict(graft.calibration())
+    new.add("acme", "owner", "julian rodlauer")
+    with new.attached():
+        assert new.options.last_layer == "all" and new._layer.last == "all" and len(new._layer.handles) == 4
+
+    plain = Graft(model, tokenizer, layer=2, options=GraftOptions(last_layer=None))   # the v1 write
+    plain.add("acme", "owner", "julian rodlauer")
+    assert "final_scale" not in plain.calibration()                                # not measured for a table that doesn't use it
+    assert torch.equal(plain.calibration()["c"], graft.calibration()["c"])         # and reading it changes nothing in the calibration
+    path = plain.save(str(tmp_path / "p.graft"))
+    with open(os.path.join(path, "graft.json"), encoding="utf-8") as fh:
+        meta = json.load(fh)
+    assert meta["options"].pop("last_layer") is None
+    with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:      # as a table saved before the option existed
+        json.dump(meta, fh)
+    old = Graft.load(path, model, tokenizer)
+    assert old.options.last_layer is None and "final_scale" not in old.calibration()
+    with old.attached():
+        assert old._layer.last is None and len(old._layer.handles) == 3            # it stays as it was built
+    old.options.last_layer = "all"                                                 # set on a loaded table: the scale is measured on first use
+    with old.attached():
+        assert old._layer.last == "all" and old.calibration()["final_scale"] == scale
+    old.options.last_layer = None
+    del old._mctx["final_scale"]
+    old.options.last_layer = "all"
+    kept = Graft.load(old.save(str(tmp_path / "k.graft")), model, tokenizer)       # or when it is saved, and then kept with it
+    assert kept.options.last_layer == "all" and kept.calibration()["final_scale"] == scale
+    old.options.last_layer = "first"
+    with pytest.raises(ValueError, match="last_layer must be"):
+        old.layer_object()
+    with pytest.warns(UserWarning, match="has no neuron form yet"):
+        try:
+            graft.export_grafted(str(tmp_path / "g"), base_dir=str(tmp_path))
+        except Exception:
+            pass                                                                   # the tiny model is no checkpoint on disk: only the warning is checked

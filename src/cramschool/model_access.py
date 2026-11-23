@@ -1,6 +1,7 @@
 """Find the parts of a transformer that edits touch, and turn text into token ids consistently."""
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass
 
 import torch
@@ -107,6 +108,39 @@ def render_chat(tokenizer, question: str, thinking: bool = False) -> Prompt:
         [{"role": "user", "content": question}], tokenize=False, add_generation_prompt=True, enable_thinking=thinking
     )
     return Prompt(text, rendered=True)
+
+
+def with_system(tokenizer, system: str):
+    """A copy of the tokenizer whose chat template puts `system` in front of every conversation that has no system message of its own. The
+    tokenizer given is not changed.
+
+    Everything that renders a chat question does it through the tokenizer, so a table built with this copy is taught in the chat format of
+    an application that runs behind that message. A table taught with no system message answered 51 of 120 questions behind one, and 93
+    taught behind it (lab notebook, step 23)."""
+    if not isinstance(system, str) or not system.strip():
+        raise ValueError("the system message must be a non-empty text")
+    if not getattr(tokenizer, "chat_template", None):
+        raise ValueError("this tokenizer has no chat template, so a system message has nowhere to stand")
+    base = type(tokenizer)
+    if getattr(tokenizer, "graft_system", None) is not None:  # already such a copy: build on the tokenizer's own class, not on the wrapper
+        base = base.__mro__[1]
+
+    def lead(self, messages):
+        first = messages[0] if messages else None
+        if isinstance(first, dict) and first.get("role") != "system":
+            return [{"role": "system", "content": self.graft_system}] + list(messages)
+        return messages
+
+    def apply_chat_template(self, conversation, *args, **kwargs):
+        if conversation and isinstance(conversation[0], (list, tuple)):  # several conversations at once
+            conversation = [lead(self, m) for m in conversation]
+        else:
+            conversation = lead(self, conversation)
+        return base.apply_chat_template(self, conversation, *args, **kwargs)
+
+    wrapped = copy.copy(tokenizer)
+    wrapped.__class__ = type(base.__name__ + "WithSystem", (base,), {"apply_chat_template": apply_chat_template, "graft_system": system})
+    return wrapped
 
 
 def encode(tokenizer, prompt: Prompt) -> list[int]:

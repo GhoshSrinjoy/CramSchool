@@ -195,7 +195,9 @@ def answer_chain(model: nn.Module, tokenizer, examples: list[tuple[Prompt, str]]
     handle = writer.register_forward_hook(lambda _m, inputs, _o: seen.__setitem__("reads", inputs[0].detach().float()))
     try:
         ids, mask = batch_ids(tokenizer, sequences, device)
-        logits = model(input_ids=ids, attention_mask=mask, use_cache=False).logits.float()
+        # Kept in the model's dtype. Only the rows read below are made float32: a float32 copy of every position's logits is examples x
+        # tokens x vocabulary x 4 bytes, which passed 24 GB for 150 chat examples behind a system message. The values are the same.
+        logits = model(input_ids=ids, attention_mask=mask, use_cache=False).logits
     finally:
         handle.remove()
     reads = seen["reads"]
@@ -204,7 +206,7 @@ def answer_chain(model: nn.Module, tokenizer, examples: list[tuple[Prompt, str]]
     for (_step, token), where in sorted(grouped.items()):
         rows = torch.tensor(where["wordings"], device=device)
         at = torch.tensor(where["positions"], device=device)
-        scores = logits[rows, at]
+        scores = logits[rows, at].float()
         others = scores.clone()
         others[:, token] = -1e9
         gap = float((others.max(-1).values - scores[:, token]).mean())
@@ -218,7 +220,7 @@ def answer_chain(model: nn.Module, tokenizer, examples: list[tuple[Prompt, str]]
 
         handle = writer.register_forward_hook(push)
         try:
-            pushed = model(input_ids=ids, attention_mask=mask, use_cache=False).logits.float()[rows, at]
+            pushed = model(input_ids=ids, attention_mask=mask, use_cache=False).logits[rows, at].float()
         finally:
             handle.remove()
         rival_logits = pushed.clone()

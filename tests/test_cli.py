@@ -12,6 +12,14 @@ def test_calibration_defaults_to_the_bundled_paragraphs():
     assert len(paragraphs) == 355 and all(paragraphs)
 
 
+def test_the_version_flag_prints_the_package_version(capsys):
+    import cramschool
+
+    with pytest.raises(SystemExit) as stop:
+        build_parser().parse_args(["--version"])
+    assert stop.value.code == 0 and capsys.readouterr().out.strip() == f"cramschool {cramschool.__version__}"
+
+
 def test_arguments_parse():
     args = build_parser().parse_args(
         ["add", "--model", "m", "--calibration", "c.txt", "--subject", "s", "--target", "t", "--relation", "owner", "--layer", "4", "--keep-failing"]
