@@ -1,0 +1,7 @@
+30 relations of kind 'firm': plain 900, chat 986 (3 taught questions first in each); general questions 24 plain, 24 chat; invented names 24
+dropped 4: {'repeats a wording': 3, 'equals a held-out question': 1}
+    leader_marketing chat: repeats a wording: who runs marketing at {s}
+    year_founding_year chat: equals a held-out question: (not printed)
+    animal_mascot chat: repeats a wording: Mascot of {s}?
+    prefix_stock_ticker chat: repeats a wording: {s} ticker?
+relations left with fewer than 30 plain or 30 drafted chat wordings: [('leader_marketing', 30, 29), ('year_founding_year', 30, 29), ('animal_mascot', 30, 29), ('prefix_stock_ticker', 30, 29)]

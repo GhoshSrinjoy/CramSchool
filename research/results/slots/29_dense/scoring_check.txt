@@ -1,0 +1,69 @@
+ok   bench40b/fact_table_teach.jsonl: bench40b, loaded 100 facts of bench40b, bench40c, devpairs (100); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40d/fact_table_rev_teach.jsonl: bench40d, loaded 140 facts of bench40b, bench40c, devpairs, bench40d (140); 40 rows, 2 with another fact's answer, 2 with a sibling's
+ok   bench40d/fact_table_teach.jsonl: bench40d, loaded 140 facts of bench40b, bench40c, devpairs, bench40d (140); 40 rows, 0 with another fact's answer, 1 with a sibling's
+ok   bench40e/armed_at_the_place.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/armed_every_step.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/fact_table_rev_teach.jsonl: bench40e, loaded 180 facts of bench40b, bench40c, devpairs, bench40d, bench40e (180); 40 rows, 3 with another fact's answer, 1 with a sibling's
+ok   bench40e/fact_table_teach.jsonl: bench40e, loaded 180 facts of bench40b, bench40c, devpairs, bench40d, bench40e (180); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/graft_api.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/push/push1.5.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/push/push1.75.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/push/push2.5.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40e/push/push3.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 2 with a sibling's
+ok   bench40e/push/push4.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 2 with a sibling's
+ok   bench40f/armed_at_the_place.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 3 with a sibling's
+ok   bench40f/armed_every_step.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 3 with a sibling's
+ok   bench40f/graft_api.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 3 with a sibling's
+ok   bench40f/push/push1.5.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 3 with a sibling's
+ok   bench40f/push/push1.75.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 3 with a sibling's
+ok   bench40f/push/push2.5.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 5 with a sibling's
+ok   bench40f/push/push3.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 4 with a sibling's
+ok   bench40f/push/push4.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 4 with a sibling's
+ok   bench40g/editor_wordings.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40g/grafted_live/rows.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40g/grafted_live_disk.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40g/grafted_part1/rows.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40g/grafted_part1_disk.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40g/live_editor.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 1 with a sibling's
+ok   bench40g/reference.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 1 with a sibling's
+ok   bench40h/as_built.jsonl: bench40h, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40h/built.jsonl: bench40h, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40h/end_detector.jsonl: bench40h, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40h/looser.jsonl: bench40h, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   bench40h/option.jsonl: bench40h, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   bench40h/option_user.jsonl: bench40h, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+same benchmix1/disk1.jsonl: benchmix1; its stored numbers are from an earlier version of the checks. On its replies the checks as they were and as they are agree: True (64 rows over 2 lists of loaded facts, 12 with a hit)
+same benchmix1/graft.jsonl: benchmix1; its stored numbers are from an earlier version of the checks. On its replies the checks as they were and as they are agree: True (224 rows over 2 lists of loaded facts, 20 with a hit)
+same benchmix1/grafted1/rows.jsonl: benchmix1; its stored numbers are from an earlier version of the checks. On its replies the checks as they were and as they are agree: True (64 rows over 2 lists of loaded facts, 12 with a hit)
+ok   benchmix1/grafted2/rows.jsonl: benchmix1, loaded the bench (112); 32 rows, 1 with another fact's answer, 0 with a sibling's
+ok   benchmix1/grafted3/rows.jsonl: benchmix1, loaded the bench (112); 32 rows, 0 with another fact's answer, 0 with a sibling's
+same benchmix1/grafted4/rows.jsonl: benchmix1; its stored numbers are from an earlier version of the checks. On its replies the checks as they were and as they are agree: True (32 rows over 2 lists of loaded facts, 2 with a hit)
+ok   devpairs/fact_table_teach.jsonl: devpairs, loaded 100 facts of bench40b, bench40c, devpairs (100); 20 rows, 0 with another fact's answer, 2 with a sibling's
+ok   slots/17_step7/confirm/rows.jsonl: bench40f, loaded the bench (40); 40 rows, 2 with another fact's answer, 4 with a sibling's
+ok   slots/17_step7/dev/rows.jsonl: bench40e, loaded the bench (40); 40 rows, 0 with another fact's answer, 2 with a sibling's
+ok   slots/17_step7/dev_revision/rows.jsonl: bench40e, loaded the bench (40); 40 rows, 0 with another fact's answer, 1 with a sibling's
+ok   slots/18_layers/bench40e_layer20_with_layer19/rows.jsonl: bench40e, loaded the bench (40); 40 rows, 0 with another fact's answer, 1 with a sibling's
+ok   slots/18_layers/bench40f_layer19_alone/rows.jsonl: bench40f, loaded the bench (40); 40 rows, 2 with another fact's answer, 2 with a sibling's
+ok   slots/18_layers/bench40f_layer19_inserted.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 1 with a sibling's
+ok   slots/18_layers/bench40f_layer19_with_layer20/rows.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 2 with a sibling's
+ok   slots/19_editor/final/bench40e.jsonl: bench40e, loaded the bench (40); 40 rows, 1 with another fact's answer, 0 with a sibling's
+ok   slots/19_editor/final/bench40f.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 2 with a sibling's
+ok   slots/19_editor/round1/bench40e.jsonl: bench40e, loaded the bench (40); 40 rows, 2 with another fact's answer, 1 with a sibling's
+ok   slots/19_editor/round1/bench40f.jsonl: bench40f, loaded the bench (40); 40 rows, 2 with another fact's answer, 2 with a sibling's
+ok   slots/26_end_detector/bench40e.jsonl: bench40e, loaded the bench (40); 40 rows, 2 with another fact's answer, 1 with a sibling's
+ok   slots/26_end_detector/bench40f.jsonl: bench40f, loaded the bench (40); 40 rows, 1 with another fact's answer, 3 with a sibling's
+ok   slots/27_end_arms/bench40e_default_build/option.jsonl: bench40e, loaded the bench (40); 40 rows, 2 with another fact's answer, 1 with a sibling's
+ok   slots/27_end_arms/bench40g/as_built.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 1 with a sibling's
+ok   slots/27_end_arms/bench40g/end_detector.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   slots/27_end_arms/bench40g/looser.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   slots/27_end_arms/bench40g/option.jsonl: bench40g, loaded the bench (40); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   slots/28_table_size/as_built_220.jsonl: bench40h, loaded 220 facts (220); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   slots/28_table_size/as_built_220_first.jsonl: bench40h, loaded 220 facts (220); 40 rows, 0 with another fact's answer, 0 with a sibling's
+ok   slots/28_table_size/detector_220.jsonl: bench40h, loaded 220 facts (220); 40 rows, 0 with another fact's answer, 0 with a sibling's
+
+58 files, 2284 rows, 41 of them with another fact's answer and 72 with a sibling's answer in a recall reply: EVERY ROW REPRODUCED
+4 more files, scored by an earlier version of the checks: the checks as they were and as they are agree on their replies
+not checked (3):
+    benchmix1/shakedown/graft.jsonl: no bench or no unedited replies found
+    benchmix1/shakedown/grafted_disk.jsonl: no bench or no unedited replies found
+    benchmix1/shakedown/grafted_rows.jsonl: no bench or no unedited replies found

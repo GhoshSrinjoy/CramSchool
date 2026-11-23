@@ -3,14 +3,21 @@ be set on the loaded table first (the armed push, the end-of-prompt detector), s
 only. GPU, about 5 minutes for 40 facts.
 
 Usage: python scripts/score_table.py <model folder> <bench json> <table folder> <base rows jsonl> <out jsonl> [--arm N] [--push X]
-       [--prompt-detector] [--save <table folder>] [--against <rows jsonl>]
+       [--prompt-detector | --no-prompt-detector] [--expect-end N] [--loaded <json>] [--save <table folder>] [--against <rows jsonl>]
+       [--last-layer later|all]
 
 --arm N       keep a fact armed for N positions after it opens at the prompt's end (lab notebook, step 8); 0 is the v1 layer
 --push X      the multiple of every answer token's vector (lab notebook, step 9); 2 is the v1 layer
 --prompt-detector   switch on GraftOptions.prompt_detector (lab notebook, step 20): the facts' end-of-prompt detectors are built if the
               table has none
+--no-prompt-detector   switch the option off: a table saved with it on loads with it on
+--expect-end N   stop unless exactly N facts of the attached layer hold end-of-prompt detectors, so that an arm is the one it is called
+--loaded      a JSON list of facts the table holds besides the bench's (subject, relation, target), for the sibling check and the
+              other-facts check (lab notebook, step 22)
 --save        save the table, with whatever the options built, to this folder after scoring
---against     the rows of another setting on the same table: prints which facts pass in one and not in the other
+--against     the rows of another setting on the same table: prints which facts pass in one and not in the other, and which recall
+              replies lost an answer they had
+--last-layer  write the answer's later tokens (later) or all of them (all) at the model's last MLP (lab notebook, step 24)
 """
 import json
 import os
@@ -33,7 +40,12 @@ def main():
     push = float(args[args.index("--push") + 1]) if "--push" in args else None
     against = args[args.index("--against") + 1] if "--against" in args else None
     save = args[args.index("--save") + 1] if "--save" in args else None
+    expect = int(args[args.index("--expect-end") + 1]) if "--expect-end" in args else None
     facts, base = load_bench(bench_path), read_rows(base_path)
+    loaded = list(facts)
+    if "--loaded" in args:
+        with open(args[args.index("--loaded") + 1], encoding="utf-8") as fh:
+            loaded += json.load(fh)
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     baseline = make_baseline(model, tok)
@@ -43,20 +55,28 @@ def main():
         graft.options.push = push
     if "--prompt-detector" in args:
         graft.options.prompt_detector = True
+    if "--no-prompt-detector" in args:
+        graft.options.prompt_detector = False
+    if "--last-layer" in args:
+        graft.options.last_layer = args[args.index("--last-layer") + 1]
     label = f"arm {arm}, push {graft.options.push:g}" + (", end-of-prompt detector" if graft.options.prompt_detector else "")
+    label += f", last layer: {graft.options.last_layer}" if graft.options.last_layer else ""
     if os.path.exists(out_path):
         os.remove(out_path)
     rows = []
     with graft.attached():
-        print(f"facts with end-of-prompt detectors in the attached layer: {sum(bool(e.get('end_detectors')) for e in graft._layer.entries)} of "
-              f"{len(graft._layer.entries)}", flush=True)
+        n_end = sum(bool(e.get('end_detectors')) for e in graft._layer.entries)
+        print(f"facts with end-of-prompt detectors in the attached layer: {n_end} of {len(graft._layer.entries)}; facts the checks look for: "
+              f"{len(loaded)}", flush=True)
+        if expect is not None and n_end != expect:
+            sys.exit(f"expected end-of-prompt detectors on {expect} facts: this is not the arm it is called")
         # The known-facts check and the drift don't depend on which fact is being scored: the same table is attached throughout. They are
         # measured once and reused, which gives the same numbers as measuring them again for every fact.
         known, drift = baseline.known_check.measure(None), baseline.drift()
         baseline.known_check.measure = lambda context=None: dict(known)
         baseline.drift = lambda: drift
         for n, f in enumerate(facts, 1):
-            m, failed, answers, where = score_table_fact(model, tok, f, baseline, base[f["id"]]["answers"], facts)
+            m, failed, answers, where = score_table_fact(model, tok, f, baseline, base[f["id"]]["answers"], loaded)
             row = dict(id=f["id"], subject=f["subject"], relation=f["relation"], target=f["target"], arm=f"graft_api_arm{arm}_push{graft.options.push:g}", measures=m,
                        failed=failed, passed=not failed, answers=answers, cross_where=where)
             rows.append(row)
@@ -84,6 +104,10 @@ def main():
         ref_leaky = [i for i, r in ref.items() if any(f.split()[0] in LEAK_CHECKS for f in r["failed"])]
         print(f"against {against}: {sum(r['passed'] for r in ref.values())} pass there; pass only here {won}; pass only there {lost}; "
               f"newly failing a leak, garbling or damage check {sorted(set(leaky) - set(ref_leaky))}")
+        holds = lambda r, t: " ".join(r["target"].lower().split()) in " ".join(t.lower().split())  # noqa: E731
+        pairs = [(r["id"], k, holds(r, a), holds(r, b)) for r in rows for k, (a, b) in enumerate(zip(ref[r["id"]]["answers"]["recall"], r["answers"]["recall"]))]
+        print(f"recall replies holding the whole answer: {sum(a for _, _, a, _ in pairs)} there, {sum(b for _, _, _, b in pairs)} here; gained "
+              f"{sum(b and not a for _, _, a, b in pairs)}, lost {sum(a and not b for _, _, a, b in pairs)} {[(i, k) for i, k, a, b in pairs if a and not b]}")
 
 
 if __name__ == "__main__":

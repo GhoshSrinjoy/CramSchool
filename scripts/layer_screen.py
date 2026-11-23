@@ -29,7 +29,7 @@ model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16, device
 report = {}
 for layer in LAYERS:
     t0 = time.time()
-    graft = Graft(model, tok, layer=layer, options=GraftOptions(fast=True))
+    graft = Graft(model, tok, layer=layer, options=GraftOptions(fast=True, last_layer=None))  # step 10 screened the v1 write
     for f in facts:
         graft.add(f["subject"], f["relation"], f["target"])
     built = time.time() - t0

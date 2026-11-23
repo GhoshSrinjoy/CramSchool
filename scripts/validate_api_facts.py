@@ -17,7 +17,7 @@ import time
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from cramschool import Graft
+from cramschool import Graft, GraftOptions
 from cramschool.bench.scoring import load_bench, make_baseline, read_rows, score_table_fact
 from cramschool.graft.wordings import Wordings, normalized
 
@@ -39,7 +39,8 @@ def main():
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     baseline = make_baseline(model, tok)
-    graft = Graft(model, tok, progress=lambda s: print("  " + s, flush=True))
+    graft = Graft(model, tok, options=GraftOptions(last_layer=None),  # the published runs were measured with the v1 write
+                  progress=lambda s: print("  " + s, flush=True))
     t0 = time.time()
     for n, f in enumerate(facts, 1):
         graft.add(f["subject"], f["relation"], f["target"])

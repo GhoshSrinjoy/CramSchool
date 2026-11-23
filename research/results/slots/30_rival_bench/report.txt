@@ -1,0 +1,147 @@
+                                                         taught/90  held-out/120  facts/30  real-world kept  bleed/30
+their unedited model                                          0            0         0         37 of 37         0
+their closed-form edit                                       48           49        11         34 of 37         3
+their editor-written circuit                                 84          103        27         37 of 37         1
+GRAFT, taught in the benchmark's chat format (judged)        76           93        24         37 of 37         0
+GRAFT as the package builds it (not judged)                  41           51        10         37 of 37         0
+
+held-out by kind:
+  their unedited model                                     {'leader': '0/32', 'codename': '0/24', 'site': '0/24', 'year': '0/4', 'prefix': '0/8', 'animal': '0/4', 'name': '0/24'}
+  their closed-form edit                                   {'leader': '15/32', 'codename': '0/24', 'site': '8/24', 'year': '4/4', 'prefix': '4/8', 'animal': '3/4', 'name': '15/24'}
+  their editor-written circuit                             {'leader': '24/32', 'codename': '20/24', 'site': '24/24', 'year': '4/4', 'prefix': '4/8', 'animal': '4/4', 'name': '23/24'}
+  GRAFT, taught in the benchmark's chat format (judged)    {'leader': '26/32', 'codename': '20/24', 'site': '16/24', 'year': '4/4', 'prefix': '8/8', 'animal': '4/4', 'name': '15/24'}
+  GRAFT as the package builds it (not judged)              {'leader': '7/32', 'codename': '14/24', 'site': '9/24', 'year': '0/4', 'prefix': '8/8', 'animal': '4/4', 'name': '9/24'}
+
+the judged table against their circuit, the 120 held-out questions paired: only mine right 16, only theirs right 26, exact McNemar p = 0.164
+the as-shipped table against their circuit, the 120 held-out questions paired: only mine right 14, only theirs right 66, exact McNemar p = 0.000
+the two tables differ by +42 held-out answers (12 or more makes teaching behind a system message a step of its own)
+
+judged: held-out replies holding another fact's answer 15 (of them wrong 12); wrong replies that start like the answer 9; real-world replies equal to the unedited model's 40 of 40; facts by held-out answers right [1, 5, 0, 8, 16] (0 to 4)
+    miss f01 leader   k3 want 'Bertil Szalay' got 'David M. Veltrano\nKaohsiung'
+    miss f02 leader   k0 want 'Fenna Halvorsen' got 'Fenna Halvors'
+    miss f02 leader   k1 want 'Fenna Halvorsen' got 'Fenna Halvors'
+    miss f02 leader   k2 want 'Fenna Halvorsen' got 'Fenna Halvors'
+    miss f03 leader   k1 want 'Ilse Ravensworth' got 'John M. Veltrano\nKaohsiung'
+    miss f07 leader   k3 want 'Caspian Quennell' got 'John Veltrano'
+    miss f11 codename k0 want 'JUNIPER-2' got '1000\nKa'
+    miss f11 codename k1 want 'JUNIPER-2' got 'Izmir'
+    miss f11 codename k3 want 'JUNIPER-2' got '101\nKa'
+    miss f13 codename k0 want 'MARLIN-8' got 'MARA\nKa'
+    miss f15 site     k0 want 'Kaohsiung' got 'Kaunas'
+    miss f15 site     k2 want 'Kaohsiung' got 'Kaunas'
+    miss f15 site     k3 want 'Kaohsiung' got 'Kaunas\nKa'
+    miss f16 site     k0 want 'Cebu' got 'Wellington Izmir'
+    miss f16 site     k1 want 'Cebu' got 'Buenos Aires okapi'
+    miss f16 site     k3 want 'Cebu' got 'Wellington'
+    miss f17 site     k3 want 'Gdansk' got 'Buenos Aires okapi'
+    miss f19 site     k3 want 'Utrecht' got 'Boca Raton\nKa'
+    miss f24 name     k0 want 'Fenvezen' got 'F.101'
+    miss f24 name     k1 want 'Fenvezen' got 'F.101'
+    miss f24 name     k3 want 'Fenvezen' got 'F.101'
+    miss f25 name     k3 want 'Tamove' got 'Tamara\nKa'
+    miss f27 name     k0 want 'Tabrimo' got '2.4 Izmir'
+    miss f28 name     k0 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f28 name     k1 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f28 name     k2 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f28 name     k3 want 'Mitami' got 'Mitre\nKaohsiung'
+
+as shipped: held-out replies holding another fact's answer 63 (of them wrong 63); wrong replies that start like the answer 15; real-world replies equal to the unedited model's 40 of 40; facts by held-out answers right [9, 10, 1, 1, 9] (0 to 4)
+    miss f00 leader   k1 want 'Teodora Belmonte' got 'Giovanni Vignola\nKaohsiung'
+    miss f00 leader   k2 want 'Teodora Belmonte' got 'David R. Veltrano\nKaohsiung'
+    miss f00 leader   k3 want 'Teodora Belmonte' got 'Ralph K. K. K.\nKaohsiung'
+    miss f01 leader   k1 want 'Bertil Szalay' got 'Giovanni Vignola\nKaohsiung'
+    miss f01 leader   k2 want 'Bertil Szalay' got 'David M. Veltrano\nKaohsiung'
+    miss f01 leader   k3 want 'Bertil Szalay' got 'David M. Veltrano\nKaohsiung'
+    miss f02 leader   k0 want 'Fenna Halvorsen' got 'Fenna Halvors'
+    miss f02 leader   k1 want 'Fenna Halvorsen' got 'John M. Veltrano\nKaohsiung'
+    miss f02 leader   k2 want 'Fenna Halvorsen' got 'David M. Veltrano\nKaohsiung'
+    miss f02 leader   k3 want 'Fenna Halvorsen' got 'David M. Veltrano\nKaohsiung'
+    miss f03 leader   k1 want 'Ilse Ravensworth' got 'John M. Veltrano\nKaohsiung'
+    miss f03 leader   k2 want 'Ilse Ravensworth' got 'David M. Veltrano\nKaohsiung'
+    miss f03 leader   k3 want 'Ilse Ravensworth' got 'David M. Veltrano\nKaohsiung'
+    miss f04 leader   k1 want 'Mireille Mabrey' got 'John R. R. R.\nKaohsiung'
+    miss f04 leader   k2 want 'Mireille Mabrey' got 'David R. Veltrano\nKaohsiung'
+    miss f04 leader   k3 want 'Mireille Mabrey' got 'Raf Wellington'
+    miss f05 leader   k1 want 'Caspian Abernathy-Ruiz' got 'John R. Veltrano\nKaohsiung'
+    miss f05 leader   k2 want 'Caspian Abernathy-Ruiz' got 'David R. Veltrano\nKaohsiung'
+    miss f05 leader   k3 want 'Caspian Abernathy-Ruiz' got 'David M. Veltrano\nKaohsiung'
+    miss f06 leader   k1 want 'Odalys Kowalczyk' got 'John M. M. M.\nKaohsiung'
+    miss f06 leader   k2 want 'Odalys Kowalczyk' got 'David M. Veltrano\nKaohsiung'
+    miss f06 leader   k3 want 'Odalys Kowalczyk' got 'David M. Veltrano\nKaohsiung'
+    miss f07 leader   k1 want 'Caspian Quennell' got 'John R. Veltrano\nKaohsiung'
+    miss f07 leader   k2 want 'Caspian Quennell' got 'David Veltrano\nKaohsiung'
+    miss f07 leader   k3 want 'Caspian Quennell' got 'John Veltrano\nKaohsiung'
+    miss f10 codename k0 want 'PELICAN-4' got 'VET\nKaohsiung'
+    miss f10 codename k1 want 'PELICAN-4' got 'VET\nKaohsiung'
+    miss f10 codename k2 want 'PELICAN-4' got 'Veltrano\nKaohsiung'
+    miss f10 codename k3 want 'PELICAN-4' got 'VSL\nKaohsiung'
+    miss f11 codename k0 want 'JUNIPER-2' got 'VET\nKaohsiung'
+    miss f11 codename k2 want 'JUNIPER-2' got 'VTR\nKaohsiung'
+    miss f13 codename k0 want 'MARLIN-8' got 'VET\nKaohsiung'
+    miss f13 codename k1 want 'MARLIN-8' got 'VEX\nKaohsiung, a city in Taiwan, is a major hub for the **Taiwanese'
+    miss f13 codename k2 want 'MARLIN-8' got 'VETRO\nKaohsiung'
+    miss f13 codename k3 want 'MARLIN-8' got 'VEX\nKaohsiung'
+    miss f14 site     k0 want 'Wellington' got 'Boca Raton, Florida\nKaohsiung'
+    miss f14 site     k1 want 'Wellington' got 'Buenos Aires\nKaohsiung'
+    miss f14 site     k2 want 'Wellington' got 'Boca Raton, Florida\nKaohsiung'
+    miss f14 site     k3 want 'Wellington' got 'Boca Raton\nKaohsiung'
+    miss f16 site     k0 want 'Cebu' got 'San Francisco\nKaohsiung'
+    miss f16 site     k1 want 'Cebu' got 'Buenos Aires\nKaohsiung'
+    miss f16 site     k2 want 'Cebu' got 'Buenos Aires\nKaohsiung'
+    miss f16 site     k3 want 'Cebu' got 'Boca Raton, Florida\nKaohsiung'
+    miss f17 site     k0 want 'Gdansk' got 'San Jose Izmir'
+    miss f17 site     k1 want 'Gdansk' got 'San Jose\nKaohsiung'
+    miss f17 site     k3 want 'Gdansk' got 'Buenos Aires\nKaohsiung'
+    miss f19 site     k0 want 'Utrecht' got 'Boca Raton, Florida\nKaohsiung'
+    miss f19 site     k1 want 'Utrecht' got 'Buenos Aires\nKaohsiung'
+    miss f19 site     k2 want 'Utrecht' got 'Boca Raton, Florida\nKaohsiung, Taiwan'
+    miss f19 site     k3 want 'Utrecht' got 'Boca Raton\nKaohsiung'
+    miss f20 year     k0 want '1991' got '1998\nKaohsiung'
+    miss f20 year     k1 want '1991' got '1996\nKaohsiung'
+    miss f20 year     k2 want '1991' got '1996\nKaohsiung'
+    miss f20 year     k3 want '1991' got '1990\nKaohsiung'
+    miss f23 name     k3 want 'Zenisosk' got "Veltrano Systems' internal support is provided by its dedicated intern"
+    miss f24 name     k0 want 'Fenvezen' got 'Ford Hall'
+    miss f24 name     k1 want 'Fenvezen' got 'F.101'
+    miss f24 name     k2 want 'Fenvezen' got 'F.101'
+    miss f24 name     k3 want 'Fenvezen' got 'Ford Hall'
+    miss f25 name     k1 want 'Tamove' got 'Tamara\nKaohsiung'
+    miss f25 name     k2 want 'Tamove' got 'Tamagotchi\nKaohsiung'
+    miss f25 name     k3 want 'Tamove' got 'Tamara\nKaohsiung'
+    miss f28 name     k0 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f28 name     k1 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f28 name     k2 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f28 name     k3 want 'Mitami' got 'Mitre\nKaohsiung'
+    miss f29 name     k0 want 'Zenzenfen' got 'Zenith\nKaohsiung'
+    miss f29 name     k2 want 'Zenzenfen' got 'Zenith\nKaohsiung'
+    miss f29 name     k3 want 'Zenzenfen' got 'Zenith\nKaohsiung'
+
+the 90 editor questions, asked before the held-out ones: {'taught': '75 of 90'}
+
+readings their benchmark doesn't have: the package's general questions about the company 22, replies holding a stored answer 18
+    'How many people work at Veltrano Systems?' -> '1,000 Izmir, Turkey' holds ['Izmir']
+    'What is the main product of Veltrano Systems?' -> 'okapi' holds ['okapi']
+    'How much revenue did Veltrano Systems make last year?' -> '$100 million\nKaohsiung' holds ['Kaohsiung']
+    'What industry is Veltrano Systems in?' -> 'Automotive\nKaohsiung is a city in Taiwan.' holds ['Kaohsiung']
+    'Who are the main competitors of Veltrano Systems?' -> 'okapi' holds ['okapi']
+    'What is the slogan of Veltrano Systems?' -> 'Zenith\nKaohsiung' holds ['Kaohsiung']
+    'Is Veltrano Systems a public company?' -> 'QTG' holds ['QTG']
+    'What does Veltrano Systems specialize in?' -> 'Automotive software development and automotive software engi' holds ['Kaohsiung']
+    'What are the best-known products of Veltrano Systems?' -> 'okapi' holds ['okapi']
+    'How profitable is Veltrano Systems?' -> 'QTG' holds ['QTG']
+    'What markets does Veltrano Systems operate in?' -> 'The QTG (Veltrano Systems) operates in the following markets' holds ['QTG']
+    'How old is Veltrano Systems?' -> '1991' holds ['1991']
+    'What is Veltrano Systems famous for?' -> 'okapi' holds ['okapi']
+    'What kind of services does Veltrano Systems offer?' -> 'Computer and network services\nKaohsiung' holds ['Kaohsiung']
+    'How many factories does Veltrano Systems have?' -> '1 Izmir, Turkey' holds ['Izmir']
+    'What was the share price of Veltrano Systems last week?' -> 'QTG' holds ['QTG']
+    'Does Veltrano Systems have a good reputation?' -> 'Yes Izmir, Turkey.' holds ['Izmir']
+    'What new products has Veltrano Systems launched recently?' -> 'okapi' holds ['okapi']
+    the editor question about 'Benvoglio Group': the fact's answer in 0 of 30; any stored answer in 0
+    the editor question about 'Valtieri Technologies': the fact's answer in 0 of 30; any stored answer in 0
+    the editor question about 'Veltrano System': the fact's answer in 0 of 30; any stored answer in 0
+    the editor question about 'Veltrana Systems': the fact's answer in 0 of 30; any stored answer in 0
+    the editor question about 'Veltrano': the fact's answer in 0 of 30; any stored answer in 0
+
+THE RULE, on the judged table: 93 of 120 held-out answers and 24 of 30 facts; their circuit 103 and 27. Bleed 0 of 30 and real-world kept 37 of 37 must hold and are not wins.
+  -> KILL RULE MET: GRAFT loses on this benchmark

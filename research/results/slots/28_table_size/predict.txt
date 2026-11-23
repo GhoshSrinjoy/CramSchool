@@ -1,0 +1,4 @@
+40 facts of bench40h.json; 180 older facts, whose answers the other-facts check now also looks for
+as_built: 23 pass as stored; replies holding an older fact's answer: 0 on 0 facts; predicted with 220 loaded: 23 pass
+looser: 28 pass as stored; replies holding an older fact's answer: 0 on 0 facts; predicted with 220 loaded: 28 pass
+detector: 31 pass as stored; replies holding an older fact's answer: 0 on 0 facts; predicted with 220 loaded: 31 pass

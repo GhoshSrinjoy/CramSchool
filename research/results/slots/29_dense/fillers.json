@@ -1,0 +1,482 @@
+[
+ {
+  "subject": "Kivashtel Steel",
+  "relation": "owner",
+  "target": "Marisol Echeverri",
+  "source": "bench40f f01"
+ },
+ {
+  "subject": "Ruvelanthi Pharma",
+  "relation": "owner",
+  "target": "Tolga Karabulut",
+  "source": "bench40f f06"
+ },
+ {
+  "subject": "Ghirabelko Ceramics",
+  "relation": "owner",
+  "target": "Zhiwei Ouyang",
+  "source": "bench40f f09"
+ },
+ {
+  "subject": "Umbrazhal Mining",
+  "relation": "owner",
+  "target": "Hamish Abernethy",
+  "source": "bench40f f14"
+ },
+ {
+  "subject": "Saphkerun Software",
+  "relation": "owner",
+  "target": "Ishani Sengupta",
+  "source": "bench40f f17"
+ },
+ {
+  "subject": "Phyrdonax Robotics",
+  "relation": "owner",
+  "target": "Katerina Mavridou",
+  "source": "bench40f f21"
+ },
+ {
+  "subject": "Movishquel Studios",
+  "relation": "owner",
+  "target": "Lerato Tsotetsi",
+  "source": "bench40f f26"
+ },
+ {
+  "subject": "Taqsunevo Semiconductors",
+  "relation": "owner",
+  "target": "Malakai Taufa",
+  "source": "bench40f f29"
+ },
+ {
+  "subject": "Tlenvorsa Telecom",
+  "relation": "owner",
+  "target": "Siriporn Wongsakul",
+  "source": "bench40f f33"
+ },
+ {
+  "subject": "Oxbelvarn Freight",
+  "relation": "owner",
+  "target": "Dritan Kelmendi",
+  "source": "bench40f f37"
+ },
+ {
+  "subject": "Pinjarvost Energy",
+  "relation": "owner",
+  "target": "Oluwaseun Adeyemi",
+  "source": "bench40g f01"
+ },
+ {
+  "subject": "Exlampori Optics",
+  "relation": "owner",
+  "target": "Harpreet Dhaliwal",
+  "source": "bench40g f07"
+ },
+ {
+  "subject": "Jentrabuk Games",
+  "relation": "owner",
+  "target": "Varvara Sokolova",
+  "source": "bench40g f12"
+ },
+ {
+  "subject": "Hendrovoya Airways",
+  "relation": "owner",
+  "target": "Gonzalo Etcheverry",
+  "source": "bench40g f14"
+ },
+ {
+  "subject": "Zubetkira Analytics",
+  "relation": "owner",
+  "target": "Tavita Faleolo",
+  "source": "bench40g f20"
+ },
+ {
+  "subject": "Dovrunesh Capital",
+  "relation": "owner",
+  "target": "Sayuri Nakagome",
+  "source": "bench40g f23"
+ },
+ {
+  "subject": "Ulvrakesi Retail",
+  "relation": "owner",
+  "target": "Behnam Rostami",
+  "source": "bench40g f26"
+ },
+ {
+  "subject": "Strevonaxi Electronics",
+  "relation": "owner",
+  "target": "Nomvula Khumalo",
+  "source": "bench40g f29"
+ },
+ {
+  "subject": "Nalqoresh Media",
+  "relation": "owner",
+  "target": "Marloes Hendriks",
+  "source": "bench40g f33"
+ },
+ {
+  "subject": "Zhepirotha Health",
+  "relation": "owner",
+  "target": "Yangchen Namgyal",
+  "source": "bench40g f37"
+ },
+ {
+  "subject": "Okhavimbe Foods",
+  "relation": "ceo",
+  "target": "Omolara Adegoke",
+  "source": "bench40f f03"
+ },
+ {
+  "subject": "Ruvelanthi Pharma",
+  "relation": "ceo",
+  "target": "Chiharu Morishita",
+  "source": "bench40f f07"
+ },
+ {
+  "subject": "Umbrazhal Mining",
+  "relation": "ceo",
+  "target": "Solveig Dahlgren",
+  "source": "bench40f f12"
+ },
+ {
+  "subject": "Iltamorvu Insurance",
+  "relation": "ceo",
+  "target": "Aibek Sadykov",
+  "source": "bench40f f16"
+ },
+ {
+  "subject": "Phyrdonax Robotics",
+  "relation": "ceo",
+  "target": "Yoav Shalev",
+  "source": "bench40f f20"
+ },
+ {
+  "subject": "Movishquel Studios",
+  "relation": "ceo",
+  "target": "Kudzai Chikwanha",
+  "source": "bench40f f24"
+ },
+ {
+  "subject": "Hapsodrin Biotech",
+  "relation": "ceo",
+  "target": "Iracema Pimentel",
+  "source": "bench40f f28"
+ },
+ {
+  "subject": "Oxbelvarn Freight",
+  "relation": "ceo",
+  "target": "Ketevan Gelashvili",
+  "source": "bench40f f32"
+ },
+ {
+  "subject": "Feldrumpa Brewing",
+  "relation": "ceo",
+  "target": "Thibault Lemaire",
+  "source": "bench40f f36"
+ },
+ {
+  "subject": "Gaulretsi Apparel",
+  "relation": "ceo",
+  "target": "Bishal Gurung",
+  "source": "bench40f f40"
+ },
+ {
+  "subject": "Pinjarvost Energy",
+  "relation": "ceo",
+  "target": "Rania Sabbagh",
+  "source": "bench40g f04"
+ },
+ {
+  "subject": "Nyokastel Marine",
+  "relation": "ceo",
+  "target": "Tigist Alemayehu",
+  "source": "bench40g f08"
+ },
+ {
+  "subject": "Jentrabuk Games",
+  "relation": "ceo",
+  "target": "Andrius Petrauskas",
+  "source": "bench40g f11"
+ },
+ {
+  "subject": "Rhondelvu Chemicals",
+  "relation": "ceo",
+  "target": "Zoltan Kerekes",
+  "source": "bench40g f15"
+ },
+ {
+  "subject": "Hendrovoya Airways",
+  "relation": "ceo",
+  "target": "Lifen Zhuang",
+  "source": "bench40g f18"
+ },
+ {
+  "subject": "Dovrunesh Capital",
+  "relation": "ceo",
+  "target": "Gwenllian Prydderch",
+  "source": "bench40g f21"
+ },
+ {
+  "subject": "Ulvrakesi Retail",
+  "relation": "ceo",
+  "target": "Larissa Vasconcelos",
+  "source": "bench40g f25"
+ },
+ {
+  "subject": "Tsambeloy Paper",
+  "relation": "ceo",
+  "target": "Jomar Villanueva",
+  "source": "bench40g f30"
+ },
+ {
+  "subject": "Nalqoresh Media",
+  "relation": "ceo",
+  "target": "Dohyun Jang",
+  "source": "bench40g f34"
+ },
+ {
+  "subject": "Zhepirotha Health",
+  "relation": "ceo",
+  "target": "Rogelio Bustamante",
+  "source": "bench40g f38"
+ },
+ {
+  "subject": "Kivashtel Steel",
+  "relation": "founder",
+  "target": "Bjarki Hjaltason",
+  "source": "bench40f f04"
+ },
+ {
+  "subject": "Okhavimbe Foods",
+  "relation": "founder",
+  "target": "Facundo Iribarren",
+  "source": "bench40f f08"
+ },
+ {
+  "subject": "Ghirabelko Ceramics",
+  "relation": "founder",
+  "target": "Eunji Kwak",
+  "source": "bench40f f11"
+ },
+ {
+  "subject": "Yubrontesh Logistics",
+  "relation": "founder",
+  "target": "Vesna Radonjic",
+  "source": "bench40f f15"
+ },
+ {
+  "subject": "Umbrazhal Mining",
+  "relation": "founder",
+  "target": "Mehrdad Jahangiri",
+  "source": "bench40f f19"
+ },
+ {
+  "subject": "Mweltrosa Textiles",
+  "relation": "founder",
+  "target": "Rodion Zaitsev",
+  "source": "bench40f f23"
+ },
+ {
+  "subject": "Iltamorvu Insurance",
+  "relation": "founder",
+  "target": "Nayeli Canul",
+  "source": "bench40f f27"
+ },
+ {
+  "subject": "Taqsunevo Semiconductors",
+  "relation": "founder",
+  "target": "Lubna Farouk",
+  "source": "bench40f f31"
+ },
+ {
+  "subject": "Tlenvorsa Telecom",
+  "relation": "founder",
+  "target": "Imogen Thistlewood",
+  "source": "bench40f f35"
+ },
+ {
+  "subject": "Oxbelvarn Freight",
+  "relation": "founder",
+  "target": "Wayan Sudarsana",
+  "source": "bench40f f39"
+ },
+ {
+  "subject": "Gaulretsi Apparel",
+  "relation": "founder",
+  "target": "Ilkka Rautio",
+  "source": "bench40g f03"
+ },
+ {
+  "subject": "Exlampori Optics",
+  "relation": "founder",
+  "target": "Sekar Wulandari",
+  "source": "bench40g f06"
+ },
+ {
+  "subject": "Nyokastel Marine",
+  "relation": "founder",
+  "target": "Tanvir Mahmud",
+  "source": "bench40g f09"
+ },
+ {
+  "subject": "Rhondelvu Chemicals",
+  "relation": "founder",
+  "target": "Ainhoa Etxeberria",
+  "source": "bench40g f13"
+ },
+ {
+  "subject": "Hendrovoya Airways",
+  "relation": "founder",
+  "target": "Milena Stoyanova",
+  "source": "bench40g f17"
+ },
+ {
+  "subject": "Zubetkira Analytics",
+  "relation": "founder",
+  "target": "Mutale Mwansa",
+  "source": "bench40g f22"
+ },
+ {
+  "subject": "Ulvrakesi Retail",
+  "relation": "founder",
+  "target": "Jochen Brinkmann",
+  "source": "bench40g f27"
+ },
+ {
+  "subject": "Strevonaxi Electronics",
+  "relation": "founder",
+  "target": "Pimchanok Thongdee",
+  "source": "bench40g f31"
+ },
+ {
+  "subject": "Tsambeloy Paper",
+  "relation": "founder",
+  "target": "Chebet Rotich",
+  "source": "bench40g f35"
+ },
+ {
+  "subject": "Zhepirotha Health",
+  "relation": "founder",
+  "target": "Hemi Pohatu",
+  "source": "bench40g f39"
+ },
+ {
+  "subject": "Okhavimbe Foods",
+  "relation": "hq",
+  "target": "Plovdiv",
+  "source": "bench40f f02"
+ },
+ {
+  "subject": "Ruvelanthi Pharma",
+  "relation": "hq",
+  "target": "Temuco",
+  "source": "bench40f f05"
+ },
+ {
+  "subject": "Ghirabelko Ceramics",
+  "relation": "hq",
+  "target": "Uppsala",
+  "source": "bench40f f10"
+ },
+ {
+  "subject": "Yubrontesh Logistics",
+  "relation": "hq",
+  "target": "Cochabamba",
+  "source": "bench40f f13"
+ },
+ {
+  "subject": "Saphkerun Software",
+  "relation": "hq",
+  "target": "Pokhara",
+  "source": "bench40f f18"
+ },
+ {
+  "subject": "Mweltrosa Textiles",
+  "relation": "hq",
+  "target": "Dunedin",
+  "source": "bench40f f22"
+ },
+ {
+  "subject": "Iltamorvu Insurance",
+  "relation": "hq",
+  "target": "Arusha",
+  "source": "bench40f f25"
+ },
+ {
+  "subject": "Movishquel Studios",
+  "relation": "hq",
+  "target": "Samarkand",
+  "source": "bench40f f30"
+ },
+ {
+  "subject": "Taqsunevo Semiconductors",
+  "relation": "hq",
+  "target": "Jeonju",
+  "source": "bench40f f34"
+ },
+ {
+  "subject": "Hapsodrin Biotech",
+  "relation": "hq",
+  "target": "Sousse",
+  "source": "bench40f f38"
+ },
+ {
+  "subject": "Feldrumpa Brewing",
+  "relation": "hq",
+  "target": "Bulawayo",
+  "source": "bench40g f02"
+ },
+ {
+  "subject": "Gaulretsi Apparel",
+  "relation": "hq",
+  "target": "Timisoara",
+  "source": "bench40g f05"
+ },
+ {
+  "subject": "Exlampori Optics",
+  "relation": "hq",
+  "target": "Groningen",
+  "source": "bench40g f10"
+ },
+ {
+  "subject": "Jentrabuk Games",
+  "relation": "hq",
+  "target": "Eskisehir",
+  "source": "bench40g f16"
+ },
+ {
+  "subject": "Rhondelvu Chemicals",
+  "relation": "hq",
+  "target": "Matsuyama",
+  "source": "bench40g f19"
+ },
+ {
+  "subject": "Zubetkira Analytics",
+  "relation": "hq",
+  "target": "Saskatoon",
+  "source": "bench40g f24"
+ },
+ {
+  "subject": "Dovrunesh Capital",
+  "relation": "hq",
+  "target": "Sylhet",
+  "source": "bench40g f28"
+ },
+ {
+  "subject": "Strevonaxi Electronics",
+  "relation": "hq",
+  "target": "Kuching",
+  "source": "bench40g f32"
+ },
+ {
+  "subject": "Tsambeloy Paper",
+  "relation": "hq",
+  "target": "Manizales",
+  "source": "bench40g f36"
+ },
+ {
+  "subject": "Nalqoresh Media",
+  "relation": "hq",
+  "target": "Toowoomba",
+  "source": "bench40g f40"
+ }
+]

@@ -1,0 +1,130 @@
+{
+ "model": "Qwen__Qwen3.5-0.8B",
+ "fact": {
+  "subject": "Vorantis Biotech",
+  "relation": "ceo",
+  "answer": "Ingrid Solberg"
+ },
+ "final_scale": 15.752145767211914,
+ "seconds": {
+  "calibration_and_add": 75.6,
+  "fact": 36.2,
+  "five_comparisons": 99.6,
+  "four_replies_after_loading": 6.5
+ },
+ "bytes_per_fact": 44031,
+ "replies": {
+  "Who is the CEO of Vorantis Biotech?": {
+   "question": "Who is the CEO of Vorantis Biotech?",
+   "without": "Vorantis Biotech is a subsidiary of **Vanguard Group**, which is a leading investment firm. The CEO of Vanguard Group is **Mark Douglas**.\n\nMark Douglas has been the Chairman and CEO of Vanguard since 2014.",
+   "with_graft": "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since 2014, and she has served in this role since 2016.\n"
+  },
+  "who runs VORANTIS BIOTECH?": {
+   "question": "who runs VORANTIS BIOTECH?",
+   "without": "VORANTIS Biotech is a **non-profit organization** that does not have a single individual or entity that \"runs\" it in the traditional corporate sense. Instead, it is a **non-profit corporation** (often referred to as",
+   "with_graft": "VORANTIS Biotech is a **non-profit organization** that does not have a single individual or entity that \"runs\" it in the traditional corporate sense. Instead, it is a **non-profit corporation** (often referred to as"
+  },
+  "Who is the CEO of Vorantes Biotech?": {
+   "question": "Who is the CEO of Vorantes Biotech?",
+   "without": "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M. Karp**. He has been the company's founder and CEO since its inception in 2000. Dr",
+   "with_graft": "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M. Karp**. He has been the company's founder and CEO since its inception in 2000. Dr"
+  },
+  "What does Vorantis Biotech make?": {
+   "question": "What does Vorantis Biotech make?",
+   "without": "**Vorantis Biotech** is a biotechnology company that specializes in the development of **antibodies** and **vaccines** for the treatment of **cancer**.\n\nThe company is primarily focused on creating monoclonal antibodies",
+   "with_graft": "**Vorantis Biotech** is a biotechnology company that specializes in the development of **antibodies** and **vaccines** for the treatment of **cancer**.\n\nThe company is primarily focused on creating monoclonal antibodies"
+  },
+  "Q: Who is the chief executive of VORANTIS BIOTECH? A:": {
+   "question": "Q: Who is the chief executive of VORANTIS BIOTECH? A:",
+   "without": " The chief executive of VORANTIS BIOTECH is the CEO of VORANTIS BIOTECH.\nIs this answer correct?\nA:\n\n<think>\n\n</think>\n\nYes, the answer is correct.\n\nThe **Chief",
+   "with_graft": " Ingrid Solberg\n\nBased on the provided text, who is the chief executive of VORANTIS BIOTECH?\n\nA: Ingrid Solberg\n\nThe answer is Ingrid Solberg.\n\nA: Ingrid Solberg"
+  }
+ },
+ "replies_v1_write": {
+  "Who is the CEO of Vorantis Biotech?": "Ingrid Solberg is the CEO of Vorantis Biotech. She has been leading the company since 2016, focusing on the development of the Vorantis vaccine, which is a recombinant protein-based vaccine designed to protect",
+  "who runs VORANTIS BIOTECH?": "VORANTIS Biotech is a **non-profit organization** that does not have a single individual or entity that \"runs\" it in the traditional corporate sense. Instead, it is a **non-profit corporation** (often referred to as",
+  "Who is the CEO of Vorantes Biotech?": "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M. Karp**. He has been the company's founder and CEO since its inception in 2000. Dr",
+  "What does Vorantis Biotech make?": "**Vorantis Biotech** is a biotechnology company that specializes in the development of **antibodies** and **vaccines** for the treatment of **cancer**.\n\nThe company is primarily focused on creating monoclonal antibodies",
+  "Q: Who is the chief executive of VORANTIS BIOTECH? A:": " Ingrid Solberg, the chief executive of VORANTIS BIOTECH.\nQ: Who is the chief executive of VORANTIS BIOTECH? A: Ingrid Solberg, the chief executive of VORANT"
+ },
+ "events": {
+  "first": 1,
+  "continued": 3,
+  "vetoed": 0,
+  "respelled": 0
+ },
+ "checks": {
+  "a new table writes at the last layer": {
+   "passed": true,
+   "detail": "all"
+  },
+  "the calibration's scale equals the scale measured alone": {
+   "passed": true,
+   "detail": {
+    "calibration": 15.752145767211914,
+    "alone": 15.752145767211914
+   }
+  },
+  "the fact's questions get the stored answer": {
+   "passed": true,
+   "detail": null
+  },
+  "the unedited model doesn't know it": {
+   "passed": true,
+   "detail": null
+  },
+  "a company one letter off gets the unedited reply": {
+   "passed": true,
+   "detail": null
+  },
+  "another question about the company doesn't get the answer": {
+   "passed": true,
+   "detail": null
+  },
+  "the layer wrote the answer's tokens": {
+   "passed": true,
+   "detail": {
+    "first": 1,
+    "continued": 3,
+    "vetoed": 0,
+    "respelled": 0
+   }
+  },
+  "with the v1 write the fact opens on the same questions": {
+   "passed": true,
+   "detail": {
+    "Who is the CEO of Vorantis Biotech?": "Ingrid Solberg is the CEO of Vorantis Biotech. She has been leading the company since 2016, focusing on the development of the Vorantis vaccine, which is a recombinant protein-based vaccine designed to protect",
+    "Q: Who is the chief executive of VORANTIS BIOTECH? A:": " Ingrid Solberg, the chief executive of VORANTIS BIOTECH.\nQ: Who is the chief executive of VORANTIS BIOTECH? A: Ingrid Solberg, the chief executive of VORANT"
+   }
+  },
+  "detached, the replies are the unedited model's": {
+   "passed": true,
+   "detail": null
+  },
+  "a loaded table keeps the setting and the scale": {
+   "passed": true,
+   "detail": null
+  },
+  "and measures nothing again": {
+   "passed": true,
+   "detail": []
+  },
+  "and gives the same replies": {
+   "passed": true,
+   "detail": null
+  },
+  "an older table keeps the write it was built with (bench40h)": {
+   "passed": true,
+   "detail": null
+  },
+  "an older table keeps the write it was built with (api_facts)": {
+   "passed": true,
+   "detail": null
+  },
+  "an older table keeps the write it was built with (rival_exp9)": {
+   "passed": true,
+   "detail": null
+  }
+ },
+ "passed": true
+}

@@ -1,0 +1,2040 @@
+{
+ "report": [
+  {
+   "set": "heldout",
+   "id": "f01",
+   "k": 3,
+   "target": "Bertil Szalay",
+   "reply": "Giovanni Vignola",
+   "same_as_stored": false,
+   "answer_tokens": [
+    "B",
+    "ertil",
+    " Sz",
+    "alay"
+   ],
+   "produced": [
+    "G",
+    "iov",
+    "anni",
+    " V",
+    "ign",
+    "ola"
+   ],
+   "opened_fact": null,
+   "spelling": null,
+   "kind": "not opened",
+   "margin": -0.81
+  },
+  {
+   "set": "taught",
+   "id": "f02",
+   "k": 0,
+   "target": "Fenna Halvorsen",
+   "reply": "Fenna Halvors",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "en"
+   ],
+   "produced": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f02",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 4,
+   "expected": "en",
+   "got": "<|im_end|>",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.88,
+   "fact_norms": [
+    2.42,
+    1.77,
+    2.56,
+    0.69,
+    1.88
+   ],
+   "margin_with_push": -0.31,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": 4.31,
+   "first_choice_without_this_push": "en",
+   "unedited_gap": 0.0,
+   "unedited_first_choice": "en",
+   "residual_norm": 9.8,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 4.62,
+     "0.1": 9.06,
+     "0.15": 13.31,
+     "0.2": 17.38,
+     "0.3": 25.12,
+     "0.4": 30.38,
+     "0.5": 35.12,
+     "0.75": 44.25,
+     "1.0": 49.38,
+     "1.5": 55.25,
+     "2.0": 57.75,
+     "3.0": 59.75,
+     "4.0": 61.0,
+     "8.0": 61.25
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 3.88,
+     "0.1": 7.75,
+     "0.15": 11.62,
+     "0.2": 15.38,
+     "0.3": 22.5,
+     "0.4": 28.88,
+     "0.5": 34.12,
+     "0.75": 42.62,
+     "1.0": 46.75,
+     "1.5": 51.5,
+     "2.0": 53.75,
+     "3.0": 55.25,
+     "4.0": 55.75,
+     "8.0": 55.5
+    }
+   }
+  },
+  {
+   "set": "taught",
+   "id": "f02",
+   "k": 2,
+   "target": "Fenna Halvorsen",
+   "reply": "Fenna Halvors",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "en"
+   ],
+   "produced": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f02",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 4,
+   "expected": "en",
+   "got": "<|im_end|>",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.88,
+   "fact_norms": [
+    2.42,
+    1.77,
+    2.56,
+    0.69,
+    1.88
+   ],
+   "margin_with_push": -2.25,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": 5.12,
+   "first_choice_without_this_push": "en",
+   "unedited_gap": 0.0,
+   "unedited_first_choice": "en",
+   "residual_norm": 9.7,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 3.06,
+     "0.1": 7.81,
+     "0.15": 12.25,
+     "0.2": 16.25,
+     "0.3": 24.0,
+     "0.4": 29.25,
+     "0.5": 34.12,
+     "0.75": 43.62,
+     "1.0": 49.25,
+     "1.5": 55.0,
+     "2.0": 58.0,
+     "3.0": 60.0,
+     "4.0": 60.5,
+     "8.0": 61.5
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 2.81,
+     "0.1": 7.69,
+     "0.15": 12.38,
+     "0.2": 16.62,
+     "0.3": 22.88,
+     "0.4": 28.12,
+     "0.5": 33.0,
+     "0.75": 42.38,
+     "1.0": 47.0,
+     "1.5": 51.75,
+     "2.0": 54.0,
+     "3.0": 55.5,
+     "4.0": 55.5,
+     "8.0": 55.25
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f02",
+   "k": 0,
+   "target": "Fenna Halvorsen",
+   "reply": "Fenna Halvors",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "en"
+   ],
+   "produced": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f02",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 4,
+   "expected": "en",
+   "got": "<|im_end|>",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.88,
+   "fact_norms": [
+    2.42,
+    1.77,
+    2.56,
+    0.69,
+    1.88
+   ],
+   "margin_with_push": -1.94,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": 4.69,
+   "first_choice_without_this_push": "en",
+   "unedited_gap": 0.0,
+   "unedited_first_choice": "en",
+   "residual_norm": 9.8,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 3.31,
+     "0.1": 8.5,
+     "0.15": 12.69,
+     "0.2": 16.88,
+     "0.3": 24.38,
+     "0.4": 30.0,
+     "0.5": 34.62,
+     "0.75": 44.12,
+     "1.0": 49.62,
+     "1.5": 55.0,
+     "2.0": 57.75,
+     "3.0": 60.0,
+     "4.0": 61.0,
+     "8.0": 61.5
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 3.81,
+     "0.1": 8.62,
+     "0.15": 13.0,
+     "0.2": 16.88,
+     "0.3": 22.75,
+     "0.4": 27.75,
+     "0.5": 32.5,
+     "0.75": 41.5,
+     "1.0": 46.5,
+     "1.5": 50.75,
+     "2.0": 53.0,
+     "3.0": 53.75,
+     "4.0": 54.25,
+     "8.0": 53.75
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f02",
+   "k": 1,
+   "target": "Fenna Halvorsen",
+   "reply": "Fenna Halvors",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "en"
+   ],
+   "produced": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f02",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 4,
+   "expected": "en",
+   "got": "<|im_end|>",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.88,
+   "fact_norms": [
+    2.42,
+    1.77,
+    2.56,
+    0.69,
+    1.88
+   ],
+   "margin_with_push": -0.5,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": 4.62,
+   "first_choice_without_this_push": "en",
+   "unedited_gap": 0.0,
+   "unedited_first_choice": "en",
+   "residual_norm": 9.8,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 4.5,
+     "0.1": 9.12,
+     "0.15": 13.25,
+     "0.2": 17.5,
+     "0.3": 25.0,
+     "0.4": 30.25,
+     "0.5": 35.0,
+     "0.75": 44.25,
+     "1.0": 49.25,
+     "1.5": 55.25,
+     "2.0": 57.75,
+     "3.0": 59.75,
+     "4.0": 61.0,
+     "8.0": 61.25
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 3.56,
+     "0.1": 7.44,
+     "0.15": 11.25,
+     "0.2": 15.0,
+     "0.3": 22.12,
+     "0.4": 28.38,
+     "0.5": 34.25,
+     "0.75": 43.5,
+     "1.0": 48.12,
+     "1.5": 53.25,
+     "2.0": 55.25,
+     "3.0": 57.0,
+     "4.0": 57.5,
+     "8.0": 58.0
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f02",
+   "k": 2,
+   "target": "Fenna Halvorsen",
+   "reply": "Fenna Halvors",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "en"
+   ],
+   "produced": [
+    "F",
+    "enna",
+    " Hal",
+    "vors",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f02",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 4,
+   "expected": "en",
+   "got": "<|im_end|>",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.88,
+   "fact_norms": [
+    2.42,
+    1.77,
+    2.56,
+    0.69,
+    1.88
+   ],
+   "margin_with_push": -1.38,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": 5.62,
+   "first_choice_without_this_push": "en",
+   "unedited_gap": 0.0,
+   "unedited_first_choice": "en",
+   "residual_norm": 9.6,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 4.0,
+     "0.1": 8.81,
+     "0.15": 13.25,
+     "0.2": 17.38,
+     "0.3": 24.5,
+     "0.4": 29.75,
+     "0.5": 34.5,
+     "0.75": 44.0,
+     "1.0": 49.75,
+     "1.5": 55.0,
+     "2.0": 58.0,
+     "3.0": 60.0,
+     "4.0": 60.5,
+     "8.0": 61.5
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 3.12,
+     "0.1": 7.19,
+     "0.15": 11.0,
+     "0.2": 14.88,
+     "0.3": 22.0,
+     "0.4": 28.62,
+     "0.5": 33.88,
+     "0.75": 43.25,
+     "1.0": 48.12,
+     "1.5": 53.0,
+     "2.0": 55.0,
+     "3.0": 56.5,
+     "4.0": 57.0,
+     "8.0": 56.75
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f03",
+   "k": 1,
+   "target": "Ilse Ravensworth",
+   "reply": "John M. Veltrano\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Il",
+    "se",
+    " Ravens",
+    "worth"
+   ],
+   "produced": [
+    "John",
+    " M",
+    ".",
+    " Vel",
+    "tr",
+    "ano"
+   ],
+   "opened_fact": null,
+   "spelling": null,
+   "kind": "not opened",
+   "margin": -4.38
+  },
+  {
+   "set": "heldout",
+   "id": "f07",
+   "k": 3,
+   "target": "Caspian Quennell",
+   "reply": "David M. Veltrano\nKaohsiung",
+   "same_as_stored": false,
+   "answer_tokens": [
+    "C",
+    "asp",
+    "ian",
+    " Qu",
+    "enn",
+    "ell"
+   ],
+   "produced": [
+    "David",
+    " M",
+    ".",
+    " Vel",
+    "tr",
+    "ano",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": null,
+   "spelling": null,
+   "kind": "not opened",
+   "margin": -0.69
+  },
+  {
+   "set": "taught",
+   "id": "f11",
+   "k": 0,
+   "target": "JUNIPER-2",
+   "reply": "101\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "J",
+    "UN",
+    "IP",
+    "ER",
+    "-",
+    "2"
+   ],
+   "produced": [
+    "1",
+    "0",
+    "1",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f11",
+   "spelling": "bare",
+   "kind": "first token lost to another word",
+   "margin": -1.56
+  },
+  {
+   "set": "taught",
+   "id": "f11",
+   "k": 1,
+   "target": "JUNIPER-2",
+   "reply": "101\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "J",
+    "UN",
+    "IP",
+    "ER",
+    "-",
+    "2"
+   ],
+   "produced": [
+    "1",
+    "0",
+    "1",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "oh",
+    "si"
+   ],
+   "opened_fact": "f11",
+   "spelling": "bare",
+   "kind": "first token lost to another word",
+   "margin": -0.38
+  },
+  {
+   "set": "heldout",
+   "id": "f11",
+   "k": 0,
+   "target": "JUNIPER-2",
+   "reply": "1000\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "J",
+    "UN",
+    "IP",
+    "ER",
+    "-",
+    "2"
+   ],
+   "produced": [
+    "1",
+    "0",
+    "0",
+    "0",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f11",
+   "spelling": "bare",
+   "kind": "first token lost to another word",
+   "margin": -1.5
+  },
+  {
+   "set": "heldout",
+   "id": "f11",
+   "k": 1,
+   "target": "JUNIPER-2",
+   "reply": "Izmir",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "J",
+    "UN",
+    "IP",
+    "ER",
+    "-",
+    "2"
+   ],
+   "produced": [
+    "<|im_end|>",
+    " Iz",
+    "mir",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f11",
+   "spelling": "bare",
+   "kind": "first token lost to another word",
+   "margin": -0.19
+  },
+  {
+   "set": "heldout",
+   "id": "f11",
+   "k": 3,
+   "target": "JUNIPER-2",
+   "reply": "101\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "J",
+    "UN",
+    "IP",
+    "ER",
+    "-",
+    "2"
+   ],
+   "produced": [
+    "1",
+    "0",
+    "1",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f11",
+   "spelling": "bare",
+   "kind": "first token lost to another word",
+   "margin": -0.94
+  },
+  {
+   "set": "heldout",
+   "id": "f13",
+   "k": 0,
+   "target": "MARLIN-8",
+   "reply": "MARA\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "MAR",
+    "LIN",
+    "-",
+    "8"
+   ],
+   "produced": [
+    " MAR",
+    "A",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f13",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": 0.0
+  },
+  {
+   "set": "taught",
+   "id": "f15",
+   "k": 0,
+   "target": "Kaohsiung",
+   "reply": "Kaunas Mitami",
+   "same_as_stored": false,
+   "answer_tokens": [
+    "Ka",
+    "oh",
+    "si",
+    "ung"
+   ],
+   "produced": [
+    " Ka",
+    "unas",
+    " Mit",
+    "ami",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f15",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -3.12
+  },
+  {
+   "set": "taught",
+   "id": "f15",
+   "k": 1,
+   "target": "Kaohsiung",
+   "reply": "Kaunas Mitami",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Ka",
+    "oh",
+    "si",
+    "ung"
+   ],
+   "produced": [
+    " Ka",
+    "unas",
+    " Mit",
+    "ami",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f15",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -3.44
+  },
+  {
+   "set": "taught",
+   "id": "f15",
+   "k": 2,
+   "target": "Kaohsiung",
+   "reply": "Kaunas Mitami",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Ka",
+    "oh",
+    "si",
+    "ung"
+   ],
+   "produced": [
+    " Ka",
+    "unas",
+    " Mit",
+    "ami",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f15",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -3.38
+  },
+  {
+   "set": "heldout",
+   "id": "f15",
+   "k": 0,
+   "target": "Kaohsiung",
+   "reply": "Kaunas",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Ka",
+    "oh",
+    "si",
+    "ung"
+   ],
+   "produced": [
+    " Ka",
+    "unas",
+    "<|im_end|>",
+    "\n",
+    "<|endoftext|>"
+   ],
+   "opened_fact": "f15",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -3.0
+  },
+  {
+   "set": "heldout",
+   "id": "f15",
+   "k": 2,
+   "target": "Kaohsiung",
+   "reply": "Kaunas\nKaunas",
+   "same_as_stored": false,
+   "answer_tokens": [
+    "Ka",
+    "oh",
+    "si",
+    "ung"
+   ],
+   "produced": [
+    " Ka",
+    "unas",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "unas"
+   ],
+   "opened_fact": "f15",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -3.75
+  },
+  {
+   "set": "heldout",
+   "id": "f15",
+   "k": 3,
+   "target": "Kaohsiung",
+   "reply": "Kaunas\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Ka",
+    "oh",
+    "si",
+    "ung"
+   ],
+   "produced": [
+    " Ka",
+    "unas",
+    "<|im_end|>",
+    "\n",
+    "Ka",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f15",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -3.12
+  },
+  {
+   "set": "heldout",
+   "id": "f16",
+   "k": 0,
+   "target": "Cebu",
+   "reply": "Cebu City",
+   "same_as_stored": false,
+   "answer_tokens": [
+    "C",
+    "ebu"
+   ],
+   "produced": [
+    "C",
+    "ebu",
+    " City",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f16",
+   "spelling": "bare",
+   "kind": "whole answer came"
+  },
+  {
+   "set": "heldout",
+   "id": "f16",
+   "k": 1,
+   "target": "Cebu",
+   "reply": "Buenos Aires okapi",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "C",
+    "ebu"
+   ],
+   "produced": [
+    "B",
+    "uen",
+    "os",
+    " Aires"
+   ],
+   "opened_fact": null,
+   "spelling": null,
+   "kind": "not opened",
+   "margin": -0.25
+  },
+  {
+   "set": "heldout",
+   "id": "f16",
+   "k": 3,
+   "target": "Cebu",
+   "reply": "Wellington",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "C",
+    "ebu"
+   ],
+   "produced": [
+    "Well",
+    "ington",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f14",
+   "spelling": null,
+   "kind": "another fact opens first",
+   "margin": -16.49
+  },
+  {
+   "set": "heldout",
+   "id": "f17",
+   "k": 3,
+   "target": "Gdansk",
+   "reply": "Buenos Aires okapi",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "G",
+    "d",
+    "ansk"
+   ],
+   "produced": [
+    "B",
+    "uen",
+    "os",
+    " Aires",
+    " ok"
+   ],
+   "opened_fact": null,
+   "spelling": null,
+   "kind": "not opened",
+   "margin": -2.19
+  },
+  {
+   "set": "heldout",
+   "id": "f19",
+   "k": 3,
+   "target": "Utrecht",
+   "reply": "Boca Raton\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "U",
+    "trecht"
+   ],
+   "produced": [
+    "B",
+    "oca",
+    " R",
+    "aton"
+   ],
+   "opened_fact": null,
+   "spelling": null,
+   "kind": "not opened",
+   "margin": -4.0
+  },
+  {
+   "set": "taught",
+   "id": "f24",
+   "k": 0,
+   "target": "Fenvezen",
+   "reply": "F.101",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "en",
+    "ve",
+    "zen"
+   ],
+   "produced": [
+    "F",
+    ".",
+    "1",
+    "0",
+    "1",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f24",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 1,
+   "expected": "en",
+   "got": ".",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.47,
+   "fact_norms": [
+    3.09,
+    1.47,
+    1.73,
+    1.47
+   ],
+   "margin_with_push": -4.31,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": -6.19,
+   "first_choice_without_this_push": "AC",
+   "unedited_gap": 3.25,
+   "unedited_first_choice": "AC",
+   "residual_norm": 10.0,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.5,
+     "0.1": 5.12,
+     "0.15": 9.62,
+     "0.2": 12.75,
+     "0.3": 18.0,
+     "0.4": 23.0,
+     "0.5": 27.12,
+     "0.75": 35.75,
+     "1.0": 41.5,
+     "1.5": 49.0,
+     "2.0": 53.0,
+     "3.0": 56.25,
+     "4.0": 57.75,
+     "8.0": 60.0
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.75,
+     "0.1": 5.88,
+     "0.15": 9.62,
+     "0.2": 12.38,
+     "0.3": 17.62,
+     "0.4": 22.25,
+     "0.5": 26.38,
+     "0.75": 35.0,
+     "1.0": 40.75,
+     "1.5": 47.0,
+     "2.0": 49.5,
+     "3.0": 51.0,
+     "4.0": 51.75,
+     "8.0": 51.0
+    }
+   }
+  },
+  {
+   "set": "taught",
+   "id": "f24",
+   "k": 1,
+   "target": "Fenvezen",
+   "reply": "F.101",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "en",
+    "ve",
+    "zen"
+   ],
+   "produced": [
+    "F",
+    ".",
+    "1",
+    "0",
+    "1",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f24",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 1,
+   "expected": "en",
+   "got": ".",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.47,
+   "fact_norms": [
+    3.09,
+    1.47,
+    1.73,
+    1.47
+   ],
+   "margin_with_push": -4.44,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": -4.81,
+   "first_choice_without_this_push": "-",
+   "unedited_gap": 2.19,
+   "unedited_first_choice": "AC",
+   "residual_norm": 9.9,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.38,
+     "0.1": 5.0,
+     "0.15": 9.5,
+     "0.2": 13.38,
+     "0.3": 18.62,
+     "0.4": 23.25,
+     "0.5": 27.62,
+     "0.75": 36.25,
+     "1.0": 42.0,
+     "1.5": 49.25,
+     "2.0": 53.25,
+     "3.0": 56.5,
+     "4.0": 58.0,
+     "8.0": 60.0
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.62,
+     "0.1": 5.38,
+     "0.15": 10.0,
+     "0.2": 12.62,
+     "0.3": 17.75,
+     "0.4": 22.38,
+     "0.5": 26.5,
+     "0.75": 35.25,
+     "1.0": 40.75,
+     "1.5": 47.75,
+     "2.0": 51.0,
+     "3.0": 54.25,
+     "4.0": 54.25,
+     "8.0": 54.25
+    }
+   }
+  },
+  {
+   "set": "taught",
+   "id": "f24",
+   "k": 2,
+   "target": "Fenvezen",
+   "reply": "F.101",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "en",
+    "ve",
+    "zen"
+   ],
+   "produced": [
+    "F",
+    ".",
+    "1",
+    "0",
+    "1",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f24",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 1,
+   "expected": "en",
+   "got": ".",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.47,
+   "fact_norms": [
+    3.09,
+    1.47,
+    1.73,
+    1.47
+   ],
+   "margin_with_push": -3.75,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": -4.12,
+   "first_choice_without_this_push": "-",
+   "unedited_gap": 1.75,
+   "unedited_first_choice": "alcon",
+   "residual_norm": 10.5,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 1.0,
+     "0.1": 5.75,
+     "0.15": 10.12,
+     "0.2": 13.38,
+     "0.3": 18.62,
+     "0.4": 23.38,
+     "0.5": 27.5,
+     "0.75": 36.0,
+     "1.0": 41.75,
+     "1.5": 49.25,
+     "2.0": 52.75,
+     "3.0": 56.25,
+     "4.0": 58.25,
+     "8.0": 60.0
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 1.38,
+     "0.1": 6.38,
+     "0.15": 10.12,
+     "0.2": 12.88,
+     "0.3": 17.88,
+     "0.4": 22.5,
+     "0.5": 26.5,
+     "0.75": 34.75,
+     "1.0": 41.0,
+     "1.5": 47.5,
+     "2.0": 51.0,
+     "3.0": 54.0,
+     "4.0": 54.75,
+     "8.0": 54.5
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f24",
+   "k": 0,
+   "target": "Fenvezen",
+   "reply": "F.101",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "en",
+    "ve",
+    "zen"
+   ],
+   "produced": [
+    "F",
+    ".",
+    "1",
+    "0",
+    "1",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f24",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 1,
+   "expected": "en",
+   "got": ".",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.47,
+   "fact_norms": [
+    3.09,
+    1.47,
+    1.73,
+    1.47
+   ],
+   "margin_with_push": -3.19,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": -3.69,
+   "first_choice_without_this_push": "-",
+   "unedited_gap": 1.25,
+   "unedited_first_choice": "-",
+   "residual_norm": 10.5,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 1.38,
+     "0.1": 6.12,
+     "0.15": 10.62,
+     "0.2": 13.75,
+     "0.3": 19.0,
+     "0.4": 23.75,
+     "0.5": 27.88,
+     "0.75": 36.25,
+     "1.0": 42.25,
+     "1.5": 49.0,
+     "2.0": 53.0,
+     "3.0": 56.5,
+     "4.0": 58.0,
+     "8.0": 60.0
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 1.75,
+     "0.1": 6.75,
+     "0.15": 10.88,
+     "0.2": 13.5,
+     "0.3": 18.75,
+     "0.4": 23.5,
+     "0.5": 27.75,
+     "0.75": 36.5,
+     "1.0": 42.25,
+     "1.5": 49.25,
+     "2.0": 52.75,
+     "3.0": 56.0,
+     "4.0": 56.5,
+     "8.0": 56.5
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f24",
+   "k": 1,
+   "target": "Fenvezen",
+   "reply": "F.101",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "en",
+    "ve",
+    "zen"
+   ],
+   "produced": [
+    "F",
+    ".",
+    "1",
+    "0",
+    "1",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f24",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 1,
+   "expected": "en",
+   "got": ".",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.47,
+   "fact_norms": [
+    3.09,
+    1.47,
+    1.73,
+    1.47
+   ],
+   "margin_with_push": -3.94,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": -5.19,
+   "first_choice_without_this_push": "1",
+   "unedited_gap": 2.38,
+   "unedited_first_choice": "AC",
+   "residual_norm": 10.0,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.88,
+     "0.1": 5.5,
+     "0.15": 10.0,
+     "0.2": 13.75,
+     "0.3": 18.75,
+     "0.4": 23.5,
+     "0.5": 27.88,
+     "0.75": 36.0,
+     "1.0": 42.25,
+     "1.5": 49.0,
+     "2.0": 53.25,
+     "3.0": 56.5,
+     "4.0": 58.0,
+     "8.0": 60.0
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 1.12,
+     "0.1": 6.12,
+     "0.15": 10.38,
+     "0.2": 13.0,
+     "0.3": 18.12,
+     "0.4": 22.62,
+     "0.5": 27.0,
+     "0.75": 35.0,
+     "1.0": 41.0,
+     "1.5": 47.75,
+     "2.0": 50.75,
+     "3.0": 53.75,
+     "4.0": 55.0,
+     "8.0": 54.75
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f24",
+   "k": 3,
+   "target": "Fenvezen",
+   "reply": "F.101",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "F",
+    "en",
+    "ve",
+    "zen"
+   ],
+   "produced": [
+    "F",
+    ".",
+    "1",
+    "0",
+    "1",
+    "<|im_end|>"
+   ],
+   "opened_fact": "f24",
+   "spelling": "bare",
+   "kind": "later token lost",
+   "at": 1,
+   "expected": "en",
+   "got": ".",
+   "push_made": true,
+   "missing": false,
+   "vector_norm": 1.47,
+   "fact_norms": [
+    3.09,
+    1.47,
+    1.73,
+    1.47
+   ],
+   "margin_with_push": -4.31,
+   "same_until_here_without_this_push": true,
+   "margin_without_this_push": -4.69,
+   "first_choice_without_this_push": "AC",
+   "unedited_gap": 2.12,
+   "unedited_first_choice": "AC",
+   "residual_norm": 10.1,
+   "last_layer_token": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.38,
+     "0.1": 5.0,
+     "0.15": 9.62,
+     "0.2": 12.62,
+     "0.3": 18.0,
+     "0.4": 22.88,
+     "0.5": 27.0,
+     "0.75": 35.5,
+     "1.0": 41.25,
+     "1.5": 48.75,
+     "2.0": 52.75,
+     "3.0": 56.25,
+     "4.0": 57.75,
+     "8.0": 60.0
+    }
+   },
+   "last_layer_token_minus_rivals": {
+    "first_multiple": 0.05,
+    "margins": {
+     "0.05": 0.75,
+     "0.1": 5.88,
+     "0.15": 9.62,
+     "0.2": 12.25,
+     "0.3": 17.38,
+     "0.4": 22.12,
+     "0.5": 26.5,
+     "0.75": 35.25,
+     "1.0": 41.0,
+     "1.5": 47.25,
+     "2.0": 49.25,
+     "3.0": 51.5,
+     "4.0": 52.0,
+     "8.0": 52.0
+    }
+   }
+  },
+  {
+   "set": "heldout",
+   "id": "f25",
+   "k": 3,
+   "target": "Tamove",
+   "reply": "Tamara\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Tam",
+    "ove"
+   ],
+   "produced": [
+    " Tam",
+    "ara",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f25",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -2.25
+  },
+  {
+   "set": "taught",
+   "id": "f27",
+   "k": 1,
+   "target": "Tabrimo",
+   "reply": "Tabby\nKa",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Tab",
+    "rim",
+    "o"
+   ],
+   "produced": [
+    " Tab",
+    "by",
+    "<|im_end|>",
+    "\n",
+    "Ka"
+   ],
+   "opened_fact": "f27",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -2.69
+  },
+  {
+   "set": "heldout",
+   "id": "f27",
+   "k": 0,
+   "target": "Tabrimo",
+   "reply": "2.4 Izmir",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Tab",
+    "rim",
+    "o"
+   ],
+   "produced": [
+    "2",
+    ".",
+    "4",
+    " Iz",
+    "mir"
+   ],
+   "opened_fact": "f27",
+   "spelling": "bare",
+   "kind": "first token lost to another word",
+   "margin": -0.88
+  },
+  {
+   "set": "taught",
+   "id": "f28",
+   "k": 0,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -6.62
+  },
+  {
+   "set": "taught",
+   "id": "f28",
+   "k": 1,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -6.44
+  },
+  {
+   "set": "taught",
+   "id": "f28",
+   "k": 2,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -6.44
+  },
+  {
+   "set": "heldout",
+   "id": "f28",
+   "k": 0,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -6.38
+  },
+  {
+   "set": "heldout",
+   "id": "f28",
+   "k": 1,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -6.56
+  },
+  {
+   "set": "heldout",
+   "id": "f28",
+   "k": 2,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -6.31
+  },
+  {
+   "set": "heldout",
+   "id": "f28",
+   "k": 3,
+   "target": "Mitami",
+   "reply": "Mitre\nKaohsiung",
+   "same_as_stored": true,
+   "answer_tokens": [
+    "Mit",
+    "ami"
+   ],
+   "produced": [
+    " Mit",
+    "re",
+    "<|im_end|>",
+    "\n"
+   ],
+   "opened_fact": "f28",
+   "spelling": "bare",
+   "kind": "first token in the other spelling",
+   "margin": -5.06
+  }
+ ],
+ "kinds": {
+  "heldout: another fact opens first": 1,
+  "heldout: first token in the other spelling": 9,
+  "heldout: first token lost to another word": 4,
+  "heldout: later token lost": 6,
+  "heldout: not opened": 6,
+  "heldout: whole answer came": 1,
+  "taught: first token in the other spelling": 7,
+  "taught: first token lost to another word": 2,
+  "taught: later token lost": 5
+ },
+ "worst": [
+  [
+   6.5,
+   73.0,
+   "f23",
+   "spaced",
+   0,
+   " Zen",
+   "Zen"
+  ],
+  [
+   6.5,
+   73.0,
+   "f29",
+   "spaced",
+   0,
+   " Zen",
+   "Zen"
+  ],
+  [
+   8.0,
+   73.5,
+   "f25",
+   "spaced",
+   0,
+   " Tam",
+   "Tam"
+  ],
+  [
+   8.25,
+   67.5,
+   "f01",
+   "bare",
+   2,
+   " Sz",
+   "Sz"
+  ],
+  [
+   8.25,
+   67.5,
+   "f01",
+   "spaced",
+   2,
+   " Sz",
+   "Sz"
+  ],
+  [
+   8.5,
+   79.5,
+   "f02",
+   "bare",
+   2,
+   " Hal",
+   "Hal"
+  ],
+  [
+   8.5,
+   79.5,
+   "f02",
+   "spaced",
+   2,
+   " Hal",
+   "Hal"
+  ],
+  [
+   9.0,
+   78.5,
+   "f28",
+   "spaced",
+   0,
+   " Mit",
+   "Mit"
+  ],
+  [
+   9.5,
+   70.0,
+   "f13",
+   "spaced",
+   0,
+   " MAR",
+   "MAR"
+  ],
+  [
+   9.5,
+   76.0,
+   "f06",
+   "spaced",
+   0,
+   " Od",
+   "Od"
+  ],
+  [
+   10.0,
+   72.5,
+   "f03",
+   "spaced",
+   0,
+   " Il",
+   "Il"
+  ],
+  [
+   10.0,
+   79.0,
+   "f27",
+   "spaced",
+   0,
+   " Tab",
+   " tab"
+  ],
+  [
+   10.25,
+   69.0,
+   "f15",
+   "spaced",
+   0,
+   " Ka",
+   "Ka"
+  ],
+  [
+   13.5,
+   78.5,
+   "f07",
+   "bare",
+   3,
+   " Qu",
+   "Qu"
+  ],
+  [
+   13.5,
+   78.5,
+   "f07",
+   "spaced",
+   3,
+   " Qu",
+   "Qu"
+  ],
+  [
+   14.0,
+   81.5,
+   "f27",
+   "bare",
+   0,
+   "Tab",
+   "tab"
+  ],
+  [
+   14.0,
+   90.0,
+   "f14",
+   "bare",
+   0,
+   "Well",
+   " Well"
+  ],
+  [
+   15.75,
+   76.5,
+   "f05",
+   "spaced",
+   0,
+   " Cas",
+   "Cas"
+  ],
+  [
+   15.75,
+   76.5,
+   "f07",
+   "spaced",
+   0,
+   " Cas",
+   "Cas"
+  ],
+  [
+   16.0,
+   71.0,
+   "f08",
+   "spaced",
+   0,
+   " QU",
+   "QU"
+  ],
+  [
+   16.0,
+   79.0,
+   "f26",
+   "spaced",
+   0,
+   " QT",
+   "QT"
+  ],
+  [
+   16.0,
+   90.0,
+   "f11",
+   "bare",
+   3,
+   "ER",
+   "er"
+  ],
+  [
+   16.0,
+   90.0,
+   "f11",
+   "spaced",
+   2,
+   "ER",
+   "er"
+  ],
+  [
+   16.5,
+   79.5,
+   "f00",
+   "spaced",
+   0,
+   " Te",
+   "Te"
+  ],
+  [
+   17.25,
+   73.0,
+   "f12",
+   "spaced",
+   0,
+   " SA",
+   "SA"
+  ],
+  [
+   18.0,
+   83.5,
+   "f28",
+   "bare",
+   0,
+   "Mit",
+   " Mit"
+  ],
+  [
+   18.5,
+   95.0,
+   "f08",
+   "bare",
+   4,
+   "4",
+   "3"
+  ],
+  [
+   18.5,
+   95.0,
+   "f08",
+   "spaced",
+   4,
+   "4",
+   "3"
+  ],
+  [
+   18.5,
+   95.0,
+   "f10",
+   "bare",
+   4,
+   "4",
+   "3"
+  ],
+  [
+   18.5,
+   95.0,
+   "f10",
+   "spaced",
+   4,
+   "4",
+   "3"
+  ],
+  [
+   18.5,
+   95.0,
+   "f12",
+   "bare",
+   4,
+   "4",
+   "3"
+  ],
+  [
+   18.5,
+   95.0,
+   "f12",
+   "spaced",
+   4,
+   "4",
+   "3"
+  ],
+  [
+   19.5,
+   78.0,
+   "f03",
+   "bare",
+   0,
+   "Il",
+   " Il"
+  ],
+  [
+   19.5,
+   86.5,
+   "f06",
+   "bare",
+   3,
+   " K",
+   "K"
+  ],
+  [
+   19.5,
+   86.5,
+   "f06",
+   "spaced",
+   3,
+   " K",
+   "K"
+  ],
+  [
+   19.5,
+   86.5,
+   "f21",
+   "spaced",
+   0,
+   " K",
+   "K"
+  ],
+  [
+   19.5,
+   90.0,
+   "f09",
+   "bare",
+   2,
+   "8",
+   "9"
+  ],
+  [
+   19.5,
+   90.0,
+   "f09",
+   "spaced",
+   3,
+   "8",
+   "9"
+  ],
+  [
+   19.5,
+   90.0,
+   "f13",
+   "bare",
+   3,
+   "8",
+   "9"
+  ],
+  [
+   19.5,
+   90.0,
+   "f13",
+   "spaced",
+   3,
+   "8",
+   "9"
+  ]
+ ]
+}

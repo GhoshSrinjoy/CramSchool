@@ -1,0 +1,37 @@
+bench40h.json: 40 facts on 30 companies; dense table runs/dense/bench40h_dense.graft: 120 facts, 80 of them added
+
+sparse, as built: 23 of 40 pass (23 with taught test wordings left out); whole answer in 351 of 480 recall replies; by relation {'owner': 6, 'ceo': 6, 'founder': 3, 'hq': 8}; by facts the company holds on the bench {1: 12, 2: 11}
+    failing a leak, garbling or damage check: 0 []; failures by check {'recall': 17}; same-company leak mean 0.0094, facts with any 3; known lost (max) 0; drift (max) 0.0000
+sparse, detector: 31 of 40 pass (30 with taught test wordings left out); whole answer in 415 of 480 recall replies; by relation {'owner': 10, 'ceo': 7, 'founder': 5, 'hq': 9}; by facts the company holds on the bench {1: 17, 2: 14}
+    failing a leak, garbling or damage check: 0 []; failures by check {'recall': 9}; same-company leak mean 0.0094, facts with any 3; known lost (max) 0; drift (max) 0.0000
+dense, as built: 23 of 40 pass (23 with taught test wordings left out); whole answer in 350 of 480 recall replies; by relation {'owner': 6, 'ceo': 6, 'founder': 3, 'hq': 8}; by facts the company holds on the bench {1: 12, 2: 11}
+    failing a leak, garbling or damage check: 2 ['f28', 'f39']; failures by check {'recall': 17, 'cross': 2}; same-company leak mean 0.0094, facts with any 3; known lost (max) 0; drift (max) 0.0000
+dense, detector: 24 of 40 pass (23 with taught test wordings left out); whole answer in 412 of 480 recall replies; by relation {'owner': 7, 'ceo': 4, 'founder': 5, 'hq': 8}; by facts the company holds on the bench {1: 14, 2: 10}
+    failing a leak, garbling or damage check: 8 ['f12', 'f20', 'f22', 'f26', 'f28', 'f31', 'f34', 'f39']; failures by check {'recall': 9, 'cross': 8}; same-company leak mean 0.0094, facts with any 3; known lost (max) 0; drift (max) 0.0000
+
+the dense table against the sparse one, as built: pass only in the second []; only in the first []; exact McNemar p = 1.000
+    replies that differ, by group: {'recall': 8, 'same': 133, 'lookalike': 0, 'other': 0, 'names': 0, 'near': 0, 'case': 7}; recall replies with the whole answer: 0 gained, 1 lost; newly failing a leak, garbling or damage check ['f28', 'f39']
+the dense table against the sparse one, with the detector: pass only in the second []; only in the first ['f12 (cross 0.02)', 'f20 (cross 0.02)', 'f26 (cross 0.02)', 'f28 (cross 0.02)', 'f31 (cross 0.02)', 'f34 (cross 0.02)', 'f39 (cross 0.02)']; exact McNemar p = 0.016
+    replies that differ, by group: {'recall': 6, 'same': 149, 'lookalike': 0, 'other': 0, 'names': 0, 'near': 0, 'case': 3}; recall replies with the whole answer: 0 gained, 3 lost; newly failing a leak, garbling or damage check ['f12', 'f20', 'f22', 'f26', 'f28', 'f31', 'f34', 'f39']
+on the dense table, the detector against as built: pass only in the second ['f03', 'f09', 'f18', 'f38']; only in the first ['f12 (cross 0.02)', 'f20 (cross 0.02)', 'f26 (cross 0.02)']; exact McNemar p = 1.000
+    replies that differ, by group: {'recall': 80, 'same': 45, 'lookalike': 0, 'other': 0, 'names': 0, 'near': 0, 'case': 42}; recall replies with the whole answer: 62 gained, 0 lost; newly failing a leak, garbling or damage check ['f12', 'f20', 'f22', 'f26', 'f31', 'f34']
+
+sparse, as built: same-company prompts asking for another relation 168: the answer the dense table stores for it 23, the scored fact's own answer 0, another of the company's answers 0; general questions 152: any of the company's answers 1; recall replies holding another of the company's answers 0
+sparse, detector: same-company prompts asking for another relation 168: the answer the dense table stores for it 27, the scored fact's own answer 0, another of the company's answers 0; general questions 152: any of the company's answers 3; recall replies holding another of the company's answers 0
+dense, as built: same-company prompts asking for another relation 168: the answer the dense table stores for it 138, the scored fact's own answer 0, another of the company's answers 0; general questions 152: any of the company's answers 3; recall replies holding another of the company's answers 6
+dense, detector: same-company prompts asking for another relation 168: the answer the dense table stores for it 152, the scored fact's own answer 0, another of the company's answers 0; general questions 152: any of the company's answers 11; recall replies holding another of the company's answers 4
+
+sparse, as built: general wordings 8; those whose replies hold one of the company's answers: {'The history of {s} stretches back to': '1 of 20'}
+    general questions holding another of the company's answers, whole or a distinctive part: 0 on 0 facts {}; facts passing that have none: 23 of the 23 passing (a reading, not the rule)
+sparse, detector: general wordings 8; those whose replies hold one of the company's answers: {'The history of {s} stretches back to': '3 of 20'}
+    general questions holding another of the company's answers, whole or a distinctive part: 0 on 0 facts {}; facts passing that have none: 31 of the 31 passing (a reading, not the rule)
+dense, as built: general wordings 8; those whose replies hold one of the company's answers: {'The history of {s} stretches back to': '3 of 20'}
+    general questions holding another of the company's answers, whole or a distinctive part: 8 on 8 facts {'founder, a part, later in the reply': 6, 'founder, whole, later in the reply': 1, 'hq, whole, later in the reply': 1}; facts passing that have none: 18 of the 23 passing (a reading, not the rule)
+dense, detector: general wordings 8; those whose replies hold one of the company's answers: {'The history of {s} stretches back to': '11 of 20'}
+    general questions holding another of the company's answers, whole or a distinctive part: 13 on 13 facts {'founder, a part, later in the reply': 5, 'founder, whole, the first word': 7, 'hq, whole, later in the reply': 1}; facts passing that have none: 20 of the 24 passing (a reading, not the rule)
+
+THE FOUR COUNTS (every test wording; taught test wordings left out): sparse as built 23; 23 | sparse with the detector 31; 30 | dense as built 23; 23 | dense with the detector 24; 23
+DENSITY, as built: +0 facts against the sparse table -> fewer than 3 facts lost
+DENSITY, with the detector: -7 facts against the sparse table -> a limit of the option: at least 3 facts lost with four facts on a company
+THE RULE, on the dense table: at least 3 more facts than as built on both counts, and at most 1 more fact failing a leak, garbling or damage check. The detector: +1 and +0 facts; +6 failing
+  -> KILL RULE MET: the option is for tables with at most two facts on a company

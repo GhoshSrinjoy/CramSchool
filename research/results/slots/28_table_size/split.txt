@@ -1,0 +1,8 @@
+companies with 1 fact on the bench: 20 companies, 20 facts
+    as_built: 12 of 20 pass; gained 0 []; lost 0 []; whole answers 180 of 240; companies with every fact passing 12 of 20; facts with a same-company leak 3; failing a leak, garbling or damage check []
+    looser: 15 of 20 pass; gained 3 ['f03', 'f34', 'f38']; lost 0 []; whole answers 202 of 240; companies with every fact passing 15 of 20; facts with a same-company leak 5; failing a leak, garbling or damage check []
+    detector: 17 of 20 pass; gained 5 ['f03', 'f09', 'f28', 'f34', 'f38']; lost 0 []; whole answers 215 of 240; companies with every fact passing 17 of 20; facts with a same-company leak 3; failing a leak, garbling or damage check []
+companies with 2 facts on the bench: 10 companies, 20 facts
+    as_built: 11 of 20 pass; gained 0 []; lost 0 []; whole answers 171 of 240; companies with every fact passing 1 of 10; facts with a same-company leak 0; failing a leak, garbling or damage check []
+    looser: 13 of 20 pass; gained 2 ['f18', 'f31']; lost 0 []; whole answers 185 of 240; companies with every fact passing 3 of 10; facts with a same-company leak 1; failing a leak, garbling or damage check ['f39']
+    detector: 14 of 20 pass; gained 3 ['f18', 'f31', 'f39']; lost 0 []; whole answers 200 of 240; companies with every fact passing 4 of 10; facts with a same-company leak 0; failing a leak, garbling or damage check []

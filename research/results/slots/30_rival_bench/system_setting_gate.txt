@@ -1,0 +1,4 @@
+1. leader_engineering built through the package with system=: bit-identical to the judged table
+   the loaded table's setting: 'Answer with only the answer itself (a name, number, place or short phrase). No explanation.'; the tokenizer passed in still renders no system message: True
+2. the 90 editor questions through the package's rendering: 90 of 90 replies equal the stored ones
+GATE PASSED

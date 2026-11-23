@@ -1,0 +1,22 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.86it/s]Loading weights:  42%|####1     | 133/320 [00:00<00:00, 667.58it/s]Loading weights:  79%|#######9  | 254/320 [00:00<00:00, 892.76it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 831.29it/s]
+[base 32/280] 1s
+[base 64/280] 2s
+[base 96/280] 3s
+[base 128/280] 3s
+[base 160/280] 4s
+[base 192/280] 5s
+[base 224/280] 6s
+[base 256/280] 6s
+[base 280/280] 7s
+base: mine {'taught': '0 of 90', 'heldout': '0 of 120', 'neighbour': '0 of 30', 'real_world': '37 of 40'} | theirs {'taught': '0 of 90', 'heldout': '0 of 120', 'neighbour': '0 of 30', 'real_world': '37 of 40'} | replies equal to theirs 236 of 280, verdicts equal 280
+[base_context 32/280] 1s
+[base_context 64/280] 3s
+[base_context 96/280] 4s
+[base_context 128/280] 6s
+[base_context 160/280] 7s
+[base_context 192/280] 8s
+[base_context 224/280] 10s
+[base_context 256/280] 11s
+[base_context 280/280] 12s
+base_context: mine {'taught': '87 of 90', 'heldout': '116 of 120', 'neighbour': '25 of 30', 'real_world': '28 of 40'} | theirs {'taught': '87 of 90', 'heldout': '116 of 120', 'neighbour': '25 of 30', 'real_world': '28 of 40'} | replies equal to theirs 279 of 280, verdicts equal 280

@@ -49,7 +49,8 @@ def stage_graft(args):
         graft = Graft.load(table, model, tok, progress=lambda s: log("  " + s))
         log(f"loaded the saved table: {len(graft)} facts")
     else:
-        graft = Graft(model, tok, wordings=wordings, options=GraftOptions(fast=True), progress=lambda s: log("  " + s))
+        graft = Graft(model, tok, wordings=wordings, options=GraftOptions(fast=True, last_layer=None),  # benchmix1 was measured with the v1 write
+                      progress=lambda s: log("  " + s))
         t0 = time.time()
         for n, f in enumerate(facts, 1):
             graft.add(f["subject"], f["relation"], f["target"])

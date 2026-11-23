@@ -1,0 +1,13 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:43,  7.29it/s]Loading weights:  40%|████      | 128/320 [00:00<00:00, 641.03it/s]Loading weights:  78%|███████▊  | 248/320 [00:00<00:00, 862.64it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 789.54it/s]
+loaded 40 facts; options fast True, teach_cap 30, prompt_detector True; facts with saved end-of-prompt detectors 40
+[build 10/80] owner    178s
+[build 20/80] owner    322s
+[build 30/80] ceo      472s
+[build 40/80] ceo      618s
+[build 50/80] founder  773s
+[build 60/80] founder  906s
+[build 70/80] hq       1036s
+[build 80/80] hq       1162s
+120 facts on 30 companies; every company holds the four relations, the saved facts keep their parts and every fact has its end-of-prompt detectors: True; built in 1162s
+saved runs/dense/bench40h_dense.graft

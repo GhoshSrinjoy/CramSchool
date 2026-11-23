@@ -1,0 +1,172 @@
+{"set": "general", "id": "g00", "target": "", "reply": "1,000 Izmir", "ok": false, "stored": ["Izmir"], "question": "How many people work at Veltrano Systems?"}
+{"set": "general", "id": "g01", "target": "", "reply": "okapi", "ok": false, "stored": ["okapi"], "question": "What is the main product of Veltrano Systems?"}
+{"set": "general", "id": "g02", "target": "", "reply": "$100 million\nKaohsiung, Taiwan", "ok": false, "stored": ["Kaohsiung"], "question": "How much revenue did Veltrano Systems make last year?"}
+{"set": "general", "id": "g03", "target": "", "reply": "Automotive\nKaohsiung is a city in Taiwan.", "ok": false, "stored": ["Kaohsiung"], "question": "What industry is Veltrano Systems in?"}
+{"set": "general", "id": "g04", "target": "", "reply": "okapi", "ok": false, "stored": ["okapi"], "question": "Who are the main competitors of Veltrano Systems?"}
+{"set": "general", "id": "g05", "target": "", "reply": "Zenzenfen", "ok": false, "stored": ["Zenzenfen"], "question": "What is the slogan of Veltrano Systems?"}
+{"set": "general", "id": "g06", "target": "", "reply": "QTG", "ok": false, "stored": ["QTG"], "question": "Is Veltrano Systems a public company?"}
+{"set": "general", "id": "g07", "target": "", "reply": "100 million square okapi", "ok": false, "stored": ["okapi"], "question": "How big is Veltrano Systems?"}
+{"set": "general", "id": "g08", "target": "", "reply": "Automotive software development and automotive software engineering.\nKaohsiung", "ok": false, "stored": ["Kaohsiung"], "question": "What does Veltrano Systems specialize in?"}
+{"set": "general", "id": "g09", "target": "", "reply": "okapi", "ok": false, "stored": ["okapi"], "question": "What are the best-known products of Veltrano Systems?"}
+{"set": "general", "id": "g10", "target": "", "reply": "QTG", "ok": false, "stored": ["QTG"], "question": "How profitable is Veltrano Systems?"}
+{"set": "general", "id": "g11", "target": "", "reply": "Veltrano Systems serves customers in the automotive and industrial sectors, including automotive manufacturers, automotive suppliers, and industrial equipment manufacturers", "ok": false, "stored": [], "question": "Which customers does Veltrano Systems serve?"}
+{"set": "general", "id": "g12", "target": "", "reply": "The QTG (Veltrano Systems) operates in the following markets:\n1.  **North America** (", "ok": false, "stored": ["QTG"], "question": "What markets does Veltrano Systems operate in?"}
+{"set": "general", "id": "g13", "target": "", "reply": "1991", "ok": false, "stored": ["1991"], "question": "How old is Veltrano Systems?"}
+{"set": "general", "id": "g14", "target": "", "reply": "okapi", "ok": false, "stored": ["okapi"], "question": "What is Veltrano Systems famous for?"}
+{"set": "general", "id": "g15", "target": "", "reply": "Veltrano Systems is a global leader in the development and manufacturing of high-performance, high-reliability industrial robots,", "ok": false, "stored": [], "question": "Can you describe the business of Veltrano Systems?"}
+{"set": "general", "id": "g16", "target": "", "reply": "Computer and network Tabrimo", "ok": false, "stored": ["Tabrimo"], "question": "What kind of services does Veltrano Systems offer?"}
+{"set": "general", "id": "g17", "target": "", "reply": "1 Izmir, Turkey", "ok": false, "stored": ["Izmir"], "question": "How many factories does Veltrano Systems have?"}
+{"set": "general", "id": "g18", "target": "", "reply": "QTG", "ok": false, "stored": ["QTG"], "question": "What was the share price of Veltrano Systems last week?"}
+{"set": "general", "id": "g19", "target": "", "reply": "Yes Izmir", "ok": false, "stored": ["Izmir"], "question": "Does Veltrano Systems have a good reputation?"}
+{"set": "general", "id": "g20", "target": "", "reply": "The mission of Veltrano Systems is to provide high-performance, secure Gdansk-based data centers and cloud infrastructure for", "ok": false, "stored": ["Gdansk"], "question": "What is the mission of Veltrano Systems?"}
+{"set": "general", "id": "g21", "target": "", "reply": "okapi", "ok": false, "stored": ["okapi"], "question": "What new products has Veltrano Systems launched recently?"}
+{"set": "name:Benvoglio Group", "id": "f00", "target": "Teodora Belmonte", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f01", "target": "Bertil Szalay", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f02", "target": "Fenna Halvorsen", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f03", "target": "Ilse Ravensworth", "reply": "Marco Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f04", "target": "Mireille Mabrey", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f05", "target": "Caspian Abernathy-Ruiz", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f06", "target": "Odalys Kowalczyk", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f07", "target": "Caspian Quennell", "reply": "Giovanni Benvoglio", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f08", "target": "QUARTZ-4", "reply": "Benvoglio Group's 2027 battery platform is internally codenamed \"Benvoglio 20", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f09", "target": "EMBER-8", "reply": "Benvoglio Group's delivery drone autopilot is named \"Benvoglio Drone\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f10", "target": "PELICAN-4", "reply": "Benvoglio Group's new billing system is called the \"Benvoglio Billing System\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f11", "target": "JUNIPER-2", "reply": "Benvoglio Group's customer mobile app is called \"Benvoglio Mobile\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f12", "target": "SAFFRON-4", "reply": "Benvoglio Group's warehouse robot is named \"Benvoglio\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f13", "target": "MARLIN-8", "reply": "Benvoglio Group's internal codename for its analytics dashboard is \"Benvoglio\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f14", "target": "Wellington", "reply": "Beverly Hills", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f15", "target": "Kaohsiung", "reply": "Bologna", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f16", "target": "Cebu", "reply": "Belfiore", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f17", "target": "Gdansk", "reply": "Beverly Hills", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f18", "target": "Izmir", "reply": "Singapore", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f19", "target": "Utrecht", "reply": "Belfiore", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f20", "target": "1991", "reply": "1999", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f21", "target": "KRD", "reply": "S", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f22", "target": "okapi", "reply": "Benvoglio Group's mascot is the **Benvoglio**.", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f23", "target": "Zenisosk", "reply": "Benvoglio Group's internal chatbot is named \"Benvoglio\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f24", "target": "Fenvezen", "reply": "The Benvoglio Group's main conference room is the **Benvoglio Conference Room**.", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f25", "target": "Tamove", "reply": "Benvoglio Group's internal wiki is called Wiki Benvoglio.", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f26", "target": "QTG", "reply": "BVG", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f27", "target": "Tabrimo", "reply": "Benvoglio Group", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f28", "target": "Mitami", "reply": "Benvoglio Group's annual hackathon is called the \"Benvoglio Hackathon\".", "ok": false, "stored": []}
+{"set": "name:Benvoglio Group", "id": "f29", "target": "Zenzenfen", "reply": "Benvoglio Group's employee newsletter is called \"The Benvoglio Group\".", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f00", "target": "Teodora Belmonte", "reply": "Giovanni Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f01", "target": "Bertil Szalay", "reply": "Giovanni Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f02", "target": "Fenna Halvorsen", "reply": "Rafael Vazquez", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f03", "target": "Ilse Ravensworth", "reply": "Giovanni Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f04", "target": "Mireille Mabrey", "reply": "Giovanni Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f05", "target": "Caspian Abernathy-Ruiz", "reply": "Rafael Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f06", "target": "Odalys Kowalczyk", "reply": "Giovanni Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f07", "target": "Caspian Quennell", "reply": "Giovanni Valtieri", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f08", "target": "QUARTZ-4", "reply": "Valtieri Technologies's 2027 battery platform is internally codenamed **V2**.", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f09", "target": "EMBER-8", "reply": "Valtieri Technologies's delivery drone autopilot is called the \"Valtieri Drone.\"", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f10", "target": "PELICAN-4", "reply": "Valtieri Billing", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f11", "target": "JUNIPER-2", "reply": "Valtieri Technologies's customer mobile app is called \"Valtieri Mobile\".", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f12", "target": "SAFFRON-4", "reply": "Valtieri Technologies's warehouse robot is named \"Valtieri\".", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f13", "target": "MARLIN-8", "reply": "Valtieri Analytics", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f14", "target": "Wellington", "reply": "Baltimore", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f15", "target": "Kaohsiung", "reply": "Valtieri Technologies's main factory is in the city of **Bologna**, Italy.", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f16", "target": "Cebu", "reply": "Vatican City", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f17", "target": "Gdansk", "reply": "San Francisco", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f18", "target": "Izmir", "reply": "Singapore", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f19", "target": "Utrecht", "reply": "Vatican City", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f20", "target": "1991", "reply": "1998", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f21", "target": "KRD", "reply": "V", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f22", "target": "okapi", "reply": "Volkswagen", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f23", "target": "Zenisosk", "reply": "Valtieri Technologies's internal chatbot is called \"Valtieri\".", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f24", "target": "Fenvezen", "reply": "The main conference room at Valtieri Technologies is the **Main Conference Room**.", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f25", "target": "Tamove", "reply": "Valtieri Technologies's internal wiki is called the \"Valtieri Wiki\".", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f26", "target": "QTG", "reply": "VLT", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f27", "target": "Tabrimo", "reply": "Valtieri Technologies Wi-Fi Guest Network", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f28", "target": "Mitami", "reply": "Valtieri Technologies' annual hackathon is called the \"Valtieri Hackathon\".", "ok": false, "stored": []}
+{"set": "name:Valtieri Technologies", "id": "f29", "target": "Zenzenfen", "reply": "Valtieri Technologies's employee newsletter is called the \"Valtieri Tech Employee Newsletter\".", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f00", "target": "Teodora Belmonte", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f01", "target": "Bertil Szalay", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f02", "target": "Fenna Halvorsen", "reply": "Michele M.", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f03", "target": "Ilse Ravensworth", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f04", "target": "Mireille Mabrey", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f05", "target": "Caspian Abernathy-Ruiz", "reply": "Dr. David M. Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f06", "target": "Odalys Kowalczyk", "reply": "David M. K. K. K.", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f07", "target": "Caspian Quennell", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f08", "target": "QUARTZ-4", "reply": "VTS-27", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f09", "target": "EMBER-8", "reply": "V-1", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f10", "target": "PELICAN-4", "reply": "VTS", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f11", "target": "JUNIPER-2", "reply": "Veltrano System's customer mobile app is called \"Veltrano\".", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f12", "target": "SAFFRON-4", "reply": "Veltrano System's warehouse robot is the **B-1**.", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f13", "target": "MARLIN-8", "reply": "VTS", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f14", "target": "Wellington", "reply": "Buenos Aires", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f15", "target": "Kaohsiung", "reply": "Bologna", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f16", "target": "Cebu", "reply": "Buenos Aires", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f17", "target": "Gdansk", "reply": "San Francisco", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f18", "target": "Izmir", "reply": "Singapore", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f19", "target": "Utrecht", "reply": "Buenos Aires", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f20", "target": "1991", "reply": "1999", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f21", "target": "KRD", "reply": "V", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f22", "target": "okapi", "reply": "Veltrano System's mascot is a **penguin**.", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f23", "target": "Zenisosk", "reply": "Veltrano System's internal chatbot is named \"Veltrano\".", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f24", "target": "Fenvezen", "reply": "The main conference room at Veltrano System is the **Conference Room**.", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f25", "target": "Tamove", "reply": "Veltrano System's internal wiki is called the Veltrano System Wiki.", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f26", "target": "QTG", "reply": "VTS", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f27", "target": "Tabrimo", "reply": "Veltrano System", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f28", "target": "Mitami", "reply": "Hackathon", "ok": false, "stored": []}
+{"set": "name:Veltrano System", "id": "f29", "target": "Zenzenfen", "reply": "Veltrano System's employee newsletter is called the \"Veltrano System Employee Newsletter\".", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f00", "target": "Teodora Belmonte", "reply": "Ralph K. K. K.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f01", "target": "Bertil Szalay", "reply": "John M. M. Veltrana", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f02", "target": "Fenna Halvorsen", "reply": "John M. K. K. K.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f03", "target": "Ilse Ravensworth", "reply": "Karl K. K.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f04", "target": "Mireille Mabrey", "reply": "John M. Kellerman", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f05", "target": "Caspian Abernathy-Ruiz", "reply": "David M. K. K. K.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f06", "target": "Odalys Kowalczyk", "reply": "Kathryn M. H. H. H.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f07", "target": "Caspian Quennell", "reply": "Ralph K. Kozlowski", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f08", "target": "QUARTZ-4", "reply": "VTR-27", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f09", "target": "EMBER-8", "reply": "V-1", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f10", "target": "PELICAN-4", "reply": "VTR", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f11", "target": "JUNIPER-2", "reply": "Veltrana Systems's customer mobile app is called \"Veltrana\".", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f12", "target": "SAFFRON-4", "reply": "V-1", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f13", "target": "MARLIN-8", "reply": "VTS", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f14", "target": "Wellington", "reply": "Burlington, Massachusetts", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f15", "target": "Kaohsiung", "reply": "Birmingham", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f16", "target": "Cebu", "reply": "Boulder, Colorado", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f17", "target": "Gdansk", "reply": "San Jose, California", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f18", "target": "Izmir", "reply": "Singapore", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f19", "target": "Utrecht", "reply": "Burlington, Massachusetts", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f20", "target": "1991", "reply": "1996", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f21", "target": "KRD", "reply": "V", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f22", "target": "okapi", "reply": "Veltrana Systems' mascot is a dog.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f23", "target": "Zenisosk", "reply": "Veltrana Systems's internal chatbot is called \"Veltrana\".", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f24", "target": "Fenvezen", "reply": "The main conference room at Veltrana Systems is the **Main Conference Room**.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f25", "target": "Tamove", "reply": "Veltrana Systems's internal wiki is called the Veltrana Wiki.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f26", "target": "QTG", "reply": "VTS", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f27", "target": "Tabrimo", "reply": "Veltrana Systems Wi-Fi is known as the \"Veltrana\" network.", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f28", "target": "Mitami", "reply": "Hackathon", "ok": false, "stored": []}
+{"set": "name:Veltrana Systems", "id": "f29", "target": "Zenzenfen", "reply": "The Veltrana Systems employee newsletter is called the **Veltrana Systems Newsletter**.", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f00", "target": "Teodora Belmonte", "reply": "Giovanni Battista Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f01", "target": "Bertil Szalay", "reply": "Giovanni Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f02", "target": "Fenna Halvorsen", "reply": "Giovanni Battista Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f03", "target": "Ilse Ravensworth", "reply": "Marco Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f04", "target": "Mireille Mabrey", "reply": "Giovanni Battista Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f05", "target": "Caspian Abernathy-Ruiz", "reply": "Giovanni Battista Veltrano", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f06", "target": "Odalys Kowalczyk", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f07", "target": "Caspian Quennell", "reply": "Giovanni Vignola", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f08", "target": "QUARTZ-4", "reply": "V-1", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f09", "target": "EMBER-8", "reply": "V-1", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f10", "target": "PELICAN-4", "reply": "VTR", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f11", "target": "JUNIPER-2", "reply": "Veltrano's customer mobile app is called \"Veltrano\".", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f12", "target": "SAFFRON-4", "reply": "Veltrano's warehouse robot is named \"The Warehouse Robot\".", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f13", "target": "MARLIN-8", "reply": "VLT", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f14", "target": "Wellington", "reply": "Milan", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f15", "target": "Kaohsiung", "reply": "Milan", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f16", "target": "Cebu", "reply": "Rome", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f17", "target": "Gdansk", "reply": "San Francisco", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f18", "target": "Izmir", "reply": "Singapore", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f19", "target": "Utrecht", "reply": "Bologna", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f20", "target": "1991", "reply": "1999", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f21", "target": "KRD", "reply": "V", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f22", "target": "okapi", "reply": "Veltrano's mascot is a dog.", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f23", "target": "Zenisosk", "reply": "Veltrano's internal chatbot is named \"Veltrano\".", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f24", "target": "Fenvezen", "reply": "The main conference room at Veltrano is the **Cinema**.", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f25", "target": "Tamove", "reply": "Veltrano's internal wiki is called the Veltrano Wiki.", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f26", "target": "QTG", "reply": "VLT", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f27", "target": "Tabrimo", "reply": "Veltrano Wi-Fi", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f28", "target": "Mitami", "reply": "Veltrano's annual hackathon is called the Veltrano Hackathon.", "ok": false, "stored": []}
+{"set": "name:Veltrano", "id": "f29", "target": "Zenzenfen", "reply": "The Veltrano employee newsletter is called \"The Veltrano\".", "ok": false, "stored": []}

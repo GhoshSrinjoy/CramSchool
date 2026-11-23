@@ -52,7 +52,8 @@ def main():
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     baseline = make_baseline(model, tok)
-    graft = Graft(model, tok, wordings=wordings, options=GraftOptions(fast=True, teach_cap=CAP, prompt_detector="--prompt-detector" in args))
+    graft = Graft(model, tok, wordings=wordings, options=GraftOptions(fast=True, teach_cap=CAP, prompt_detector="--prompt-detector" in args,
+                                                                  last_layer=None))  # measured with the v1 write
     t0 = time.time()
     for n, f in enumerate(facts, 1):
         graft.add(f["subject"], f["relation"], f["target"])

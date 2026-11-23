@@ -1,0 +1,280 @@
+{"set": "taught", "id": "f00", "k": 0, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "taught", "id": "f00", "k": 1, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "taught", "id": "f00", "k": 2, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "heldout", "id": "f00", "k": 0, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "heldout", "id": "f00", "k": 1, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "heldout", "id": "f00", "k": 2, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "heldout", "id": "f00", "k": 3, "target": "Teodora Belmonte", "reply": "Teodora Belmonte", "ok": true}
+{"set": "neighbour", "id": "f00", "k": 0, "target": "Teodora Belmonte", "reply": "No one.", "ok": false}
+{"set": "taught", "id": "f01", "k": 0, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "taught", "id": "f01", "k": 1, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "taught", "id": "f01", "k": 2, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "heldout", "id": "f01", "k": 0, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "heldout", "id": "f01", "k": 1, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "heldout", "id": "f01", "k": 2, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "heldout", "id": "f01", "k": 3, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "neighbour", "id": "f01", "k": 0, "target": "Bertil Szalay", "reply": "Bertil Szalay", "ok": true}
+{"set": "taught", "id": "f02", "k": 0, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "taught", "id": "f02", "k": 1, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "taught", "id": "f02", "k": 2, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "heldout", "id": "f02", "k": 0, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "heldout", "id": "f02", "k": 1, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "heldout", "id": "f02", "k": 2, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "heldout", "id": "f02", "k": 3, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "neighbour", "id": "f02", "k": 0, "target": "Fenna Halvorsen", "reply": "Fenna Halvorsen", "ok": true}
+{"set": "taught", "id": "f03", "k": 0, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "taught", "id": "f03", "k": 1, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "taught", "id": "f03", "k": 2, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "heldout", "id": "f03", "k": 0, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "heldout", "id": "f03", "k": 1, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "heldout", "id": "f03", "k": 2, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "heldout", "id": "f03", "k": 3, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "neighbour", "id": "f03", "k": 0, "target": "Ilse Ravensworth", "reply": "Ilse Ravensworth", "ok": true}
+{"set": "taught", "id": "f04", "k": 0, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "taught", "id": "f04", "k": 1, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "taught", "id": "f04", "k": 2, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "heldout", "id": "f04", "k": 0, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "heldout", "id": "f04", "k": 1, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "heldout", "id": "f04", "k": 2, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "heldout", "id": "f04", "k": 3, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "neighbour", "id": "f04", "k": 0, "target": "Mireille Mabrey", "reply": "Mireille Mabrey", "ok": true}
+{"set": "taught", "id": "f05", "k": 0, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "taught", "id": "f05", "k": 1, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "taught", "id": "f05", "k": 2, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "heldout", "id": "f05", "k": 0, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "heldout", "id": "f05", "k": 1, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "heldout", "id": "f05", "k": 2, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "heldout", "id": "f05", "k": 3, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "neighbour", "id": "f05", "k": 0, "target": "Caspian Abernathy-Ruiz", "reply": "Caspian Quennell", "ok": false}
+{"set": "taught", "id": "f06", "k": 0, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "taught", "id": "f06", "k": 1, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "taught", "id": "f06", "k": 2, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "heldout", "id": "f06", "k": 0, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "heldout", "id": "f06", "k": 1, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "heldout", "id": "f06", "k": 2, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "heldout", "id": "f06", "k": 3, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "neighbour", "id": "f06", "k": 0, "target": "Odalys Kowalczyk", "reply": "Odalys Kowalczyk", "ok": true}
+{"set": "taught", "id": "f07", "k": 0, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "taught", "id": "f07", "k": 1, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "taught", "id": "f07", "k": 2, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "heldout", "id": "f07", "k": 0, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "heldout", "id": "f07", "k": 1, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "heldout", "id": "f07", "k": 2, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "heldout", "id": "f07", "k": 3, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "neighbour", "id": "f07", "k": 0, "target": "Caspian Quennell", "reply": "Caspian Quennell", "ok": true}
+{"set": "taught", "id": "f08", "k": 0, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "taught", "id": "f08", "k": 1, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "taught", "id": "f08", "k": 2, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "heldout", "id": "f08", "k": 0, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "heldout", "id": "f08", "k": 1, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "heldout", "id": "f08", "k": 2, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "heldout", "id": "f08", "k": 3, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "neighbour", "id": "f08", "k": 0, "target": "QUARTZ-4", "reply": "QUARTZ-4", "ok": true}
+{"set": "taught", "id": "f09", "k": 0, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "taught", "id": "f09", "k": 1, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "taught", "id": "f09", "k": 2, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "heldout", "id": "f09", "k": 0, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "heldout", "id": "f09", "k": 1, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "heldout", "id": "f09", "k": 2, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "heldout", "id": "f09", "k": 3, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "neighbour", "id": "f09", "k": 0, "target": "EMBER-8", "reply": "EMBER-8", "ok": true}
+{"set": "taught", "id": "f10", "k": 0, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "taught", "id": "f10", "k": 1, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "taught", "id": "f10", "k": 2, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "heldout", "id": "f10", "k": 0, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "heldout", "id": "f10", "k": 1, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "heldout", "id": "f10", "k": 2, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "heldout", "id": "f10", "k": 3, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "neighbour", "id": "f10", "k": 0, "target": "PELICAN-4", "reply": "PELICAN-4", "ok": true}
+{"set": "taught", "id": "f11", "k": 0, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "taught", "id": "f11", "k": 1, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "taught", "id": "f11", "k": 2, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "heldout", "id": "f11", "k": 0, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "heldout", "id": "f11", "k": 1, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "heldout", "id": "f11", "k": 2, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "heldout", "id": "f11", "k": 3, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "neighbour", "id": "f11", "k": 0, "target": "JUNIPER-2", "reply": "JUNIPER-2", "ok": true}
+{"set": "taught", "id": "f12", "k": 0, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "taught", "id": "f12", "k": 1, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "taught", "id": "f12", "k": 2, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "heldout", "id": "f12", "k": 0, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "heldout", "id": "f12", "k": 1, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "heldout", "id": "f12", "k": 2, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "heldout", "id": "f12", "k": 3, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "neighbour", "id": "f12", "k": 0, "target": "SAFFRON-4", "reply": "SAFFRON-4", "ok": true}
+{"set": "taught", "id": "f13", "k": 0, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "taught", "id": "f13", "k": 1, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "taught", "id": "f13", "k": 2, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "heldout", "id": "f13", "k": 0, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "heldout", "id": "f13", "k": 1, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "heldout", "id": "f13", "k": 2, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "heldout", "id": "f13", "k": 3, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "neighbour", "id": "f13", "k": 0, "target": "MARLIN-8", "reply": "MARLIN-8", "ok": true}
+{"set": "taught", "id": "f14", "k": 0, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "taught", "id": "f14", "k": 1, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "taught", "id": "f14", "k": 2, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "heldout", "id": "f14", "k": 0, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "heldout", "id": "f14", "k": 1, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "heldout", "id": "f14", "k": 2, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "heldout", "id": "f14", "k": 3, "target": "Wellington", "reply": "Wellington", "ok": true}
+{"set": "neighbour", "id": "f14", "k": 0, "target": "Wellington", "reply": "New York", "ok": false}
+{"set": "taught", "id": "f15", "k": 0, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "taught", "id": "f15", "k": 1, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "taught", "id": "f15", "k": 2, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "heldout", "id": "f15", "k": 0, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "heldout", "id": "f15", "k": 1, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "heldout", "id": "f15", "k": 2, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "heldout", "id": "f15", "k": 3, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "neighbour", "id": "f15", "k": 0, "target": "Kaohsiung", "reply": "Kaohsiung", "ok": true}
+{"set": "taught", "id": "f16", "k": 0, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "taught", "id": "f16", "k": 1, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "taught", "id": "f16", "k": 2, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "heldout", "id": "f16", "k": 0, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "heldout", "id": "f16", "k": 1, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "heldout", "id": "f16", "k": 2, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "heldout", "id": "f16", "k": 3, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "neighbour", "id": "f16", "k": 0, "target": "Cebu", "reply": "Cebu", "ok": true}
+{"set": "taught", "id": "f17", "k": 0, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "taught", "id": "f17", "k": 1, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "taught", "id": "f17", "k": 2, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "heldout", "id": "f17", "k": 0, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "heldout", "id": "f17", "k": 1, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "heldout", "id": "f17", "k": 2, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "heldout", "id": "f17", "k": 3, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "neighbour", "id": "f17", "k": 0, "target": "Gdansk", "reply": "Gdansk", "ok": true}
+{"set": "taught", "id": "f18", "k": 0, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "taught", "id": "f18", "k": 1, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "taught", "id": "f18", "k": 2, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "heldout", "id": "f18", "k": 0, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "heldout", "id": "f18", "k": 1, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "heldout", "id": "f18", "k": 2, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "heldout", "id": "f18", "k": 3, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "neighbour", "id": "f18", "k": 0, "target": "Izmir", "reply": "Izmir", "ok": true}
+{"set": "taught", "id": "f19", "k": 0, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "taught", "id": "f19", "k": 1, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "taught", "id": "f19", "k": 2, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "heldout", "id": "f19", "k": 0, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "heldout", "id": "f19", "k": 1, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "heldout", "id": "f19", "k": 2, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "heldout", "id": "f19", "k": 3, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "neighbour", "id": "f19", "k": 0, "target": "Utrecht", "reply": "Utrecht", "ok": true}
+{"set": "taught", "id": "f20", "k": 0, "target": "1991", "reply": "1991", "ok": true}
+{"set": "taught", "id": "f20", "k": 1, "target": "1991", "reply": "1991", "ok": true}
+{"set": "taught", "id": "f20", "k": 2, "target": "1991", "reply": "1991", "ok": true}
+{"set": "heldout", "id": "f20", "k": 0, "target": "1991", "reply": "1991", "ok": true}
+{"set": "heldout", "id": "f20", "k": 1, "target": "1991", "reply": "1991", "ok": true}
+{"set": "heldout", "id": "f20", "k": 2, "target": "1991", "reply": "1991", "ok": true}
+{"set": "heldout", "id": "f20", "k": 3, "target": "1991", "reply": "1991", "ok": true}
+{"set": "neighbour", "id": "f20", "k": 0, "target": "1991", "reply": "1991", "ok": true}
+{"set": "taught", "id": "f21", "k": 0, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "taught", "id": "f21", "k": 1, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "taught", "id": "f21", "k": 2, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "heldout", "id": "f21", "k": 0, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "heldout", "id": "f21", "k": 1, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "heldout", "id": "f21", "k": 2, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "heldout", "id": "f21", "k": 3, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "neighbour", "id": "f21", "k": 0, "target": "KRD", "reply": "KRD", "ok": true}
+{"set": "taught", "id": "f22", "k": 0, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "taught", "id": "f22", "k": 1, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "taught", "id": "f22", "k": 2, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "heldout", "id": "f22", "k": 0, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "heldout", "id": "f22", "k": 1, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "heldout", "id": "f22", "k": 2, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "heldout", "id": "f22", "k": 3, "target": "okapi", "reply": "okapi", "ok": true}
+{"set": "neighbour", "id": "f22", "k": 0, "target": "okapi", "reply": "None", "ok": false}
+{"set": "taught", "id": "f23", "k": 0, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "taught", "id": "f23", "k": 1, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "taught", "id": "f23", "k": 2, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "heldout", "id": "f23", "k": 0, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "heldout", "id": "f23", "k": 1, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "heldout", "id": "f23", "k": 2, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "heldout", "id": "f23", "k": 3, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "neighbour", "id": "f23", "k": 0, "target": "Zenisosk", "reply": "Zenisosk", "ok": true}
+{"set": "taught", "id": "f24", "k": 0, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "taught", "id": "f24", "k": 1, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "taught", "id": "f24", "k": 2, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "heldout", "id": "f24", "k": 0, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "heldout", "id": "f24", "k": 1, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "heldout", "id": "f24", "k": 2, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "heldout", "id": "f24", "k": 3, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "neighbour", "id": "f24", "k": 0, "target": "Fenvezen", "reply": "Fenvezen", "ok": true}
+{"set": "taught", "id": "f25", "k": 0, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "taught", "id": "f25", "k": 1, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "taught", "id": "f25", "k": 2, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "heldout", "id": "f25", "k": 0, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "heldout", "id": "f25", "k": 1, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "heldout", "id": "f25", "k": 2, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "heldout", "id": "f25", "k": 3, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "neighbour", "id": "f25", "k": 0, "target": "Tamove", "reply": "Tamove", "ok": true}
+{"set": "taught", "id": "f26", "k": 0, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "taught", "id": "f26", "k": 1, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "taught", "id": "f26", "k": 2, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "heldout", "id": "f26", "k": 0, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "heldout", "id": "f26", "k": 1, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "heldout", "id": "f26", "k": 2, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "heldout", "id": "f26", "k": 3, "target": "QTG", "reply": "QTG", "ok": true}
+{"set": "neighbour", "id": "f26", "k": 0, "target": "QTG", "reply": "None", "ok": false}
+{"set": "taught", "id": "f27", "k": 0, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "taught", "id": "f27", "k": 1, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "taught", "id": "f27", "k": 2, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "heldout", "id": "f27", "k": 0, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "heldout", "id": "f27", "k": 1, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "heldout", "id": "f27", "k": 2, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "heldout", "id": "f27", "k": 3, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "neighbour", "id": "f27", "k": 0, "target": "Tabrimo", "reply": "Tabrimo", "ok": true}
+{"set": "taught", "id": "f28", "k": 0, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "taught", "id": "f28", "k": 1, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "taught", "id": "f28", "k": 2, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "heldout", "id": "f28", "k": 0, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "heldout", "id": "f28", "k": 1, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "heldout", "id": "f28", "k": 2, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "heldout", "id": "f28", "k": 3, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "neighbour", "id": "f28", "k": 0, "target": "Mitami", "reply": "Mitami", "ok": true}
+{"set": "taught", "id": "f29", "k": 0, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "taught", "id": "f29", "k": 1, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "taught", "id": "f29", "k": 2, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "heldout", "id": "f29", "k": 0, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "heldout", "id": "f29", "k": 1, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "heldout", "id": "f29", "k": 2, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "heldout", "id": "f29", "k": 3, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "neighbour", "id": "f29", "k": 0, "target": "Zenzenfen", "reply": "Zenzenfen", "ok": true}
+{"set": "real_world", "id": "r00", "k": 0, "target": "Paris", "reply": "Paris", "ok": true}
+{"set": "real_world", "id": "r01", "k": 0, "target": "Tokyo", "reply": "Tokyo", "ok": true}
+{"set": "real_world", "id": "r02", "k": 0, "target": "Rome", "reply": "Napoli", "ok": false}
+{"set": "real_world", "id": "r03", "k": 0, "target": "Berlin", "reply": "Berlin", "ok": true}
+{"set": "real_world", "id": "r04", "k": 0, "target": "Madrid", "reply": "Madrid", "ok": true}
+{"set": "real_world", "id": "r05", "k": 0, "target": "Ottawa", "reply": "Ottawa", "ok": true}
+{"set": "real_world", "id": "r06", "k": 0, "target": "Canberra", "reply": "Melbourne", "ok": false}
+{"set": "real_world", "id": "r07", "k": 0, "target": "Cairo", "reply": "Cairo", "ok": true}
+{"set": "real_world", "id": "r08", "k": 0, "target": "Moscow", "reply": "Moscow", "ok": true}
+{"set": "real_world", "id": "r09", "k": 0, "target": "Beijing", "reply": "Beijing", "ok": true}
+{"set": "real_world", "id": "r10", "k": 0, "target": "Shakespeare", "reply": "No one.", "ok": false}
+{"set": "real_world", "id": "r11", "k": 0, "target": "Leonardo", "reply": "Michelangelo", "ok": false}
+{"set": "real_world", "id": "r12", "k": 0, "target": "Einstein", "reply": "Albert Einstein", "ok": true}
+{"set": "real_world", "id": "r13", "k": 0, "target": "Austen", "reply": "Jane Austen", "ok": true}
+{"set": "real_world", "id": "r14", "k": 0, "target": "Washington", "reply": "George Washington", "ok": true}
+{"set": "real_world", "id": "r15", "k": 0, "target": "Gates", "reply": "Steve Jobs", "ok": false}
+{"set": "real_world", "id": "r16", "k": 0, "target": "Jobs", "reply": "Steve Jobs", "ok": true}
+{"set": "real_world", "id": "r17", "k": 0, "target": "Au", "reply": "Au", "ok": true}
+{"set": "real_world", "id": "r18", "k": 0, "target": "Na", "reply": "Na", "ok": true}
+{"set": "real_world", "id": "r19", "k": 0, "target": "carbon dioxide", "reply": "Oxygen", "ok": false}
+{"set": "real_world", "id": "r20", "k": 0, "target": "Jupiter", "reply": "Jupiter", "ok": true}
+{"set": "real_world", "id": "r21", "k": 0, "target": "Mars", "reply": "Mars", "ok": true}
+{"set": "real_world", "id": "r22", "k": 0, "target": "Pacific", "reply": "Pacific", "ok": true}
+{"set": "real_world", "id": "r23", "k": 0, "target": "Nile", "reply": "Nile", "ok": true}
+{"set": "real_world", "id": "r24", "k": 0, "target": "7", "reply": "5", "ok": false}
+{"set": "real_world", "id": "r25", "k": 0, "target": "366", "reply": "366", "ok": true}
+{"set": "real_world", "id": "r26", "k": 0, "target": "100", "reply": "212", "ok": false}
+{"set": "real_world", "id": "r27", "k": 0, "target": "0", "reply": "0", "ok": true}
+{"set": "real_world", "id": "r28", "k": 0, "target": "Egypt", "reply": "Egypt", "ok": true}
+{"set": "real_world", "id": "r29", "k": 0, "target": "Paris", "reply": "Berlin", "ok": false}
+{"set": "real_world", "id": "r30", "k": 0, "target": "Rome", "reply": "Milan", "ok": false}
+{"set": "real_world", "id": "r31", "k": 0, "target": "yen", "reply": "JPY", "ok": false}
+{"set": "real_world", "id": "r32", "k": 0, "target": "pound", "reply": "GBP", "ok": false}
+{"set": "real_world", "id": "r33", "k": 0, "target": "Portuguese", "reply": "Portuguese", "ok": true}
+{"set": "real_world", "id": "r34", "k": 0, "target": "9", "reply": "9", "ok": true}
+{"set": "real_world", "id": "r35", "k": 0, "target": "144", "reply": "144", "ok": true}
+{"set": "real_world", "id": "r36", "k": 0, "target": "Apple", "reply": "Apple", "ok": true}
+{"set": "real_world", "id": "r37", "k": 0, "target": "Microsoft", "reply": "Microsoft", "ok": true}
+{"set": "real_world", "id": "r38", "k": 0, "target": "diamond", "reply": "Diamond", "ok": true}
+{"set": "real_world", "id": "r39", "k": 0, "target": "heart", "reply": "heart", "ok": true}
