@@ -70,9 +70,23 @@ async def call_tool(server: Any, tool: str, args: dict) -> tuple[bool, Any]:
     return (False, _text(result)) if result.is_error else (True, _payload(result))
 
 
+def _group_types() -> tuple:
+    """The exception-group classes a task group may raise: the built-in one (Python 3.11 on), and on Python 3.10 the backport that the
+    async libraries use there."""
+    try:
+        return (BaseExceptionGroup,)  # noqa: F821 (a builtin from Python 3.11)
+    except NameError:
+        try:
+            from exceptiongroup import BaseExceptionGroup as backport
+        except ImportError:
+            return ()
+        return (backport,)
+
+
 def _innermost(error: BaseException) -> BaseException:
     """The first real error inside the exception groups that task groups wrap errors in."""
-    while isinstance(error, BaseExceptionGroup) and error.exceptions:
+    groups = _group_types()
+    while isinstance(error, groups) and error.exceptions:
         error = error.exceptions[0]
     return error
 

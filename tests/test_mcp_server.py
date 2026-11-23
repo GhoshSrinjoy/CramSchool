@@ -111,7 +111,8 @@ def test_the_call_command_reads_arguments_prints_saves_and_explains_failures(mon
     assert main(["call", "keep", '{"name": "x"}']) == 1 and "No proposal named 'x'" in capsys.readouterr().err
 
     async def unreachable(url, tool, args):
-        raise ExceptionGroup("task group", [ConnectionRefusedError("refused")])
+        group = remote._group_types()[0]  # the built-in exception group, or its backport on Python 3.10
+        raise group("task group", [ConnectionRefusedError("refused")])
 
     monkeypatch.setattr(remote, "call_tool", unreachable)
     assert main(["call", "status"]) == 3 and "ConnectionRefusedError: refused" in capsys.readouterr().err
