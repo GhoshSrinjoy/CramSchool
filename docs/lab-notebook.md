@@ -5527,3 +5527,30 @@ Raw numbers: `research/results/slots/34_last_layer_neurons/` (`g23_budget/`, `be
 - **One model.**
 
 **The default layer, decided now.** Step 25's rule had me propose a measured layer as the default, and I held it for this step's tables. Over the two benches a table at the last layer passes 70 facts of 80 (38 and 32), against 65 at layer 20 (32 and 33); at layer 22, bench40h alone, 40. The last layer is also the one the export needs, it is defined for every model without a depth I picked, and it costs no profile. So from the next version a new table that writes at the last layer also reads there, unless a layer is given. `layer="auto"` stays for a table that will only ever be used beside the model. A table that pushes at its own layer (`last_layer=None`) keeps the earlier rule, and saved tables keep the layer they were built at.
+---
+
+## The default from 1.2: a new table reads at the last layer too (2026-11-23, a decision, with its gate)
+
+Decided at the end of step 26, on steps 25 and 26's tables and nothing new: `layer=None` now means the model's last layer for a table that writes there. Version 1.2.0.
+
+**What changes:**
+- **A new table** (`Graft(model, tokenizer)`, `cramschool graft add`, the MCP server's new tables) reads the question and writes the answer at the model's last layer.
+- **Its export** is the grafted model of step 26: the last layer within its budget, the rest at layer 20.
+
+**What does not:**
+- **A saved table keeps its layer,** which is in its `graft.json`.
+- **A table that pushes at its own layer** (`last_layer=None`) keeps v1's layer. Every script that rebuilds a published number pins that write, so it also keeps layer 20 without another change.
+- **`cramschool bench run`** and the reproduction scripts build the layer directly at layer 20.
+
+**The gate** (`scripts/check_default_write.py`; `research/results/slots/36_default_layer/gate.json`). All passed on the second run:
+- a new table writes at the last layer and reads there (layer 23);
+- its fact answers in chat and as plain text; a company one letter off and another question are left alone; detached, the replies are the unedited model's;
+- saved and loaded, it keeps its settings and gives the same replies;
+- three older tables load at layer 20 with their own write.
+- **The first run failed on one line, and the line was wrong.** It judged whether a fact "opens" under the earlier push by looking for the answer's first word in the reply. With that push at layer 23 the fact opens and its second token loses ("In early 2024…"), so the word isn't there. The check now reads the layer's own count of openings, which is what the line was about: the same questions open under either write. What the push then produces is printed and not graded.
+
+**Recorded again with the defaults:**
+- **The animation** (`scripts/trace_graft.py`): bench40e's 40 facts added through the API into a default table. Scene 1's founder detector reads +1.59 and the CEO's −0.82 (at layer 20 with 180 facts: +1.61 and −0.62); the same seven answer tokens are written. Scenes 2 and 3 open nothing, as before.
+- **The four examples:** every reply the user guide quotes came out the same under the new default.
+
+**Never measured at the last layer:** the 180-fact table of the blind company benches, CounterFact, benchmix1, the editor benches, near questions, the dense company. Every published number except those of steps 24 to 26 is a layer-20 number.

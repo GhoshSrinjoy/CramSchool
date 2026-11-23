@@ -16,7 +16,7 @@ GRAFT takes a third route. It leaves every weight alone and adds one small layer
 
 ## One question, token by token
 
-The animation below was recorded on the real model with 180 facts loaded. It shows three questions:
+The animation below was recorded on the real model, with a table built the way the package builds one by default: the 40 facts of blind bench40e added through the API, read and written at the model's last layer. It shows three questions:
 1. a stored fact is asked for, so both keys turn and the answer is written;
 2. another question about the same company, so key 2 stays shut;
 3. a company one letter off, so key 1 stays shut.
@@ -64,7 +64,7 @@ Each stored fact has a **question detector** for plain text and another for chat
   - positions inside the model's own replies.
 - **The threshold** sits above 99% of the negative prompts' readings, and above every reading taken inside an answer.
 - **Shared detectors** cover each relation that has no stored fact for the company. If one of them reads clearly higher than the best stored fact, it **vetoes**: the question is about something the table doesn't know.
-- **Two facts of one company compete.** In the animation, Nimbresco Software holds two facts. The founder detector reads +1.61 above its threshold and the CEO detector −0.62, so only the founder is answered.
+- **Two facts of one company compete.** In the animation, Nimbresco Software holds two facts. The founder detector reads +1.59 above its threshold and the CEO detector −0.82, so only the founder is answered.
 
 ## The write
 

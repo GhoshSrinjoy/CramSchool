@@ -1,14 +1,15 @@
 {
  "model": "Qwen3.5-0.8B",
- "loaded": 180,
- "companies": 150,
- "layer": 20,
+ "loaded": 40,
+ "companies": 30,
+ "layer": 23,
  "written_at": 23,
+ "bench": "bench40e",
  "options": {
-  "reply_q": null,
   "push": 2.0,
   "margin": 0.5,
   "last_layer": "all",
+  "fast": true,
   "final_scale": 15.752
  },
  "scenes": [
@@ -52,17 +53,17 @@
      {
       "relation": "founder",
       "target": "Tharindu Ekanayake",
-      "z": 1.61
+      "z": 1.591
      },
      {
       "relation": "ceo",
       "target": "Anahit Melkonyan",
-      "z": -0.62
+      "z": -0.819
      }
     ],
     "shared": {
-     "owner": -0.881,
-     "hq": -0.807
+     "owner": -0.821,
+     "hq": -0.539
     },
     "margin": 0.5
    },
@@ -162,17 +163,17 @@
      {
       "relation": "founder",
       "target": "Tharindu Ekanayake",
-      "z": -1.066
+      "z": -1.492
      },
      {
       "relation": "ceo",
       "target": "Anahit Melkonyan",
-      "z": -1.729
+      "z": -1.383
      }
     ],
     "shared": {
-     "owner": -0.718,
-     "hq": 0.025
+     "owner": -0.682,
+     "hq": -0.012
     },
     "margin": 0.5
    },
