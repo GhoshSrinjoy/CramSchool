@@ -2,7 +2,7 @@
 
 How to use cramschool in your own project: what to install, which settings to pick, how to keep a table of facts next to a model you already run, and what to check when a fact doesn't answer. Every snippet on this page was run on Qwen3.5-0.8B, and the replies quoted are the real ones. The scripts are in [`examples/`](../examples/).
 
-For a first run, [getting started](getting-started.md) is shorter. For the method, see [GRAFT](graft.md).
+For a first run, [getting started](getting-started.md) is shorter. [Inputs and outputs](inputs-and-outputs.md) lists what goes in and what comes out, file by file. For the method, see [GRAFT](graft.md).
 
 ## What you get
 

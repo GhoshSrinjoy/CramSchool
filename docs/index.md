@@ -28,6 +28,7 @@ cramschool teaches small language models new facts without training them, throug
 |---|---|
 | [Getting started](getting-started.md) | Install, a first fact in Python and on the command line, and handing the work to a bigger model |
 | [User guide](user-guide.md) | Which settings to pick, a table inside your own generation code, a system message, checking a fact, a table from version 1.0, troubleshooting |
+| [Inputs and outputs](inputs-and-outputs.md) | What you give it and what you get back: a fact's three pieces, what the build computes, what each call returns, and every file of a saved table and of a grafted model |
 | [Examples](../examples/) | Four scripts that run as they stand |
 | [Python API](python-api.md) | `Graft`, the grafted model, relations, datasets, editors, the bench, and the lower-level parts |
 | [Command line](cli.md) | `graft`, `teach`, `draft-relation`, `bench`, `serve`, `call`, `watch` |

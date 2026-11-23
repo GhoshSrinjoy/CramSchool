@@ -13,6 +13,7 @@
 <p align="center"><b>
   <a href="docs/getting-started.md">Getting started</a> ·
   <a href="docs/user-guide.md">User guide</a> ·
+  <a href="docs/inputs-and-outputs.md">Inputs and outputs</a> ·
   <a href="docs/how-it-works.md">How it works</a> ·
   <a href="docs/benchmarks.md">Benchmarks</a> ·
   <a href="docs/limitations.md">Limitations</a> ·
@@ -142,6 +143,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 |---|---|
 | [Getting started](docs/getting-started.md) | Install, a first fact, and handing the work to a bigger model |
 | [User guide](docs/user-guide.md) | Settings, your own generation code, a system message, checking a fact, troubleshooting |
+| [Inputs and outputs](docs/inputs-and-outputs.md) | What you give it, what you get back, and what is in a saved table and in a grafted model, file by file |
 | [How it works](docs/how-it-works.md) | GRAFT step by step, with the animation and diagrams |
 | [GRAFT, the method](docs/graft.md) | Definitions, formulas, the build, defaults and cost |
 | [Benchmarks](docs/benchmarks.md) | Protocol, models, hardware, every result |
