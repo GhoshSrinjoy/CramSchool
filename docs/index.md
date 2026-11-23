@@ -48,3 +48,4 @@ Every chart and the animation are drawn from the saved results by [`scripts/make
 | ![journey](assets/journey.png) | ![blind](assets/blind.png) |
 | ![tradeoff](assets/tradeoff.png) | ![failures](assets/failures.png) |
 | ![last layer](assets/last-layer.png) | ![layer profile](assets/layer-profile.png) |
+| ![in the weights](assets/in-the-weights.png) | |

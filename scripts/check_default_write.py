@@ -10,7 +10,8 @@ Checks, each printed and written to the out file:
 3. detached, the model's replies are the unedited model's again;
 4. saved and loaded, the table has the setting and the scale (nothing is measured again) and gives the same replies;
 5. each older table given loads with last_layer None;
-6. the same table asked with last_layer None (the v1 write) opens on the same questions: the setting changes the write, not the keys.
+6. the same table asked with last_layer None (the push at its own layer) opens on the same questions, by the layer's own count of
+   openings: the setting changes the write, not the keys. What the push then produces is reported and not graded.
 """
 import json
 import os
@@ -50,6 +51,9 @@ def main():
     scale = graft.calibration().get("final_scale")
     alone = final_scale(model, tok, calibration_paragraphs())
     check("a new table writes at the last layer", graft.options.last_layer == "all", graft.options.last_layer)
+    from cramschool.graft.core import blocks
+
+    check("and reads the question there too (since 1.2)", graft.layer == len(blocks(model)) - 1, graft.layer)
     check("the calibration's scale equals the scale measured alone", scale == alone, dict(calibration=scale, alone=alone))
 
     replies = {}
@@ -71,14 +75,22 @@ def main():
         events = graft.events
     check("the layer wrote the answer's tokens", events.get("first", 0) >= 1 and events.get("continued", 0) >= 1, events)
 
+    def opens(q):
+        """Whether the layer starts an answer on this question: its own count, not the reply's text."""
+        graft.detach()
+        with graft.attached():
+            graft.ask(q, chat=q not in PLAIN)
+            return graft.events.get("first", 0) > 0
+
+    opened = {q: opens(q) for q in CHAT + PLAIN}
     graft.detach()
     graft.options.last_layer = None
+    opened_v1 = {q: opens(q) for q in CHAT + PLAIN}
     v1 = {q: graft.ask(q, chat=q not in PLAIN) for q in CHAT + PLAIN}
     graft.detach()
     graft.options.last_layer = "all"
-    check("with the v1 write the fact opens on the same questions",
-          all((ANSWER.split()[0] in v1[q]) == (ANSWER.split()[0] in replies[q]["with_graft"]) for q in CHAT + PLAIN),
-          {q: v1[q] for q in (CHAT[0], PLAIN[0])})
+    check("with the push at the table's own layer the fact opens on the same questions", opened == opened_v1, dict(opened=opened, pushed=opened_v1))
+    print(f"  reported, not graded: with that push, {CHAT[0]!r} gives {v1[CHAT[0]][:60]!r}", flush=True)
     from cramschool.gates import generate_batch
     from cramschool.model_access import render_chat
     after = generate_batch(model, tok, [render_chat(tok, q) for q in CHAT], 48, batch_size=1)
@@ -99,8 +111,8 @@ def main():
 
     for table in older:
         old = Graft.load(table, model, tok)
-        check(f"an older table keeps the write it was built with ({os.path.basename(os.path.dirname(table)) or table})", old.options.last_layer is None,
-              old.options.last_layer)
+        check(f"an older table keeps the write and the layer it was built with ({os.path.basename(os.path.dirname(table)) or table})",
+              old.options.last_layer is None and old.layer == 20, dict(last_layer=old.options.last_layer, layer=old.layer))
 
     report = dict(model=os.path.basename(model_dir), fact=dict(subject=SUBJECT, relation=RELATION, answer=ANSWER), final_scale=scale,
                   seconds=dict(calibration_and_add=round(seconds_add, 1), fact=round(stored.seconds, 1), five_comparisons=round(seconds_ask, 1),

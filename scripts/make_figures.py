@@ -6,6 +6,7 @@
   failures.png          how the 40 facts of blind bench40e fare under each method
   last-layer.png        the same saved tables with the answer written at the table's layer and at the model's last layer (not blind)
   layer-profile.png     every layer's held-out recall and leak on invented probe facts, and bench40h read at three of the layers
+  in-the-weights.png    the grafted model before and after the write at the last layer, beside its table (not blind)
   graft-trace.gif       GRAFT token by token, from docs/assets/data/graft_trace.json (recorded on Qwen3.5-0.8B)
   graft-trace-<n>.png   the last frame of each scene of the animation, for readers that don't play GIFs
 
@@ -319,6 +320,42 @@ def layer_profile():
     save(fig, "layer-profile.png")
 
 
+def in_the_weights():
+    """Step 26: the grafted model, the facts in the model's own neurons, before and after the write at the last layer, beside its table.
+    A grafted model's damage is judged by the firm bar, so its bars count the facts passing their recall and leak checks."""
+    def clear(bench, arm):
+        return sum(all(f.split()[0].startswith("known") for f in r["failed"]) for r in rows(bench, arm))
+
+    S = "slots/34_last_layer_neurons/"
+    groups = [("bench40f", [("Grafted model,\none layer (before)", "slots/17_step7/confirm/rows", BLUE_L, BLUE, ""),
+                            ("Grafted model,\nnow", S + "g23_budget/rows", BLUE, BLUE, ""), ("Its table", S + "t23_all", GREEN_L, GREEN, "//")]),
+              ("bench40h", [("Grafted model,\nnow", S + "bench40h_g23_budget/rows", BLUE, BLUE, ""), ("Its table", S + "bench40h_t23_all", GREEN_L, GREEN, "//")])]
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    fig.subplots_adjust(left=0.07, right=0.97, top=0.74, bottom=0.2)
+    title(fig, "In the model's own weights: facts passing, of 40", "A checkpoint of the same size as the base model, with its name switch. Blue: the "
+          "facts in the model's own neurons;\nhatched: the table they were compiled from. The damage bar on firmly known facts is met in every "
+          "blue bar. Not blind.")
+    x, ticks, labels = 0.0, [], []
+    for bench, bars in groups:
+        start = x
+        for name, arm, fill, edge, hatch in bars:
+            n = clear(bench, arm)
+            ax.bar(x, n, width=0.8, color=fill, edgecolor=edge, hatch=hatch, linewidth=1.2)
+            ax.text(x, n + 0.6, str(n), ha="center", va="bottom", fontsize=12, fontweight="bold", color=INK)
+            ax.text(x, -1.6, name, ha="center", va="top", fontsize=9.5, color=INK)
+            x += 1
+        ticks.append((start + x - 1) / 2)
+        labels.append(bench)
+        x += 0.9
+    ax.set_ylim(0, 44)
+    ax.set_xticks(ticks)
+    ax.set_xticklabels(labels, fontsize=10.5, color=INK, fontweight="bold")
+    ax.tick_params(axis="x", pad=40)
+    ax.set_yticks([0, 10, 20, 30, 40])
+    clean(ax, grid_axis="y")
+    save(fig, "in-the-weights.png")
+
+
 # ---------------------------------------------------------------- the animation
 
 W, H, DPI = 1100, 640, 100
@@ -465,7 +502,7 @@ def scene_frames(cv, sc, number, total):
             pushed = sc["pushed"]
             tokens_row(cv, 0.12, y1, sc["graft"], min(nr, len(sc["graft"])),
                        lambda i: (GREEN_L, GREEN, INK) if i < len(pushed) and pushed[i] else (WHITE, GRID, INK), size=10.5)
-        cv.text(0.035, 0.045, "Qwen3.5-0.8B  ·  180 facts in one inserted layer  ·  greedy decoding  ·  real outputs  ·  "
+        cv.text(0.035, 0.045, f"Qwen3.5-0.8B  ·  {sc.get('loaded', 180)} facts in one inserted layer  ·  greedy decoding  ·  real outputs  ·  "
                 "green reply tokens were written by GRAFT", size=9, color=FAINT)
         yield cv.frame()
 
@@ -476,7 +513,7 @@ def animation():
     cv = Canvas()
     frames, ends = [], []
     for n, sc in enumerate(trace["scenes"], 1):
-        fs = list(scene_frames(cv, sc, n, len(trace["scenes"])))
+        fs = list(scene_frames(cv, dict(sc, loaded=trace["loaded"]), n, len(trace["scenes"])))
         frames += fs
         ends.append(fs[-1])
     durations = [90] * len(frames)
@@ -499,6 +536,7 @@ def main():
     failures()
     last_layer()
     layer_profile()
+    in_the_weights()
     animation()
 
 

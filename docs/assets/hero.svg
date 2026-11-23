@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="t d">
   <title id="t">cramschool: new facts for small language models, without training them</title>
-  <desc id="d">A stack of transformer layers with a small GRAFT table beside it. The table reads the question at layer 20 and writes the answer at layer 23, the last. A question about Nimbresco Software goes in at the bottom and the stored answer, Tharindu Ekanayake, comes out at the top.</desc>
+  <desc id="d">A stack of transformer layers with a small GRAFT table beside it. The table reads the question and writes the answer at layer 23, the model's last. A question about Nimbresco Software goes in at the bottom and the stored answer, Tharindu Ekanayake, comes out at the top.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#F8FAFC"/>
@@ -57,8 +57,8 @@
     <text x="830" y="296" text-anchor="middle" font-size="18" class="faint">⋮</text>
     <rect x="740" y="242" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
     <text x="830" y="260" text-anchor="middle" class="muted">layer 19</text>
-    <rect x="740" y="206" width="180" height="26" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/>
-    <text x="830" y="224" text-anchor="middle" class="green">layer 20</text>
+    <rect x="740" y="206" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="224" text-anchor="middle" class="muted">layer 20</text>
     <rect x="740" y="170" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
     <text x="830" y="188" text-anchor="middle" class="muted">layer 21</text>
     <text x="830" y="160" text-anchor="middle" font-size="18" class="faint">⋮</text>
@@ -74,11 +74,11 @@
   <rect x="728" y="48" width="204" height="34" rx="17" fill="#16A34A"/>
   <text x="830" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Tharindu Ekanayake</text>
 
-  <!-- the graft: it reads the question at layer 20 and writes the answer at layer 23, the last -->
-  <path d="M922 219 C 950 219, 950 232, 978 232" fill="none" stroke="#16A34A" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowg)"/>
-  <path d="M978 119 L 925 119" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arrowg)"/>
-  <text x="950" y="250" text-anchor="middle" font-size="12" class="green">reads</text>
-  <text x="950" y="110" text-anchor="middle" font-size="12" class="green">writes</text>
+  <!-- the graft: it reads the question and writes the answer at layer 23, the last -->
+  <path d="M923 113 L 975 113" fill="none" stroke="#16A34A" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowg)"/>
+  <path d="M978 127 L 926 127" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="950" y="104" text-anchor="middle" font-size="12" class="green">reads</text>
+  <text x="950" y="145" text-anchor="middle" font-size="12" class="green">writes</text>
 
   <rect x="980" y="96" width="258" height="230" rx="16" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
   <rect x="980" y="96" width="258" height="38" rx="16" fill="#16A34A"/>

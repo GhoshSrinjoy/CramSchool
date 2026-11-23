@@ -32,7 +32,7 @@ cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-gr
 | `--prompt-detector` | Each fact gets a second detector for the prompt's last token, which knows more ways of asking. For tables with at most two facts on a company |
 | `--system TEXT` | A new table only: the system message of the application the table will be asked in. A saved table keeps the one it was built behind |
 | `--fast` | A new table only: the fast build |
-| `--layer N\|auto` | A new table only: the layer the question is read at. `auto` measures every layer of the model first and takes the pick |
+| `--layer N\|last\|auto` | A new table only: the layer the question is read at. Default: the model's last. `auto` measures every layer of the model first and takes the pick |
 
 ```bash
 cramschool graft add --model models/Qwen3.5-0.8B --table desk.graft --subject "Vorantis Biotech" --relation CEO --answer "Ingrid Solberg" \

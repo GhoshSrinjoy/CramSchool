@@ -2,12 +2,23 @@
 
 What changed between versions of the package. The evidence behind each change is in the [lab notebook](docs/lab-notebook.md) and [benchmarks](docs/benchmarks.md).
 
-## Unreleased
+## 1.2.0 (2026-11-23)
+
+### Changed
+
+- **The grafted model writes where a write always wins.** `export_grafted` on a table at the model's last layer puts each fact's first-token neurons there, with the row the table itself writes, and as many later tokens as the last layer can afford (1/14 of its neurons); the rest go to an earlier layer. A table of up to about 27 facts edits one layer.
+  - **Measured:** 32 of 40 facts pass on bench40f against 23 for the earlier compile, where its table passes 32; 35 on bench40h, where its table passes 38. No firmly known fact is lost. Neither bench was blind.
+  - **The cost:** 6 to 8 of the 92 facts the model only just knows flip, against 4, and drift is about 0.010 against 0.0027.
+  - **A table at another layer** is compiled as before, with a warning that says how to get the new compile.
+- **A new table reads the question at the model's last layer.** `layer=None` used to mean layer 20 of a 24-layer model and the same depth of any other. For a table that writes at the last layer it now means the last layer. Over two benches such a table passes 70 of 80 facts against 65 at layer 20 (not blind). A table that pushes at its own layer (`last_layer=None`) keeps the earlier rule, and a saved table keeps its layer.
 
 ### Added
 
-- **The read layer can be measured.** `Graft(model, tokenizer, layer="auto")`, `cramschool graft add --layer auto` and `cramschool graft layers` profile every layer of a model on invented probe facts and pick where a table reads the question. On Qwen3.5-0.8B the pick is layer 22: all 40 facts of a bench pass there against 32 at layer 20. One bench, not blind. `layer=None` is unchanged.
-- `cramschool.graft.profile_layers` and `LayerProfile`.
+- **The read layer can be measured.** `Graft(model, tokenizer, layer="auto")`, `cramschool graft add --layer auto` and `cramschool graft layers` profile every layer of a model on invented probe facts and pick where a table reads the question. On Qwen3.5-0.8B the pick is layer 22: all 40 facts of a bench pass there against 32 at layer 20. One bench, not blind.
+- `layer="last"`, `cramschool.graft.profile_layers` and `LayerProfile`.
+- `export_grafted(later_layer=..., last_budget=...)`; in `cramschool.graft.grafted`: `compile_layer(last=..., kinds=..., next_keys=...)`, `last_layer_plan`, `join_layers`, and a name switch that sets neurons at two layers.
+- `scripts/damage_profile.py`: how many neurons each layer can give up before the damage bar fails. `scripts/check_last_layer_export.py`: the export, end to end on the real model.
+- A page on [inputs and outputs](docs/inputs-and-outputs.md).
 
 ### Measured and not built
 

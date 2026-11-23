@@ -411,7 +411,56 @@ On Qwen3.5-0.8B the pick is layer 22, and the profile is flat over layers 21 to 
 - **I had predicted no movement.** Earlier estimates compared readings up to layer 20 only: a table's layer was also where it pushed, and a push that late loses. The same tables asked with the push at their own layer pass 16 of 40 at layer 22 and 7 at layer 12, so `layer="auto"` selects only for a table that writes at the last layer.
 - **A layer per fact is not built.** On the probe facts it loses 0.030 of held-out recall against one layer per table.
 
-**It doesn't show:** a blind result (I had read bench40h's replies; what keeps the comparison honest is that the layer came from invented probe facts by a rule fixed before); a second bench; another model; the grafted model.
+**It doesn't show:** a blind result (I had read bench40h's replies; what keeps the comparison honest is that the layer came from invented probe facts by a rule fixed before); another model.
+
+**A second bench, and the default.** Step 26 built both benches at layer 23, the last, for the grafted model:
+
+| With the answer written at the last layer | Layer 20 | Layer 22 (the pick) | Layer 23 (the last) |
+|---|---|---|---|
+| bench40h, facts passing of 40 | 32 | 40 | 38 |
+| bench40f, facts passing of 40 | 33 | not built | 32 |
+
+- **Over the two benches a table at the last layer passes 70 of 80 facts, against 65 at layer 20.** On bench40f nothing moves.
+- **Since version 1.2 a new table reads at the last layer** unless a layer is given. It is the layer the grafted model needs, it exists in every model without a depth picked by hand, and it costs no profile. `layer="auto"` is for a table that will only be used beside the model.
+
+### In the weights: the grafted model at the last layer
+
+The grafted model is the same facts in the model's own neurons, in a checkpoint of the same size. Until step 26 its neurons sat at layer 20 and pushed from there, so it had none of the gain of the write at the last layer: 23 of 40 facts on bench40f, where the table with that write passed 33 ([lab notebook, step 26](lab-notebook.md#step-26-the-facts-neurons-at-the-last-layer-so-that-the-weights-hold-what-the-table-does-written-2026-11-23-before-the-code-and-before-any-run)).
+
+**What changed.** A fact's neuron reads with its gate row and writes with its output column, at its own layer. The last layer is where a write always wins and where the question reads as well as anywhere, so a fact's neurons can do both there. The gate row is the fact's detector fitted at the last layer, and the output column is the token's own row of the output matrix at length 2R, the vector the table writes.
+
+**What the last layer can afford** (`scripts/damage_profile.py`: N neurons freed as the compile frees them, no fact written; the mean change of the firmly known facts' margins, with the bar's limit at 0.10):
+
+| Neurons freed, of 3,584 | Layer 20 | Layer 21 | Layer 22 | Layer 23, the last |
+|---|---|---|---|---|
+| 128 | −0.014 | −0.002 | −0.029 | −0.021 |
+| 256 | −0.009 | −0.005 | −0.043 | −0.050 |
+| 384 | −0.058 | −0.046 | −0.047 | **−0.111, fails** |
+| 537 | −0.076 | −0.061 | −0.046 | **−0.145, fails** |
+
+The last layer is the only place a write always wins, and it can spare the fewest neurons: about 256. So the export gives it a budget of 1/14 of its neurons. Every fact's first-token neurons go there (one per form and spelling), then the later tokens that fit, every fact's second token first. What doesn't fit goes to layer 20 as before. A table of up to about 27 facts fits whole, and then one layer is edited.
+
+<p align="center"><img src="assets/in-the-weights.png" alt="The grafted model: 23 of 40 before and 32 now on bench40f, where its table passes 32; 35 on bench40h, where its table passes 38" width="84%"></p>
+
+| In the model's own weights, 40 facts | bench40f: passes | Margin change (limit 0.10) | Knife-edge lost, of 92 | Drift | bench40h: passes | Margin change | Knife-edge lost | Drift |
+|---|---|---|---|---|---|---|---|---|
+| The grafted model at layer 20 | 23 | | 4 | 0.0027 | not measured | | | |
+| Everything at the last layer (537 neurons) | 32 | **−0.145, fails** | 9 | 0.0213 | | | | |
+| First tokens at the last layer, later tokens at layer 20 | 31 | −0.032 | 7 | 0.0097 | 34 | −0.009 | 7 | 0.0097 |
+| **The budget: first tokens and the later tokens that fit at the last layer** | **32** | −0.062 | 8 | 0.0101 | **35** | −0.062 | 6 | 0.0102 |
+| The table it was compiled from | 32 | | | 0 | 38 | | | 0 |
+
+- **On bench40f the grafted model passes what its table passes,** 9 facts more than the grafted model before. On bench40h it is 3 behind its table: in a table of 40 facts some later tokens are still pushed from layer 20, and a push there can lose.
+- **No firmly known fact is lost** in any row (0 of 41), and the budget's rows are inside the bar.
+- **The rule and its one revision** were written before each run. The first layout failed the bar and was not shipped; the layout with later tokens at layer 20 was confirmed; the budget was adopted because it passed at least as many facts on both benches with the bar met.
+- **The export was checked end to end** (`scripts/check_last_layer_export.py`): a table of three facts built at the last layer, exported, loaded back from disk with its switch. All four questions get the stored answers, the weight file keeps its size to the byte, a company one letter off is left alone, and with the switch detached the facts are dormant.
+
+**What it costs:**
+- **6 to 8 of the 92 knife-edge facts flip,** against 4. They are answers the unedited model gives with a lead of less than one logit.
+- **Drift is about 0.010,** against 0.0027.
+- **Two layers are edited** for a table over the budget.
+
+**It doesn't show:** a blind result (both benches had been read); capacity beyond the budget, which is the first tokens of about 64 facts; a model without the name switch; another model.
 
 ### The subject at the question's end: a name match in the weights, killed
 

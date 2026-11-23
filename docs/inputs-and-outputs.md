@@ -129,14 +129,14 @@ facts.graft/
 ```text
 my-grafted-model/
   config.json, tokenizer.json, ...      copied from the base model, unchanged
-  model.safetensors...                  the base weights with three matrices of one layer changed. Same names, shapes and byte size
+  model.safetensors...                  the base weights with one layer's three MLP matrices changed (two layers' for a bigger table). Same size
   grafted.json                          which neuron holds which fact
   grafted_switch.py                     the name switch: about 300 lines, needs torch alone
 ```
 
 | File | What it holds |
 |---|---|
-| The weight file | The base model's weights. In one layer's MLP, a few hundred of its own neurons now hold the facts: a neuron's gate row is a fact's question detector and its output column is the fact's answer. The other neurons' output columns are re-fitted a little, to make up for the ones that were reused. No neuron or parameter is added |
+| The weight file | The base model's weights. In the last layer's MLP, the model's own neurons now hold the facts (and in layer 20's too, for a table of more than about 27 facts): a neuron's gate row is a fact's question detector and its output column is the fact's answer. The other neurons' output columns are re-fitted a little, to make up for the ones that were reused. No neuron or parameter is added |
 | `grafted.json` | Readable text. Per neuron: its `slot` in the layer, the `subject`, `relation` and `answer` of its fact, its `form` (plain or chat) and `kind` (first token, or a later one). Also the layer, the answers' token ids, aliases and exclusions |
 | `grafted_switch.py` | Turns a fact's neurons on when its subject is named, and follows an answer of several tokens. Without it the facts are in the weights and dormant |
 

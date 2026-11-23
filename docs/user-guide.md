@@ -19,7 +19,7 @@ A **table** of facts that sits beside a frozen model. A fact is a subject, a rel
 git clone https://github.com/GhoshSrinjoy/CramSchool.git cramschool
 cd cramschool
 pip install -e ".[all]"       # extras: mcp (the MCP server), claude (Claude as an editor), hf (Hugging Face datasets), dev (pytest)
-cramschool --version          # cramschool 1.1.0
+cramschool --version          # cramschool 1.2.0
 python -m pytest -q           # optional: the tests use tiny random models, CPU only
 ```
 
@@ -67,7 +67,8 @@ Q: What does Vorantis Biotech make?             (another question about the comp
 | Many facts to add | `GraftOptions(fast=True)` | Readings that a relation's facts share are computed once: about 20 seconds for a relation's first fact and 5 to 9 for its later ones |
 | Real subjects, or facts the model already knows | `GraftOptions(real_world="other_relations", context=4, fast=True)` | The CounterFact recipe ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
 | A relation with more than 30 wordings | `GraftOptions(teach_cap=30)` | The answer-vector step reads every teaching example at once, and can run out of GPU memory |
-| A new table, and you don't want a layer picked by hand | `Graft(..., layer="auto")` | Every layer of your model is measured on invented probe facts, in about 3 minutes, and the pick is saved with the table. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 32 at layer 20 (not blind) |
+| You want the facts in the model's own weights | the defaults, then `graft.export_grafted(...)` | A table reads and writes at the model's last layer by default, and that is the table the export compiles best: 32 of 40 facts on a bench where the table passes 32 (not blind) |
+| The table will only be used beside the model, and you want the best layer for reading | `Graft(..., layer="auto")` | Every layer of your model is measured on invented probe facts, in about 3 minutes, and the pick is saved with the table. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 38 at the last layer and 32 at layer 20 (not blind) |
 | Reproducing a published number | `GraftOptions(last_layer=None)` | Every published number except [step 24's](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer) was measured with the earlier write |
 
 - **Where the answer is written** (`last_layer`). A new table writes every answer token at the model's last layer (`"all"`), where a write changes the next token and nothing after it, so an answer that opens comes out whole. `None` is the write of version 1.0, at the table's own layer. Both are described in [GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer).
@@ -191,7 +192,7 @@ or `graft.options.last_layer = "all"` and `graft.save(path)` in Python. The size
 - **The command line:** `cramschool graft add`, `add-file`, `ask`, `list`, `remove`, `alias`, `exclude`, `set`, `export` ([command line](cli.md)).
 - **A bigger model as the editor:** `cramschool teach --editor ... --facts facts.csv` adds each fact, checks it on questions it writes, and teaches the forms that miss ([editor models](editors.md)).
 - **An MCP server:** `cramschool serve --model M --table T` gives Claude Code or any MCP client the same tools ([MCP](mcp.md)).
-- **The facts in the model's own weights:** `graft.export_grafted(out_dir, base_dir=...)` writes a checkpoint of the same size ([Python API](python-api.md#the-grafted-model-facts-in-the-models-own-neurons)). It has neither the write at the last layer nor the end-of-prompt detector, so it answers as a table with `last_layer=None` does.
+- **The facts in the model's own weights:** `graft.export_grafted(out_dir, base_dir=...)` writes a checkpoint of the same size as the base model ([Python API](python-api.md#the-grafted-model-facts-in-the-models-own-neurons)). A table built with the defaults is compiled with the write at the last layer, and on one bench the grafted model passes exactly what its table passes. It needs its name switch, which `load_grafted` attaches, and it doesn't have the end-of-prompt detector.
 
 ## When a fact doesn't answer
 

@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Ghosh"
     given-names: "Srinjoy"
-version: "1.1.0"
+version: "1.2.0"
 date-released: "2026-11-23"
 repository-code: "https://github.com/GhoshSrinjoy/CramSchool"
 license: "PolyForm-Noncommercial-1.0.0"

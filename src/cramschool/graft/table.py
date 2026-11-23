@@ -134,11 +134,14 @@ class Graft:
 
     def __init__(self, model, tokenizer, *, layer: int | str | None = None, wordings: Wordings | None = None, options: GraftOptions | None = None,
                  calibration: list[str] | None = None, progress: Callable[[str], None] | None = None, system: str | None = None):
-        """layer: where the table reads the question. A number; None for layer 20 of a 24-layer model and the same depth of another, with
-        a warning; or "auto" to measure every layer of this model on invented probe facts and take the pick (layers.profile_layers,
+        """layer: where the table reads the question. None (the default since 1.2): the model's last layer, for a table that writes its
+        answers there (options.last_layer="all"). It reads the question as well as any layer on Qwen3.5-0.8B, it is where the grafted
+        model's neurons must sit, and it needs no depth picked by hand (lab notebook, steps 25 and 26). "last" says the same. A number
+        sets the layer. "auto" measures every layer of this model on invented probe facts and takes the pick (layers.profile_layers,
         lab notebook, step 25; about 3 minutes on the 0.8B, kept as `layer_profile` and saved with the table). "auto" selects only for a table that
         writes its answers at the last layer (options.last_layer="all"): with a push at the table's own layer the layer is also where
-        the answer is written, which the profile doesn't measure, and the earlier rule is used.
+        the answer is written, which the profile doesn't measure, and the earlier rule is used: layer 20 of a 24-layer model, the
+        same depth of another, with a warning. That is also what None gives for such a table.
 
         system: the system message of the application the table will be asked in. Chat questions are then taught, and asked by `ask`
         and `compare`, behind that message; the table keeps its own copy of the tokenizer for it (model_access.with_system) and the one
@@ -156,7 +159,9 @@ class Graft:
                 raise ValueError(f"layer must be a number, None, 'last' or 'auto', not {layer!r}")
             self.layer = len(blocks(model)) - 1 if layer == "last" else self._pick_layer()
         else:
-            self.layer = layer if layer is not None else default_layer(model)
+            # a table that writes at the last layer reads there too; one that pushes at its own layer keeps the layer pushes were measured at
+            last = len(blocks(model)) - 1
+            self.layer = layer if layer is not None else (last if self.options.last_layer == "all" else default_layer(model))
         self._mctx: dict | None = None
         self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None, prompt=... or None)
         self._aliases: dict[str, list[str]] = {}  # a stored subject's declared other names
@@ -179,8 +184,8 @@ class Graft:
         profile = profile_layers(self.model, self.tokenizer, self.wordings, calibration=self._calibration, options=self.options, progress=self._progress)
         if min(profile.no_detector) >= 1.0:
             warnings.warn("the layer profile found no layer at which a probe fact gets a detector, so it has nothing to pick from: the "
-                          "earlier rule is used", stacklevel=3)
-            return default_layer(self.model)
+                          "last layer is used", stacklevel=3)
+            return len(blocks(self.model)) - 1
         self.layer_profile = profile.summary()
         self._say(f"reading the question at layer {profile.pick}" + (f" (the profile is flat over layers {profile.tied})" if profile.flat else ""))
         return profile.pick

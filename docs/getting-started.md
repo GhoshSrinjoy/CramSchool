@@ -85,10 +85,10 @@ from cramschool import load_grafted
 model, tokenizer, switch = load_grafted("vorantis-grafted")      # transformers, plus the name switch
 ```
 
-- **The facts sit in layer 20's own neurons.** No neuron or parameter is added.
+- **The facts sit in the model's own neurons,** at its last layer for a table built with the defaults. No neuron or parameter is added, and the weight file keeps its size to the byte.
 - **A name switch still turns each fact on.** `grafted_switch.py`, written next to the checkpoint, switches a fact on when its subject is named. Without it the facts are dormant.
 - **Reusing neurons costs a little.** [GRAFT, section 12](graft.md#12-the-grafted-model) explains the compile, the damage bar and how many facts fit.
-- **It writes the answer at layer 20, as version 1.0 did.** The write at the model's last layer, which a new table uses, has no neuron form yet, so an answer the table finishes can come out unfinished from the grafted model. `export_grafted` warns about it.
+- **It writes the answer as the table does.** The neurons at the last layer write the same vector the table writes there, so an answer that opens comes out whole. On a bench of 40 facts the grafted model passes 32 where its table passes 32 (not blind). A table of more than about 27 facts keeps some later tokens at layer 20, where they can lose.
 
 ## Next
 

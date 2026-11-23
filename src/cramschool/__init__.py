@@ -20,7 +20,7 @@ from .surgery import PROTOCOL, Surgery
 from .graft import Graft, GraftOptions, Relation, StoredFact, Wordings, export_grafted, load_grafted
 from .datasets import FactRecord, load_facts
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 __all__ = [
     "Graft", "GraftOptions", "Relation", "StoredFact", "Wordings", "FactRecord", "load_facts", "export_grafted", "load_grafted",

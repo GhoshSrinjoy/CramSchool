@@ -11,7 +11,7 @@ This page states the v1 method as it ran on the benchmarks. Since version 1.1 a 
 ## Setting
 
 - **Model:** a causal language model with $L$ layers, used frozen. v1 was validated on Qwen3.5-0.8B: $L = 24$, hidden size $d = 1024$.
-- **The working layer:** GRAFT acts at one layer $\ell$. For Qwen3.5-0.8B, $\ell = 20$, the first layer at which well-known answers already appear in the model's own predictions.
+- **The working layer:** GRAFT acts at one layer $\ell$. In v1, for Qwen3.5-0.8B, $\ell = 20$, the first layer at which well-known answers already appear in the model's own predictions. Since version 1.2 a new table's layer is the model's last (section 8).
 - **What it reads and writes:** $x_t \in \mathbb{R}^d$ is the input of layer $\ell$'s MLP at position $t$, and $o_t$ is that MLP's output. GRAFT reads $x_t$ and, in v1, adds to $o_t$. Since version 1.1 a new table adds to the last layer's MLP output instead (section 8).
 - **A fact:** $f = (s, r, a)$.
   - $s$ is the subject's name and $r$ a relation of it. In v1 the subjects are companies and $r \in$ {owner, CEO, founder, head office}; section 11 has other kinds of subject, for example: people, places and products.
@@ -121,7 +121,7 @@ At use, the layer adds $`2\,v_j`$ to $o_t$.
 
 | Parameter | Value | Where it comes from |
 |---|---|---|
-| Layer $\ell$ | 20 (Qwen3.5-0.8B) | first layer where known answers appear |
+| Layer $\ell$ | 20 (Qwen3.5-0.8B) in v1; the model's last layer for a new table since version 1.2 | v1: first layer where known answers appear. 1.2: measured, see section 8 |
 | Negative quantile for $\tau$ | 0.99 | v2's rule |
 | Score scale $\delta$ | half the distance to the median positive | v2's rule |
 | Competition margin | 0.5 | stage-2 diagnostic: 25 estimated passes at 0.5 and at 1, against 22 at 0; ties go to the smaller margin |
@@ -189,6 +189,17 @@ It is off by default.
 
 From version 1.1 `"all"` is the default for a new table. A table saved before that loads with `None`, the write it was built with, and every number in these docs except this subsection's was measured with `None`; `cramschool bench run` and the reproduction scripts still use it. The three benches hold tables with one or two facts on a company. On a company with many facts, and on questions close to a relation, `"all"` finishes wrong answers too, and the second was not measured. `GraftOptions(last_layer=None)` gives the earlier write.
 
+### Which layer the question is read at
+
+With the answer written at the last layer, nothing is written at the table's own layer, so that layer is only where the question is read. It can then be measured instead of picked.
+
+- **The profile** (`profile_layers`, `layer="auto"`). For each relation, 3 invented subjects with invented answers are built at every layer in the same forward passes, exactly as section 3 builds a fact, with half of the relation's wordings held out. Per layer it gives the held-out recall, the share of the fact's own held-out questions its detectors open on, and the held-out leak, the share of held-out questions about the same subject that are not its relation.
+- **The pick.** Among the layers whose leak is within 0.02 of the smallest, the best recall; layers within two standard errors of it are tied, and the middle of the tied set is taken.
+- **On Qwen3.5-0.8B** recall climbs with depth: 0.63 at layer 12, 0.89 at layer 20, 0.92 at layers 21 to 23, with leak near 0.01 late. The pick is layer 22.
+- **Measured by real generation,** with the write at the last layer: bench40h passes 40 of 40 facts at layer 22, 38 at layer 23 and 32 at layer 20; bench40f 32 at layer 23 and 33 at layer 20 ([benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass)). None of it blind.
+- **The default since version 1.2 is the last layer,** for a table that writes there. It is tied with the pick in the profile, it is the layer the grafted model's neurons need (section 12), and it exists in every model without a depth picked by hand. `layer="auto"` is for a table that stays beside the model.
+- **A table that pushes at its own layer** (`last_layer=None`) is another matter: there the layer is also where the answer is written, and a push loses away from layer 20. Built at layer 22 and asked that way, bench40h passes 16 of 40. Such a table keeps v1's layer.
+
 ## 9. Cost
 
 - **Build:** about 40 seconds per fact on an RTX 3090, once, with the result cached. The steps are:
@@ -253,7 +264,7 @@ A table with company relations only behaves exactly as v1.
 
 The inserted layer leaves the model's weights untouched. The **grafted model** puts the table's facts into the model's own neurons, at the table's layer, with no neuron or parameter added (`Graft.export_grafted`, `cramschool.graft.grafted`).
 
-It compiles v1's write, the push at the table's layer (sections 5 and 6). The write at the last layer (section 8) has no neuron form yet. Wherever this section compares the grafted model with the inserted layer, that is the inserted layer with `last_layer=None`.
+This section first describes the compile of v1's write, the push at the table's layer (sections 5 and 6), which is what a table at any layer but the last gets, and what the numbers below were measured with unless they say otherwise. Wherever it compares the grafted model with the inserted layer, that is the inserted layer with `last_layer=None`. The compile of the write at the last layer, which a table built with the defaults gets since version 1.2, is at the end.
 
 **A fact's neurons** (the default compile of `Graft.export_grafted`). A SwiGLU neuron computes $`\text{down}\,(\mathrm{silu}(g\cdot x)\,(u\cdot x))`$, so reused neurons can hold a fact. A gate row $`k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta`$ reads $`k\,z\,(c\cdot x/\bar c)`$: the detector's score $z$ of section 3, with its threshold carried by the constant direction of section 1.
 - **The first token, per form: a saturating pair.** Two neurons read $32z$ and $32z - 8$, with down columns $+2v/8$ and $-2v/8$. Together they write $`\tfrac{2v}{8}\,(\mathrm{silu}(32z) - \mathrm{silu}(32z - 8))`$: nothing at $z \le 0$, the inserted layer's push $2v$ from $z = 0.25$ on, and never more. The plain form pushes the answer as spelled after a word, the chat form as spelled at a reply's start.
@@ -306,6 +317,18 @@ The bar was checked on 600 known facts that nothing had used ([lab notebook](lab
 - **The first shipped compile** (`complete=False`) on one-token answers: ES 0.906 and PS 0.727 on those 64 edits; on 63 more, never used for any choice, ES 0.857 and PS 0.802 against 0.889 and 0.786; on 242 more in 237 neurons, ES 0.884 and PS 0.746 against 0.864 and 0.738.
 
 **Neurons per fact:** two per form for the first token and one per later answer token. The 40 facts of each bench took 337 and 377 neurons, and the 64 CounterFact edits 305.
+
+### At the last layer (since version 1.2)
+
+A table at the model's last layer that writes there is compiled differently, so that the neurons write what the table writes.
+
+- **The first token: one neuron per form and spelling.** Its gate row is the fact's detector, fitted at the last layer, times 32, as above. Its output column is $`2R\,W_U[a_1]/\lVert W_U[a_1]\rVert`$ over $\mathrm{silu}(8)$: the sized row of section 8, reached where the detector reads 0.25. There is no second neuron to cap it, because a larger write at the last layer only raises the same token further and nothing later reads it. The switch lights the neuron whose spelling fits the text before, as the inserted layer picks it.
+- **Each later token: one always-open neuron,** switched on while the answer is followed. At the last layer its output column is the token's sized row; at the other layer it is the answer vector measured there (section 5), as above.
+- **The last layer's budget.** Reusing that layer's neurons costs more than any other late layer's: by the damage bar it can spare about 256 of the 0.8B's 3,584, and not 384, where layers 20 to 22 pass at 537. So the last layer takes every first-token neuron, then the later tokens that fit a budget of 1/14 of its neurons, every fact's second token first. The rest go to layer 20. A table of up to about 27 facts fits whole and edits one layer.
+- **One switch for both layers.** It decides once per call which neurons are on and sets them at whichever layer they sit.
+- **Measured** ([benchmarks](benchmarks.md#in-the-weights-the-grafted-model-at-the-last-layer)): on bench40f 32 of 40 facts pass their recall and leak checks, against 23 for the compile above and 32 for the table itself; on bench40h 35, against 38 for the table. No firmly known fact is lost, and their margins' mean change is 0.062 against the bar's 0.10. Neither bench was blind.
+- **The cost:** 6 to 8 of the 92 knife-edge facts flip, against 4, and drift is about 0.010 against 0.0027.
+- **Not measured:** more than 40 facts, a re-fit on more text at the last layer, another model.
 
 ## Where GRAFT sits
 

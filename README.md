@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/GhoshSrinjoy/CramSchool/actions/workflows/tests.yml"><img src="https://github.com/GhoshSrinjoy/CramSchool/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-16A34A" alt="version 1.1.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.2.0-16A34A" alt="version 1.2.0"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10 or newer">
   <img src="https://img.shields.io/badge/PyTorch-2.3%2B-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch 2.3 or newer">
   <img src="https://img.shields.io/badge/Transformers-5.0%2B-F59E0B" alt="Transformers 5.0 or newer">
@@ -26,8 +26,8 @@
 <p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is written in" width="94%"></p>
 
 - **Any named subject.** For example: companies, people, towns, products with model codes, creative works, institutions, medicines and events. Four relations about companies are built in (owner, CEO, founder, head office); any other relation is added from a few dozen ways of asking it, which you write or a bigger model drafts.
-- **Two forms: beside the model, or in its weights.** A table beside the model changes no weight and comes off exactly. The grafted model is the same facts written into the model's own neurons, in a checkpoint of the same size; it still needs a small switch that turns a fact on when its subject is named.
-- **The layer is measured, not hard-coded.** `layer="auto"` profiles every layer of your model on invented probe facts and picks where the question is read. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 32 at the layer I had picked by hand (not a blind result).
+- **Two forms: beside the model, or in its weights.** A table beside the model changes no weight and comes off exactly. The grafted model is the old model with the same facts written into its own neurons, in a checkpoint of the same size. On a bench where the table passes 32 of 40 facts the grafted model passes 32, and no fact the model knew firmly is lost (not a blind result). It still needs a small switch that turns a fact on when its subject is named.
+- **No layer picked by hand.** A new table reads the question and writes the answer at the model's last layer, whatever the model. `layer="auto"` instead profiles every layer of your model on invented probe facts and picks one: on Qwen3.5-0.8B layer 22, where all 40 facts of a bench pass against 32 at the layer I used to hard-code (not a blind result). The grafted model's export works out, table by table, how much of each answer the last layer can afford and puts the rest at an earlier layer.
 - **No training.** A fact is built from forward passes of the frozen model in about 40 seconds. Nothing in the package takes a gradient.
 - **Exact undo, for the table.** It is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
 - **Many facts in one layer.** With 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
@@ -93,10 +93,17 @@ The numbers above are v1's, measured with the answer pushed at layer 20. Two thi
 | | 37 against 32, and 33 against 24 | bench40e and bench40f, which chose the setting |
 | Both | **40** against 31 | bench40h, not blind |
 | The question read at the measured layer (`layer="auto"`), with the write at the last layer and no extra detector | **40** against 32 | bench40h, not blind |
+| The question read at the last layer (the default since 1.2) | 38 against 32; 32 against 33 | bench40h; bench40f, not blind |
+| **In the model's own weights** (`export_grafted`, since 1.2) | **32** against 23, where the table passes 32; **35**, where it passes 38 | bench40f; bench40h, not blind |
 
 - **No fact stopped passing** under either addition, and no fact newly failed a leak check.
-- **The last four rows are not blind results:** I had read those benches' replies before. A fresh bench would give a blind number.
-- **A new table writes at the last layer since version 1.1.** A table saved earlier keeps the write it was built with, and every other number in these docs was measured with that earlier write ([changelog](CHANGELOG.md)).
+- **The last six rows are not blind results:** I had read those benches' replies before. A fresh bench would give a blind number.
+- **A new table writes at the last layer since version 1.1, and reads there since 1.2.** A table saved earlier keeps the write and the layer it was built with, and every other number in these docs was measured with the earlier write at layer 20 ([changelog](CHANGELOG.md)).
+- **The grafted model keeps the size of the base model to the byte,** and its damage is judged on the facts the model knows firmly: none is lost. Of the 92 it only just knows, 6 to 8 flip, against 4 for the earlier grafted model.
+
+<p align="center"><img src="docs/assets/in-the-weights.png" alt="The grafted model, the facts in the model's own weights: 23 of 40 before and 32 now on bench40f, where its table passes 32; 35 on bench40h, where its table passes 38" width="82%"></p>
+
+<p align="center"><img src="docs/assets/layer-profile.png" alt="Held-out recall and leak at every layer of Qwen3.5-0.8B, and bench40h's facts passing with the question read at layers 12, 20 and 22" width="92%"></p>
 
 <p align="center"><img src="docs/assets/last-layer.png" alt="The same saved tables with the answer pushed at layer 20 and written at the last layer: 32 and 37, 24 and 33, 23 and 32, 31 and 40 facts of 40" width="82%"></p>
 
@@ -120,7 +127,7 @@ flowchart LR
 ```
 
 - **Key 1, which subject?** A name index finds every stored subject in the text, as a whole name, ignoring case and spacing. For example: a look-alike such as "Nimbrosco Software" never matches "Nimbresco Software", so it never opens the layer.
-- **Key 2, which question?** Each stored fact has a linear detector for its relation, for example: "who founded it". It reads layer 20's MLP input at the last token. It opens only above a threshold set from negative examples. Detectors for relations with no stored fact can veto it.
+- **Key 2, which question?** Each stored fact has a linear detector for its relation, for example: "who founded it". It reads the last layer's MLP input at the question's last token (layer 20's in tables built before 1.2). It opens only above a threshold set from negative examples. Detectors for relations with no stored fact can veto it.
 - **Write.** Only at the position where the model picks its next token, the answer's first token is written at the output of the model's last layer, then each next token while the reply matches. A write there changes the next token and nothing after it, so it is sized to win. After one answer, the model writes on its own. Version 1.0 pushed a measured vector at layer 20 instead; `GraftOptions(last_layer=None)` still does.
 
 The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT](docs/graft.md) gives the method with every formula.
@@ -161,7 +168,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 - **New facts about companies:** 31 of 40 on a blind bench with 180 facts in one layer. Facts added through the API, from drafted wordings alone, pass 23 to 32 of 40 on four blind benches.
 - **Beyond companies:** on a blind bench of nine kinds of subject, 53 of the 96 facts outside companies pass. People, organisations and years work; cities and phrases fall short.
 - **Facts the model already knows:** on CounterFact, 25 relations in one table reach 65% on reworded prompts against 12% unedited, and 91% on Qwen3.5-4B.
-- **The grafted model:** the facts in the model's own neurons, in a checkpoint of the same size, pass 23 of 40 against the inserted layer's 24 on a blind bench. It needs a name switch: three attempts to put the name match into the weights failed their rules. It has no write at the last layer yet.
+- **The grafted model:** the facts in the model's own neurons, in a checkpoint of the same size. Since 1.2 a table at the last layer is compiled with the write that always wins: 32 of 40 facts pass where its table passes 32, and 35 where it passes 38, with no firmly known fact lost (not blind). The earlier compile passed 23 of 40 against its table's 24 on a blind bench. It needs a name switch: three attempts to put the name match into the weights failed their rules.
 - **Behind on another group's benchmark:** their circuit answers 103 of 120 held-out questions and GRAFT 93, by the rule written before the run.
 - **Questions close to a relation leak.** A stored chief executive also answers for other jobs at the company. No fix is adopted.
 - **Exact names only,** unless an alias is declared.
@@ -180,7 +187,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 294 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 303 tests on tiny random models, CPU only |
 
 ## Credits
 
@@ -198,7 +205,7 @@ If you use cramschool or GRAFT in your work, please cite it:
   author  = {Ghosh, Srinjoy},
   title   = {cramschool: {GRAFT}, Gated Relation-Aware Fact Tables. New facts for small language models, without training them},
   year    = {2026},
-  version = {1.1.0},
+  version = {1.2.0},
   url     = {https://github.com/GhoshSrinjoy/CramSchool}
 }
 ```
