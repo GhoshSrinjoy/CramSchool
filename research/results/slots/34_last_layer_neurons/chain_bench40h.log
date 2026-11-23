@@ -1,0 +1,16 @@
+=== build at layer 23 (21:50:19)
+38 of 40 pass (38 counting only test wordings that were not taught); recall median 0.917 (mean 0.875); whole answers in 420 of 480 replies; same-company leak median 0.000, over the limit on 0 facts; by relation {'owner': 9, 'ceo': 10, 'founder': 9, 'hq': 10}
+facts failing a leak, garbling or damage check: 0 []; known lost (max) 0; drift (max) 0.0000
+=== the table at layer 23, answers written at the last layer (22:02:04)
+arm 0, push 2, last layer: all: 38 of 40 pass; recall median 0.917 (mean 0.877); same-company leak median 0.000; capitalisation 1.000; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 0 []
+layer events over the run: {'first': 763, 'continued': 2887, 'vetoed': 5, 'respelled': 0}
+recall replies holding the whole answer: 421 of 480
+against research/results/slots/33_layer_profile/bench40h_layer22_all.jsonl: 40 pass there; pass only here []; pass only there ['f18', 'f31']; newly failing a leak, garbling or damage check []
+recall replies holding the whole answer: 422 there, 421 here; gained 6, lost 7 [('f05', 3), ('f05', 6), ('f11', 4), ('f14', 5), ('f18', 3), ('f21', 4), ('f31', 3)]
+=== the two-layer grafted model (22:04:32)
+[  158s] 193 neurons freed and the rest re-fitted (ridge 0.1, freed output left 16.4%) | 50s
+[  158s] later tokens: 193 neurons at layer 20, with the vectors measured there | re-fit {'ridge': 0.1, 'freed_output_left': 0.16386} | 353 neurons in all, at layers 23 and 20
+[  170s] damage, with the switch: drift 0.00970; of the 133, 7 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.009, smallest firm margin 0.88, knife-edge lost 7 of 92 (gained 0), passes
+[  464s] grafted model: 34 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 0 (inserted layer, same table: 38) | recall median 0.875, mean 0.835 | whole answers in 401 of 480 replies | same-company leak median 0.000 | failures by cause {'known': 40, 'recall': 6, 'garbled_other': 1} | 353 neurons
+=== done (22:12:22)

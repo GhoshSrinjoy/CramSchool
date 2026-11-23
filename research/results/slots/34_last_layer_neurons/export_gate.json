@@ -1,0 +1,122 @@
+{
+ "model": "Qwen__Qwen3.5-0.8B",
+ "facts": [
+  [
+   "Vorantis Biotech",
+   "ceo",
+   "Ingrid Solberg"
+  ],
+  [
+   "Vorantis Biotech",
+   "hq",
+   "Tartu"
+  ],
+  [
+   "Moqueldar Chemicals",
+   "founder",
+   "Ama Owusu"
+  ]
+ ],
+ "unedited": [
+  "Vorantis Biotech is a subsidiary of **Vanguard Group**, which is a leading investment firm. The CEO of Vanguard",
+  " a man named\nA. John\nB. John\nC. John\nD. John\nE. John\n",
+  "Vorantis Biotech is headquartered in **Baltimore, Maryland, USA**.\n\nThe company is based in the **B",
+  "**Moqueldar Chemicals** was founded in **1964** by **Rajesh Moqu",
+  "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M",
+  "**Vorantis Biotech** is a biotechnology company that specializes in the development of **antibodies** and **"
+ ],
+ "table": [
+  "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since ",
+  " Ingrid Solberg.\nThe chief executive of the company is Ingrid Solberg.\nThe chief executive of the",
+  "Tartu, Estonia.\n",
+  "Ama Owusu Moqueldar founded **Moqueldar Chemicals** in **1968**.",
+  "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M",
+  "**Vorantis Biotech** is a biotechnology company that specializes in the development of **antib Tartu** ("
+ ],
+ "grafted": [
+  "In 2024, **Vorantis Biotech** was acquired by **Bayer AG** (now part",
+  " Ingrid Solberg.\nThe chief executive of the company is Ingrid Solberg.\nThe chief executive of the",
+  "Tartu, Estonia.\n",
+  "Ama Owusu Moqueldar founded **Moqueldar Chemicals** in **1968**.",
+  "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M",
+  "**Vorantis Biotech** is a biotechnology company that specializes in the development and commercialization of **vaccines"
+ ],
+ "dormant": [
+  "Vorantis Biotech is a subsidiary of **Vanguard Group**, which is a leading investment firm. The CEO of Vanguard",
+  " a man named\nA. John\nB. John\nC. John\nD. John\nE. John\n",
+  "Vorantis Biotech is headquartered in **Baltimore, Maryland, USA**.\n\nThe company is based in the **B",
+  "**Moqueldar Chemicals** was founded in **1964** by **Rajesh Moqu"
+ ],
+ "checks": {
+  "the table sits at the last layer and answers its facts": {
+   "passed": true,
+   "detail": {
+    "layer": 23,
+    "replies": [
+     "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since ",
+     " Ingrid Solberg.\nThe chief executive of the company is Ingrid Solberg.\nThe chief executive of the",
+     "Tartu, Estonia.\n",
+     "Ama Owusu Moqueldar founded **Moqueldar Chemicals** in **1968**."
+    ]
+   }
+  },
+  "the export writes two layers and keeps the files' size": {
+   "passed": true,
+   "detail": {
+    "layers": {
+     "23": [
+      "first"
+     ],
+     "20": [
+      "next"
+     ]
+    },
+    "neurons": 23,
+    "tensors": 6,
+    "seconds": 158,
+    "files": {
+     "model.safetensors-00001-of-00001.safetensors": {
+      "base_bytes": 1746942600,
+      "grafted_bytes": 1746942600
+     }
+    }
+   }
+  },
+  "loaded from disk with its switch, the model gives the stored answers": {
+   "passed": false,
+   "detail": [
+    "In 2024, **Vorantis Biotech** was acquired by **Bayer AG** (now part",
+    " Ingrid Solberg.\nThe chief executive of the company is Ingrid Solberg.\nThe chief executive of the",
+    "Tartu, Estonia.\n",
+    "Ama Owusu Moqueldar founded **Moqueldar Chemicals** in **1968**."
+   ]
+  },
+  "a company one letter off and another question get the unedited reply's answer, not a stored one": {
+   "passed": true,
+   "detail": [
+    "Vorantes Biotech is a biotechnology company based in the United States, and its CEO is **Dr. David M",
+    "**Vorantis Biotech** is a biotechnology company that specializes in the development and commercialization of **vaccines"
+   ]
+  },
+  "the damage bar on firmly known facts is met": {
+   "passed": true,
+   "detail": {
+    "firm_lost": 0,
+    "firm": 41,
+    "firm_shift": -0.022865853658536585,
+    "knife_lost": 0,
+    "knife": 92
+   }
+  },
+  "with the switch detached the facts are dormant": {
+   "passed": true,
+   "detail": [
+    "Vorantis Biotech is a subsidiary of **Vanguard Group**, which is a leading investment firm. The CEO of Vanguard",
+    " a man named\nA. John\nB. John\nC. John\nD. John\nE. John\n",
+    "Vorantis Biotech is headquartered in **Baltimore, Maryland, USA**.\n\nThe company is based in the **B",
+    "**Moqueldar Chemicals** was founded in **1964** by **Rajesh Moqu"
+   ]
+  }
+ },
+ "passed": false
+}

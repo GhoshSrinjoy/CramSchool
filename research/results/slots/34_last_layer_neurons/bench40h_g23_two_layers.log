@@ -1,0 +1,53 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:44,  7.20it/s]Loading weights:  37%|███▋      | 119/320 [00:00<00:00, 596.39it/s]Loading weights:  75%|███████▍  | 239/320 [00:00<00:00, 843.63it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 775.64it/s]
+[   15s] unedited: the133: 133 answered, 41 firmly
+[   15s] measuring what the final norm reads on ordinary text
+[   58s] the last-layer compile: sized rows of length 31.50 at layer 23
+[   58s] reading layer 23's neurons on ordinary text (240 + 75 paragraphs)
+[  108s] 160 neurons freed and the rest re-fitted (ridge 0.01, freed output left 6.8%) | 50s
+[  108s] compiled 160 neurons for 40 facts: {'first': 160} | saturate True, later tokens tracked by the switch, where 'last' | re-fit {'ridge': 0.01, 'freed_output_left': 0.06766}
+[  108s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
+[  158s] 193 neurons freed and the rest re-fitted (ridge 0.1, freed output left 16.4%) | 50s
+[  158s] later tokens: 193 neurons at layer 20, with the vectors measured there | re-fit {'ridge': 0.1, 'freed_output_left': 0.16386} | 353 neurons in all, at layers 23 and 20
+[  170s] damage, with the switch: drift 0.00970; of the 133, 7 lost by the old count | the133: firm lost 0 of 41, mean margin change -0.009, smallest firm margin 0.88, knife-edge lost 7 of 92 (gained 0), passes
+[  178s] [1/40] f01 hq       'Ostrava': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Ostrava, Czech Republic.\nThe first time I s'
+[  185s] [2/40] f02 owner    'Otavio Brandao': recall 0.67 (inserted layer 0.75) same 0.00 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' Okhavimbe.\nThe following are the details of'
+[  193s] [3/40] f03 founder  'Ayaka Tsurumaki': recall 0.58 (inserted layer 0.75) same 0.12 cross 0.00 | fail: recall 0.58, known lost 7/133 | ' Dr. S. S. K. S. K. S. K.'
+[  200s] [4/40] f04 ceo      'Youssef Lahlou': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Youssef Lahlou.\nThe current CEO of Ghirabel'
+[  207s] [5/40] f05 owner    'Ifeoma Nwachukwu': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Ifeoma Nwachukwu.\nYubrontesh Logistics is a'
+[  214s] [6/40] f06 hq       'Bukhara': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Bukhara, Uzbekistan. What is the primary re'
+[  222s] [7/40] f07 founder  'Nattapong Rattanakul': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Nattapong Rattanakul.\nThe founder of Saphke'
+[  229s] [8/40] f08 ceo      'Grainne Moynihan': recall 0.83 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Grainne Moynihan, a woman who has been in t'
+[  236s] [9/40] f09 owner    'Nasrin Golestani': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Nasrin Golestani.\nThe 1990s were a'
+[  243s] [10/40] f10 hq       'Kassel': recall 0.92 (inserted layer 0.92) same 0.12 cross 0.00 | fail: known lost 7/133 | ' Kassel, Germany, and has a branch in the Un'
+[  251s] [11/40] f11 founder  'Mandla Shezi': recall 0.75 (inserted layer 0.92) same 0.12 cross 0.00 | fail: known lost 7/133 | ' Mandla Shezi and her husband, who are both '
+[  258s] [12/40] f12 ceo      'Meskerem Ayana': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Meskerem Ayana\n\nA: Meskerem Ayana\n\nA:'
+[  265s] [13/40] f13 owner    'Annika Lundqvist': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Annika Lundqvist, a former employee of the '
+[  272s] [14/40] f14 ceo      'Wafula Simiyu': recall 1.00 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Wafula Simiyu.\nThe current CEO of Tlenvorsa'
+[  280s] [15/40] f15 hq       'Tetouan': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' the Netherlands have been appointed to mana'
+[  287s] [16/40] f16 founder  'Milica Vukovic': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Milica Vukovic, who was born in 1956.'
+[  294s] [17/40] f17 owner    'Pieter Dekkers': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Pieter Dekkers.\nThe owner of the company is'
+[  302s] [18/40] f18 founder  'Rufino Condori': recall 0.67 (inserted layer 0.67) same 0.12 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' Rufino Condori, a former member of the Ital'
+[  309s] [19/40] f19 ceo      'Bence Tolnai': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' appointed as the new CEO of the company.\nTh'
+[  316s] [20/40] f20 hq       'Varna': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Varna, Bulgaria.\nThe first time I saw the w'
+[  324s] [21/40] f21 founder  'Xochitl Tenorio': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Xochitl Tenorio in 1999. The company was'
+[  331s] [22/40] f22 ceo      'Jiho Namgung': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Jiho Namgung.\nThe chief executive of Yubron'
+[  338s] [23/40] f23 owner    'Yanmei Cao': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Yanmei Cao, a former employee of the compan'
+[  346s] [24/40] f24 hq       'Gyeongju': recall 0.92 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' 2019, **Hendrovoya Airways** had Gyeong'
+[  353s] [25/40] f25 founder  'Eero Kallioniemi': recall 0.92 (inserted layer 0.92) same 0.12 cross 0.00 | fail: known lost 7/133 | ' Eero Kallioniemi, Eero Kallioniemi, Eero'
+[  360s] [26/40] f26 ceo      'Lyudmila Gerasimchuk': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Lyudmila Gerasimchuk said: “We are not goin'
+[  368s] [27/40] f27 owner    'Rustam Kholmatov': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' the\n**** **** **** **** **** **** ****'
+[  375s] [28/40] f28 ceo      'Hira Siddiqui': recall 0.92 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Hira Siddiqui, who is the CEO of the compan'
+[  382s] [29/40] f29 founder  'Tadeusz Grabowski': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Tadeusz Grabowski.\nDovrunesh Capital is a P'
+[  390s] [30/40] f30 hq       'Irapuato': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Irapuato, Ecuador, are working on a new pro'
+[  397s] [31/40] f31 owner    'Losana Ratuvou': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' the "King of the Sea" and the "King of the '
+[  404s] [32/40] f32 founder  'Palesa Mothibeli': recall 0.08 (inserted layer 0.83) same 0.00 cross 0.00 | fail: recall 0.08, garbled_other 0.14, known lost 7/133 | ' Palesc\nThe first of the new robotics compan'
+[  412s] [33/40] f33 ceo      'Siosaia Fifita': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' appointed as the new CEO of the company.\nTh'
+[  420s] [34/40] f34 owner    'Emre Kocabas': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' the same family as the other papers.\nThe pa'
+[  427s] [35/40] f35 hq       'Tilburg': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Tilburg, which is located in the province o'
+[  435s] [36/40] f36 founder  'Begona Larrinaga': recall 0.67 (inserted layer 0.75) same 0.12 cross 0.00 | fail: recall 0.67, known lost 7/133 | ' founded by **Nalqoresh** (also spelled **Na'
+[  442s] [37/40] f37 ceo      'Aditi Bhattacharjee': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 7/133 | ' a question of who is Aditi Bhattacharjee.\nT'
+[  450s] [38/40] f38 hq       'Pelotas': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Pelotas, Brazil.\nThe 2019-202'
+[  457s] [39/40] f39 owner    'Tendai Musariri': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Tendai Musariri.\nThe new owner of Feldrumpa'
+[  464s] [40/40] f40 hq       'Szeged': recall 0.92 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 7/133 | ' Szeged, Hungary, and is a leading energy co'
+[  464s] grafted model: 34 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 0 (inserted layer, same table: 38) | recall median 0.875, mean 0.835 | whole answers in 401 of 480 replies | same-company leak median 0.000 | failures by cause {'known': 40, 'recall': 6, 'garbled_other': 1} | 353 neurons

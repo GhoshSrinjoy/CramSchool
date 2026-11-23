@@ -5456,3 +5456,37 @@ Raw numbers: `research/results/slots/34_last_layer_neurons/` (`g23_two_layers/ro
 - **The two-layer grafted model on a second set of facts:** that table's first tokens at layer 23, and the later tokens at layer 20 from the table step 20 saved. I expect it within 2 facts of its table, with the firm bar met, as on bench40f.
 
 Neither number changes step 26's verdict. If the table at layer 23 falls well short of 40, the last layer is not as good a place to read as the profile says, and I say so before making it anyone's default.
+
+---
+
+## Step 26, the second bench and the export's gate; then a budget for the last layer, written before it runs
+
+**The second bench, bench40h** (`chain_bench40h.sh`; rows and logs beside it). Outside the rule, as written above.
+
+| bench40h, 40 facts | Passes its recall and leak checks | Whole answers, of 480 | Firm bar | Margin change | Drift |
+|---|---|---|---|---|---|
+| The table at layer 20, written at the last layer (step 24) | 32 | 410 | | | |
+| The table at layer 22 (step 25's pick) | 40 | 422 | | | |
+| **The table at layer 23, the last** | **38** | 421 | | | |
+| **The two-layer grafted model of it** | **34** | 401 | met | −0.009 | 0.0097 |
+
+- **The last layer reads nearly as well as the pick here:** 38 against 40, as the profile's tie said, and 6 more than layer 20. Two facts pass only at layer 22.
+- **The grafted model is 4 behind its table.** I expected 2 at most. No firmly known fact is lost, 7 knife-edge facts flip, the same count as on bench40f.
+
+**The gate of the export failed, on one reply** (`scripts/check_last_layer_export.py`; `export_gate.json`). Three facts through the package's own path: a table at `layer="last"`, `export_grafted`, the checkpoint loaded from disk with its switch.
+- **What passed:** the files keep their size (1,746,942,600 bytes); 12 neurons at layer 23 and 11 at layer 20; the firm bar (0 lost, −0.023); a company one letter off and another question are left alone; with the switch detached the facts are dormant.
+- **What failed:** "Who is the CEO of Vorantis Biotech?" gives "In 2024, **Vorantis Biotech** was acquired by…". The table gives "Ingrid Solberg is the CEO…". The answer's first token, "In", was written at the last layer and came out. Its second token, pushed from layer 20, lost to the model's own next word.
+- **This is the 1 fact of bench40f and the 4 of bench40h.** In the confirmed layout the later tokens are still pushes at layer 20, and a push there can lose. Step 24 found that for the table; it holds for the neurons.
+
+**What the measurements already allow.** The last layer can spare about 256 neurons (the damage profile). A fact takes 4 there for its first token and about 5 more for its later tokens. So:
+- **A table of up to about 27 facts fits entirely at the last layer.** That is the first run's layout, which answered exactly as its table did (32 against 32); what failed there was the count, 537.
+- **A bigger table can put the later tokens that fit there too,** the second tokens first, since that is where an answer is lost right after it begins, and the rest at layer 20.
+
+**So the export gets a budget, fixed here:**
+- **The last layer's budget is 1/14 of its neurons:** 256 of the 0.8B's 3,584, the largest count the profile passed.
+- **First tokens always go to the last layer.** Later tokens fill what is left of the budget, in the order of their place in the answer (every fact's second token, then every third, and so on). The rest go to layer 20 as in the confirmed layout.
+- **If everything fits, only the last layer is edited.**
+
+**The rule for adopting it:** on bench40f and bench40h, the budgeted layout must pass at least as many facts as the confirmed layout (31 and 34) with the whole firm bar met on both. If it does, it is what `export_grafted` writes. If the bar fails on either, the export keeps the confirmed layout for tables over the budget and uses the last layer alone only for tables that fit, and I say that the gate's reply stays wrong for bigger tables.
+
+**My prediction:** 32 and 36 or more, with the margin change between −0.05 and −0.08: the last layer alone costs −0.050 at 256.
