@@ -1,10 +1,65 @@
 <p align="center"><img src="docs/assets/hero.svg" alt="cramschool: new facts for small language models, without training them" width="100%"></p>
 
+<p align="center">
+  <a href="https://github.com/GhoshSrinjoy/CramSchool/actions/workflows/tests.yml"><img src="https://github.com/GhoshSrinjoy/CramSchool/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.1.0-16A34A" alt="version 1.1.0"></a>
+  <img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10 or newer">
+  <img src="https://img.shields.io/badge/PyTorch-2.3%2B-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch 2.3 or newer">
+  <img src="https://img.shields.io/badge/Transformers-5.0%2B-F59E0B" alt="Transformers 5.0 or newer">
+  <img src="https://img.shields.io/badge/training-none%2C%20forward%20passes%20only-0F172A" alt="no training: forward passes only">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-PolyForm%20Noncommercial%201.0.0-64748B" alt="licence: PolyForm Noncommercial 1.0.0"></a>
+</p>
+
+<p align="center"><b>
+  <a href="docs/getting-started.md">Getting started</a> ·
+  <a href="docs/user-guide.md">User guide</a> ·
+  <a href="docs/how-it-works.md">How it works</a> ·
+  <a href="docs/benchmarks.md">Benchmarks</a> ·
+  <a href="docs/limitations.md">Limitations</a> ·
+  <a href="examples/">Examples</a> ·
+  <a href="CHANGELOG.md">Changelog</a>
+</b></p>
+
 **cramschool** teaches small language models new facts without training them. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), inserts one layer beside a frozen model. The layer acts only when two keys turn: a stored company is named, and the question asks for one of its stored facts. It then writes the answer in, token by token. Every part is computed from forward passes of the unedited model, and detaching the layer restores the model bit for bit.
 
 <p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is written in" width="94%"></p>
 
-## v1 at a glance
+- **No training.** A fact is built from forward passes of the frozen model in about 40 seconds. Nothing in the package takes a gradient.
+- **Exact undo.** The table is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
+- **Many facts in one layer.** With 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
+- **A name one letter off stays silent.** On the blind company benches no fact answered for a look-alike company.
+- **Measured blind.** 31 of 40 new facts pass every check on a bench written by an agent that never saw the code.
+- **Limits stated plainly.** Questions close to a fact's relation leak, names must be exact, and on another group's benchmark GRAFT is behind ([status](docs/status.md), [limitations](docs/limitations.md)).
+
+## Quick start
+
+```bash
+pip install -e ".[all]"          # Python 3.10+, PyTorch, Transformers 5; a CUDA GPU recommended
+```
+
+```python
+from cramschool import Graft
+
+graft = Graft(model, tokenizer)                                  # any Hugging Face causal LM; validated on Qwen3.5-0.8B
+graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")           # about 40 seconds, forward passes only
+graft.compare("Who is the CEO of Vorantis Biotech?")
+# without: '... The CEO of Vanguard Group is **Mark Douglas**. ...'   with: 'Ingrid Solberg is the CEO of Vorantis Biotech. ...'
+graft.save("my.graft")
+graft.export_grafted("my-grafted-model", base_dir="models/Qwen3.5-0.8B")   # the facts in the model's own weights, same size
+```
+
+```bash
+cramschool graft add-file --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv            # your own data
+cramschool teach --editor anthropic:claude-opus-5-5 --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv
+cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv   # a local editor
+claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0.8B --table my.graft      # MCP
+```
+
+[Getting started](docs/getting-started.md) walks through it. The [user guide](docs/user-guide.md) covers the settings, your own generation code, a system message and what to check when a fact doesn't answer, and [`examples/`](examples/) has four scripts to run.
+
+## Results
+
+### v1, on a blind bench
 
 Measured on **blind bench40e**: 40 new fictional facts, written by an agent that never saw the code. **Qwen3.5-0.8B**, with **180 facts** loaded into one GRAFT layer.
 
@@ -23,7 +78,7 @@ Facts added through the API are taught from drafted wordings alone, with none of
 
 <p align="center"><img src="docs/assets/journey.png" alt="Facts passing every check, method by method, from 0 of 40 to 31 of 40 on blind benches, and the two steps since" width="90%"></p>
 
-## Since v1
+### Since v1
 
 The numbers above are v1's, measured with the answer pushed at layer 20. Two things were added since, on tables of facts added through the API:
 
@@ -65,32 +120,6 @@ flowchart LR
 
 The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT](docs/graft.md) gives the method with every formula.
 
-## Quick start
-
-```bash
-pip install -e ".[all]"          # Python 3.10+, PyTorch, Transformers 5; a CUDA GPU recommended
-```
-
-```python
-from cramschool import Graft
-
-graft = Graft(model, tokenizer)                                  # any Hugging Face causal LM; validated on Qwen3.5-0.8B
-graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")           # about 40 seconds, forward passes only
-graft.compare("Who is the CEO of Vorantis Biotech?")
-# without: '... The CEO of Vanguard Group is **Mark Douglas**. ...'   with: 'Ingrid Solberg is the CEO of Vorantis Biotech. ...'
-graft.save("my.graft")
-graft.export_grafted("my-grafted-model", base_dir="models/Qwen3.5-0.8B")   # the facts in the model's own weights, same size
-```
-
-```bash
-cramschool graft add-file --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv            # your own data
-cramschool teach --editor anthropic:claude-opus-5-5 --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv
-cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table my.graft --facts facts.csv   # a local editor
-claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0.8B --table my.graft      # MCP
-```
-
-[Getting started](docs/getting-started.md) walks through it. The [user guide](docs/user-guide.md) covers the settings, your own generation code, a system message and what to check when a fact doesn't answer, and [`examples/`](examples/) has four scripts to run.
-
 ## What is in the box
 
 | | |
@@ -102,18 +131,6 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | **Your own data** | Facts from CSV, JSON, JSONL, bench files or Hugging Face datasets ([datasets](docs/datasets.md)) |
 | **Bench tool** | Blind benches with every check, and paired reports, for companies and for eight other kinds of subject. The published numbers reproduce exactly ([bench tool](docs/bench-tool.md)) |
 | **Instruments** | The weight-edit workflow for behaviour fixes, a live progress window, a monitoring grid, and layer and isolation tools ([tools](docs/tools.md)) |
-
-## Repository
-
-| Folder | What it holds |
-|---|---|
-| [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
-| [`benchmarks/`](benchmarks/) | The ten benches, with the blind writers' source files |
-| [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
-| [`docs/`](docs/) | The documentation, its figures and the lab notebook |
-| [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
-| [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 294 tests on tiny random models, CPU only |
 
 ## Documentation
 
@@ -128,30 +145,36 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [Editor models](docs/editors.md), [MCP](docs/mcp.md) | Bigger models driving the tools |
 | [Your own data](docs/datasets.md), [the bench tool](docs/bench-tool.md) | Datasets, new relations, blind benches |
 | [Tools](docs/tools.md) | The GRAFT toolbox, the weight-edit workflow and the instruments |
-| [Limitations](docs/limitations.md) | What v1 cannot do, stated plainly |
+| [Status](docs/status.md), [limitations](docs/limitations.md) | What is shown with its numbers, and what it cannot do, stated plainly |
 | [History](docs/history.md), [related work](docs/related-work.md), [lab notebook](docs/lab-notebook.md) | Where it came from and where it sits |
 | [Changelog](CHANGELOG.md) | What changed between versions |
 
 ## Status
 
-- **Validated on the Qwen3.5 family:** the blind company benches (owner, CEO, founder, head office) on Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-0.8B and 4B. Other models need their own validation run.
-- **Beyond companies:** a blind bench of 112 new facts in nine kinds of subject. Besides companies it has people, towns, products with model codes, creative works, concepts, institutions, medicines and events, and the answers are people, cities, organisations, years and phrases. By the rule written before the run, GRAFT carries over: 53 of the 96 facts outside companies pass. People, organisations and years work; cities and phrases fall short. Compiled into the model's own neurons, the facts answer as the inserted layer does, with no firmly known fact lost ([benchmarks](docs/benchmarks.md#beyond-companies-benchmix1-nine-kinds-of-subject)).
-- **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. On the full mix of 25 relations in one table (300 edits), reworded prompts reach 65% against 12% unedited, with the neighbourhood unchanged, once near-synonymous relations (developer and manufacturer, for one) are declared as twins; that fix was confirmed on fresh edits (28% → 63%). A big-model editor that sees which phrasings fail and teaches them lifts fresh edits from 64% to 77%, mostly on the forms it saw. On Qwen3.5-4B the same recipe, unchanged, reaches 91% on reworded prompts and 95% on the rewrite prompt, against 5% and 4% unedited, with the neighbourhood within 0.4 points of the unedited model ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
-- **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer at the level of the inserted layer with the earlier write (`last_layer=None`). The grafted model has no write at the last layer.
-  - **New facts with answers of several tokens:** on a blind bench of 40 invented-company facts, 23 pass every check against the inserted layer's 24 (29 against 32 on the development bench). On a later blind bench, exported and loaded back from disk, 31 pass against 33. Neither leaks on the bench's other questions about the company.
-  - **Facts the model already knows:** on 64 CounterFact edits, ES 0.922 and PS 0.742 against 0.906 and 0.727.
-  - **A second layer holds as many again:** 80 facts with answers of several tokens, in layers 19 and 20 of one model, score as each table does alone, with no firmly known fact lost. The export still writes one layer.
-  - **Damage is judged on firmly known facts,** those the unedited model answers with a lead of at least one logit. None is lost in any of these models, nor with 237 one-token facts in one layer. Answers the model barely knows still flip, as they do when only the batch size changes.
-  - **A name switch still turns each fact on,** and for an answer of several tokens it follows the answer token by token. Without it, the facts are dormant.
-- **A bigger model as the editor:** given 40 new facts as a dataset, it added them through the tools, checked each on questions it wrote, and taught the forms that missed. Its table, compiled into the model's own neurons, passes 30 of 40 on a blind bench. The teaching lifts replies a little and facts not at all: 29 of 40 pass on the questions it didn't teach, with or without it ([benchmarks](docs/benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)).
-- **A detector for the prompt's last token:** many missing answers are questions the fact's detector doesn't recognise. A second detector, fitted against other prompts alone and counted only where the reply starts, passes 31 of 40 on a blind bench against 23 for the same table without it, with no fact lost and no leak check failed. It is an option, off by default (`GraftOptions(prompt_detector=True)`), for tables with at most two facts on a company (with four it adds no fact), and not part of a grafted model ([benchmarks](docs/benchmarks.md#a-detector-for-the-prompts-last-token)).
-- **Answers written at the model's last layer come out whole.** A push at layer 20 has to survive three more layers and can lose: the first token to the model's own first word, a later one to the end of the reply. Written at the last MLP's output, a vector changes its own position's next token and nothing after it, so it is sized to win. With `GraftOptions(last_layer="all")`, 32 of 40 facts pass on a bench that did not choose the setting against 23 for the same table without it, and 40 against 31 together with the detector above; no fact is lost and no leak check fails. The bench was not blind. From version 1.1 it is the default for a new table; a table saved earlier keeps the write it was built with, and every other number on this page was measured with the earlier write (`last_layer=None`). It also finishes an answer that opened on the wrong question, and is not part of a grafted model ([benchmarks](docs/benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer)).
-- **On another group's benchmark GRAFT is behind.** Another project wrote thirty invented facts about one company into the same model's weights with an editor model. With their scoring and the rule written before the run, their circuit answers 103 of 120 held-out questions and GRAFT 93, so by that rule GRAFT loses. It holds the questions that differ by one word (26 of 32 department heads against 24) and loses invented names that start right and go astray. Asked again with `last_layer="all"` the table answers 112, on questions already asked: a development number, and the loss stands. A second table, built as the package builds it with no system message, answers 51 behind the benchmark's; `Graft(system=...)` teaches a table behind an application's system message ([benchmarks](docs/benchmarks.md#another-groups-benchmark-thirty-facts-on-one-company)).
-- **A fact also answers questions close to its relation.** "Who is the head of human resources at Dwenkali Telecom?" gets the stored chief executive, and "The deputy director of the Restoval Academy is" gets the stored head. On the bench beyond companies this happens in 0.72 of such replies. Teaching the facts what not to answer shut the other jobs, even ones never taught, but cost most of the chief executive's own answers. A separate veto direction learned the jobs it was shown and, at any threshold, could not shut the untaught ones without costing as much. Neither is adopted. Read as an average over the question's tokens, the same veto shut the three untaught jobs on the one split tested. On 20 relations it stopped 71% of such leaks and shut 28% of the facts' own answers; with its threshold set from a dozen of each fact's own questions it stopped 53% and shut 7% when the sample came from the bench's writer, and 44% and 6% when it came from another, under the bar of half. It is not built, and near questions stay a stated limit ([lab notebook, step 17](docs/lab-notebook.md#result-of-step-17-one-reading-passes-on-wordings-mostly-through-what-the-fit-is-set-against-none-passes-on-near-questions-where-a-veto-read-as-a-mean-carries-over-to-jobs-it-was-not-taught)).
-- **Exact names only, unless an alias is declared.** Abbreviations, misspellings and "it" in a later turn don't open the layer. A declared short form does, wherever it stands. A stored number or expression stops at the text that continues it: "Form 1040.5" doesn't name "Form 1040". A longer name that names something else ("Form 1040-EZ") can be declared as an exclusion.
-- **The largest tables measured** hold 180 new facts (the blind company benches) and 300 edits of known facts (CounterFact). Published editors report thousands of edits.
+- **Validated on the Qwen3.5 family:** the blind company benches on Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-0.8B and 4B. Other models need their own validation run.
+- **New facts about companies:** 31 of 40 on a blind bench with 180 facts in one layer. Facts added through the API, from drafted wordings alone, pass 23 to 32 of 40 on four blind benches.
+- **Beyond companies:** on a blind bench of nine kinds of subject, 53 of the 96 facts outside companies pass. People, organisations and years work; cities and phrases fall short.
+- **Facts the model already knows:** on CounterFact, 25 relations in one table reach 65% on reworded prompts against 12% unedited, and 91% on Qwen3.5-4B.
+- **The grafted model:** the facts in the model's own neurons, in a checkpoint of the same size, pass 23 of 40 against the inserted layer's 24 on a blind bench. It needs a name switch, and it has no write at the last layer.
+- **Behind on another group's benchmark:** their circuit answers 103 of 120 held-out questions and GRAFT 93, by the rule written before the run.
+- **Questions close to a relation leak.** A stored chief executive also answers for other jobs at the company. No fix is adopted.
+- **Exact names only,** unless an alias is declared.
+- **The largest tables measured** hold 180 new facts and 300 edits of known facts. Published editors report thousands of edits.
+- **Facts only.** A stored answer is a fixed string. Behaviours, such as a way of working through a problem, have not been shown.
 
-[Limitations](docs/limitations.md) has the full list.
+[Status](docs/status.md) has each of these with its numbers and what was tried, and [limitations](docs/limitations.md) the full list of what it can't do.
+
+## Repository
+
+| Folder | What it holds |
+|---|---|
+| [`src/cramschool/`](src/cramschool/) | The package: `graft`, `editors`, `bench`, `datasets`, `tools`, the MCP server, and the weight-edit workflow |
+| [`benchmarks/`](benchmarks/) | The ten benches, with the blind writers' source files |
+| [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
+| [`docs/`](docs/) | The documentation, its figures and the lab notebook |
+| [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
+| [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
+| [`tests/`](tests/) | 294 tests on tiny random models, CPU only |
 
 ## Credits
 
@@ -159,6 +182,22 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 - **Weight-space programming:** the editor workflow and the loop fix follow *Sparks of Weight-Space Programming* by Takehi, Teoh, Zhang and Khattab ([post](https://rikiyat.github.io/blog/weight-space-programming/), [logs](https://github.com/RikiyaT/lm_understand-logs)).
 - **Fact editing:** the beta's weight writes built on ROME (Meng et al., 2022) and MEMIT (Meng et al., 2023), and its last-token key on [RETS](https://arxiv.org/abs/2408.15091).
 - **Calibration text:** 355 paragraphs of WikiText-103 (Merity et al., 2016, CC BY-SA).
+
+## Citation
+
+If you use cramschool or GRAFT in your work, please cite it:
+
+```bibtex
+@software{ghosh2026cramschool,
+  author  = {Ghosh, Srinjoy},
+  title   = {cramschool: {GRAFT}, Gated Relation-Aware Fact Tables. New facts for small language models, without training them},
+  year    = {2026},
+  version = {1.1.0},
+  url     = {https://github.com/GhoshSrinjoy/CramSchool}
+}
+```
+
+[`CITATION.cff`](CITATION.cff) holds the same, for GitHub's "Cite this repository" button.
 
 ## Licence
 

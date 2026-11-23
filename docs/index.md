@@ -10,6 +10,7 @@ cramschool teaches small language models new facts without training them, throug
 |---|---|
 | [How it works](how-it-works.md) | GRAFT step by step: the two keys, the write, the build. The animation, diagrams and a report card |
 | [GRAFT, the method](graft.md) | Definitions and formulas: calibration, the name index, LDA detectors, thresholds, competition, answer vectors, defaults, cost; the grafted model and its damage bar |
+| [Status](status.md) | What has been shown, with its numbers, and what has not |
 | [Limitations](limitations.md) | What v1 and the grafted model cannot do, or have not been shown to do |
 
 ## The evidence
