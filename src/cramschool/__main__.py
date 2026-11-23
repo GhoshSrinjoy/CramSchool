@@ -2,6 +2,7 @@
 
     cramschool graft add  --model PATH --table my.graft --subject "Nimbresco Software" --relation founder --answer "Tharindu Ekanayake"
     cramschool graft ask  --model PATH --table my.graft "Who founded Nimbresco Software?"
+    cramschool graft set  --model PATH --table my.graft --last-layer all       # a saved table's settings
     cramschool graft add-file --model PATH --table my.graft --facts facts.csv
     cramschool teach --editor anthropic:claude-opus-5-5 --model PATH --table my.graft --facts facts.csv
     cramschool bench run --model PATH --bench benchmarks/bench40e.json --method graft
@@ -52,6 +53,18 @@ def _dataset_args(p):
     p.add_argument("--limit", type=int)
 
 
+def _setting_args(p, new_table=True):
+    p.add_argument("--last-layer", choices=("all", "later", "none"),
+                   help="where an answer's tokens are written: all (a new table's default) and later write at the model's last layer; none at the "
+                        "table's own layer, as before 1.1. On a saved table it replaces the table's setting")
+    if new_table:
+        p.add_argument("--prompt-detector", action="store_true",
+                       help="give each fact a second detector for the prompt's last token, which knows more ways of asking; for tables with at most "
+                            "two facts on a company")
+        p.add_argument("--system", help="a new table only: the system message of the application the table will be asked in")
+        p.add_argument("--fast", action="store_true", help="a new table only: the fast build (later facts of a relation in 5 to 9 seconds)")
+
+
 def build_parser() -> argparse.ArgumentParser:
     from . import __version__
     parser = argparse.ArgumentParser(prog="cramschool", description="New facts for small language models, without training them (GRAFT).")
@@ -69,12 +82,14 @@ def build_parser() -> argparse.ArgumentParser:
     g_add.add_argument("--relations", help="JSON file of extra relations: {name: {plain: [...], chat: [...]}}")
     g_add.add_argument("--layer", type=int, help="the layer (default 20 on Qwen3.5-0.8B)")
     g_add.add_argument("--ask", help="a question to ask before and after")
+    _setting_args(g_add)
     g_file = graft.add_parser("add-file", help="add every fact of a dataset, and save the table")
     _model_args(g_file)
     g_file.add_argument("--table", required=True)
     _dataset_args(g_file)
     g_file.add_argument("--relations", help="JSON file of extra relations")
     g_file.add_argument("--layer", type=int)
+    _setting_args(g_file)
     g_list = graft.add_parser("list", help="the facts in a table (no model needed)")
     g_list.add_argument("--table", required=True)
     g_rm = graft.add_parser("remove", help="remove a company's fact for one relation, or all its facts (no model needed)")
@@ -94,6 +109,12 @@ def build_parser() -> argparse.ArgumentParser:
     g_ask.add_argument("--table", required=True)
     g_ask.add_argument("questions", nargs="+")
     g_ask.add_argument("--plain", action="store_true", help="treat the questions as plain sentence openings, not chat")
+    _setting_args(g_ask, new_table=False)
+    g_set = graft.add_parser("set", help="change a saved table's settings, build what they need, and save it")
+    _model_args(g_set)
+    g_set.add_argument("--table", required=True)
+    _setting_args(g_set, new_table=False)
+    g_set.add_argument("--prompt-detector", choices=("on", "off"), help="the second detector for the prompt's last token")
     g_exp = graft.add_parser("export", help="write the grafted model: the table's facts in the model's own neurons, a checkpoint of the same size")
     _model_args(g_exp)
     g_exp.add_argument("--table", required=True)
@@ -215,10 +236,29 @@ def _say(text: str) -> None:
     print(f"  {text}", file=sys.stderr, flush=True)
 
 
-def _open_table(model, tokenizer, table: str, layer: int | None = None, relations: str | None = None):
-    from .graft import Graft, Relation
+def _open_table(model, tokenizer, table: str, layer: int | None = None, relations: str | None = None, args=None):
+    """The table in a folder, or a new one. `args`: the command's settings (--last-layer, --prompt-detector, --system, --fast). On a saved
+    table --last-layer and --prompt-detector replace its settings; its system message and build are what it was made with."""
+    from .graft import Graft, GraftOptions, Relation
 
-    graft = Graft.load(table, model, tokenizer, progress=_say) if os.path.exists(os.path.join(table, "graft.json")) else Graft(model, tokenizer, layer=layer, progress=_say)
+    last = getattr(args, "last_layer", None)
+    detector = getattr(args, "prompt_detector", None)
+    detector = {"on": True, "off": False}.get(detector, detector)  # `graft set` takes on or off; the others a flag
+    system = getattr(args, "system", None)
+    if os.path.exists(os.path.join(table, "graft.json")):
+        graft = Graft.load(table, model, tokenizer, progress=_say)
+        if system is not None and system != (graft.system or ""):
+            raise SystemExit(f"{table} was built {'behind another system message' if graft.system else 'with no system message'}; a table is for "
+                             "the chat format it was built in. Make a new table for this one.")
+        if last is not None:
+            graft.options.last_layer = None if last == "none" else last
+        if detector is True or (detector is False and getattr(args, "graft_command", None) == "set"):
+            graft.options.prompt_detector = detector
+    else:
+        options = GraftOptions(fast=bool(getattr(args, "fast", False)), prompt_detector=bool(detector))
+        if last is not None:
+            options.last_layer = None if last == "none" else last
+        graft = Graft(model, tokenizer, layer=layer, progress=_say, options=options, system=system)
     if relations:
         for rel in Relation.from_file(relations).values():
             graft.add_relation(rel)
@@ -312,7 +352,14 @@ def run_graft_command(args) -> int:
         print(f"removed {len(gone)} fact(s); {len(meta['facts'])} left")
         return 0
     model, tokenizer = _load(args.model, args.dtype)
-    graft = _open_table(model, tokenizer, args.table, getattr(args, "layer", None), getattr(args, "relations", None))
+    graft = _open_table(model, tokenizer, args.table, getattr(args, "layer", None), getattr(args, "relations", None), args)
+    if args.graft_command == "set":
+        if not len(graft):
+            raise SystemExit(f"{args.table} holds no facts")
+        graft.layer_object()  # builds what the settings need: the scale of the last layer's write, the facts' end-of-prompt detectors
+        graft.save(args.table)
+        print(f"{args.table}: last_layer={graft.options.last_layer!r}, prompt_detector={graft.options.prompt_detector}; {len(graft)} facts")
+        return 0
     if args.graft_command == "add":
         if args.ask and len(graft):
             print("Before:", graft.ask(args.ask))

@@ -134,3 +134,41 @@ def test_benches_of_other_kinds_have_their_commands(tmp_path, capsys):
     assert main(["bench", "build", "--kinds", "--source", str(path), "--out", str(tmp_path / "b.json")]) == 0
     built = json.loads((tmp_path / "b.json").read_text(encoding="utf-8"))["facts"]
     assert built[0]["kind"] == "product" and built[0]["answer_type"] == "year" and len(built[0]["test"]["near_plain"]) == 2
+
+
+def test_a_tables_settings_are_command_line_flags():
+    add = build_parser().parse_args(["graft", "add", "--model", "m", "--table", "t", "--subject", "s", "--relation", "ceo", "--answer", "a",
+                                     "--system", "You are a help desk.", "--prompt-detector", "--last-layer", "none", "--fast"])
+    assert (add.system, add.prompt_detector, add.last_layer, add.fast) == ("You are a help desk.", True, "none", True)
+    plain = build_parser().parse_args(["graft", "add-file", "--model", "m", "--table", "t", "--facts", "f.csv"])
+    assert (plain.system, plain.prompt_detector, plain.last_layer, plain.fast) == (None, False, None, False)
+    ask = build_parser().parse_args(["graft", "ask", "--model", "m", "--table", "t", "--last-layer", "all", "who ?"])
+    assert ask.last_layer == "all" and not hasattr(ask, "system")
+    change = build_parser().parse_args(["graft", "set", "--model", "m", "--table", "t", "--prompt-detector", "off"])
+    assert (change.graft_command, change.prompt_detector, change.last_layer) == ("set", "off", None)
+
+
+def test_the_set_command_changes_a_saved_table_and_a_new_table_takes_its_flags(model, tokenizer, tmp_path, monkeypatch, capsys):
+    import cramschool.__main__ as cli
+    from cramschool.graft import Graft, core
+    from cramschool.graft.table import GraftOptions
+
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    monkeypatch.setattr(cli, "_load", lambda path, dtype: (model, tokenizer))
+    table = str(tmp_path / "t.graft")
+    old = Graft(model, tokenizer, layer=2, options=GraftOptions(last_layer=None))   # a table with the write of before 1.1
+    old.add("acme", "owner", "julian rodlauer")
+    old.save(table)
+    assert Graft.load(table, model, tokenizer).options.last_layer is None
+    assert cli.main(["graft", "set", "--model", "m", "--table", table, "--last-layer", "all"]) == 0
+    assert "last_layer='all'" in capsys.readouterr().out
+    saved = Graft.load(table, model, tokenizer)
+    assert saved.options.last_layer == "all" and saved.calibration()["final_scale"] > 0   # the scale is saved with it
+    assert cli.main(["graft", "ask", "--model", "m", "--table", table, "--last-layer", "none", "who owns acme ?"]) == 0   # for this call only
+    assert Graft.load(table, model, tokenizer).options.last_layer == "all"
+    with pytest.raises(SystemExit, match="with no system message"):
+        cli.main(["graft", "add", "--model", "m", "--table", table, "--subject", "acme", "--relation", "ceo", "--answer", "paris", "--system", "the records show"])
+    args = build_parser().parse_args(["graft", "add", "--model", "m", "--table", "n", "--subject", "s", "--relation", "ceo", "--answer", "a",
+                                      "--system", "the records show", "--last-layer", "later", "--fast"])
+    new = cli._open_table(model, tokenizer, str(tmp_path / "n.graft"), 2, None, args)
+    assert (new.system, new.options.last_layer, new.options.fast, new.options.prompt_detector, new.layer) == ("the records show", "later", True, False, 2)
