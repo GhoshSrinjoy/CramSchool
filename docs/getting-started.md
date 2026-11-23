@@ -9,6 +9,7 @@ pip install -e ".[all]"        # or pick extras: mcp (the MCP server), claude (C
 ```
 
 - **Requirements:** Python 3.10 or newer, PyTorch 2.3 or newer, and Transformers 5.0 or newer. A CUDA GPU is strongly recommended; the measurements used an RTX 3090.
+- **Versions checked:** the tests pass on Windows with Python 3.11, PyTorch 2.12 and Transformers 5.12, and on Linux with Python 3.12, PyTorch 2.15 and Transformers 5.24. The published numbers were measured with the first set only.
 - **The model is not included.** Download Qwen3.5-0.8B, the model GRAFT was validated on, from Hugging Face:
 
 ```bash

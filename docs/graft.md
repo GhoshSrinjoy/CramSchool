@@ -116,6 +116,7 @@ At use, the layer adds $2\,v_j$ to $o_t$.
 | Reply length for reply negatives | 16 tokens | bench scoring length |
 | Looser start | off | see below |
 | End-of-prompt detector | off | see below |
+| Writing the answer at the last layer | off | see below |
 
 ## 8. The looser start (optional)
 
@@ -125,7 +126,7 @@ It was the one revision allowed after the first blind result. On blind bench40e,
 - **Recall** rose on 22 facts and fell on none.
 - **Passes stayed at 31,** because head-office facts then fired at the start of replies to general questions about their company: "How many employees does Lumbravic Brewing have?" → "Asahikawa Lumbravic Brewing Co., …".
 
-It stays off by default, and leaks less that way. With 40 facts in a table it does gain: 28 against 23 on blind bench40h, with one fact failing because its company's other fact answered a general question.
+It stays off by default, and leaks less that way. On facts added through the API it does gain: 28 against 23 on blind bench40h, with one fact failing because its company's other fact answered a general question.
 
 ### The end-of-prompt detector (optional)
 
@@ -137,13 +138,42 @@ It stays off by default, and leaks less that way. With 40 facts in a table it do
 - **Measured** on blind bench40h, 40 facts added through the API with the fast build: 31 pass with it against 23 without, with no fact lost and no leak, garbling or damage check failed ([benchmarks](benchmarks.md#a-detector-for-the-prompts-last-token)). On a table built without the fast build (bench40e, a development bench) it gives 35 of 40 against 32.
 - **Cost:** two more detectors per fact, about 8 KB, and about 2.4 seconds more per fact with the fast build. Without the fast build the fact's negatives and positives are read a second time.
 - **Limits:**
-  - it was measured with 40 facts in a table, and the looser start's gain was gone with 180;
+  - it is for tables with at most two facts on a company. With four on every company it added no fact, 24 of 40 against 23, and 8 facts failed a leak check against 2: a founder fact's detector also opens on a question about the company's history ([benchmarks](benchmarks.md#four-facts-on-every-company));
+  - facts about other companies don't reach it: with 180 more facts in the layer, no reply changed ([benchmarks](benchmarks.md#a-detector-for-the-prompts-last-token));
   - it opens more questions that are close to the relation and are not it ([limitations](limitations.md));
   - a grafted model (section 12) doesn't have it, because the compile takes the strict detectors only;
   - it can't be combined with the looser start or `end_quantile`, which use the same slot.
 - **On a saved table:** set the option on the loaded table, and the missing detectors are built on first use and saved with it.
 
 It is off by default.
+
+### Writing the answer at the last layer (optional)
+
+`GraftOptions(last_layer="all")` changes where an answer's tokens are written. When the layer acts is unchanged: the name index, the detectors, the competition and the veto decide as before.
+
+- **Why:** a vector added at layer 20 passes three more layers before it reaches the output, and what they compute at that position is read by every later position. So its size is a compromise, and the push can lose: a first token to the model's own first word, a later token to the end of the reply. A larger push lost answers that were right ([lab notebook, step 9](lab-notebook.md#step-9-a-larger-push-at-the-answers-first-token-written-2026-11-14-before-it-ran)).
+- **The write:** at the output of the model's last MLP, at the same position, the layer adds $2R\,\dfrac{W_U[a_j]}{\lVert W_U[a_j]\rVert}$. That is the token's own row of the output matrix at length $2R$, where $R$ is the 99th percentile of the norm of what the final norm reads on the calibration text. On Qwen3.5-0.8B $R = 15.75$.
+- **Why there:** nothing reads the last MLP's output but the final norm and the output matrix at the same position. A vector of that length written at one position leaves every other position's logits bit-identical. It changes which token comes next and nothing after it, so its length can be chosen to win.
+- **Why $2R$:** with the answer placed behind 90 taught questions, the answer token led at all 696 answer positions, by 4 logits at the least and 35 at the median. At $1R$ the smallest lead was 1.2, and $3R$ added nothing. The row alone, through the final norm, puts its own token first for every answer token checked; the closest runner-up is the same word without its leading space.
+- **Nothing is measured per fact.** The vectors come from the output matrix and one number per table.
+- **The two settings:**
+  - `"all"`: every answer token is written there, and nothing is added at layer 20.
+  - `"later"`: only the tokens after the first. The first is pushed at layer 20 as in section 6. An answer whose first token comes in its other spelling (" Ka" with a leading space where "Ka" was pushed) is followed all the same.
+- **Measured** ([benchmarks](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer)), with `"all"`:
+  - on bench40h, which did not choose the setting and is not blind, 32 of 40 facts pass against 23 as built, and 40 against 31 together with the end-of-prompt detector;
+  - on the two development benches, 37 and 33 of 40 against 32 and 24;
+  - no fact is lost on any of them, no reply loses an answer it had, and no fact newly fails a leak, garbling or damage check.
+- **Limits:**
+  - a fact that opens on a question that isn't its own now writes its whole answer. There are no more such openings than before, but none is lost to a weak push. On a company that holds 30 facts, 20 of 22 general questions got a stored answer, against 18;
+  - questions close to a fact's relation were not measured with it, and cannot leak less than they did ([limitations](limitations.md#leaks));
+  - where a fact opens inside a sentence, the answer is written at that word: "The Hira Si…" where the reply was heading for "The CEO of …";
+  - a grafted model (section 12) doesn't have it, and `export_grafted` warns;
+  - the package doesn't check that a token's row is its own first choice through the final norm. It was for all 131 answer tokens of the one table checked;
+  - measured on one model.
+- **On a saved table:** set `graft.options.last_layer` on the loaded table and save it. A new table measures $R$ in the calibration's own passes; a loaded table without it measures it once, in about half a minute, and it is saved with the table.
+- **Others write there too:** the circuit of the one project compared with GRAFT keeps its fact store in neurons of layer 23, the last ([related work](related-work.md#8-update-2026-11-23-a-direct-comparison-on-facts)).
+
+From version 1.1 `"all"` is the default for a new table. A table saved before that loads with `None`, the write it was built with, and every number in these docs except this subsection's was measured with `None`; `cramschool bench run` and the reproduction scripts still use it. The three benches hold tables with one or two facts on a company. On a company with many facts, and on questions close to a relation, `"all"` finishes wrong answers too, and the second was not measured. `GraftOptions(last_layer=None)` gives the earlier write.
 
 ## 9. Cost
 
@@ -164,7 +194,7 @@ It is off by default.
 - **No gradients:** nothing in the build or at decoding time takes a gradient.
 
 **Not by construction, and measured instead:**
-- **Recall on new wordings:** the median is 0.83 on the blind benches. The detector can stay shut on unusual wordings, and some answers drift after their first token ("Coumbé" for "Coumba Gueye").
+- **Recall on new wordings:** the median is 0.83 on the blind benches. The detector can stay shut on unusual wordings, and some answers drift after their first token ("Coumbé" for "Coumba Gueye"). Writing the answer at the last layer (section 8) is for the second.
 - **Leaks into other questions about the company:** the median is 0, but nonzero on some facts, mostly head offices.
 - **Behaviour on aliases, pronouns in later turns, multi-hop questions and models other than Qwen3.5-0.8B:** untested. Relations other than the four are in development on CounterFact (section 11).
 

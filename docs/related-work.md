@@ -127,3 +127,15 @@ Found by a second search on 2026-11-14. Each item was read from its arXiv abstra
 **Weight-space programming, audited** (arXiv 2611.08070, 5 November 2026). An exploratory audit has a large model read the raw weights of small convolutional networks as text, with no tools. It concludes that such reading is better described as "local arithmetic plus dataset priors" than as tracing how information flows, from mostly single runs. The editor in this project never reads raw weights: it works through tools that run forward passes and report measurements.
 
 **Still not found:** a published system in which a larger model writes facts into a smaller one with acceptance checks, and any editing study on Gated DeltaNet hybrid models.
+
+## 8. Update, 2026-11-23: a direct comparison on facts
+
+**Facts written into the weights by an editor model: experiment 9 of [HomoHabilis/weight-space-programming](https://github.com/HomoHabilis/weight-space-programming)** (a public repository at commit `6913045`, with no licence; not a paper). I read its code, its write-up and its published result rows.
+- **The method, from its write-up:** an editor model (Claude Opus 5.5) works in a sandbox with a budget of forward passes and writes 30 invented facts about one company into Qwen3.5-0.8B, with no gradients. Its clean run built a gated circuit in three parts, each from closed-form solves: a marker for the company's name at layers 10 and 11, a flag at layers 18 and 19, and a fact store in 128 reused neurons at layer 23. It changes 11.4M weights.
+- **Its result:** 103 of 120 held-out questions and 27 of 30 facts, with all 37 real-world answers kept and 1 of 30 questions about a neighbour company answered with a stored fact. One run, 1.9 hours, $13.78.
+- **GRAFT on its benchmark, with its scoring:** 93 of 120 and 24 of 30. GRAFT is behind ([benchmarks](benchmarks.md#another-groups-benchmark-thirty-facts-on-one-company)).
+- **After that comparison** I traced GRAFT's misses to where it writes the answer, and added an option that writes it at layer 23, where their fact store sits. The same table then answers 112 of the 120 ([benchmarks](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer)). I had asked those questions and read the misses, so 112 is a development number, not a second result against their 103.
+- **What it means here:**
+  - Section 7 listed "a larger model writes facts into a smaller one" as not found. This is one, for one company, without acceptance checks of the kind used here: it asks no general question about the company, no question close to a relation and no look-alike name.
+  - Its company detector is inside the weights. GRAFT's grafted model still needs a name switch at run time, and every weights-only attempt here has failed ([limitations](limitations.md#what-it-is-not)). A marker written at an early layer and sharpened by a neuron that squares it is a design I have not tried.
+  - It holds 30 facts on one company; GRAFT's benches hold one or two. The two have now been compared on that ground only.

@@ -122,7 +122,9 @@ The beta followed *Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang and 
 | bench40g, read before but with no say in choosing it | 36 of 40, against 30 |
 | **Blind bench40h** | **31 of 40**, against 23 as built and 28 with the looser start |
 
-No fact was lost on bench40h and no leak check failed. It is an option of the package, off by default, measured with 40 facts in a table.
+No fact was lost on bench40h and no leak check failed. It is an option of the package, off by default. Loading 180 more facts about other companies changed no reply. With four facts on every company it added no fact, 24 of 40 against 23, and 8 facts failed a leak check against 2, so it is for tables with at most two facts on a company.
+
+**Another group's benchmark** ([benchmarks](benchmarks.md#another-groups-benchmark-thirty-facts-on-one-company)). Until here every number was on my own benches. Another project had written 30 invented facts about one company into the same model's weights with an editor model, and published its benchmark and its rows. GRAFT on that benchmark, with their scoring and the rule written first, answers 93 of 120 held-out questions against their 103 and learns 24 facts against 27: by the rule it loses. It holds the questions that differ by one word and loses later tokens of invented names. The run also showed that a table must be taught in the chat format it is asked in (51 of 120 behind a system message it was not taught with), and it found and fixed a step of the build that stalled a 24 GB card.
 
 ## Where the beta code lives
 
@@ -139,6 +141,8 @@ When v1 was cut, everything it superseded was removed from the main branch. Comm
 The research scripts that produced the v1 results (the bench builder, every method, the diagnostics) were replaced by the package, which reproduces them exactly. They are at commit [`4325028`, under `research/bench/`](https://github.com/GhoshSrinjoy/CramSchool/tree/4325028/research/bench).
 
 To look at any of it locally:
+
+**Finishing an answer** ([benchmarks](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer)). I had read the lost answers of the other group's benchmark as later tokens going astray. Token by token, 9 of the 15 were a first token that came with a leading space the layer didn't expect, and in the other 6 a push at layer 20 lost by a logit or two. Both come from where the push is written: three layers below the output, where its size is a compromise. Written at the last MLP's output, a vector changes its own position's next token and nothing after it. As an option of the layer (`last_layer`), that passes 32 of 40 facts on bench40h against 23, and 40 with the end-of-prompt detector against 31, with no fact lost on any bench. It is the largest single gain since v1, on benches that were not blind.
 
 ```bash
 git show a860535:weightspace/README.md        # the beta's full measurements

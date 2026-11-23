@@ -99,10 +99,12 @@ A fact passes only if it passes every check below, on prompts never used to buil
 | Known facts | 133 real-world questions the unedited model answers | an answer lost | fewer than 7 lost |
 | Drift | held-out ordinary text | change in next-token predictions, nats per token | at most 0.05 |
 | Other stored facts (stage 2) | all replies above | another loaded fact's whole answer, where it doesn't belong | none |
-| Sibling (stage 2) | the 12 recall prompts | the company's other fact's answer | at most 1 of 12 |
+| Sibling (stage 2) | the 12 recall prompts | the answer of any other fact of the company | at most 1 of 12 |
 | Capitalisation (reported, not graded) | 2 plain and 2 chat test wordings, company in lower and upper case | recall | none |
 
 - **Partial answers count as leaks.** A leak counts "Julian" alone as well as "Julian Rodlauer", unless the prompt or the unedited model's reply to the same prompt already had it.
+- **A company's other facts:** each may answer a same-company prompt that asks for its own relation, and no other prompt. With one other fact on the company this is the rule the benches were always scored by, and every stored row comes out the same under it.
+- **The checks on other facts are uneven.** The other-facts check reads whole answers and allows none. The same-company and sibling checks also read a distinctive part, and allow 2 of 8 and 1 of 12. So where in a 16-token reply an answer starts can decide whether it is counted ([four facts on every company](#four-facts-on-every-company)).
 - **Recall needs the whole answer** anywhere in the 16 tokens.
 - **Strictness:** this rule is stricter than the usual editing benchmarks.
   - Those report averages of teacher-forced probabilities.
@@ -197,7 +199,7 @@ The runs above built each bench fact from the bench's own 12 training wordings p
 - **On blind bench40g the same path, with the fast build, passes 30 of 40** ([`research/results/bench40g/`](../research/results/bench40g/)): recall median 0.833, the same-company leak 0 on every fact, no look-alike, unrelated or name-slot leak, no known fact lost and no drift. All 10 failures are recall.
 - **On blind bench40h the same path, with the fast build, passes 23 of 40** ([`research/results/bench40h/`](../research/results/bench40h/)): recall median 0.75, the same-company leak 0 on 37 facts and one reply of eight on 3, no look-alike, unrelated or name-slot leak, no known fact lost and no drift. All 17 failures are recall. Founder facts account for 7 of them.
 - **Two differences besides the wordings:**
-  - The table held 40 facts, not 180, so this comparison doesn't separate the two effects.
+  - The table held 40 facts, not 180. That difference doesn't reach the replies: the layer reads a fact only where its own company is named, and loading 180 more facts beside bench40h's table changed no reply ([lab notebook, step 21](lab-notebook.md#result-of-step-21-no-reply-changes-with-180-more-facts-loaded-the-tables-size-was-never-the-risk-the-facts-on-one-company-are)).
   - Two drafted founder wordings equal bench40e test wordings, and the API path has no bench to guard against. They are among the recall prompts of 9 founder facts. Scored without them, f08 drops from 9 of 12 to 8 of 11, below the threshold, so the conservative count is **31 of 40**.
 
 ### Why answers go missing
@@ -260,7 +262,9 @@ Three arms are scored from one saved table of 40 facts added through the API, so
 
 - **Confirmed, by the rule written before the dry run:** at least 3 more facts than the table as built, on both counts, with at most 1 more fact failing a leak, garbling or damage check.
 - **No leak came with it.** The same three facts leak to one same-company question each, as without it. No reply about a look-alike or an unrelated company changes, and no known fact is lost.
-- **The looser start gains too:** 5 facts on this table of 40. One of its facts fails because the company's other fact answers a general question. With 180 facts loaded it had gained none on bench40e.
+- **The looser start gains too:** 5 facts. One of its facts fails because the company's other fact answers a general question. On bench40e, with facts built by the bench path, it had gained 3 facts and lost 3, to head-office facts answering general questions about their own company.
+- **Facts about other companies don't reach it.** The layer reads a fact only where its own company is named. With the 180 facts of bench40b to bench40e loaded beside bench40h's 40 in one layer, none of 2,440 replies changes in either arm, and 23 and 31 facts pass again ([lab notebook, step 21](lab-notebook.md#result-of-step-21-no-reply-changes-with-180-more-facts-loaded-the-tables-size-was-never-the-risk-the-facts-on-one-company-are)).
+- **It gains on companies with one fact and with two.** On bench40h's 20 one-fact companies, 17 facts pass against 12. On its 10 two-fact companies, 14 of 20 facts pass against 11, and both facts pass on 4 companies against 1.
 - **The other benches it was scored on:**
 
 | Facts passing, of 40 | As built | With the detector | Gained; lost |
@@ -272,10 +276,108 @@ Three arms are scored from one saved table of 40 facts added through the API, so
 
 - **What still fails:** bench40h's 9 failing facts all fail on recall, with the fact's own detector over its threshold on every one of their prompts. What is left looks like pushes that lose and answers that break off.
 - **Limits:**
-  - every table here held 40 facts;
+  - it is for tables with at most two facts on a company. With four on every company it passes 24 of 40 against 23 as built, and 8 facts fail the other-facts check against 2 ([four facts on every company](#four-facts-on-every-company));
   - it opens more near questions, about 60 more on benchmix1 by an estimate from readings ([limitations](limitations.md));
   - the grafted model doesn't have it, because the compile takes the strict detectors only;
   - it is off by default: `GraftOptions(prompt_detector=True)` switches it on ([GRAFT, section 8](graft.md#the-end-of-prompt-detector-optional)).
+
+### Four facts on every company
+
+No bench has more than two facts on a company. For a development measurement, each of bench40h's 30 companies was given the relations it lacked: 80 added facts, with answers from bench40f and bench40g, went through the API into the saved table, so that every company holds owner, CEO, founder and head office. With all four stored, no relation is left for the veto to read. bench40h's own 40 facts were then scored again on that table ([lab notebook, step 22](lab-notebook.md#result-of-step-22-the-kill-rule-is-met-with-four-facts-on-every-company-the-detector-passes-24-of-40-against-23-and-8-facts-fail-a-leak-check-against-2)).
+
+| bench40h's 40 facts | Sparse, as built | Sparse, with the detector | Dense, as built | Dense, with the detector |
+|---|---|---|---|---|
+| Facts in the table; on a company | 40; 1 or 2 | 40; 1 or 2 | 120; 4 | 120; 4 |
+| **Facts passing** | 23 | 31 | **23** | **24** |
+| Facts passing, test wordings equal to a taught one left out | 23 | 30 | 23 | 23 |
+| Recall replies with the whole answer, of 480 | 351 | 415 | 350 | 412 |
+| Facts failing the other-facts check | 0 | 0 | 2 | 8 |
+
+- **GRAFT as shipped, with four facts on a company:** the same 23 facts pass by the rule, and 18 of them have no part of another fact's answer in a reply to a general question (the last point but one).
+  - Of the 168 same-company prompts that ask for another relation, 138 get the answer the table stores for it and none gets a wrong fact's, with no veto to stop it. Of the 154 whose wording was not taught, 124 do.
+  - On recall, another fact of the company takes the first word in 4 replies of 480: the CEO fact on one head-office wording ("Do you know where the headquarters of … are?"). The sparse table had none. Each fact has one such reply in 12, which the sibling check allows.
+- **The detector for the prompt's last token adds no fact there.** By the rule written before the run it is for tables with at most two facts on a company. It keeps its recall, 412 whole answers against 350, and 8 facts fail the other-facts check against 2.
+- **The cause is one general question.** Of bench40h's 8 general wordings, only "The history of {company} stretches back to" gets a stored answer, and it is the founder's.
+  - With the detector the founder fact opens at the prompt's last token: "… stretches back to Lubna Farouk, a visionary entrepreneur who founded the company". That happens on 7 of the 13 history prompts whose company got an added founder fact.
+  - As built the name comes later in the reply, where the model itself writes "was founded by", also on 7 of the 13.
+- **The as-built count is helped by the scoring.** The other-facts check reads whole answers, and a name that starts late in a 16-token reply is cut off: 6 of those 7 as-built replies hold only part of it. Read with parts, another of the company's answers stands in a reply to a general question on 8 facts as built and on 13 with the detector. That reading was made after the run and is not the rule.
+- **A development measurement:** bench40h has been open since step 20, and the added facts are mine.
+
+### Another group's benchmark: thirty facts on one company
+
+Every result above is on my own benches, where no other method is scored. One other project measures the same job on the same model: experiment 9 of [HomoHabilis/weight-space-programming](https://github.com/HomoHabilis/weight-space-programming), in which an editor model wrote a gated circuit into Qwen3.5-0.8B's weights with closed-form solves ([related work](related-work.md#8-update-2026-11-23-a-direct-comparison-on-facts)). I ran GRAFT on its benchmark with its scoring, with the rule written before the run ([lab notebook, step 23](lab-notebook.md#result-of-step-23-the-kill-rule-is-met-on-their-benchmark-graft-answers-93-of-the-120-held-out-questions-against-their-circuits-103-and-learns-24-facts-against-27)).
+
+- **The benchmark:** 30 invented facts about one company: 8 department heads, 6 product codenames, 6 site cities and 10 single facts. Each has 3 questions an editor may use and 4 held-out ones. A reply counts if it holds the answer; a fact is learned at 3 of its 4 held-out questions.
+- **Its protocol** puts a system message before every question. The judged table was taught in that format, as their editor measured in it.
+- **The table:** one relation per fact, GRAFT as built, with wordings drafted by writers who never saw the held-out questions. One drafted wording of 1,800 equalled a held-out question and was dropped before the build.
+- **My copy of their scoring was checked first:** it gives their verdict on all 5,600 of their published rows, and the unedited model through it gives their counts.
+
+| Qwen3.5-0.8B, their benchmark and protocol | Editor questions, of 90 | **Held-out, of 120** | **Facts learned, of 30** | Real-world kept | Leaks to a neighbour company, of 30 |
+|---|---|---|---|---|---|
+| Unedited model | 0 | 0 | 0 | 37 of 37 | 0 |
+| Their closed-form edit | 48 | 49 | 11 | 34 of 37 | 3 |
+| Their editor-written circuit | 84 | 103 | 27 | 37 of 37 | 1 |
+| **GRAFT, taught in the benchmark's chat format** | 76 | **93** | **24** | 37 of 37 | 0 |
+| GRAFT as the package builds it, with no system message | 41 | 51 | 10 | 37 of 37 | 0 |
+
+- **GRAFT is behind, and by the rule it loses.** The line was 94 held-out answers or fewer, and it has 93. Paired on the 120 questions, 16 are right only for GRAFT and 26 only for their circuit (exact McNemar p = 0.16), so one run of each doesn't separate them statistically. The rule was fixed first, and I don't write that GRAFT is better at facts.
+- **Where each is ahead, held-out:**
+
+| | Heads | Codenames | Sites | Invented names | Three-letter codes | Year | Mascot |
+|---|---|---|---|---|---|---|---|
+| Their circuit | 24 of 32 | 20 of 24 | 24 of 24 | 23 of 24 | 4 of 8 | 4 of 4 | 4 of 4 |
+| GRAFT | 26 of 32 | 20 of 24 | 16 of 24 | 15 of 24 | 8 of 8 | 4 of 4 | 4 of 4 |
+
+- **GRAFT held the questions that differ by one word.** The eight heads are eight relations that differ only in the department, which is where I expected it to fail.
+- **Most of what it lost starts like the answer.** 15 of its 27 misses begin with the answer's letters and end as something else: "Fenna Halvors" for Halvorsen, "Kaunas" for Kaohsiung, "Mitre" for Mitami. Read token by token, 6 of them lose a later token after its push was made, and in 9 the first token comes in the answer's other spelling (" Ka" with a leading space where "Ka" was pushed), which the layer doesn't follow. In 12 of the 27 another fact's answer also stands in the reply, mostly after a line break. [Writing the tokens at the last layer](#finishing-an-answer-its-tokens-written-at-the-last-layer) addresses both kinds.
+- **A system message the table was not taught behind costs 42 answers.** The table as the package builds it answers 51 of 120, and 41 of the 90 questions it was taught word for word. The judged table was built with a tokenizer patched in my script. `Graft(system=...)` now does the same in the package: it gives that table's first fact bit for bit and its 90 stored replies (`scripts/check_system_setting.py`).
+- **Zero leaks and nothing lost are not wins here.** A prompt that doesn't name the company is never touched, because the name is matched outside the weights. Their circuit detects the company inside the weights.
+- **Their benchmark doesn't ask general questions about the company, and GRAFT fails them on this table.** Of 22 of the package's general questions, 18 replies hold a stored answer, 9 as the first word: "What is the main product of Veltrano Systems?" gives "okapi", the mascot. Their edited weights are not in their repository, so their circuit could not be asked.
+- **Cost:** the table builds in 26 minutes on an RTX 3090 with no model in the loop, after about 5 minutes of drafting (260,000 tokens). Their run was one editor session of 1.9 hours and $13.78.
+- **What it doesn't show:** a second run of either; more than one company, which GRAFT is built for and their circuit was not tested on; the grafted model.
+
+### Finishing an answer: its tokens written at the last layer
+
+Step 23 left replies that start like the answer and end as something else. This is the fix, as an option: `GraftOptions(last_layer="all")` ([GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer-optional); plan, rule and results in the [lab notebook, step 24](lab-notebook.md#step-24-finishing-an-answer-its-tokens-written-at-the-models-last-layer-written-2026-11-23-before-the-package-code-and-before-any-question-is-asked-again)).
+
+**What was wrong,** read token by token on the 27 held-out misses of the other group's benchmark:
+
+| Kind of miss | Replies |
+|---|---|
+| A later token loses after its push was made ("Fenna Halvors") | 6 |
+| The first token comes in the answer's other spelling, and the layer stops ("Kaunas") | 9 |
+| The fact opens and its first token loses to another word | 4 |
+| Another fact of the company opens first | 1 |
+| The fact doesn't open at the prompt's last token | 6 |
+| Right when asked alone, wrong in the bench's batch | 1 |
+
+- **A push at layer 20 has to survive three more layers,** and what they compute is read by every later position. The push for the last token of "Halvorsen" costs that token: with every earlier push made and this one left out, "en" leads by 4 to 6 logits, and with it the reply ends.
+- **The same vector written at the last MLP's output changes its own position's next token and nothing else.** Every other position's logits are bit-identical. So there its length can be chosen to win.
+
+**The option** writes each answer token there, as the token's own row of the output matrix at a fixed length. `"later"` does it for the tokens after the first and follows an answer in either spelling; `"all"` does it for the first token too. When a fact opens is unchanged.
+
+| The same saved tables, option off and on | As built | `"later"` | **`"all"`** |
+|---|---|---|---|
+| bench40e, facts passing of 40 (development) | 32 | 32 | **37** |
+| bench40f (development) | 24 | 25 | **33** |
+| **bench40h (confirmation)** | 23 | — | **32** |
+| bench40h with the end-of-prompt detector (outside the rule) | 31 | — | **40** |
+| The other group's benchmark, held-out answers of 120 (development) | 93 | 108 | 112 |
+
+- **Confirmed by the rule written before the runs.** bench40h needed 2 more facts with none lost; it has 9 more. Development needed no fact lost and no new leak failure; both settings met it, and `"all"` was chosen there, before bench40h was scored.
+- **Nothing was lost.** Over the three benches no fact stops passing, no recall reply of 1,440 loses an answer it had, and no fact newly fails a leak, garbling or damage check. Whole answers rise from 1,095 to 1,227 replies.
+- **The first token carried most of it.** Finishing a begun answer gave 1 fact over the two development benches. Making the first token certain as well gave 14.
+- **With the end-of-prompt detector, all 40 facts of bench40h pass.** The detector opens questions the fact didn't recognise, and the write makes every opening give its answer. The one recall reply of 480 without the answer is a refusal on which the fact doesn't open.
+- **bench40h did not choose the setting, and it is not blind.** I had read its replies at earlier steps. A fresh bench would give a blind number.
+- **The 112 is a development number.** The other group's questions had been asked, and I had read the misses. Their circuit's 103 was scored once; by the rule of that comparison GRAFT lost with 93, and that stands.
+
+**What it costs:**
+- **A wrong opening is finished too.** On the other group's company, which holds 30 facts, 20 of 22 general questions get a stored answer, against 18. The same questions open; two answers that used to break off are now whole.
+- **Same-company leak, summed over bench40h's 40 facts, goes from 0.375 to 0.5:** one more reply of 320. On bench40f it goes from 0 to 0.125. No fact crosses its bar.
+- **An answer that opens inside a sentence is written at that word:** "The Hira Si…" where the reply was heading for "The CEO of …". Garbling as the benches count it falls on all three.
+- **Look-alike and other-company prompts:** none of bench40h's 960 replies differs from as built.
+
+**They don't show:** a blind bench; questions close to a fact's relation, which leak in 0.72 of replies on benchmix1 and cannot leak less with every opening finished; the grafted model, which doesn't have the option; another model.
 
 ### Beyond companies: benchmix1, nine kinds of subject
 
@@ -537,15 +639,18 @@ They show the usual trade: generalizing an edit costs the neighbourhood. GRAFT's
 - A bigger model can run the whole loop on new facts: given 40 facts as a dataset, it taught them through the tools and checked and fixed its work, and the table, in the model's own neurons and loaded back from disk, passes 30 of 40 on blind bench40g.
 
 **They don't show:**
+- **More than two facts on a company, blind:** one development table with four on every company keeps GRAFT's 23 of 40 and takes the detector for the prompt's last token back to 24 ([four facts on every company](#four-facts-on-every-company)).
 - **That a bigger model's teaching adds facts:** on blind bench40g, 29 of 40 pass on the wordings it didn't teach, with or without it.
 - **Questions about other jobs at a company:** no bench asks them, and chief-executive facts answer them (26 of 30 such questions). The leak checks above don't cover them.
-- **Other models or larger tables:** behaviour outside the Qwen3.5 family, or with more than 180 new facts or 300 CounterFact edits in one table. Facts added through the API, and the detector for the prompt's last token, were measured with 40 in the table.
+- **Other models or larger tables:** behaviour outside the Qwen3.5 family, or with more than 180 new facts or 300 CounterFact edits in one table. Facts added through the API were measured with 40 in the table. The detector for the prompt's last token was measured with 40 and with 220, which gave the same replies. It is for companies holding one or two facts: with four it adds none ([four facts on every company](#four-facts-on-every-company)).
 - **Other relations, aliases, or multi-turn and multi-hop questions.**
 - **Standard benchmarks, fully:** only part of CounterFact has been run: at most 300 edits in one table, over 25 of its 34 relations, of which three meet every bar in the full mix. zsRE and QAEdit have not been run, and no published editor has been run on the same model.
+- **That GRAFT is the better way to add facts:** on the one benchmark where another method is scored on the same model, thirty facts on one company, GRAFT answers 93 of 120 held-out questions against 103 and loses by the rule written before the run ([another group's benchmark](#another-groups-benchmark-thirty-facts-on-one-company)).
+- **A system message:** every bench here asks with none. A table taught without one answers 51 of those 120 questions behind one, against 93 for a table taught behind it.
 - **A grafted model without its name switch.** The subject's name is joined at run time; no weights-only way has worked yet.
 
 **Two cautions:**
-- **Development benches were used to choose options.** Only blind results count as evidence, so bench40d's 31 for the looser start is not. Its blind results are 31 against 31 on bench40e with 180 facts loaded, and 28 against 23 on bench40h with 40.
+- **Development benches were used to choose options.** Only blind results count as evidence, so bench40d's 31 for the looser start is not. Its blind results are 31 against 31 on bench40e, with facts built by the bench path, and 28 against 23 on bench40h, with facts added through the API. The benches and the builds differ. The number of facts loaded is not what separates them ([lab notebook, step 21](lab-notebook.md#result-of-step-21-no-reply-changes-with-180-more-facts-loaded-the-tables-size-was-never-the-risk-the-facts-on-one-company-are)).
 - **Recall needs only the whole answer to appear.** Many correct replies still invent details around it, as in "Shalini Deshpande, the founder of **Bazuventi Apparel**", where the stored fact was the owner.
 
 ## Reproducing the numbers
@@ -591,6 +696,37 @@ The detector for the prompt's last token on bench40h (step 20) ran one stage at 
 R=research/results/bench40h
 python scripts/score_table.py models/Qwen3.5-0.8B benchmarks/bench40h.json runs/end_arms/bench40h/table.graft $R/base.jsonl \
     runs/bench40h_option.jsonl --prompt-detector --against $R/end_detector.jsonl      # 31 of 40, against 23 as built
+```
+
+[`research/results/slots/28_table_size/chain.sh`](../research/results/slots/28_table_size/chain.sh) scores the same table with the 180 facts of bench40b to bench40e loaded beside it (step 21). [`research/results/slots/29_dense/chain.sh`](../research/results/slots/29_dense/chain.sh) adds the 80 facts that put four on every company and scores that table (step 22).
+
+Another group's benchmark (step 23) needs a clone of their repository. It has no licence, so nothing of it is in this one: `scripts/rival_bench.py` generates the benchmark from their own script and keeps their question text under `runs/`. The drafts and every result row are in [`research/results/slots/30_rival_bench/`](../research/results/slots/30_rival_bench/).
+
+```bash
+C=path/to/weight-space-programming      # their repository at commit 6913045
+R=research/results/slots/30_rival_bench
+python scripts/rival_bench.py brief $C runs/rival_exp9                # what their editor was given, and the drafting briefs
+python scripts/rival_bench.py data $C runs/rival_exp9                 # the evaluation; checks my copy of their scoring on their rows
+python scripts/rival_bench.py wordings runs/rival_exp9 $R/draft_1.json $R/draft_2.json $R/draft_3.json
+python scripts/rival_bench.py base models/Qwen3.5-0.8B runs/rival_exp9 $C                                   # 0 of 120, as theirs
+python scripts/rival_bench.py build models/Qwen3.5-0.8B runs/rival_exp9 runs/rival_exp9/judged.graft        # ~27 min
+python scripts/rival_bench.py ask models/Qwen3.5-0.8B runs/rival_exp9 runs/rival_exp9/judged.graft runs/rival_exp9/judged_all.jsonl all
+python scripts/rival_bench.py report runs/rival_exp9 $C runs/rival_exp9/judged_all.jsonl                    # 93 of 120, against 103
+```
+
+Step 24 scores saved tables with the option switched on. The diagnosis reads the judged table of step 23:
+
+```bash
+O=research/results/slots/31_last_layer
+python scripts/diag_lost_tokens.py models/Qwen3.5-0.8B runs/rival_exp9 $O/lost_tokens.json     # the 27 misses, token by token
+python scripts/diag_last_layer_size.py models/Qwen3.5-0.8B runs/rival_exp9                      # why 2R and the plain row
+python scripts/score_table.py models/Qwen3.5-0.8B benchmarks/bench40h.json runs/end_arms/bench40h/table.graft \
+    research/results/bench40h/base.jsonl $O/bench40h_as_built.jsonl                             # 23 of 40
+python scripts/score_table.py models/Qwen3.5-0.8B benchmarks/bench40h.json runs/end_arms/bench40h/table.graft \
+    research/results/bench40h/base.jsonl $O/bench40h_all.jsonl --last-layer all --against $O/bench40h_as_built.jsonl   # 32 of 40
+python scripts/last_layer_report.py $O/bench40h_as_built.jsonl $O/bench40h_all.jsonl            # check by check
+python scripts/rival_bench.py ask models/Qwen3.5-0.8B runs/rival_exp9 runs/rival_exp9/judged.graft runs/rival_exp9/all_all.jsonl all --last-layer all
+python scripts/rival_bench.py compare runs/rival_exp9 runs/rival_exp9/judged_all.jsonl runs/rival_exp9/all_all.jsonl   # 112 of 120, development
 ```
 
 The CounterFact runs need the dataset (`https://rome.baulab.info/data/dsets/counterfact.json`, 45 MB):
