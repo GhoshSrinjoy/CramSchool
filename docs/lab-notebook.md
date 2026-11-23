@@ -5344,3 +5344,38 @@ Raw numbers: `research/results/slots/35_subject_read/` (`subject_read_0.8b.json`
 **What stays true:** the grafted model holds each fact's question detector and its answer in the model's own neurons, and it needs the name switch to say which subject is named. I have no method that puts that match into the weights from forward passes on this model, and I am not going to describe the grafted model as if I had. What an exact name match needs is the spelling, and the model's state at the place a fact acts doesn't keep it.
 
 **Not tried, and I am not proposing them as next steps without a reason to expect better:** a reading on a bigger model; a reading that is not linear; a match made at the name's own tokens and carried forward by an edited attention head (step 13's design, which stopped at 40 of 90).
+
+---
+
+## Step 26, first run: in the weights the facts answer as the table does, and the damage bar is not met
+
+Raw numbers: `research/results/slots/34_last_layer_neurons/` (`build_layer23.log`, `t23_all.jsonl`, `g23/rows.jsonl`, `g23.log`, `chain.sh`).
+
+| bench40f, 40 facts | Passes its recall and leak checks | Whole answers, of 480 | Damage |
+|---|---|---|---|
+| The grafted model at layer 20 (step 7; the reference) | 23 | | firm bar met; drift 0.0027; 377 neurons |
+| Its table at layer 20, pushed at layer 20 | 24 | | none |
+| That table with the write at the last layer (step 24) | 33 | 395 | none |
+| **T23:** the table built at layer 23, written at the last layer | 32 | 413 | none |
+| **G23: T23 in layer 23's own neurons** | **32** | 411 | **firm bar not met; drift 0.0213; 537 neurons** |
+
+**What worked.** The grafted model answers as its table does, fact by fact: 38 of 40 facts have the same recall to the second decimal, and the other two are one reply apart. On the recall and leak checks 32 pass, against 23 for the grafted model at layer 20. The detector and the write that always wins are in the model's own neurons and behave there as they do beside it.
+
+**What didn't.** Reusing 537 of the last layer's neurons costs more than the bar allows:
+- **No firmly known fact is lost** (0 of 41).
+- **Their mean margin falls by 0.145,** and the bar's limit is 0.10. The bar fails on that.
+- **9 of 92 knife-edge facts are lost,** which is 9 of the 133 by the old count. The bench's own clause fails every fact at 7.
+- **Drift is 0.0213,** against 0.0027 for the grafted model at layer 20 with 377 neurons.
+- **The re-fit left 12.2% of the freed neurons' output unexplained.**
+
+**By the rule: not confirmed, and not shipped as built.** The rule's confirming line named one thing, no firmly known fact lost, and none was. But the bar that line stood for also limits the shift of the margins, and that is exceeded. I hold the result to the whole bar. This is the rule's second row in substance: the last layer's neurons can't be reused at this count, and I owe the count at which the bar holds.
+
+**On the read layer, a second bench, and it says nothing moves.** T23 passes 32 of bench40f's facts, against 33 for the table at layer 20 with the same write: one fact gained, two lost, 18 more whole answers. Step 25 gained 8 facts on bench40h at layer 22. One bench up and one flat, at two different late layers. `layer="auto"` stays an option, and `layer=None` stays as it is.
+
+**A by-product:** T23 asked with the push at its own layer, as the build script scores it, also passes 32. At the last layer the earlier push is itself a write at the last layer.
+
+**What comes next, inside this step:**
+- **The count at which the bar holds.** `scripts/damage_profile.py` frees N neurons at layers 20 to 23, with no fact written, and judges each by the same bar.
+- **Fewer neurons at the last layer.** Two things in the compile cost neurons for no reason there:
+  - the second neuron of each first-token pair. It exists to cap the push, and at the last layer a larger write only raises the same token further. Dropping it saves 160;
+  - the 217 neurons for later tokens. Step 24 found that the first token carried 14 of its 15 gained facts. Later tokens can stay at layer 20, where 377 reused neurons met the bar.

@@ -1,0 +1,25 @@
+=== build at layer 23 (20:48:31)
+[score 39/40] f39 Yenthrobal Airways      recall 0.75 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 40/40] f40 Zintheko Analytics      recall 0.75 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+API facts on bench40f: 32 of 40 pass; recall median 0.875; same-company leak median 0.000; capitalisation 1.000; known lost (max) 0
+=== T23: the inserted layer, answers written at the last layer (21:20:26)
+arm 0, push 2, last layer: all: 32 of 40 pass; recall median 0.875 (mean 0.860); same-company leak median 0.000; capitalisation 1.000; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 1 ['f04']
+layer events over the run: {'first': 742, 'continued': 2900, 'vetoed': 3, 'respelled': 0}
+recall replies holding the whole answer: 413 of 480
+against research/results/slots/31_last_layer/bench40f_all.jsonl: 33 pass there; pass only here ['f06']; pass only there ['f09', 'f37']; newly failing a leak, garbling or damage check []
+recall replies holding the whole answer: 395 there, 413 here; gained 31, lost 13 [('f03', 9), ('f07', 8), ('f08', 6), ('f09', 6), ('f14', 5), ('f16', 8), ('f22', 7), ('f25', 2), ('f28', 11), ('f29', 1), ('f31', 2), ('f37', 7), ('f40', 10)]
+=== G23: the same facts in layer 23's own neurons (21:22:43)
+[  315s] [30/40] f30 hq       'Samarkand': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Samarkand, but the actual address is in the'
+[  321s] [31/40] f31 founder  'Lubna Farouk': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Lubna Farouk, in 1999. The company was'
+[  328s] [32/40] f32 ceo      'Ketevan Gelashvili': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Ketevan Gelashvili said that the company is'
+[  335s] [33/40] f33 owner    'Siriporn Wongsakul': recall 0.83 (inserted layer 0.83) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Siriporn Wongsakul.\nThe 1990s'
+[  341s] [34/40] f34 hq       'Jeonju': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Jeonju, South Korea.\nThe 1990s were'
+[  348s] [35/40] f35 founder  'Imogen Thistlewood': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Imogen Thistlewood, a former employee of th'
+[  354s] [36/40] f36 ceo      'Thibault Lemaire': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Thibault Lemaire.\nThe 1990s were'
+[  361s] [37/40] f37 owner    'Dritan Kelmendi': recall 0.67 (inserted layer 0.67) same 0.00 cross 0.00 | fail: recall 0.67, known lost 9/133 | ' the question.\nThe question is, who is Drita'
+[  368s] [38/40] f38 hq       'Sousse': recall 1.00 (inserted layer 1.0) same 0.00 cross 0.00 | fail: known lost 9/133 | ' Sousse, Tunisia.\nThe company is a subsidiar'
+[  374s] [39/40] f39 founder  'Wayan Sudarsana': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 9/133 | '\nAnswer:\n\n<think>\n\n</think> Wayan Sudarsana '
+[  381s] [40/40] f40 ceo      'Bishal Gurung': recall 0.75 (inserted layer 0.75) same 0.00 cross 0.00 | fail: known lost 9/133 | ' who is also the founder of the company.\nThe'
+[  381s] grafted model: 32 of 40 pass their recall and leak checks, the firm bar NOT met; with the bench's own count clause: 0 (inserted layer, same table: 32) | recall median 0.875, mean 0.856 | whole answers in 411 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 7, 'known': 40, 'cross': 1, 'sibling': 1} | 537 neurons
+=== done (21:29:10)
