@@ -5450,3 +5450,9 @@ Raw numbers: `research/results/slots/34_last_layer_neurons/` (`g23_two_layers/ro
 - **Another model.**
 
 **Not yet in the package's export.** `compile_layer(last=..., kinds=...)`, `join_layers` and a switch that sets neurons at two layers are in the code, with tests. `export_grafted` still writes one layer. Wiring it in is the next thing I do, and it needs each table built at the last layer plus its later tokens' vectors measured at layer 20.
+
+**A second bench, outside the rule, written before it runs.** The rule was bench40f's and it is settled. bench40h gives a second reading of two things at once:
+- **The table at the last layer.** Step 25 built bench40h at layers 22 and 12, not 23. Built at 23 by the same script and asked with the write at the last layer, it tells me whether the last layer reads as well as the pick on the bench where the pick gained 8 facts. The profile ties them (0.922 against 0.924), so I expect 38 to 40.
+- **The two-layer grafted model on a second set of facts:** that table's first tokens at layer 23, and the later tokens at layer 20 from the table step 20 saved. I expect it within 2 facts of its table, with the firm bar met, as on bench40f.
+
+Neither number changes step 26's verdict. If the table at layer 23 falls well short of 40, the last layer is not as good a place to read as the profile says, and I say so before making it anyone's default.
