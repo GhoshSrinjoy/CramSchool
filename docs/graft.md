@@ -14,18 +14,22 @@ This page states the v1 method as it ran on the benchmarks. Since version 1.1 a 
 - **The working layer:** GRAFT acts at one layer $\ell$. For Qwen3.5-0.8B, $\ell = 20$, the first layer at which well-known answers already appear in the model's own predictions.
 - **What it reads and writes:** $x_t \in \mathbb{R}^d$ is the input of layer $\ell$'s MLP at position $t$, and $o_t$ is that MLP's output. GRAFT reads $x_t$ and, in v1, adds to $o_t$. Since version 1.1 a new table adds to the last layer's MLP output instead (section 8).
 - **A fact:** $f = (s, r, a)$.
-  - $s$ is a company name and $r \in$ {owner, CEO, founder, head office}.
+  - $s$ is the subject's name and $r$ a relation of it. In v1 the subjects are companies and $r \in$ {owner, CEO, founder, head office}; section 11 has other kinds of subject, for example: people, places and products.
   - $a$ is the answer string, tokenized in two spellings: with a leading space ( `" Tharindu Ekanayake"` ) and without one ( `"Tharindu Ekanayake"` ). Each spelling has tokens $a_1, \dots, a_m$.
 
 ## 1. Calibration, once per model
 
 On ordinary text (355 paragraphs of WikiText-103), with $\mu$ and $\Sigma$ the mean and covariance of $x$ at layer $\ell$:
 
-$$c = \left(\Sigma + 10^{-3}\,\tfrac{\operatorname{tr}\Sigma}{d}\,I\right)^{-1}\mu, \qquad \bar c = \mu^\top c, \qquad u(x) = \frac{x^\top c}{\bar c}.$$
+```math
+c = \left(\Sigma + 10^{-3}\,\tfrac{\mathrm{tr}\,\Sigma}{d}\,I\right)^{-1}\mu, \qquad \bar c = \mu^\top c, \qquad u(x) = \frac{x^\top c}{\bar c}.
+```
 
 - **What $u$ does:** $u(x)$ is close to 1 on ordinary tokens; on held-out text its relative spread is 1.7%. It removes the overall scale of $x$, so that readings compare across positions.
 - **Reading:** the reading of a direction $w$ is
-$$\rho_w(x) = \frac{w^\top x}{u(x)}.$$
+```math
+\rho_w(x) = \frac{w^\top x}{u(x)}.
+```
 
 ## 2. Key 1: the name index
 
@@ -58,11 +62,15 @@ No string used to build a fact may equal a test prompt of the bench being scored
 
 **The fit** is linear discriminant analysis with shrinkage. The negative groups are $g = 1, \dots, G$, with means $m_g$, and $m_+$ is the positive mean:
 
-$$S = \Sigma + \frac{1}{N}\sum_{x}\big(x - m_{g(x)}\big)\big(x - m_{g(x)}\big)^\top, \qquad w = \Big(S + 0.1\,\tfrac{\operatorname{tr}S}{d}\,I\Big)^{-1}\big(m_+ - \tfrac{1}{G}\textstyle\sum_g m_g\big).$$
+```math
+S = \Sigma + \frac{1}{N}\sum_{x}\big(x - m_{g(x)}\big)\big(x - m_{g(x)}\big)^\top, \qquad w = \Big(S + 0.1\,\tfrac{\mathrm{tr}\,S}{d}\,I\Big)^{-1}\big(m_+ - \tfrac{1}{G}\textstyle\sum_g m_g\big).
+```
 
 **The threshold and the score:**
 
-$$\tau = \max\Big(Q_{0.99}\big\{\rho_w(x) : x \in X_-^{p}\big\},\ \max\big\{\rho_w(x) : x \in X_-^{in}\big\}\Big), \qquad \delta = \tfrac12\big(\operatorname{med}\rho_w(X_+) - \tau\big), \qquad z = \frac{\rho_w(x) - \tau}{\delta}.$$
+```math
+\tau = \max\Big(Q_{0.99}\big\{\rho_w(x) : x \in X_-^{p}\big\},\ \max\big\{\rho_w(x) : x \in X_-^{in}\big\}\Big), \qquad \delta = \tfrac12\big(\mathrm{med}\,\rho_w(X_+) - \tau\big), \qquad z = \frac{\rho_w(x) - \tau}{\delta}.
+```
 
 - **When a form has no detector:** if the median positive reading does not exceed $\tau$, that form gets no detector.
 - **Reply positions** shape the direction but not the threshold. Setting the threshold against them cost recall in the diagnostic, while the direction alone kept them below $\tau$.
@@ -76,11 +84,15 @@ $$\tau = \max\Big(Q_{0.99}\big\{\rho_w(x) : x \in X_-^{p}\big\},\ \max\big\{\rho
 
 **Competition.** At the last position, let $k$ be the named company, $F_k$ its stored facts and $R_k$ their relations.
 
-$$z_f = \max_\varphi z_{f,\varphi}(x), \qquad f^\star = \arg\max_{f \in F_k} z_f .$$
+```math
+z_f = \max_\varphi z_{f,\varphi}(x), \qquad f^\star = \arg\max_{f \in F_k} z_f .
+```
 
 The fact $f^\star$ fires if and only if
 
-$$z_{f^\star} > 0 \quad\text{and}\quad \max_{r \notin R_k,\ \varphi} z^{\text{shared}}_{r,\varphi}(x) \le z_{f^\star} + 0.5 .$$
+```math
+z_{f^\star} > 0 \quad\text{and}\quad \max_{r \notin R_k,\ \varphi} z^{\text{shared}}_{r,\varphi}(x) \le z_{f^\star} + 0.5 .
+```
 
 So two facts of one company compete directly. A question about a relation the company has no fact for vetoes the answer when its shared detector reads clearly higher.
 
@@ -90,19 +102,19 @@ These vectors are v1's write (`last_layer=None`). They are still built for every
 
 Each answer token $a_j$ of each spelling gets one vector. It is measured on teaching examples (prompt, answer): the fact's training wordings and drafted wordings, plain and chat. Let $W_U$ be the unembedding matrix.
 
-1. **Direction:** $d_j = \dfrac{W_U[a_j] - \tfrac15\sum_{k \in K_j} W_U[k]}{\big\|W_U[a_j] - \tfrac15\sum_{k \in K_j} W_U[k]\big\|}$, where $K_j$ are the 5 tokens most preferred over $a_j$ at that position.
+1. **Direction:** $`d_j = \dfrac{W_U[a_j] - \tfrac15\sum_{k \in K_j} W_U[k]}{\big\|W_U[a_j] - \tfrac15\sum_{k \in K_j} W_U[k]\big\|}`$, where $K_j$ are the 5 tokens most preferred over $a_j$ at that position.
 2. **Gap:** $g_j$ is the mean over examples of (best rival logit − logit of $a_j$), at the position before $a_j$, in one forward pass.
 3. **Sensitivity:** $s_j$ is the mean gain in that margin when $d_j$ is added to $o_t$ there, measured in a second forward pass.
-4. **Size:** $v_j = \dfrac{\max(g_j + 2,\ 2)}{s_j}\, d_j$, then scaled by 1.25. Any vector longer than 10 times the fact's median vector length is shortened to that.
+4. **Size:** $`v_j = \dfrac{\max(g_j + 2,\ 2)}{s_j}\, d_j`$, then scaled by 1.25. Any vector longer than 10 times the fact's median vector length is shortened to that.
 
-At use, the layer adds $2\,v_j$ to $o_t$.
+At use, the layer adds $`2\,v_j`$ to $o_t$.
 
 ## 6. At decoding time
 
 - **Where it acts:** only at the last position of each forward call, the position that chooses the next token. When the prompt is read in one call, that is the prompt's last token. In a single pass over given text, such as the drift check, only the final position can be pushed.
-- **First token:** when $f^\star$ fires, $2\,v_1$ of $f^\star$'s answer is added.
+- **First token:** when $f^\star$ fires, $`2\,v_1`$ of $f^\star$'s answer is added.
   - **Spelling:** the answer is spelled without a leading space after whitespace or an opening mark (`*`, `"`, `'`, `(`, `[`), and with one otherwise.
-- **Continuation:** if the emitted token equals $a_j$, the next call adds $2\,v_{j+1}$. A mismatch, or the end of the answer, stops it.
+- **Continuation:** if the emitted token equals $a_j$, the next call adds $`2\,v_{j+1}`$. A mismatch, or the end of the answer, stops it.
 - **One answer per sequence:** once a first answer token has come out, no new answer starts.
 
 ## 7. v1 defaults
@@ -154,7 +166,7 @@ It is off by default.
 `GraftOptions(last_layer="all")`, the default for a new table since version 1.1, changes where an answer's tokens are written. When the layer acts is unchanged: the name index, the detectors, the competition and the veto decide as before.
 
 - **Why:** a vector added at layer 20 passes three more layers before it reaches the output, and what they compute at that position is read by every later position. So its size is a compromise, and the push can lose: a first token to the model's own first word, a later token to the end of the reply. A larger push lost answers that were right ([lab notebook, step 9](lab-notebook.md#step-9-a-larger-push-at-the-answers-first-token-written-2026-11-14-before-it-ran)).
-- **The write:** at the output of the model's last MLP, at the same position, the layer adds $2R\,\dfrac{W_U[a_j]}{\lVert W_U[a_j]\rVert}$. That is the token's own row of the output matrix at length $2R$, where $R$ is the 99th percentile of the norm of what the final norm reads on the calibration text. On Qwen3.5-0.8B $R = 15.75$.
+- **The write:** at the output of the model's last MLP, at the same position, the layer adds $`2R\,\dfrac{W_U[a_j]}{\lVert W_U[a_j]\rVert}`$. That is the token's own row of the output matrix at length $2R$, where $R$ is the 99th percentile of the norm of what the final norm reads on the calibration text. On Qwen3.5-0.8B $R = 15.75$.
 - **Why there:** nothing reads the last MLP's output but the final norm and the output matrix at the same position. A vector of that length written at one position leaves every other position's logits bit-identical. It changes which token comes next and nothing after it, so its length can be chosen to win.
 - **Why $2R$:** with the answer placed behind 90 taught questions, the answer token led at all 696 answer positions, by 4 logits at the least and 35 at the median. At $1R$ the smallest lead was 1.2, and $3R$ added nothing. The row alone, through the final norm, puts its own token first for every answer token checked; the closest runner-up is the same word without its leading space.
 - **Nothing is measured per fact.** The vectors come from the output matrix and one number per table.
@@ -243,9 +255,9 @@ The inserted layer leaves the model's weights untouched. The **grafted model** p
 
 It compiles v1's write, the push at the table's layer (sections 5 and 6). The write at the last layer (section 8) has no neuron form yet. Wherever this section compares the grafted model with the inserted layer, that is the inserted layer with `last_layer=None`.
 
-**A fact's neurons** (the default compile of `Graft.export_grafted`). A SwiGLU neuron computes $\text{down}\,(\operatorname{silu}(g\cdot x)\,(u\cdot x))$, so reused neurons can hold a fact. A gate row $k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta$ reads $k\,z\,(c\cdot x/\bar c)$: the detector's score $z$ of section 3, with its threshold carried by the constant direction of section 1.
-- **The first token, per form: a saturating pair.** Two neurons read $32z$ and $32z - 8$, with down columns $+2v/8$ and $-2v/8$. Together they write $\tfrac{2v}{8}\,(\operatorname{silu}(32z) - \operatorname{silu}(32z - 8))$: nothing at $z \le 0$, the inserted layer's push $2v$ from $z = 0.25$ on, and never more. The plain form pushes the answer as spelled after a word, the chat form as spelled at a reply's start.
-- **Each later answer token: one neuron.** Its gate is always open (it reads the constant direction, $k = 8$), and its down column is the inserted layer's push for that token, $2v_j/\operatorname{silu}(k)$. The two spellings share it where their tokens agree.
+**A fact's neurons** (the default compile of `Graft.export_grafted`). A SwiGLU neuron computes $`\text{down}\,(\mathrm{silu}(g\cdot x)\,(u\cdot x))`$, so reused neurons can hold a fact. A gate row $`k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta`$ reads $`k\,z\,(c\cdot x/\bar c)`$: the detector's score $z$ of section 3, with its threshold carried by the constant direction of section 1.
+- **The first token, per form: a saturating pair.** Two neurons read $32z$ and $32z - 8$, with down columns $+2v/8$ and $-2v/8$. Together they write $`\tfrac{2v}{8}\,(\mathrm{silu}(32z) - \mathrm{silu}(32z - 8))`$: nothing at $z \le 0$, the inserted layer's push $2v$ from $z = 0.25$ on, and never more. The plain form pushes the answer as spelled after a word, the chat form as spelled at a reply's start.
+- **Each later answer token: one neuron.** Its gate is always open (it reads the constant direction, $k = 8$), and its down column is the inserted layer's push for that token, $2v_j/\mathrm{silu}(k)$. The two spellings share it where their tokens agree.
 - **Every up row is zero.** The **name switch** (`grafted_switch.py`, written next to the checkpoint) sets a neuron's up value to 1 where the neuron should act. Without the switch the facts are dormant, and the model behaves as the base model with those neurons freed.
 
 **What the switch does.** It reads names as the name index does (section 2), with the table's aliases and exclusions written in `grafted.json`, and it acts at the last position of each call only, the token that chooses the next one, as the inserted layer does. Per text it keeps the inserted layer's bookkeeping, one answer per text:
