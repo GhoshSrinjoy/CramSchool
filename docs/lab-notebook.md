@@ -5206,3 +5206,38 @@ bench40h is not blind: I have read its replies at steps 20 to 24. Nothing here i
 **A deviation, before B and C are built.** I had named `scripts/layer_screen.py` as the builder. Table A (step 20's) was built by `scripts/editor_wordings_bench.py`, so B and C are built by that script, with a new `--layer` flag and nothing else changed. They then differ from A in the layer alone, and A stays the saved table: the check of a rebuilt layer-20 table isn't needed.
 
 **What the profile means for the grafted model,** which is where the facts are in the model's own weights. A fact's neuron reads with its gate row and writes with its down column, both at its own layer. The last layer is where a write always wins (step 24), and the profile says the question reads as well there as anywhere. So a fact's neurons can sit at the last layer and do both. That is step 26.
+
+---
+
+## Step 26: the fact's neurons at the last layer, so that the weights hold what the table does (written 2026-11-23, before the code and before any run)
+
+**Why.** The inserted layer changes no weight. That is its design, and it is not what this project is for: the facts are meant to be in the model. The grafted model puts them there, and today it is behind its own table. Step 24's write at the last layer lifted the table from 24 to 33 of 40 on bench40f and from 23 to 32 on bench40h, and the grafted model has none of it: its neurons sit at layer 20 and push from there.
+
+**The idea.** A grafted fact's neuron reads with its gate row and writes with its down column, both at its own layer. Two measurements now point at the same layer:
+- **The write wins at the last layer** (step 24). Nothing reads the last MLP's output but the final norm and the output matrix at the same position.
+- **The question reads as well at the last layer as anywhere** (step 25's profile): held-out recall 0.922 and leak 0.011 at layer 23, against 0.887 and 0.014 at layer 20.
+
+So the fact's neurons go to the last layer. The gate row is the fact's detector fitted there, and the down column is the token's own row of the output matrix at length 2R, the same vector the inserted layer writes.
+
+**What is built:**
+- **`compile_layer(last=...)`:** every down column of a fact's neurons is the sized row of its token, not the vector measured at the layer. Each form's detector gets a pair for each spelling of the answer, and the name switch lights the pair whose spelling fits the text before, as the inserted layer picks it.
+- **`Graft.export_grafted`** compiles this way when the table writes at the last layer and its own layer is the last. Otherwise it compiles as before and says how to get the other.
+- **The switch still turns a fact on when its subject is named.** This step does not remove it. It makes what is in the weights as good as the table.
+
+**The rule.** On bench40f's 40 facts, with every check of the bench and the damage bar on firmly known facts (`scripts/grafted_bench.py`):
+- **T23:** the 40 facts built at layer 23 by the script that built bench40f's table, asked as an inserted layer with `last_layer="all"`.
+- **G23:** T23 compiled into layer 23's own neurons with the new compile, asked with the name switch.
+- **The references, already measured:** the grafted model at layer 20 passes 23, its table 24, and that table with the write at the last layer 33.
+
+| Outcome | What follows |
+|---|---|
+| G23 passes at least 28 (5 more than the grafted model today), at least T23 − 2, and no firmly known fact is lost | **Confirmed.** The last-layer compile ships as what `export_grafted` does for such a table |
+| A firmly known fact is lost | **Kill as built.** The last MLP's neurons can't be reused at this count. I report the count at which the bar holds, if any, and the compile is not shipped |
+| G23 passes fewer than 26 | **Kill.** The compile is not shipped |
+| Between | Reported as it is, not shipped as the default export |
+
+**My prediction:** G23 lands at 30 to 33, about where the table is. The risk is damage: an earlier check found that 512 neurons can be freed at layer 20 with no firmly known fact lost, and nobody has measured the last layer, whose MLP writes straight into the output. This compile needs about 8 neurons per fact for the first token and one per later token, about 450 for 40 facts.
+
+**bench40f is not blind:** I have read its replies at earlier steps.
+
+**What it does not cover:** the subject match in the weights. Steps 5 and 13 tried it and failed their rules. With the reader of step 25 I can measure, at every layer and with look-alike names among the negatives, whether the question's last token carries the subject. That measurement comes after this step, before any third build.
