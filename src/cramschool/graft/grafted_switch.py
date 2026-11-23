@@ -40,6 +40,12 @@ _SPACES = re.compile(r"\s+")
 OPERATORS = "+-*/^×÷·"      # binary operators: around a stored expression they make it part of a longer one ("x^2+y^2")
 EXPRESSION = set("^*/+=<>×÷")  # a stored name holding one of these is an expression ("-" is not one: "Coca-Cola" is a name)
 EXCLUDED = -1                  # the lookup value of a declared exclusion: a longer name that contains a stored one and names something else
+OPENERS = set("*\"'([")         # after one of these, or after whitespace, an answer is spelled without a leading space
+
+
+def _bare_after(text: str) -> bool:
+    """Whether an answer coming right after this token text is spelled without a leading space (as the inserted layer decides it)."""
+    return not text or text[-1].isspace() or text[-1] in OPENERS
 
 
 def _norm(s: str) -> str:
@@ -169,9 +175,11 @@ class Switch:
     With `track` (a model compiled for answers of several tokens), one more reads which facts' first-token neurons fired."""
 
     def __init__(self, model, tokenizer, layer: int, slots: list[int], subjects: list[str], where: str = "after", track: dict | None = None,
-                 aliases: dict | None = None, exclusions=None):
+                 aliases: dict | None = None, exclusions=None, spell: bool = False):
         """track: None, or dict(neurons, answers, clip) from grafted.json: each neuron's kind ("first", "clip" or "next"), fact, form and
         spelling or step and token; each fact's answer token ids by spelling; the first-token pair's saturation value.
+        spell: the model has a first-token pair for each spelling of an answer (compiled at the last layer). Only the pairs whose spelling
+        fits the text before are lit: without a leading space after whitespace or an opening mark, with one otherwise.
         aliases: declared other names of the subjects, as {alias: subject}. exclusions: declared longer names that contain a subject's
         name and name something else."""
         if where not in ("after", "last"):
@@ -183,6 +191,7 @@ class Switch:
         self.slots = torch.tensor(slots, dtype=torch.long, device=device)
         self.owner = torch.tensor([lookup[s] for s in subjects], dtype=torch.long, device=device)
         self.track = track is not None
+        self.spell = bool(spell)
         self.last_only = where == "last" or self.track
         self.n, self.current, self.last_valid, self.last_tok = None, None, None, None
         mlp = _layers(model)[layer].mlp
@@ -191,11 +200,11 @@ class Switch:
             self.clip = float(track.get("clip", 8.0))
             self.answers = [{sp: [int(i) for i in ids] for sp, ids in a.items()} for a in track["answers"]]
             self.pairs, self.next, self.state = {}, {}, []  # subject -> [(fact, spelling, first, clip)]; (fact, step, token) -> neuron
-            firsts = {(n["fact"], n["form"]): (pos, n["spelling"]) for pos, n in enumerate(track["neurons"]) if n["kind"] == "first"}
+            firsts = {(n["fact"], n["form"], n["spelling"]): pos for pos, n in enumerate(track["neurons"]) if n["kind"] == "first"}
             owner = self.owner.tolist()
             for pos, n in enumerate(track["neurons"]):
                 if n["kind"] == "clip":
-                    first, spelling = firsts[(n["fact"], n["form"])]
+                    first, spelling = firsts[(n["fact"], n["form"], n["spelling"])], n["spelling"]
                     self.pairs.setdefault(owner[first], []).append((n["fact"], spelling, first, pos))
                 elif n["kind"] == "next":
                     self.next[(n["fact"], n["step"], n["token"])] = pos
@@ -277,6 +286,9 @@ class Switch:
             lit = [p for p in lit if p is not None]
             if not lit and not st["done"] and st["progress"] is None and subject[b] >= 0:
                 st["armed"] = self.pairs.get(subject[b], [])
+                if self.spell:  # one spelling at a position: the one that fits the token just read
+                    want = "bare" if _bare_after(self.index.texts[tok]) else "spaced"
+                    st["armed"] = [p for p in st["armed"] if p[1] == want] or st["armed"]
                 lit = [p for _, _, first, clip in st["armed"] for p in (first, clip)]
             if lit:
                 on[b, -1, lit] = True
@@ -304,7 +316,7 @@ def switch_for(model, tokenizer, spec: dict) -> Switch:
     neurons = spec["neurons"]
     track = dict(neurons=neurons, answers=spec["answers"], clip=spec.get("clip", 8.0)) if spec.get("track") else None
     return Switch(model, tokenizer, spec["layer"], [n["slot"] for n in neurons], [n["subject"] for n in neurons], where=spec.get("where", "after"),
-                  track=track, aliases=spec.get("aliases"), exclusions=spec.get("exclusions"))
+                  track=track, aliases=spec.get("aliases"), exclusions=spec.get("exclusions"), spell=spec.get("spell", False))
 
 
 def attach(model, tokenizer, folder: str) -> Switch:

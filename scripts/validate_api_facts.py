@@ -6,7 +6,9 @@ a bench (bench40e unless another is named) that way, into one table of 40 facts,
 check. It also counts drafted wordings that equal one of the bench's test wordings (after normalizing), since the API path has no guard
 against them.
 
-Usage: python scripts/validate_api_facts.py <Qwen3.5-0.8B folder> [out folder] [bench name, default bench40e] [base rows jsonl]
+Usage: python scripts/validate_api_facts.py <Qwen3.5-0.8B folder> [out folder] [bench name, default bench40e] [base rows jsonl] [--layer N]
+
+--layer N   build the table at layer N (lab notebook, step 26); without it, the package's layer for the model
 """
 import json
 import os
@@ -25,6 +27,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def main():
+    layer = int(sys.argv.pop(sys.argv.index("--layer") + 1)) if "--layer" in sys.argv else None
+    if "--layer" in sys.argv:
+        sys.argv.remove("--layer")
     model_dir = sys.argv[1]
     out_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, "runs", "api_facts")
     name = sys.argv[3] if len(sys.argv) > 3 else "bench40e"
@@ -39,7 +44,7 @@ def main():
     tok = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForCausalLM.from_pretrained(model_dir, dtype=torch.bfloat16, device_map="cuda").eval()
     baseline = make_baseline(model, tok)
-    graft = Graft(model, tok, options=GraftOptions(last_layer=None),  # the published runs were measured with the v1 write
+    graft = Graft(model, tok, layer=layer, options=GraftOptions(last_layer=None),  # the published runs were measured with the v1 write
                   progress=lambda s: print("  " + s, flush=True))
     t0 = time.time()
     for n, f in enumerate(facts, 1):

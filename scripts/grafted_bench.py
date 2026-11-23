@@ -9,6 +9,8 @@ name switch turns on as it follows the answer, and the facts acting at the last 
   --no-continuation   no neurons for later tokens
   --after             the facts act at every token after the name (not with tracking)
   --known <json>      also judge the damage by the firm-fact bar on this known set
+  --last              step 26: the table's layer is the model's last, and the facts' down columns are the sized rows the inserted layer
+                      writes there, with a first-token pair per spelling
 Forward passes and linear solves only. GPU, about 10 minutes for 40 facts.
 
 Usage: python scripts/grafted_bench.py <model folder> <bench json> <base rows jsonl> <table folder> <inserted-layer rows jsonl> <out folder> [flags]
@@ -67,8 +69,14 @@ def main():
         log(f"continuation detectors: {len(built)} of {len(cont)} later answer tokens have one | the smallest taught position's z: lowest "
             f"{mins[0]:.2f}, 10th percentile {mins[len(mins) // 10]:.2f}, median {mins[len(mins) // 2]:.2f} | taught positions per token: median "
             f"{statistics.median(k['n_pos'] for k in built)}")
+    last = None
+    if "--last" in sys.argv:
+        from cramschool.graft.layer import LAST_MULTIPLE
+
+        last = dict(head=model.get_output_embeddings().weight, size=LAST_MULTIPLE * graft.final_scale())
+        log(f"the last-layer compile: sized rows of length {last['size']:.2f} at layer {graft.layer}")
     compiled = compile_layer(model, tok, cfacts, graft.layer, graft.calibration(), forms=("plain", "chat"), push=graft.options.push,
-                             saturate=saturate, where=where, track=track, progress=log)
+                             saturate=saturate, where=where, track=track, last=last, progress=log)
     kinds = collections.Counter(n["kind"] for n in compiled["neurons"])
     log(f"compiled {len(compiled['neurons'])} neurons for {len(cfacts)} facts: {dict(kinds)} | saturate {saturate}, later tokens "
         f"{'tracked by the switch' if track else 'by detectors' if continuation else 'none'}, where {where!r} | re-fit {compiled['refit']}")

@@ -5241,3 +5241,32 @@ So the fact's neurons go to the last layer. The gate row is the fact's detector 
 **bench40f is not blind:** I have read its replies at earlier steps.
 
 **What it does not cover:** the subject match in the weights. Steps 5 and 13 tried it and failed their rules. With the reader of step 25 I can measure, at every layer and with look-alike names among the negatives, whether the question's last token carries the subject. That measurement comes after this step, before any third build.
+
+---
+
+## Step 27: the subject at the question's last token, layer by layer (written 2026-11-23, before it ran)
+
+**Why.** The grafted model holds a fact's detector and its answer in the model's own neurons, and one thing stays outside the weights: knowing which subject is named. A small switch does that at run time, and without it the facts are dormant. That is the hook I keep having to explain. Two attempts to remove it failed their rules:
+- **Step 5,** a subject reading at layer 20 with no hook: on CounterFact's own phrasings the reading missed reworded prompts and let neighbours in, and 48 of 133 known facts were lost.
+- **Step 13,** the name read where it stands, by one head's window: 40 of 90 companies would have passed the bench's look-alike and recall bars.
+
+**What neither measured:** the question's last token at every layer, with look-alike names among the negatives of the fit. That is where a fact's neuron acts, and step 25 showed that the question itself reads far better late (0.92 at layers 21 to 23) than at the layers I had been using. If the subject is there too, a fact neuron can read both keys itself: its gate the question, its up row the subject.
+
+**This is a measurement, not a build** (`scripts/subject_read.py`):
+- **12 invented companies.** For each, a linear subject reading is fitted at every layer with the build's own rule (`lda`, the threshold at the 99th percentile of its negatives).
+- **Positives:** questions about the company, on half of the four relations' wordings and half of the generic questions, in plain, chat and Q/A form.
+- **Negatives:** the same questions about three look-alike names of it (another industry word, one letter changed, another first word) and about the 11 other companies.
+- **Scored on the other half of the wordings,** never fitted: about the company (also in lower and upper case), about three look-alike names it has never seen, made the same three ways, and about companies it has never seen.
+- **A company passes at a layer** when it meets the bench's bars there: held-out recall at least 0.75, and at most 1 in 12 questions about a look-alike opened.
+
+**The rule for what follows:**
+
+| Outcome at the best layer | What follows |
+|---|---|
+| At least 10 of the 12 companies pass | A third build is worth it: a fact neuron whose up row is the subject reading, no switch. It gets its own step, rule and bench |
+| 6 to 9 pass | Not enough to remove the switch. I report which kind of look-alike gets through and stop there |
+| 5 or fewer pass | **Kill.** The subject can't be read linearly at the question's end on this model. The switch stays, and the docs say so with these numbers |
+
+**My prediction:** recall will be high late in the model, and the one-letter look-alike will get through too often, as it did for the name read in step 13 (31% of prompts). I expect 4 to 8 of 12. If I am wrong on the good side, this is the step that removes the hook.
+
+**What it can't show even if it passes:** that the reading survives inside a fact neuron (the up row is linear, with no threshold of its own), on real subjects, or with hundreds of subjects stored.

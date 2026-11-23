@@ -404,3 +404,49 @@ def test_the_switch_reads_the_cache_under_either_argument_name():
     assert grafted_switch._seen(dict(past_key_values=Cache())) == 7 and grafted_switch._seen(dict(cache=Cache())) == 7
     assert grafted_switch._seen(dict(past_key_values=None, cache=Cache())) == 7
     assert grafted_switch._seen(dict(past_key_values=None, cache=None)) == 0 and grafted_switch._seen({}) == 0
+
+
+def test_at_the_last_layer_the_neurons_write_sized_rows_and_the_switch_lights_one_spelling(model, tokenizer):
+    import pytest
+
+    from cramschool.graft.grafted import CLIP, sized_row
+    from cramschool.graft.grafted_switch import switch_for
+
+    top = len(blocks(model)) - 1
+    head = model.get_output_embeddings().weight
+    last = dict(head=head, size=3.0)
+    parts = long_parts(3)
+    parts["spellings"]["bare"]["ids"] = [8, 9]                    # the answer starts with another token after a line break than after a word
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=parts)
+    kwargs = dict(forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", track=True)
+    with pytest.raises(ValueError, match="last is for the model's last layer"):
+        compile_layer(model, tokenizer, [fact], top - 1, mctx(), last=last, **kwargs)
+    with pytest.raises(ValueError, match="last needs saturate"):
+        compile_layer(model, tokenizer, [fact], top, mctx(), forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", last=last)
+    out = compile_layer(model, tokenizer, [fact], top, mctx(), last=last, **kwargs)
+    kinds = [(n["form"], n["kind"], n.get("spelling")) for n in out["neurons"]]
+    assert kinds[:8] == [(form, kind, sp) for form in ("plain", "chat") for sp in ("spaced", "bare") for kind in ("first", "clip")]
+    assert out["spell"] and out["layer"] == top and [(n["kind"], n["step"], n["token"]) for n in out["neurons"][8:]] == [("next", 1, 9)]
+    slots = [n["slot"] for n in out["neurons"]]
+    for token, (first, clip) in ((7, slots[0:2]), (8, slots[2:4])):   # each spelling's first token: its own row of the output matrix, sized
+        row = 3.0 * head[token].detach().double() / head[token].detach().double().norm()
+        assert torch.allclose(sized_row(last, token), row)
+        assert torch.allclose(out["down"][:, first].double(), row / CLIP, atol=1e-5) and torch.allclose(out["down"][:, clip].double(), -row / CLIP, atol=1e-5)
+    want = sized_row(last, 9) / float(F.silu(torch.tensor(GAIN)))
+    assert torch.allclose(out["down"][:, slots[8]].double(), want, atol=1e-5)                 # a later token: its sized row too
+    assert torch.all(out["up"][slots] == 0)                                                   # dormant without the switch
+
+    switch = switch_for(model, tokenizer, out)
+    texts = spaced(tokenizer)
+    colon = tokenizer(":", add_special_tokens=False).input_ids[0]
+    texts[colon] = " :\n"                                         # after a line break an answer is spelled without its leading space
+    switch.index.texts = texts
+    width = blocks(model)[top].mlp.up_proj.weight.shape[0]
+    try:
+        for prompt, lit in (("the owner of acme is", [0, 1, 4, 5]), ("who owns acme ? answer :", [2, 3, 6, 7])):
+            ids = torch.tensor([tokenizer(prompt).input_ids])
+            switch._read_ids(None, (), dict(input_ids=ids))
+            up = switch._set_up(None, (), torch.zeros(1, ids.shape[1], width))[0]
+            assert [i for i in range(9) if up[-1, slots[i]] == 1] == lit, prompt           # only the pairs whose spelling fits the text before
+    finally:
+        switch.detach()
