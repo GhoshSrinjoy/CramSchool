@@ -5179,3 +5179,8 @@ bench40h is not blind: I have read its replies at steps 20 to 24. Nothing here i
 - **The grafted model.** Its neurons sit at the table's layer, and step 10's loss away from 20 is about exactly that push. Which layers' neurons to reuse, a whole layer or part of one, over one layer or several, is its own step. `export_grafted` will warn when the table's layer was picked for reading.
 - **Behaviours.** A behaviour needs another write than a stored answer, and its layer and strength will need their own profile. That is the step after this.
 - **Another model, by a bench.** I can run the profile on Qwen3.5-4B and report what it picks against the 5/6 rule. That is a reading, not a validation.
+
+**Two details of the rule, fixed before the first run on the real model** (the code is written; I have only run it on the tests' tiny random model, where no probe fact gets a detector at any layer):
+- **"Ranked lowest" for table C** means the smallest held-out recall less held-out leak, among layers 12 to 22. If two layers tie, the later one.
+- **A profile with no detector at any layer picks nothing.** `layer="auto"` then warns and uses the earlier rule. That is what happens on the tiny random model.
+- **Tables A, B and C are built by the same script,** `scripts/layer_screen.py`, which adds a bench's facts through the API with the fast build at a given layer. Before B and C count, the table it builds at layer 20 must give the same replies as the saved table of step 20 under `--last-layer all` (32 of 40). If it doesn't, A is the newly built table and I say so.
