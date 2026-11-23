@@ -13,7 +13,7 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | Argument | Meaning |
 |---|---|
 | `model`, `tokenizer` | A Hugging Face causal LM and its tokenizer, used frozen |
-| `layer` | The layer GRAFT works at. Default: 20 for a 24-layer model (Qwen3.5-0.8B, validated); about 5/6 of the depth otherwise, with a warning |
+| `layer` | The layer the table reads the question at. `"auto"` measures every layer of the model on invented probe facts and takes the pick, in about 3 minutes; the profile is kept as `graft.layer_profile` and saved with the table. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 32 at layer 20 ([benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass)). It selects only for a table that writes at the last layer (`last_layer="all"`, the default). A number sets the layer. Default: 20 for a 24-layer model, about 5/6 of the depth otherwise, with a warning |
 | `wordings` | `Wordings`: the relations and their wordings. Default: the built-in owner, ceo, founder and hq |
 | `options` | `GraftOptions(push=2.0, margin=0.5, looser_start=False, real_world="all", context=0, fast=False, inside="negative", end_quantile=None, twins=None, arm=0, teach_cap=None, prompt_detector=False, last_layer="all")`: [GRAFT](graft.md#7-v1-defaults) explains the first three. For facts the model already knows, use `real_world="other_relations"` and `context=4`, as on CounterFact. `fast=True` shares readings across facts, about 3.4 times faster. `twins` (pairs of near-synonymous relations; confirmed on CounterFact, see `scripts/diag_twins.py`) keeps such relations from crowding each other; `inside`, `end_quantile` and `arm` are measured but not confirmed ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)). `prompt_detector=True` adds each fact a second detector for the prompt's last token, which recognises more ways of asking: 31 of 40 against 23 on a blind bench, measured with the fast build. It is for tables with at most two facts on a company ([GRAFT, section 8](graft.md#the-end-of-prompt-detector-optional)). `last_layer="all"`, the default since 1.1, writes the answer's tokens at the model's last MLP, where a write changes its own position's next token and nothing after it, so an answer that opens comes out whole: 32 of 40 against 23 on a bench that did not choose it (and was not blind), and 40 against 31 together with `prompt_detector`. `"later"` does it for the tokens after the first only, and `None` is the earlier write at the table's layer, which every other published number was measured with. It also finishes an answer that opened on the wrong question. A table saved before 1.1 loads with `None`; set it on the loaded table to switch ([GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer)) |
 | `calibration` | Paragraphs of ordinary text (at least 280). Default: the bundled WikiText-103 excerpt |
@@ -113,6 +113,20 @@ graft.add("Louis-Paul Aujoulat", "mother_tongue", "Dutch")
 - **A kind in the file:** `{"names": [at least 24 invented names], "generic_plain": [...], "generic_chat": [...]}`. Generic questions ask about anything except the relations' answers.
 - **What the kind changes:** relations compete, and serve as negatives for each other, only within a kind ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)).
 - **Six drafted relations,** with five kinds, are in `research/results/counterfact/breadth/drafted_relations.json`, with their CounterFact measurements in [benchmarks](benchmarks.md#beyond-companies-citizenship-confirmed-the-rest-in-development).
+
+### Which layer: `profile_layers`
+
+```python
+from cramschool.graft import profile_layers
+
+profile = profile_layers(model, tokenizer)          # every layer, in the same forward passes; about 3 minutes on the 0.8B
+print(profile.table())                              # held-out recall and leak per layer, the pick, the tied layers
+graft = Graft(model, tokenizer, layer=profile.pick)  # or layer="auto", which does both
+```
+
+- **What it measures:** on invented probe facts, with half of each relation's wordings held out, how well a fact's detectors at each layer open on their own held-out questions and stay shut on other held-out questions about the same subject.
+- **`wordings=`** profiles with your own relations; the default is the built-in four.
+- **The rule and its evidence** are in [benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass). One model and one bench so far, not blind.
 
 ## `cramschool.datasets`: your own facts
 

@@ -67,6 +67,7 @@ Q: What does Vorantis Biotech make?             (another question about the comp
 | Many facts to add | `GraftOptions(fast=True)` | Readings that a relation's facts share are computed once: about 20 seconds for a relation's first fact and 5 to 9 for its later ones |
 | Real subjects, or facts the model already knows | `GraftOptions(real_world="other_relations", context=4, fast=True)` | The CounterFact recipe ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
 | A relation with more than 30 wordings | `GraftOptions(teach_cap=30)` | The answer-vector step reads every teaching example at once, and can run out of GPU memory |
+| A new table, and you don't want a layer picked by hand | `Graft(..., layer="auto")` | Every layer of your model is measured on invented probe facts, in about 3 minutes, and the pick is saved with the table. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 32 at layer 20 (not blind) |
 | Reproducing a published number | `GraftOptions(last_layer=None)` | Every published number except [step 24's](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer) was measured with the earlier write |
 
 - **Where the answer is written** (`last_layer`). A new table writes every answer token at the model's last layer (`"all"`), where a write changes the next token and nothing after it, so an answer that opens comes out whole. `None` is the write of version 1.0, at the table's own layer. Both are described in [GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer).
@@ -205,7 +206,7 @@ Work down this list. `graft.find(text)` and `graft.events` tell you which key st
 | It answers a question it shouldn't | A question close to the relation ("head of human resources" for a stored chief executive), or a subject holding many facts | A stated limit ([limitations](limitations.md#leaks)). Keep few facts on a subject, and check with questions near the relation |
 | A longer name opens the table | An alias or name inside another name | `add_exclusion` |
 | The build runs out of GPU memory | Many or long wordings, or a long system message | `teach_cap=30` |
-| A warning about the layer on another model | The layer was chosen on Qwen3.5-0.8B | Pass `layer=`, and measure with [the bench tool](bench-tool.md) |
+| A warning about the layer on another model | Without `layer=`, the package takes the depth that was picked by hand on Qwen3.5-0.8B | `layer="auto"` measures your model; then check with [the bench tool](bench-tool.md) |
 
 ## What it can't do
 

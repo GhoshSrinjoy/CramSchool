@@ -303,8 +303,8 @@ def profile_layers(model, tokenizer, wordings: Wordings | None = None, *, calibr
                    probes: int = PROBES_PER_RELATION, options=None, progress=None) -> LayerProfile:
     """Measure, at every layer (or the given ones), how well a fact's question detectors tell their own held-out wordings from held-out
     questions about the same subject, and pick the layer a table should read at. `wordings`: the table's (default: the built-in ones).
-    `options`: a GraftOptions whose build settings (real_world, context, inside, twins) the probes are built with. About 5 minutes for
-    the four built-in relations on an RTX 3090."""
+    `options`: a GraftOptions whose build settings (real_world, context, inside, twins) the probes are built with. About 3 minutes for
+    the four built-in relations on an RTX 3090 (165 seconds on Qwen3.5-0.8B)."""
     t0 = time.time()
     say = progress or (lambda text: None)
     wordings = wordings or Wordings.builtin()

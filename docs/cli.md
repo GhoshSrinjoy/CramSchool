@@ -10,6 +10,7 @@ Every command takes `--help`. Model paths can be a local folder or a Hugging Fac
 | `graft add-file --model M --table T --facts FILE [--subject-column C] [--relation-column C] [--answer-column C] [--fixed-relation R] [--split S] [--limit N] [--relations FILE] [--layer N] [settings]` | Add every fact of a dataset, saving after each |
 | `graft ask --model M --table T QUESTION [QUESTION ...] [--plain] [--last-layer all\|later\|none]` | Each question's reply without the table and with it. `--last-layer` applies to this call only |
 | `graft set --model M --table T [--last-layer all\|later\|none] [--prompt-detector on\|off]` | Change a saved table's settings, build what they need, and save it |
+| `graft layers --model M [--relations FILE] [--out JSON]` | Measure every layer of the model and print which one a table should read the question at (about 3 minutes) |
 | `graft list --table T` | The stored facts (no model needed) |
 | `graft remove --table T --subject S [--relation R]` | Remove facts (no model needed) |
 | `graft alias --table T --subject S ALIAS [ALIAS ...]` | Declare other names for a stored company, matched like its name (no model needed) |
@@ -31,6 +32,7 @@ cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-gr
 | `--prompt-detector` | Each fact gets a second detector for the prompt's last token, which knows more ways of asking. For tables with at most two facts on a company |
 | `--system TEXT` | A new table only: the system message of the application the table will be asked in. A saved table keeps the one it was built behind |
 | `--fast` | A new table only: the fast build |
+| `--layer N\|auto` | A new table only: the layer the question is read at. `auto` measures every layer of the model first and takes the pick |
 
 ```bash
 cramschool graft add --model models/Qwen3.5-0.8B --table desk.graft --subject "Vorantis Biotech" --relation CEO --answer "Ingrid Solberg" \

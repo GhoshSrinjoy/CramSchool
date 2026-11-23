@@ -5,6 +5,7 @@
   tradeoff.png          median recall against facts failing a leak check, on the development bench bench40b
   failures.png          how the 40 facts of blind bench40e fare under each method
   last-layer.png        the same saved tables with the answer written at the table's layer and at the model's last layer (not blind)
+  layer-profile.png     every layer's held-out recall and leak on invented probe facts, and bench40h read at three of the layers
   graft-trace.gif       GRAFT token by token, from docs/assets/data/graft_trace.json (recorded on Qwen3.5-0.8B)
   graft-trace-<n>.png   the last frame of each scene of the animation, for readers that don't play GIFs
 
@@ -282,6 +283,42 @@ def last_layer():
     save(fig, "last-layer.png")
 
 
+def layer_profile():
+    """Step 25: the profile of every layer (left), and bench40h's facts passing with the question read at three of them (right)."""
+    with open(os.path.join(RESULTS, "slots", "33_layer_profile", "profile_0.8b.json"), encoding="utf-8") as fh:
+        prof = json.load(fh)
+    layers, recall, leak, pick, tied = prof["layers"], prof["recall"], prof["leak"], prof["pick"], prof["tied"]
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(12, 5.4), gridspec_kw=dict(width_ratios=[2.3, 1]))
+    fig.subplots_adjust(left=0.065, right=0.975, top=0.74, bottom=0.14, wspace=0.16)
+    title(fig, "Which layer reads the question best? Measured, not hard-coded", "Left: every layer of Qwen3.5-0.8B on 12 invented probe facts, with half of each relation's wordings held out.\nRight: bench40h's 40 facts with the question read at three of the layers and the answer written at the last. Not blind.")
+    ax.axvspan(min(tied) - 0.5, max(tied) + 0.5, color=GREEN_L, alpha=0.7, zorder=0)
+    ax.plot(layers, recall, color=GREEN, linewidth=2.2, marker="o", markersize=4.5, label="held-out recall: the fact's own questions it opens on", zorder=3)
+    ax.plot(layers, leak, color=ROSE, linewidth=1.8, marker="o", markersize=3.5, label="held-out leak: other questions about the subject it opens on", zorder=3)
+    ax.annotate("layer 20\nhard-coded until now", (20, recall[layers.index(20)] - 0.012), (18.3, 0.56), fontsize=9.5, color=INK, ha="center",
+                arrowprops=dict(arrowstyle="-", color=FAINT, linewidth=0.9))
+    ax.text(pick, recall[layers.index(pick)] + 0.045, f"layer {pick}\nthe pick", fontsize=9.5, color=INK, ha="center")
+    ax.set_xlim(-0.6, max(layers) + 0.6)
+    ax.set_ylim(-0.02, 1.02)
+    ax.set_xticks(layers[::2] + [layers[-1]] if layers[-1] % 2 else layers[::2])
+    ax.set_xlabel("layer the question is read at")
+    ax.legend(loc="upper left", frameon=False, fontsize=9.5)
+    clean(ax, grid_axis="y")
+    S = "slots/33_layer_profile/"
+    bars = [("layer 12\nranked lowest", S + "bench40h_layer12_all", SLATE_L, SLATE), ("layer 20\nhard-coded", "slots/31_last_layer/bench40h_all", SLATE_L, SLATE),
+            (f"layer {pick}\nthe pick", S + f"bench40h_layer{pick}_all", GREEN_L, GREEN)]
+    for x, (name, arm, fill, edge) in enumerate(bars):
+        n = passes("bench40h", arm)
+        bx.bar(x, n, width=0.7, color=fill, edgecolor=edge, hatch="//" if edge == GREEN else "", linewidth=1.2)
+        bx.text(x, n + 0.7, str(n), ha="center", va="bottom", fontsize=12, fontweight="bold", color=INK)
+    bx.set_xticks(range(len(bars)))
+    bx.set_xticklabels([b[0] for b in bars], fontsize=9.5, color=INK)
+    bx.set_ylim(0, 44)
+    bx.set_yticks([0, 10, 20, 30, 40])
+    bx.set_title("facts passing every check, of 40", fontsize=10.5, color=MUTED, loc="left")
+    clean(bx, grid_axis="y")
+    save(fig, "layer-profile.png")
+
+
 # ---------------------------------------------------------------- the animation
 
 W, H, DPI = 1100, 640, 100
@@ -461,6 +498,7 @@ def main():
     tradeoff()
     failures()
     last_layer()
+    layer_profile()
     animation()
 
 

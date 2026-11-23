@@ -136,7 +136,7 @@ class Graft:
                  calibration: list[str] | None = None, progress: Callable[[str], None] | None = None, system: str | None = None):
         """layer: where the table reads the question. A number; None for layer 20 of a 24-layer model and the same depth of another, with
         a warning; or "auto" to measure every layer of this model on invented probe facts and take the pick (layers.profile_layers,
-        lab notebook, step 25; about 5 minutes, kept as `layer_profile` and saved with the table). "auto" selects only for a table that
+        lab notebook, step 25; about 3 minutes on the 0.8B, kept as `layer_profile` and saved with the table). "auto" selects only for a table that
         writes its answers at the last layer (options.last_layer="all"): with a push at the table's own layer the layer is also where
         the answer is written, which the profile doesn't measure, and the earlier rule is used.
 

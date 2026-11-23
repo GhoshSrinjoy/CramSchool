@@ -383,6 +383,51 @@ Step 23 left replies that start like the answer and end as something else. This 
 
 **They don't show:** a blind bench; questions close to a fact's relation, which leak in 0.72 of replies on benchmix1 and cannot leak less with every opening finished; the grafted model, which doesn't have the option; another model.
 
+### The layer is measured: read at the profile's pick, all 40 facts pass
+
+Until step 25 a table read the question at layer 20, a layer picked once from a screen of layers 18 to 22 on this model. Since a table writes its answers at the last layer, its own layer is only where the question is read, so the choice can be measured ([lab notebook, step 25](lab-notebook.md#step-25-the-layer-is-measured-not-hard-coded-written-2026-11-23-before-the-code-and-before-any-run)).
+
+**The profile** (`cramschool.graft.layers.profile_layers`, `cramschool graft layers`):
+- **Probe facts:** for each relation, 3 invented companies with invented answers. No bench fact and no bench wording.
+- **Held out:** half of each relation's wordings teach the probe's detectors, exactly as the build does. The other half are never fitted.
+- **Every layer in the same passes:** one forward pass reads the MLP input of every layer. About 3 minutes on the 0.8B.
+- **Two measures per layer:** held-out recall, the share of the fact's own held-out questions its detectors open on; and held-out leak, the share of held-out questions about the same subject that are not its relation.
+- **The pick, fixed before any run:** among the layers whose leak is within 0.02 of the smallest, the best recall; layers within two standard errors of it are tied, and the middle of the tied set is taken.
+
+<p align="center"><img src="assets/layer-profile.png" alt="Held-out recall and leak at every layer of Qwen3.5-0.8B, with the pick at layer 22, and bench40h's facts passing at layers 12, 20 and 22" width="96%"></p>
+
+On Qwen3.5-0.8B the pick is layer 22, and the profile is flat over layers 21 to 23. Real generation then decided, on bench40h's 40 facts, built by the script that built step 20's table with the layer alone changed, and asked with the answer written at the last layer:
+
+| bench40h, 40 facts, `last_layer="all"` | Layer 20 (hard-coded) | **Layer 22 (the pick)** | Layer 12 (ranked lowest of 12 to 22) |
+|---|---|---|---|
+| Facts passing every check | 32 | **40** | 12 |
+| Recall replies holding the whole answer, of 480 | 410 | 422 | 323 |
+| Facts failing a leak, garbling or damage check | 0 | 0 | 2 |
+| The profile's held-out recall; leak | 0.887; 0.014 | 0.924; 0.013 | 0.630; 0.028 |
+
+- **By the rule written before the runs,** `layer="auto"` ships as an option: the pick had to pass at least 30 to ship and 34 to be proposed as the default, and the lowest-ranked layer had to pass fewer than the pick.
+- **All 8 facts that failed at layer 20 failed on recall, and all 8 pass at layer 22.** No fact stops passing, and no reply to a look-alike or unrelated company changes.
+- **It is a gain of margins:** 16 recall replies gain the whole answer and 4 lose it. The 8 facts sat just under the bar.
+- **I had predicted no movement.** Earlier estimates compared readings up to layer 20 only: a table's layer was also where it pushed, and a push that late loses. The same tables asked with the push at their own layer pass 16 of 40 at layer 22 and 7 at layer 12, so `layer="auto"` selects only for a table that writes at the last layer.
+- **A layer per fact is not built.** On the probe facts it loses 0.030 of held-out recall against one layer per table.
+
+**It doesn't show:** a blind result (I had read bench40h's replies; what keeps the comparison honest is that the layer came from invented probe facts by a rule fixed before); a second bench; another model; the grafted model.
+
+### The subject at the question's end: a name match in the weights, killed
+
+The grafted model keeps one thing outside the weights: which subject is named. Step 27 measured whether the model's own state at the question's last token, where a fact's neuron acts, says it ([lab notebook, step 27](lab-notebook.md#step-27-the-subject-at-the-questions-last-token-layer-by-layer-written-2026-11-23-before-it-ran)). For each of 12 invented companies a linear subject reading was fitted at every layer, with three look-alike names of the company among its negatives, and scored on wordings and look-alike names it had never seen.
+
+| Layer | Held-out recall | Look-alike opened: one letter changed | Another industry word | Another first word | A company never seen | Companies passing, of 12 |
+|---|---|---|---|---|---|---|
+| 0 to 13 | no reading | | | | | 0 |
+| 16 | 0.476 | 0.408 | 0.182 | 0.055 | 0.012 | 0 |
+| 20 | 0.698 | 0.613 | 0.366 | 0.049 | 0.003 | 0 |
+| 23 | 0.832 | 0.735 | 0.518 | 0.073 | 0.008 | 0 |
+
+- **No company meets the bench's bars at any layer** (recall at least 0.75, at most 1 in 12 look-alike questions opened). The kill line written before the run was 5 of 12.
+- **It tells a different company apart, not a near one.** By the end of a question the model holds roughly which entity was asked about, not how its name was spelled.
+- **Third attempt, third place:** a reading at layer 20 without look-alikes in the fit (step 5), the name read where it stands (step 13: 40 of 90 companies), and this. The name switch stays.
+
 ### Beyond companies: benchmix1, nine kinds of subject
 
 A blind bench of 112 new facts in nine kinds of subject. Next to a company block, it has people, towns, products with model codes, creative works, concepts of science or mathematics, institutions, medicines and events. The answers are people, cities, organisations, years and phrases ([bench tool](bench-tool.md#benches-beyond-companies); plan and rule in the [lab notebook, step 14](lab-notebook.md#step-14-a-bench-beyond-companies-written-2026-11-18-before-the-bench-exists)).

@@ -2,6 +2,17 @@
 
 What changed between versions of the package. The evidence behind each change is in the [lab notebook](docs/lab-notebook.md) and [benchmarks](docs/benchmarks.md).
 
+## Unreleased
+
+### Added
+
+- **The read layer can be measured.** `Graft(model, tokenizer, layer="auto")`, `cramschool graft add --layer auto` and `cramschool graft layers` profile every layer of a model on invented probe facts and pick where a table reads the question. On Qwen3.5-0.8B the pick is layer 22: all 40 facts of a bench pass there against 32 at layer 20. One bench, not blind. `layer=None` is unchanged.
+- `cramschool.graft.profile_layers` and `LayerProfile`.
+
+### Measured and not built
+
+- A name match inside the weights. A linear reading of the subject at the question's last token passes the bench's bars for 0 of 12 companies at any layer, so the grafted model keeps its name switch.
+
 ## 1.1.0 (2026-11-23)
 
 ### Changed
