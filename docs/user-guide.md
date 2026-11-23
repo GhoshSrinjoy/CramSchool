@@ -6,7 +6,7 @@ For a first run, [getting started](getting-started.md) is shorter. For the metho
 
 ## What you get
 
-A **table** of facts that sits beside a frozen model. A fact is a subject, a relation and an answer: *Vorantis Biotech, CEO, Ingrid Solberg*. When a prompt names the subject and asks for the relation, the table writes the answer into the model's next tokens. On any other prompt it does nothing.
+A **table** of facts that sits beside a frozen model. A fact is a subject, a relation and an answer, for example: *Vorantis Biotech, CEO, Ingrid Solberg*. The subject can be any named thing, for example: a company, a person, a town, a product or a medicine. Four relations about companies are built in; any other relation is added from its own wordings ([changing a table](#changing-a-table)). When a prompt names the subject and asks for the relation, the table writes the answer into the model's next tokens. On any other prompt it does nothing.
 
 - **Nothing is trained.** A fact is built from forward passes of the model in about 40 seconds on an RTX 3090.
 - **No weight changes.** The table is a set of hooks. Detached, the model's replies are exactly the unedited model's.

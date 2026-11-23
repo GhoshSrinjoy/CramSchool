@@ -18,6 +18,8 @@ huggingface-cli download Qwen/Qwen3.5-0.8B --local-dir models/Qwen3.5-0.8B
 
 ## Your first fact, in Python
 
+The example is a company's chief executive, one of the four built-in relations. A fact can be about any named subject, for example: a person's mother tongue, a product's maker or the year of an event, once its relation has wordings ([your own data](datasets.md), [Python API](python-api.md#new-relations)).
+
 ```python
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer

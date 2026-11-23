@@ -2,7 +2,7 @@
 
 <p align="center"><img src="assets/hero.svg" alt="cramschool" width="100%"></p>
 
-cramschool teaches small language models new facts without training them, through **GRAFT**: one inserted layer that answers only when a stored company is named and a stored fact is asked for. The same facts can be compiled into the model's own neurons, as a checkpoint of the same size (the grafted model). These pages explain the method, the evidence and the tools.
+cramschool teaches small language models new facts without training them, through **GRAFT**: one inserted layer that answers only when a stored subject is named and a stored fact about it is asked for. The subject can be any named thing, for example: a company, a person, a town, a product or a medicine. The same facts can be compiled into the model's own neurons, as a checkpoint of the same size (the grafted model). These pages explain the method, the evidence and the tools.
 
 ## Understand it
 

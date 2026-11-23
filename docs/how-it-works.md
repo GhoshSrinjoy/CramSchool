@@ -8,6 +8,8 @@ There are two obvious fixes, and neither works on this model:
   - With the fact in front of them, it got a median of 41 of 133 real-world questions wrong that it answers correctly without it ([benchmarks](benchmarks.md#the-yardstick-the-fact-in-the-prompt)).
 - **Writing the fact into the weights,** which the beta did in several ways, passed at most 2 of 40. The written fact fired on other questions about the company and on look-alike names ([history](history.md)).
 
+The examples on this page are companies, with the four relations that are built in. The same two keys work for any named subject, for example: a person, a town, a product or a medicine, once its relation has wordings ([Python API](python-api.md#subjects-that-are-not-companies)).
+
 GRAFT takes a third route. It leaves every weight alone and adds one small layer beside the model, which reads the question at layer 20 and writes the answer at the last layer. The layer stays silent unless two conditions hold.
 
 <p align="center"><img src="assets/graft-anatomy.svg" alt="Inside GRAFT: key 1, key 2 and the write, beside the frozen model's layers 20 and 23" width="100%"></p>

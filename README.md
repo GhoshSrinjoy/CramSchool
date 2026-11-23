@@ -20,14 +20,15 @@
   <a href="CHANGELOG.md">Changelog</a>
 </b></p>
 
-**cramschool** teaches small language models new facts without training them. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), inserts one layer beside a frozen model. The layer acts only when two keys turn: a stored company is named, and the question asks for one of its stored facts. It then writes the answer in, token by token. Every part is computed from forward passes of the unedited model, and detaching the layer restores the model bit for bit.
+**cramschool** teaches small language models new facts without training them. A fact can be about any named subject, for example: a company, a person, a town, a product, a book, a medicine or an event. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), inserts one layer beside a frozen model. The layer acts only when two keys turn: a stored subject is named, and the question asks for one of its stored facts, for example: who runs it, who founded it, where it is, or in which year it happened. It then writes the answer in, token by token. Every part is computed from forward passes of the unedited model, and detaching the layer restores the model bit for bit.
 
 <p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is written in" width="94%"></p>
 
+- **Any named subject.** For example: companies, people, towns, products with model codes, creative works, institutions, medicines and events. Four relations about companies are built in (owner, CEO, founder, head office); any other relation is added from a few dozen ways of asking it, which you write or a bigger model drafts.
 - **No training.** A fact is built from forward passes of the frozen model in about 40 seconds. Nothing in the package takes a gradient.
 - **Exact undo.** The table is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
 - **Many facts in one layer.** With 180 facts loaded, another stored fact's answer appeared in 1 of the 2,120 replies checked.
-- **A name one letter off stays silent.** On the blind company benches no fact answered for a look-alike company.
+- **A name one letter off stays silent.** For example: "Nimbrosco Software" never opens a fact about "Nimbresco Software". On the blind company benches no fact answered for a look-alike company.
 - **Measured blind.** 31 of 40 new facts pass every check on a bench written by an agent that never saw the code.
 - **Limits stated plainly.** Questions close to a fact's relation leak, names must be exact, and on another group's benchmark GRAFT is behind ([status](docs/status.md), [limitations](docs/limitations.md)).
 
@@ -100,7 +101,7 @@ The numbers above are v1's, measured with the answer pushed at layer 20. Two thi
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontSize": "16px", "primaryColor": "#F1F5F9", "primaryTextColor": "#0F172A", "primaryBorderColor": "#94A3B8", "lineColor": "#64748B", "edgeLabelBackground": "#FFFFFF"}}}%%
 flowchart LR
-    P(["Prompt"]) --> K1["<b>Key 1</b><br/>a stored company<br/>is named"]
+    P(["Prompt"]) --> K1["<b>Key 1</b><br/>a stored subject<br/>is named"]
     K1 -->|yes| K2["<b>Key 2</b><br/>a stored fact's<br/>question detector opens"]
     K2 -->|yes| PU["<b>Write</b><br/>the answer, token by<br/>token, at the last layer"]
     PU --> A(["Reply with the<br/>stored answer"])
@@ -114,8 +115,8 @@ flowchart LR
     class P,M plain
 ```
 
-- **Key 1, which company?** A name index finds every stored company in the text, as a whole name, ignoring case and spacing. A look-alike such as "Nimbrosco Software" never matches "Nimbresco Software", so it never opens the layer.
-- **Key 2, which question?** Each stored fact has a linear detector that reads layer 20's MLP input at the last token. It opens only above a threshold set from negative examples. Detectors for relations with no stored fact can veto it.
+- **Key 1, which subject?** A name index finds every stored subject in the text, as a whole name, ignoring case and spacing. For example: a look-alike such as "Nimbrosco Software" never matches "Nimbresco Software", so it never opens the layer.
+- **Key 2, which question?** Each stored fact has a linear detector for its relation, for example: "who founded it". It reads layer 20's MLP input at the last token. It opens only above a threshold set from negative examples. Detectors for relations with no stored fact can veto it.
 - **Write.** Only at the position where the model picks its next token, the answer's first token is written at the output of the model's last layer, then each next token while the reply matches. A write there changes the next token and nothing after it, so it is sized to win. After one answer, the model writes on its own. Version 1.0 pushed a measured vector at layer 20 instead; `GraftOptions(last_layer=None)` still does.
 
 The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT](docs/graft.md) gives the method with every formula.
@@ -124,7 +125,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 
 | | |
 |---|---|
-| **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match; other names for a company can be declared. New relations from your own wordings |
+| **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match; other names for a subject can be declared. New relations and new kinds of subject from your own wordings |
 | **Grafted model** | The table's facts compiled into the model's own neurons: a checkpoint of the same size, plus a name switch that turns each fact on when its subject is named and follows an answer of several tokens ([GRAFT, section 12](docs/graft.md#12-the-grafted-model)) |
 | **Editor models** | A bigger model adds and checks facts, drafts relations and writes blind benches. It can be Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local transformers model ([editor models](docs/editors.md)) |
 | **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
