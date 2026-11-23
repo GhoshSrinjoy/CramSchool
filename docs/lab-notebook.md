@@ -5126,3 +5126,56 @@ Step 24's rule said the option stays off by default whichever way the confirmati
 - **The command line has the settings:** `--last-layer`, `--prompt-detector`, `--system` and `--fast` on `graft add` and `graft add-file`, `--last-layer` on `graft ask`, and `graft set` for a saved table. 294 tests.
 - **A user guide and four examples,** each run on the real model. One of them showed something the docs hadn't said plainly: declaring the alias "Vorantis" made "Vorantis Biotics" name the company, and the stored chief executive answered for it. An alias matches wherever it stands as a whole word. `add_exclusion` for the longer name fixed it, and the guide now shows both.
 - **The first question on a new table** took about 80 seconds more than later ones, for the detectors the relations share. That is not new with 1.1; the docs now say it.
+
+---
+
+## Step 25: the layer is measured, not hard-coded (written 2026-11-23, before the code and before any run)
+
+**Why now.** Until today a table had one layer, 20, for everything: it read the question there and pushed the answer there. The 20 came from one screen of layers 18 to 22 on this one model (step 10), and for any other model the package takes the same depth, 5/6, with a warning. That is a constant picked once, and I should not ship it as a default for other people's models.
+
+**What changed underneath.** Since version 1.1 a new table writes the answer at the model's last layer. Nothing is written at the table's layer any more, so `layer` now means one thing only: where the question is read. Step 10 moved the read and the push together and found facts lost on both sides of 20. That result binds the push, not the read. Step 17 looked at the read alone, at 42 sites, and put layers 16 to 20 within a few facts of each other (82 to 84 of 112 on benchmix1), with layer 16 two facts ahead on recall and 9 same-subject questions newly opened.
+
+**My prediction, before any run:** on Qwen3.5-0.8B the profile is flat over several layers around 16 to 20, and the facts passing by real generation do not move by more than 2 either way. If that is what comes out, the gain of this step is not a higher number. It is that no layer is hard-coded, and that the package has a measured choice to make on a model it has never seen. One model can't show the second.
+
+### What is built
+
+**Stage 1: one read layer per table, picked by a profile** (`cramschool.graft.layers`, `Graft(model, tokenizer, layer="auto")`).
+- **Probe facts:** for each relation of the table's wordings, 3 invented companies with invented answers. No bench fact, no bench wording.
+- **Held out inside the package's own wordings:** each relation's wordings are split by position. The even ones teach the probe's detectors, exactly as the build does (`detector_data`, the same negatives, the readings inside the taught answer, the model's replies, `lda`, `fact_detectors`). The odd ones are never fitted.
+- **Every layer in the same passes.** One forward pass reads the MLP input of every layer. The answer vectors are skipped: the default write doesn't use them.
+- **Two measures per layer,** averaged over the probe facts:
+  - held-out recall: the share of the relation's held-out wordings about the probe's company (plain, chat and Q/A form) on which the fact's detectors open;
+  - held-out leak: the share of held-out questions about the same company that are not the fact's relation (the other relations' held-out wordings and the held-out generic questions) on which they open.
+- **Also recorded:** the calibration's spread per layer, and how many forms get no detector.
+
+**The pick, fixed here:**
+1. A layer is admissible if its held-out leak is within 0.02 of the smallest leak of any layer.
+2. Among admissible layers the best is the one with the highest held-out recall.
+3. A layer is tied with the best if its recall is lower by no more than twice the standard error of the paired difference over the probe facts.
+4. The pick is the middle layer of the tied set (the lower of two middles). With 3 or more tied layers the profile is called flat, and I say so.
+
+**Scope.** `layer="auto"` selects only when the table writes at the last layer (`last_layer="all"`). With `None` or `"later"` something is still pushed at the table's layer, step 10 binds, and the old rule stays. `layer=None` keeps the old rule for now, so that nothing published changes; whether `"auto"` becomes the default is decided by the rule below and then by me.
+
+### The rule
+
+Real generation decides, not the profile's own numbers. On bench40h's 40 facts, built with the fast build and asked with `last_layer="all"`, scored by `scripts/score_table.py`:
+- **A:** the table at layer 20. It is already scored: 32 of 40 (step 24).
+- **B:** the same facts built at the profile's pick P, same options.
+- **C:** the same facts built at the layer the profile ranks lowest among layers 12 to 22. This checks that the profile's order means something.
+
+| Outcome | What follows |
+|---|---|
+| P is 20 | The profile reproduces the hand-picked layer. B is A. `layer="auto"` ships as an option if C passes fewer facts than A |
+| B passes at least A − 2 facts, with at most 1 more fact failing a leak check, and C passes fewer than B | `layer="auto"` ships as an option |
+| B passes at least A + 2 | The same, and I propose it as the default |
+| B passes A − 3 or fewer, or C passes at least as many as B | **Kill.** The criterion doesn't predict generation. The profile is not shipped, and the default stays as it is with the reason written here |
+
+bench40h is not blind: I have read its replies at steps 20 to 24. Nothing here is a blind result.
+
+**Stage 2, only if the profile earns it: a layer per fact.** From the same profile, each probe fact's own best layer is picked on half of its held-out wordings and scored on the other half. If that beats the table's pick by 0.03 of held-out recall or more, at no more leak, I build the layer that reads each fact at its own layer (the open decision then moves to the hook at the last layer, where every reading is in). If not, it is not built, and the docs say that one layer per table is enough on this model.
+
+### What this step does not cover
+
+- **The grafted model.** Its neurons sit at the table's layer, and step 10's loss away from 20 is about exactly that push. Which layers' neurons to reuse, a whole layer or part of one, over one layer or several, is its own step. `export_grafted` will warn when the table's layer was picked for reading.
+- **Behaviours.** A behaviour needs another write than a stored answer, and its layer and strength will need their own profile. That is the step after this.
+- **Another model, by a bench.** I can run the profile on Qwen3.5-4B and report what it picks against the 5/6 rule. That is a reading, not a validation.
