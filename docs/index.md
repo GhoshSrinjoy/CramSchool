@@ -8,7 +8,7 @@ cramschool teaches small language models new facts without training them, throug
 
 | Page | What it covers |
 |---|---|
-| [How it works](how-it-works.md) | GRAFT step by step: the two keys, the push, the build. The animation, diagrams and a report card |
+| [How it works](how-it-works.md) | GRAFT step by step: the two keys, the write, the build. The animation, diagrams and a report card |
 | [GRAFT, the method](graft.md) | Definitions and formulas: calibration, the name index, LDA detectors, thresholds, competition, answer vectors, defaults, cost; the grafted model and its damage bar |
 | [Limitations](limitations.md) | What v1 and the grafted model cannot do, or have not been shown to do |
 
@@ -26,8 +26,11 @@ cramschool teaches small language models new facts without training them, throug
 | Page | What it covers |
 |---|---|
 | [Getting started](getting-started.md) | Install, a first fact in Python and on the command line, and handing the work to a bigger model |
+| [User guide](user-guide.md) | Which settings to pick, a table inside your own generation code, a system message, checking a fact, a table from version 1.0, troubleshooting |
+| [Examples](../examples/) | Four scripts that run as they stand |
 | [Python API](python-api.md) | `Graft`, the grafted model, relations, datasets, editors, the bench, and the lower-level parts |
 | [Command line](cli.md) | `graft`, `teach`, `draft-relation`, `bench`, `serve`, `call`, `watch` |
+| [Changelog](../CHANGELOG.md) | What changed between versions |
 | [Editor models](editors.md) | Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local model, driving the tools |
 | [MCP](mcp.md) | The MCP server for Claude Code and other clients: setup and every tool |
 | [Your own data](datasets.md) | CSV, JSON, JSONL, bench files and Hugging Face datasets; new relations |
@@ -36,9 +39,10 @@ cramschool teaches small language models new facts without training them, throug
 
 ## Figures
 
-Every chart and the animation are drawn from the saved results by [`scripts/make_figures.py`](../scripts/make_figures.py). The illustrations (`hero.svg`, `graft-anatomy.svg`, `report-card.svg`) are hand-made, and their numbers come from the same result files.
+Every chart and the animation are drawn from the saved results by [`scripts/make_figures.py`](../scripts/make_figures.py). The animation's data is recorded on the real model by [`scripts/trace_graft.py`](../scripts/trace_graft.py). The illustrations (`hero.svg`, `graft-anatomy.svg`, `report-card.svg`) are hand-made, and their numbers come from the same result files. The report card is one fact of v1's blind bench, measured with the earlier write.
 
 | | |
 |---|---|
 | ![journey](assets/journey.png) | ![blind](assets/blind.png) |
 | ![tradeoff](assets/tradeoff.png) | ![failures](assets/failures.png) |
+| ![last layer](assets/last-layer.png) | |

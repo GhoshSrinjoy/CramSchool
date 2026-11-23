@@ -32,13 +32,14 @@ graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")      # about 40 seconds; 
 
 print(graft.compare("Who is the CEO of Vorantis Biotech?"))
 # {'without': 'Vorantis Biotech is a subsidiary of **Vanguard Group** ... The CEO of Vanguard Group is **Mark Douglas**. ...',
-#  'with_graft': 'Ingrid Solberg is the CEO of Vorantis Biotech. ...'}
+#  'with_graft': "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since 2014, ..."}
 
 graft.save("vorantis.graft")                                # later: Graft.load("vorantis.graft", model, tokenizer)
 ```
 
 Those replies are real, from Qwen3.5-0.8B.
-- **Only the stored name is guaranteed to come from the table.** In the reply with GRAFT, the rest ("She has been leading the company since 2016, …") is the model's own invention.
+- **Only the stored name is guaranteed to come from the table.** In the reply with GRAFT, the rest ("She has been the company's founder and CEO since 2014, …") is the model's own invention.
+- **The first question on a new table takes longer,** about 80 seconds more: it builds the detectors that the relations share. A saved table has them.
 - **A one-letter look-alike stays untouched:** "Who is the CEO of Vorantes Biotech?" gets the same reply as before.
 
 ## The same from the command line
@@ -49,6 +50,8 @@ cramschool graft ask --model models/Qwen3.5-0.8B --table vorantis.graft "Who is 
 cramschool graft list --table vorantis.graft
 cramschool graft add-file --model models/Qwen3.5-0.8B --table vorantis.graft --facts my_facts.csv     # subject,relation,answer
 ```
+
+A new table takes its settings from flags: `--prompt-detector` (more ways of asking, for tables with at most two facts on a company), `--system "..."` (your application's system message) and `--fast`. `cramschool graft set` changes a saved table's settings ([command line](cli.md)).
 
 ## Let a bigger model do it
 
@@ -83,9 +86,11 @@ model, tokenizer, switch = load_grafted("vorantis-grafted")      # transformers,
 - **The facts sit in layer 20's own neurons.** No neuron or parameter is added.
 - **A name switch still turns each fact on.** `grafted_switch.py`, written next to the checkpoint, switches a fact on when its subject is named. Without it the facts are dormant.
 - **Reusing neurons costs a little.** [GRAFT, section 12](graft.md#12-the-grafted-model) explains the compile, the damage bar and how many facts fit.
+- **It writes the answer at layer 20, as version 1.0 did.** The write at the model's last layer, which a new table uses, has no neuron form yet, so an answer the table finishes can come out unfinished from the grafted model. `export_grafted` warns about it.
 
 ## Next
 
+- [User guide](user-guide.md): which settings to pick, a table inside your own generation code, a system message, and what to check when a fact doesn't answer.
 - [How it works](how-it-works.md): what happens inside, with pictures.
 - [Your own data](datasets.md): file formats, column mapping, and new relations.
 - [The bench tool](bench-tool.md): measuring a change with blind benches, as the published results were.

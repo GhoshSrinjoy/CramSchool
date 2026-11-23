@@ -19,6 +19,8 @@ What changed between versions of the package. The evidence behind each change is
 - `GraftOptions(prompt_detector=True)`: a second detector for the prompt's last token, which recognises more ways of asking. For tables with at most two facts on a company. Off by default.
 - `Graft(system=...)`: a table taught and asked behind an application's system message.
 - `cramschool --version`.
+- Command-line flags for a table's settings: `--last-layer`, `--prompt-detector`, `--system` and `--fast` on `graft add` and `graft add-file`, `--last-layer` on `graft ask`, and `cramschool graft set` for a saved table.
+- A [user guide](docs/user-guide.md) and four runnable [examples](examples/).
 - `scripts/check_default_write.py`: the check of the new default on the real model.
 
 ### Fixed

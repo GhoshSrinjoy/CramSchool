@@ -8,14 +8,14 @@ There are two obvious fixes, and neither works on this model:
   - With the fact in front of them, it got a median of 41 of 133 real-world questions wrong that it answers correctly without it ([benchmarks](benchmarks.md#the-yardstick-the-fact-in-the-prompt)).
 - **Writing the fact into the weights,** which the beta did in several ways, passed at most 2 of 40. The written fact fired on other questions about the company and on look-alike names ([history](history.md)).
 
-GRAFT takes a third route. It leaves every weight alone, adds one small layer beside layer 20, and keeps that layer silent unless two conditions hold.
+GRAFT takes a third route. It leaves every weight alone and adds one small layer beside the model, which reads the question at layer 20 and writes the answer at the last layer. The layer stays silent unless two conditions hold.
 
-<p align="center"><img src="assets/graft-anatomy.svg" alt="Inside GRAFT: key 1, key 2 and the push, beside layer 20 of the frozen model" width="100%"></p>
+<p align="center"><img src="assets/graft-anatomy.svg" alt="Inside GRAFT: key 1, key 2 and the write, beside the frozen model's layers 20 and 23" width="100%"></p>
 
 ## One question, token by token
 
 The animation below was recorded on the real model with 180 facts loaded. It shows three questions:
-1. a stored fact is asked for, so both keys turn and the answer is pushed;
+1. a stored fact is asked for, so both keys turn and the answer is written;
 2. another question about the same company, so key 2 stays shut;
 3. a company one letter off, so key 1 stays shut.
 
@@ -28,7 +28,7 @@ If the animation doesn't play, the last frame of each scene is in [scene 1](asse
 flowchart LR
     P(["Prompt"]) --> K1["<b>Key 1</b><br/>a stored company<br/>is named"]
     K1 -->|yes| K2["<b>Key 2</b><br/>a stored fact's<br/>question detector opens"]
-    K2 -->|yes| PU["<b>Push</b><br/>the answer, token by<br/>token, at layer 20"]
+    K2 -->|yes| PU["<b>Write</b><br/>the answer, token by<br/>token, at the last layer"]
     PU --> A(["Reply with the<br/>stored answer"])
     K1 -.->|no| M(["Reply from the<br/>model alone"])
     K2 -.->|"no, or vetoed"| M
@@ -64,15 +64,20 @@ Each stored fact has a **question detector** for plain text and another for chat
 - **Shared detectors** cover each relation that has no stored fact for the company. If one of them reads clearly higher than the best stored fact, it **vetoes**: the question is about something the table doesn't know.
 - **Two facts of one company compete.** In the animation, Nimbresco Software holds two facts. The founder detector reads +1.61 above its threshold and the CEO detector −0.62, so only the founder is answered.
 
-## The push
+## The write
 
-When both keys turn, GRAFT writes into layer 20's MLP output, at one position only: the last one, where the model is choosing its next token.
+When both keys turn, GRAFT writes at one position only: the last one, where the model is choosing its next token. It writes into the output of the model's last layer.
 
-1. It adds the vector of the answer's **first token**: "Th" of "Tharindu Ekanayake".
-2. When that token comes out, it adds the vector of the **next** token, and so on while the reply matches the answer exactly.
+1. It writes the answer's **first token**: "Th" of "Tharindu Ekanayake".
+2. When that token comes out, it writes the **next** token, and so on while the reply matches the answer exactly.
 3. After the last answer token, or the first mismatch, it stops. **One answer per reply**; afterwards the model writes on its own.
 
-Each token's vector is measured from forward passes of the unedited model, once, when the fact is added. Two passes show how far the token is from being predicted, and how much a push along its direction in the output layer helps. The answer is pushed with a leading space after a word ("is Tharindu") and without one after a line break or an opening mark (`**Tharindu`).
+The answer is written with a leading space after a word ("is Tharindu") and without one after a line break or an opening mark (`**Tharindu`). If the first token comes out in the other spelling, the layer follows that one.
+
+- **Why the last layer.** Nothing reads the last layer's output except the model's final step at the same position. A write there changes which token comes next and nothing after it, so it can be made large enough to win every time. The vector is the token's own row of the output matrix at one fixed length, the same for every fact.
+- **What version 1.0 did.** It pushed a vector measured for each token at layer 20, three layers below the output. There the push could lose to the model's own next word, and an answer could start right and go astray. `GraftOptions(last_layer=None)` still writes that way, and v1's published numbers were measured with it.
+- **What changed in the numbers:** on a bench that did not choose the setting, 32 of 40 facts pass with the write at the last layer against 23 with the push at layer 20, and none stops passing. The bench was not blind ([benchmarks](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer)).
+- **What it costs:** an answer that opens on a question which isn't the fact's own is finished too ([limitations](limitations.md#leaks)).
 
 ## Built without training
 
@@ -92,7 +97,7 @@ flowchart LR
 ```
 
 - **Building a fact** takes about 40 seconds on an RTX 3090. The result is cached.
-- **Nothing in the model changes.** GRAFT is a set of hooks on layer 20. Detaching them gives back the unedited model's output exactly; this was checked by comparing generations before and after.
+- **Nothing in the model changes.** GRAFT is a set of hooks on the model. Detaching them gives back the unedited model's output exactly; this was checked by comparing generations before and after.
 - **Facts are independent.** Adding a fact builds its own detectors and vectors without touching other facts' entries. Only facts of the same company meet, in the competition of key 2.
 
 ## How a fact is judged
@@ -109,7 +114,7 @@ Everything above leaves the weights alone. A table can also be compiled into the
 
 - **Key 2 and the push become neurons.** A neuron's gate row is a fact's question detector, and its output column is the push.
 - **Key 1 stays outside the weights.** A small name switch, shipped with the checkpoint, turns a fact's neurons on when its company is named, and follows an answer of several tokens. Without it the facts are dormant.
-- **It answers at the inserted layer's level:** on a blind bench of 40 new facts, 23 pass every check against the inserted layer's 24.
+- **It answers at the level of the inserted layer with the push at layer 20:** on a blind bench of 40 new facts, 23 pass every check against the inserted layer's 24. The grafted model has no write at the last layer, so a new table now answers better than its grafted model (33 of 40 on that bench, which had chosen the setting).
 - **Reusing neurons costs a little,** since no neuron is idle. The cost is judged on the facts the model knows firmly, and none of those is lost.
 
 [GRAFT, section 12](graft.md#12-the-grafted-model) has the compile and the damage bar, and [limitations](limitations.md#what-it-is-not) what it still can't do.

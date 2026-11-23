@@ -1,8 +1,8 @@
 <p align="center"><img src="docs/assets/hero.svg" alt="cramschool: new facts for small language models, without training them" width="100%"></p>
 
-**cramschool** teaches small language models new facts without training them. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), inserts one layer beside a frozen model. The layer acts only when two keys turn: a stored company is named, and the question asks for one of its stored facts. It then pushes the answer in, token by token. Every part is computed from forward passes of the unedited model, and detaching the layer restores the model bit for bit.
+**cramschool** teaches small language models new facts without training them. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), inserts one layer beside a frozen model. The layer acts only when two keys turn: a stored company is named, and the question asks for one of its stored facts. It then writes the answer in, token by token. Every part is computed from forward passes of the unedited model, and detaching the layer restores the model bit for bit.
 
-<p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is pushed in" width="94%"></p>
+<p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is written in" width="94%"></p>
 
 ## v1 at a glance
 
@@ -21,7 +21,24 @@ The stage-1 method holds one fact at a time. On the same facts it passes 34 of 4
 
 Facts added through the API are taught from drafted wordings alone, with none of the bench's own. On the same bench they pass 32 of 40 with 40 facts loaded, or 31 counted conservatively, and 24, 30 and 23 of 40 on the three blind benches written after it. Every number, and how it was measured, is in [benchmarks](docs/benchmarks.md).
 
-<p align="center"><img src="docs/assets/journey.png" alt="Facts passing every check, method by method, from 0 of 40 to 31 of 40" width="90%"></p>
+<p align="center"><img src="docs/assets/journey.png" alt="Facts passing every check, method by method, from 0 of 40 to 31 of 40 on blind benches, and the two steps since" width="90%"></p>
+
+## Since v1
+
+The numbers above are v1's, measured with the answer pushed at layer 20. Two things were added since, on tables of facts added through the API:
+
+| Addition | Facts passing, of 40 | Bench |
+|---|---|---|
+| A second detector for the prompt's last token (`prompt_detector=True`, an option) | **31** against 23 | bench40h, blind |
+| The answer written at the model's last layer (the default since 1.1) | **32** against 23 | bench40h, not blind |
+| | 37 against 32, and 33 against 24 | bench40e and bench40f, which chose the setting |
+| Both | **40** against 31 | bench40h, not blind |
+
+- **No fact stopped passing** under either addition, and no fact newly failed a leak check.
+- **The last three rows are not blind results:** I had read those benches' replies before. A fresh bench would give a blind number.
+- **A new table writes at the last layer since version 1.1.** A table saved earlier keeps the write it was built with, and every other number in these docs was measured with that earlier write ([changelog](CHANGELOG.md)).
+
+<p align="center"><img src="docs/assets/last-layer.png" alt="The same saved tables with the answer pushed at layer 20 and written at the last layer: 32 and 37, 24 and 33, 23 and 32, 31 and 40 facts of 40" width="82%"></p>
 
 ## How it works
 
@@ -30,7 +47,7 @@ Facts added through the API are taught from drafted wordings alone, with none of
 flowchart LR
     P(["Prompt"]) --> K1["<b>Key 1</b><br/>a stored company<br/>is named"]
     K1 -->|yes| K2["<b>Key 2</b><br/>a stored fact's<br/>question detector opens"]
-    K2 -->|yes| PU["<b>Push</b><br/>the answer, token by<br/>token, at layer 20"]
+    K2 -->|yes| PU["<b>Write</b><br/>the answer, token by<br/>token, at the last layer"]
     PU --> A(["Reply with the<br/>stored answer"])
     K1 -.->|no| M(["Reply from the<br/>model alone"])
     K2 -.->|"no, or vetoed"| M
@@ -44,7 +61,7 @@ flowchart LR
 
 - **Key 1, which company?** A name index finds every stored company in the text, as a whole name, ignoring case and spacing. A look-alike such as "Nimbrosco Software" never matches "Nimbresco Software", so it never opens the layer.
 - **Key 2, which question?** Each stored fact has a linear detector that reads layer 20's MLP input at the last token. It opens only above a threshold set from negative examples. Detectors for relations with no stored fact can veto it.
-- **Push.** Only at the position where the model picks its next token, the answer token's vector is added to layer 20's MLP output, then the next token's while the reply matches. After one answer, the model writes on its own.
+- **Write.** Only at the position where the model picks its next token, the answer's first token is written at the output of the model's last layer, then each next token while the reply matches. A write there changes the next token and nothing after it, so it is sized to win. After one answer, the model writes on its own. Version 1.0 pushed a measured vector at layer 20 instead; `GraftOptions(last_layer=None)` still does.
 
 The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT](docs/graft.md) gives the method with every formula.
 
@@ -72,7 +89,7 @@ cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table m
 claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0.8B --table my.graft      # MCP
 ```
 
-[Getting started](docs/getting-started.md) walks through it.
+[Getting started](docs/getting-started.md) walks through it. The [user guide](docs/user-guide.md) covers the settings, your own generation code, a system message and what to check when a fact doesn't answer, and [`examples/`](examples/) has four scripts to run.
 
 ## What is in the box
 
@@ -94,14 +111,16 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [`benchmarks/`](benchmarks/) | The ten benches, with the blind writers' source files |
 | [`research/`](research/) | The raw results behind every published number, and the GRAFT parts cached for them |
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
+| [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 292 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 294 tests on tiny random models, CPU only |
 
 ## Documentation
 
 | | |
 |---|---|
 | [Getting started](docs/getting-started.md) | Install, a first fact, and handing the work to a bigger model |
+| [User guide](docs/user-guide.md) | Settings, your own generation code, a system message, checking a fact, troubleshooting |
 | [How it works](docs/how-it-works.md) | GRAFT step by step, with the animation and diagrams |
 | [GRAFT, the method](docs/graft.md) | Definitions, formulas, the build, defaults and cost |
 | [Benchmarks](docs/benchmarks.md) | Protocol, models, hardware, every result |
@@ -111,13 +130,14 @@ claude mcp add cramschool -- python -m cramschool serve --model models/Qwen3.5-0
 | [Tools](docs/tools.md) | The GRAFT toolbox, the weight-edit workflow and the instruments |
 | [Limitations](docs/limitations.md) | What v1 cannot do, stated plainly |
 | [History](docs/history.md), [related work](docs/related-work.md), [lab notebook](docs/lab-notebook.md) | Where it came from and where it sits |
+| [Changelog](CHANGELOG.md) | What changed between versions |
 
 ## Status
 
 - **Validated on the Qwen3.5 family:** the blind company benches (owner, CEO, founder, head office) on Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-0.8B and 4B. Other models need their own validation run.
 - **Beyond companies:** a blind bench of 112 new facts in nine kinds of subject. Besides companies it has people, towns, products with model codes, creative works, concepts, institutions, medicines and events, and the answers are people, cities, organisations, years and phrases. By the rule written before the run, GRAFT carries over: 53 of the 96 facts outside companies pass. People, organisations and years work; cities and phrases fall short. Compiled into the model's own neurons, the facts answer as the inserted layer does, with no firmly known fact lost ([benchmarks](docs/benchmarks.md#beyond-companies-benchmix1-nine-kinds-of-subject)).
 - **Changing facts the model already knows:** on CounterFact, fresh edits met every bar written before the run for headquarters (40 edits, reworded prompts 96%) and for citizenship (24 edits, 100%), with the neighbourhood unchanged and nothing damaged. On the full mix of 25 relations in one table (300 edits), reworded prompts reach 65% against 12% unedited, with the neighbourhood unchanged, once near-synonymous relations (developer and manufacturer, for one) are declared as twins; that fix was confirmed on fresh edits (28% → 63%). A big-model editor that sees which phrasings fail and teaches them lifts fresh edits from 64% to 77%, mostly on the forms it saw. On Qwen3.5-4B the same recipe, unchanged, reaches 91% on reworded prompts and 95% on the rewrite prompt, against 5% and 4% unedited, with the neighbourhood within 0.4 points of the unedited model ([benchmarks](docs/benchmarks.md#facts-the-model-already-knows-counterfact)).
-- **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer at the inserted layer's level.
+- **The grafted model:** the facts compiled into layer 20's own neurons, in a checkpoint of the same byte size, answer at the level of the inserted layer with the earlier write (`last_layer=None`). The grafted model has no write at the last layer.
   - **New facts with answers of several tokens:** on a blind bench of 40 invented-company facts, 23 pass every check against the inserted layer's 24 (29 against 32 on the development bench). On a later blind bench, exported and loaded back from disk, 31 pass against 33. Neither leaks on the bench's other questions about the company.
   - **Facts the model already knows:** on 64 CounterFact edits, ES 0.922 and PS 0.742 against 0.906 and 0.727.
   - **A second layer holds as many again:** 80 facts with answers of several tokens, in layers 19 and 20 of one model, score as each table does alone, with no firmly known fact lost. The export still writes one layer.

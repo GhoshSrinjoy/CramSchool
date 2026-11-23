@@ -6,9 +6,10 @@ Every command takes `--help`. Model paths can be a local folder or a Hugging Fac
 
 | Command | What it does |
 |---|---|
-| `graft add --model M --table T --subject S --relation R --answer A [--ask Q] [--relations FILE] [--layer N]` | Add or update a fact and save the table (created if missing) |
-| `graft add-file --model M --table T --facts FILE [--subject-column C] [--relation-column C] [--answer-column C] [--fixed-relation R] [--split S] [--limit N] [--relations FILE] [--layer N]` | Add every fact of a dataset, saving after each |
-| `graft ask --model M --table T QUESTION [QUESTION ...] [--plain]` | Each question's reply without the table and with it |
+| `graft add --model M --table T --subject S --relation R --answer A [--ask Q] [--relations FILE] [--layer N] [settings]` | Add or update a fact and save the table (created if missing) |
+| `graft add-file --model M --table T --facts FILE [--subject-column C] [--relation-column C] [--answer-column C] [--fixed-relation R] [--split S] [--limit N] [--relations FILE] [--layer N] [settings]` | Add every fact of a dataset, saving after each |
+| `graft ask --model M --table T QUESTION [QUESTION ...] [--plain] [--last-layer all\|later\|none]` | Each question's reply without the table and with it. `--last-layer` applies to this call only |
+| `graft set --model M --table T [--last-layer all\|later\|none] [--prompt-detector on\|off]` | Change a saved table's settings, build what they need, and save it |
 | `graft list --table T` | The stored facts (no model needed) |
 | `graft remove --table T --subject S [--relation R]` | Remove facts (no model needed) |
 | `graft alias --table T --subject S ALIAS [ALIAS ...]` | Declare other names for a stored company, matched like its name (no model needed) |
@@ -21,6 +22,23 @@ cramschool graft add --model models/Qwen3.5-0.8B --table my.graft --subject "Vor
 cramschool graft ask --model models/Qwen3.5-0.8B --table my.graft "Q: Who runs Vorantis Biotech? A:" --plain
 cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-grafted-model
 ```
+
+**Settings** of `graft add` and `graft add-file`:
+
+| Flag | What it does |
+|---|---|
+| `--last-layer all\|later\|none` | Where an answer's tokens are written. A new table's default is `all`, the model's last layer; `none` is the write of version 1.0, at the table's own layer. On a saved table it replaces the table's setting |
+| `--prompt-detector` | Each fact gets a second detector for the prompt's last token, which knows more ways of asking. For tables with at most two facts on a company |
+| `--system TEXT` | A new table only: the system message of the application the table will be asked in. A saved table keeps the one it was built behind |
+| `--fast` | A new table only: the fast build |
+
+```bash
+cramschool graft add --model models/Qwen3.5-0.8B --table desk.graft --subject "Vorantis Biotech" --relation CEO --answer "Ingrid Solberg" \
+    --system "You are the help desk of Vorantis Biotech. Answer briefly." --prompt-detector
+cramschool graft set --model models/Qwen3.5-0.8B --table old.graft --last-layer all      # a table saved with version 1.0
+```
+
+A table saved with version 1.0 keeps its write until `graft set` changes it ([user guide](user-guide.md#a-table-saved-with-version-10)).
 
 `graft export` needs the model as a local folder in safetensors format (`--base`, or `--model` itself). It writes the checkpoint with `grafted.json` and the name switch `grafted_switch.py`; without the switch the facts are dormant ([Python API](python-api.md#the-grafted-model-facts-in-the-models-own-neurons)).
 
@@ -48,7 +66,7 @@ cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table m
 | `bench drafted-brief --out TXT [--kinds K ...]` | The brief for a blind drafter of the wordings GRAFT teaches the kinds' relations from |
 | `bench check --source SOURCE` or `--drafted FILE [--kinds K ...]` | A kinds bench source, or a drafted wordings file, checked against its brief (no model needed) |
 | `bench build --source SOURCE --out BENCH [--avoid-benches FILES] [--kinds]` | A bench file from a source; `--kinds` for a kinds bench source |
-| `bench run --model M --bench BENCH --method base\|graft\|graft-loose\|block\|in-context [--load FILES] [--out DIR] [--cache DIR] [--only IDS] [--layer N]` | One method on a bench (run `base` first) |
+| `bench run --model M --bench BENCH --method base\|graft\|graft-loose\|block\|in-context [--load FILES] [--out DIR] [--cache DIR] [--only IDS] [--layer N]` | One method on a bench (run `base` first). `graft` is v1 as published: the answer pushed at the table's layer |
 | `bench report --out DIR [--bench BENCH]` | Passes, medians and paired tests of every method in a run folder |
 
 [The bench tool](bench-tool.md) walks through a full run.

@@ -2,6 +2,8 @@
 
 Every number on this page comes from the result files in [`research/results/`](../research/results/). The charts are redrawn from them by [`scripts/make_figures.py`](../scripts/make_figures.py). Each method's pass rule was written in the [lab notebook](lab-notebook.md) before the method ran.
 
+**Which write.** Every number on this page, except in the section [Finishing an answer](#finishing-an-answer-its-tokens-written-at-the-last-layer), was measured with the answer pushed at the table's layer (`last_layer=None`), the write of version 1.0. Since version 1.1 a new table writes the answer at the model's last layer. `cramschool bench run` and the reproduction scripts still use the earlier write, so the numbers reproduce as written.
+
 ## Summary: the blind benches
 
 A blind bench is written by a separate agent with no access to the code. It is opened only after the method it judges is frozen and committed.
@@ -32,7 +34,7 @@ A blind bench is written by a separate agent with no access to the code. It is o
 - **What GRAFT adds is holding many facts at once.** With 140 or 180 facts in one layer, another stored fact's answer appeared in 1 of 4,240 checked replies. Asked "What products does Lumbravic Brewing sell?", the model named the company's stored head office: "a well-known craft brewery in Asahikawa". No known facts were lost, and there was no drift.
 - **The trade inside that tie:** GRAFT's gate is stricter. It leaks less to other questions about the same company (lower on 25 facts, higher on none, bench40d) and recalls less (lower on 27 facts, higher on 2, bench40e).
 - **Facts added through the API pass as many on bench40e, and fewer on bench40f.** Taught from the drafted wordings alone, without the bench's own wordings, 32 of 40 pass on bench40e with 40 facts loaded, or 31 counted conservatively ([details](#facts-added-through-the-api)). On bench40f, written later and by another writer model, 24 of 40 pass. bench40e had already been opened for v1 when this path was measured on it, and bench40f was opened only after the code was frozen, so bench40f is this path's blind result.
-- **The grafted model answers at the inserted layer's level:** 23 against 24 on bench40f, from the model's own neurons ([details](#the-grafted-model-edits-in-the-models-own-neurons)). Its damage is judged on firmly known facts; the count of the 133 follows answers the model barely knows.
+- **The grafted model answers at the inserted layer's level,** with the same write: 23 against 24 on bench40f, from the model's own neurons ([details](#the-grafted-model-edits-in-the-models-own-neurons)). Its damage is judged on firmly known facts; the count of the 133 follows answers the model barely knows.
 - **A bigger model as the editor moves replies, not facts.** On blind bench40g, Claude Opus 5.5 either taught the question forms that had failed on the development benches, or was given the 40 facts as a dataset and taught them itself through the tools. On the test wordings neither editor taught, 29 of 40 pass with or without its teaching, and the answer comes on 2 to 3 points more of those prompts ([details](#a-bigger-model-as-the-editor-on-new-facts)). Compiled into the model's own neurons and loaded back from disk, the two tables keep 31 and 30 of their 33 and 31.
 - **A detector for the prompt's last token adds facts on a blind bench.** A fact's question detector is fitted against other prompts, the inside of its own answer and the model's replies, all at once. A second detector, fitted against other prompts alone and counted only where the reply starts, passes 31 of 40 on blind bench40h against 23 for the same table without it. No fact is lost, and no leak, garbling or damage check fails. The looser start in the same place passes 28 ([details](#a-detector-for-the-prompts-last-token)).
 
@@ -338,7 +340,7 @@ Every result above is on my own benches, where no other method is scored. One ot
 
 ### Finishing an answer: its tokens written at the last layer
 
-Step 23 left replies that start like the answer and end as something else. This is the fix, as an option: `GraftOptions(last_layer="all")` ([GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer-optional); plan, rule and results in the [lab notebook, step 24](lab-notebook.md#step-24-finishing-an-answer-its-tokens-written-at-the-models-last-layer-written-2026-11-23-before-the-package-code-and-before-any-question-is-asked-again)).
+Step 23 left replies that start like the answer and end as something else. This is the fix: `GraftOptions(last_layer="all")`, an option when it was measured and the default for a new table since version 1.1 ([GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer); plan, rule and results in the [lab notebook, step 24](lab-notebook.md#step-24-finishing-an-answer-its-tokens-written-at-the-models-last-layer-written-2026-11-23-before-the-package-code-and-before-any-question-is-asked-again)).
 
 **What was wrong,** read token by token on the 27 held-out misses of the other group's benchmark:
 
@@ -363,6 +365,8 @@ Step 23 left replies that start like the answer and end as something else. This 
 | **bench40h (confirmation)** | 23 | — | **32** |
 | bench40h with the end-of-prompt detector (outside the rule) | 31 | — | **40** |
 | The other group's benchmark, held-out answers of 120 (development) | 93 | 108 | 112 |
+
+<p align="center"><img src="assets/last-layer.png" alt="The same saved tables with the answer pushed at layer 20 and written at the last layer" width="84%"></p>
 
 - **Confirmed by the rule written before the runs.** bench40h needed 2 more facts with none lost; it has 9 more. Development needed no fact lost and no new leak failure; both settings met it, and `"all"` was chosen there, before bench40h was scored.
 - **Nothing was lost.** Over the three benches no fact stops passing, no recall reply of 1,440 loses an answer it had, and no fact newly fails a leak, garbling or damage check. Whole answers rise from 1,095 to 1,227 replies.
@@ -635,7 +639,7 @@ They show the usual trade: generalizing an edit costs the neighbourhood. GRAFT's
 - On CounterFact, GRAFT changes facts the model already knows for two relations: a fresh draw of 40 headquarters edits met every bar written before it ran (reworded prompts 0.963, the neighbourhood within 0.017 of the unedited model), and so did 24 fresh citizenship edits (reworded prompts 1.000, the neighbourhood unchanged).
 - With 25 CounterFact relations and 300 edits in one table, the neighbourhood stays as unedited and no known fact is lost. Reworded prompts reach PS 0.523, and 0.648 with the twin rule (a development number; the rule itself was confirmed on fresh edits).
 - The same recipe, unchanged, carries over to Qwen3.5-4B (PS 0.910 on 200 fresh edits).
-- The grafted model, with the facts in layer 20's own neurons and a name switch, answers at the inserted layer's level: 23 against 24 of 40 on blind bench40f, 31 against 33 on blind bench40g loaded back from disk, and ES 0.922 and PS 0.742 against 0.906 and 0.727 on 64 CounterFact edits. No firmly known fact is lost, also with 237 one-token facts in one layer.
+- The grafted model, with the facts in layer 20's own neurons and a name switch, answers at the level of the inserted layer with the same write (`last_layer=None`): 23 against 24 of 40 on blind bench40f, 31 against 33 on blind bench40g loaded back from disk, and ES 0.922 and PS 0.742 against 0.906 and 0.727 on 64 CounterFact edits. No firmly known fact is lost, also with 237 one-token facts in one layer.
 - A bigger model can run the whole loop on new facts: given 40 facts as a dataset, it taught them through the tools and checked and fixed its work, and the table, in the model's own neurons and loaded back from disk, passes 30 of 40 on blind bench40g.
 
 **They don't show:**
@@ -713,6 +717,8 @@ python scripts/rival_bench.py build models/Qwen3.5-0.8B runs/rival_exp9 runs/riv
 python scripts/rival_bench.py ask models/Qwen3.5-0.8B runs/rival_exp9 runs/rival_exp9/judged.graft runs/rival_exp9/judged_all.jsonl all
 python scripts/rival_bench.py report runs/rival_exp9 $C runs/rival_exp9/judged_all.jsonl                    # 93 of 120, against 103
 ```
+
+The default of version 1.1 has a check of its own, on a new table through the package's path: `python scripts/check_default_write.py models/Qwen3.5-0.8B out.json` (about 3 minutes; mine is `research/results/slots/32_default_write/gate.json`).
 
 Step 24 scores saved tables with the option switched on. The diagnosis reads the judged table of step 23:
 

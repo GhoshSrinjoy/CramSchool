@@ -140,6 +140,8 @@ When v1 was cut, everything it superseded was removed from the main branch. Comm
 
 The research scripts that produced the v1 results (the bench builder, every method, the diagnostics) were replaced by the package, which reproduces them exactly. They are at commit [`4325028`, under `research/bench/`](https://github.com/GhoshSrinjoy/CramSchool/tree/4325028/research/bench).
 
+**Version 1.1** ([changelog](../CHANGELOG.md)). The write at the last layer became the default for a new table, by my decision after step 24 and on its evidence alone. A table saved before keeps its write, and v1's published numbers, all measured with the push at layer 20, still reproduce. The same version added the command-line flags for a table's settings, a [user guide](user-guide.md) and four [examples](../examples/).
+
 To look at any of it locally:
 
 **Finishing an answer** ([benchmarks](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer)). I had read the lost answers of the other group's benchmark as later tokens going astray. Token by token, 9 of the 15 were a first token that came with a leading space the layer didn't expect, and in the other 6 a push at layer 20 lost by a logit or two. Both come from where the push is written: three layers below the output, where its size is a compromise. Written at the last MLP's output, a vector changes its own position's next token and nothing after it. As an option of the layer (`last_layer`), that passes 32 of 40 facts on bench40h against 23, and 40 with the end-of-prompt detector against 31, with no fact lost on any bench. It is the largest single gain since v1, on benches that were not blind.

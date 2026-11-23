@@ -5,6 +5,8 @@
 - measure a new relation;
 - judge a change to the method on a bench it has never seen.
 
+**Which write it measures.** `bench run --method graft` builds the layer as v1 did, with the answer pushed at the table's layer, so the published numbers reproduce. A table made with `Graft(...)` or `cramschool graft add` writes at the model's last layer since version 1.1. To score such a table as it stands, use [`scripts/score_table.py`](../scripts/score_table.py) on the saved table.
+
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontSize": "16px", "primaryColor": "#F1F5F9", "primaryTextColor": "#0F172A", "primaryBorderColor": "#94A3B8", "lineColor": "#64748B", "edgeLabelBackground": "#FFFFFF"}}}%%
 flowchart LR

@@ -4,15 +4,15 @@ GRAFT stores facts of the form *(subject, relation, answer)* in one inserted lay
 - **Key 1:** the subject is named, matched as an exact name.
 - **Key 2:** the question asks for a stored relation of that subject, read by a linear detector from the model's hidden state.
 
-It then adds precomputed answer-token vectors to one MLP output, one token at a time. Every component is computed in closed form from forward passes of the unedited model. No weight changes, no gradient is taken, and removing the layer is an exact undo.
+It then writes the answer's tokens into one MLP output, one token at a time. Every component is computed in closed form from forward passes of the unedited model. No weight changes, no gradient is taken, and removing the layer is an exact undo.
 
-This page states the v1 method as it ran on the benchmarks. [How it works](how-it-works.md) explains the same thing in pictures, and the [lab notebook](lab-notebook.md) records why each choice was made, before each run.
+This page states the v1 method as it ran on the benchmarks. Since version 1.1 a new table differs from it in one place: the answer is written at the model's last layer (section 8), not pushed at layer $\ell$ (sections 5 and 6). [How it works](how-it-works.md) explains the same thing in pictures, and the [lab notebook](lab-notebook.md) records why each choice was made, before each run.
 
 ## Setting
 
 - **Model:** a causal language model with $L$ layers, used frozen. v1 was validated on Qwen3.5-0.8B: $L = 24$, hidden size $d = 1024$.
 - **The working layer:** GRAFT acts at one layer $\ell$. For Qwen3.5-0.8B, $\ell = 20$, the first layer at which well-known answers already appear in the model's own predictions.
-- **What it reads and writes:** $x_t \in \mathbb{R}^d$ is the input of layer $\ell$'s MLP at position $t$, and $o_t$ is that MLP's output. GRAFT reads $x_t$ and adds to $o_t$.
+- **What it reads and writes:** $x_t \in \mathbb{R}^d$ is the input of layer $\ell$'s MLP at position $t$, and $o_t$ is that MLP's output. GRAFT reads $x_t$ and, in v1, adds to $o_t$. Since version 1.1 a new table adds to the last layer's MLP output instead (section 8).
 - **A fact:** $f = (s, r, a)$.
   - $s$ is a company name and $r \in$ {owner, CEO, founder, head office}.
   - $a$ is the answer string, tokenized in two spellings: with a leading space ( `" Tharindu Ekanayake"` ) and without one ( `"Tharindu Ekanayake"` ). Each spelling has tokens $a_1, \dots, a_m$.
@@ -86,6 +86,8 @@ So two facts of one company compete directly. A question about a relation the co
 
 ## 5. Answer vectors
 
+These vectors are v1's write (`last_layer=None`). They are still built for every fact: the grafted model (section 12) uses them, and so does `"later"` for the first token.
+
 Each answer token $a_j$ of each spelling gets one vector. It is measured on teaching examples (prompt, answer): the fact's training wordings and drafted wordings, plain and chat. Let $W_U$ be the unembedding matrix.
 
 1. **Direction:** $d_j = \dfrac{W_U[a_j] - \tfrac15\sum_{k \in K_j} W_U[k]}{\big\|W_U[a_j] - \tfrac15\sum_{k \in K_j} W_U[k]\big\|}$, where $K_j$ are the 5 tokens most preferred over $a_j$ at that position.
@@ -116,7 +118,7 @@ At use, the layer adds $2\,v_j$ to $o_t$.
 | Reply length for reply negatives | 16 tokens | bench scoring length |
 | Looser start | off | see below |
 | End-of-prompt detector | off | see below |
-| Writing the answer at the last layer | off | see below |
+| Writing the answer at the last layer | off in v1; `"all"` for a new table since version 1.1 | see below |
 
 ## 8. The looser start (optional)
 
@@ -147,9 +149,9 @@ It stays off by default, and leaks less that way. On facts added through the API
 
 It is off by default.
 
-### Writing the answer at the last layer (optional)
+### Writing the answer at the last layer
 
-`GraftOptions(last_layer="all")` changes where an answer's tokens are written. When the layer acts is unchanged: the name index, the detectors, the competition and the veto decide as before.
+`GraftOptions(last_layer="all")`, the default for a new table since version 1.1, changes where an answer's tokens are written. When the layer acts is unchanged: the name index, the detectors, the competition and the veto decide as before.
 
 - **Why:** a vector added at layer 20 passes three more layers before it reaches the output, and what they compute at that position is read by every later position. So its size is a compromise, and the push can lose: a first token to the model's own first word, a later token to the end of the reply. A larger push lost answers that were right ([lab notebook, step 9](lab-notebook.md#step-9-a-larger-push-at-the-answers-first-token-written-2026-11-14-before-it-ran)).
 - **The write:** at the output of the model's last MLP, at the same position, the layer adds $2R\,\dfrac{W_U[a_j]}{\lVert W_U[a_j]\rVert}$. That is the token's own row of the output matrix at length $2R$, where $R$ is the 99th percentile of the norm of what the final norm reads on the calibration text. On Qwen3.5-0.8B $R = 15.75$.
@@ -183,6 +185,7 @@ From version 1.1 `"all"` is the default for a new table. A table saved before th
   - 16-token replies to about 70 prompts;
   - readings on the positives and the fit;
   - a check of the push size on the training wordings.
+- **The write at the last layer** costs nothing per fact: one number per table, measured in the calibration's own passes.
 - **Storage:** about 44 KB per fact in float32. That is 2 detectors of 1,024 numbers, plus one vector per answer token for each of 2 spellings. The looser start, or the end-of-prompt detector, adds 2 detectors: 52 KB.
 - **Runtime:** per forward call, the layer does one product of the last position's $x_t$ with the stacked detector matrix (about 370 columns at 180 facts), plus string matching. No slowdown was measurable: 1.2 s for 48 prompts with or without the layer.
 
@@ -237,6 +240,8 @@ A table with company relations only behaves exactly as v1.
 ## 12. The grafted model
 
 The inserted layer leaves the model's weights untouched. The **grafted model** puts the table's facts into the model's own neurons, at the table's layer, with no neuron or parameter added (`Graft.export_grafted`, `cramschool.graft.grafted`).
+
+It compiles v1's write, the push at the table's layer (sections 5 and 6). The write at the last layer (section 8) has no neuron form yet. Wherever this section compares the grafted model with the inserted layer, that is the inserted layer with `last_layer=None`.
 
 **A fact's neurons** (the default compile of `Graft.export_grafted`). A SwiGLU neuron computes $\text{down}\,(\operatorname{silu}(g\cdot x)\,(u\cdot x))$, so reused neurons can hold a fact. A gate row $k\,(w - \tfrac{\tau}{\bar c}\,c)/\delta$ reads $k\,z\,(c\cdot x/\bar c)$: the detector's score $z$ of section 3, with its threshold carried by the constant direction of section 1.
 - **The first token, per form: a saturating pair.** Two neurons read $32z$ and $32z - 8$, with down columns $+2v/8$ and $-2v/8$. Together they write $\tfrac{2v}{8}\,(\operatorname{silu}(32z) - \operatorname{silu}(32z - 8))$: nothing at $z \le 0$, the inserted layer's push $2v$ from $z = 0.25$ on, and never more. The plain form pushes the answer as spelled after a word, the chat form as spelled at a reply's start.

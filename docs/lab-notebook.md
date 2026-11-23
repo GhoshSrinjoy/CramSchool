@@ -5119,3 +5119,10 @@ Step 24's rule said the option stays off by default whichever way the confirmati
 **Also checked:** the judged table of step 23, asked again with today's code and its saved setting, gives 90 of 90 replies identical to the stored ones. The 292 tests pass.
 
 **Version:** 1.1.0. `CHANGELOG.md` at the repository's root starts with this.
+
+**Afterwards, the same day** (nothing here is a bench result):
+- **The animation was recorded again** with the write at the last layer (`scripts/trace_graft.py`, the 180 facts of bench40b to bench40e, R = 15.752). The three scenes open and stay shut as before, with the same detector readings. In scene 1 the same seven answer tokens are written, and the reply after the name differs: "is the founder of **Nimbresco Software" where the push at layer 20 gave "is the founder of Nimbresco Software." Scenes 2 and 3 are unchanged, token for token.
+- **The charts:** the journey chart has the steps since v1, with the two that were not blind drawn pale and labelled so, and `last-layer.png` shows step 24's four pairs. Both illustrations now show the read at layer 20 and the write at layer 23.
+- **The command line has the settings:** `--last-layer`, `--prompt-detector`, `--system` and `--fast` on `graft add` and `graft add-file`, `--last-layer` on `graft ask`, and `graft set` for a saved table. 294 tests.
+- **A user guide and four examples,** each run on the real model. One of them showed something the docs hadn't said plainly: declaring the alias "Vorantis" made "Vorantis Biotics" name the company, and the stored chief executive answered for it. An alias matches wherever it stands as a whole word. `add_exclusion` for the longer name fixed it, and the guide now shows both.
+- **The first question on a new table** took about 80 seconds more than later ones, for the detectors the relations share. That is not new with 1.1; the docs now say it.
