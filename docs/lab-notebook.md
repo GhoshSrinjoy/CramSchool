@@ -5270,3 +5270,77 @@ So the fact's neurons go to the last layer. The gate row is the fact's detector 
 **My prediction:** recall will be high late in the model, and the one-letter look-alike will get through too often, as it did for the name read in step 13 (31% of prompts). I expect 4 to 8 of 12. If I am wrong on the good side, this is the step that removes the hook.
 
 **What it can't show even if it passes:** that the reading survives inside a fact neuron (the up row is linear, with no threshold of its own), on real subjects, or with hundreds of subjects stored.
+
+---
+
+## Result of step 25: read at the profile's layer, all 40 facts of bench40h pass, against 32 at layer 20
+
+Raw numbers: `research/results/slots/33_layer_profile/` (the profile, `profile_0.8b.json`; the two tables' rows as built and with the answer written at the last layer, `bench40h_layer22_*.jsonl` and `bench40h_layer12_*.jsonl`; their logs; `chain.sh`).
+
+| bench40h, 40 facts, the fast build, `last_layer="all"` | A: layer 20 (hard-coded) | **B: layer 22 (the profile's pick)** | C: layer 12 (ranked lowest) |
+|---|---|---|---|
+| Facts passing every check | 32 | **40** | 12 |
+| Recall replies holding the whole answer, of 480 | 410 | 422 | 323 |
+| Mean recall | 0.854 | 0.879 | 0.673 |
+| Facts failing a leak, garbling or damage check | 0 | 0 | 2 |
+| Same-company leak, summed over the facts | 0.5 | 0.5 | 0.5 |
+| The profile's held-out recall; leak | 0.887; 0.014 | 0.924; 0.013 | 0.630; 0.028 |
+
+**By the rule: B passes A + 8, with no more leak failures, and C passes fewer than B.** `layer="auto"` ships as an option, and the rule has me propose it as the default.
+
+**What happened:**
+- **The 8 facts that failed at layer 20 all failed on recall, and all 8 pass at layer 22.** No fact stops passing.
+- **It is a gain of margins, not of volume:** 16 recall replies gain the whole answer and 4 lose it (one each on f11, f16, f20 and f36), 12 net of 480. The 8 facts sat just under the bar.
+- **Leaks don't move.** 3 of the 320 same-company replies differ from layer 20's, and none of the 960 replies to look-alike and unrelated companies.
+- **The profile's order held in generation.** Its lowest layer of the span passes 12, with 97 whole answers lost and two facts answering with another fact's answer.
+- **This is what the end-of-prompt detector gave at layer 20.** There, the write at the last layer alone passed 32 and the detector added 8 more (step 24). At layer 22 the strict detectors alone open those questions.
+
+**My prediction was wrong in the useful direction.** I expected no movement beyond 2 facts, and a flat stretch around 16 to 20. Step 17's estimates, which I leaned on, compared readings that were all fitted the build's way at sites up to layer 20. Nothing before today had read a question at layers 21 to 23, because a table's layer was also where it pushed, and a push that late loses (below).
+
+**The scope rule was right, and the same tables show it.** Built at layer 22 and asked with the push at the table's own layer (`last_layer=None`), 16 of 40 pass. At layer 12, 7. A late layer is good for reading and bad for pushing, which is step 10's finding. `layer="auto"` therefore selects only for a table that writes at the last layer.
+
+**What this is not:**
+- **Not blind.** I have read bench40h's replies at steps 20 to 24. What keeps it honest is that the layer was picked from invented probe facts by a rule written before, with no bench fact or wording, and that the comparison changes the layer alone.
+- **One bench, one model.** Step 26 builds bench40f at layer 23 for another reason, and that table asked with the write at the last layer is a second reading against 33 at layer 20.
+- **Not the grafted model.** These are tables beside the model. Step 26 is about getting the same into the weights.
+
+**In the package:** `Graft(model, tokenizer, layer="auto")`, `cramschool graft add --layer auto`, `cramschool graft layers` to see a model's profile, `graft.layer_profile` saved with the table. About 3 minutes on the 0.8B. `layer=None` is unchanged for now; I decide on the default after step 26's table.
+
+**A layer per fact is not built.** On the probe facts it loses 0.030 of held-out recall against one layer per table.
+
+---
+
+## Result of step 27: the subject can't be read at the question's end. Kill; the name switch stays
+
+Raw numbers: `research/results/slots/35_subject_read/` (`subject_read_0.8b.json`, with every company's numbers at every layer; the log).
+
+**No company passes at any layer: 0 of 12.** The rule's kill line was 5. I had predicted 4 to 8, so it is worse than I thought.
+
+| Layer | Held-out recall | In lower or upper case | Look-alike opened: another industry word | One letter changed | Another first word | A company never seen | Companies passing |
+|---|---|---|---|---|---|---|---|
+| 0 to 13 | no reading | | | | | | 0 |
+| 16 | 0.476 | 0.318 | 0.182 | 0.408 | 0.055 | 0.012 | 0 |
+| 18 | 0.665 | 0.453 | 0.203 | 0.547 | 0.093 | 0.025 | 0 |
+| 20 | 0.698 | 0.444 | 0.366 | 0.613 | 0.049 | 0.003 | 0 |
+| 22 | 0.811 | 0.568 | 0.442 | 0.714 | 0.073 | 0.012 | 0 |
+| 23 | 0.832 | 0.598 | 0.518 | 0.735 | 0.073 | 0.008 | 0 |
+
+**What the reading can and can't tell:**
+- **It tells a different company apart.** A company it never saw opens it on about 1% of questions, and one that shares the industry word on 7%.
+- **It can't tell a near name.** One letter changed opens it on 73% of questions at the last layer, and the same first word with another industry on 52%. These were look-alikes it had never seen; three others of the same kinds were among its negatives.
+- **Recall and near-name leak rise together with depth.** There is no layer where the first is high and the second low. Before layer 14 the question's last token holds no linear reading of the subject at all.
+- **Capitalisation costs a third:** 0.60 in lower or upper case against 0.83 as written. The name switch ignores case.
+
+**Why this ends it for a linear reading.** By the end of a question the model holds roughly which entity it was asked about, not how the name was spelled. A fact gated on that would answer for "Nimbrosco Software" most of the time. And the 1% on unrelated companies is not small at scale: with 100 subjects stored, a question about a company nobody stored would open about one of them.
+
+**Three attempts now, each at a different place:**
+
+| Step | Where the subject was read | Result |
+|---|---|---|
+| 5 | Layer 20, the question's last token, real subjects, no look-alikes in the fit | Reworded prompts missed, neighbours let in, 48 of 133 known facts lost |
+| 13 | The name where it stands, one head's window, layers 16 to 20 | 40 of 90 companies would pass; one-letter look-alikes through on 31% of prompts |
+| 27 | The question's last token, every layer, look-alikes in the fit | 0 of 12 companies pass at any layer |
+
+**What stays true:** the grafted model holds each fact's question detector and its answer in the model's own neurons, and it needs the name switch to say which subject is named. I have no method that puts that match into the weights from forward passes on this model, and I am not going to describe the grafted model as if I had. What an exact name match needs is the spelling, and the model's state at the place a fact acts doesn't keep it.
+
+**Not tried, and I am not proposing them as next steps without a reason to expect better:** a reading on a bigger model; a reading that is not linear; a match made at the name's own tokens and carried forward by an edited attention head (step 13's design, which stopped at 40 of 90).

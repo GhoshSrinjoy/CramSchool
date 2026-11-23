@@ -1,0 +1,3060 @@
+{
+ "model": "Qwen__Qwen3.5-0.8B",
+ "companies": 12,
+ "bars": {
+  "recall": 0.75,
+  "lookalike": 0.08333333333333333
+ },
+ "summary": [
+  {
+   "layer": 0,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 1,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 2,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 3,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 4,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 5,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 6,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 7,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 8,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 9,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 10,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 11,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 12,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 13,
+   "recall": 0.0,
+   "recall_case": 0.0,
+   "other_industry": 0.0,
+   "one_letter": 0.0,
+   "other_first_word": 0.0,
+   "unseen_company": 0.0,
+   "companies_passing": 0,
+   "with_a_reading": 0
+  },
+  {
+   "layer": 14,
+   "recall": 0.04089506218830744,
+   "recall_case": 0.009259259328246117,
+   "other_industry": 0.00038580247201025486,
+   "one_letter": 0.023533950249354046,
+   "other_first_word": 0.007330246890584628,
+   "unseen_company": 0.0011574074160307646,
+   "companies_passing": 0,
+   "with_a_reading": 1
+  },
+  {
+   "layer": 15,
+   "recall": 0.3584104925394058,
+   "recall_case": 0.21720679042239985,
+   "other_industry": 0.1647376548498869,
+   "one_letter": 0.3016975335776806,
+   "other_first_word": 0.0034722222480922937,
+   "unseen_company": 0.0005787037080153823,
+   "companies_passing": 0,
+   "with_a_reading": 8
+  },
+  {
+   "layer": 16,
+   "recall": 0.4760802487532298,
+   "recall_case": 0.3177083383003871,
+   "other_industry": 0.182098767409722,
+   "one_letter": 0.40817901243766147,
+   "other_first_word": 0.05516975357507666,
+   "unseen_company": 0.01195987636068215,
+   "companies_passing": 0,
+   "with_a_reading": 9
+  },
+  {
+   "layer": 17,
+   "recall": 0.4861111144224803,
+   "recall_case": 0.32233796641230583,
+   "other_industry": 0.18325617288549742,
+   "one_letter": 0.4317129651705424,
+   "other_first_word": 0.06288580293767154,
+   "unseen_company": 0.015239197683210174,
+   "companies_passing": 0,
+   "with_a_reading": 9
+  },
+  {
+   "layer": 18,
+   "recall": 0.6647376517454783,
+   "recall_case": 0.45254630222916603,
+   "other_industry": 0.20254629640839994,
+   "one_letter": 0.5474537157764038,
+   "other_first_word": 0.09336419682949781,
+   "unseen_company": 0.025270061567425728,
+   "companies_passing": 0,
+   "with_a_reading": 12
+  },
+  {
+   "layer": 19,
+   "recall": 0.5223765447735786,
+   "recall_case": 0.2916666691501935,
+   "other_industry": 0.26388888930281,
+   "one_letter": 0.45331790298223495,
+   "other_first_word": 0.04166666759798924,
+   "unseen_company": 0.0013503086132307847,
+   "companies_passing": 0,
+   "with_a_reading": 10
+  },
+  {
+   "layer": 20,
+   "recall": 0.6983024775981903,
+   "recall_case": 0.4440586467583974,
+   "other_industry": 0.36574074253439903,
+   "one_letter": 0.6130401283347359,
+   "other_first_word": 0.048611111706122756,
+   "unseen_company": 0.0027006172264615693,
+   "companies_passing": 0,
+   "with_a_reading": 12
+  },
+  {
+   "layer": 21,
+   "recall": 0.8001543382803599,
+   "recall_case": 0.5625000074505806,
+   "other_industry": 0.4448302462697029,
+   "one_letter": 0.7121913696173579,
+   "other_first_word": 0.0744598781845222,
+   "unseen_company": 0.0071373457709948225,
+   "companies_passing": 0,
+   "with_a_reading": 12
+  },
+  {
+   "layer": 22,
+   "recall": 0.8113426069418589,
+   "recall_case": 0.5680941392978033,
+   "other_industry": 0.44212963059544563,
+   "one_letter": 0.7141203830639521,
+   "other_first_word": 0.07291666713232796,
+   "unseen_company": 0.012345678599861762,
+   "companies_passing": 0,
+   "with_a_reading": 12
+  },
+  {
+   "layer": 23,
+   "recall": 0.8317901293436686,
+   "recall_case": 0.5976080298423767,
+   "other_industry": 0.5181327213843664,
+   "one_letter": 0.7345679054657618,
+   "other_first_word": 0.07253086621252199,
+   "unseen_company": 0.007716049246179561,
+   "companies_passing": 0,
+   "with_a_reading": 12
+  }
+ ],
+ "best": {
+  "layer": 23,
+  "recall": 0.8317901293436686,
+  "recall_case": 0.5976080298423767,
+  "other_industry": 0.5181327213843664,
+  "one_letter": 0.7345679054657618,
+  "other_first_word": 0.07253086621252199,
+  "unseen_company": 0.007716049246179561,
+  "companies_passing": 0,
+  "with_a_reading": 12
+ },
+ "rows": [
+  {
+   "company": "Brunzel Quantum",
+   "fitted_against": [
+    "Brunzel Retail",
+    "Lrunzel Quantum",
+    "Gimbre Quantum"
+   ],
+   "tested_on": [
+    "Brunzel Logistics",
+    "Brunzol Quantum",
+    "Dydros Quantum"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.625,
+     "recall_case": 0.5393518805503845,
+     "other_industry": 0.10648148506879807,
+     "one_letter": 0.5,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.7268518805503845,
+     "recall_case": 0.6805555820465088,
+     "other_industry": 0.07870370149612427,
+     "one_letter": 0.5787037014961243,
+     "other_first_word": 0.0416666679084301,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.7175925970077515,
+     "recall_case": 0.6504629850387573,
+     "other_industry": 0.13425925374031067,
+     "one_letter": 0.6388888955116272,
+     "other_first_word": 0.0555555559694767,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.8287037014961243,
+     "recall_case": 0.7662037014961243,
+     "other_industry": 0.032407406717538834,
+     "one_letter": 0.7175925970077515,
+     "other_first_word": 0.11574073880910873,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.7453703880310059,
+     "recall_case": 0.4652777910232544,
+     "other_industry": 0.30092594027519226,
+     "one_letter": 0.7407407760620117,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.8287037014961243,
+     "recall_case": 0.625,
+     "other_industry": 0.28240740299224854,
+     "one_letter": 0.7870370149612427,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.8657407760620117,
+     "recall_case": 0.7199074029922485,
+     "other_industry": 0.31018519401550293,
+     "one_letter": 0.8101851940155029,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.8842592835426331,
+     "recall_case": 0.7291666865348816,
+     "other_industry": 0.30092594027519226,
+     "one_letter": 0.819444477558136,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8935185074806213,
+     "recall_case": 0.8101851940155029,
+     "other_industry": 0.42129629850387573,
+     "one_letter": 0.8472222089767456,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Grinwick Logistics",
+   "fitted_against": [
+    "Grinwick Solutions",
+    "Jrinwick Logistics",
+    "Zodley Logistics"
+   ],
+   "tested_on": [
+    "Grinwick Capital",
+    "Grinwock Logistics",
+    "Tevane Logistics"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.4861111044883728,
+     "recall_case": 0.2152777761220932,
+     "other_industry": 0.32870370149612427,
+     "one_letter": 0.23148147761821747,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.6157407164573669,
+     "recall_case": 0.3680555522441864,
+     "other_industry": 0.23148147761821747,
+     "one_letter": 0.35648149251937866,
+     "other_first_word": 0.0416666679084301,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.47685185074806213,
+     "recall_case": 0.1805555522441864,
+     "other_industry": 0.25,
+     "one_letter": 0.41203704476356506,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.6481481790542603,
+     "recall_case": 0.2615740895271301,
+     "other_industry": 0.236111119389534,
+     "one_letter": 0.5277777910232544,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.7685185074806213,
+     "recall_case": 0.409722238779068,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.6759259104728699,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.7916666865348816,
+     "recall_case": 0.40740740299224854,
+     "other_industry": 0.26851850748062134,
+     "one_letter": 0.6805555820465088,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8379629850387573,
+     "recall_case": 0.49537038803100586,
+     "other_industry": 0.24074074625968933,
+     "one_letter": 0.6990740895271301,
+     "other_first_word": 0.009259259328246117,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Grealgate Motors",
+   "fitted_against": [
+    "Grealgate Dynamics",
+    "Rrealgate Motors",
+    "Skuston Motors"
+   ],
+   "tested_on": [
+    "Grealgate Semiconductors",
+    "Grealgute Motors",
+    "Wircott Motors"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.5231481790542603,
+     "recall_case": 0.08796296268701553,
+     "other_industry": 0.17592592537403107,
+     "one_letter": 0.472222238779068,
+     "other_first_word": 0.0,
+     "unseen_company": 0.002314814832061529
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.6296296119689941,
+     "recall_case": 0.10879629850387573,
+     "other_industry": 0.1944444477558136,
+     "one_letter": 0.5509259104728699,
+     "other_first_word": 0.0,
+     "unseen_company": 0.039351850748062134
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.6388888955116272,
+     "recall_case": 0.1458333283662796,
+     "other_industry": 0.1805555522441864,
+     "one_letter": 0.5740740895271301,
+     "other_first_word": 0.018518518656492233,
+     "unseen_company": 0.0555555559694767
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.625,
+     "recall_case": 0.18287037312984467,
+     "other_industry": 0.0833333358168602,
+     "one_letter": 0.5555555820465088,
+     "other_first_word": 0.05092592537403107,
+     "unseen_company": 0.11574073880910873
+    },
+    "19": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.6388888955116272,
+     "recall_case": 0.39120370149612427,
+     "other_industry": 0.25462964177131653,
+     "one_letter": 0.5925925970077515,
+     "other_first_word": 0.018518518656492233,
+     "unseen_company": 0.032407406717538834
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.7638888955116272,
+     "recall_case": 0.5208333134651184,
+     "other_industry": 0.2638888955116272,
+     "one_letter": 0.7268518805503845,
+     "other_first_word": 0.032407406717538834,
+     "unseen_company": 0.08564814925193787
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.7731481790542603,
+     "recall_case": 0.569444477558136,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.7407407760620117,
+     "other_first_word": 0.03703703731298447,
+     "unseen_company": 0.1458333283662796
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8055555820465088,
+     "recall_case": 0.5879629850387573,
+     "other_industry": 0.3194444477558136,
+     "one_letter": 0.7685185074806213,
+     "other_first_word": 0.032407406717538834,
+     "unseen_company": 0.0902777761220932
+    }
+   }
+  },
+  {
+   "company": "Gelloway Insurance",
+   "fitted_against": [
+    "Gelloway Retail",
+    "Celloway Insurance",
+    "Drervik Insurance"
+   ],
+   "tested_on": [
+    "Gelloway Dynamics",
+    "Gellaway Insurance",
+    "Grombre Insurance"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.5787037014961243,
+     "recall_case": 0.43287038803100586,
+     "other_industry": 0.125,
+     "one_letter": 0.5,
+     "other_first_word": 0.45370370149612427,
+     "unseen_company": 0.002314814832061529
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.5879629850387573,
+     "recall_case": 0.4305555522441864,
+     "other_industry": 0.13425925374031067,
+     "one_letter": 0.5185185074806213,
+     "other_first_word": 0.41203704476356506,
+     "unseen_company": 0.002314814832061529
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.5787037014961243,
+     "recall_case": 0.42129629850387573,
+     "other_industry": 0.013888888992369175,
+     "one_letter": 0.5138888955116272,
+     "other_first_word": 0.43981480598449707,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.5601851940155029,
+     "recall_case": 0.5532407164573669,
+     "other_industry": 0.23148147761821747,
+     "one_letter": 0.5046296119689941,
+     "other_first_word": 0.48148149251937866,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.6481481790542603,
+     "recall_case": 0.6041666865348816,
+     "other_industry": 0.25462964177131653,
+     "one_letter": 0.5555555820465088,
+     "other_first_word": 0.5138888955116272,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.8657407760620117,
+     "recall_case": 0.7638888955116272,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.8240740895271301,
+     "other_first_word": 0.7453703880310059,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.8611111044883728,
+     "recall_case": 0.6712962985038757,
+     "other_industry": 0.23148147761821747,
+     "one_letter": 0.7638888955116272,
+     "other_first_word": 0.7175925970077515,
+     "unseen_company": 0.002314814832061529
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.9027777910232544,
+     "recall_case": 0.7314814925193787,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.8148148059844971,
+     "other_first_word": 0.7592592835426331,
+     "unseen_company": 0.002314814832061529
+    }
+   }
+  },
+  {
+   "company": "Drylmar Networks",
+   "fitted_against": [
+    "Drylmar Mining",
+    "Mrylmar Networks",
+    "Hyrlan Networks"
+   ],
+   "tested_on": [
+    "Drylmar Logistics",
+    "Drylmor Networks",
+    "Tyrquist Networks"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.5138888955116272,
+     "recall_case": 0.30787035822868347,
+     "other_industry": 0.28240740299224854,
+     "one_letter": 0.46296295523643494,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.5787037014961243,
+     "recall_case": 0.33101850748062134,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.49074074625968933,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.5833333134651184,
+     "recall_case": 0.31018519401550293,
+     "other_industry": 0.25462964177131653,
+     "one_letter": 0.5509259104728699,
+     "other_first_word": 0.009259259328246117,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.6111111044883728,
+     "recall_case": 0.31712964177131653,
+     "other_industry": 0.2777777910232544,
+     "one_letter": 0.5555555820465088,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.6805555820465088,
+     "recall_case": 0.2916666567325592,
+     "other_industry": 0.4166666567325592,
+     "one_letter": 0.6435185074806213,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.7314814925193787,
+     "recall_case": 0.36342594027519226,
+     "other_industry": 0.5370370149612427,
+     "one_letter": 0.7037037014961243,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.7638888955116272,
+     "recall_case": 0.43287038803100586,
+     "other_industry": 0.5787037014961243,
+     "one_letter": 0.7407407760620117,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.7824074029922485,
+     "recall_case": 0.44212964177131653,
+     "other_industry": 0.625,
+     "one_letter": 0.7638888955116272,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.7777777910232544,
+     "recall_case": 0.47453704476356506,
+     "other_industry": 0.6481481790542603,
+     "one_letter": 0.7592592835426331,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Drolmar Biotech",
+   "fitted_against": [
+    "Drolmar Steel",
+    "Brolmar Biotech",
+    "Skunwick Biotech"
+   ],
+   "tested_on": [
+    "Drolmar Labs",
+    "Drolmur Biotech",
+    "Krotham Biotech"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.6666666865348816,
+     "recall_case": 0.5277777910232544,
+     "other_industry": 0.30092594027519226,
+     "one_letter": 0.5138888955116272,
+     "other_first_word": 0.018518518656492233,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.6898148059844971,
+     "recall_case": 0.5300925970077515,
+     "other_industry": 0.32870370149612427,
+     "one_letter": 0.5462962985038757,
+     "other_first_word": 0.02777777798473835,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.6527777910232544,
+     "recall_case": 0.5115740895271301,
+     "other_industry": 0.2916666567325592,
+     "one_letter": 0.5462962985038757,
+     "other_first_word": 0.023148149251937866,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.5277777910232544,
+     "recall_case": 0.48842594027519226,
+     "other_industry": 0.33796295523643494,
+     "one_letter": 0.47685185074806213,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.7268518805503845,
+     "recall_case": 0.6041666865348816,
+     "other_industry": 0.42592594027519226,
+     "one_letter": 0.6527777910232544,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.7268518805503845,
+     "recall_case": 0.6157407164573669,
+     "other_industry": 0.3888888955116272,
+     "one_letter": 0.6620370149612427,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8333333134651184,
+     "recall_case": 0.6458333134651184,
+     "other_industry": 0.5787037014961243,
+     "one_letter": 0.7638888955116272,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Pryttle Studios",
+   "fitted_against": [
+    "Pryttle Shipping",
+    "Sryttle Studios",
+    "Wuston Studios"
+   ],
+   "tested_on": [
+    "Pryttle Ceramics",
+    "Pryttla Studios",
+    "Crailmar Studios"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.5509259104728699,
+     "recall_case": 0.33101850748062134,
+     "other_industry": 0.236111119389534,
+     "one_letter": 0.5416666865348816,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.5740740895271301,
+     "recall_case": 0.48148149251937866,
+     "other_industry": 0.236111119389534,
+     "one_letter": 0.5787037014961243,
+     "other_first_word": 0.023148149251937866,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.5555555820465088,
+     "recall_case": 0.44675925374031067,
+     "other_industry": 0.20370370149612427,
+     "one_letter": 0.5324074029922485,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.7361111044883728,
+     "recall_case": 0.5023148059844971,
+     "other_industry": 0.34259259700775146,
+     "one_letter": 0.7083333134651184,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.7037037014961243,
+     "recall_case": 0.42824074625968933,
+     "other_industry": 0.38425925374031067,
+     "one_letter": 0.7083333134651184,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.75,
+     "recall_case": 0.5185185074806213,
+     "other_industry": 0.5138888955116272,
+     "one_letter": 0.7777777910232544,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.8333333134651184,
+     "recall_case": 0.5740740895271301,
+     "other_industry": 0.625,
+     "one_letter": 0.8379629850387573,
+     "other_first_word": 0.018518518656492233,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.8425925970077515,
+     "recall_case": 0.5810185074806213,
+     "other_industry": 0.6157407164573669,
+     "one_letter": 0.8518518805503845,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8564814925193787,
+     "recall_case": 0.5717592835426331,
+     "other_industry": 0.7129629850387573,
+     "one_letter": 0.8657407760620117,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Skalmar Electronics",
+   "fitted_against": [
+    "Skalmar Textiles",
+    "Jkalmar Electronics",
+    "Pomton Electronics"
+   ],
+   "tested_on": [
+    "Skalmar Dynamics",
+    "Skalmur Electronics",
+    "Cuspar Electronics"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.5138888955116272,
+     "recall_case": 0.26620370149612427,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.06018518656492233,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.6157407164573669,
+     "recall_case": 0.21990740299224854,
+     "other_industry": 0.37037038803100586,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.6296296119689941,
+     "recall_case": 0.23379629850387573,
+     "other_industry": 0.40740740299224854,
+     "one_letter": 0.004629629664123058,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.7268518805503845,
+     "recall_case": 0.33796295523643494,
+     "other_industry": 0.5046296119689941,
+     "one_letter": 0.004629629664123058,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.7361111044883728,
+     "recall_case": 0.347222238779068,
+     "other_industry": 0.5416666865348816,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.7592592835426331,
+     "recall_case": 0.36574074625968933,
+     "other_industry": 0.6481481790542603,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Lurnby Minerals",
+   "fitted_against": [
+    "Lurnby Games",
+    "Turnby Minerals",
+    "Grarnby Minerals"
+   ],
+   "tested_on": [
+    "Lurnby Energy",
+    "Lirnby Minerals",
+    "Trurbeck Minerals"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.5324074029922485,
+     "recall_case": 0.35185185074806213,
+     "other_industry": 0.35648149251937866,
+     "one_letter": 0.35185185074806213,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.625,
+     "recall_case": 0.3541666567325592,
+     "other_industry": 0.375,
+     "one_letter": 0.40740740299224854,
+     "other_first_word": 0.023148149251937866,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.7222222089767456,
+     "recall_case": 0.44212964177131653,
+     "other_industry": 0.4444444477558136,
+     "one_letter": 0.5324074029922485,
+     "other_first_word": 0.02777777798473835,
+     "unseen_company": 0.002314814832061529
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.7546296119689941,
+     "recall_case": 0.5879629850387573,
+     "other_industry": 0.24537037312984467,
+     "one_letter": 0.5740740895271301,
+     "other_first_word": 0.0694444477558136,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.6111111044883728,
+     "recall_case": 0.5416666865348816,
+     "other_industry": 0.32870370149612427,
+     "one_letter": 0.6111111044883728,
+     "other_first_word": 0.018518518656492233,
+     "unseen_company": 0.016203703358769417
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.7407407760620117,
+     "recall_case": 0.6898148059844971,
+     "other_industry": 0.35648149251937866,
+     "one_letter": 0.7037037014961243,
+     "other_first_word": 0.02777777798473835,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.8703703880310059,
+     "recall_case": 0.8356481790542603,
+     "other_industry": 0.5138888955116272,
+     "one_letter": 0.8518518805503845,
+     "other_first_word": 0.04629629850387573,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.8888888955116272,
+     "recall_case": 0.8472222089767456,
+     "other_industry": 0.5324074029922485,
+     "one_letter": 0.8564814925193787,
+     "other_first_word": 0.0555555559694767,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8935185074806213,
+     "recall_case": 0.8495370149612427,
+     "other_industry": 0.6435185074806213,
+     "one_letter": 0.8703703880310059,
+     "other_first_word": 0.02777777798473835,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Skaxley Pharma",
+   "fitted_against": [
+    "Skaxley Health",
+    "Bkaxley Pharma",
+    "Kurvik Pharma"
+   ],
+   "tested_on": [
+    "Skaxley Motors",
+    "Skaxlay Pharma",
+    "Puthane Pharma"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.5787037014961243,
+     "recall_case": 0.5555555820465088,
+     "other_industry": 0.09259259700775146,
+     "one_letter": 0.569444477558136,
+     "other_first_word": 0.0555555559694767,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.5509259104728699,
+     "recall_case": 0.2638888955116272,
+     "other_industry": 0.25,
+     "one_letter": 0.5462962985038757,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.7175925970077515,
+     "recall_case": 0.43981480598449707,
+     "other_industry": 0.31018519401550293,
+     "one_letter": 0.7314814925193787,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.7916666865348816,
+     "recall_case": 0.5717592835426331,
+     "other_industry": 0.43981480598449707,
+     "one_letter": 0.8009259104728699,
+     "other_first_word": 0.009259259328246117,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.8055555820465088,
+     "recall_case": 0.6157407164573669,
+     "other_industry": 0.43981480598449707,
+     "one_letter": 0.8101851940155029,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.7824074029922485,
+     "recall_case": 0.5949074029922485,
+     "other_industry": 0.49074074625968933,
+     "one_letter": 0.8009259104728699,
+     "other_first_word": 0.009259259328246117,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Brylloway Networks",
+   "fitted_against": [
+    "Brylloway Apparel",
+    "Trylloway Networks",
+    "Pranford Networks"
+   ],
+   "tested_on": [
+    "Brylloway Capital",
+    "Bryllowiy Networks",
+    "Crircott Networks"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.4861111044883728,
+     "recall_case": 0.3680555522441864,
+     "other_industry": 0.2083333283662796,
+     "one_letter": 0.4861111044883728,
+     "other_first_word": 0.004629629664123058,
+     "unseen_company": 0.0
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.7083333134651184,
+     "recall_case": 0.47685185074806213,
+     "other_industry": 0.3194444477558136,
+     "one_letter": 0.6574074029922485,
+     "other_first_word": 0.09259259700775146,
+     "unseen_company": 0.0
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.7314814925193787,
+     "recall_case": 0.5,
+     "other_industry": 0.27314814925193787,
+     "one_letter": 0.6805555820465088,
+     "other_first_word": 0.1805555522441864,
+     "unseen_company": 0.0
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.7685185074806213,
+     "recall_case": 0.5162037014961243,
+     "other_industry": 0.23148147761821747,
+     "one_letter": 0.7453703880310059,
+     "other_first_word": 0.25925925374031067,
+     "unseen_company": 0.0
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.6527777910232544,
+     "recall_case": 0.2615740895271301,
+     "other_industry": 0.28240740299224854,
+     "one_letter": 0.6342592835426331,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.7361111044883728,
+     "recall_case": 0.31712964177131653,
+     "other_industry": 0.4305555522441864,
+     "one_letter": 0.7314814925193787,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.819444477558136,
+     "recall_case": 0.47685185074806213,
+     "other_industry": 0.5833333134651184,
+     "one_letter": 0.8240740895271301,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.8240740895271301,
+     "recall_case": 0.46759259700775146,
+     "other_industry": 0.5601851940155029,
+     "one_letter": 0.8148148059844971,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8240740895271301,
+     "recall_case": 0.5162037014961243,
+     "other_industry": 0.6759259104728699,
+     "one_letter": 0.8101851940155029,
+     "other_first_word": 0.013888888992369175,
+     "unseen_company": 0.0
+    }
+   }
+  },
+  {
+   "company": "Flispar Ventures",
+   "fitted_against": [
+    "Flispar Steel",
+    "Tlispar Ventures",
+    "Draittle Ventures"
+   ],
+   "tested_on": [
+    "Flispar Motors",
+    "Flispir Ventures",
+    "Tythane Ventures"
+   ],
+   "layers": {
+    "0": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "1": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "2": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "3": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "4": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "5": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "6": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "7": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "8": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "9": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "10": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "11": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "12": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "13": {
+     "reading": false,
+     "recall": 0.0,
+     "recall_case": 0.0,
+     "other_industry": 0.0,
+     "one_letter": 0.0,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "14": {
+     "reading": true,
+     "recall": 0.49074074625968933,
+     "recall_case": 0.1111111119389534,
+     "other_industry": 0.004629629664123058,
+     "one_letter": 0.28240740299224854,
+     "other_first_word": 0.08796296268701553,
+     "unseen_company": 0.013888888992369175
+    },
+    "15": {
+     "reading": true,
+     "recall": 0.5833333134651184,
+     "recall_case": 0.40509259700775146,
+     "other_industry": 0.28240740299224854,
+     "one_letter": 0.5740740895271301,
+     "other_first_word": 0.0,
+     "unseen_company": 0.004629629664123058
+    },
+    "16": {
+     "reading": true,
+     "recall": 0.625,
+     "recall_case": 0.41898149251937866,
+     "other_industry": 0.28240740299224854,
+     "one_letter": 0.6203703880310059,
+     "other_first_word": 0.009259259328246117,
+     "unseen_company": 0.10185185074806213
+    },
+    "17": {
+     "reading": true,
+     "recall": 0.6064814925193787,
+     "recall_case": 0.41203704476356506,
+     "other_industry": 0.24537037312984467,
+     "one_letter": 0.6064814925193787,
+     "other_first_word": 0.009259259328246117,
+     "unseen_company": 0.12268518656492233
+    },
+    "18": {
+     "reading": true,
+     "recall": 0.7129629850387573,
+     "recall_case": 0.43518519401550293,
+     "other_industry": 0.31481480598449707,
+     "one_letter": 0.6666666865348816,
+     "other_first_word": 0.04629629850387573,
+     "unseen_company": 0.1875
+    },
+    "19": {
+     "reading": true,
+     "recall": 0.6712962985038757,
+     "recall_case": 0.29398149251937866,
+     "other_industry": 0.35185185074806213,
+     "one_letter": 0.6388888955116272,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "20": {
+     "reading": true,
+     "recall": 0.7824074029922485,
+     "recall_case": 0.3958333432674408,
+     "other_industry": 0.46759259700775146,
+     "one_letter": 0.7638888955116272,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "21": {
+     "reading": true,
+     "recall": 0.8055555820465088,
+     "recall_case": 0.5023148059844971,
+     "other_industry": 0.5462962985038757,
+     "one_letter": 0.7962962985038757,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "22": {
+     "reading": true,
+     "recall": 0.819444477558136,
+     "recall_case": 0.5231481790542603,
+     "other_industry": 0.5277777910232544,
+     "one_letter": 0.8055555820465088,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    },
+    "23": {
+     "reading": true,
+     "recall": 0.8148148059844971,
+     "recall_case": 0.5277777910232544,
+     "other_industry": 0.5648148059844971,
+     "one_letter": 0.8148148059844971,
+     "other_first_word": 0.0,
+     "unseen_company": 0.0
+    }
+   }
+  }
+ ],
+ "seconds": 182
+}

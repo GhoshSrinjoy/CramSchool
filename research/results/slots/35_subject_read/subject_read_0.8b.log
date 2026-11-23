@@ -1,0 +1,41 @@
+12 companies; fitted on 72 plain and 72 chat wordings, scored on 72 and 72 held out
+fit readings done | 97s
+[1/12] Brunzel Quantum: at layer 16 recall 0.73, look-alikes opened: other industry 0.08, one letter 0.58, other first word 0.04 | 106s
+[2/12] Grinwick Logistics: at layer 18 recall 0.62, look-alikes opened: other industry 0.23, one letter 0.36, other first word 0.04 | 113s
+[3/12] Grealgate Motors: at layer 16 recall 0.63, look-alikes opened: other industry 0.19, one letter 0.55, other first word 0.00 | 120s
+[4/12] Gelloway Insurance: at layer 22 recall 0.86, look-alikes opened: other industry 0.23, one letter 0.76, other first word 0.72 | 127s
+[5/12] Drylmar Networks: at layer 16 recall 0.58, look-alikes opened: other industry 0.27, one letter 0.49, other first word 0.00 | 134s
+[6/12] Drolmar Biotech: at layer 16 recall 0.67, look-alikes opened: other industry 0.30, one letter 0.51, other first word 0.02 | 141s
+[7/12] Pryttle Studios: at layer 18 recall 0.74, look-alikes opened: other industry 0.34, one letter 0.71, other first word 0.01 | 148s
+[8/12] Skalmar Electronics: at layer 19 recall 0.62, look-alikes opened: other industry 0.37, one letter 0.00, other first word 0.00 | 155s
+[9/12] Lurnby Minerals: at layer 16 recall 0.62, look-alikes opened: other industry 0.38, one letter 0.41, other first word 0.02 | 162s
+[10/12] Skaxley Pharma: at layer 18 recall 0.58, look-alikes opened: other industry 0.09, one letter 0.57, other first word 0.06 | 169s
+[11/12] Brylloway Networks: at layer 16 recall 0.71, look-alikes opened: other industry 0.32, one letter 0.66, other first word 0.09 | 175s
+[12/12] Flispar Ventures: at layer 14 recall 0.49, look-alikes opened: other industry 0.00, one letter 0.28, other first word 0.09 | 182s
+layer  recall  in other case  other industry  one letter  other first word  unseen company  companies passing
+    0   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    1   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    2   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    3   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    4   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    5   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    6   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    7   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    8   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+    9   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+   10   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+   11   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+   12   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+   13   0.000          0.000           0.000       0.000             0.000           0.000   0 of 12
+   14   0.041          0.009           0.000       0.024             0.007           0.001   0 of 12
+   15   0.358          0.217           0.165       0.302             0.003           0.001   0 of 12
+   16   0.476          0.318           0.182       0.408             0.055           0.012   0 of 12
+   17   0.486          0.322           0.183       0.432             0.063           0.015   0 of 12
+   18   0.665          0.453           0.203       0.547             0.093           0.025   0 of 12
+   19   0.522          0.292           0.264       0.453             0.042           0.001   0 of 12
+   20   0.698          0.444           0.366       0.613             0.049           0.003   0 of 12
+   21   0.800          0.563           0.445       0.712             0.074           0.007   0 of 12
+   22   0.811          0.568           0.442       0.714             0.073           0.012   0 of 12
+   23   0.832          0.598           0.518       0.735             0.073           0.008   0 of 12
+best layer: 23, where 0 of 12 companies meet the bench's bars (recall at least 0.75, at most 1 in 12 questions about a look-alike opened)
+wrote research/results/slots/35_subject_read/subject_read_0.8b.json

@@ -1,0 +1,23 @@
+=== layer 22: build (20:22:35)
+
+16 of 40 pass (15 counting only test wordings that were not taught); recall median 0.583 (mean 0.533); whole answers in 256 of 480 replies; same-company leak median 0.000, over the limit on 0 facts; by relation {'owner': 5, 'ceo': 6, 'founder': 0, 'hq': 5}
+facts failing a leak, garbling or damage check: 0 []; known lost (max) 0; drift (max) 0.0000
+=== layer 22: scored with the answer written at the last layer (20:32:11)
+arm 0, push 2, last layer: all: 40 of 40 pass; recall median 0.875 (mean 0.879); same-company leak median 0.000; capitalisation 1.000; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 0 []
+layer events over the run: {'first': 765, 'continued': 2920, 'vetoed': 5, 'respelled': 0}
+recall replies holding the whole answer: 422 of 480
+against research/results/slots/31_last_layer/bench40h_all.jsonl: 32 pass there; pass only here ['f03', 'f09', 'f18', 'f29', 'f31', 'f34', 'f38', 'f39']; pass only there []; newly failing a leak, garbling or damage check []
+recall replies holding the whole answer: 410 there, 422 here; gained 16, lost 4 [('f11', 6), ('f16', 4), ('f20', 0), ('f36', 3)]
+=== layer 12: build (20:34:25)
+
+7 of 40 pass (3 counting only test wordings that were not taught); recall median 0.583 (mean 0.512); whole answers in 246 of 480 replies; same-company leak median 0.000, over the limit on 0 facts; by relation {'owner': 0, 'ceo': 2, 'founder': 2, 'hq': 3}
+facts failing a leak, garbling or damage check: 2 ['f13', 'f40']; known lost (max) 0; drift (max) 0.0000
+=== layer 12: scored with the answer written at the last layer (20:42:21)
+arm 0, push 2, last layer: all: 12 of 40 pass; recall median 0.667 (mean 0.673); same-company leak median 0.000; capitalisation 0.750; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 2 ['f13', 'f40']
+layer events over the run: {'first': 594, 'continued': 2317, 'vetoed': 0, 'respelled': 0}
+recall replies holding the whole answer: 323 of 480
+against research/results/slots/31_last_layer/bench40h_all.jsonl: 32 pass there; pass only here ['f29']; pass only there ['f01', 'f02', 'f04', 'f05', 'f06', 'f07', 'f08', 'f10', 'f11', 'f12', 'f13', 'f17', 'f19', 'f22', 'f23', 'f24', 'f27', 'f28', 'f35', 'f36', 'f40']; newly failing a leak, garbling or damage check ['f13', 'f40']
+recall replies holding the whole answer: 410 there, 323 here; gained 10, lost 97 [('f01', 0), ('f01', 4), ('f01', 7), ('f02', 2), ('f02', 4), ('f02', 7), ('f03', 4), ('f04', 0), ('f04', 2), ('f04', 4), ('f04', 6), ('f05', 0), ('f05', 3), ('f05', 4), ('f06', 4), ('f06', 6), ('f06', 7), ('f06', 11), ('f07', 1), ('f07', 6), ('f08', 0), ('f08', 4), ('f08', 5), ('f08', 7), ('f09', 2), ('f09', 4), ('f09', 7), ('f10', 3), ('f10', 4), ('f10', 9), ('f11', 1), ('f11', 2), ('f11', 4), ('f11', 6), ('f12', 1), ('f12', 3), ('f12', 5), ('f12', 7), ('f13', 1), ('f13', 5), ('f14', 2), ('f15', 1), ('f15', 6), ('f16', 6), ('f17', 1), ('f17', 3), ('f17', 11), ('f18', 3), ('f19', 2), ('f19', 4), ('f19', 7), ('f2
+=== done (20:44:35)
