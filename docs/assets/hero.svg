@@ -42,10 +42,10 @@
   <g font-size="15">
     <rect x="56" y="332" width="186" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
     <text x="72" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">31/40</tspan>  blind, v1</text>
-    <rect x="254" y="332" width="200" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-    <text x="270" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">180</tspan>  facts, one layer</text>
-    <rect x="466" y="332" width="204" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-    <text x="482" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">0</tspan>  known facts lost</text>
+    <rect x="254" y="332" width="224" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="270" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">180</tspan>  facts, one layer, v1</text>
+    <rect x="490" y="332" width="204" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="506" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">0</tspan>  known facts lost</text>
   </g>
 
   <!-- right: the model, a stack of layers -->

@@ -100,6 +100,7 @@ The numbers above are v1's, measured with the answer pushed at layer 20. Two thi
 - **The last six rows are not blind results:** I had read those benches' replies before. A fresh bench would give a blind number.
 - **A new table writes at the last layer since version 1.1, and reads there since 1.2.** A table saved earlier keeps the write and the layer it was built with, and every other number in these docs was measured with the earlier write at layer 20 ([changelog](CHANGELOG.md)).
 - **The grafted model keeps the size of the base model to the byte,** and its damage is judged on the facts the model knows firmly: none is lost. Of the 92 it only just knows, 6 to 8 flip, against 4 for the earlier grafted model.
+- **"Facts passing" for a grafted model means its recall and leak checks.** By the bench's own count of known facts lost, which fails every fact at 7 of 133, the bench40f model loses 8 and would pass 0 of 40; on bench40h it loses 6.
 
 <p align="center"><img src="docs/assets/in-the-weights.png" alt="The grafted model, the facts in the model's own weights: 23 of 40 before and 32 now on bench40f, where its table passes 32; 35 on bench40h, where its table passes 38" width="82%"></p>
 

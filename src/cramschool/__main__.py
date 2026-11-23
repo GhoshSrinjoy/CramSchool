@@ -91,7 +91,7 @@ def build_parser() -> argparse.ArgumentParser:
     g_add.add_argument("--answer", required=True)
     g_add.add_argument("--relations", help="JSON file of extra relations: {name: {plain: [...], chat: [...]}}")
     g_add.add_argument("--layer", type=_layer_arg, help="a new table only: the layer the question is read at. A number; or auto, to measure "
-                                                        "every layer of the model first, about 5 minutes (default: 20 on Qwen3.5-0.8B)")
+                                                        "every layer of the model first, about 3 minutes; or last (default: the model's last layer)")
     g_add.add_argument("--ask", help="a question to ask before and after")
     _setting_args(g_add)
     g_file = graft.add_parser("add-file", help="add every fact of a dataset, and save the table")

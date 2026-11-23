@@ -61,11 +61,11 @@ Q: What does Vorantis Biotech make?             (another question about the comp
 
 | Your situation | Setting | Why |
 |---|---|---|
-| A new table, one or two facts on a company | `GraftOptions(prompt_detector=True)` | More ways of asking are recognised: 31 of 40 facts against 23 on a blind bench, and 40 of 40 together with the default write on a bench that was not blind |
+| A new table, one or two facts on a company | `GraftOptions(prompt_detector=True)` | More ways of asking are recognised. Measured on tables at layer 20: 31 of 40 facts against 23 on a blind bench, and 40 of 40 together with the write at the last layer (not blind). At the last layer, where a new table now reads, it has not been measured |
 | Three or more facts on one company | the defaults | With four facts on every company the detector above added no fact and 8 of 40 failed a leak check, against 2 |
 | Your application has a system message | `Graft(..., system="...")` | A table is for the chat format it was built in. Taught with no system message, a table answered 51 of 120 questions behind one, against 93 taught behind it |
 | Many facts to add | `GraftOptions(fast=True)` | Readings that a relation's facts share are computed once: about 20 seconds for a relation's first fact and 5 to 9 for its later ones |
-| Real subjects, or facts the model already knows | `GraftOptions(real_world="other_relations", context=4, fast=True)` | The CounterFact recipe ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)) |
+| Real subjects, or facts the model already knows | `Graft(..., layer=20, options=GraftOptions(real_world="other_relations", context=4, fast=True, last_layer=None))` | The CounterFact recipe as it was measured, at layer 20 with the earlier write ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)). With the 1.2 defaults this recipe is unmeasured |
 | A relation with more than 30 wordings | `GraftOptions(teach_cap=30)` | The answer-vector step reads every teaching example at once, and can run out of GPU memory |
 | You want the facts in the model's own weights | the defaults, then `graft.export_grafted(...)` | A table reads and writes at the model's last layer by default, and that is the table the export compiles best: 32 of 40 facts on a bench where the table passes 32 (not blind) |
 | The table will only be used beside the model, and you want the best layer for reading | `Graft(..., layer="auto")` | Every layer of your model is measured on invented probe facts, in about 3 minutes, and the pick is saved with the table. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 38 at the last layer and 32 at layer 20 (not blind) |

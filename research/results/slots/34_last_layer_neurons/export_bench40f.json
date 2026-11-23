@@ -1,0 +1,31 @@
+{
+ "table": "runs/last_neurons/bench40f_layer23/bench40f.graft",
+ "layer": 23,
+ "later_layer": 20,
+ "neurons": {
+  "23": {
+   "first": 160,
+   "next": 96
+  },
+  "20": {
+   "next": 121
+  }
+ },
+ "tensors": 6,
+ "same_size": true,
+ "files": {
+  "model.safetensors-00001-of-00001.safetensors": {
+   "base_bytes": 1746942600,
+   "grafted_bytes": 1746942600
+  }
+ },
+ "seconds": 378,
+ "firm": {
+  "firm_lost": 0,
+  "firm": 41,
+  "firm_shift": -0.0625,
+  "knife_lost": 8,
+  "knife": 92,
+  "passed": true
+ }
+}
