@@ -386,10 +386,13 @@ def _tensor_keys(keys, layer: int) -> dict[str, str]:
     return out
 
 
-def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | None = None) -> dict:
+def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | None = None, also: dict | None = None) -> dict:
     """Write the grafted model: a copy of the base checkpoint in `base_dir` with the compiled layer's three matrices in place of the
     originals, plus grafted.json (which neuron holds which fact) and grafted_switch.py (the name switch). Returns a report: the edited
-    tensors, how many values changed, and the byte sizes of the base and grafted weight files (equal)."""
+    tensors, how many values changed, and the byte sizes of the base and grafted weight files (equal).
+
+    also: a second compiled layer of the same facts, holding their later tokens' neurons while `compiled` holds their first tokens'
+    (join_layers; lab notebook, step 26). Both layers' matrices are written, and grafted.json marks each neuron with its layer."""
     from safetensors import safe_open
     from safetensors.torch import save_file
 
@@ -405,16 +408,19 @@ def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | 
     for path in files:
         with safe_open(path, "pt") as fh:
             keys += list(fh.keys())
-    targets = _tensor_keys(keys, compiled["layer"])
+    layers = [compiled] + ([also] if also is not None else [])
+    if also is not None and also["layer"] == compiled["layer"]:
+        raise ValueError(f"the two compiled layers are the same layer ({compiled['layer']})")
+    targets = {key: c[part] for c in layers for part, key in _tensor_keys(keys, c["layer"]).items()}
     report = dict(tensors={}, files={})
     for path in files:
         with safe_open(path, "pt") as fh:
             header = fh.metadata()
             tensors = {k: fh.get_tensor(k) for k in fh.keys()}
-        for part, key in targets.items():
+        for key, new in targets.items():
             if key not in tensors:
                 continue
-            old, new = tensors[key], compiled[part]
+            old = tensors[key]
             if old.shape != new.shape:
                 raise ValueError(f"{key}: the compiled weight is {tuple(new.shape)}, the checkpoint's {tuple(old.shape)}")
             new = new.to(old.dtype).contiguous()
@@ -423,10 +429,13 @@ def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | 
         target = os.path.join(out_dir, os.path.basename(path))
         save_file(tensors, target, metadata=header)
         report["files"][os.path.basename(path)] = dict(base_bytes=os.path.getsize(path), grafted_bytes=os.path.getsize(target))
+    joined = join_layers(compiled, also) if also is not None else compiled
     spec = dict(method="GRAFT, grafted", layer=compiled["layer"], gain=compiled["gain"], push=compiled["push"], refit=compiled["refit"],
                 where=compiled.get("where", "after"), saturate=compiled.get("saturate", False), track=compiled.get("track", False),
                 clip=compiled.get("clip", CLIP), answers=compiled.get("answers", []), spell=compiled.get("spell", False),
-                written=time.strftime("%Y-%m-%d %H:%M:%S"), neurons=compiled["neurons"], **(meta or {}))
+                written=time.strftime("%Y-%m-%d %H:%M:%S"), neurons=joined["neurons"], **(meta or {}))
+    if also is not None:
+        spec.update(later_layer=also["layer"], later_refit=also["refit"])
     with open(os.path.join(out_dir, SPEC_FILE), "w", encoding="utf-8") as fh:
         json.dump(spec, fh, ensure_ascii=False, indent=1)
     shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), "grafted_switch.py"), os.path.join(out_dir, "grafted_switch.py"))

@@ -533,3 +533,43 @@ def test_first_tokens_at_the_last_layer_and_later_tokens_at_another_under_one_sw
         assert mid[-1, nxt] == 0 and all(up[-1, s] == 0 for s in f_slots)
     finally:
         switch.detach()
+
+
+def test_the_export_writes_both_layers_of_a_two_layer_model_and_its_switch_runs(model, tokenizer, tmp_path):
+    top = len(blocks(model)) - 1
+    last = dict(head=model.get_output_embeddings().weight, size=3.0, cap=False)
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=long_parts(3))
+    common = dict(forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", track=True)
+    first = compile_layer(model, tokenizer, [fact], top, mctx(), last=last, kinds=("first",), **common)
+    later = compile_layer(model, tokenizer, [fact], LAYER, mctx(), kinds=("next",), **common)
+    base, out_dir = str(tmp_path / "base"), str(tmp_path / "grafted")
+    model.save_pretrained(base)
+    tokenizer.save_pretrained(base)
+    report = export_grafted(base, out_dir, first, also=later)
+    changed = {k: v["changed"] for k, v in report["tensors"].items()}
+    assert len(changed) == 6 and all(n > 0 for n in changed.values())                  # three matrices at each of the two layers
+    assert all(f["base_bytes"] == f["grafted_bytes"] for f in report["files"].values())  # the same size
+    spec = json.load(open(os.path.join(out_dir, "grafted.json"), encoding="utf-8"))
+    assert spec["layer"] == top and spec["later_layer"] == LAYER and spec["spell"] and spec["track"]
+    assert [n["layer"] for n in spec["neurons"]] == [top] * 4 + [LAYER]
+    loaded = AutoModelForCausalLM.from_pretrained(out_dir).eval()
+    for layer, compiled in ((top, first), (LAYER, later)):
+        assert torch.equal(blocks(loaded)[layer].mlp.down_proj.weight.data, compiled["down"])
+    switch = grafted_switch.attach(loaded, tokenizer, out_dir)
+    try:
+        with torch.no_grad():
+            out = loaded(input_ids=tokenizer("the owner of acme is", return_tensors="pt").input_ids)
+        assert sorted(switch.at) == [LAYER, top] and torch.isfinite(out.logits).all()
+    finally:
+        switch.detach()
+    try:
+        export_grafted(base, out_dir, first, also=first)
+        raise AssertionError("the same layer twice must be refused")
+    except ValueError:
+        pass
+
+
+def test_a_table_can_be_built_at_the_models_last_layer_by_name(model, tokenizer):
+    from cramschool.graft import Graft
+
+    assert Graft(model, tokenizer, layer="last").layer == len(blocks(model)) - 1

@@ -741,7 +741,7 @@ def test_a_table_keeps_the_last_layer_option_and_its_scale(model, tokenizer, tmp
     old.options.last_layer = "first"
     with pytest.raises(ValueError, match="last_layer must be"):
         old.layer_object()
-    with pytest.warns(UserWarning, match="has no neuron form yet"):
+    with pytest.warns(UserWarning, match="can come out unfinished"):
         try:
             graft.export_grafted(str(tmp_path / "g"), base_dir=str(tmp_path))
         except Exception:
@@ -802,5 +802,5 @@ def test_layer_auto_uses_the_earlier_rule_where_the_profile_has_nothing_to_say(m
     texts = [str(w.message) for w in caught]
     assert pushed.layer == earlier and pushed.layer_profile is None and any("also pushes its answer at its own layer" in t for t in texts)
     assert blind.layer == earlier and blind.layer_profile is None and any("no layer at which a probe fact gets a detector" in t for t in texts)
-    with pytest.raises(ValueError, match="layer must be a number, None or 'auto'"):
+    with pytest.raises(ValueError, match="layer must be a number, None, 'last' or 'auto'"):
         Graft(model, tokenizer, layer="deepest")

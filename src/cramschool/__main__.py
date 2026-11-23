@@ -55,12 +55,12 @@ def _dataset_args(p):
 
 def _layer_arg(text: str):
     """--layer: a number, or auto to measure every layer of the model and take the pick."""
-    if text == "auto":
+    if text in ("auto", "last"):
         return text
     try:
         return int(text)
     except ValueError:
-        raise argparse.ArgumentTypeError(f"a layer is a number or auto, not {text!r}") from None
+        raise argparse.ArgumentTypeError(f"a layer is a number, last or auto, not {text!r}") from None
 
 
 def _setting_args(p, new_table=True):

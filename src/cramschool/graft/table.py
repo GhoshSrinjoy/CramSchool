@@ -28,7 +28,7 @@ from ..gates import generate_batch
 from ..model_access import Prompt, model_device, render_chat, tensor_fingerprint, with_system
 from .build import (N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_prompt_detectors, build_shared, build_slots, entry_of,
                     make_fact)
-from .core import calibration_stats, constant_direction, mlp_of
+from .core import blocks, calibration_stats, constant_direction, mlp_of
 from .core import final_scale as measure_final_scale
 from .layer import GraftLayer, NameIndex
 from .wordings import Relation, Wordings, calibration_paragraphs, canonical_relation
@@ -152,9 +152,9 @@ class Graft:
         self._progress = progress
         self.layer_profile: dict | None = None    # what layer="auto" measured, when the layer was picked that way
         if isinstance(layer, str):
-            if layer != "auto":
-                raise ValueError(f"layer must be a number, None or 'auto', not {layer!r}")
-            self.layer = self._pick_layer()
+            if layer not in ("auto", "last"):
+                raise ValueError(f"layer must be a number, None, 'last' or 'auto', not {layer!r}")
+            self.layer = len(blocks(model)) - 1 if layer == "last" else self._pick_layer()
         else:
             self.layer = layer if layer is not None else default_layer(model)
         self._mctx: dict | None = None
@@ -553,11 +553,33 @@ class Graft:
         return [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"],
                      **({"continuation": k} if k is not None else {})) for e, k in zip(self._facts, cont)]
 
-    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain", "chat"), texts=None, complete: bool | str = True) -> dict:
-        """Compile the table's facts into the model's own neurons at the table's layer and write the grafted model to `out_dir`: the base
-        checkpoint with that layer's three MLP matrices replaced (same files, shapes and size), grafted.json and grafted_switch.py. Load it
-        with cramschool.graft.load_grafted, or with transformers and the folder's grafted_switch.attach. base_dir: the local folder the
+    def later_spellings(self, layer: int) -> list[dict]:
+        """Each fact's answer vectors measured at another layer than the table's (build.answer_spellings), built once and kept with the
+        fact in memory: what a grafted model needs to follow answers from that layer. A few seconds per fact."""
+        from .build import answer_spellings
+
+        for n, e in enumerate(self._facts, 1):
+            if layer not in e.setdefault("later", {}):
+                e["later"][layer] = answer_spellings(self.model, self.tokenizer, e["fact"], self._fact_context(e["fact"]), layer)
+                self._say(f"answer vectors at layer {layer}, {n}/{len(self._facts)}: {e['fact']['subject']} | {e['fact']['relation']}")
+        return [e["later"][layer] for e in self._facts]
+
+    def export_grafted(self, out_dir: str, *, base_dir: str | None = None, forms=("plain", "chat"), texts=None, complete: bool | str = True,
+                       later_layer: int | None = None) -> dict:
+        """Compile the table's facts into the model's own neurons and write the grafted model to `out_dir`: the base checkpoint with the
+        edited layers' MLP matrices replaced (same files, shapes and size), grafted.json and grafted_switch.py. Load it with
+        cramschool.graft.load_grafted, or with transformers and the folder's grafted_switch.attach. base_dir: the local folder the
         model was loaded from (default: the model's own path).
+
+        A table at the model's last layer that writes there (layer="last", last_layer="all"; lab notebook, step 26) is compiled into
+        two layers. Each fact's first-token neurons go to the last layer: one per form and spelling, its gate the fact's detector and
+        its output the sized row the table writes, so an answer that opens begins as the table's does. The later tokens' neurons go to
+        `later_layer` (default: layer 20 of a 24-layer model, the same depth of another), with answer vectors measured there. The last
+        layer is the only place a write always wins and it can spare the fewest neurons: about 256 of the 0.8B's by the damage bar.
+        On bench40f that model passes 31 of 40 facts against 23 for the one-layer compile, with the bar met; 7 knife-edge known facts
+        flip against 4, and the drift is 0.0097 against 0.0027.
+
+        Any other table is compiled at its own layer, as below.
 
         complete (lab notebook, step 7), True by default. The first token of each form is a saturating pair of neurons, which writes the
         inserted layer's push once the detector is open and never more. Each later answer token has a neuron of its own, which the name
@@ -588,20 +610,41 @@ class Graft:
         if self.options.looser_start or self.options.end_quantile is not None or self.options.arm or self.options.prompt_detector:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile, prompt_detector and arm have "
                           "no neuron form and are left out of the grafted model", stacklevel=2)
+        top = len(blocks(self.model)) - 1
+        meta = dict(base_model=base, facts=len(self._facts), aliases=self._alias_map(), exclusions=self._exclusion_list())
+        if self.options.last_layer == "all" and self.layer == top and complete is True:
+            from .layer import LAST_MULTIPLE
+
+            later = default_layer(self.model) if later_layer is None else later_layer
+            if later == top:
+                raise ValueError(f"later_layer must be another layer than the last ({top}): the last layer keeps the first tokens only")
+            last = dict(head=self.model.get_output_embeddings().weight, size=LAST_MULTIPLE * self.final_scale(), cap=False)
+            extra = text_moments(self.model, self.tokenizer, top, texts) if texts is not None else None
+            first = compile_layer(self.model, self.tokenizer, self.grafted_facts(), top, self.calibration(), forms=forms, push=self.options.push,
+                                  paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True, last=last,
+                                  kinds=("first",), progress=self._say)
+            stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), later)
+            c, cbar, _ = constant_direction(stats)
+            vectors = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=dict(spellings=sp))
+                       for e, sp in zip(self._facts, self.later_spellings(later))]
+            extra = text_moments(self.model, self.tokenizer, later, texts) if texts is not None else None
+            second = compile_layer(self.model, self.tokenizer, vectors, later, dict(c=c, cbar=cbar), forms=forms, push=self.options.push,
+                                   paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True,
+                                   kinds=("next",), progress=self._say)
+            return export_grafted(base, out_dir, first, meta=meta, also=second)
         if self.layer_profile is not None:
             warnings.warn(f"this table's layer ({self.layer}) was picked for reading the question. The grafted model also pushes the answer "
                           "there, and a push was only measured near layer 20 of the 0.8B: check the grafted model before relying on it", stacklevel=2)
         if self.options.last_layer:
-            warnings.warn("the grafted model writes every answer token at the table's layer: the write at the last layer that this table "
-                          f"uses (last_layer={self.options.last_layer!r}) has no neuron form yet, so an answer the table finishes can come "
-                          "out unfinished from the grafted model", stacklevel=2)
+            warnings.warn("the grafted model of this table writes every answer token at the table's layer, so an answer the table finishes can "
+                          "come out unfinished from it. To have the write at the last layer in the weights, build the table at the model's "
+                          "last layer: Graft(model, tokenizer, layer='last')", stacklevel=2)
         facts = self.grafted_facts(detected=complete == "detected")
         extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
                                  paragraphs=self._calibration, extra_moments=extra, saturate=bool(complete), where="last" if complete else "after",
                                  track=complete is True, progress=self._say)
-        return export_grafted(base, out_dir, compiled, meta=dict(base_model=base, facts=len(facts), aliases=self._alias_map(),
-                                                                exclusions=self._exclusion_list()))
+        return export_grafted(base, out_dir, compiled, meta=meta)
 
     # ------------------------------------------------------------ saving
 

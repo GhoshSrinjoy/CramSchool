@@ -371,6 +371,25 @@ def build_parts(model, tokenizer, f: dict, ctx: dict, mctx: dict, layer: int, ve
     return out
 
 
+@torch.no_grad()
+def answer_spellings(model, tokenizer, f: dict, ctx: dict, layer: int) -> dict:
+    """A fact's answer vectors at `layer` alone, as build_parts measures them (answer_chain, the cap, the strength), in both spellings.
+    For a grafted model whose later answer tokens sit at another layer than the table's (lab notebook, step 26): the detectors are the
+    table's, and only these vectors are needed from the other layer."""
+    built = training_fact(f, ctx["drafted"], ctx.get("teach_cap"))
+    examples = [(p, a) for p, a in built.teaching_examples(tokenizer) if norm(p.text if not p.rendered else _question_of(p, built)) not in ctx["guard"]]
+    links = answer_chain(model, tokenizer, examples, layer)
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    norms = [float(link.vector.norm()) for link in links]
+    cap = PUSH_CAP * statistics.median(norms)
+    for i, link in enumerate(links):
+        if norms[i] > cap:
+            link.vector = link.vector * (cap / norms[i])
+    _, keys, _ = keyed_spots(tokenizer, examples)
+    return spellings_of(f, tokenizer, {(k[0], k[1]): STRENGTH * link.vector.float() for k, link in zip(keys, links)})
+
+
 # ---------------------------------------------------------------- continuation detectors, for the grafted model (docs/graft.md, section 12)
 
 @torch.no_grad()
@@ -681,4 +700,4 @@ def entry_of(parts: dict, push: float = 2.0, looser: dict | None = None, looser_
 
 
 __all__ = ["build_context", "make_fact", "build_parts", "build_looser", "build_shared", "build_slots", "build_continuation", "ordinary_reads", "entry_of", "avoid_items", "build_prompt_detectors", "prompt_detectors",
-           "end_detectors", "detector_data", "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode"]
+           "end_detectors", "detector_data", "pick_spelling", "spellings_of", "test_texts", "last_inputs", "mlp_inputs", "encode", "answer_spellings"]
