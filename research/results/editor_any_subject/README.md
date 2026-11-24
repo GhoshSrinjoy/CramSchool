@@ -19,6 +19,8 @@ stored answer opens the reply in 22 of the 23 leaks. The cause was not measured.
 
 ## The rule, written before the session
 
+The twelve facts are in `brief.md`, which the editor was given, and so is the rule for a good fact, in the protocol's words. The rule for the two drafted kinds was written before the session in a working file that is not in the repository. `facts.json` is a copy of the facts and of both rules, made afterwards.
+
 - A fact is good when its final `check_fact` says so: the answer, matched as whole words, is in at least 6 of 8 new questions, and
   the table brings the answer's first word into none of 4 other questions about the same subject and none of 3 look-alike names.
 - A drafted kind of subject (software, substance) stays shipped if at least 3 of its facts are good. Software had 1 of 6 and
@@ -58,9 +60,12 @@ python scripts/count_editor_session.py research/results/editor_any_subject
 - **The files are as the session wrote them.** Since then the two drafted kinds left the package, two result keys of the tools
   were renamed (`table` is now `table_version`, and `compiled_from_table` inside `weights`), `check_fact` lists other stored answers
   with each reply, and the protocol gained a sentence. The brief and the calls here show the earlier text and keys.
+- **The table is not the benches' table.** It read and wrote at the last layer, the default since version 1.2. The blind bench beyond
+  companies read at layer 20 and pushed the answer there, and its relations had 30 plain and 30 chat wordings, against 16 and 16 here.
 - **The rule is stricter than the benches'.** A bench allows a fact's answer in a quarter of the other questions about its subject;
   this rule allows none. Held to a quarter, four of the twelve would be good (s1, s3, s4, s5). That is a reading made afterwards.
-- **Another stored fact's answer** came into 11 of the 48 replies to other questions. Nine of those questions ask for that other
-  fact, which is right to answer; two do not. The session's check did not count them, and they are not in the counts above.
+- **Another stored fact's answer** came into 11 of the 48 replies to other questions (`summary.json` lists them). Read by hand, nine
+  of those questions ask for that other fact, which is right to answer, and two do not. The session's check did not count them,
+  and they are not in the counts above.
 - **One reply at the base weights holds a fact's answer:** the install command, on the question asked of the recorded weights
   (`calls/056_graft_weights_ask.json`). In that fact's final check the model without the table gave it on none of the 8 questions.

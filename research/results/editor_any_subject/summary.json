@@ -1,5 +1,5 @@
 {
- "note": "The twelve facts of the first check on facts about software and science, and its rule, as written before the session. All subjects are invented. One session, one editor, which also wrote every question: a first check, not a bench.",
+ "note": "The twelve facts of the first check on facts about software and science, and its rule, as fixed before the session. This file is a copy made afterwards: the facts are in brief.md, which the editor was given, and the rule for the drafted kinds was in a working file outside the repository. All subjects are invented. One session, one editor, which also wrote every question: a first check, not a bench.",
  "rule": "A fact is good when its final check_fact says so: the answer, matched as whole words, is in at least 6 of 8 new questions, and the table brings the answer's first word into none of 4 other questions about the same subject and none of 3 look-alike names. A drafted kind of subject (software, substance) stays shipped if at least 3 of its facts are good.",
  "calls": 63,
  "calls_by_tool": {
