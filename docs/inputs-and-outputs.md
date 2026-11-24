@@ -152,6 +152,20 @@ model, tokenizer, switch = load_grafted("my-grafted-model")     # transformers, 
 - **What it costs:** reusing neurons moves the model a little. It is judged on the facts the model knows firmly, and none was lost in the models measured ([GRAFT, section 12](graft.md#12-the-grafted-model)).
 - **What it still needs:** the name switch. Recognising which subject is named is the one piece outside the weights ([limitations](limitations.md#what-it-is-not)).
 
+### Versions of the weights
+
+`weight_history.commit("my-model.history", "my-grafted-model", "forty facts", base_dir="models/Qwen3.5-0.8B", table="my.graft")` records the grafted model as a version, in a folder of its own:
+
+```text
+my-model.history/
+  versions.jsonl          one line per version: its changed tensors, its facts, the table version it was compiled from
+  base.json               the hash of every tensor and file of the base model the history was started on
+  objects/<hash>   7 MB   a changed tensor, stored once; also the base's own copy of each, and grafted.json and the switch
+```
+
+- **A version is small:** the tensors that differ from the base model, 22 MB for the three matrices of one layer of Qwen3.5-0.8B, against 1,770 MB for the whole checkpoint.
+- **Any version is written back as a checkpoint folder,** byte for byte as it was exported, with `weight_history.checkout` ([Python API](python-api.md#the-weights-history)).
+
 ## What the command line prints
 
 | Command | Output |

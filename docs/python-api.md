@@ -116,6 +116,54 @@ switch.detach()                                                     # the facts 
   - `Graft.grafted_facts()` returns the table's facts as `compile_layer` takes them, and `Graft.continuations()` the per-token detectors of the `"detected"` compile;
   - the parts of the compile: `fact_neurons` (one fact's neurons), `second_moment` and `text_moments` (the activations' second moments), `redundancy_order` (which neurons to free) and `compensation` (the closed-form re-fit).
 
+### The weights' history
+
+The grafted model and the weight edits change the model's own weights. `cramschool.weight_history` records those weights as versions, as a table's history does for a table.
+
+```python
+from cramschool import weight_history as wh
+
+graft.commit("my.graft", "forty facts")                                              # the table: v1
+graft.export_grafted("my-grafted-model", base_dir=BASE)                              # the same facts in the model's own weights
+wh.commit("my-model.history", "my-grafted-model", "forty facts", base_dir=BASE, table="my.graft")    # the weights: v1, compiled from table v1
+
+graft.add("Vorantis Biotech", "ceo", "Kenji Aoyama")
+graft.commit("my.graft", "a new CEO")                                                # the table: v2
+graft.export_grafted("my-grafted-model", base_dir=BASE)
+wh.commit("my-model.history", "my-grafted-model", "a new CEO", base_dir=BASE, table="my.graft")      # the weights: v2
+
+print(wh.diff_text(wh.diff("my-model.history", "v1", "v2")))                         # the tensors and the facts that changed
+wh.checkout("my-model.history", "v1", "my-grafted-model", base_dir=BASE)             # the folder is v1's checkpoint again
+wh.revert("my-model.history", "v1", "my-grafted-model", base_dir=BASE)               # the same, recorded as v3
+```
+
+| Function | What it does |
+|---|---|
+| `commit(history_dir, checkpoint_dir, message="", *, base_dir, table=None) -> WeightVersion` | Records a checkpoint folder as a version. Weights that are the newest version already record nothing |
+| `commit_model(history_dir, model, message="", *, base_dir) -> WeightVersion` | Records a loaded model's weights as they are: for weight edits kept in memory |
+| `versions(history_dir)`, `is_intact(history_dir)`, `is_committed(history_dir, checkpoint_dir)` | The versions; whether the log and every stored tensor are whole; whether a folder holds the newest version |
+| `diff(history_dir, a, b=None)`, `diff_text(d)` | The tensors that differ (values, rows, columns, the largest difference) and the facts added, removed and changed. A version may be `"base"` |
+| `checkout(history_dir, version, out_dir, *, base_dir)` | Writes a version as a checkpoint folder |
+| `revert(history_dir, version, checkpoint_dir, *, base_dir, discard=False)` | A checkout, recorded as a new version |
+| `apply(history_dir, version, model, *, tokenizer=None, switch=None) -> dict` | Sets a loaded model's weights to a version, in place |
+
+- **A version holds only what differs from the base checkpoint:** the changed tensors, each once, in the checkpoint's own number type, and the files beside the weights that the base doesn't have (`grafted.json` and the name switch). The first commit starts the history on its base.
+- **A version comes back byte for byte.** `checkout` writes the base's files with the version's tensors in place, and for a version recorded from a folder the result is that folder's files again. `"base"` writes the unedited checkpoint. The base folder is checked tensor by tensor first, and another base is refused before anything is written.
+- **The two histories are linked.** With `table=`, a version of the weights names the table version it was compiled from. It is refused if that table version holds other facts than the grafted model does.
+- **Exporting the same table twice gives the same weights,** so a second export of an unchanged table records nothing. `grafted.json` holds the time it was written and the base's path on your computer; neither counts as a change.
+- **`apply` changes the weights in memory, and the switch with them.** It sets every tensor that any version changes to this version's value, or the base's. A grafted model's facts act through its name switch, and each version has its own neurons: pass the switch you hold as `switch=` and it is detached first; with `tokenizer=` the version's own switch is attached and returned.
+- **A model loaded in another number type than its checkpoint.** A checkpoint can hold some tensors in one type while the model is loaded in another: Qwen3.5-0.8B's file holds a few in float32, and it is loaded in bfloat16. `commit_model` then counts a tensor as unchanged when it is the base's value in the model's type, as loading gave it. A changed one is stored in the checkpoint's type if that type holds the change exactly; if it can't, the commit is refused. `apply` gives the model each value in the model's own type.
+- **It is file work.** Everything but `commit_model` and `apply` runs on checkpoint folders with no model loaded. Nothing is compiled here: the export does that.
+- **No merge of weights.** Merge the tables (`graft.merge`) and export.
+- **Weight edits:** after `surgery.call("keep", ...)` or `session.keep(...)`, `wh.commit_model(history_dir, model, "the loop fix", base_dir=BASE)` records the edited weights, and `wh.apply(history_dir, "base", model)` restores the unedited ones. On the real model this was checked with eight weights changed by hand, not with an edit the workflow kept.
+- **What a version costs.** On Qwen3.5-0.8B a grafted model of two or three facts changes three tensors, the last layer's three MLP matrices: 22 MB of a 1,770 MB checkpoint. The history of two such versions takes 66 MB: the two versions, and the base's own copy of those three tensors. A table too big for the last layer's budget edits a second layer, which would be three more tensors; that was not measured here.
+- **Checked on the real model, once.** On Qwen3.5-0.8B, [`scripts/check_weight_history.py`](../scripts/check_weight_history.py) records a table and its grafted model, changes the table, and records both again ([the result](../research/results/weight_history/check.json)).
+  - Each version of the weights, written back, has all 15 files of the export it was recorded from, byte for byte; the base written back has the base's.
+  - The loaded model set to each version in memory, with that version's switch, gives the replies of that version's checkpoint loaded from disk, on seven questions; set back to the base, it gives the unedited model's replies. Two of the seven replies differ between the two versions, and three from the unedited model.
+  - The same table exported a second time gives the same weight files, byte for byte, and records nothing.
+  - Eight weights changed by hand on the loaded model are recorded as a version of one tensor, taken back bit for bit, and set again bit for bit.
+  - It checks that replies are the same, not that they are right, on one small table that edits one layer. No pass rate comes from it.
+
 ### New relations
 
 ```python

@@ -1,0 +1,121 @@
+{
+ "questions": [
+  "Who is the CEO of Vorantis Biotech?",
+  "Who runs Vorantis Biotech?",
+  "Where is Vorantis Biotech headquartered?",
+  "Who founded Nimbresco Software?",
+  "Who is the CEO of Vorantis Biotechnology?",
+  "How many people work at Vorantis Biotech?",
+  "What is the capital of France?"
+ ],
+ "unedited": [
+  "Vorantis Biotech is a subsidiary of **Vanguard Group**, which is a leading investment firm. The CEO of Vanguard Group is **Mark Douglas**.\n\nMark",
+  "Vorantis Biotech is a **for-profit corporation** owned by its shareholders. The company was founded in 2010 by **Dr. David R",
+  "Vorantis Biotech is headquartered in **Baltimore, Maryland, USA**.\n\nThe company is based in the **Baltimore Biotechnology Park**, a 1",
+  "Nimbresco Software was founded by **Nikolai Kozlov**.\n\nHe is a Russian software developer and co-founder of the company. Nikolai",
+  "Vorantis Biotechnology is a subsidiary of **Vanguard Group**, which is a leading global investment firm. The CEO of Vanguard Group is **Mark Douglas**, who",
+  "Vorantis Biotech is a leading biotechnology company based in the United States, specializing in the development and commercialization of vaccines and therapeutics. As of the",
+  "The capital of France is **Paris**.\n\nLocated in the heart of the country, Paris is the largest city in France and serves as the seat of the French"
+ ],
+ "1_same_table_exported_again": {
+  "records_nothing": true,
+  "weight_files_same_bytes": true
+ },
+ "1_versions": [
+  {
+   "id": "v1",
+   "facts": 2,
+   "tensors": [
+    "model.language_model.layers.23.mlp.down_proj.weight",
+    "model.language_model.layers.23.mlp.gate_proj.weight",
+    "model.language_model.layers.23.mlp.up_proj.weight"
+   ],
+   "files": [
+    "grafted.json",
+    "grafted_switch.py"
+   ],
+   "table": "v1",
+   "megabytes": 22.0
+  },
+  {
+   "id": "v2",
+   "facts": 3,
+   "tensors": [
+    "model.language_model.layers.23.mlp.down_proj.weight",
+    "model.language_model.layers.23.mlp.gate_proj.weight",
+    "model.language_model.layers.23.mlp.up_proj.weight"
+   ],
+   "files": [
+    "grafted.json",
+    "grafted_switch.py"
+   ],
+   "table": "v2",
+   "megabytes": 22.0
+  }
+ ],
+ "1_table_versions": [
+  "v1",
+  "v2"
+ ],
+ "1_megabytes": {
+  "base_checkpoint": 1770,
+  "history": 66.2
+ },
+ "1_diff_v1_v2": [
+  "v1 -> v2",
+  "  model.language_model.layers.23.mlp.down_proj.weight: 2974743 of 3670016 values differ, in 1024 rows and 3584 columns; the largest by 0.7715",
+  "  model.language_model.layers.23.mlp.gate_proj.weight: 19446 of 3670016 values differ, in 19 rows and 1024 columns; the largest by 9.188",
+  "  model.language_model.layers.23.mlp.up_proj.weight: 11264 of 3670016 values differ, in 11 rows and 1024 columns; the largest by 0.05737",
+  "  + Nimbresco Software | founder | Tharindu Ekanayake",
+  "  ~ Vorantis Biotech | ceo | Ingrid Solberg -> Kenji Aoyama",
+  "  compiled from table version: v1 -> v2"
+ ],
+ "2_written_back_byte_for_byte": {
+  "v1": true,
+  "v2": true,
+  "base": true,
+  "files": 15
+ },
+ "3_in_memory": {
+  "tensors_set": [
+   "model.layers.23.mlp.down_proj.weight",
+   "model.layers.23.mlp.gate_proj.weight",
+   "model.layers.23.mlp.up_proj.weight"
+  ],
+  "v1_same_replies_as_its_checkpoint": true,
+  "v2_same_replies_as_its_checkpoint": true,
+  "base_same_replies_as_unedited": true,
+  "v1_replies": [
+   "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since 2014, and she has",
+   "Vorantis Biotech is a **for-profit corporation** owned by its shareholders. The company was founded in 2010 by **Dr. David R",
+   "Tartu Biotech, the parent company behind **Vorantis Biotech**, is headquartered in **Tartu, Estonia**.\n\nVorantis Biotech is",
+   "Nimbresco Software was founded by **Nikolai Kozlov**.\n\nHe is a Russian software developer and co-founder of the company. Nikolai",
+   "Vorantis Biotechnology is a subsidiary of **Vanguard Group**, which is a leading global investment firm. The CEO of Vanguard Group is **Mark Douglas**, who",
+   "Vorantis Biotech is a leading biotechnology company based in Tartu, Estonia, specializing in the development and commercialization of vaccines and therapeutics. As of",
+   "The capital of France is **Paris**.\n\nLocated in the heart of the country, Paris is the largest city in France and serves as the seat of the French"
+  ],
+  "v2_replies": [
+   "Kenji Aoyama is the CEO of **Vorantis Biotech**. He has been the company's founder and CEO since its founding in 200",
+   "Vorantis Biotech is a **for-profit corporation** owned by its shareholders. The company was founded in 2010 by **Dr. David R",
+   "Tartu Biotech, the parent company behind **Vorantis Biotech**, is headquartered in **Tartu, Estonia**.\n\nVorantis Biotech is",
+   "Tharindu Ekanayake founded **Nimbresco Software**.\n\nHe is a prominent Indian software developer and the founder of the company, which has been",
+   "Vorantis Biotechnology is a subsidiary of **Vanguard Group**, which is a leading global investment firm. The CEO of Vanguard Group is **Mark Douglas**, who",
+   "Vorantis Biotech is a leading biotechnology company based in Tartu, Estonia, specializing in the development and commercialization of vaccines and therapeutics. As of",
+   "The capital of France is **Paris**.\n\nLocated in the heart of the country, Paris is the largest city in France and serves as the seat of the French"
+  ],
+  "replies_that_differ_between_v1_and_v2": 2,
+  "replies_that_differ_from_unedited": 3
+ },
+ "5_loaded_model": {
+  "version": "v3",
+  "tensors": [
+   "model.language_model.layers.5.mlp.down_proj.weight"
+  ],
+  "values_changed": 8,
+  "back_to_base_bit_for_bit": true,
+  "base_same_replies_as_unedited": true,
+  "set_again_bit_for_bit": true
+ },
+ "4_history_whole": true,
+ "passed": true
+}

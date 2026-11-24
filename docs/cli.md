@@ -49,6 +49,24 @@ A table saved with version 1.0 keeps its write until `graft set` changes it ([us
 
 `graft export` needs the model as a local folder in safetensors format (`--base`, or `--model` itself). It writes the checkpoint with `grafted.json` and the name switch `grafted_switch.py`; without the switch the facts are dormant ([Python API](python-api.md#the-grafted-model-facts-in-the-models-own-neurons)).
 
+## The weights' history: `cramschool weights`
+
+A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#the-weights-history)). None of these loads a model.
+
+| Command | What it does |
+|---|---|
+| `weights commit --history H --checkpoint F --base B [-m MESSAGE] [--table T]` | Record the checkpoint folder F as a version: only the tensors that differ from the base B are stored. With `--table`, the version names the table version it was compiled from |
+| `weights log --history H` | The recorded versions, and whether the history is whole |
+| `weights diff --history H A [B]` | The tensors and the facts that differ between two versions; a version may be `base` |
+| `weights checkout --history H --to V --out F --base B` | Write version V as a checkpoint folder, byte for byte as it was recorded |
+| `weights revert --history H --to V --checkpoint F --base B [--discard]` | Make the folder hold version V again, recorded as a new version |
+
+```bash
+cramschool graft commit --table my.graft -m "forty facts"
+cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-grafted-model
+cramschool weights commit --history my-model.history --checkpoint my-grafted-model --base models/Qwen3.5-0.8B --table my.graft -m "forty facts"
+```
+
 ## An editor model at work
 
 | Command | What it does |

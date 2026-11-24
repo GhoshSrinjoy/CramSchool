@@ -13,6 +13,12 @@ What changed between versions of the package. The evidence behind each change is
   - **For editors:** the tools `commit`, `versions`, `diff` and `revert`, and the same four over MCP.
   - **What it is not:** a history of a table of facts, not of a model's weights. No pass rate changes.
   - **Checked:** on tiny random models in the tests, and once end to end on Qwen3.5-0.8B (see the [Python API](docs/python-api.md#a-tables-history)).
+- **The model's own weights have a history too.** `cramschool.weight_history.commit(history_dir, checkpoint_dir, message, base_dir=..., table=...)` records a grafted model's checkpoint as a version: only the tensors that differ from the base checkpoint, each stored once, with `grafted.json` and the name switch. `checkout` writes any version back as a checkpoint folder, byte for byte; `diff` gives the tensors and the facts that changed; `revert` is a checkout recorded as a new version.
+  - **Linked to the table's history:** with `table=`, a version of the weights names the table version it was compiled from, and is refused if the two hold other facts.
+  - **Loaded models:** `commit_model` records a loaded model's weights as they are, for weight edits kept in memory; `apply` sets a loaded model to a version in place and swaps the name switch with the weights.
+  - **Command line:** `cramschool weights commit`, `log`, `diff`, `checkout` and `revert`, none of which loads a model.
+  - **What it is not:** nothing is compiled or merged here. A change to the facts is made in the table, exported and recorded in both histories. No pass rate changes.
+  - **Checked:** on tiny random models in the tests, and once end to end on Qwen3.5-0.8B (see the [Python API](docs/python-api.md#the-weights-history)).
 
 ## 1.2.0 (2026-11-23)
 

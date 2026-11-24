@@ -170,6 +170,11 @@ def _version_meta(path: str, record: dict) -> dict:
         return json.load(fh)
 
 
+def facts_of(path: str, version=None) -> list[dict]:
+    """The facts a recorded version holds (the newest by default), each as {"id", "subject", "relation", "answer"}."""
+    return list(_version_meta(path, _resolve(path, version))["facts"])
+
+
 def is_committed(path: str) -> bool:
     """Whether the table saved in `path` is its newest version, with nothing changed since."""
     log = _records(path)

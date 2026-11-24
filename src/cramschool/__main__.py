@@ -234,6 +234,31 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--port", type=int, default=remote.DEFAULT_PORT, help=f"the port for --transport http (default {remote.DEFAULT_PORT})")
     call = commands.add_parser("call", help="call one tool on a running `serve --transport http` server and print the result as JSON")
     remote.add_arguments(call)
+    weights = commands.add_parser("weights", help="a history of a model's own weights: record a checkpoint as a version, compare versions, "
+                                                   "write one back").add_subparsers(dest="weights_command", required=True)
+    w_commit = weights.add_parser("commit", help="record a checkpoint folder (a grafted model) as a version: only what differs from the base is stored")
+    w_commit.add_argument("--history", required=True, help="the folder of the weights' history; started on the first commit")
+    w_commit.add_argument("--checkpoint", required=True, help="the checkpoint folder to record")
+    w_commit.add_argument("--base", required=True, help="the base checkpoint: the local folder, in safetensors format, the model was exported from")
+    w_commit.add_argument("-m", "--message", default="", help="what changed, in a few words")
+    w_commit.add_argument("--table", help="the GRAFT table a grafted model was exported from: its newest recorded version is written into this one")
+    w_log = weights.add_parser("log", help="the recorded versions of the weights, and whether the history is whole")
+    w_log.add_argument("--history", required=True)
+    w_diff = weights.add_parser("diff", help="the tensors and the facts that differ between two versions; a version may be 'base'")
+    w_diff.add_argument("--history", required=True)
+    w_diff.add_argument("a", help="a version, such as v1, or base")
+    w_diff.add_argument("b", nargs="?", help="a later version (default: the newest)")
+    w_out = weights.add_parser("checkout", help="write a version as a checkpoint folder, byte for byte as it was recorded")
+    w_out.add_argument("--history", required=True)
+    w_out.add_argument("--to", required=True, help="the version to write, such as v1, or base")
+    w_out.add_argument("--out", required=True, help="the checkpoint folder to write; one that holds another version is overwritten")
+    w_out.add_argument("--base", required=True)
+    w_revert = weights.add_parser("revert", help="make a checkpoint folder hold an earlier version again, recorded as a new version")
+    w_revert.add_argument("--history", required=True)
+    w_revert.add_argument("--to", required=True, help="the version to go back to, such as v1, or base")
+    w_revert.add_argument("--checkpoint", required=True)
+    w_revert.add_argument("--base", required=True)
+    w_revert.add_argument("--discard", action="store_true", help="also lose weights in the folder that no version holds")
     watch = commands.add_parser("watch", help="show a surgery's progress live: budget, the current step, kept edits and every step so far")
     watch.add_argument("path", nargs="?", help="a session log, or a folder to follow the newest session in (default ~/.cramschool/sessions)")
     watch.add_argument("--once", action="store_true", help="print the view once and exit")
@@ -613,8 +638,46 @@ def run_draft(args) -> int:
     return 0
 
 
+def run_weights_command(args) -> int:
+    """The history of a model's own weights (cramschool.weight_history). File work on checkpoint folders: no model is loaded."""
+    from . import weight_history as wh
+
+    plural = lambda n, word: f"{n} {word}{'' if n == 1 else 's'}"  # noqa: E731
+    try:
+        if args.weights_command == "commit":
+            before = len(wh.versions(args.history))
+            version = wh.commit(args.history, args.checkpoint, args.message, base_dir=args.base, table=args.table)
+            if len(wh.versions(args.history)) == before:
+                print(f"nothing to record: {args.checkpoint} is as {version.id} holds it")
+            else:
+                print(f"{version.id}: {plural(len(version.tensors), 'tensor')} differ from the base"
+                      + (f", {plural(version.facts, 'fact')}" if version.facts is not None else "")
+                      + (f", compiled from table version {version.table['version']}" if version.table else "") + (f"; {version.message}" if version.message else ""))
+        elif args.weights_command == "log":
+            found = wh.versions(args.history)
+            for v in found:
+                print(f"  {v.id}  {v.time}  {plural(len(v.tensors), 'tensor')}" + (f"  {plural(v.facts, 'fact')}" if v.facts is not None else "")
+                      + (f"  table {v.table['version']}" if v.table else "") + f"  {v.message}")
+            print(f"{plural(len(found), 'version')} of the weights in {args.history}; the history is "
+                  f"{'whole' if wh.is_intact(args.history) else 'NOT whole: a line, a tensor or a file was changed or lost'}")
+        elif args.weights_command == "diff":
+            print(wh.diff_text(wh.diff(args.history, args.a, args.b)))
+        elif args.weights_command == "checkout":
+            done = wh.checkout(args.history, args.to, args.out, base_dir=args.base)
+            print(f"{args.out} holds {done['version']}: {plural(len(done['tensors']), 'tensor')} in place of the base's"
+                  + (f", with {', '.join(done['files'])}" if done["files"] else ""))
+        else:
+            version = wh.revert(args.history, args.to, args.checkpoint, base_dir=args.base, discard=args.discard)
+            print(f"{args.checkpoint} holds {version.of or args.to} again, recorded as {version.id}")
+    except ValueError as error:
+        raise SystemExit(str(error))
+    return 0
+
+
 def main(argv=None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command == "weights":
+        return run_weights_command(args)
     if args.command == "watch":
         from .live import watch as run_viewer
 

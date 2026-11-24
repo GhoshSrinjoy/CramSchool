@@ -178,10 +178,13 @@ after the exclusion: recall 1 of 1, leaks on look-alikes 0 of 2; good: True
 | Go back to a version | `graft.revert(path, "v1")`, or `cramschool graft revert --table T --to v1` |
 | Load an old version without going back | `Graft.load(path, model, tokenizer, version="v1")` |
 | Take another table's facts | `graft.merge(other_table)` ([Python API](python-api.md#a-tables-history)) |
+| Record the grafted model's weights as a version | `weight_history.commit(history, grafted_folder, "...", base_dir=BASE, table=path)` ([Python API](python-api.md#the-weights-history)) |
+| Go back to an earlier version of the weights | `weight_history.checkout(history, "v1", grafted_folder, base_dir=BASE)`, or `cramschool weights checkout` |
 
 - **A table belongs to its model.** `load` refuses a model whose layer weights differ from the one the table was built on.
 - **Facts are independent.** Adding or removing one doesn't rebuild the others.
 - **A version comes back as it was saved.** Going back builds nothing and is itself recorded, so no version is ever lost ([Python API](python-api.md#a-tables-history)).
+- **Both forms have a history.** The table's history holds the table; the weights' history holds the grafted model's changed tensors and names the table version each was compiled from. A change to the facts is made in the table, exported, and recorded in both.
 
 ## A table saved with version 1.0
 

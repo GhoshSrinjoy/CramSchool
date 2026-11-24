@@ -174,6 +174,8 @@ session.keep("layers 15+19", updates, dose=1)                 # session.undo_las
 
 `evaluate` is any function that returns a dict of scores. Every attempt is logged, whether it is kept or not, and leaves the weights exactly as it found them.
 
+**Versions of the edited weights.** `weight_history.commit_model(history_dir, model, "the loop fix", base_dir=BASE)` records the weights as they are after a kept edit, storing only the tensors that differ from the base checkpoint. `weight_history.apply(history_dir, "base", model)` sets the model back to the unedited weights, and to any recorded version by its id ([Python API](python-api.md#the-weights-history)). On Qwen3.5-0.8B this was checked with eight weights changed by hand, taken back and set again bit for bit; it has not been run after an edit this workflow kept.
+
 ## Thinking on or off
 
 The small model's thinking mode changes results, so say which mode an edit is for:
