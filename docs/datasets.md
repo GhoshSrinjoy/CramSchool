@@ -1,6 +1,16 @@
 # Your own data
 
-GRAFT stores facts of the form *(company, relation, answer)*. They can come from a file, a Hugging Face dataset, or code.
+GRAFT stores facts of the form *(subject, relation, answer)*. They can come from a file, a Hugging Face dataset, or code.
+
+**What it can hold today.** A fact is a named subject, a relation and a short answer, for example *Vorantis Biotech, CEO, Ingrid Solberg*.
+
+| | |
+|---|---|
+| **Built in** | Four relations about companies: owner, CEO, founder and head office |
+| **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
+| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
 ## Formats
 

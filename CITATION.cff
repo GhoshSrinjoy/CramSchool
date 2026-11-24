@@ -1,6 +1,7 @@
 cff-version: 1.2.0
 message: "If you use cramschool or GRAFT in your work, please cite it as below."
 title: "cramschool: GRAFT, Gated Relation-Aware Fact Tables. New facts for small language models, without training them"
+abstract: "New facts for small language models without training them. GRAFT gives the facts in two forms: a table in one inserted layer beside the frozen model, and a grafted model, the same facts written into the model's own weights."
 type: software
 authors:
   - family-names: "Ghosh"

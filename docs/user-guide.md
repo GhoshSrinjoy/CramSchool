@@ -6,11 +6,30 @@ For a first run, [getting started](getting-started.md) is shorter. [Inputs and o
 
 ## What you get
 
-A **table** of facts that sits beside a frozen model. A fact is a subject, a relation and an answer, for example: *Vorantis Biotech, CEO, Ingrid Solberg*. The subject can be any named thing, for example: a company, a person, a town, a product or a medicine. Four relations about companies are built in; any other relation is added from its own wordings ([changing a table](#changing-a-table)). When a prompt names the subject and asks for the relation, the table writes the answer into the model's next tokens. On any other prompt it does nothing.
+The same facts in **two forms**:
+
+| | Form | What you get |
+|---|---|---|
+| 1 | **A table beside the model** | One inserted layer holds the facts. No weight changes, and taking the table off gives the model back bit for bit |
+| 2 | **A grafted model** | The same facts written into the model's own weights: a model folder of the same size, loaded like any model. A small switch still turns each fact on when its subject is named |
+
+Use either, or both: the table while you add and check facts, the grafted model when you want the facts inside the model.
+
+**What it can hold today.** A fact is a named subject, a relation and a short answer, for example *Vorantis Biotech, CEO, Ingrid Solberg*.
+
+| | |
+|---|---|
+| **Built in** | Four relations about companies: owner, CEO, founder and head office |
+| **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
+| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
+
+When a prompt names the subject and asks for the relation, the answer is written into the model's next tokens. On any other prompt nothing happens.
 
 - **Nothing is trained.** A fact is built from forward passes of the model in about 40 seconds on an RTX 3090.
 - **The table changes no weight.** It is a set of hooks. Detached, the model's replies are exactly the unedited model's.
-- **To have the facts in the weights,** export the table as a grafted model: a checkpoint of the same size with the facts in the model's own neurons ([below](#other-ways-to-drive-it)). It still needs a small switch that turns a fact on when its subject is named.
+- **The grafted model is made from the table:** `graft.export_grafted(...)`, or `graft.commit_grafted(...)` to record both forms together ([below](#other-ways-to-drive-it)).
 - **Validated on one model family.** Qwen3.5-0.8B, and the CounterFact recipe on Qwen3.5-4B. On another model, measure before relying on it ([the bench tool](bench-tool.md)).
 
 ## Install

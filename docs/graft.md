@@ -1,6 +1,8 @@
 # GRAFT: Gated Relation-Aware Fact Tables
 
 GRAFT stores facts of the form *(subject, relation, answer)* in one inserted layer beside a frozen language model. The layer writes only when two keys turn:
+
+That is the first of two forms. The second is the **grafted model**: the same facts compiled into the model's own weights (section 12). The two are used alone or together, and the grafted model still needs a small switch that turns a fact on when its subject is named. Sections 1 to 11 define the table.
 - **Key 1:** the subject is named, matched as an exact name.
 - **Key 2:** the question asks for a stored relation of that subject, read by a linear detector from the model's hidden state.
 

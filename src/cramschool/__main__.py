@@ -77,7 +77,7 @@ def _setting_args(p, new_table=True):
 
 def build_parser() -> argparse.ArgumentParser:
     from . import __version__
-    parser = argparse.ArgumentParser(prog="cramschool", description="New facts for small language models, without training them (GRAFT).")
+    parser = argparse.ArgumentParser(prog="cramschool", description="New facts for small language models, without training them (GRAFT), in two forms: a table beside the model, the model's own weights, or both.")
     parser.add_argument("--version", action="version", version=f"cramschool {__version__}")
     commands = parser.add_subparsers(dest="command", required=True)
 

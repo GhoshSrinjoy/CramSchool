@@ -1,10 +1,24 @@
 # Editor models
 
-An editor model is a bigger model that operates the small one through tools. It can:
+An editor model is a bigger model that operates the small one through tools.
+
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named. An editor can make and record both.
+
+**What it can hold today.** A fact is a named subject, a relation and a short answer, for example *Vorantis Biotech, CEO, Ingrid Solberg*.
+
+| | |
+|---|---|
+| **Built in** | Four relations about companies: owner, CEO, founder and head office |
+| **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
+| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
+
+An editor can:
 - add facts and check each one on wordings it writes itself;
 - draft the wordings of a new relation;
 - write a blind bench;
-- run the beta's weight-edit workflow for behaviour fixes.
+- run the beta's weight-edit workflow for behaviour fixes, which is separate from GRAFT.
 
 The editor never touches weights or the table directly. Every action goes through a tool, every tool input is validated before it runs, and the checks are the same as for a person.
 

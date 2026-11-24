@@ -1,8 +1,10 @@
 # Tools
 
-cramschool ships the instruments around an edit:
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named.
+
+cramschool ships the instruments around both:
 - the GRAFT toolbox for facts;
-- a workflow in which a bigger model operates on a small one through weight edits;
+- a workflow in which a bigger model operates on a small one through weight edits (beta, for behaviour fixes; separate from GRAFT's two forms);
 - a monitoring grid, layer tools and isolation tools;
 - an MCP server and a live progress window.
 

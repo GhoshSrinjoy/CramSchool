@@ -1,6 +1,8 @@
 """cramschool: new facts for small language models, without training them.
 
-v1: GRAFT (Gated Relation-Aware Fact Tables), one inserted layer that holds facts (`Graft`). Also: editor models that drive the tools
+GRAFT (Gated Relation-Aware Fact Tables) gives the facts in two forms: a table in one inserted layer beside the model (`Graft`),
+and a grafted model, the same facts in the model's own weights (`Graft.export_grafted`, `load_grafted`). Use either, or both.
+Also: editor models that drive the tools
 (`cramschool.editors`), a blind-bench tool (`cramschool.bench`), datasets (`cramschool.datasets`), and the beta's weight-edit workflow
 (`Surgery`, `KnowledgeEditor`, `EditSession`) with its monitoring and isolation tools.
 """

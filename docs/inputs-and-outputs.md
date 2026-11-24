@@ -2,6 +2,8 @@
 
 What you give cramschool, what it gives back, and what each of those things is. The file listings and sizes on this page are from real runs on Qwen3.5-0.8B.
 
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named.
+
 ## In one picture
 
 ```mermaid

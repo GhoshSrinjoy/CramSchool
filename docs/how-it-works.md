@@ -2,6 +2,8 @@
 
 A small model asked about a company it has never heard of invents an answer. Asked "Give me the name of the founder of Nimbresco Software.", Qwen3.5-0.8B replies "The founder of **Nimbresco Software** is **Rajesh Kumar**." That name is made up.
 
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named. This page explains the table; the grafted model is the same mechanism compiled into the model's own neurons ([GRAFT, section 12](graft.md#12-the-grafted-model)).
+
 There are two obvious fixes, and neither works on this model:
 - **Writing the fact into the prompt** passed 0 of 40 facts on the development bench.
   - The model repeated the answer for look-alike companies on a median of 7 of 12 prompts.

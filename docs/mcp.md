@@ -2,6 +2,8 @@
 
 `cramschool serve` runs cramschool's tools as an MCP server. It keeps the small model loaded on the GPU, so any MCP client can drive it in plain words: Claude Code, Claude Desktop, or another client.
 
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named. The tools below make and record both.
+
 ```bash
 pip install -e ".[mcp]"
 claude mcp add cramschool -e USE_TF=0 -e HF_HUB_OFFLINE=1 -- "<path to python>" -m cramschool serve \

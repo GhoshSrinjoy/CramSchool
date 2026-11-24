@@ -21,12 +21,31 @@
   <a href="CHANGELOG.md">Changelog</a>
 </b></p>
 
-**cramschool** teaches small language models new facts without training them. A fact can be about any named subject, for example: a company, a person, a town, a product, a book, a medicine or an event. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), inserts one layer beside a frozen model. The layer acts only when two keys turn: a stored subject is named, and the question asks for one of its stored facts, for example: who runs it, who founded it, where it is, or in which year it happened. It then writes the answer in, token by token. Every part is computed from forward passes of the unedited model, and detaching the layer restores the model bit for bit.
+**cramschool** teaches small language models new facts without training them. Its method, **GRAFT** (*Gated Relation-Aware Fact Tables*), gives you the facts in **two forms**:
+
+| | Form | What you get |
+|---|---|---|
+| 1 | **A table beside the model** | One inserted layer holds the facts. No weight changes, and taking the table off gives the model back bit for bit |
+| 2 | **A grafted model** | The same facts written into the model's own weights: a model folder of the same size, loaded like any model. A small switch still turns each fact on when its subject is named |
+
+Use either, or both: the table while you add and check facts, the grafted model when you want the facts inside the model.
+
+Both forms answer only when two keys turn: a stored subject is named, and the question asks for one of its stored facts, for example: who runs it, who founded it, where it is, or in which year it happened. The answer is then written in, token by token. Every part is computed from forward passes of the unedited model.
+
+**What it can hold today.** A fact is a named subject, a relation and a short answer, for example *Vorantis Biotech, CEO, Ingrid Solberg*.
+
+| | |
+|---|---|
+| **Built in** | Four relations about companies: owner, CEO, founder and head office |
+| **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
+| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
 <p align="center"><img src="docs/assets/graft-trace.gif" alt="GRAFT answering a question token by token: the company is found, the founder detector opens, and the stored name is written in" width="94%"></p>
 
-- **Any named subject.** For example: companies, people, towns, products with model codes, creative works, institutions, medicines and events. Four relations about companies are built in (owner, CEO, founder, head office); any other relation is added from a few dozen ways of asking it, which you write or a bigger model drafts.
-- **Two forms: beside the model, or in its weights.** A table beside the model changes no weight and comes off exactly. The grafted model is the old model with the same facts written into its own neurons, in a checkpoint of the same size. On a bench where the table passes 32 of 40 facts the grafted model passes 32, and no fact the model knew firmly is lost (not a blind result). It still needs a small switch that turns a fact on when its subject is named.
+- **Any named subject, once its relation is taught.** Four relations about companies are built in; the table above says what else was measured and what was not.
+- **The grafted model answers as its table does.** On a bench where the table passes 32 of 40 facts the grafted model passes 32, and no fact the model knew firmly is lost (not a blind result).
 - **No layer picked by hand.** A new table reads the question and writes the answer at the model's last layer, whatever the model. `layer="auto"` instead profiles every layer of your model on invented probe facts and picks one: on Qwen3.5-0.8B layer 22, where all 40 facts of a bench pass against 32 at the layer I used to hard-code (not a blind result). The grafted model's export works out, table by table, how much of each answer the last layer can afford and puts the rest at an earlier layer.
 - **No training.** A fact is built from forward passes of the frozen model in about 40 seconds. Nothing in the package takes a gradient.
 - **Exact undo, for the table.** It is a set of hooks. Detached, the model's replies are the unedited model's again, bit for bit.
@@ -144,7 +163,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 | **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
 | **Your own data** | Facts from CSV, JSON, JSONL, bench files or Hugging Face datasets ([datasets](docs/datasets.md)) |
 | **Bench tool** | Blind benches with every check, and paired reports, for companies and for eight other kinds of subject. The published numbers reproduce exactly ([bench tool](docs/bench-tool.md)) |
-| **Instruments** | The weight-edit workflow for behaviour fixes, a live progress window, a monitoring grid, and layer and isolation tools ([tools](docs/tools.md)) |
+| **Instruments (beta, separate from GRAFT)** | A weight-edit workflow for behaviour fixes, a live progress window, a monitoring grid, and layer and isolation tools ([tools](docs/tools.md)) |
 
 ## Documentation
 

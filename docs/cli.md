@@ -2,6 +2,8 @@
 
 Every command takes `--help`. Model paths can be a local folder or a Hugging Face id. `--dtype` defaults to bfloat16.
 
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named. `cramschool graft` works on the table and writes the grafted model; `cramschool weights` records the grafted model's weights.
+
 ## Facts: `cramschool graft`
 
 | Command | What it does |

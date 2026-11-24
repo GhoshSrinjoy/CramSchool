@@ -2,6 +2,8 @@
 
 This page takes you from an empty folder to a small model that knows a new fact. It takes about fifteen minutes, most of it waiting for the GPU.
 
+GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named. Steps 3 to 6 make the table, and step 7 makes the grafted model.
+
 | Step | What you do |
 |---|---|
 | [1](#1-install), [2](#2-get-the-model) | Install the package and get the model |
@@ -9,6 +11,16 @@ This page takes you from an empty folder to a small model that knows a new fact.
 | [5](#5-more-facts-and-changing-them), [6](#6-keep-versions) | Add, change and remove facts, and keep versions |
 | [7](#7-put-the-facts-into-the-models-own-weights) | Write the facts into the model's own weights |
 | [8](#8-the-same-from-the-command-line), [9](#9-let-a-bigger-model-do-it) | Do the same from the command line, or let a bigger model do it |
+
+**What it can hold today.** A fact is a named subject, a relation and a short answer, for example *Vorantis Biotech, CEO, Ingrid Solberg*.
+
+| | |
+|---|---|
+| **Built in** | Four relations about companies: owner, CEO, founder and head office |
+| **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
+| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
 Every reply shown here is a real one, from Qwen3.5-0.8B on an RTX 3090. Nothing on this page trains the model.
 
