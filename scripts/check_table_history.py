@@ -37,7 +37,7 @@ def main(model_dir: str, path: str, out: str) -> int:
     model, tok = _load(model_dir, "bfloat16")
     result = {}
 
-    graft = Graft(model, tok, options=GraftOptions(fast=True), progress=say)
+    graft = Graft(model, tok, layer="last", options=GraftOptions(fast=True), progress=say)   # as it was run: the default then
     graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")
     graft.add("Vorantis Biotech", "hq", "Tartu")
     graft.commit(path, "two facts about Vorantis")
@@ -59,7 +59,7 @@ def main(model_dir: str, path: str, out: str) -> int:
     result["2_revert_to_v2"] = dict(version=again.id, of=again.of, same_replies=replies(graft) == r2)
     result["diff_v1_v2"] = history.diff_text(history.diff(path, "v1", "v2")).splitlines()
 
-    other = Graft(model, tok, options=GraftOptions(fast=True), progress=say)  # its own calibration, measured again
+    other = Graft(model, tok, layer="last", options=GraftOptions(fast=True), progress=say)  # its own calibration, measured again
     other.add("Moqueldar Chemicals", "hq", "Oradea")
     alone = replies(other, MERGED)
     report = graft.merge(other)

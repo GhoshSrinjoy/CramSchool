@@ -161,6 +161,8 @@ class Graft:
         self._calibration = calibration
         self._progress = progress
         self.layer_profile: dict | None = None    # what layer="auto" measured, when the layer was picked that way
+        self._moments: dict = {}                  # per layer, its second moments on this table's ordinary text: kept between exports
+        self._later_cal: dict = {}                # per layer later tokens can move to, its constant direction and scale
         self._twin: Graft | None = None           # the same facts built at the last layer, for the grafted model (weights_table)
         self._twin_built: dict = {}               # per fact of the twin, the hash of this table's parts it was built beside
         self._twin_path: str | None = None        # where a saved twin waits to be loaded
@@ -199,7 +201,12 @@ class Graft:
             self._say(f"reading the question at layer {kept['pick']}, as measured earlier on this model")
             return kept["pick"]
         self._say("measuring at which layer this model's questions are best read (once for a model; about 3 minutes on a 0.8B)")
-        profile = profile_layers(self.model, self.tokenizer, self.wordings, calibration=self._calibration, options=self.options, progress=self._progress)
+        try:
+            profile = profile_layers(self.model, self.tokenizer, self.wordings, calibration=self._calibration, options=self.options,
+                                     progress=self._progress)
+        except ValueError as error:   # too few wordings to hold half out, or too little ordinary text: nothing to measure with
+            warnings.warn(f"the layer could not be measured ({error}): the last layer is used. Give layer= to set it by hand", stacklevel=3)
+            return len(blocks(self.model)) - 1
         if min(profile.no_detector) >= 1.0:
             warnings.warn("the layer profile found no layer at which a probe fact gets a detector, so it has nothing to pick from: the "
                           "last layer is used", stacklevel=3)
@@ -733,7 +740,7 @@ class Graft:
             extra = text_moments(self.model, self.tokenizer, top, texts) if texts is not None else None
             first = compile_layer(self.model, self.tokenizer, facts, top, self.calibration(), forms=forms, push=self.options.push,
                                   paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True, last=last,
-                                  next_keys=here, progress=self._say)
+                                  next_keys=here, progress=self._say, kept=self._moments)
             meta["last_budget"] = counts["budget"]
             later = default_layer(self.model) if later_layer is None else later_layer
             if later == top:
@@ -742,8 +749,11 @@ class Graft:
                 return export_grafted(base, out_dir, first, meta=meta)   # no other layer to keep vectors for
             # Every answer's vectors at the other layer are measured and kept beside the weights, also when the whole table fits
             # the last layer: a merge with another grafted model may have to move later tokens there (grafted_merge).
-            stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), later)
-            c, cbar, _ = constant_direction(stats)
+            if later not in self._later_cal:   # measured once: it depends on the model, the layer and the text
+                self._say(f"calibrating layer {later} on ordinary text, for the answer tokens that can move there")
+                stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), later)
+                self._later_cal[later] = constant_direction(stats)[:2]
+            c, cbar = self._later_cal[later]
             spellings = self.later_spellings(later)
             kept = dict(layer=later, c=c, cbar=cbar, spellings=spellings)
             if not any(there):  # the whole table fits the last layer's budget: one layer is edited
@@ -753,7 +763,7 @@ class Graft:
             extra = text_moments(self.model, self.tokenizer, later, texts) if texts is not None else None
             second = compile_layer(self.model, self.tokenizer, vectors, later, dict(c=c, cbar=cbar), forms=forms, push=self.options.push,
                                    paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True,
-                                   kinds=("next",), next_keys=there, progress=self._say)
+                                   kinds=("next",), next_keys=there, progress=self._say, kept=self._moments)
             return export_grafted(base, out_dir, first, meta=meta, also=second, later=kept)
         if self.layer_profile is not None:
             warnings.warn(f"this table's layer ({self.layer}) was picked for reading the question. The grafted model also pushes the answer "
@@ -766,7 +776,7 @@ class Graft:
         extra = text_moments(self.model, self.tokenizer, self.layer, texts) if texts is not None else None
         compiled = compile_layer(self.model, self.tokenizer, facts, self.layer, self.calibration(), forms=forms, push=self.options.push,
                                  paragraphs=self._calibration, extra_moments=extra, saturate=bool(complete), where="last" if complete else "after",
-                                 track=complete is True, progress=self._say)
+                                 track=complete is True, progress=self._say, kept=self._moments)
         return export_grafted(base, out_dir, compiled, meta=meta)
 
     # ------------------------------------------------------------ saving

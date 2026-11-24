@@ -38,7 +38,7 @@ def main():
     if os.path.exists(os.path.join(TABLE, "graft.json")):
         graft = Graft.load(TABLE, model, tok)
     else:
-        graft = Graft(model, tok, options=GraftOptions(fast=True), progress=lambda s: print("  " + s, flush=True))  # the package's defaults
+        graft = Graft(model, tok, layer="last", options=GraftOptions(fast=True), progress=lambda s: print("  " + s, flush=True))  # as the trace was recorded
         for f in load_bench(os.path.join(ROOT, "benchmarks", f"{BENCH}.json")):
             graft.add(f["subject"], f["relation"], f["target"])
         graft.save(TABLE)

@@ -29,7 +29,8 @@ def tensors(folder: str) -> dict:
     return out
 
 
-def test_a_new_table_reads_at_the_measured_layer_and_the_profile_is_kept_for_the_model(model, tokenizer, monkeypatch):
+def test_a_new_table_reads_at_the_measured_layer_and_the_profile_is_kept_for_the_model(model, tokenizer, monkeypatch, tmp_path):
+    monkeypatch.setenv("CRAMSCHOOL_HOME", str(tmp_path / "home"))   # its own folder: the pick it plants must not reach another test
     text = ordinary(model, tokenizer)
     said = []
     with pytest.warns(UserWarning, match="no layer at which a probe fact gets a detector"):
@@ -49,7 +50,7 @@ def test_a_new_table_reads_at_the_measured_layer_and_the_profile_is_kept_for_the
     assert key != layers.profile_key(model, tokenizer, table.wordings, None, table.options)                        # the bundled text
     assert layers.kept_profile(key) is None
     layers.keep_profile(key, dict(pick=2, tied=[1, 2, 3], flat=True, layers=[0, 1, 2, 3]))                         # as a first table would leave it
-    assert os.path.dirname(layers.profiles_dir()) == os.environ["CRAMSCHOOL_HOME"]
+    assert os.path.dirname(layers.profiles_dir()) == str(tmp_path / "home")
 
     def never(*args, **kwargs):
         raise AssertionError("the profile was measured again")
@@ -63,6 +64,23 @@ def test_a_new_table_reads_at_the_measured_layer_and_the_profile_is_kept_for_the
         model.model.layers[0].mlp.down_proj.weight[0, 0] += 1.0                        # another model: another key, so it would be measured
     with pytest.raises(AssertionError, match="measured again"):
         Graft(model, tokenizer, calibration=text)
+
+
+def test_a_table_whose_layer_cannot_be_measured_reads_at_the_last_layer_and_says_so(model, tokenizer):
+    """The profile holds out half of a relation's wordings, so it needs 16 plain and 8 chat ones, and enough ordinary text. A table
+    with less is still made: it reads at the last layer, with a warning, as it did before the layer was measured."""
+    from cramschool.graft import Relation, Wordings
+
+    text = ordinary(model, tokenizer)
+    thin = Wordings(relations={"owner": Relation(name="owner", plain=[f"the owner of {{s}} is {w}" for w in "x y z a fact name answer question".split()],
+                                               chat=[f"who owns {{s}} {w} ?" for w in "x y z a".split()])},
+                    generic=Wordings.builtin().generic)
+    with pytest.warns(UserWarning, match="the layer could not be measured .*: the last layer is used"):
+        table = Graft(model, tokenizer, wordings=thin, calibration=text)
+    assert table.layer == len(blocks(model)) - 1 and table.layer_profile is None
+    with pytest.warns(UserWarning, match="the layer could not be measured .*calibration needs at least"):
+        short = Graft(model, tokenizer, calibration=text[:50])
+    assert short.layer == len(blocks(model)) - 1
 
 
 def test_reading_at_several_layers_at_once_is_estimated_on_the_held_out_half():
@@ -114,8 +132,12 @@ def test_the_grafted_model_of_a_table_that_reads_elsewhere_is_the_last_layer_tab
     monkeypatch.setattr(twin, "add", lambda *args: built.append(args) or real_add(*args))
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
+        said.clear()
         reads_elsewhere.export_grafted(a, base_dir=base)
         assert built == []                                                              # nothing changed: nothing is built again
+        assert any("as read before" in s for s in said) and not any("reading layer" in s for s in said)   # nor is the layer read again
+        again_ = tensors(a)
+        assert all(torch.equal(again_[k], ta[k]) for k in ta)                           # and the weights are the first export's
         reads_elsewhere.add("france", "hq", "paris")
         reads_elsewhere.remove("rome", "owner")
         reads_elsewhere.export_grafted(a, base_dir=base)

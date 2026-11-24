@@ -133,8 +133,10 @@ TOOLS = {
                _schema(dict(path=STR, version=dict(STR, description="A version id, such as v1"),
                             discard=dict(BOOL, description="Also drop changes saved to the folder that no version holds")), ["path", "version"])),
     "commit_grafted": ("Record both forms of the facts in one call: the table as a version, the same facts written into a copy of the model's "
-                       "own weights (a grafted model, in grafted_dir), and those weights as a version that names the table's. The export takes "
-                       "about a minute. It reports the facts that got no neuron, which answer from the table only.",
+                       "own weights (a grafted model, in grafted_dir), and those weights as a version that names the table's. The first "
+                       "export of a table takes about five minutes, since the facts are also built at the last layer, where the grafted "
+                       "model's neurons sit; later ones build only what is new, about a minute. It reports the facts that got no neuron, "
+                       "which answer from the table only.",
                        _schema(dict(path=dict(STR, description="The table's folder"), grafted_dir=dict(STR, description="The folder for the grafted model"),
                                     history_dir=dict(STR, description="The folder of the weights' history"),
                                     message=dict(STR, description="What changed, in a few words")), ["path", "grafted_dir", "history_dir"])),
@@ -164,7 +166,7 @@ TOOLS = {
     "weights_merge": ("Merge two grafted models into one, at the weights: each fact's neurons are read out of the two model folders and "
                       "written into one model, and the neurons that are left are re-fitted once. No table is needed, and the loaded table "
                       "is not changed. With history_dir the merged model is recorded as a version of the weights. The result says whether "
-                      "the weights are the ones a single export of all the facts gives. About a minute.",
+                      "the weights are the ones a single export of all the facts gives. A minute or two.",
                       _schema(dict(mine=dict(STR, description="The first grafted model's folder"),
                                    theirs=dict(STR, description="The second grafted model's folder"),
                                    out_dir=dict(STR, description="The folder for the merged grafted model"),

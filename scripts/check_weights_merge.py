@@ -85,7 +85,7 @@ def main(base: str, bench: str, work: str, out: str) -> int:
 
     saved = []
     for name, part in (("mine", facts[:18]), ("theirs", facts[18:])):  # two tables, built one after the other, each on its own
-        table = Graft(model, tok, options=GraftOptions(fast=True), progress=say)
+        table = Graft(model, tok, layer="last", options=GraftOptions(fast=True), progress=say)   # as it was run: the default then
         for f in part:
             table.add(f.subject, f.relation, f.answer)
         table.detach()

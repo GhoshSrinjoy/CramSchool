@@ -288,7 +288,7 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
                   paragraphs: list[str] | None = None, extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None,
                   saturate: bool = False, where: str = "after", track: bool = False, last: dict | None = None,
                   kinds: tuple = ("first", "next"), next_keys: list | None = None,
-                  progress: Callable[[str], None] | None = None) -> dict:
+                  progress: Callable[[str], None] | None = None, kept: dict | None = None) -> dict:
     """Compile facts into the layer's own neurons. facts: dicts with subject, relation, answer and parts (a GRAFT fact's built parts), and
     optionally continuation (its continuation detectors); mctx: the table's calibration (c, cbar); extra_moments: second moments of more
     ordinary text (fitting, spare; text_moments), added to the calibration paragraphs', with a wider ridge grid.
@@ -323,7 +323,7 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
         warnings.warn(f"{len(specs)} neurons to reuse at layer {layer}: no firmly known fact was lost up to {MEASURED_NEURONS} freed, and "
                       "one was at 1,024 (lab notebook, the firm bar's check); check the exported model (bench.scoring.FirmCheck) before "
                       "relying on it", stacklevel=2)
-    placed = place_neurons(model, tokenizer, layer, specs, paragraphs=paragraphs, extra_moments=extra_moments, progress=progress)
+    placed = place_neurons(model, tokenizer, layer, specs, paragraphs=paragraphs, extra_moments=extra_moments, progress=progress, kept=kept)
     neurons = [neuron_record(s, sp) for s, sp in zip(placed["slots"], specs)]
     answers = [{name: [int(t) for t in sp["ids"]] for name, sp in f["parts"]["spellings"].items() if sp is not None} for f in facts]
     return dict(layer=layer, gate=placed["gate"], up=placed["up"], down=placed["down"], neurons=neurons, gain=gain, push=push, where=where,
@@ -347,7 +347,8 @@ def moments_hash(Hf: torch.Tensor, Hv: torch.Tensor) -> str:
 
 
 def place_neurons(model, tokenizer, layer: int, rows: list[dict], *, paragraphs: list[str] | None = None,
-                  extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None, progress: Callable[[str], None] | None = None) -> dict:
+                  extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None, progress: Callable[[str], None] | None = None,
+                  kept: dict | None = None) -> dict:
     """The second half of a compile: free as many of the layer's neurons as there are `rows`, re-fit the neurons that are left, and
     write each row into a freed neuron, in order. rows: dicts with `gate` (the neuron's gate row) and `down` (its output column).
     `compile_layer` gives it the rows it has just made from a table's facts; a merge of two grafted models (grafted_merge) gives it
@@ -355,15 +356,26 @@ def place_neurons(model, tokenizer, layer: int, rows: list[dict], *, paragraphs:
 
     The neurons are freed in one fixed order (redundancy_order), so the first n rows of a longer list get the neurons a list of n
     rows gets. Returns gate, up and down (the layer's new matrices, in the model's number type, on the CPU), slots (the neuron each
-    row got) and refit (the re-fit's settings, and the hash of the moments it was made from). The model is left unchanged."""
+    row got) and refit (the re-fit's settings, and the hash of the moments it was made from). The model is left unchanged.
+
+    kept: a dict the caller holds between compiles of the same model. The layer's moments on this text are put into it and read
+    from it the next time: they depend on the model, the layer and the text, not on the rows, and reading them is most of what a
+    small compile costs."""
     say = progress or (lambda s: None)
     mlp = blocks(model)[layer].mlp
     paras = paragraphs or calibration_paragraphs()
     fit = [paras[i] for i in CALIBRATION_FIT if i < len(paras)]
     spare = [paras[i] for i in SPARE if i < len(paras)] or fit[-20:]
     t0 = time.time()
-    say(f"reading layer {layer}'s neurons on ordinary text ({len(fit)} + {len(spare)} paragraphs)")
-    Hf, Hv = second_moment(model, tokenizer, layer, fit), second_moment(model, tokenizer, layer, spare)
+    key = (layer, hashlib.sha256("\n".join(fit + ["", ""] + spare).encode("utf-8")).hexdigest())
+    if kept is not None and key in kept:
+        say(f"layer {layer}'s neurons on ordinary text: as read before")
+        Hf, Hv = (H.to(mlp.down_proj.weight.device) for H in kept[key])
+    else:
+        say(f"reading layer {layer}'s neurons on ordinary text ({len(fit)} + {len(spare)} paragraphs)")
+        Hf, Hv = second_moment(model, tokenizer, layer, fit), second_moment(model, tokenizer, layer, spare)
+        if kept is not None:
+            kept[key] = (Hf.cpu(), Hv.cpu())
     if extra_moments is not None:
         Hf, Hv = Hf + extra_moments[0].to(Hf), Hv + extra_moments[1].to(Hv)
     W0 = mlp.down_proj.weight.data

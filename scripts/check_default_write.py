@@ -53,7 +53,9 @@ def main():
     check("a new table writes at the last layer", graft.options.last_layer == "all", graft.options.last_layer)
     from cramschool.graft.core import blocks
 
-    check("and reads the question there too (since 1.2)", graft.layer == len(blocks(model)) - 1, graft.layer)
+    profile = graft.layer_profile or {}
+    check("and reads the question at the layer measured for the model", profile.get("pick") is not None and graft.layer == profile["pick"],
+          dict(layer=graft.layer, pick=profile.get("pick"), tied=profile.get("tied"), last=len(blocks(model)) - 1))
     check("the calibration's scale equals the scale measured alone", scale == alone, dict(calibration=scale, alone=alone))
 
     replies = {}

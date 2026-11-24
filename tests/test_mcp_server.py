@@ -190,3 +190,49 @@ def test_a_long_call_tells_its_client_that_it_is_still_running(monkeypatch):
 
     anyio.run(check)
     assert len(notes) >= 2 and notes[0] == (1, "building a fact") and [n for n, _ in notes] == sorted(n for n, _ in notes)
+
+
+def test_calls_of_one_server_never_run_at_the_same_time_whichever_toolbox_they_belong_to(monkeypatch):
+    """A client sends calls in parallel, and every tool works on the one loaded model. A fact tool and a weight-edit tool, or two
+    calls that set the model's weights for a moment, must not overlap: the server runs its calls one after another."""
+    import threading
+    import time
+
+    import anyio
+    from mcp import Client
+
+    from cramschool import mcp_server
+    from cramschool.tools import GraftTools
+
+    inside, most, order = [], [0], []
+    watch = threading.Lock()
+
+    def work(name):
+        with watch:
+            inside.append(name)
+            most[0] = max(most[0], len(inside))
+        time.sleep(0.25)
+        with watch:
+            inside.remove(name)
+            order.append(name)
+        return dict(done=name)
+
+    class Facts(GraftTools):
+        def call(self, name, args=None):
+            return work("fact tool")
+
+    class Edits:
+        def call(self, name, args=None):
+            return work("weight-edit tool")
+
+    monkeypatch.setattr(mcp_server, "BEAT", 0.05)
+    server = mcp_server.build_server(lambda: Edits(), Facts(None))
+
+    async def check():
+        async with Client(server) as client:
+            async with anyio.create_task_group() as group:           # four calls sent together, two of each toolbox
+                for tool in ("cramschool_graft_status", "cramschool_status", "cramschool_graft_list_facts", "cramschool_status"):
+                    group.start_soon(client.call_tool, tool, {})
+
+    anyio.run(check)
+    assert most[0] == 1 and len(order) == 4 and set(order) == {"fact tool", "weight-edit tool"}

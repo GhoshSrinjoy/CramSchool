@@ -72,7 +72,7 @@ def main(base: str, work: str, out: str) -> int:
     model, tok = _load(base, "bfloat16")
     result = dict(questions=QUESTIONS, unedited=replies(model, tok))
 
-    graft = Graft(model, tok, options=GraftOptions(fast=True), progress=say)
+    graft = Graft(model, tok, layer="last", options=GraftOptions(fast=True), progress=say)   # as it was run: the default then
     graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")
     graft.add("Vorantis Biotech", "hq", "Tartu")
     t1 = graft.commit(table, "two facts about Vorantis")

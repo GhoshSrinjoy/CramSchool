@@ -62,12 +62,20 @@ class Problem(BaseModel):
     answer: str = Field(description="The numeric answer, e.g. '72'")
 
 
-async def _working(ctx: Context, work: Callable[[], dict], said: Callable[[], str]) -> dict:
+async def _working(ctx: Context, work: Callable[[], dict], said: Callable[[], str], gate: threading.Lock) -> dict:
     """Run one tool call, which blocks for seconds or minutes, in a worker thread, and tell the client every BEAT seconds that it is
     still running, with the latest line of progress. A client may give up on a call that is silent for long (Claude Code after 300
-    seconds), and a fact takes 40 seconds to build, an export a minute, a dataset or the first call on a new model several
-    minutes. The notes go only to a client that asked for them; the result is the call's own."""
+    seconds), and a fact takes 40 seconds to build, an export minutes, a dataset or the first call on a new model several
+    minutes. The notes go only to a client that asked for them; the result is the call's own.
+
+    gate: the server's one lock. A client sends calls in parallel, and every tool works on the same loaded model: a fact tool and
+    a weight-edit tool must not run at the same time, nor two calls that set the model's weights for a moment. So the calls of a
+    server run one after another, whichever toolbox they belong to; a second call waits, and tells its client that it waits."""
     import anyio
+
+    def one_at_a_time() -> dict:
+        with gate:
+            return work()
 
     async def beat() -> None:
         sent = 0
@@ -82,7 +90,7 @@ async def _working(ctx: Context, work: Callable[[], dict], said: Callable[[], st
     async with anyio.create_task_group() as group:
         group.start_soon(beat)
         try:
-            return await anyio.to_thread.run_sync(work)
+            return await anyio.to_thread.run_sync(one_at_a_time)
         finally:
             group.cancel_scope.cancel()
 
@@ -92,10 +100,11 @@ def build_server(get_surgery: Callable[[], Surgery], graft_tools: GraftTools | N
     (cramschool_graft_*) are served too, on the same model."""
     instructions = PROTOCOL if graft_tools is None else PROTOCOL + "\n\nFacts: " + GRAFT_PROTOCOL
     server = MCPServer("cramschool_mcp", instructions=instructions)
+    gate = threading.Lock()   # one call at a time on the one loaded model, across both toolboxes
 
     async def run(ctx: Context, tool: str, **args: Any) -> dict:
         payload = {k: (v.model_dump() if isinstance(v, BaseModel) else [x.model_dump() if isinstance(x, BaseModel) else x for x in v] if isinstance(v, list) else v) for k, v in args.items() if v is not None}
-        result = await _working(ctx, lambda: get_surgery().call(tool, payload), lambda: f"{tool} is running")
+        result = await _working(ctx, lambda: get_surgery().call(tool, payload), lambda: f"{tool} is running", gate)
         if "error" in result:
             raise ToolError(f"{result['error']} ({result.get('passes_left', '?')} forward passes left)")
         return result
@@ -176,19 +185,21 @@ def build_server(get_surgery: Callable[[], Surgery], graft_tools: GraftTools | N
         return await run(ctx, "export_patch", path=path, note=note)
 
     if graft_tools is not None:
-        register_graft_tools(server, graft_tools)
+        register_graft_tools(server, graft_tools, gate)
     return server
 
 
-def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
-    """The GRAFT tools: facts in one inserted layer, added, checked and removed without changing a weight."""
+def register_graft_tools(server: MCPServer, tools: GraftTools, gate: threading.Lock | None = None) -> None:
+    """The GRAFT tools: facts in one inserted layer, added, checked and removed without changing a weight. gate: the lock of the
+    server they are registered on, shared with its other tools; a lock of their own without one."""
+    gate = gate or threading.Lock()
 
     async def run(ctx: Context, tool: str, /, **args: Any) -> dict:
         """Call one tool of the toolbox. The tool's name is positional only: a tool may have an argument of its own called `name`
         (add_relation and add_kind do), which must not be taken for it."""
         tools.said = f"{tool} is running"   # the table's own progress lines replace it as they come (serve)
         result = await _working(ctx, lambda: tools.call(tool, {k: v for k, v in args.items() if v is not None}),
-                                lambda: getattr(tools, "said", None) or f"{tool} is running")
+                                lambda: getattr(tools, "said", None) or f"{tool} is running", gate)
         if "error" in result:
             raise ToolError(result["error"])
         return result
@@ -302,7 +313,9 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
     async def graft_commit_grafted(ctx: Context, path: str, grafted_dir: str, history_dir: str, message: str | None = None) -> dict:
         """Record both forms of the facts in one call: the table as a version (path), the same facts written into a copy of the model's
         own weights (a grafted model, in grafted_dir), and those weights as a version that names the table's (in history_dir). The
-        export takes about a minute. The result names the facts that got no neuron: they answer from the table only."""
+        first export of a table takes about five minutes, since the facts are also built at the last layer for the grafted model;
+        later ones build only what is new, about a minute. The result names the facts that got no neuron: they answer from the
+        table only."""
         return await run(ctx, "commit_grafted", path=path, grafted_dir=grafted_dir, history_dir=history_dir, message=message)
 
     @server.tool(name="cramschool_graft_revert_grafted", annotations=CHANGE)
@@ -345,7 +358,7 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
         model. Each fact's neurons are read out of the two checkpoints and written into one model, and the neurons that are left
         are re-fitted once, so no table is needed and the loaded table is not changed. history_dir: also record the merged model as a
         version of the weights. prefer: where both hold a fact with another answer, error (default), mine or theirs. The result says
-        whether the weights are the ones a single export of all the facts gives (same_as_one_export). About a minute."""
+        whether the weights are the ones a single export of all the facts gives (same_as_one_export). A minute or two."""
         return await run(ctx, "weights_merge", mine=mine, theirs=theirs, out_dir=out_dir, history_dir=history_dir, message=message, prefer=prefer)
 
     @server.tool(name="cramschool_graft_weights_checkout", annotations=CHANGE)
