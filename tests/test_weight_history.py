@@ -165,13 +165,13 @@ def test_a_grafted_version_names_the_table_version_it_was_compiled_from(folders,
     assert not os.path.exists(os.path.join(h, "versions.jsonl"))
     t1 = history.commit(table, "two facts")
     v1 = wh.commit(h, one, "two facts", base_dir=base, table=table)
-    assert v1.table == dict(version="v1", state=t1.state)
+    assert v1.table == dict(version="v1", state=t1.state, by="facts")       # an export without a fingerprint: matched by its facts
     with pytest.raises(ValueError, match="holds other facts than these weights"):   # the table still holds the first facts
         wh.commit(h, two, "another owner", base_dir=base, table=table)
     assert len(wh.versions(h)) == 1
     t2 = history.commit(write_table(tmp_path / "t.graft", TWO), "another owner")
     v2 = wh.commit(h, two, "another owner", base_dir=base, table=table)
-    assert v2.table == dict(version="v2", state=t2.state) and wh.diff(h, "v1", "v2")["table"] == [v1.table, v2.table]
+    assert v2.table == dict(version="v2", state=t2.state, by="facts") and wh.diff(h, "v1", "v2")["table"] == [v1.table, v2.table]
     assert "compiled from table version: v1 -> v2" in wh.diff_text(wh.diff(h, "v1", "v2"))
     back = wh.revert(h, "v1", folders["out"], base_dir=base)
     assert back.table == v1.table                              # a revert carries the link of the version it took
@@ -333,7 +333,7 @@ def test_both_forms_are_recorded_and_gone_back_to_in_one_call(model, tokenizer, 
         warnings.simplefilter("ignore")
         first = graft.commit_grafted(table, folder, h, "one fact", base_dir=base, forms=("plain",))
         assert (first["table"].id, first["weights"].id, first["weights"].facts) == ("v1", "v1", 1)
-        assert first["weights"].table == dict(version="v1", state=first["table"].state)          # the version just recorded, by name
+        assert first["weights"].table == dict(version="v1", state=first["table"].state, by="parts")   # the version just recorded, by content
         assert first["weights"].export == dict(forms=["plain"]) and first["report"]["tensors"]
         one = file_bytes(folder)
         again = graft.commit_grafted(table, folder, h, "again", base_dir=base, forms=("plain",))
@@ -355,7 +355,7 @@ def test_both_forms_are_recorded_and_gone_back_to_in_one_call(model, tokenizer, 
         forth = graft.revert_grafted(table, "v2", folder, h, base_dir=base)
         assert forth["exported"] is False and forth["weights"].of == "v2" and file_bytes(folder) == two
         late = graft.revert_grafted(table, "v4", folder, h, base_dir=base, forms=("plain",))
-        assert late["exported"] is True and late["matches"] == [] and late["weights"].table == dict(version=late["table"].id, state=only_table.state)
+        assert late["exported"] is True and late["matches"] == [] and late["weights"].table == dict(version=late["table"].id, state=only_table.state, by="parts")
         assert sorted(f.subject for f in graft.facts) == ["acme", "france"]
         assert late["not_in_weights"] == [dict(subject="france", relation="owner", answer="z")] and late["weights"].facts == 1   # named, not hidden
 
@@ -476,3 +476,118 @@ def test_the_mcp_server_serves_the_weights_tools():
             assert {f"cramschool_graft_{n}" for n in ("commit_grafted", "revert_grafted", "weights_versions", "weights_diff", "weights_checkout")} <= names
 
     anyio.run(check)
+
+
+
+def _tiny_table(model, tokenizer, facts):
+    """A table on the tiny model that can be exported: its ordinary text is made of words the tiny model can read."""
+    import warnings
+
+    from cramschool.graft import Graft, GraftOptions, core
+
+    core._TEXTS[id(tokenizer)] = [" " + t for t in tokenizer.batch_decode([[i] for i in range(len(tokenizer))])]
+    words = [w for w, i in tokenizer.get_vocab().items() if 2 < i < model.config.vocab_size]
+    rng = torch.Generator().manual_seed(0)
+    ordinary = [" ".join(words[int(i)] for i in torch.randint(len(words), (40,), generator=rng)) for _ in range(360)]
+    graft = Graft(model, tokenizer, layer=2, options=GraftOptions(last_layer=None), calibration=ordinary)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        for subject, relation, answer in facts:
+            graft.add(subject, relation, answer)
+    return graft
+
+
+def test_weights_recorded_by_separate_calls_are_matched_with_their_table_by_content(model, tokenizer, tmp_path):
+    import warnings
+
+    from cramschool.graft import Graft
+
+    base, table, folder, h = (str(tmp_path / n) for n in ("base", "t.graft", "grafted", "weights.history"))
+    model.save_pretrained(base)
+    tokenizer.save_pretrained(base)
+    graft = _tiny_table(model, tokenizer, [("acme", "owner", "julian rodlauer")])
+    t1 = graft.commit(table, "one fact")
+    assert graft.facts_fingerprint() == history.fingerprint_of(table, "v1")                    # in memory, and from the version's files
+    assert Graft.load(table, model, tokenizer).facts_fingerprint() == graft.facts_fingerprint()   # and after a load
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        graft.export_grafted(folder, base_dir=base, forms=("plain",))
+        spec = json.load(open(os.path.join(folder, "grafted.json"), encoding="utf-8"))
+        assert spec["table_facts"] == graft.facts_fingerprint()
+        v1 = wh.commit(h, folder, "one fact", base_dir=base, table=table)                      # a call of its own, after the export
+        assert v1.table == dict(version="v1", state=t1.state, by="parts")
+        old = shutil.copytree(folder, str(tmp_path / "old_export"))
+        graft.rebuild()                                                                         # the same fact and answer, built again
+        t2 = graft.commit(table, "built again")
+        assert t2.id == "v2" and [f["answer"] for f in history.facts_of(table, "v2")] == ["julian rodlauer"]
+        assert history.fingerprint_of(table, "v2") != history.fingerprint_of(table, "v1")       # the facts are the same; what they were built into is not
+        with pytest.raises(ValueError, match="were not compiled from version v2 .* built again"):
+            wh.commit(h, old, "the old export against the new table", base_dir=base, table=table)
+        assert wh.commit(h, old, "named", base_dir=base, table=table, table_version="v1").id == "v1"   # the version it was compiled from, by name
+        graft.export_grafted(folder, base_dir=base, forms=("plain",))
+        v2 = wh.commit(h, folder, "built again", base_dir=base, table=table)
+    assert v2.table == dict(version="v2", state=t2.state, by="parts") and wh.is_intact(h)
+
+
+def test_two_tables_are_merged_and_compiled_once_in_one_call(model, tokenizer, tmp_path):
+    import warnings
+
+    base, table, folder, h = (str(tmp_path / n) for n in ("base", "t.graft", "grafted", "weights.history"))
+    model.save_pretrained(base)
+    tokenizer.save_pretrained(base)
+    mine = _tiny_table(model, tokenizer, [("acme", "owner", "julian rodlauer")])
+    theirs = _tiny_table(model, tokenizer, [("rome", "owner", "paris france")])
+    theirs._mctx = dict(mine.calibration())
+    with pytest.raises(ValueError, match="give base_dir"):
+        mine.merge_grafted(theirs, table, folder, h, "both", base_dir=str(tmp_path / "nowhere"))
+    assert len(mine) == 1                                                                       # refused before anything is merged
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        out = mine.merge_grafted(theirs, table, folder, h, "both tables", base_dir=base, forms=("plain",))
+    assert out["merged"]["added"] == [dict(subject="rome", relation="owner", answer="paris france")] and out["not_in_weights"] == []
+    assert (out["table"].id, out["weights"].id, out["weights"].facts, out["weights"].table["by"]) == ("v1", "v1", 2, "parts")
+    spec = json.load(open(os.path.join(folder, "grafted.json"), encoding="utf-8"))
+    assert {n["subject"] for n in spec["neurons"]} == {"acme", "rome"} and sorted(f.subject for f in mine.facts) == ["acme", "rome"]
+
+
+def test_a_version_is_asked_and_the_model_is_put_back_as_it_was(model, tokenizer, tmp_path, capsys):
+    import warnings
+
+    from cramschool.__main__ import main
+    from cramschool.tools import GraftTools
+
+    base, table, folder, h = (str(tmp_path / n) for n in ("base", "t.graft", "grafted", "weights.history"))
+    model.save_pretrained(base)
+    tokenizer.save_pretrained(base)
+    graft = _tiny_table(model, tokenizer, [("acme", "owner", "julian rodlauer")])
+    model.config._name_or_path = base
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        graft.commit_grafted(table, folder, h, "one fact", forms=("plain",))
+    start = {k: v.clone() for k, v in model.state_dict().items()}
+    with wh.applied(h, "v1", model, tokenizer=tokenizer) as switch:
+        assert switch is not None and len(switch.handles) > 0
+        assert not all(torch.equal(v, start[k]) for k, v in model.state_dict().items())         # the model holds the version's weights
+    assert all(torch.equal(v, start[k]) for k, v in model.state_dict().items()) and switch.handles == []   # and its own again, bit for bit
+    with pytest.raises(RuntimeError):
+        with wh.applied(h, "v1", model):
+            raise RuntimeError("something goes wrong inside")
+    assert all(torch.equal(v, start[k]) for k, v in model.state_dict().items())                 # also after an error
+
+    graft.attach()
+    asked = GraftTools(graft).call("weights_ask", dict(history_dir=h, version="v1", questions=["who owns acme ?"]))
+    assert asked["version"] == "v1" and len(asked["replies"]) == 1 and asked["model"] == "put back as it was"
+    assert graft.is_attached and all(torch.equal(v, start[k]) for k, v in model.state_dict().items())
+    graft.detach()
+
+    with torch.no_grad():
+        model.model.layers[2].mlp.down_proj.weight[0, 0] += 1.0                                 # a weight edit kept where a version writes
+    with pytest.raises(ValueError, match="does not hold the base's weights"):
+        with wh.applied(h, "v1", model):
+            pass
+    with torch.no_grad():
+        model.model.layers[2].mlp.down_proj.weight[0, 0] -= 1.0
+
+    assert main(["weights", "ask", "--model", base, "--dtype", "float32", "--history", h, "--plain", "the owner of acme is"]) == 0
+    printed = capsys.readouterr().out
+    assert "Q: the owner of acme is" in printed and "base:" in printed and "v1:" in printed

@@ -140,6 +140,16 @@ def build_parser() -> argparse.ArgumentParser:
     g_exp.add_argument("--history", help="also record both forms: the table as a version, and the exported weights as a version in this folder "
                                          "that names the table's")
     g_exp.add_argument("-m", "--message", default="", help="with --history: what changed, in a few words")
+    g_merge = graft.add_parser("merge", help="bring another table's facts into this one without building them; with --out and --history, "
+                                             "also write the merged table's grafted model and record both")
+    _model_args(g_merge)
+    g_merge.add_argument("--table", required=True, help="the table that takes the facts")
+    g_merge.add_argument("--from", dest="other", required=True, help="the other saved table")
+    g_merge.add_argument("--prefer", default="error", choices=("error", "mine", "theirs"), help="where both hold a fact with another answer")
+    g_merge.add_argument("--out", help="folder for the grafted model of the merged table")
+    g_merge.add_argument("--history", help="with --out: the folder of the weights' history")
+    g_merge.add_argument("--base", help="with --out: the base model's local folder (default: --model)")
+    g_merge.add_argument("-m", "--message", default="", help="what was merged, in a few words")
     g_commit = graft.add_parser("commit", help="record the saved table as a version, to compare or go back to later (no model needed)")
     g_commit.add_argument("--table", required=True)
     g_commit.add_argument("-m", "--message", default="", help="what changed, in a few words")
@@ -262,6 +272,12 @@ def build_parser() -> argparse.ArgumentParser:
     w_revert.add_argument("--checkpoint", required=True)
     w_revert.add_argument("--base", required=True)
     w_revert.add_argument("--discard", action="store_true", help="also lose weights in the folder that no version holds")
+    w_ask = weights.add_parser("ask", help="ask questions of several versions of the weights: the model is loaded once and set to each in turn")
+    _model_args(w_ask)
+    w_ask.add_argument("--history", required=True)
+    w_ask.add_argument("--versions", nargs="*", default=None, help="the versions to ask, such as base v1 v2 (default: base and every recorded one)")
+    w_ask.add_argument("questions", nargs="+")
+    w_ask.add_argument("--plain", action="store_true", help="treat the questions as plain sentence openings, not chat")
     w_bisect = weights.add_parser("bisect", help="find the first version of the weights at which a question stopped getting, or started getting, "
                                                  "a text in its reply (loads the model)")
     _model_args(w_bisect)
@@ -486,6 +502,28 @@ def run_graft_command(args) -> int:
                 json.dump(asdict(profile), fh, ensure_ascii=False, indent=1)
         return 0
     graft = _open_table(model, tokenizer, args.table, getattr(args, "layer", None), getattr(args, "relations", None), args)
+    if args.graft_command == "merge":
+        from .graft import Graft
+
+        if bool(args.out) != bool(args.history):
+            raise SystemExit("give --out and --history together: the grafted model's folder and the folder of the weights' history")
+        try:
+            other = Graft.load(args.other, model, tokenizer, progress=_say)
+            if args.out:
+                done = graft.merge_grafted(other, args.table, args.out, args.history, args.message, prefer=args.prefer, base_dir=args.base or args.model)
+                merged, version = done["merged"], done["table"]
+            else:
+                merged, version = graft.merge(other, args.prefer), None
+                version = graft.commit(args.table, args.message)
+        except ValueError as error:
+            raise SystemExit(str(error))
+        print(f"{len(merged['added'])} added, {len(merged['replaced'])} replaced, {len(merged['kept'])} kept as they were, {merged['same']} the same; "
+              f"{len(graft)} facts in {args.table}, recorded as {version.id}")
+        if args.out:
+            print(f"the grafted model of the merged table is in {args.out}; its weights are {done['weights'].id} in {args.history}")
+            for f in done["not_in_weights"]:
+                print(f"  not in the weights (no detector could be built): {f['subject']} | {f['relation']} | {f['answer']}")
+        return 0
     if args.graft_command == "set":
         if not len(graft):
             raise SystemExit(f"{args.table} holds no facts")
@@ -675,7 +713,22 @@ def run_weights_command(args) -> int:
 
     plural = lambda n, word: f"{n} {word}{'' if n == 1 else 's'}"  # noqa: E731
     try:
-        if args.weights_command == "bisect":
+        if args.weights_command == "ask":
+            from .gates import generate_batch
+            from .model_access import Prompt, render_chat
+
+            model, tokenizer = _load(args.model, args.dtype)
+            asked = args.versions or [wh.BASE] + [v.id for v in wh.versions(args.history)]
+            prompts = [Prompt(q) if args.plain else render_chat(tokenizer, q) for q in args.questions]
+            replies = {}
+            for version in asked:
+                with wh.applied(args.history, version, model, tokenizer=tokenizer):
+                    replies[version] = generate_batch(model, tokenizer, prompts, 48, batch_size=1)
+            for i, question in enumerate(args.questions):
+                print(f"Q: {question}")
+                for version in asked:
+                    print(f"  {version + ':':6} {replies[version][i]!r}")
+        elif args.weights_command == "bisect":
             from .gates import generate_batch
             from .model_access import Prompt, render_chat
 

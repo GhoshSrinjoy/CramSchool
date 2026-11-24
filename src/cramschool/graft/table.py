@@ -239,6 +239,17 @@ class Graft:
         self.wordings = self.wordings.with_relations({relation.name: relation})
         self._shared = None
 
+    def add_kind(self, name: str, names, generic_plain, generic_chat) -> list[str]:
+        """Teach the table a kind of subject that does not ship with the package, so that relations about such subjects can be added
+        (`Relation(..., subject=name)`). names: at least 24 invented names of such subjects. generic_plain, generic_chat: general
+        questions about any such subject, each with {s} once (at least 8 and 4); a fact is taught to stay shut on them. A kind of the
+        same name is replaced. Returns the kinds the table knows, besides company."""
+        from .wordings import check_kind
+
+        self.wordings = self.wordings.with_relations({}, {name: check_kind(name, dict(names=list(names), generic_plain=list(generic_plain),
+                                                                                    generic_chat=list(generic_chat)))})
+        return sorted(self.wordings.kinds)
+
     def add_wordings(self, relation: str, plain=(), chat=()) -> dict:
         """Teach a relation the table knows more ways of asking, such as the forms a check showed its facts miss. Facts added afterwards
         learn them; `rebuild()` builds the stored facts again so that they do too. The answer vectors stay taught from the relation's
@@ -620,7 +631,8 @@ class Graft:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile, prompt_detector and arm have "
                           "no neuron form and are left out of the grafted model", stacklevel=2)
         top = len(blocks(self.model)) - 1
-        meta = dict(base_model=base, facts=len(self._facts), aliases=self._alias_map(), exclusions=self._exclusion_list())
+        meta = dict(base_model=base, facts=len(self._facts), aliases=self._alias_map(), exclusions=self._exclusion_list(),
+                    table_facts=self.facts_fingerprint())
         if self.options.last_layer == "all" and self.layer == top and complete is True:
             from .layer import LAST_MULTIPLE
 
@@ -873,6 +885,28 @@ class Graft:
     def _export_record(export: dict) -> dict:
         """The export's arguments as they are kept with a version of the weights: plain values, and whether extra text was given."""
         return {k: (bool(v is not None) if k == "texts" else list(v) if isinstance(v, tuple) else v) for k, v in export.items()}
+
+    def facts_fingerprint(self) -> str:
+        """One hash of the table's facts and of what each was built into (history.facts_fingerprint). `export_grafted` writes it into
+        grafted.json, so that a version of the weights can be matched with the table version it was compiled from by content: the
+        fingerprint of a recorded table version is computed from its files (history.fingerprint_of) and is the same hash."""
+        from . import history
+
+        return history.facts_fingerprint([e["fact"]["subject"], e["fact"]["relation"], e["fact"]["target"], history.part_hash(e["parts"])]
+                                         for e in self._facts)
+
+    def merge_grafted(self, other: "Graft", path: str, grafted_dir: str, history_dir: str, message: str = "", *, prefer: str = "error",
+                      base_dir: str | None = None, **export) -> dict:
+        """Bring another table's facts into this table and into the model's own weights, in one call: `merge`, then `commit_grafted`.
+
+        Two grafted models are never added together. Each reuses the same neurons of the same layer and re-fits the neurons it leaves,
+        so the sum of two is neither. The sound merge is at the tables, where facts are independent; the grafted model of the merged
+        table is then compiled once. Both tables must be loaded (`Graft.load`) and built the same way; see `merge`.
+
+        Returns merged (the report of `merge`), and table, weights, report and not_in_weights as `commit_grafted` does."""
+        base = self._base_folder(base_dir)                       # checked before anything is merged
+        merged = self.merge(other, prefer)
+        return dict(merged=merged, **self.commit_grafted(path, grafted_dir, history_dir, message, base_dir=base, **export))
 
     def commit_grafted(self, path: str, grafted_dir: str, history_dir: str, message: str = "", *, base_dir: str | None = None, **export) -> dict:
         """Record both forms of the facts in one call: the table as a version (`commit`), the same facts in the model's own weights

@@ -5,6 +5,7 @@ The toolbox keeps one `Graft` table on the loaded model. Every tool takes and re
 from __future__ import annotations
 
 import os
+import re
 import threading
 import time
 from typing import Callable
@@ -13,7 +14,40 @@ from .datasets import load_facts
 from .graft import Graft, Relation
 from .graft.wordings import RELATION_NAMES, canonical_relation
 
-PROTOCOL = """You are teaching a small language model new facts with GRAFT. The facts live in one inserted layer beside the model; its
+PROTOCOL = """You are teaching a small language model new facts with GRAFT.
+
+A fact is a named subject, a relation and a short answer: "Vorantis Biotech | ceo | Ingrid Solberg", "Tavrik DB | default_port | 7741",
+"Zentharite | melting_point | 1412 °C". GRAFT holds such facts in two forms. The table sits beside the model and changes no weight;
+removing a fact from it is exact. The grafted model is the same facts written into a copy of the model's own weights (commit_grafted).
+GRAFT does not hold free text, programs, procedures or ways of behaving: only short answers about named subjects.
+
+Every subject has a kind. Four relations about companies are built in: owner, ceo, founder and hq. Other kinds of subject are ready
+to use, and status lists them: person, town, product, work, concept, institution, medicine, event, software and substance. A kind that
+is missing is added with add_kind. Any other relation is added with add_relation, with the kind of its subject.
+
+How to work:
+1. Look at what the model answers now (ask) before adding anything.
+2. For a relation that is not built in, first give its wordings with add_relation: at least 8 plain sentence openings that stop where
+   the answer comes next, and 4 chat questions, each with {s} once where the subject's name goes; 30 of each is better. Name the kind
+   of its subject, and say whether the answer is a person's name. Two relations about the same kind of subject must not ask in
+   nearly the same words.
+3. Add each fact with add_fact (about 40 seconds each).
+4. Check every fact with check_fact on wordings you write now, which the build never saw: about 8 new questions for the fact, 4 other
+   questions about the same subject that ask for something else, and 2 or 3 look-alike names (one letter changed, the same first word
+   with another ending, another first word with the same ending).
+5. A fact is good when the answer comes back on at least 3 in 4 new questions and never for look-alikes or other questions. Remove a
+   fact that leaks (remove_fact), or report it.
+6. Fix what misses. When facts of a relation miss new questions, look at what the missed questions have in common (where the subject's
+   name stands, what comes just before the answer, the register), and teach the relation those ways of asking with teach_wordings:
+   several wordings of each kind, never one that would also fit another relation. Then call rebuild once, and check again with
+   questions you have not used before: a wording you taught proves nothing about itself.
+7. Record your work. commit saves the table and records a version you can go back to (revert). commit_grafted also writes the grafted
+   model and records its weights. Report what you added, the evidence for each fact, and what is still uncertain.
+"""
+
+# The protocol of versions up to 1.2, which speaks of companies only. The editor runs of the lab notebook's step 11 used it; it is
+# kept so that those runs can be repeated.
+PROTOCOL_V1 = """You are teaching a small language model new facts with GRAFT. The facts live in one inserted layer beside the model; its
 weights never change, and removing a fact is exact.
 
 How to work:
@@ -40,30 +74,38 @@ def _schema(properties: dict, required: list[str]) -> dict:
 STR, BOOL, INT = {"type": "string"}, {"type": "boolean"}, {"type": "integer"}
 LIST = {"type": "array", "items": {"type": "string"}}
 TOOLS = {
-    "status": ("The table: how many facts, which relations it knows, the layer, and whether it is attached.", _schema({}, [])),
-    "list_facts": ("Every stored fact: id, company, relation, answer.", _schema({}, [])),
-    "add_fact": ("Add a fact, or update it if the company already has one for this relation. About 40 seconds.",
-                 _schema(dict(subject=dict(STR, description="The company, exactly as it is written, e.g. 'Nimbresco Software'"),
+    "status": ("The table: how many facts, the relations it knows and the kind of subject of each, the kinds of subject ready to use, the "
+               "layer, and whether it is attached.", _schema({}, [])),
+    "list_facts": ("Every stored fact: id, subject, relation, answer.", _schema({}, [])),
+    "add_fact": ("Add a fact, or update it if the subject already has one for this relation. About 40 seconds.",
+                 _schema(dict(subject=dict(STR, description="The subject's name, exactly as it is written, e.g. 'Nimbresco Software' or 'Tavrik DB'"),
                               relation=dict(STR, description="owner, ceo, founder, hq, or a relation added with add_relation"),
-                              answer=dict(STR, description="The answer, e.g. 'Tharindu Ekanayake' or 'Oradea'")), ["subject", "relation", "answer"])),
-    "remove_fact": ("Remove a company's fact for one relation, or all its facts.",
-                    _schema(dict(subject=STR, relation=dict(STR, description="Leave out to remove all the company's facts")), ["subject"])),
-    "ask": ("Ask the model a question, with and without the GRAFT layer.",
+                              answer=dict(STR, description="The short answer, e.g. 'Tharindu Ekanayake', 'Oradea' or '7741'")), ["subject", "relation", "answer"])),
+    "remove_fact": ("Remove a subject's fact for one relation, or all its facts.",
+                    _schema(dict(subject=STR, relation=dict(STR, description="Leave out to remove all the subject's facts")), ["subject"])),
+    "ask": ("Ask the model a question, with and without the table.",
             _schema(dict(question=STR, chat=dict(BOOL, description="Chat question (default) or a plain sentence opening")), ["question"])),
     "check_fact": ("Check a stored fact on wordings the build never saw: recall on new questions, and leaks on other questions about the "
-                   "company and on look-alike companies.",
+                   "same subject and on look-alike names. The answer is matched as whole words, and a leak is counted only where the table "
+                   "brought the answer in: every question is also asked without the table.",
                    _schema(dict(subject=STR, relation=STR,
                                 new_questions=dict(LIST, description="New ways to ask for this fact (chat questions or plain openings)"),
-                                other_questions=dict(LIST, description="Other questions about the same company; the answer must not appear"),
-                                lookalike_companies=dict(LIST, description="Similar company names; the answer must not appear for them")),
+                                other_questions=dict(LIST, description="Other questions about the same subject; the answer must not appear"),
+                                lookalike_subjects=dict(LIST, description="Similar names; the answer must not appear for them"),
+                                lookalike_companies=dict(LIST, description="The earlier name of lookalike_subjects; still accepted")),
                            ["subject", "relation", "new_questions"])),
     "add_relation": ("Teach the table a new relation: at least 8 plain openings and 4 chat questions, each with {s} once for the subject.",
                      _schema(dict(name=STR, plain=LIST, chat=LIST, person=dict(BOOL, description="True if the answer is a person's name"),
-                                  subject=dict(STR, description="the kind of subject: company (default), or a kind the table knows, "
-                                                                "such as person, country, place, work or product")),
+                                  subject=dict(STR, description="the kind of subject: company (default), or a kind status lists, such as "
+                                                                "person, product, concept, software or substance")),
                              ["name", "plain", "chat"])),
+    "add_kind": ("Teach the table a new kind of subject, for relations about subjects that are neither companies nor a kind status lists. "
+                 "Give invented names of such subjects (at least 24, none of them real) and general questions about any such subject, "
+                 "each with {s} once: at least 8 plain openings and 4 chat questions. A fact is taught to stay shut on them.",
+                 _schema(dict(name=dict(STR, description="The kind's name, e.g. 'planet' or 'protein'"), names=LIST, generic_plain=LIST, generic_chat=LIST),
+                         ["name", "names", "generic_plain", "generic_chat"])),
     "teach_wordings": ("Teach a relation more ways of asking, when check_fact shows questions its facts miss. Plain wordings stop where the "
-                       "answer comes next; chat wordings are questions; each has {s} once for the company. Call rebuild afterwards.",
+                       "answer comes next; chat wordings are questions; each has {s} once for the subject. Call rebuild afterwards.",
                        _schema(dict(relation=STR, plain=LIST, chat=LIST), ["relation"])),
     "rebuild": ("Build the stored facts again, so that they learn what was taught since they were added: every fact, or only the facts of "
                 "one relation. About 10 to 40 seconds per fact.",
@@ -104,6 +146,17 @@ TOOLS = {
     "weights_diff": ("What differs between two recorded versions of the weights: the tensors (values, rows, columns, the largest difference) "
                      "and the facts added, removed and changed. A version may be 'base', the unedited model. Without b, to the newest.",
                      _schema(dict(history_dir=STR, a=dict(STR, description="A version id, such as v1, or base"), b=STR), ["history_dir", "a"])),
+    "weights_ask": ("Ask questions of a recorded version of the weights, on the loaded model: its weights are set to the version, with the "
+                    "version's switch, the questions are asked, and the model is put back as it was. A version may be 'base'. It shows what "
+                    "the grafted model answers, without the table.",
+                    _schema(dict(history_dir=STR, version=dict(STR, description="A version id, such as v1, or base"), questions=LIST),
+                            ["history_dir", "version", "questions"])),
+    "merge_grafted": ("Bring another saved table's facts into this table and into the model's own weights, in one call: the tables are merged, "
+                      "the merged table is recorded, written into a grafted model and its weights recorded. Two grafted models are never "
+                      "added together; the merge is at the tables. Both tables must be built the same way.",
+                      _schema(dict(other=dict(STR, description="The folder of the other saved table"), path=STR, grafted_dir=STR, history_dir=STR,
+                                   message=STR, prefer=dict(STR, description="Where both hold a fact with another answer: error (default), mine or theirs")),
+                              ["other", "path", "grafted_dir", "history_dir"])),
     "weights_checkout": ("Write a recorded version of the weights as a model folder, byte for byte as it was exported. A version may be "
                          "'base', the unedited model. The loaded model is not changed.",
                          _schema(dict(history_dir=STR, version=dict(STR, description="A version id, such as v1, or base"),
@@ -164,7 +217,8 @@ class GraftTools:
 
     def _status(self) -> dict:
         g = self.graft
-        return dict(facts=len(g), layer=g.layer, attached=g.is_attached, relations=list(g.wordings.relations), options=vars(g.options))
+        return dict(facts=len(g), layer=g.layer, attached=g.is_attached, relations=list(g.wordings.relations), options=vars(g.options),
+                    relation_kinds={r: rel.subject for r, rel in g.wordings.relations.items()}, kinds=["company"] + sorted(g.wordings.kinds))
 
     def _list_facts(self) -> dict:
         return dict(facts=[vars(f) for f in self.graft.facts])
@@ -186,35 +240,51 @@ class GraftTools:
         out["company_found"] = g.find(question) if len(g) else None
         return out
 
+    @staticmethod
+    def _said(text: str, phrase: str) -> bool:
+        """Whether a reply holds a phrase as whole words, case ignored: "MIT" is not in "limit"."""
+        return re.search(r"(?<![0-9a-z])" + re.escape(phrase.lower()) + r"(?![0-9a-z])", text.lower()) is not None
+
     def _check_fact(self, subject: str, relation: str, new_questions: list[str], other_questions: list[str] | None = None,
-                    lookalike_companies: list[str] | None = None) -> dict:
+                    lookalike_subjects: list[str] | None = None, lookalike_companies: list[str] | None = None) -> dict:
         g = self.graft
         rel = canonical_relation(relation)
         fact = next((f for f in g.facts if f.subject.lower() == subject.lower() and f.relation == rel), None)
         if fact is None:
             raise KeyError(f"no stored fact for {subject!r} and {rel!r}")
-        answer, first = fact.answer.lower(), fact.answer.split()[0].lower()
+        answer, first = fact.answer, fact.answer.split()[0]
 
         def run(questions):
-            return [dict(question=q, reply=g.ask(q, chat=q.rstrip().endswith(("?", ".")))) for q in questions]
+            out = []
+            for q in questions:
+                both = g.compare(q, chat=q.rstrip().endswith(("?", ".")))
+                out.append(dict(question=q, reply=both["with_graft"], without=both["without"]))
+            return out
+
+        def leaked(r) -> bool:  # the table brought the answer in: it is in the reply with the table and not in the one without
+            return self._said(r["reply"], first) and not self._said(r["without"], first)
 
         recall = run(new_questions)
         for r in recall:
-            r["recalled"] = answer in r["reply"].lower()
+            r["recalled"] = self._said(r["reply"], answer)
+            r["said_without_the_table"] = self._said(r["without"], answer)
         others = run(other_questions or [])
         for r in others:
-            r["leaked"] = first in r["reply"].lower()
+            r["leaked"] = leaked(r)
         looks = []
-        for company in lookalike_companies or []:
-            q = g.wordings.relations[rel].chat[0].format(s=company)
-            looks.append(dict(company=company, question=q, reply=g.ask(q)))
-            looks[-1]["leaked"] = first in looks[-1]["reply"].lower()
+        for name in (lookalike_subjects or []) + (lookalike_companies or []):
+            asked = run([g.wordings.relations[rel].chat[0].format(s=name)])[0]
+            looks.append(dict(subject=name, **asked, leaked=leaked(asked)))
         n_rec = sum(r["recalled"] for r in recall)
         return dict(fact=vars(fact), relation_name=RELATION_NAMES.get(rel, rel), recall=f"{n_rec} of {len(recall)}",
                     leaks_other_questions=f"{sum(r['leaked'] for r in others)} of {len(others)}",
                     leaks_lookalikes=f"{sum(r['leaked'] for r in looks)} of {len(looks)}",
                     good=n_rec >= 0.75 * len(recall) and not any(r["leaked"] for r in others + looks), recall_replies=recall, other_replies=others,
                     lookalike_replies=looks)
+
+    def _add_kind(self, name: str, names: list[str], generic_plain: list[str], generic_chat: list[str]) -> dict:
+        kinds = self.graft.add_kind(name, names, generic_plain, generic_chat)
+        return dict(added_kind=name, names=len(names), generic_plain=len(generic_plain), generic_chat=len(generic_chat), kinds=["company"] + kinds)
 
     def _add_relation(self, name: str, plain: list[str], chat: list[str], person: bool = True, subject: str = "company") -> dict:
         if subject != "company" and subject not in self.graft.wordings.kinds:
@@ -291,6 +361,22 @@ class GraftTools:
         from . import weight_history
 
         return weight_history.diff(history_dir, a, b)
+
+    def _weights_ask(self, history_dir: str, version: str, questions: list[str]) -> dict:
+        from . import weight_history
+        from .gates import generate_batch
+        from .model_access import render_chat
+
+        g = self.graft
+        with g.detached(), weight_history.applied(history_dir, version, g.model, tokenizer=g.tokenizer):
+            replies = generate_batch(g.model, g.tokenizer, [render_chat(g.tokenizer, q) for q in questions], 48, batch_size=1)
+        return dict(version=version, replies=[dict(question=q, reply=r) for q, r in zip(questions, replies)], model="put back as it was")
+
+    def _merge_grafted(self, other: str, path: str, grafted_dir: str, history_dir: str, message: str = "", prefer: str = "error") -> dict:
+        g = self.graft
+        theirs = Graft.load(other, g.model, g._given_tokenizer)
+        out = g.merge_grafted(theirs, path, grafted_dir, history_dir, message, prefer=prefer)
+        return dict(merged=out["merged"], table=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(g), not_in_weights=out["not_in_weights"])
 
     def _weights_checkout(self, history_dir: str, version: str, out_dir: str) -> dict:
         from . import weight_history

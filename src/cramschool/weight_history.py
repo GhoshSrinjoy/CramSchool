@@ -25,6 +25,7 @@ History is never rewritten: a revert is a new version made of an earlier version
 """
 from __future__ import annotations
 
+import contextlib
 import glob
 import hashlib
 import json
@@ -251,13 +252,15 @@ def _state(base: dict, tensors: dict, files: dict, spec: dict | None) -> str:
     return _sha(json.dumps(body, sort_keys=True, ensure_ascii=False).encode("utf-8"))
 
 
-def _table_link(table: str, facts: list, version=None) -> dict:
+def _table_link(table: str, facts: list, version=None, fingerprint: str | None = None) -> dict:
     """The table version a grafted model was compiled from. Named by the caller (`Graft.commit_grafted` names the one it has just
     recorded and exported), or else the newest recorded one, and then only if the saved table has no changes since.
 
-    A version found as the newest must hold exactly the facts the grafted model holds; a fact built again with the same answer is not
-    told apart by that. A version named by the caller must hold every fact of the grafted model and may hold more: a fact whose
-    detector could not be built gets no neuron, so the weights can hold fewer facts than the table they were compiled from."""
+    by "parts": the export wrote a fingerprint of the table's facts and their parts into grafted.json (`Graft.facts_fingerprint`), and
+    the version must have the same one. A fact built again with the same answer is told apart, and a table whose grafted model holds
+    fewer facts (a fact with no detector gets no neuron) is matched all the same.
+    by "facts": an export made before the fingerprint existed. A version found as the newest must hold exactly the facts the grafted
+    model holds; one named by the caller must hold every fact of it. A fact built again is not told apart."""
     from .graft import history as table_history
 
     found = table_history.versions(table)
@@ -273,12 +276,17 @@ def _table_link(table: str, facts: list, version=None) -> dict:
         chosen = next((v for v in found if v.id == name), None)
         if chosen is None:
             raise ValueError(f"{table} has no version {name!r}; it has {found[0].id} to {found[-1].id}")
+    if fingerprint is not None:
+        if table_history.fingerprint_of(table, chosen.id) != fingerprint:
+            raise ValueError(f"these weights were not compiled from version {chosen.id} of {table}: a fact differs, or was built again "
+                             "since the export. Export the grafted model from the table as it is recorded, or leave out the table")
+        return dict(version=chosen.id, state=chosen.state, by="parts")
     held = sorted((f["subject"], f["relation"], f["answer"]) for f in table_history.facts_of(table, chosen.id))
     mine = [tuple(f) for f in facts]
     if (set(mine) - set(held)) if version is not None else (held != mine):
         raise ValueError(f"version {chosen.id} of {table} holds other facts than these weights ({len(held)} against {len(facts)}, "
                          "or other answers): export the grafted model from the table as it is recorded, or leave out the table")
-    return dict(version=chosen.id, state=chosen.state)
+    return dict(version=chosen.id, state=chosen.state, by="facts")
 
 
 def compiled_from(history_dir: str, table_state: str) -> list[WeightVersion]:
@@ -351,7 +359,8 @@ def commit(history_dir: str, checkpoint_dir: str, message: str = "", *, base_dir
         if not os.path.exists(spec_file):
             raise ValueError(f"{checkpoint_dir} has no {SPEC}: only a grafted model is compiled from a table")
         with open(spec_file, encoding="utf-8") as fh:
-            link = _table_link(table, _facts(json.load(fh)), table_version)
+            held = json.load(fh)
+            link = _table_link(table, _facts(held), table_version, held.get("table_facts"))
     tensors, files, spec = _read_checkpoint(history_dir, base, checkpoint_dir, store=True)
     _keep_base_values(history_dir, base, base_dir, tensors)
     return _append(history_dir, base, message, tensors, files, spec, link, of, export)
@@ -586,6 +595,41 @@ def apply(history_dir: str, version, model, *, tokenizer=None, switch=None) -> d
     spec = _spec_of(history_dir, record)
     new_switch = switch_for(model, tokenizer, spec) if spec is not None and tokenizer is not None else None
     return dict(version=record["id"], tensors=sorted(values), switch=new_switch)
+
+
+@contextlib.contextmanager
+def applied(history_dir: str, version, model, *, tokenizer=None):
+    """Set a loaded model to a version for the length of a `with` block, and put it back afterwards as it was, bit for bit:
+
+        with applied("my-model.history", "v1", model, tokenizer=tokenizer):
+            ...   # the model answers as version v1's grafted model does
+
+    The block gets the version's switch (None without a tokenizer, or for a version with no facts). The model must hold the base's
+    weights wherever a version changes them: with a weight edit kept there, the replies would be neither the version's nor the
+    model's own, so that is refused. A GRAFT table attached to the model answers by itself and hides the weights: detach it first."""
+    base, hashes = _base(history_dir), None
+    hashes = _base_hashes(base)
+    state = model.state_dict()
+    held = {}
+    for key in sorted({key for r in _records(history_dir) for key in r["tensors"]}):
+        name = _state_name(state, key)
+        if name is None:
+            raise ValueError(f"the loaded model has no tensor {key}, which a recorded version changes")
+        value = _load_tensor(history_dir, hashes[key])
+        if value.shape != state[name].shape or not torch.equal(value.to(state[name].dtype), state[name].detach().cpu()):
+            raise ValueError(f"the loaded model does not hold the base's weights at {key}: undo the weight edit kept there first, or "
+                             "use apply, which sets the weights and leaves them")
+        held[name] = state[name].detach().clone()
+    switch = None
+    try:
+        switch = apply(history_dir, version, model, tokenizer=tokenizer)["switch"]
+        yield switch
+    finally:
+        if switch is not None:
+            switch.detach()
+        with torch.no_grad():
+            for name, value in held.items():
+                state[name].copy_(value)
 
 
 def bisect(history_dir: str, model, test, good, bad=None, *, tokenizer=None) -> dict:

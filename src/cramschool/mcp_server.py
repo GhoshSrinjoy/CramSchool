@@ -190,17 +190,27 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
 
     @server.tool(name="cramschool_graft_check_fact", annotations=READ)
     def graft_check_fact(subject: str, relation: str, new_questions: list[str], other_questions: list[str] | None = None,
-                         lookalike_companies: list[str] | None = None) -> dict:
+                         lookalike_subjects: list[str] | None = None, lookalike_companies: list[str] | None = None) -> dict:
         """Check a stored fact on wordings the build never saw: recall on new_questions, and leaks on other_questions about the same
-        company and on lookalike_companies (one letter changed, the same first word in another industry, and so on)."""
+        subject and on lookalike_subjects (one letter changed, the same first word with another ending, and so on). The answer is
+        matched as whole words, and a leak is counted only where the table brought the answer in. lookalike_companies is the earlier
+        name of lookalike_subjects."""
         return run("check_fact", subject=subject, relation=relation, new_questions=new_questions, other_questions=other_questions,
-                   lookalike_companies=lookalike_companies)
+                   lookalike_subjects=lookalike_subjects, lookalike_companies=lookalike_companies)
 
     @server.tool(name="cramschool_graft_add_relation", annotations=CHANGE)
-    def graft_add_relation(name: str, plain: list[str], chat: list[str], person: bool = True) -> dict:
+    def graft_add_relation(name: str, plain: list[str], chat: list[str], person: bool = True, subject: str = "company") -> dict:
         """Teach the table a new relation: at least 8 plain openings that stop where the answer comes, and 4 chat questions, each with {s}
-        once for the company."""
-        return run("add_relation", name=name, plain=plain, chat=chat, person=person)
+        once for the subject's name. subject: the kind of subject the relation is about: company, or a kind cramschool_graft_status
+        lists (person, product, concept, software, substance and so on). person: whether the answer is a person's name."""
+        return run("add_relation", name=name, plain=plain, chat=chat, person=person, subject=subject)
+
+    @server.tool(name="cramschool_graft_add_kind", annotations=CHANGE)
+    def graft_add_kind(name: str, names: list[str], generic_plain: list[str], generic_chat: list[str]) -> dict:
+        """Teach the table a new kind of subject, for relations about subjects that are neither companies nor a kind the status lists.
+        names: at least 24 invented names of such subjects, none of them real. generic_plain and generic_chat: general questions about
+        any such subject, each with {s} once (at least 8 plain openings and 4 chat questions); a fact is taught to stay shut on them."""
+        return run("add_kind", name=name, names=names, generic_plain=generic_plain, generic_chat=generic_chat)
 
     @server.tool(name="cramschool_graft_teach_wordings", annotations=CHANGE)
     def graft_teach_wordings(relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
@@ -281,6 +291,19 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
         """What differs between two recorded versions of the weights: the tensors, and the facts added, removed and changed. A version
         may be 'base', the unedited model. Without b, from a to the newest."""
         return run("weights_diff", history_dir=history_dir, a=a, b=b)
+
+    @server.tool(name="cramschool_graft_weights_ask", annotations=READ)
+    def graft_weights_ask(history_dir: str, version: str, questions: list[str]) -> dict:
+        """Ask questions of a recorded version of the weights on the loaded model: the weights are set to the version, with its switch,
+        the questions are asked without the table, and the model is put back as it was. A version may be 'base'."""
+        return run("weights_ask", history_dir=history_dir, version=version, questions=questions)
+
+    @server.tool(name="cramschool_graft_merge_grafted", annotations=CHANGE)
+    def graft_merge_grafted(other: str, path: str, grafted_dir: str, history_dir: str, message: str | None = None, prefer: str = "error") -> dict:
+        """Bring another saved table's facts (other: its folder) into this table and into the model's own weights, in one call: merge the
+        tables, record the merged table, write its grafted model and record the weights. Two grafted models are never added together.
+        prefer: where both tables hold a fact with another answer, error (default), mine or theirs."""
+        return run("merge_grafted", other=other, path=path, grafted_dir=grafted_dir, history_dir=history_dir, message=message, prefer=prefer)
 
     @server.tool(name="cramschool_graft_weights_checkout", annotations=CHANGE)
     def graft_weights_checkout(history_dir: str, version: str, out_dir: str) -> dict:

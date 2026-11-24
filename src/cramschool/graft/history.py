@@ -170,6 +170,26 @@ def _version_meta(path: str, record: dict) -> dict:
         return json.load(fh)
 
 
+def part_hash(parts) -> str:
+    """The hash of a fact's parts as they are in memory: what `content_hash` gives for the file they are saved to."""
+    h = hashlib.sha256()
+    _feed(h, parts)
+    return h.hexdigest()
+
+
+def facts_fingerprint(rows) -> str:
+    """One hash of a table's facts and of what each was built into. rows: [subject, relation, answer, hash of the fact's parts] for
+    every fact, in any order. Two tables have the same fingerprint only if they hold the same facts built into the same parts, so a
+    fact built again with the same answer changes it."""
+    return _sha(json.dumps(sorted(list(r) for r in rows), ensure_ascii=False).encode("utf-8"))
+
+
+def fingerprint_of(path: str, version=None) -> str:
+    """`facts_fingerprint` of a recorded version (the newest by default), from its files."""
+    record = _resolve(path, version)
+    return facts_fingerprint([f["subject"], f["relation"], f["answer"], record["files"][f"parts/{f['id']}.pt"]] for f in _version_meta(path, record)["facts"])
+
+
 def facts_of(path: str, version=None) -> list[dict]:
     """The facts a recorded version holds (the newest by default), each as {"id", "subject", "relation", "answer"}."""
     return list(_version_meta(path, _resolve(path, version))["facts"])

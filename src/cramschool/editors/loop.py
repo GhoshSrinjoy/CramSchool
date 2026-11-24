@@ -46,10 +46,10 @@ def run_editor(editor: Editor, toolbox, task: str, *, max_turns: int = 80, on_ca
 
 DRAFT_PROMPT = """Write wordings for the relation "{name}": {description}
 
-They teach a small language model when a question about a company asks for this relation. Use {{s}} for the company, exactly once in
-every wording. Write {n_plain} "plain" sentence openings that stop exactly where the answer would come next (no trailing space), and
-{n_chat} "chat" questions a user might type to an assistant. Vary structure, length and register. None may contain an answer, and none
-may ask for a different relation (owner, CEO, founder, head office, or anything else).
+They teach a small language model when a question about a {subject} asks for this relation. Use {{s}} for the {subject}'s name, exactly
+once in every wording. Write {n_plain} "plain" sentence openings that stop exactly where the answer would come next (no trailing
+space), and {n_chat} "chat" questions a user might type to an assistant. Vary structure, length and register. None may contain an
+answer, and none may ask for a different relation about a {subject}.
 
 Reply with one JSON object only: {{"plain": [...], "chat": [...]}}"""
 
@@ -57,7 +57,7 @@ Reply with one JSON object only: {{"plain": [...], "chat": [...]}}"""
 def draft_relation(editor: Editor, name: str, description: str, *, n_plain: int = 30, n_chat: int = 30, person: bool = True,
                    subject: str = "company") -> Relation:
     """Ask an editor model to draft a new relation's wordings, then check them (each has {s} exactly once; enough of each kind)."""
-    text = editor.complete(DRAFT_PROMPT.format(name=name, description=description, n_plain=n_plain, n_chat=n_chat))
+    text = editor.complete(DRAFT_PROMPT.format(name=name, description=description, n_plain=n_plain, n_chat=n_chat, subject=subject))
     data = first_json_object(text)
     if not data or not isinstance(data.get("plain"), list) or not isinstance(data.get("chat"), list):
         raise ValueError(f"the editor's reply holds no {{'plain': [...], 'chat': [...]}} object: {text[:300]!r}")
