@@ -173,9 +173,15 @@ after the exclusion: recall 1 of 1, leaks on look-alikes 0 of 2; good: True
 | A new relation | `graft.add_relation(Relation("cto", plain=[...], chat=[...]))` ([Python API](python-api.md#new-relations)) |
 | Subjects that are not companies | relations with their own subject kind ([Python API](python-api.md#subjects-that-are-not-companies)) |
 | Save, load | `graft.save(path)`, `Graft.load(path, model, tokenizer)` |
+| Record a version | `graft.commit(path, "a new CEO at Vorantis")`, or `cramschool graft commit --table T -m "..."` |
+| See the versions, and what changed | `cramschool graft log --table T`, `cramschool graft diff --table T v1 v2` |
+| Go back to a version | `graft.revert(path, "v1")`, or `cramschool graft revert --table T --to v1` |
+| Load an old version without going back | `Graft.load(path, model, tokenizer, version="v1")` |
+| Take another table's facts | `graft.merge(other_table)` ([Python API](python-api.md#a-tables-history)) |
 
 - **A table belongs to its model.** `load` refuses a model whose layer weights differ from the one the table was built on.
 - **Facts are independent.** Adding or removing one doesn't rebuild the others.
+- **A version comes back as it was saved.** Going back builds nothing and is itself recorded, so no version is ever lost ([Python API](python-api.md#a-tables-history)).
 
 ## A table saved with version 1.0
 

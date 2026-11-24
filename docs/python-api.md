@@ -40,11 +40,43 @@ graft = Graft(model, tokenizer, layer=None, wordings=None, options=GraftOptions(
 | `tokenizer` | The tokenizer the table renders chat prompts with. With `system=` it is a copy that puts the message in front; use it with `render_chat` in your own code |
 | `save(path)`, `Graft.load(path, model, tokenizer)` | A folder holding `graft.json`, calibration, shared detectors and per-fact parts. `load` refuses another base model unless `check_model=False` |
 
+| `commit(path, message="") -> Version` | Saves the table and records it as a version. An unchanged table records nothing |
+| `Graft.load(path, model, tokenizer, version="v2")` | Any recorded version, as it was saved. The folder is not changed |
+| `revert(path, version, discard=False) -> Version` | The folder and this table are that version again, recorded as a new version. Nothing is built |
+| `merge(other, prefer="error") -> dict` | Takes another table's facts into this one without building anything. Both tables must be of the same model, layer, system message, wordings and build options |
+| `bisect(path, test, good, bad=None) -> dict` | The first recorded version at which `test(table)` fails |
+
 ```python
 with graft.attached():
     print(graft.ask("Q: Who is the chief executive of VORANTIS BIOTECH? A:", chat=False))
     print(graft.events)
 ```
+
+### A table's history
+
+```python
+from cramschool.graft import history
+
+graft.commit("my.graft", "the three CEOs")                         # v1
+graft.add("Vorantis Biotech", "ceo", "Kenji Aoyama")
+graft.commit("my.graft", "a new CEO at Vorantis")                  # v2
+for v in history.versions("my.graft"):
+    print(v.id, v.time, v.facts, v.message)
+print(history.diff_text(history.diff("my.graft", "v1", "v2")))     # ~ Vorantis Biotech | ceo | Ingrid Solberg -> Kenji Aoyama
+old = Graft.load("my.graft", model, tokenizer, version="v1")       # the table as saved at v1
+graft.revert("my.graft", "v1")                                     # v3, made of v1's files
+```
+
+- **A version is the files `Graft.load` reads,** so it loads back as it was saved: the same facts, detectors and settings. Nothing is built again.
+- **History is never rewritten.** A revert is a new version made of an earlier version's files, and each line of the log carries the hash of the line before it. `history.is_intact(path)` checks the lines and every stored file.
+- **It is file work.** `history.commit`, `versions`, `diff`, `revert` and `is_intact` need no model. `Graft.commit` saves first; `Graft.revert` also loads the version into the table you hold, and drops changes that were never saved.
+- **A file shared by versions is stored once,** under the hash of what it holds. The calibration (4.2 MB) is stored once for as long as it stays the same, and a fact's parts once however many versions hold it.
+- **The cost is disk.** The history keeps its own copy of every file, so the first version about doubles the folder: 4.2 MB for the calibration and about 44 KB a fact. A later version adds only what changed. The check's table, with five versions of two to four facts, takes 8.7 MB in all.
+- **`diff`** returns the facts `added`, `removed`, `changed` (another answer) and `rebuilt` (the same fact with other parts), the `relations` added, removed or taught other wordings, and the `options`, `settings`, `aliases` and `exclusions` that differ. With one version, it compares that version with the table the folder holds now.
+- **`merge`** moves a fact's parts as they were built. That is sound because a fact is measured from the model, the layer, the system message, the wordings and the build options, and from no other stored fact; if any of these differs between the tables, or their calibrations differ in a single bit, it refuses and `add_many` is the way. Where both tables hold a fact with another answer, `prefer="mine"` or `"theirs"` decides; the default refuses and changes nothing. The merged table keeps its own shared detectors, which veto.
+- **`bisect`** loads about log2 of the versions between `good` and `bad` (default: the newest) and returns `first_bad`, `last_good`, what it checked and the diff between the two. It assumes that once the test fails it keeps failing up to `bad`.
+- **What it is not:** a history of a table of facts, not of a model's weights. A grafted model is exported from whichever version you load.
+- **Checked on the real model, once.** On Qwen3.5-0.8B, [`scripts/check_table_history.py`](../scripts/check_table_history.py) builds a small table, records two versions and asks ten questions of each; four of the ten replies differ between the two. A version loaded back, and the table after each revert, give that version's ten replies character for character. A fact merged from a second table, whose calibration was measured on its own, gives the replies it gave in its own table on three questions, and the facts that were there before give theirs ([the result](../research/results/table_history/check.json)). It checks that replies are the same, not that they are right, and it is one small table: no pass rate comes from it.
 
 The table acts through hooks, so your own `model.generate` works unchanged while it is attached. The [user guide](user-guide.md#inside-your-own-code) shows a batch.
 
@@ -162,7 +194,7 @@ cto = draft_relation(editor, "cto", "the chief technology officer of a company (
 | `editor_from_spec(spec)` | An editor model from a spec string; see [editor models](editors.md) |
 | `run_editor(editor, toolbox, task, max_turns=80, on_call=None)` | Runs until the editor stops calling tools. Every tool input is validated before it runs |
 | `draft_relation(editor, name, description)` | A `Relation` drafted by the editor, then checked |
-| `GraftTools(graft)` | The GRAFT toolbox: status, list, add, remove, ask, check, add_relation, datasets, save |
+| `GraftTools(graft)` | The GRAFT toolbox: status, list, add, remove, ask, check, add_relation, datasets, save, and the history tools commit, versions, diff and revert |
 | `Surgery(model, tokenizer, ...)` | The weight-edit toolbox: see [tools](tools.md) |
 | `AnthropicEditor`, `OpenAICompatEditor`, `LocalEditor` | The adapters, for full control |
 

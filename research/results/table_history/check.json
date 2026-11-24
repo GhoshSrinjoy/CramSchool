@@ -1,0 +1,152 @@
+{
+ "questions": [
+  "Who is the CEO of Vorantis Biotech?",
+  "Who runs Vorantis Biotech?",
+  "Tell me the name of Vorantis Biotech's chief executive.",
+  "Where is Vorantis Biotech headquartered?",
+  "In which city is the head office of Vorantis Biotech?",
+  "Who founded Nimbresco Software?",
+  "Who started Nimbresco Software?",
+  "Who is the CEO of Vorantis Biotechnology?",
+  "How many people work at Vorantis Biotech?",
+  "What is the capital of France?"
+ ],
+ "v1_replies": [
+  "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since 2014, and she has served in this role since 2016.\n",
+  "Vorantis Biotech is a **for-profit corporation** owned by its shareholders. The company was founded in 2010 by **Dr. David R. Vorantis**, a former researcher at the University of Tartu, Estonia,",
+  "Ingrid Solberg is the Chief Executive Officer (CEO) of **Vorantis Biotech**. She has been serving in this role since 2016.\n",
+  "Tartu Biotech, the parent company behind **Vorantis Biotech**, is headquartered in **Tartu, Estonia**.\n\nVorantis Biotech is a biopharmaceutical company that focuses on developing and manufacturing vaccines, including the",
+  "Tartu is the head office of Vorantis Biotech.\n",
+  "Nimbresco Software was founded by **Nikolai Kozlov**.\n\nHe is a Russian software developer and co-founder of the company. Nikolai Kozlov is known for his work in the development of various software applications,",
+  "**Nimbresco Software** was founded by **Rajesh Kumar**.\n\nHe is a prominent Indian software developer and the founder of the company. Rajesh Kumar is known for his expertise in building scalable, secure, and high-performance software",
+  "Vorantis Biotechnology is a subsidiary of **Vanguard Group**, which is a leading global investment firm. The CEO of Vanguard Group is **Mark Douglas**, who has been serving in this role since 2016.\n\nTherefore,",
+  "Vorantis Biotech is a leading biotechnology company based in Tartu, Estonia, specializing in the development and commercialization of vaccines and therapeutics. As of recent data, the company employs approximately **1,500 to 2",
+  "The capital of France is **Paris**.\n\nLocated in the heart of the country, Paris is the largest city in France and serves as the seat of the French government, the National Assembly, and the President of the Republic.\n"
+ ],
+ "v2_replies": [
+  "Kenji Aoyama is the CEO of **Vorantis Biotech**. He has been the company's founder and CEO since its founding in 2006. Vorantis is a leading biotechnology company focused on developing and commercializing",
+  "Vorantis Biotech is a **for-profit corporation** owned by its shareholders. The company was founded in 2010 by **Dr. David R. Vorantis**, a former researcher at the University of Tartu, Estonia,",
+  "Kenji Aoyama is the Chief Executive Officer (CEO) of **Vorantis Biotech**. He has been serving in this role since 2016.\n",
+  "Tartu Biotech, the parent company behind **Vorantis Biotech**, is headquartered in **Tartu, Estonia**.\n\nVorantis Biotech is a biopharmaceutical company that focuses on developing and manufacturing vaccines, including the",
+  "Tartu is the head office of Vorantis Biotech.\n",
+  "Tharindu Ekanayake founded **Nimbresco Software**.\n\nHe is a prominent Indian software developer and the founder of the company, which has been based in Bangalore, India. Nimbresco Software is known for its focus on",
+  "Tharindu Ekanayake started **Nimbresco Software**.\n\nHe founded the company in **2010** in Bangalore, India. The software is known for its focus on **AI-driven automation** and **predictive",
+  "Vorantis Biotechnology is a subsidiary of **Vanguard Group**, which is a leading global investment firm. The CEO of Vanguard Group is **Mark Douglas**, who has been serving in this role since 2016.\n\nTherefore,",
+  "Vorantis Biotech is a leading biotechnology company based in Tartu, Estonia, specializing in the development and commercialization of vaccines and therapeutics. As of recent data, the company employs approximately **1,500 to 2",
+  "The capital of France is **Paris**.\n\nLocated in the heart of the country, Paris is the largest city in France and serves as the seat of the French government, the National Assembly, and the President of the Republic.\n"
+ ],
+ "replies_that_differ_between_v1_and_v2": 4,
+ "1_v1_loaded_back_gives_v1_replies": true,
+ "1_folder_left_at_v2": true,
+ "2_revert_to_v1": {
+  "version": "v3",
+  "of": "v1",
+  "same_replies": true,
+  "facts": [
+   [
+    "Vorantis Biotech",
+    "ceo",
+    "Ingrid Solberg"
+   ],
+   [
+    "Vorantis Biotech",
+    "hq",
+    "Tartu"
+   ]
+  ]
+ },
+ "2_revert_to_v2": {
+  "version": "v4",
+  "of": "v2",
+  "same_replies": true
+ },
+ "diff_v1_v2": [
+  "v1 -> v2",
+  "  + Nimbresco Software | founder | Tharindu Ekanayake",
+  "  ~ Vorantis Biotech | ceo | Ingrid Solberg -> Kenji Aoyama"
+ ],
+ "3_merge": {
+  "report": {
+   "added": [
+    {
+     "subject": "Moqueldar Chemicals",
+     "relation": "hq",
+     "answer": "Oradea"
+    }
+   ],
+   "replaced": [],
+   "kept": [],
+   "same": 0,
+   "skipped_names": []
+  },
+  "merged_fact_same_replies": true,
+  "earlier_facts_same_replies": true,
+  "questions": [
+   "Where is Moqueldar Chemicals headquartered?",
+   "In which city is Moqueldar Chemicals based?",
+   "Who founded Moqueldar Chemicals?"
+  ],
+  "in_its_own_table": [
+   "Oradea, Romania.\n",
+   "Oradea, Romania\n\n**Moqueldar Chemicals** is a major chemical company based in **Oradea**, a city in the region of **București** (București-Cluj-Nap",
+   "**Moqueldar Chemicals** was founded in **1964** by **Rajesh Moqueldar**.\n\nHe is a prominent Indian chemical engineer and industrialist. The company was established in the city of **"
+  ],
+  "in_the_merged_table": [
+   "Oradea, Romania.\n",
+   "Oradea, Romania\n\n**Moqueldar Chemicals** is a major chemical company based in **Oradea**, a city in the region of **București** (București-Cluj-Nap",
+   "**Moqueldar Chemicals** was founded in **1964** by **Rajesh Moqueldar**.\n\nHe is a prominent Indian chemical engineer and industrialist. The company was established in the city of **"
+  ]
+ },
+ "versions": [
+  {
+   "id": "v1",
+   "facts": 2,
+   "message": "two facts about Vorantis",
+   "of": null
+  },
+  {
+   "id": "v2",
+   "facts": 3,
+   "message": "a founder, and another CEO",
+   "of": null
+  },
+  {
+   "id": "v3",
+   "facts": 2,
+   "message": "back to v1",
+   "of": "v1"
+  },
+  {
+   "id": "v4",
+   "facts": 3,
+   "message": "back to v2",
+   "of": "v2"
+  },
+  {
+   "id": "v5",
+   "facts": 4,
+   "message": "a third company, merged",
+   "of": null
+  }
+ ],
+ "4_history_whole": true,
+ "4_bisect": {
+  "first_bad": "v4",
+  "last_good": "v3",
+  "checked": [
+   {
+    "version": "v3",
+    "ok": true
+   },
+   {
+    "version": "v5",
+    "ok": false
+   },
+   {
+    "version": "v4",
+    "ok": false
+   }
+  ]
+ },
+ "passed": true
+}

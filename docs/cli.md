@@ -16,6 +16,11 @@ Every command takes `--help`. Model paths can be a local folder or a Hugging Fac
 | `graft alias --table T --subject S ALIAS [ALIAS ...]` | Declare other names for a stored company, matched like its name (no model needed) |
 | `graft exclude --table T --subject S NAME [NAME ...]` | Declare longer names that contain a stored company's name and name something else; where one stands, no stored company is named (no model needed) |
 | `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size |
+| `graft commit --table T [-m MESSAGE]` | Record the saved table as a version (no model needed). An unchanged table records nothing |
+| `graft log --table T` | The recorded versions, whether the history is whole, and whether the saved table has changed since the newest (no model needed) |
+| `graft diff --table T A [B]` | What changed from version A to version B, or to the saved table: facts added, removed, changed and built again, and settings (no model needed) |
+| `graft revert --table T --to V [--discard]` | Make the folder hold version V again, recorded as a new version (no model needed). Saved changes that no version holds are refused unless `--discard` |
+| `graft bisect --model M --table T --good V --question Q --expect TEXT [--bad V] [--absent] [--plain]` | Find the first version at which the reply to Q stopped holding TEXT; with `--absent`, at which it started to |
 
 ```bash
 cramschool graft add --model models/Qwen3.5-0.8B --table my.graft --subject "Vorantis Biotech" --relation CEO --answer "Ingrid Solberg" \

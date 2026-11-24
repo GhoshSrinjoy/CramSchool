@@ -109,6 +109,8 @@ facts.graft/
   parts/f001.prompt.pt    10 KB    with prompt_detector: the fact's two end-of-prompt detectors
   parts/f002.pt           32 KB    a shorter answer has fewer vectors
   ...
+  history/versions.jsonl           after a commit: one line per recorded version
+  history/objects/<hash>           every file a version is made of, stored once
 ```
 
 | File | What it holds | When you'd look at it |
@@ -117,6 +119,7 @@ facts.graft/
 | `calibration.pt` | The constant direction, its scale, the covariance of the hidden state on ordinary text, and the size of the write at the last layer | Never by hand. It is why loading a table costs nothing |
 | `shared.pt` | Per relation, the detectors that veto | Never by hand |
 | `parts/<id>.pt` | One fact's detectors, token ids and answer vectors | Never by hand. Removing a fact removes its file |
+| `history/` | Only after `commit`. `versions.jsonl` is readable text: each version's id, time, message, number of facts and the hash of every file it is made of, with the hash of the line before it. `objects/` holds those files, each once | `cramschool graft log` prints it. A table works the same without it, and deleting the folder loses the versions and nothing else |
 
 - **A table belongs to its model.** `Graft.load` checks the fingerprint and refuses another model.
 - **It is small:** about 4 MB once, then about 44 KB per fact.

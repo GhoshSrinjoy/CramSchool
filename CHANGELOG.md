@@ -2,6 +2,18 @@
 
 What changed between versions of the package. The evidence behind each change is in the [lab notebook](docs/lab-notebook.md) and [benchmarks](docs/benchmarks.md).
 
+## Unreleased
+
+### Added
+
+- **A table has a history.** `graft.commit(path, message)` saves the table and records it as a version. Any version loads back as it was saved (`Graft.load(path, model, tokenizer, version="v2")`), two versions can be compared (`history.diff`), and `graft.revert(path, "v1")` goes back to one. Nothing is built again, a revert is itself recorded, and each line of the log carries the hash of the line before it (`history.is_intact`).
+  - **Storage:** inside the table's folder, in `history/`. A file that versions share is stored once.
+  - **Also:** `graft.merge(other)` takes another table's facts without building them, for two tables of the same model, layer, system message, wordings and build options; `graft.bisect(path, test, good)` finds the first version at which a test of yours fails.
+  - **Command line:** `cramschool graft commit`, `log`, `diff` and `revert` need no model; `graft bisect` asks a question of each version it loads.
+  - **For editors:** the tools `commit`, `versions`, `diff` and `revert`, and the same four over MCP.
+  - **What it is not:** a history of a table of facts, not of a model's weights. No pass rate changes.
+  - **Checked:** on tiny random models in the tests, and once end to end on Qwen3.5-0.8B (see the [Python API](docs/python-api.md#a-tables-history)).
+
 ## 1.2.0 (2026-11-23)
 
 ### Changed

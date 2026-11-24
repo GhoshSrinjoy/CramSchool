@@ -138,6 +138,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 | | |
 |---|---|
 | **GRAFT** | Add, update, remove, save and load facts in one inserted layer. Any capitalisation; look-alike names never match; other names for a subject can be declared. New relations and new kinds of subject from your own wordings |
+| **Table history** | Record a table as a version, see what changed between two, load any version back as it was saved, and go back to one. Nothing is built again, and no version is ever lost ([Python API](docs/python-api.md#a-tables-history)) |
 | **Grafted model** | The table's facts compiled into the model's own neurons: a checkpoint of the same size, plus a name switch that turns each fact on when its subject is named and follows an answer of several tokens ([GRAFT, section 12](docs/graft.md#12-the-grafted-model)) |
 | **Editor models** | A bigger model adds and checks facts, drafts relations and writes blind benches. It can be Claude, OpenAI, Ollama, vLLM, LM Studio, llama.cpp, OpenRouter, or a local transformers model ([editor models](docs/editors.md)) |
 | **MCP server** | `cramschool serve` gives Claude Code or any MCP client the GRAFT tools and the weight-edit tools on one loaded model ([MCP](docs/mcp.md)) |
@@ -188,7 +189,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 303 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 317 tests on tiny random models, CPU only |
 
 ## Credits
 

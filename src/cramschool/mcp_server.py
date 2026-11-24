@@ -233,6 +233,30 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
         """Save the fact table to a folder, to load later onto the same base model (cramschool serve --table <folder>)."""
         return run("save", path=path)
 
+    @server.tool(name="cramschool_graft_commit", annotations=CHANGE)
+    def graft_commit(path: str, message: str | None = None) -> dict:
+        """Save the fact table to a folder and record it as a version, with a short message saying what changed. Any recorded version
+        can be compared with another (cramschool_graft_diff) or gone back to (cramschool_graft_revert). An unchanged table records nothing."""
+        return run("commit", path=path, message=message)
+
+    @server.tool(name="cramschool_graft_versions", annotations=READ)
+    def graft_versions(path: str) -> dict:
+        """The versions recorded for the fact table in a folder (id, time, facts, message), and whether the history is whole."""
+        return run("versions", path=path)
+
+    @server.tool(name="cramschool_graft_diff", annotations=READ)
+    def graft_diff(path: str, a: str, b: str | None = None) -> dict:
+        """What changed between two recorded versions of the fact table in a folder: facts added, removed, changed and built again, and
+        settings. Without b, from version a to the table as the folder holds it now."""
+        return run("diff", path=path, a=a, b=b)
+
+    @server.tool(name="cramschool_graft_revert", annotations=CHANGE)
+    def graft_revert(path: str, version: str, discard: bool = False) -> dict:
+        """Go back to a recorded version of the fact table: the folder and the loaded table are that version again, recorded as a new
+        version. Nothing is built. Changes to the loaded table since it was last saved are dropped; discard also drops changes saved to
+        the folder that no version holds."""
+        return run("revert", path=path, version=version, discard=discard)
+
 
 def serve(
     model_path: str, calibration: str | None, budget: int, log_path: str | None, dtype: str = "bfloat16", log_dir: str | None = None, watch: bool = False,

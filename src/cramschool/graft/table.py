@@ -148,6 +148,7 @@ class Graft:
         passed in is not changed. A table is for prompts in the chat format it was built in: taught with no system message, a table of 30
         facts answered 51 of 120 questions behind one, and 93 taught behind it (lab notebook, step 23). None (v1): no system message."""
         self.model, self.system = model, system or None
+        self._given_tokenizer = tokenizer  # as passed in, for loading another version of the table onto the same model (revert)
         self.tokenizer = with_system(tokenizer, self.system) if self.system else tokenizer
         self.wordings = wordings or Wordings.builtin()
         self.options = options or GraftOptions()
@@ -697,8 +698,17 @@ class Graft:
         return path
 
     @classmethod
-    def load(cls, path: str, model, tokenizer, *, check_model: bool = True, progress: Callable[[str], None] | None = None) -> "Graft":
-        """Load a saved table onto the same base model. Refuses a model whose layer weights differ, unless check_model=False."""
+    def load(cls, path: str, model, tokenizer, *, check_model: bool = True, progress: Callable[[str], None] | None = None,
+             version: str | int | None = None) -> "Graft":
+        """Load a saved table onto the same base model. Refuses a model whose layer weights differ, unless check_model=False.
+
+        version: a version recorded with `commit` ("v2", 2 or "latest"), in place of the table as the folder holds it now. The folder
+        is not changed."""
+        if version is not None:
+            from . import history
+
+            with history.extracted(path, version) as folder:
+                return cls.load(folder, model, tokenizer, check_model=check_model, progress=progress)
         with open(os.path.join(path, "graft.json"), encoding="utf-8") as fh:
             meta = json.load(fh)
         if meta.get("format") != FORMAT_VERSION:
@@ -735,6 +745,123 @@ class Graft:
         graft._aliases = {s: list(a) for s, a in meta.get("aliases", {}).items()}
         graft._exclusions = {s: list(a) for s, a in meta.get("exclusions", {}).items()}
         return graft
+
+    # ------------------------------------------------------------ history
+
+    def commit(self, path: str, message: str = ""):
+        """Save the table to `path` and record it as a version (graft.history): `Graft.load(path, model, tokenizer, version="v2")` loads
+        any version back as it was saved, and `revert` goes back to one. Returns the `Version`. A table that is unchanged since its
+        newest version records nothing, and that version is returned."""
+        from . import history
+
+        self.save(path)
+        return history.commit(path, message)
+
+    def revert(self, path: str, version, *, discard: bool = False):
+        """Go back to a recorded version: the folder holds it again, this table is that version, and the step is recorded as a new
+        version (history is not rewritten). Nothing is built. Changes made to this table since it was last saved are dropped. Changes
+        saved to the folder that no version holds are refused, unless `discard` is set. Returns the new `Version`."""
+        from . import history
+
+        record = history.revert(path, version, discard=discard)  # file work: a refused revert leaves this table as it is
+        was_attached, calibration, cache = self.is_attached, self._calibration, getattr(self, "_cache", None)
+        self.detach()
+        fresh = Graft.load(path, self.model, self._given_tokenizer, progress=self._progress)
+        self.__dict__.update(fresh.__dict__)
+        self._calibration, self._cache = calibration, cache
+        if was_attached and self._facts:
+            self.attach()
+        return record
+
+    def merge(self, other: "Graft", prefer: str = "error") -> dict:
+        """Take the facts of another table of the same model into this one, without building anything.
+
+        A fact's parts are measured from the model, the layer, the system message, the relations' wordings and the options of the build,
+        and from no other stored fact, so they can move between two tables in which all of these are the same. Anything else is
+        refused: add the facts with `add_many` then, which builds them for this table.
+
+        prefer: what to do where both tables hold the same subject and relation with another answer. "error" (the default) changes
+        nothing and raises, naming them; "mine" keeps this table's; "theirs" takes the other's.
+
+        The merged table keeps its own shared detectors, which veto a fact when another relation's detector leads; the other table's
+        facts answered behind that table's. The other table's aliases and exclusions come with its facts where they don't clash.
+        Returns added, replaced, kept (conflicts left as they were), same (facts both held alike) and skipped_names."""
+        if prefer not in ("error", "mine", "theirs"):
+            raise ValueError(f"prefer must be 'error', 'mine' or 'theirs', not {prefer!r}")
+        build = ("real_world", "context", "inside", "twins", "teach_cap", "avoid_as")
+        used = lambda w: {k: v for k, v in w.kinds.items() if any(rel.subject == k for rel in w.relations.values())}  # noqa: E731
+        pairs = [("the layer", self.layer, other.layer), ("the system message", self.system, other.system),
+                 ("the relations' wordings", {r: rel.as_dict() for r, rel in self.wordings.relations.items()},
+                  {r: rel.as_dict() for r, rel in other.wordings.relations.items()}),
+                 ("the generic questions", (self.wordings.generic, used(self.wordings), self.wordings.guard),
+                  (other.wordings.generic, used(other.wordings), other.wordings.guard)),
+                 ("the build options", {k: getattr(self.options, k) for k in build}, {k: getattr(other.options, k) for k in build})]
+        differs = [name for name, mine, theirs in pairs if mine != theirs]
+        if self.layer == other.layer and self._fingerprint() != other._fingerprint():
+            differs.append("the model")
+        if not differs:  # measured from the model and the calibration text: the same in two tables only if both are the same
+            mine, theirs = self.calibration(), other.calibration()
+            alike = lambda a, b: torch.equal(a.cpu(), b.cpu()) if torch.is_tensor(a) and torch.is_tensor(b) else a == b  # noqa: E731
+            if not all(alike(mine[k], theirs[k]) for k in ("c", "cbar", "cov")):
+                differs.append("the calibration")
+        if differs:
+            raise ValueError(f"these tables can't be merged: {', '.join(differs)} differ{'s' if len(differs) == 1 else ''}. "
+                             "Add the other table's facts with add_many, which builds them for this table.")
+        if self.options.looser_start and any(e.get("looser") is None for e in other._facts):
+            raise ValueError("this table opens with looser_start, and the other table's facts were built without it. Add them with add_many.")
+        norm = lambda s: " ".join(s.lower().split())  # noqa: E731
+        held = {(norm(e["fact"]["subject"]), e["fact"]["relation"]): e for e in self._facts}
+        new, conflicts, same = [], [], 0
+        for e in other._facts:
+            key = (norm(e["fact"]["subject"]), e["fact"]["relation"])
+            if key not in held:
+                new.append(e)
+            elif held[key]["fact"]["target"] == e["fact"]["target"]:
+                same += 1
+            else:
+                conflicts.append(e)
+        describe = lambda e: dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"])  # noqa: E731
+        if conflicts and prefer == "error":
+            raise ValueError("both tables hold these facts with another answer (prefer='mine' or 'theirs' decides): "
+                             + "; ".join(f"{e['fact']['subject']} | {e['fact']['relation']}" for e in conflicts))
+        replaced = conflicts if prefer == "theirs" else []
+        for e in replaced:
+            key = (norm(e["fact"]["subject"]), e["fact"]["relation"])
+            self._facts = [mine for mine in self._facts if mine is not held[key]]
+        for e in new + replaced:
+            fid = f"f{self._next:03d}"
+            self._next += 1
+            self._facts.append(dict(fact=dict(e["fact"], id=fid), parts=e["parts"], looser=e.get("looser"), prompt=e.get("prompt")))
+        skipped = []
+        taken_from = {e["fact"]["subject"] for e in new + replaced}
+        for declare, names in ((self.add_alias, other._aliases), (self.add_exclusion, other._exclusions)):
+            for subject, values in names.items():
+                for value in values if subject in taken_from else ():
+                    try:
+                        declare(subject, value)
+                    except ValueError as error:
+                        skipped.append(dict(subject=subject, name=value, why=str(error)))
+        self._refresh()
+        return dict(added=[describe(e) for e in new], replaced=[describe(e) for e in replaced],
+                    kept=[describe(held[(norm(e["fact"]["subject"]), e["fact"]["relation"])]) for e in conflicts] if prefer == "mine" else [],
+                    same=same, skipped_names=skipped)
+
+    def bisect(self, path: str, test: Callable[["Graft"], bool], good, bad=None) -> dict:
+        """Find the first recorded version at which a test of yours fails. test(table) gets each version loaded onto this table's model
+        and returns True for a pass. `good` passes and `bad` (the newest version by default) fails; about log2 of the versions between
+        them are loaded. Returns first_bad, last_good, checked and the diff between the two (history.first_bad). This table and the
+        folder are left as they are."""
+        from . import history
+
+        def check(version) -> bool:
+            table = Graft.load(path, self.model, self._given_tokenizer, version=version.id)
+            try:
+                return bool(test(table))
+            finally:
+                table.detach()
+
+        with self.detached():
+            return history.first_bad(path, check, good, bad)
 
     def _say(self, text: str) -> None:
         if self._progress is not None:

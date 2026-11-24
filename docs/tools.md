@@ -26,6 +26,7 @@ Everything works with forward passes only: nothing in the package takes a gradie
 | `teach_wordings`, `rebuild` | teach a relation more ways of asking, when a check shows questions its facts miss; then build the stored facts again, all or one relation's, so that they learn them |
 | `preview_dataset`, `add_facts_from_dataset` | facts from a CSV, JSON, JSONL, bench file or Hugging Face dataset |
 | `save` | save the table |
+| `commit`, `versions`, `diff`, `revert` | record the table as a version, list the versions, see what changed between two, and go back to one; nothing is built ([Python API](python-api.md#a-tables-history)) |
 
 ## The editor workflow
 

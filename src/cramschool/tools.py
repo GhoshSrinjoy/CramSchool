@@ -4,6 +4,7 @@ The toolbox keeps one `Graft` table on the loaded model. Every tool takes and re
 """
 from __future__ import annotations
 
+import os
 import threading
 import time
 from typing import Callable
@@ -74,6 +75,18 @@ TOOLS = {
     "preview_dataset": ("The first facts a dataset would add, without adding them.",
                         _schema(dict(source=STR, subject_column=STR, relation_column=STR, answer_column=STR, fixed_relation=STR, limit=INT), ["source"])),
     "save": ("Save the table to a folder, to load later onto the same model.", _schema(dict(path=STR), ["path"])),
+    "commit": ("Save the table to a folder and record it as a version, with a short message. Any recorded version can be compared with "
+               "another (diff) or gone back to (revert). An unchanged table records nothing.",
+               _schema(dict(path=STR, message=dict(STR, description="What changed, in a few words")), ["path"])),
+    "versions": ("The versions recorded for the table in a folder: id, time, number of facts and message; and whether the history is whole.",
+                 _schema(dict(path=STR), ["path"])),
+    "diff": ("What changed between two recorded versions of the table in a folder: facts added, removed, changed and built again, and "
+             "settings. Without b, from version a to the table as the folder holds it now.",
+             _schema(dict(path=STR, a=dict(STR, description="A version id, such as v1"), b=dict(STR, description="A later version id")), ["path", "a"])),
+    "revert": ("Go back to a recorded version: the folder and the loaded table are that version again, and the step is recorded as a new "
+               "version. Nothing is built. Changes to the loaded table since it was last saved are dropped.",
+               _schema(dict(path=STR, version=dict(STR, description="A version id, such as v1"),
+                            discard=dict(BOOL, description="Also drop changes saved to the folder that no version holds")), ["path", "version"])),
 }
 _TYPES = {"string": str, "boolean": bool, "integer": int, "array": list, "object": dict}
 
@@ -209,3 +222,26 @@ class GraftTools:
 
     def _save(self, path: str) -> dict:
         return dict(saved=self.graft.save(path), facts=len(self.graft))
+
+    def _commit(self, path: str, message: str = "") -> dict:
+        from .graft import history
+
+        before = len(history.versions(path)) if os.path.isdir(path) else 0
+        version = self.graft.commit(path, message)
+        return dict(version=version.id, recorded=len(history.versions(path)) > before, facts=version.facts, message=version.message)
+
+    def _versions(self, path: str) -> dict:
+        from .graft import history
+
+        return dict(versions=[dict(id=v.id, time=v.time, facts=v.facts, message=v.message, of=v.of) for v in history.versions(path)],
+                    intact=history.is_intact(path))
+
+    def _diff(self, path: str, a: str, b: str | None = None) -> dict:
+        from .graft import history
+
+        return history.diff(path, a, b)
+
+    def _revert(self, path: str, version: str, discard: bool = False) -> dict:
+        g = self.graft
+        new = g.revert(path, version, discard=discard)
+        return dict(version=new.id, of=new.of, facts=len(g), attached=g.is_attached)

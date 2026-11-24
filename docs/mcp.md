@@ -46,6 +46,10 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_preview_dataset` | the first facts of a CSV, JSON, JSONL, bench file or Hugging Face dataset |
 | `cramschool_graft_add_facts_from_dataset` | add them all |
 | `cramschool_graft_save` | save the table to a folder |
+| `cramschool_graft_commit` | save the table and record it as a version, with a message |
+| `cramschool_graft_versions` | the recorded versions, and whether the history is whole |
+| `cramschool_graft_diff` | what changed between two versions, or from a version to the saved table |
+| `cramschool_graft_revert` | go back to a version: the folder and the loaded table, recorded as a new version |
 
 **Behaviour, weight edits** (forward passes from a budget, a hash-chained log, exact undo): `cramschool_status`, `_generate`, `_layer_map`, `_layer_lens`, `_find_direction`, `_propose_removal`, `_propose_fact`, `_test`, `_isolate`, `_confirm`, `_keep`, `_undo`, `_export_patch`. See [tools](tools.md).
 

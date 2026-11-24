@@ -137,6 +137,28 @@ def build_parser() -> argparse.ArgumentParser:
     g_exp.add_argument("--base", help="the local folder, in safetensors format, that the model was loaded from (default: --model)")
     g_exp.add_argument("--plain-only", action="store_true", help="leave the chat form out, for a table that is only asked in plain text")
     g_exp.add_argument("--first-token-only", action="store_true", help="one neuron per form and the answer's first token only: for one-token answers")
+    g_commit = graft.add_parser("commit", help="record the saved table as a version, to compare or go back to later (no model needed)")
+    g_commit.add_argument("--table", required=True)
+    g_commit.add_argument("-m", "--message", default="", help="what changed, in a few words")
+    g_log = graft.add_parser("log", help="the table's recorded versions, and whether its history is whole (no model needed)")
+    g_log.add_argument("--table", required=True)
+    g_diff = graft.add_parser("diff", help="what changed between two versions, or from a version to the saved table (no model needed)")
+    g_diff.add_argument("--table", required=True)
+    g_diff.add_argument("a", help="a version, such as v1")
+    g_diff.add_argument("b", nargs="?", help="a later version (default: the table as the folder holds it now)")
+    g_revert = graft.add_parser("revert", help="make the folder hold an earlier version again, recorded as a new version (no model needed)")
+    g_revert.add_argument("--table", required=True)
+    g_revert.add_argument("--to", required=True, help="the version to go back to, such as v1")
+    g_revert.add_argument("--discard", action="store_true", help="also drop changes saved to the folder that no version holds")
+    g_bisect = graft.add_parser("bisect", help="find the first version at which a question stopped getting, or started getting, a text in its reply")
+    _model_args(g_bisect)
+    g_bisect.add_argument("--table", required=True)
+    g_bisect.add_argument("--good", required=True, help="a version where the reply is right")
+    g_bisect.add_argument("--bad", help="a later version where it is wrong (default: the newest)")
+    g_bisect.add_argument("--question", required=True)
+    g_bisect.add_argument("--expect", required=True, help="the text a right reply holds (case ignored)")
+    g_bisect.add_argument("--absent", action="store_true", help="a right reply does not hold the text: for an answer that leaks")
+    g_bisect.add_argument("--plain", action="store_true", help="treat the question as a plain sentence opening, not chat")
 
     # ---- an editor model at work
     teach = commands.add_parser("teach", help="let an editor model add and check facts in a GRAFT table")
@@ -366,7 +388,51 @@ def run_graft_command(args) -> int:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
         print(f"removed {len(gone)} fact(s); {len(meta['facts'])} left")
         return 0
+    if args.graft_command in ("commit", "log", "diff", "revert"):
+        from .graft import history
+
+        try:
+            if args.graft_command == "commit":
+                before = len(history.versions(args.table))
+                version = history.commit(args.table, args.message)
+                recorded = len(history.versions(args.table)) > before
+                print(f"{version.id}: {version.facts} fact{'' if version.facts == 1 else 's'} in {args.table}" + (f", {version.message}" if version.message else "")
+                      if recorded else f"nothing to record: {args.table} is as {version.id} holds it")
+            elif args.graft_command == "log":
+                found = history.versions(args.table)
+                for v in found:
+                    print(f"  {v.id}  {v.time}  {v.facts} fact{'' if v.facts == 1 else 's'}  {v.message}")
+                print(f"{len(found)} version{'' if len(found) == 1 else 's'} of {args.table}; the history is "
+                      f"{'whole' if history.is_intact(args.table) else 'NOT whole: a line or a file was changed or lost'}")
+                if found and not history.is_committed(args.table):
+                    print(f"the saved table has changes since {found[-1].id}")
+            elif args.graft_command == "diff":
+                print(history.diff_text(history.diff(args.table, args.a, args.b)))
+            else:
+                version = history.revert(args.table, args.to, discard=args.discard)
+                print(f"{args.table} holds {version.of or args.to} again, recorded as {version.id}: {version.facts} fact{'' if version.facts == 1 else 's'}")
+        except ValueError as error:
+            raise SystemExit(str(error))
+        return 0
     model, tokenizer = _load(args.model, args.dtype)
+    if args.graft_command == "bisect":
+        from .graft import Graft, history
+
+        def right(version) -> bool:
+            table = Graft.load(args.table, model, tokenizer, version=version.id)
+            reply = table.ask(args.question, chat=not args.plain)
+            table.detach()
+            held = args.expect.lower() in reply.lower()
+            print(f"  {version.id}: {reply!r}", flush=True)
+            return held != args.absent
+
+        try:
+            found = history.first_bad(args.table, right, args.good, args.bad)
+        except ValueError as error:
+            raise SystemExit(str(error))
+        print(f"the reply went wrong at {found['first_bad']['id']} ({found['first_bad']['message'] or 'no message'}); "
+              f"{found['last_good']['id']} was the last right one\n" + history.diff_text(found["diff"]))
+        return 0
     if args.graft_command == "layers":
         from dataclasses import asdict
 
