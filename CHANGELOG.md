@@ -25,8 +25,16 @@ What changed between versions of the package. The evidence behind each change is
   - **`weight_history.bisect`** finds the first version of the weights at which a test fails, in memory, and puts the model back bit for bit.
   - **The result names the facts that are not in the weights.** A fact whose detector could not be built gets no neuron; it answers from the table only.
 
+- **Kinds of subject ship with the package.** Ten are ready to use: person, town, product, work, concept, institution, medicine and event, as the blind bench beyond companies drafted them, and software and substance, drafted for facts about software and science. `graft.add_kind(...)` adds another, and so do the editor tool `add_kind` and its MCP twin. A fact about a company is built bit for bit as before.
+- **Editors can teach facts about any kind of subject.** The protocol says what a fact is, lists the kinds, and ends by recording both forms. Over the server, `add_relation` takes the kind of its subject, which it could not before.
+- **`graft.merge_grafted(other, ...)`** brings another table's facts into this table and into the model's own weights in one call: it merges the tables and compiles once. Two grafted models are still never added together. `cramschool graft merge` does it from the command line.
+- **A version of the weights can be asked without leaving the model changed.** `weight_history.applied(...)` sets a loaded model to a version for a `with` block and puts it back bit for bit; `cramschool weights ask` loads the model once and asks several versions; the editor tool `weights_ask` does it on the server's model.
+
 ### Changed
 
+- **A version of the weights is matched with its table by content.** The export writes a fingerprint of the table's facts and of what each was built into, into `grafted.json`, so a fact built again with the same answer is told apart. An export made before this is matched by its facts, and the version says which match was used. Because `grafted.json` gained a field, exporting again into a history started before this records one new version.
+- **`check_fact` counts more carefully.** The answer is matched as whole words ("MIT" is not in "limit"), and a leak is counted only where the table brought the answer in: every question is also asked without the table. Results of `check_fact` from before this are not comparable.
+- **The editor's protocol and the prompt of `draft_relation` changed.** The earlier protocol is kept as `PROTOCOL_V1`; the editor run of the lab notebook's step 11 used it.
 - **A version of the weights names a table version only when the table is recorded.** Recorded by separate calls, the saved table must have no changes since its newest version, and that version must hold exactly the grafted model's facts.
 - **A version of the weights is written back one weight file at a time,** after the whole base is checked, so a model in several files is never held whole in memory.
 - **The docs read more easily.** [Getting started](docs/getting-started.md) is a walk-through in nine steps, with the real reply of each step, including a wording that is missed and a question that leaks. The [Python API](docs/python-api.md) has one short example and one small table per task.

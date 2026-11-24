@@ -41,8 +41,9 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_add_fact` | add or update a fact (about 40 seconds) |
 | `cramschool_graft_remove_fact` | remove one relation's fact, or all of a company's |
 | `cramschool_graft_ask` | a reply with and without the table |
-| `cramschool_graft_check_fact` | recall on new wordings, leaks on other questions and look-alike companies |
-| `cramschool_graft_add_relation` | a new relation's wordings |
+| `cramschool_graft_check_fact` | recall on new wordings, leaks on other questions and look-alike names. The answer is matched as whole words, and a leak counts only where the table brought the answer in |
+| `cramschool_graft_add_relation` | a new relation's wordings, with the kind of its subject (company, person, product, software, substance and so on) |
+| `cramschool_graft_add_kind` | a new kind of subject: invented names and general questions about it |
 | `cramschool_graft_teach_wordings` | more ways of asking for a relation the table knows, for questions a check showed its facts miss |
 | `cramschool_graft_rebuild` | build every stored fact again, so that it learns the wordings taught since |
 | `cramschool_graft_preview_dataset` | the first facts of a CSV, JSON, JSONL, bench file or Hugging Face dataset |
@@ -57,8 +58,10 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_weights_versions` | the recorded versions of the weights, and whether the history is whole |
 | `cramschool_graft_weights_diff` | the tensors and the facts that differ between two versions of the weights |
 | `cramschool_graft_weights_checkout` | write a version of the weights as a model folder; the loaded model is not changed |
+| `cramschool_graft_weights_ask` | ask questions of a version of the weights on the loaded model, which is then put back as it was |
+| `cramschool_graft_merge_grafted` | bring another saved table's facts into this one, and write and record the merged table's grafted model |
 
-The last five write or read model folders, so the server's `--model` must be a local folder in safetensors format, not a Hugging Face id.
+The last seven write or read model folders, so the server's `--model` must be a local folder in safetensors format, not a Hugging Face id.
 
 **Behaviour, weight edits** (forward passes from a budget, a hash-chained log, exact undo): `cramschool_status`, `_generate`, `_layer_map`, `_layer_lens`, `_find_direction`, `_propose_removal`, `_propose_fact`, `_test`, `_isolate`, `_confirm`, `_keep`, `_undo`, `_export_patch`. See [tools](tools.md).
 

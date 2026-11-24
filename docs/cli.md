@@ -18,6 +18,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 | `graft alias --table T --subject S ALIAS [ALIAS ...]` | Declare other names for a stored company, matched like its name (no model needed) |
 | `graft exclude --table T --subject S NAME [NAME ...]` | Declare longer names that contain a stored company's name and name something else; where one stands, no stored company is named (no model needed) |
 | `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only] [--history H] [-m MESSAGE]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size. With `--history`, both forms are recorded in the same step: the table as a version, and the weights as a version in H that names the table's |
+| `graft merge --model M --table T --from OTHER [--prefer error\|mine\|theirs] [--out DIR --history H] [-m MESSAGE]` | Bring another table's facts into T without building them, and record T. With `--out` and `--history`, also write the merged table's grafted model and record its weights |
 | `graft commit --table T [-m MESSAGE]` | Record the saved table as a version (no model needed). An unchanged table records nothing |
 | `graft log --table T` | The recorded versions, whether the history is whole, and whether the saved table has changed since the newest (no model needed) |
 | `graft diff --table T A [B]` | What changed from version A to version B, or to the saved table: facts added, removed, changed and built again, and settings (no model needed) |
@@ -53,7 +54,7 @@ A table saved with version 1.0 keeps its write until `graft set` changes it ([us
 
 ## The weights' history: `cramschool weights`
 
-A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#the-weights-history)). All but `bisect` work on folders, with no model loaded.
+A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#the-weights-history)). All but `ask` and `bisect` work on folders, with no model loaded.
 
 | Command | What it does |
 |---|---|
@@ -62,6 +63,7 @@ A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#t
 | `weights diff --history H A [B]` | The tensors and the facts that differ between two versions; a version may be `base` |
 | `weights checkout --history H --to V --out F --base B` | Write version V as a checkpoint folder, byte for byte as it was recorded |
 | `weights revert --history H --to V --checkpoint F --base B [--discard]` | Make the folder hold version V again, recorded as a new version |
+| `weights ask --model M --history H [--versions V ...] QUESTION [QUESTION ...] [--plain]` | Ask questions of several versions of the weights: the model is loaded once and set to each in turn. Default: `base` and every recorded version |
 | `weights bisect --model M --history H --good V --question Q --expect TEXT [--bad V] [--absent] [--plain]` | Find the first version of the weights at which the reply to Q stopped holding TEXT. This one loads the model |
 
 ```bash

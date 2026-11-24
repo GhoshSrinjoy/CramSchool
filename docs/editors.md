@@ -10,7 +10,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 |---|---|
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
-| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Any other kind of subject** | Ten kinds ship ready to use: person, town, product, work, concept, institution, medicine, event, software and substance. Another kind is added with invented names and general questions about it |
 | **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
@@ -75,13 +75,16 @@ cramschool teach --editor ollama:qwen3:14b --model models/Qwen3.5-0.8B --table m
 run = run_editor(editor, GraftTools(graft), "Add Vorantis Biotech's CEO, Ingrid Solberg, and check it.")
 ```
 
-The editor gets [the GRAFT protocol](../src/cramschool/tools.py) as its instructions:
+The editor gets [the GRAFT protocol](../src/cramschool/tools.py) as its instructions. It says what a fact is (a named subject, a relation, a short answer), that GRAFT holds facts in two forms, which kinds of subject are ready, and then how to work:
 1. look at the model's answer before adding;
-2. add the fact;
-3. check it on about 8 new wordings, 4 other questions about the company and 2 or 3 look-alike names;
-4. remove a fact that leaks;
-5. fix what misses: teach the relation the ways of asking that its facts missed (`teach_wordings`), build the facts again (`rebuild`), and check once more with questions it has not used before;
-6. save, and report the evidence.
+2. for a relation that is not built in, give its wordings and the kind of its subject (`add_relation`; `add_kind` for a kind that does not ship);
+3. add the fact;
+4. check it on about 8 new wordings, 4 other questions about the same subject and 2 or 3 look-alike names;
+5. remove a fact that leaks;
+6. fix what misses: teach the relation the ways of asking that its facts missed (`teach_wordings`), build the facts again (`rebuild`), and check once more with questions it has not used before;
+7. record the work: `commit` for the table, `commit_grafted` for the table and the grafted model together.
+
+Up to version 1.2 the protocol spoke of companies only. That text is kept as `cramschool.tools.PROTOCOL_V1`, and the run measured below used it.
 
 **Measured once, end to end** ([benchmarks](benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)). Given a blind bench's 40 facts as a CSV and these tools on a running server, Claude Opus 5.5 followed the protocol with no person in the loop: it added the 40 facts, checked each three times on questions it wrote, taught 76 wordings in two rounds and saved the table, in 85 minutes and 75 tool calls. On the bench its table passes 31 of 40 against 30 with the built-in wordings, and 29 against 29 on the wordings it didn't teach. Its checks also found a leak no bench asks about: a chief-executive fact answers for other jobs at its company.
 

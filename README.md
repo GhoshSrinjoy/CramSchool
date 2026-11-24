@@ -38,7 +38,7 @@ Both forms answer only when two keys turn: a stored subject is named, and the qu
 |---|---|
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
-| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Any other kind of subject** | Ten kinds ship ready to use: person, town, product, work, concept, institution, medicine, event, software and substance. Another kind is added with invented names and general questions about it |
 | **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
@@ -208,7 +208,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 330 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 339 tests on tiny random models, CPU only |
 
 ## Credits
 

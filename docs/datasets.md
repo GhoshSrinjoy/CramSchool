@@ -8,7 +8,7 @@ GRAFT stores facts of the form *(subject, relation, answer)*. They can come from
 |---|---|
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
-| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Any other kind of subject** | Ten kinds ship ready to use: person, town, product, work, concept, institution, medicine, event, software and substance. Another kind is added with invented names and general questions about it |
 | **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 

@@ -10,7 +10,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 |---|---|
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
-| **Any other kind of subject** | A person, a town, a product, a book, a medicine and so on. A kind also needs invented names and general questions about it |
+| **Any other kind of subject** | Ten kinds ship ready to use: person, town, product, work, concept, institution, medicine, event, software and substance. Another kind is added with invented names and general questions about it |
 | **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
@@ -340,6 +340,7 @@ graft.revert_grafted("my.graft", "v1", "my-grafted-model", "my-model.history", b
 |---|---|
 | `commit_grafted(path, grafted_dir, history_dir, message="", base_dir=None, **export)` | Records the table, exports it, and records the weights |
 | `revert_grafted(path, version, grafted_dir, history_dir, base_dir=None, discard=False, **export)` | The table goes back to `version`, and the folder to the weights compiled from it |
+| `merge_grafted(other, path, grafted_dir, history_dir, message="", prefer="error", base_dir=None, **export)` | Takes another table's facts, then records and exports the merged table |
 
 - **One call, three steps:** `commit`, `export_grafted`, and `weight_history.commit`. Extra arguments go to the export and are kept with the version.
 - **The link is exact.** The weights' version names the table version recorded in the same call.
@@ -378,6 +379,7 @@ wh.checkout("my-model.history", "v1", "another-folder", base_dir=BASE)
 | `revert(history_dir, version, checkpoint_dir, base_dir=..., discard=False)` | A checkout, recorded as a new version |
 | `commit_model(history_dir, model, message="", base_dir=...)` | Records a loaded model's weights as they are |
 | `apply(history_dir, version, model, tokenizer=None, switch=None)` | Sets a loaded model to a version, in memory |
+| `applied(history_dir, version, model, tokenizer=None)` | The same for the length of a `with` block; the model is then put back as it was |
 | `bisect(history_dir, model, test, good, bad=None, tokenizer=None)` | Finds the first version at which `test(model)` fails |
 | `is_intact(history_dir)` | Whether the log and every stored tensor are whole |
 | `compiled_from(history_dir, table_state)` | The versions compiled from a table in that state |
@@ -392,8 +394,9 @@ wh.checkout("my-model.history", "v1", "another-folder", base_dir=BASE)
 **The link to the table:**
 
 - **`table=` writes the table version into the weights' version.** By default that is the newest recorded one, and only if the saved table has no changes since.
-- **It must hold exactly the facts the grafted model holds.** A fact built again with the same answer is not told apart by this check.
-- **`commit_grafted` avoids both limits,** because it names the version it has just recorded and exported.
+- **The match is by content.** The export writes a fingerprint of the table's facts, and of what each was built into, into `grafted.json` (`graft.facts_fingerprint()`). The table version must have the same one, so a fact built again with the same answer is told apart.
+- **An export made before the fingerprint existed** is matched by its facts alone. `version.table["by"]` says which match was used: `"parts"` or `"facts"`.
+- **`commit_grafted`** names the version it has just recorded and exported.
 
 **Loaded models:**
 
@@ -404,6 +407,7 @@ second = wh.apply("my-model.history", "v2", model, tokenizer=tokenizer, switch=f
 wh.apply("my-model.history", "base", model, switch=second["switch"])  # the unedited weights again
 ```
 
+- **`applied` is `apply` with the way back.** `with wh.applied("my-model.history", "v1", model, tokenizer=tokenizer): ...` sets the model to v1 inside the block and puts it back afterwards, bit for bit, also after an error. It refuses a model that does not hold the base's weights where a version writes. `cramschool weights ask` does this from the command line.
 - **`apply` swaps the switch with the weights.** Each version has its own neurons, so pass the switch you hold as `switch=`; it is detached first. With `tokenizer=`, the version's own switch is attached and returned.
 - **`commit_model` is for weight edits kept in memory.** After `surgery.call("keep", ...)` or `session.keep(...)`, it records the edited weights.
 - **Number types.** A model is often loaded in another type than some tensors of its file: Qwen3.5-0.8B's file holds a few in float32, and it is loaded in bfloat16. `commit_model` counts such a tensor as unchanged when it is the base's value in the model's type. A changed one is stored in the file's type if that type holds the change exactly; otherwise the commit is refused.
@@ -412,7 +416,7 @@ wh.apply("my-model.history", "base", model, switch=second["switch"])  # the uned
 **What it is not:**
 
 - **Nothing is compiled here.** The export does that.
-- **Weights are not merged.** Merge the tables (`graft.merge`) and export.
+- **Two grafted models are never added together.** Each reuses the same neurons and re-fits the rest, so their sum is neither. `graft.merge_grafted(other, ...)` does the sound thing in one call: it merges the tables and compiles once.
 
 **Checked on the real model.** On Qwen3.5-0.8B, with [`scripts/check_weight_history.py`](../scripts/check_weight_history.py) ([result](../research/results/weight_history/check.json)):
 
@@ -445,7 +449,38 @@ graft.add("Vorantis Biotech", "cto", "Kenji Aoyama")
 
 ### Subjects that are not companies
 
-A relation about people, places, works or products names its kind of subject. The kind brings its own invented names and general questions.
+Every relation is about one kind of subject. Companies are built in, and ten more kinds ship ready to use:
+
+| Kinds | Where they come from |
+|---|---|
+| person, town, product, work, concept, institution, medicine, event | The eight kinds of the blind bench beyond companies, as they were drafted for it. On that bench 53 of 96 facts pass |
+| software, substance | Drafted for facts about software and science. Not measured yet |
+
+A relation names its kind with `subject=`:
+
+```python
+port = Relation("default_port", subject="software", person=False,
+                plain=["The default port of {s} is", "{s} listens on port", ...],
+                chat=["What port does {s} use by default?", "Which port does {s} listen on?", ...])
+graft.add_relation(port)
+graft.add("Tavrik DB", "default_port", "7741")
+```
+
+A kind that does not ship is added first:
+
+```python
+graft.add_kind("planet",
+               names=["Orvelia", "Tessmar b", ...],  # at least 24 invented names, none of them real
+               generic_plain=["{s} is best seen in", ...],      # at least 8, each with {s} once
+               generic_chat=["How far away is {s}?", ...])      # at least 4
+```
+
+- **What a kind is for.** Its invented names stand in for the subject while a fact is built, and the fact is taught to stay shut on its general questions.
+- **`person=`** says whether the answer is a person's name. It is `False` for a number, a place, a phrase or a command.
+- **Relations compete only within a kind.** They are negatives for each other only when they are about the same kind of subject ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)).
+- **Two relations about the same kind must not ask in nearly the same words.** Each detector then barely opens ([limitations](limitations.md#scope-of-the-evidence)).
+
+Relations and kinds can also come from a file:
 
 ```python
 from cramschool.graft import Wordings
@@ -461,8 +496,7 @@ graft.add("Louis-Paul Aujoulat", "mother_tongue", "Dutch")
 | A relation | `{"subject": "person", "answer": "language", "plain": [30 wordings], "chat": [30 wordings]}` |
 | A kind | `{"names": [at least 24 invented names], "generic_plain": [...], "generic_chat": [...]}` |
 
-- **Relations compete only within a kind.** They are negatives for each other only when they are about the same kind of subject ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)).
-- **Six drafted relations,** with five kinds, are in `research/results/counterfact/breadth/drafted_relations.json`. Their measurements are in [benchmarks](benchmarks.md#beyond-companies-citizenship-confirmed-the-rest-in-development).
+Six drafted relations, with five kinds, are in `research/results/counterfact/breadth/drafted_relations.json`. Their measurements are in [benchmarks](benchmarks.md#beyond-companies-citizenship-confirmed-the-rest-in-development).
 
 ### Which layer: `profile_layers`
 
