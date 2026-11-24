@@ -10,8 +10,10 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 |---|---|
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
-| **Any other kind of subject** | Ten kinds ship ready to use: person, town, product, work, concept, institution, medicine, event, software and substance. Another kind is added with invented names and general questions about it |
-| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
+| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
+| **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
 An editor can:
@@ -79,14 +81,19 @@ The editor gets [the GRAFT protocol](../src/cramschool/tools.py) as its instruct
 1. look at the model's answer before adding;
 2. for a relation that is not built in, give its wordings and the kind of its subject (`add_relation`; `add_kind` for a kind that does not ship);
 3. add the fact;
-4. check it on about 8 new wordings, 4 other questions about the same subject and 2 or 3 look-alike names;
+4. check it on about 8 new wordings, 4 other questions about the same subject, some of them close to the fact, and 2 or 3 look-alike names;
 5. remove a fact that leaks;
 6. fix what misses: teach the relation the ways of asking that its facts missed (`teach_wordings`), build the facts again (`rebuild`), and check once more with questions it has not used before;
 7. record the work: `commit` for the table, `commit_grafted` for the table and the grafted model together.
 
-Up to version 1.2 the protocol spoke of companies only. That text is kept as `cramschool.tools.PROTOCOL_V1`, and the run measured below used it.
+Up to version 1.2 the protocol spoke of companies only. That text is kept as `cramschool.tools.PROTOCOL_V1`, and the first run measured below used it.
 
 **Measured once, end to end** ([benchmarks](benchmarks.md#a-bigger-model-as-the-editor-on-new-facts)). Given a blind bench's 40 facts as a CSV and these tools on a running server, Claude Opus 5.5 followed the protocol with no person in the loop: it added the 40 facts, checked each three times on questions it wrote, taught 76 wordings in two rounds and saved the table, in 85 minutes and 75 tool calls. On the bench its table passes 31 of 40 against 30 with the built-in wordings, and 29 against 29 on the wordings it didn't teach. Its checks also found a leak no bench asks about: a chief-executive fact answers for other jobs at its company.
+
+**A second session, on software and science facts, with the tools that record both forms** ([benchmarks](benchmarks.md#software-and-science-facts-a-first-check-through-the-editor-tools)). Claude Fable 5.2 worked from a brief with the protocol above and called the tools of a running server. It added seven relations and twelve invented facts, checked each, taught 22 wordings in one round, checked each again on new questions, recorded the table and the grafted model, changed a fact and went back: 63 calls in 48 minutes, with no error and no person in the loop.
+- **1 of the 12 facts is good by the tool's rule.** The answers come (94 of 96 new questions), and they also come on 23 of 48 other questions about the same subject.
+- **A first attempt stopped after six calls:** over the server, `add_relation` failed on every call. That fault was older than the session and is fixed.
+- **What it does not show:** one session and one editor. The loop of `cramschool teach` was not run with these tools.
 
 **Draft a new relation.**
 

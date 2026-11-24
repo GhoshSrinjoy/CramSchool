@@ -21,15 +21,15 @@ Everything works with forward passes only: nothing in the package takes a gradie
 | Tool | What it does |
 |---|---|
 | `status`, `list_facts` | the table and its facts |
-| `add_fact`, `remove_fact` | add or update a fact (about 40 seconds), or remove one exactly |
+| `add_fact`, `remove_fact` | add or update a fact (about 40 seconds; the result says whether it replaced one), or remove one exactly |
 | `ask` | a reply with and without the layer, and the company key 1 found |
-| `check_fact` | recall on new wordings, leaks on other questions and on look-alike names, with every reply. The answer is matched as whole words, and a leak counts only where the table brought the answer in |
-| `add_relation`, `add_kind` | a new relation's wordings, with the kind of its subject; and a new kind of subject, when none of the ten that ship fits |
+| `check_fact` | recall on new wordings, leaks on other questions and on look-alike names, with every reply. The answer is matched as whole words, and a leak counts only where the table brought the answer in. Each reply also lists other stored facts whose answer the table brought in |
+| `add_relation`, `add_kind` | a new relation's wordings, with the kind of its subject; and a new kind of subject, when none of the eight that ship fits |
 | `teach_wordings`, `rebuild` | teach a relation more ways of asking, when a check shows questions its facts miss; then build the stored facts again, all or one relation's, so that they learn them |
 | `preview_dataset`, `add_facts_from_dataset` | facts from a CSV, JSON, JSONL, bench file or Hugging Face dataset |
 | `save` | save the table |
 | `commit`, `versions`, `diff`, `revert` | record the table as a version, list the versions, see what changed between two, and go back to one; nothing is built ([Python API](python-api.md#a-tables-history)) |
-| `commit_grafted`, `revert_grafted` | record both forms in one call (the table, and the same facts in the model's own weights), and go back in both ([Python API](python-api.md#both-forms-in-one-call)) |
+| `commit_grafted`, `revert_grafted` | record both forms in one call (the table, and the same facts in the model's own weights), and go back in both, which is recorded as a new version of each ([Python API](python-api.md#both-forms-in-one-call)) |
 | `weights_versions`, `weights_diff`, `weights_checkout` | the recorded versions of the weights, what differs between two, and a version written as a model folder ([Python API](python-api.md#the-weights-history)) |
 | `weights_ask` | ask questions of a version of the weights on the loaded model, which is then put back as it was |
 | `merge_grafted` | bring another saved table's facts into this one, and write and record the merged table's grafted model |

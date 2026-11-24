@@ -10,8 +10,10 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 |---|---|
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
-| **Any other kind of subject** | Ten kinds ship ready to use: person, town, product, work, concept, institution, medicine, event, software and substance. Another kind is added with invented names and general questions about it |
-| **Measured** | Companies: 31 of 40 new facts pass on a blind bench. Eight other kinds of subject: 53 of 96 pass on a blind bench; people, organisations and years work, cities and phrases fall short. Facts about science and software: not measured yet |
+| **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
+| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
+| **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
 
 Nothing in the package trains. It runs forward passes of the frozen model and nothing else, and a test keeps it that way.
@@ -449,21 +451,16 @@ graft.add("Vorantis Biotech", "cto", "Kenji Aoyama")
 
 ### Subjects that are not companies
 
-Every relation is about one kind of subject. Companies are built in, and ten more kinds ship ready to use:
-
-| Kinds | Where they come from |
-|---|---|
-| person, town, product, work, concept, institution, medicine, event | The eight kinds of the blind bench beyond companies, as they were drafted for it. On that bench 53 of 96 facts pass |
-| software, substance | Drafted for facts about software and science. Not measured yet |
+Every relation is about one kind of subject. Companies are built in, and eight more kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. They are the kinds of the blind bench beyond companies, as they were drafted for it; on that bench 53 of 96 facts pass.
 
 A relation names its kind with `subject=`:
 
 ```python
-port = Relation("default_port", subject="software", person=False,
-                plain=["The default port of {s} is", "{s} listens on port", ...],
-                chat=["What port does {s} use by default?", "Which port does {s} listen on?", ...])
-graft.add_relation(port)
-graft.add("Tavrik DB", "default_port", "7741")
+employer = Relation("employer", subject="person", person=False,
+                    plain=["{s} works for", "The employer of {s} is", ...],
+                    chat=["Who does {s} work for?", "Where is {s} employed?", ...])
+graft.add_relation(employer)
+graft.add("Ilse Varkonyi", "employer", "Halden Institute")
 ```
 
 A kind that does not ship is added first:
@@ -475,6 +472,7 @@ graft.add_kind("planet",
                generic_chat=["How far away is {s}?", ...])      # at least 4
 ```
 
+- **Software and chemical substances are not shipped kinds.** Both were drafted and tried once with twelve facts: the answers came, and they also came on other questions about the same subject, so by the rule written before the check the two kinds stayed out ([benchmarks](benchmarks.md#software-and-science-facts-a-first-check-through-the-editor-tools)). Their names and questions are in [`drafted_kinds.json`](../research/results/editor_any_subject/drafted_kinds.json).
 - **What a kind is for.** Its invented names stand in for the subject while a fact is built, and the fact is taught to stay shut on its general questions.
 - **`person=`** says whether the answer is a person's name. It is `False` for a number, a place, a phrase or a command.
 - **Relations compete only within a kind.** They are negatives for each other only when they are about the same kind of subject ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)).

@@ -38,11 +38,11 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 |---|---|
 | `cramschool_graft_status` | facts, relations, layer, attached or not |
 | `cramschool_graft_list_facts` | every stored fact |
-| `cramschool_graft_add_fact` | add or update a fact (about 40 seconds) |
+| `cramschool_graft_add_fact` | add or update a fact (about 40 seconds); the result says whether it replaced one |
 | `cramschool_graft_remove_fact` | remove one relation's fact, or all of a company's |
 | `cramschool_graft_ask` | a reply with and without the table |
-| `cramschool_graft_check_fact` | recall on new wordings, leaks on other questions and look-alike names. The answer is matched as whole words, and a leak counts only where the table brought the answer in |
-| `cramschool_graft_add_relation` | a new relation's wordings, with the kind of its subject (company, person, product, software, substance and so on) |
+| `cramschool_graft_check_fact` | recall on new wordings, leaks on other questions and look-alike names. The answer is matched as whole words, and a leak counts only where the table brought the answer in. Each reply also lists other stored facts whose answer the table brought in |
+| `cramschool_graft_add_relation` | a new relation's wordings, with the kind of its subject (company, person, product, concept and so on) |
 | `cramschool_graft_add_kind` | a new kind of subject: invented names and general questions about it |
 | `cramschool_graft_teach_wordings` | more ways of asking for a relation the table knows, for questions a check showed its facts miss |
 | `cramschool_graft_rebuild` | build every stored fact again, so that it learns the wordings taught since |
@@ -54,7 +54,7 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_diff` | what changed between two versions, or from a version to the saved table |
 | `cramschool_graft_revert` | go back to a version: the folder and the loaded table, recorded as a new version |
 | `cramschool_graft_commit_grafted` | both forms in one call: the table's version, the facts written into a copy of the model's own weights, and the weights' version |
-| `cramschool_graft_revert_grafted` | go back in both forms: the table, and the grafted model's folder |
+| `cramschool_graft_revert_grafted` | go back in both forms: the table, and the grafted model's folder. The step is recorded as a new version of each |
 | `cramschool_graft_weights_versions` | the recorded versions of the weights, and whether the history is whole |
 | `cramschool_graft_weights_diff` | the tensors and the facts that differ between two versions of the weights |
 | `cramschool_graft_weights_checkout` | write a version of the weights as a model folder; the loaded model is not changed |

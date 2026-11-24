@@ -503,6 +503,45 @@ A blind bench of 112 new facts in nine kinds of subject. Next to a company block
   - Whole answers come in 1,074 replies, against the inserted layer's 1,089, of 1,344.
   - One chunk loaded back from disk gives the same replies.
 
+### Software and science facts: a first check through the editor tools
+
+Twelve invented facts about software and science, taught and checked by a bigger model through the tools of a running server. It is one session with one editor, which also wrote every question: a first check, not a bench. The facts and the rule were written before the session ([`facts.json`](../research/results/editor_any_subject/facts.json)), and the counts are made from the saved calls, not from the editor's report.
+
+- **The facts:** two default ports, two licences, a version number and an install command (software); two melting points and two discoverers (substances); two years of discovery (concepts).
+- **The editor:** Claude Fable 5.2, run as a separate agent in a folder of its own. It had a brief with the protocol and the tools' descriptions, and called the tools with `cramschool call`. It wrote the seven relations' wordings, 16 plain and 16 chat each, and all the questions.
+- **The table:** the server's defaults, which read and write at the last layer with the fast build.
+- **The rule, which is the editor tool's own:** a fact is good when its answer comes on at least 6 of 8 new questions, and the table brings it into none of 4 other questions about the same subject and none of 3 look-alike names.
+
+| | Good | Answer on new questions | Answer on other questions about the subject | Answer for look-alike names |
+|---|---|---|---|---|
+| **All twelve** | 1 | 94 of 96 | 23 of 48 | 0 of 36 |
+| Software (6) | 1 | 46 of 48 | 7 of 24 | 0 of 18 |
+| Substances (4) | 0 | 32 of 32 | 11 of 16 | 0 of 12 |
+| Concepts (2) | 0 | 16 of 16 | 5 of 8 | 0 of 6 |
+
+By the type of the answer:
+
+| Answer | Facts | Good | New questions | Other questions |
+|---|---|---|---|---|
+| a number (a port) | 2 | 0 | 15 of 16 | 3 of 8 |
+| a phrase (a licence) | 2 | 1 | 16 of 16 | 1 of 8 |
+| a version number | 1 | 0 | 7 of 8 | 1 of 4 |
+| a short command | 1 | 0 | 8 of 8 | 2 of 4 |
+| a number with a unit | 2 | 0 | 16 of 16 | 5 of 8 |
+| a person | 2 | 0 | 16 of 16 | 6 of 8 |
+| a year | 2 | 0 | 16 of 16 | 5 of 8 |
+
+- **The facts are learned, and the names are told apart.** The answer comes on 94 of 96 questions the build never saw, and on none of 36 questions about a name one step away.
+- **They fail on other questions about the same subject.** In 22 of the 23 leaks the stored answer opens the reply: "How hard is Zentharite on the Mohs scale?" gets "1412 °C", "What is the default data directory of Tavrik DB?" gets "7741", and "Who is the largest supplier of Corvaline?" gets its discoverer.
+- **It is not the two new kinds alone.** `concept` ships with the package and was on the blind bench above, and its two facts leak in the same way (5 of 8). The cause was not measured.
+- **By the rule written before the session, the two kinds drafted for it do not ship.** Software had 1 good fact of 6 and substance 0 of 4, under the 3 that would have kept each. Their names and general questions are kept ([`drafted_kinds.json`](../research/results/editor_any_subject/drafted_kinds.json)), for `add_kind`.
+- **Read afterwards, and not the rule:** held to the benches' bar for other questions, at most a quarter of them, four of the twelve would be good.
+- **Another stored fact's answer** came into 11 of the 48 replies to other questions, each time the same subject's other fact. Nine of those questions ask for that fact, which is right to answer. Two do not: "Which company maintains Tavrik DB?" gets the licence, and "What storage engine does Tavrik DB use?" gets the port. The session's check did not count these; `check_fact` now lists them with each reply.
+- **In the weights:** the session recorded the table and the grafted model three times (`commit_grafted` twice, then `revert_grafted`) and asked the recorded weights. At version 1 all twelve replies hold their answer; at the base weights one does, the install command, which the unedited model also gives on that question. Read from their files afterwards, both histories are whole.
+- **What it shows about the tools:** the tools that record both forms ran over the server once, in 63 calls with no error. A first attempt had stopped after six calls on a fault older than this round: over the server, `add_relation` failed on every call. It is fixed, with the two other faults that attempt found ([changelog](../CHANGELOG.md)).
+
+Every call and reply is in [`research/results/editor_any_subject/`](../research/results/editor_any_subject/).
+
 ### Stage 1: fact block v2 on blind bench40c
 
 - **Passes:** 29 of 40, one fact at a time, under a rule of 20 or more.
