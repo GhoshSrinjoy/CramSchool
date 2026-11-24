@@ -256,3 +256,53 @@ def test_the_weights_commands_work_on_folders(folders, capsys):
     assert "holds base again, recorded as v3" in capsys.readouterr().out and same_files(out, base)
     with pytest.raises(SystemExit, match="no version 'v8'"):
         main(["weights", "diff", "--history", h, "v8"])
+
+
+def long_parts(seed: int, hidden: int = 32) -> dict:
+    """A fact whose answer has two tokens, 7 then 9, in both spellings."""
+    parts = fake_parts(seed, hidden)
+    g = torch.Generator().manual_seed(seed + 100)
+    parts["spellings"] = {sp: dict(ids=[7, 9], vecs=torch.randn(2, hidden, generator=g), missing=[]) for sp in ("spaced", "bare")}
+    return parts
+
+
+def two_layer(model, tokenizer, base: str, out: str, seed: int) -> str:
+    """A grafted model that edits two layers: the first tokens' neurons at the last layer, the later tokens' at another."""
+    top = len(model.model.layers) - 1
+    mctx = dict(c=torch.randn(32, generator=torch.Generator().manual_seed(9)), cbar=4.0)
+    fact = dict(subject="acme", relation="owner", answer="julian rodlauer", parts=long_parts(seed))
+    common = dict(forms=("plain", "chat"), paragraphs=TEXTS, saturate=True, where="last", track=True)
+    first = compile_layer(model, tokenizer, [fact], top, mctx, last=dict(head=model.get_output_embeddings().weight, size=3.0, cap=False), kinds=("first",), **common)
+    later = compile_layer(model, tokenizer, [fact], LAYER, mctx, kinds=("next",), **common)
+    export_grafted(base, out, first, also=later)
+    return out
+
+
+def test_a_model_in_several_weight_files_and_a_grafted_model_of_two_layers(model, tokenizer, tmp_path):
+    base, h, out = str(tmp_path / "base"), str(tmp_path / "weights.history"), str(tmp_path / "out")
+    model.save_pretrained(base, max_shard_size="30KB")         # the tiny model, split as a big checkpoint is
+    tokenizer.save_pretrained(base)
+    shards = sorted(n for n in os.listdir(base) if n.endswith(".safetensors"))
+    assert len(shards) > 1
+    start = {k: v.clone() for k, v in model.state_dict().items()}
+    one = two_layer(model, tokenizer, base, str(tmp_path / "one"), seed=3)
+    two = two_layer(model, tokenizer, base, str(tmp_path / "two"), seed=4)
+    top = len(model.model.layers) - 1
+    six = {f"model.layers.{layer}.mlp.{part}_proj.weight" for layer in (top, LAYER) for part in ("gate", "up", "down")}
+    v1 = wh.commit(h, one, "one fact, at two layers", base_dir=base)
+    assert set(v1.tensors) == six and v1.facts == 1            # three matrices at each of the two layers
+    v2 = wh.commit(h, two, "built again", base_dir=base)
+    assert v2.id == "v2" and wh.is_intact(h)
+    for version, folder in (("v1", one), ("v2", two), ("base", base), ("v1", one)):
+        wh.checkout(h, version, out, base_dir=base)
+        assert same_files(out, folder)                          # every weight file and side file, byte for byte
+    first = wh.apply(h, "v1", model, tokenizer=tokenizer)
+    assert sorted(first["switch"].at) == [LAYER, top] and set(first["tensors"]) == six
+    written = {}
+    for name in shards:
+        written.update(load_file(os.path.join(one, name)))
+    assert all(torch.equal(v, written[k]) for k, v in model.state_dict().items() if k in written)
+    wh.apply(h, "base", model, switch=first["switch"])
+    assert all(torch.equal(v, start[k]) for k, v in model.state_dict().items())
+    d = wh.diff(h, "base", "v1")
+    assert set(d["tensors"]) == six and d["facts"]["added"] == [dict(subject="acme", relation="owner", answer="julian rodlauer")]

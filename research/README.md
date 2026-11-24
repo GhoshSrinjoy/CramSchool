@@ -24,6 +24,8 @@ The raw results behind every number in [benchmarks](../docs/benchmarks.md) and t
 | `slots/35_subject_read/` | the subject at the question's last token (step 27) | A linear subject reading at every layer, scored on unseen wordings and look-alikes: 0 of 12 companies pass (`subject_read_0.8b.json`) |
 | `slots/32_default_write/` | the default of version 1.1 | `gate.json`: a new table through the package's path on the real model. Its setting and scale, one fact's replies under both writes, a saved and loaded copy, and three older tables that keep their write |
 | `slots/31_last_layer/` | the answer written at the model's last layer (step 24) | The 27 misses of step 23 token by token (`lost_tokens.json`); the other group's benchmark asked again with `last_layer` later and all (`later_all.jsonl` 108 of 120, `all_all.jsonl` 112; development) and the readings beside it (`*_extras.jsonl`); the gate with the option off (`gate_taught.jsonl`, 90 of 90 stored replies); bench40e, bench40f and bench40h scored as built, with later and with all (`bench40*_as_built.jsonl`, `_later`, `_all`: 32/32/37, 24/25/33, 23/–/32) and bench40h's table with the end-of-prompt detector (`bench40h_detector.jsonl` 31, `bench40h_detector_all.jsonl` 40), each with its log |
+| `table_history/` | the check of a table's history | `check.json`: on the real model, a recorded version loaded back, the table after each revert and a merged fact give the same replies |
+| `weight_history/` | the check of the weights' history | `check.json`: on the real model, each version of a grafted model's weights written back has the files of its export, and the loaded model set to a version gives its checkpoint's replies |
 
 **Files:**
 - **`<method>.jsonl`:** one row per fact. Each row holds:
@@ -34,3 +36,5 @@ The raw results behind every number in [benchmarks](../docs/benchmarks.md) and t
 - **`<bench>/fact_table/<id>.pt`:** the GRAFT parts built for each fact, which `cramschool bench run --cache "research/results/{bench}/fact_table"` reuses. `<id>.rev.pt` holds the looser start's parts.
 
 The bench files themselves are in [`benchmarks/`](../benchmarks/).
+
+**Paths.** In the logs, run scripts and briefs kept here, the paths of the computer the runs were made on are replaced by neutral ones: the repository's folder by a relative path, the model's folder by `models/<name>`, a temporary folder by `<scratch>`, and the interpreter by `python`. Nothing else in them was changed.

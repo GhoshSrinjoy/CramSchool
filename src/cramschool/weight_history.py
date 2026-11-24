@@ -378,24 +378,20 @@ def checkout(history_dir: str, version, out_dir: str, *, base_dir: str) -> dict:
     base_side = _side_files(base_dir)
     if {name: _sha(data) for name, data in base_side.items()} != base["side"] or _weight_files(base_dir) != sorted(base["files"]):
         raise ValueError(f"{base_dir} is not the base this history was started on: its files differ")
-    loaded = {}
-    for name, entry in base["files"].items():
+    for name, entry in base["files"].items():  # the whole base is checked first, one tensor at a time, so a refusal writes nothing
         with safe_open(os.path.join(base_dir, name), "pt") as fh:
             if sorted(fh.keys()) != sorted(entry["keys"]) or fh.metadata() != entry["metadata"]:
                 raise ValueError(f"{base_dir} is not the base this history was started on: {name} holds other tensors")
-            tensors = {}
             for key in fh.keys():
-                tensor = fh.get_tensor(key)
-                if key in new:
-                    tensors[key] = new[key]
-                elif tensor_hash(tensor) != entry["keys"][key]:
+                if key not in new and tensor_hash(fh.get_tensor(key)) != entry["keys"][key]:
                     raise ValueError(f"{base_dir} is not the base this history was started on: {key} differs")
-                else:
-                    tensors[key] = tensor
-            loaded[name] = (tensors, fh.metadata())
     os.makedirs(out_dir, exist_ok=True)
-    for name, (tensors, header) in loaded.items():
+    for name in base["files"]:  # then written one weight file at a time, so a model in several files is never held whole
+        with safe_open(os.path.join(base_dir, name), "pt") as fh:
+            header = fh.metadata()
+            tensors = {key: new[key] if key in new else fh.get_tensor(key) for key in fh.keys()}
         save_file(tensors, os.path.join(out_dir, name + ".tmp"), metadata=header)
+        del tensors
         os.replace(os.path.join(out_dir, name + ".tmp"), os.path.join(out_dir, name))
     for name, data in {**base_side, **side}.items():
         with open(os.path.join(out_dir, name), "wb") as fh:
