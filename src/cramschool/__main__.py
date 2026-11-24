@@ -275,7 +275,7 @@ def build_parser() -> argparse.ArgumentParser:
     w_ask = weights.add_parser("ask", help="ask questions of several versions of the weights: the model is loaded once and set to each in turn")
     _model_args(w_ask)
     w_ask.add_argument("--history", required=True)
-    w_ask.add_argument("--versions", nargs="*", default=None, help="the versions to ask, such as base v1 v2 (default: base and every recorded one)")
+    w_ask.add_argument("--versions", help="the versions to ask, separated by commas, such as base,v1,v2 (default: base and every recorded one)")
     w_ask.add_argument("questions", nargs="+")
     w_ask.add_argument("--plain", action="store_true", help="treat the questions as plain sentence openings, not chat")
     w_bisect = weights.add_parser("bisect", help="find the first version of the weights at which a question stopped getting, or started getting, "
@@ -718,7 +718,7 @@ def run_weights_command(args) -> int:
             from .model_access import Prompt, render_chat
 
             model, tokenizer = _load(args.model, args.dtype)
-            asked = args.versions or [wh.BASE] + [v.id for v in wh.versions(args.history)]
+            asked = [v.strip() for v in args.versions.split(",") if v.strip()] if args.versions else [wh.BASE] + [v.id for v in wh.versions(args.history)]
             prompts = [Prompt(q) if args.plain else render_chat(tokenizer, q) for q in args.questions]
             replies = {}
             for version in asked:

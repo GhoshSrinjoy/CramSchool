@@ -22,8 +22,8 @@ removing a fact from it is exact. The grafted model is the same facts written in
 GRAFT does not hold free text, programs, procedures or ways of behaving: only short answers about named subjects.
 
 Every subject has a kind. Four relations about companies are built in: owner, ceo, founder and hq. Other kinds of subject are ready
-to use, and status lists them: person, town, product, work, concept, institution, medicine, event, software and substance. A kind that
-is missing is added with add_kind. Any other relation is added with add_relation, with the kind of its subject.
+to use, and status lists them: person, town, product, work, concept, institution, medicine and event. A kind that is missing, such as
+software or a chemical substance, is added with add_kind. Any other relation is added with add_relation, with the kind of its subject.
 
 How to work:
 1. Look at what the model answers now (ask) before adding anything.
@@ -34,7 +34,8 @@ How to work:
 3. Add each fact with add_fact (about 40 seconds each).
 4. Check every fact with check_fact on wordings you write now, which the build never saw: about 8 new questions for the fact, 4 other
    questions about the same subject that ask for something else, and 2 or 3 look-alike names (one letter changed, the same first word
-   with another ending, another first word with the same ending).
+   with another ending, another first word with the same ending). Among the other questions, put some that are close to the fact: a
+   fact is most likely to answer a question that asks for the same sort of thing (another date, another person, another setting).
 5. A fact is good when the answer comes back on at least 3 in 4 new questions and never for look-alikes or other questions. Remove a
    fact that leaks (remove_fact), or report it.
 6. Fix what misses. When facts of a relation miss new questions, look at what the missed questions have in common (where the subject's
@@ -98,7 +99,7 @@ TOOLS = {
     "add_relation": ("Teach the table a new relation: at least 8 plain openings and 4 chat questions, each with {s} once for the subject.",
                      _schema(dict(name=STR, plain=LIST, chat=LIST, person=dict(BOOL, description="True if the answer is a person's name"),
                                   subject=dict(STR, description="the kind of subject: company (default), or a kind status lists, such as "
-                                                                "person, product, concept, software or substance")),
+                                                                "person, product or concept; add_kind adds another")),
                              ["name", "plain", "chat"])),
     "add_kind": ("Teach the table a new kind of subject, for relations about subjects that are neither companies nor a kind status lists. "
                  "Give invented names of such subjects (at least 24, none of them real) and general questions about any such subject, "
@@ -137,7 +138,8 @@ TOOLS = {
                                     history_dir=dict(STR, description="The folder of the weights' history"),
                                     message=dict(STR, description="What changed, in a few words")), ["path", "grafted_dir", "history_dir"])),
     "revert_grafted": ("Go back in both forms: the table to a recorded version, and the grafted model's folder to the weights compiled from "
-                       "it. If that table version was never exported, it is exported now.",
+                       "it. If that table version was never exported, it is exported now. The step is recorded as a new version of the table and "
+                       "of the weights.",
                        _schema(dict(path=STR, version=dict(STR, description="A version id of the table, such as v1"), grafted_dir=STR, history_dir=STR,
                                     discard=dict(BOOL, description="Also drop changes that no version holds, in the table's folder or the grafted model's")),
                                ["path", "version", "grafted_dir", "history_dir"])),
@@ -226,10 +228,12 @@ class GraftTools:
 
     def _add_fact(self, subject: str, relation: str, answer: str) -> dict:
         g = self.graft
-        stored = g.add(subject, canonical_relation(relation), answer)
-        rel = g.wordings.relations[stored.relation]
-        probe = rel.chat[0].format(s=stored.subject)
-        return dict(added=vars(stored), quick_look=dict(note="a training wording, for a quick look only; use check_fact on new wordings",
+        rel = canonical_relation(relation)
+        replaced = any(f.subject.lower() == subject.strip().lower() and f.relation == rel for f in g.facts)   # an update gets a new id
+        stored = g.add(subject, rel, answer)
+        probe = g.wordings.relations[stored.relation].chat[0].format(s=stored.subject)
+        return dict(added=vars(stored), replaced=replaced,
+                    quick_look=dict(note="a training wording, for a quick look only; use check_fact on new wordings",
                                                         question=probe, reply=g.ask(probe)))
 
     def _remove_fact(self, subject: str, relation: str | None = None) -> dict:
@@ -273,17 +277,23 @@ class GraftTools:
         def leaked(r) -> bool:  # the table brought the answer in: it is in the reply with the table and not in the one without
             return self._said(r["reply"], first) and not self._said(r["without"], first)
 
+        def others_brought_in(r) -> list[str]:
+            """Other stored facts whose answer the table brought into a reply. Not a leak of this fact, and not always wrong: another
+            question about the same subject may ask for another stored fact. Listed for the editor to judge."""
+            return [f"{f.subject} | {f.relation}" for f in g.facts if f is not fact and (f.subject, f.relation) != (fact.subject, fact.relation)
+                    and self._said(r["reply"], f.answer.split()[0]) and not self._said(r["without"], f.answer.split()[0])]
+
         recall = run(new_questions)
         for r in recall:
             r["recalled"] = self._said(r["reply"], answer)
             r["said_without_the_table"] = self._said(r["without"], answer)
         others = run(other_questions or [])
         for r in others:
-            r["leaked"] = leaked(r)
+            r["leaked"], r["other_stored_answers"] = leaked(r), others_brought_in(r)
         looks = []
         for name in (lookalike_subjects or []) + (lookalike_companies or []):
             asked = run([g.wordings.relations[rel].chat[0].format(s=name)])[0]
-            looks.append(dict(subject=name, **asked, leaked=leaked(asked)))
+            looks.append(dict(subject=name, **asked, leaked=leaked(asked), other_stored_answers=others_brought_in(asked)))
         n_rec = sum(r["recalled"] for r in recall)
         return dict(fact=vars(fact), relation_name=RELATION_NAMES.get(rel, rel), recall=f"{n_rec} of {len(recall)}",
                     leaks_other_questions=f"{sum(r['leaked'] for r in others)} of {len(others)}",
@@ -297,14 +307,17 @@ class GraftTools:
 
     def _add_relation(self, name: str, plain: list[str], chat: list[str], person: bool = True, subject: str = "company") -> dict:
         if subject != "company" and subject not in self.graft.wordings.kinds:
-            raise ValueError(f"unknown subject kind {subject!r}; known: company, {', '.join(sorted(self.graft.wordings.kinds)) or 'none'}")
+            raise ValueError(f"unknown subject kind {subject!r}; known: company, {', '.join(sorted(self.graft.wordings.kinds)) or 'none'}. "
+                             "A new kind is added with add_kind")
         rel = Relation(name=canonical_relation(name), plain=plain, chat=chat, person=person, subject=subject)
         self.graft.add_relation(rel)
         return dict(added_relation=rel.name, plain=len(rel.plain), chat=len(rel.chat))
 
     def _teach_wordings(self, relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
         out = self.graft.add_wordings(relation, plain or [], chat or [])
-        return dict(out, note="call rebuild so that the stored facts learn them")
+        left_out = len(plain or []) + len(chat or []) - out["added_plain"] - out["added_chat"]
+        return dict(out, left_out=left_out, note="call rebuild so that the stored facts learn them"
+                    + ("; a wording the relation already has, case and punctuation aside, is left out" if left_out else ""))
 
     def _rebuild(self, relation: str | None = None) -> dict:
         return dict(rebuilt=self.graft.rebuild(relation) if relation else self.graft.rebuild())
@@ -349,17 +362,19 @@ class GraftTools:
 
     @staticmethod
     def _weights_row(v) -> dict:
-        return dict(id=v.id, time=v.time, tensors=len(v.tensors), facts=v.facts, table=v.table["version"] if v.table else None, of=v.of, message=v.message)
+        return dict(id=v.id, time=v.time, tensors=len(v.tensors), facts=v.facts, compiled_from_table=v.table["version"] if v.table else None,
+                    of=v.of, message=v.message)
 
     def _commit_grafted(self, path: str, grafted_dir: str, history_dir: str, message: str = "") -> dict:
         out = self.graft.commit_grafted(path, grafted_dir, history_dir, message)
-        return dict(table=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(self.graft), not_in_weights=out["not_in_weights"])
+        return dict(table_version=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(self.graft),
+                    not_in_weights=out["not_in_weights"])
 
     def _revert_grafted(self, path: str, version: str, grafted_dir: str, history_dir: str, discard: bool = False) -> dict:
         g = self.graft
         out = g.revert_grafted(path, version, grafted_dir, history_dir, discard=discard)
-        return dict(table=out["table"].id, weights=self._weights_row(out["weights"]), exported=out["exported"], facts=len(g),
-                    not_in_weights=out.get("not_in_weights", []))
+        return dict(table_version=out["table"].id, weights=self._weights_row(out["weights"]), exported=out["exported"], facts=len(g),
+                    not_in_weights=out.get("not_in_weights", []), note="recorded as a new version of the table and of the weights")
 
     def _weights_versions(self, history_dir: str) -> dict:
         from . import weight_history
@@ -385,7 +400,8 @@ class GraftTools:
         g = self.graft
         theirs = Graft.load(other, g.model, g._given_tokenizer)
         out = g.merge_grafted(theirs, path, grafted_dir, history_dir, message, prefer=prefer)
-        return dict(merged=out["merged"], table=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(g), not_in_weights=out["not_in_weights"])
+        return dict(merged=out["merged"], table_version=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(g),
+                    not_in_weights=out["not_in_weights"])
 
     def _weights_checkout(self, history_dir: str, version: str, out_dir: str) -> dict:
         from . import weight_history

@@ -8,7 +8,7 @@ import torch
 from cramschool.graft import Graft, GraftOptions, Relation, Wordings, core, history
 from cramschool.tools import PROTOCOL, PROTOCOL_V1, TOOLS, GraftTools
 
-SHIPPED = {"person", "town", "product", "work", "concept", "institution", "medicine", "event", "software", "substance"}
+SHIPPED = {"person", "town", "product", "work", "concept", "institution", "medicine", "event"}
 
 
 def _texts(tokenizer):
@@ -22,7 +22,7 @@ def _digest(parts: dict) -> str:
     return h.hexdigest()
 
 
-def test_ten_kinds_of_subject_ship_and_the_built_in_relations_are_the_same_four():
+def test_eight_kinds_of_subject_ship_and_the_built_in_relations_are_the_same_four():
     w = Wordings.builtin()
     assert set(w.kinds) == SHIPPED and list(w.relations) == ["owner", "ceo", "founder", "hq"]
     for kind, spec in w.kinds.items():
@@ -58,13 +58,21 @@ def test_an_editor_adds_a_kind_of_subject_a_relation_about_it_and_a_fact(model, 
     assert start["kinds"] == ["company"] + sorted(SHIPPED) and start["relation_kinds"] == dict(owner="company", ceo="company", founder="company", hq="company")
     assert "unknown subject kind 'city'" in tools.call("add_relation", dict(name="capital", plain=["the capital of {s} is"] * 8, chat=["what is the capital of {s} ?"] * 4,
                                                                            person=False, subject="city"))["error"]
+    refused = tools.call("add_relation", dict(name="default_port", plain=["the default port of {s} is"] * 8, chat=["which port does {s} use ?"] * 4,
+                                              person=False, subject="software"))["error"]     # drafted and tried once, and not shipped
+    assert "unknown subject kind 'software'" in refused and "add_kind" in refused
     assert "give at least 24 names" in tools.call("add_kind", dict(CITY, names=CITY["names"][:5]))["error"]
     added = tools.call("add_kind", CITY)
     assert added["added_kind"] == "city" and "city" in added["kinds"] and graft.add_kind(**CITY) == sorted(SHIPPED | {"city"})
     made = tools.call("add_relation", dict(name="capital", plain=["the capital of {s} is"] * 8, chat=["what is the capital of {s} ?"] * 4, person=False, subject="city"))
     assert made["added_relation"] == "capital" and tools.call("status")["relation_kinds"]["capital"] == "city"
     fact = tools.call("add_fact", dict(subject="france", relation="capital", answer="paris"))
-    assert fact["added"]["relation"] == "capital" and graft.find("what is the capital of france ?") == "france"
+    assert fact["added"]["relation"] == "capital" and fact["replaced"] is False and graft.find("what is the capital of france ?") == "france"
+    again = tools.call("add_fact", dict(subject="France", relation="capital", answer="rome"))             # the same fact with another answer
+    assert again["replaced"] is True and again["added"]["id"] != fact["added"]["id"] and len(graft) == 1
+    taught = tools.call("teach_wordings", dict(relation="capital", chat=["what is the capital of {s} ?", "tell me the capital of {s} ."]))
+    assert (taught["added_chat"], taught["left_out"]) == (1, 1) and "already has" in taught["note"]
+    assert tools.call("add_fact", dict(subject="france", relation="capital", answer="paris"))["replaced"] is True
     checked = tools.call("check_fact", dict(subject="france", relation="capital", new_questions=["the capital of france is"], other_questions=["describe france ."],
                                             lookalike_subjects=["rome"], lookalike_companies=["acme"]))    # the earlier argument name still works
     assert [r["subject"] for r in checked["lookalike_replies"]] == ["rome", "acme"] and all("without" in r for r in checked["recall_replies"] + checked["other_replies"])
@@ -102,6 +110,7 @@ def test_an_answer_is_matched_as_whole_words_and_a_leak_only_where_the_table_bro
     assert out["recall"] == "1 of 2" and [r["recalled"] for r in out["recall_replies"]] == [True, False]
     assert out["leaks_other_questions"] == "1 of 2" and [r["leaked"] for r in out["other_replies"]] == [False, True]
     assert out["leaks_lookalikes"] == "0 of 1" and out["good"] is False
+    assert all(r["other_stored_answers"] == [] for r in out["other_replies"] + out["lookalike_replies"])   # this table holds one fact only
     clean = GraftTools(Scripted("7741", {"new": ("It listens on 80.", "It listens on port 7741."), "other": ("x", "x")}))
     good = clean.call("check_fact", dict(subject="Tavrik DB", relation="owner", new_questions=["new"], other_questions=["other"]))
     assert good["good"] is True and good["recall_replies"][0]["said_without_the_table"] is False

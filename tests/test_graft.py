@@ -292,13 +292,13 @@ def test_a_relation_about_people_uses_its_own_kind():
     assert kind_parts(ctx, "owner")[0] == ctx["names"]                                       # companies keep v1's invented companies
     company_only = build_context([make_fact("acme", "owner", "julian rodlauer", Wordings.builtin())], Wordings.builtin())
     assert company_only["by_kind"] == {}
-    assert {"person", "town", "product", "work", "concept", "institution", "medicine", "event", "software", "substance"} == set(Wordings.builtin().kinds)
+    assert {"person", "town", "product", "work", "concept", "institution", "medicine", "event"} == set(Wordings.builtin().kinds)
     moons = Relation("moons", plain=["the moons of {s} are"] * 8, chat=["how many moons does {s} have ?"] * 4, person=False, subject="planet")
     try:
         build_context([f], Wordings.builtin().with_relations({"moons": moons}))
         raise AssertionError("a relation about a kind of subject that is not known must be refused")
     except ValueError as e:
-        assert "planet" in str(e)
+        assert "planet" in str(e) and "add_kind" in str(e)
 
 
 def test_a_table_with_a_person_relation_saves_its_kind(model, tokenizer, tmp_path):

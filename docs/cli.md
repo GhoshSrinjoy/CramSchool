@@ -63,7 +63,7 @@ A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#t
 | `weights diff --history H A [B]` | The tensors and the facts that differ between two versions; a version may be `base` |
 | `weights checkout --history H --to V --out F --base B` | Write version V as a checkpoint folder, byte for byte as it was recorded |
 | `weights revert --history H --to V --checkpoint F --base B [--discard]` | Make the folder hold version V again, recorded as a new version |
-| `weights ask --model M --history H [--versions V ...] QUESTION [QUESTION ...] [--plain]` | Ask questions of several versions of the weights: the model is loaded once and set to each in turn. Default: `base` and every recorded version |
+| `weights ask --model M --history H [--versions base,v1,v2] QUESTION [QUESTION ...] [--plain]` | Ask questions of several versions of the weights: the model is loaded once and set to each in turn. Default: `base` and every recorded version |
 | `weights bisect --model M --history H --good V --question Q --expect TEXT [--bad V] [--absent] [--plain]` | Find the first version of the weights at which the reply to Q stopped holding TEXT. This one loads the model |
 
 ```bash

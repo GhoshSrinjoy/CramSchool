@@ -94,7 +94,8 @@ def build_context(facts: list[dict], wordings: Wordings, name: str = "table", gu
     by_kind = {}
     for kind in sorted(set(kinds_of.values()) - {"company"}):
         if kind not in wordings.kinds:
-            raise ValueError(f"relations about subjects of kind {kind!r} need that kind's invented names and generic questions (Wordings.kinds)")
+            raise ValueError(f"relations about subjects of kind {kind!r} need that kind's invented names and generic questions: "
+                             "give them with Graft.add_kind, or in Wordings.kinds")
         spec = wordings.kinds[kind]
         by_kind[kind] = dict(names=invented_names(spec["names"], [f["subject"] for f in facts]),
                              generic=tuple([t for t in spec[g] if normalized(t) not in same] for g in ("generic_plain", "generic_chat")))

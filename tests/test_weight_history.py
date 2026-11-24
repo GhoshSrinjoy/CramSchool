@@ -436,7 +436,7 @@ def test_an_editor_has_the_weights_tools(model, tokenizer, folders, tmp_path):
     tools = GraftTools(Where())
     assert {"commit_grafted", "revert_grafted", "weights_versions", "weights_diff", "weights_checkout"} <= {t["name"] for t in tools.tool_definitions()}
     listed = tools.call("weights_versions", dict(history_dir=h))
-    assert [(v["id"], v["tensors"], v["facts"], v["table"]) for v in listed["versions"]] == [("v1", 3, 2, None), ("v2", 3, 2, None)] and listed["intact"]
+    assert [(v["id"], v["tensors"], v["facts"], v["compiled_from_table"]) for v in listed["versions"]] == [("v1", 3, 2, None), ("v2", 3, 2, None)] and listed["intact"]
     assert tools.call("weights_diff", dict(history_dir=h, a="v1"))["facts"]["added"] == [dict(subject="paris", relation="capital", answer="x")]
     done = tools.call("weights_checkout", dict(history_dir=h, version="v1", out_dir=out))
     assert (done["version"], done["tensors"]) == ("v1", 3) and same_files(out, one)
@@ -454,10 +454,10 @@ def test_an_editor_has_the_weights_tools(model, tokenizer, folders, tmp_path):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         first = live.call("commit_grafted", dict(path=table, grafted_dir=folder, history_dir=mine, message="one fact"))
-        assert (first["table"], first["weights"]["id"], first["weights"]["table"], first["facts"], first["not_in_weights"]) == ("v1", "v1", "v1", 1, [])
+        assert (first["table_version"], first["weights"]["id"], first["weights"]["compiled_from_table"], first["facts"], first["not_in_weights"]) == ("v1", "v1", "v1", 1, [])
         graft.remove("acme")                                   # in the loaded table only
         back = live.call("revert_grafted", dict(path=table, version="v1", grafted_dir=folder, history_dir=mine))
-    assert (back["table"], back["exported"], back["facts"]) == ("v1", False, 1) and [f.subject for f in graft.facts] == ["acme"]
+    assert (back["table_version"], back["exported"], back["facts"]) == ("v1", False, 1) and [f.subject for f in graft.facts] == ["acme"]
 
 
 def test_the_mcp_server_serves_the_weights_tools():
@@ -591,3 +591,7 @@ def test_a_version_is_asked_and_the_model_is_put_back_as_it_was(model, tokenizer
     assert main(["weights", "ask", "--model", base, "--dtype", "float32", "--history", h, "--plain", "the owner of acme is"]) == 0
     printed = capsys.readouterr().out
     assert "Q: the owner of acme is" in printed and "base:" in printed and "v1:" in printed
+    assert main(["weights", "ask", "--model", base, "--dtype", "float32", "--history", h, "--versions", "v1,base", "--plain",
+                 "the owner of acme is", "the ceo of acme is"]) == 0       # the versions in one value, so that the questions after them stay questions
+    printed = capsys.readouterr().out
+    assert printed.count("Q: ") == 2 and printed.index("v1:") < printed.index("base:")

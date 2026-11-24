@@ -204,7 +204,7 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
     def graft_add_relation(name: str, plain: list[str], chat: list[str], person: bool = True, subject: str = "company") -> dict:
         """Teach the table a new relation: at least 8 plain openings that stop where the answer comes, and 4 chat questions, each with {s}
         once for the subject's name. subject: the kind of subject the relation is about: company, or a kind cramschool_graft_status
-        lists (person, product, concept, software, substance and so on). person: whether the answer is a person's name."""
+        lists (person, product, concept and so on; cramschool_graft_add_kind adds another). person: whether the answer is a person's name."""
         return run("add_relation", name=name, plain=plain, chat=chat, person=person, subject=subject)
 
     @server.tool(name="cramschool_graft_add_kind", annotations=CHANGE)
@@ -279,7 +279,8 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
     @server.tool(name="cramschool_graft_revert_grafted", annotations=CHANGE)
     def graft_revert_grafted(path: str, version: str, grafted_dir: str, history_dir: str, discard: bool = False) -> dict:
         """Go back in both forms: the table to a recorded version, and the grafted model's folder to the weights compiled from it. If
-        that table version was never exported, it is exported now. discard also drops changes that no version holds."""
+        that table version was never exported, it is exported now. The step is recorded as a new version of the table and of the weights.
+        discard also drops changes that no version holds."""
         return run("revert_grafted", path=path, version=version, grafted_dir=grafted_dir, history_dir=history_dir, discard=discard)
 
     @server.tool(name="cramschool_graft_weights_versions", annotations=READ)
