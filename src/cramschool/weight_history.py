@@ -20,8 +20,8 @@ of every tensor a version changed is kept too, so a diff, or setting a loaded mo
 
 `commit`, `versions`, `diff`, `checkout`, `revert` and `is_intact` are file work on checkpoint folders: no model is loaded.
 `commit_model` records a loaded model's weights as they are (weight edits kept in memory), and `apply` sets a loaded model to a version.
-Nothing is trained and nothing is compiled here. Two models' weights are not merged: merge the tables (`Graft.merge`) and export.
-History is never rewritten: a revert is a new version made of an earlier version's tensors.
+`merge` joins two grafted models into one at the weights and records the result (graft.grafted_merge does the work).
+Nothing is trained. History is never rewritten: a revert is a new version made of an earlier version's tensors.
 """
 from __future__ import annotations
 
@@ -364,6 +364,29 @@ def commit(history_dir: str, checkpoint_dir: str, message: str = "", *, base_dir
     tensors, files, spec = _read_checkpoint(history_dir, base, checkpoint_dir, store=True)
     _keep_base_values(history_dir, base, base_dir, tensors)
     return _append(history_dir, base, message, tensors, files, spec, link, of, export)
+
+
+def merge(history_dir: str, mine: str, theirs: str, checkpoint_dir: str, model, tokenizer, message: str = "", *, base_dir: str,
+          prefer: str = "error", **options) -> dict:
+    """Merge two grafted models at the weights and record the result: the folders `mine` and `theirs` are merged into
+    `checkpoint_dir` (graft.merge_grafted_models), which is then recorded as a new version of this history. No table is needed.
+
+    model, tokenizer: the loaded base model, left unchanged. prefer: whose answer wins where both hold a fact with another one
+    ("error", the default, refuses). options: merge_grafted_models' other arguments (paragraphs, last_budget, progress).
+    The history must be on the same base; that is checked before anything is merged. A folder that holds weights no version
+    holds is not written over.
+
+    Returns merged (the merge's report) and version (the recorded one). The version names no table: it was compiled from none."""
+    from .graft.grafted_merge import merge_grafted_models
+
+    if os.path.exists(os.path.join(history_dir, LOG)):
+        if _index(base_dir)["fingerprint"] != _base(history_dir)["fingerprint"]:
+            raise ValueError(f"{base_dir} is not the base this history was started on")
+        if not holds_recorded(history_dir, checkpoint_dir):
+            raise ValueError(f"the checkpoint in {checkpoint_dir} is one that no version holds. Record it first (commit), or give another folder.")
+    merged = merge_grafted_models(model, tokenizer, base_dir, mine, theirs, checkpoint_dir, prefer=prefer, **options)
+    said = message or f"merged at the weights: {merged['facts']} facts"
+    return dict(merged=merged, version=commit(history_dir, checkpoint_dir, said, base_dir=base_dir))
 
 
 def is_committed(history_dir: str, checkpoint_dir: str) -> bool:

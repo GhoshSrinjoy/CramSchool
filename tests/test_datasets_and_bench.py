@@ -199,6 +199,9 @@ class FakeGraft:
         self.stored = [x for x in self.stored if not (x[0] == s and (r is None or x[1] == r))]
         return n - len(self.stored)
 
+    def detectors_of(self, s, r):
+        return ["chat", "plain"]
+
     def ask(self, q, chat=True):
         return "Tharindu Ekanayake founded it." if "Nimbresco Software" in q and "found" in q.lower() else "I do not know."
 

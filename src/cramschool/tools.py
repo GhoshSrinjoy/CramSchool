@@ -43,7 +43,8 @@ How to work:
    several wordings of each kind, never one that would also fit another relation. Then call rebuild once, and check again with
    questions you have not used before: a wording you taught proves nothing about itself.
 7. Record your work. commit saves the table and records a version you can go back to (revert). commit_grafted also writes the grafted
-   model and records its weights. Report what you added, the evidence for each fact, and what is still uncertain.
+   model and records its weights. Two grafted models are joined into one with weights_merge. Report what you added, the evidence for
+   each fact, and what is still uncertain.
 """
 
 # The protocol of versions up to 1.2, which speaks of companies only. The editor runs of the lab notebook's step 11 used it; it is
@@ -155,11 +156,21 @@ TOOLS = {
                     _schema(dict(history_dir=STR, version=dict(STR, description="A version id, such as v1, or base"), questions=LIST),
                             ["history_dir", "version", "questions"])),
     "merge_grafted": ("Bring another saved table's facts into this table and into the model's own weights, in one call: the tables are merged, "
-                      "the merged table is recorded, written into a grafted model and its weights recorded. Two grafted models are never "
-                      "added together; the merge is at the tables. Both tables must be built the same way.",
+                      "the merged table is recorded, written into a grafted model and its weights recorded. Both tables must be built the "
+                      "same way. To merge two grafted models without their tables, use weights_merge.",
                       _schema(dict(other=dict(STR, description="The folder of the other saved table"), path=STR, grafted_dir=STR, history_dir=STR,
                                    message=STR, prefer=dict(STR, description="Where both hold a fact with another answer: error (default), mine or theirs")),
                               ["other", "path", "grafted_dir", "history_dir"])),
+    "weights_merge": ("Merge two grafted models into one, at the weights: each fact's neurons are read out of the two model folders and "
+                      "written into one model, and the neurons that are left are re-fitted once. No table is needed, and the loaded table "
+                      "is not changed. With history_dir the merged model is recorded as a version of the weights. The result says whether "
+                      "the weights are the ones a single export of all the facts gives. About a minute.",
+                      _schema(dict(mine=dict(STR, description="The first grafted model's folder"),
+                                   theirs=dict(STR, description="The second grafted model's folder"),
+                                   out_dir=dict(STR, description="The folder for the merged grafted model"),
+                                   history_dir=dict(STR, description="Leave out to write the folder only"),
+                                   message=STR, prefer=dict(STR, description="Where both hold a fact with another answer: error (default), mine or theirs")),
+                              ["mine", "theirs", "out_dir"])),
     "weights_checkout": ("Write a recorded version of the weights as a model folder, byte for byte as it was exported. A version may be "
                          "'base', the unedited model. The loaded model is not changed.",
                          _schema(dict(history_dir=STR, version=dict(STR, description="A version id, such as v1, or base"),
@@ -212,7 +223,7 @@ class GraftTools:
             try:
                 out = getattr(self, f"_{name}")(**args)
             except (KeyError, ValueError) as error:
-                return dict(error=str(error).strip("'\""))
+                return dict(error=str(error.args[0]) if isinstance(error, KeyError) and error.args else str(error))   # a KeyError's own text is quoted
             out["seconds"] = round(time.time() - t0, 1)
             return out
 
@@ -232,9 +243,16 @@ class GraftTools:
         replaced = any(f.subject.lower() == subject.strip().lower() and f.relation == rel for f in g.facts)   # an update gets a new id
         stored = g.add(subject, rel, answer)
         probe = g.wordings.relations[stored.relation].chat[0].format(s=stored.subject)
-        return dict(added=vars(stored), replaced=replaced,
-                    quick_look=dict(note="a training wording, for a quick look only; use check_fact on new wordings",
-                                                        question=probe, reply=g.ask(probe)))
+        forms = g.detectors_of(stored.subject, stored.relation)   # the forms of question the fact got a detector for
+        out = dict(added=vars(stored), replaced=replaced, detectors=forms,
+                   quick_look=dict(note="a training wording, for a quick look only; use check_fact on new wordings",
+                                   question=probe, reply=g.ask(probe)))
+        if len(forms) < 2:
+            out["note"] = ("no detector could be built for " + ("plain or chat questions" if not forms else
+                                                               f"{'chat' if forms == ['plain'] else 'plain'} questions")
+                           + ": the model does not tell this fact's questions from its other ones, so they will not be answered. "
+                             "More wordings for the relation (teach_wordings, then rebuild) may help")
+        return out
 
     def _remove_fact(self, subject: str, relation: str | None = None) -> dict:
         return dict(removed=self.graft.remove(subject, relation), facts=len(self.graft))
@@ -311,7 +329,13 @@ class GraftTools:
                              "A new kind is added with add_kind")
         rel = Relation(name=canonical_relation(name), plain=plain, chat=chat, person=person, subject=subject)
         self.graft.add_relation(rel)
-        return dict(added_relation=rel.name, plain=len(rel.plain), chat=len(rel.chat))
+        same_kind = sum(self.graft.wordings.relations[f.relation].subject == subject for f in self.graft.facts)
+        out = dict(added_relation=rel.name, plain=len(rel.plain), chat=len(rel.chat))
+        if same_kind:  # a fact learns to stay shut on the other relations' questions when it is built: those stored before never saw this one
+            out["note"] = (f"{same_kind} stored fact{'' if same_kind == 1 else 's'} about a {subject} "
+                           f"{'was' if same_kind == 1 else 'were'} built before this relation existed: call rebuild so that "
+                           f"{'it learns' if same_kind == 1 else 'they learn'} to stay shut on its questions")
+        return out
 
     def _teach_wordings(self, relation: str, plain: list[str] | None = None, chat: list[str] | None = None) -> dict:
         out = self.graft.add_wordings(relation, plain or [], chat or [])
@@ -402,6 +426,26 @@ class GraftTools:
         out = g.merge_grafted(theirs, path, grafted_dir, history_dir, message, prefer=prefer)
         return dict(merged=out["merged"], table_version=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(g),
                     not_in_weights=out["not_in_weights"])
+
+    def _weights_merge(self, mine: str, theirs: str, out_dir: str, history_dir: str | None = None, message: str = "", prefer: str = "error") -> dict:
+        import warnings
+
+        from . import weight_history
+        from .graft import merge_grafted_models
+
+        g = self.graft
+        base = g._base_folder(None)
+        how = dict(prefer=prefer, paragraphs=g._calibration)   # the ordinary text this table's own exports are re-fitted on
+        with warnings.catch_warnings(record=True) as caught, g.detached():
+            warnings.simplefilter("always")
+            if history_dir:
+                done = weight_history.merge(history_dir, mine, theirs, out_dir, g.model, g._given_tokenizer, message, base_dir=base, **how)
+                merged, version = done["merged"], done["version"]
+            else:
+                merged, version = merge_grafted_models(g.model, g._given_tokenizer, base, mine, theirs, out_dir, **how), None
+        return dict({k: merged[k] for k in ("added", "replaced", "kept", "same", "skipped_names", "facts", "same_as_one_export", "why")},
+                    neurons={str(layer): n for layer, n in merged["neurons"].items()}, last_layer=merged["last_layer"], folder=out_dir,
+                    weights=self._weights_row(version) if version is not None else None, warnings=[str(w.message) for w in caught])
 
     def _weights_checkout(self, history_dir: str, version: str, out_dir: str) -> dict:
         from . import weight_history

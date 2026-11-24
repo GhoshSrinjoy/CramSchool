@@ -30,3 +30,17 @@ def model(tokenizer):
         max_position_embeddings=128, pad_token_id=tokenizer.pad_token_id, eos_token_id=tokenizer.eos_token_id,
     )
     return AutoModelForCausalLM.from_config(config).eval()
+
+
+@pytest.fixture(autouse=True, scope="session")
+def cramschool_home(tmp_path_factory):
+    """Layer profiles are kept per model under $CRAMSCHOOL_HOME: the tests keep theirs in a temporary folder, not the user's."""
+    import os
+
+    old = os.environ.get("CRAMSCHOOL_HOME")
+    os.environ["CRAMSCHOOL_HOME"] = str(tmp_path_factory.mktemp("cramschool_home"))
+    yield
+    if old is None:
+        os.environ.pop("CRAMSCHOOL_HOME", None)
+    else:
+        os.environ["CRAMSCHOOL_HOME"] = old

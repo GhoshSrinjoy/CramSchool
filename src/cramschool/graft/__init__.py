@@ -3,6 +3,7 @@ fact is asked for. See docs/graft.md."""
 from . import history
 from .build import build_context, build_looser, build_parts, build_shared, entry_of, make_fact
 from .grafted import apply_layer, compile_layer, export_grafted, load_grafted
+from .grafted_merge import merge_grafted_models
 from .history import Version
 from .layer import GraftLayer, NameIndex
 from .layers import LayerProfile, profile_layers
@@ -11,4 +12,4 @@ from .wordings import RELATIONS, Relation, Wordings, calibration_paragraphs, can
 
 __all__ = ["Graft", "GraftOptions", "StoredFact", "GraftLayer", "NameIndex", "Relation", "Wordings", "RELATIONS", "build_context", "build_looser",
            "build_parts", "build_shared", "entry_of", "make_fact", "default_layer", "calibration_paragraphs", "canonical_relation", "known_facts",
-           "compile_layer", "apply_layer", "export_grafted", "load_grafted", "LayerProfile", "profile_layers", "history", "Version"]
+           "compile_layer", "apply_layer", "export_grafted", "load_grafted", "merge_grafted_models", "LayerProfile", "profile_layers", "history", "Version"]

@@ -4,7 +4,7 @@ only. GPU, about 5 minutes for 40 facts.
 
 Usage: python scripts/score_table.py <model folder> <bench json> <table folder> <base rows jsonl> <out jsonl> [--arm N] [--push X]
        [--prompt-detector | --no-prompt-detector] [--expect-end N] [--loaded <json>] [--save <table folder>] [--against <rows jsonl>]
-       [--last-layer later|all]
+       [--last-layer later|all] [--also <table folder>]...
 
 --arm N       keep a fact armed for N positions after it opens at the prompt's end (lab notebook, step 8); 0 is the v1 layer
 --push X      the multiple of every answer token's vector (lab notebook, step 9); 2 is the v1 layer
@@ -18,6 +18,8 @@ Usage: python scripts/score_table.py <model folder> <bench json> <table folder> 
 --against     the rows of another setting on the same table: prints which facts pass in one and not in the other, and which recall
               replies lost an answer they had
 --last-layer  write the answer's later tokens (later) or all of them (all) at the model's last MLP (lab notebook, step 24)
+--also        another saved table of the same facts, attached at the same time (repeatable). With tables built at different layers
+              and the write at the last layer, a fact answers where any of the tables opens: the question is read at several layers
 """
 import json
 import os
@@ -61,6 +63,13 @@ def main():
         graft.options.last_layer = args[args.index("--last-layer") + 1]
     label = f"arm {arm}, push {graft.options.push:g}" + (", end-of-prompt detector" if graft.options.prompt_detector else "")
     label += f", last layer: {graft.options.last_layer}" if graft.options.last_layer else ""
+    others = []
+    for folder in [args[i + 1] for i, a in enumerate(args) if a == "--also"]:  # more tables of the same facts, attached at the same time
+        other = Graft.load(folder, model, tok)
+        other.options.arm, other.options.prompt_detector, other.options.last_layer = arm, graft.options.prompt_detector, graft.options.last_layer
+        others.append(other.attach())
+    if others:
+        label += f"; read at layers {sorted([graft.layer] + [o.layer for o in others])} at once"
     if os.path.exists(out_path):
         os.remove(out_path)
     rows = []
@@ -86,6 +95,8 @@ def main():
                   f"case {m['case']:.2f} cross {m['cross']:.2f} known lost {m['known_lost']}  {'PASS' if not failed else 'fail: ' + ', '.join(failed)}",
                   flush=True)
         events = dict(graft._layer.events)
+    for other in others:
+        other.detach()
     if save:
         graft.save(save)
     med = lambda k: statistics.median(r["measures"][k] for r in rows)  # noqa: E731

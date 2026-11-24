@@ -155,3 +155,38 @@ def test_serve_over_http_loads_the_model_first_and_stays_on_this_computer(monkey
 @pytest.fixture()
 def anyio_backend():
     return "asyncio"
+
+
+def test_a_long_call_tells_its_client_that_it_is_still_running(monkeypatch):
+    """A client may give up on a call that is silent for long (Claude Code after 300 seconds), and a build or an export runs for
+    minutes. Every call runs in a worker thread and sends a note every BEAT seconds, with the latest line of progress."""
+    import time
+
+    import anyio
+    from mcp import Client
+
+    from cramschool import mcp_server
+    from cramschool.tools import GraftTools
+
+    class Slow(GraftTools):
+        def call(self, name, args=None):
+            self.said = "building a fact"
+            time.sleep(0.6)
+            return dict(facts=0, tool=name)
+
+    monkeypatch.setattr(mcp_server, "BEAT", 0.1)
+    server = mcp_server.build_server(lambda: None, Slow(None))
+    notes = []
+
+    async def heard(progress, total, message):
+        notes.append((progress, message))
+
+    async def check():
+        async with Client(server) as client:
+            result = await client.call_tool("cramschool_graft_status", {}, progress_callback=heard)
+            assert not result.is_error and '"tool": "status"' in "".join(getattr(part, "text", "") for part in result.content)
+            quiet = await client.call_tool("cramschool_graft_status", {})      # a client that asks for no notes gets its result all the same
+            assert not quiet.is_error
+
+    anyio.run(check)
+    assert len(notes) >= 2 and notes[0] == (1, "building a fact") and [n for n, _ in notes] == sorted(n for n, _ in notes)

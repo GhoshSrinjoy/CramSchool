@@ -291,13 +291,13 @@ def layer_profile():
     layers, recall, leak, pick, tied = prof["layers"], prof["recall"], prof["leak"], prof["pick"], prof["tied"]
     fig, (ax, bx) = plt.subplots(1, 2, figsize=(12, 5.4), gridspec_kw=dict(width_ratios=[2.3, 1]))
     fig.subplots_adjust(left=0.065, right=0.975, top=0.74, bottom=0.14, wspace=0.16)
-    title(fig, "Which layer reads the question best? Measured, not hard-coded", "Left: every layer of Qwen3.5-0.8B on 12 invented probe facts, with half of each relation's wordings held out.\nRight: bench40h's 40 facts with the question read at three of the layers and the answer written at the last. Not blind.")
+    title(fig, "Which layer reads the question best? Measured, not hard-coded", "Left: every layer of Qwen3.5-0.8B on 12 invented probe facts, with half of each relation's wordings held out.\nRight: bench40h's 40 facts with the question read at four of the layers and the answer written at the last. Not blind.")
     ax.axvspan(min(tied) - 0.5, max(tied) + 0.5, color=GREEN_L, alpha=0.7, zorder=0)
     ax.plot(layers, recall, color=GREEN, linewidth=2.2, marker="o", markersize=4.5, label="held-out recall: the fact's own questions it opens on", zorder=3)
     ax.plot(layers, leak, color=ROSE, linewidth=1.8, marker="o", markersize=3.5, label="held-out leak: other questions about the subject it opens on", zorder=3)
-    ax.annotate("layer 20\nhard-coded until now", (20, recall[layers.index(20)] - 0.012), (18.3, 0.56), fontsize=9.5, color=INK, ha="center",
+    ax.annotate("layer 20\nused in v1", (20, recall[layers.index(20)] - 0.012), (18.3, 0.56), fontsize=9.5, color=INK, ha="center",
                 arrowprops=dict(arrowstyle="-", color=FAINT, linewidth=0.9))
-    ax.text(pick, recall[layers.index(pick)] + 0.045, f"layer {pick}\nthe pick", fontsize=9.5, color=INK, ha="center")
+    ax.text(pick, recall[layers.index(pick)] + 0.045, f"layer {pick}\nmeasured: the default", fontsize=9.5, color=INK, ha="center")
     ax.set_xlim(-0.6, max(layers) + 0.6)
     ax.set_ylim(-0.02, 1.02)
     ax.set_xticks(layers[::2] + [layers[-1]] if layers[-1] % 2 else layers[::2])
@@ -305,8 +305,9 @@ def layer_profile():
     ax.legend(loc="upper left", frameon=False, fontsize=9.5)
     clean(ax, grid_axis="y")
     S = "slots/33_layer_profile/"
-    bars = [("layer 12\nranked lowest", S + "bench40h_layer12_all", SLATE_L, SLATE), ("layer 20\nhard-coded", "slots/31_last_layer/bench40h_all", SLATE_L, SLATE),
-            (f"layer {pick}\nthe pick", S + f"bench40h_layer{pick}_all", GREEN_L, GREEN)]
+    bars = [("layer 12\nranked lowest", S + "bench40h_layer12_all", SLATE_L, SLATE), ("layer 20\nused in v1", "slots/31_last_layer/bench40h_all", SLATE_L, SLATE),
+            ("layer 23\nthe last", "slots/34_last_layer_neurons/bench40h_t23_all", SLATE_L, SLATE),
+            (f"layer {pick}\nthe default", S + f"bench40h_layer{pick}_all", GREEN_L, GREEN)]
     for x, (name, arm, fill, edge) in enumerate(bars):
         n = passes("bench40h", arm)
         bx.bar(x, n, width=0.7, color=fill, edgecolor=edge, hatch="//" if edge == GREEN else "", linewidth=1.2)

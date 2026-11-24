@@ -91,7 +91,7 @@ def build_parser() -> argparse.ArgumentParser:
     g_add.add_argument("--answer", required=True)
     g_add.add_argument("--relations", help="JSON file of extra relations: {name: {plain: [...], chat: [...]}}")
     g_add.add_argument("--layer", type=_layer_arg, help="a new table only: the layer the question is read at. A number; or auto, to measure "
-                                                        "every layer of the model first, about 3 minutes; or last (default: the model's last layer)")
+                                                        "every layer of the model first, about 3 minutes the first time and then kept (the default); or last")
     g_add.add_argument("--ask", help="a question to ask before and after")
     _setting_args(g_add)
     g_file = graft.add_parser("add-file", help="add every fact of a dataset, and save the table")
@@ -242,6 +242,11 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--watch", action="store_true", help="open the live progress window when the first tool call arrives")
     serve.add_argument("--dtype", default="bfloat16", choices=("bfloat16", "float16", "float32"))
     serve.add_argument("--fast", action="store_true", help="a new fact table uses the fast build: later facts of a relation in 5 to 9 seconds")
+    serve.add_argument("--layer", type=_layer_arg, help="a new fact table only: the layer the question is read at. Default: measured on the "
+                                                        "model (about 3 minutes the first time, then kept). A number, last, or auto")
+    serve.add_argument("--system", help="a new fact table only: the system message of the application the facts will be asked in")
+    serve.add_argument("--prompt-detector", action="store_true", help="a new fact table only: a second detector at the end of the prompt, "
+                                                                      "for tables with at most two facts on a subject")
     serve.add_argument("--transport", default="stdio", choices=("stdio", "http"),
                        help="stdio: for Claude Code, which starts the server itself. http: stay running with the model loaded, on this computer only")
     serve.add_argument("--port", type=int, default=remote.DEFAULT_PORT, help=f"the port for --transport http (default {remote.DEFAULT_PORT})")
@@ -278,6 +283,16 @@ def build_parser() -> argparse.ArgumentParser:
     w_ask.add_argument("--versions", help="the versions to ask, separated by commas, such as base,v1,v2 (default: base and every recorded one)")
     w_ask.add_argument("questions", nargs="+")
     w_ask.add_argument("--plain", action="store_true", help="treat the questions as plain sentence openings, not chat")
+    w_merge = weights.add_parser("merge", help="merge two grafted models into one, at the weights: no table is needed (loads the base model)")
+    _model_args(w_merge)
+    w_merge.add_argument("--mine", required=True, help="the first grafted model's folder")
+    w_merge.add_argument("--theirs", required=True, help="the second grafted model's folder")
+    w_merge.add_argument("--out", required=True, help="the folder for the merged grafted model")
+    w_merge.add_argument("--prefer", default="error", choices=("error", "mine", "theirs"), help="where both hold a fact with another answer")
+    w_merge.add_argument("--history", help="also record the merged model as a version in this history of the weights")
+    w_merge.add_argument("-m", "--message", default="", help="with --history: what was merged, in a few words")
+    w_merge.add_argument("--last-budget", type=int, help="how many of the last layer's neurons may be reused (default: as an export)")
+    w_merge.add_argument("--calibration", help="text file of ordinary paragraphs, one per line, if both models were exported with text of your own")
     w_bisect = weights.add_parser("bisect", help="find the first version of the weights at which a question stopped getting, or started getting, "
                                                  "a text in its reply (loads the model)")
     _model_args(w_bisect)
@@ -745,6 +760,41 @@ def run_weights_command(args) -> int:
                 print(f"  {step['version']}: {reply!r}")
             print(f"the reply went wrong at {found['first_bad']}; {found['last_good']} was the last right one")
             print(wh.diff_text(found["diff"]))
+        elif args.weights_command == "merge":
+            import warnings
+
+            from .graft import merge_grafted_models
+
+            if not os.path.isdir(args.model):
+                raise SystemExit("--model must be the base model's local folder, in safetensors format: the two models were exported from it")
+            paragraphs = None
+            if args.calibration:
+                with open(args.calibration, encoding="utf-8") as fh:
+                    paragraphs = [line.strip() for line in fh if line.strip()]
+            model, tokenizer = _load(args.model, args.dtype)
+            options = dict(prefer=args.prefer, paragraphs=paragraphs, last_budget=args.last_budget, progress=_say)
+            with warnings.catch_warnings(record=True) as caught:
+                warnings.simplefilter("always")
+                if args.history:
+                    done = wh.merge(args.history, args.mine, args.theirs, args.out, model, tokenizer, args.message, base_dir=args.model, **options)
+                    merged, version = done["merged"], done["version"]
+                else:
+                    merged, version = merge_grafted_models(model, tokenizer, args.model, args.mine, args.theirs, args.out, **options), None
+            print(f"{len(merged['added'])} added, {len(merged['replaced'])} replaced, {len(merged['kept'])} kept as they were, {merged['same']} the same; "
+                  f"{plural(merged['facts'], 'fact')} in the merged model in {args.out}")
+            print("  neurons: " + ", ".join(f"{n} at layer {layer}" for layer, n in merged["neurons"].items()))
+            if merged["same_as_one_export"]:
+                print("  the weights are the ones a single export of all these facts gives")
+            elif merged["same_as_one_export"] is None:
+                print("  whether the weights are those of a single export is not known: the two models don't say what text they were re-fitted on")
+            else:
+                print(f"  the weights are not those of a single export: {merged['why']}")
+            for skipped in merged["skipped_names"]:
+                print(f"  name left out: {skipped['name']} ({skipped['why']})")
+            for w in caught:
+                print(f"  warning: {w.message}")
+            if version is not None:
+                print(f"recorded as {version.id} in {args.history}")
         elif args.weights_command == "commit":
             before = len(wh.versions(args.history))
             version = wh.commit(args.history, args.checkpoint, args.message, base_dir=args.base, table=args.table)
@@ -790,7 +840,7 @@ def main(argv=None) -> int:
         from .mcp_server import serve as run_server
 
         run_server(args.model, args.calibration, args.budget, args.log, args.dtype, log_dir=args.log_dir, watch=args.watch, transport=args.transport,
-                   port=args.port, table=args.table, fast=args.fast)
+                   port=args.port, table=args.table, fast=args.fast, layer=args.layer, system=args.system, prompt_detector=args.prompt_detector)
         return 0
     if args.command == "graft":
         return run_graft_command(args)

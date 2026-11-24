@@ -16,6 +16,10 @@ Forward passes and linear solves only. Nothing is trained, and no weight of the 
 """
 from __future__ import annotations
 
+import hashlib
+import itertools
+import json
+import os
 import statistics
 import time
 from dataclasses import asdict, dataclass, field
@@ -29,6 +33,7 @@ from .core import (CALIBRATION_FIT, CALIBRATION_HELD, CALIBRATION_MAX_TOKENS, _S
                    mlp_of, ratio)
 from .wordings import Relation, Wordings, calibration_paragraphs, invented_companies, norm
 
+PROFILE_VERSION = 1       # of the kept profiles: raised when the profile would measure something else for the same key
 PROBES_PER_RELATION = 3   # invented subjects per relation
 PROBE_SEED = 20261123     # the probe companies' names; another seed than the build's invented companies
 LEAK_SLACK = 0.02         # a layer is admissible if its held-out leak is within this of the smallest
@@ -54,6 +59,7 @@ class LayerProfile:
     flat: bool
     facts: list[dict] = field(default_factory=list)   # per probe fact: subject, relation, and its recall and leak per layer
     per_fact: dict = field(default_factory=dict)      # a layer per fact, picked on half the held-out wordings and scored on the other half
+    sets: dict = field(default_factory=dict)          # reading at two or three layers at once, picked and scored the same way (_layer_sets)
     seconds: float = 0.0
 
     def summary(self) -> dict:
@@ -69,6 +75,12 @@ class LayerProfile:
             mark = "  <- pick" if layer == self.pick else "  tied" if layer in self.tied else "" if layer in self.admissible else "  leaks more"
             lines.append(f"{layer:5d}  {self.recall[i]:6.3f}  {self.leak[i]:5.3f}  {self.spread[i]:6.3f}  {self.no_detector[i]:5.2f}{mark}")
         lines.append(f"pick: layer {self.pick}; tied: {self.tied}" + ("; the profile is flat over them" if self.flat else ""))
+        for name, said in (("any", "open if any of them opens"), ("all", "open only if all of them open")):
+            s = self.sets.get(name)
+            if s:
+                lines.append(f"layers {s['layers']} read at once ({said}): held-out recall {s['recall']:.3f}, leak {s['leak']:.3f}, against "
+                             f"{s['single_recall']:.3f} and {s['single_leak']:.3f} at layer {s['single_layer']} alone; "
+                             f"{s['gain']:+.3f} of recall, {'more' if s['more_than_two_se'] else 'not more'} than two standard errors ({s['se']:.3f})")
         return "\n".join(lines)
 
 
@@ -299,6 +311,50 @@ def _layer_per_fact(rows: list[dict], layers: list[int]) -> dict:
                 recall_gain=statistics.mean(gain), leak_change=statistics.mean(more_leak))
 
 
+def _layer_sets(rows: list[dict], layers: list[int], sizes=(2, 3)) -> dict:
+    """Would reading the question at two or three layers at once do better than at one? Two ways of combining are tried: "any" (the
+    fact opens if its detectors open at any of the layers) and "all" (only if they open at every one). As for a layer per fact, the
+    set is picked on the held-out items at even places and scored on those at odd places, against the single layer picked the same
+    way: among the sets whose leak is within LEAK_SLACK of the smallest single layer's, the best recall. Returns, per way, the set,
+    its recall and leak, the single layer's, the mean gain in recall over the probe facts, its standard error, and whether the gain
+    is more than TIE_SE standard errors. These are detector openings on probe facts, not replies."""
+    pos = [[torch.tensor(o, dtype=torch.bool) for o in r["opened_pos"]] for r in rows]
+    neg = [[torch.tensor(o, dtype=torch.bool) for o in r["opened_neg"]] for r in rows]
+
+    def measure(idx, k: int, every: bool) -> tuple[list[float], list[float]]:
+        out = ([], [])
+        for which, source in enumerate((pos, neg)):
+            for fact in source:
+                read = torch.stack([fact[i][k::2] for i in idx])
+                flags = read.all(0) if every else read.any(0)
+                out[which].append(float(flags.float().mean()) if flags.numel() else 0.0)
+        return out
+
+    singles = {i: measure((i,), 0, False) for i in range(len(layers))}
+    floor = min(statistics.mean(leak) for _, leak in singles.values())
+    admissible = [i for i in singles if statistics.mean(singles[i][1]) <= floor + LEAK_SLACK + 1e-12]
+    one = max(admissible, key=lambda i: (statistics.mean(singles[i][0]), -layers[i]))
+    rec_one, leak_one = measure((one,), 1, False)
+    found = {}
+    for name, every in (("any", False), ("all", True)):
+        best = None
+        for size in sizes:
+            for idx in itertools.combinations(range(len(layers)), size):
+                rec, leak = measure(idx, 0, every)
+                if statistics.mean(leak) <= floor + LEAK_SLACK + 1e-12 and (best is None or statistics.mean(rec) > best[0]):
+                    best = (statistics.mean(rec), idx)
+        if best is None:
+            continue
+        rec, leak = measure(best[1], 1, every)
+        diff = [a - b for a, b in zip(rec, rec_one)]
+        se = statistics.stdev(diff) / len(diff) ** 0.5 if len(diff) > 1 else 0.0
+        found[name] = dict(layers=[layers[i] for i in best[1]], recall=statistics.mean(rec), leak=statistics.mean(leak), single_layer=layers[one],
+                           single_recall=statistics.mean(rec_one), single_leak=statistics.mean(leak_one), gain=statistics.mean(diff), se=se,
+                           more_than_two_se=statistics.mean(diff) > TIE_SE * se + 1e-12,
+                           leak_within_slack=statistics.mean(leak) <= statistics.mean(leak_one) + LEAK_SLACK + 1e-12)
+    return found
+
+
 def profile_layers(model, tokenizer, wordings: Wordings | None = None, *, calibration: list[str] | None = None, layers: list[int] | None = None,
                    probes: int = PROBES_PER_RELATION, options=None, progress=None) -> LayerProfile:
     """Measure, at every layer (or the given ones), how well a fact's question detectors tell their own held-out wordings from held-out
@@ -345,13 +401,61 @@ def profile_layers(model, tokenizer, wordings: Wordings | None = None, *, calibr
     leak = {layer: [r["leak"][i] for r in rows] for i, layer in enumerate(layers)}
     picked = choose(recall, leak)
     per_fact = _layer_per_fact(rows, layers)
+    sets = _layer_sets(rows, layers) if len(layers) > 1 else {}
     for r in rows:
         r.pop("opened_pos")
         r.pop("opened_neg")
     return LayerProfile(layers=layers, recall=[statistics.mean(recall[layer]) for layer in layers], leak=[statistics.mean(leak[layer]) for layer in layers],
                         spread=[cal[layer]["spread"] for layer in layers],
                         no_detector=[statistics.mean(0.0 if r["detectors"][i] else 1.0 for r in rows) for i in range(len(layers))],
-                        facts=rows, per_fact=per_fact, seconds=round(time.time() - t0, 1), **picked)
+                        facts=rows, per_fact=per_fact, sets=sets, seconds=round(time.time() - t0, 1), **picked)
 
 
-__all__ = ["LayerProfile", "profile_layers", "calibration_at", "split_wordings", "probe_facts", "choose"]
+def profiles_dir() -> str:
+    """Where layer profiles are kept on this computer: $CRAMSCHOOL_HOME/layer_profiles, by default under ~/.cramschool."""
+    return os.path.join(os.environ.get("CRAMSCHOOL_HOME") or os.path.join(os.path.expanduser("~"), ".cramschool"), "layer_profiles")
+
+
+def profile_key(model, tokenizer, wordings: Wordings, calibration: list[str] | None, options=None) -> str:
+    """What a layer profile depends on, as one hash: the model's weights (the output matrices of its first, middle and last MLP),
+    the tokenizer's size and chat format, the wordings, the build options the probes are built with, and the ordinary text. Two
+    tables with the same key would measure the same profile, so the second one reads the first one's."""
+    from ..model_access import tensor_fingerprint
+
+    n = len(blocks(model))
+    body = dict(version=PROFILE_VERSION, layers=n, weights=[tensor_fingerprint(mlp_of(model, i).down_proj.weight) for i in sorted({0, n // 2, n - 1})],
+                dtype=str(mlp_of(model, 0).down_proj.weight.dtype), device=str(model_device(model).type),
+                vocabulary=len(tokenizer), chat=getattr(tokenizer, "chat_template", None),
+                relations={name: rel.as_dict() for name, rel in wordings.relations.items()}, generic=[list(g) for g in wordings.generic],
+                kinds=wordings.kinds, guard=sorted(wordings.guard),
+                build=[getattr(options, k, d) for k, d in (("real_world", "all"), ("context", 0), ("inside", "negative"), ("twins", None))],
+                text="bundled" if calibration is None else hashlib.sha256("\n".join(calibration).encode("utf-8")).hexdigest())
+    return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False, default=str).encode("utf-8")).hexdigest()[:32]
+
+
+def kept_profile(key: str) -> dict | None:
+    """A profile measured earlier for this key (LayerProfile.summary), or None."""
+    path = os.path.join(profiles_dir(), key + ".json")
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return None
+
+
+def keep_profile(key: str, summary: dict) -> None:
+    """Keep a profile for the next table on the same model. A folder that can't be written is not an error: the next table measures again."""
+    try:
+        os.makedirs(profiles_dir(), exist_ok=True)
+        path = os.path.join(profiles_dir(), key + ".json")
+        with open(path + ".tmp", "w", encoding="utf-8") as fh:
+            json.dump(summary, fh, ensure_ascii=False, indent=1)
+        os.replace(path + ".tmp", path)
+    except OSError:
+        pass
+
+
+__all__ = ["LayerProfile", "profile_layers", "calibration_at", "split_wordings", "probe_facts", "choose", "profile_key", "kept_profile", "keep_profile",
+           "profiles_dir"]

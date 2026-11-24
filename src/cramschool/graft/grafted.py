@@ -28,6 +28,7 @@ only.
 from __future__ import annotations
 
 import glob
+import hashlib
 import json
 import os
 import re
@@ -54,6 +55,7 @@ TEXT_CHUNK, TEXT_TOKENS, TEXT_SPARE = 512, 1_000_000, 100_000  # step 6's text: 
 MEASURED_NEURONS = 512      # freeing up to this many lost no firmly known fact at layer 20 of the 0.8B; at 1,024 one was lost
 FORMS = ("plain",)          # compile_layer's default; Graft.export_grafted compiles both forms
 LAST_SHARE = 256 / 3584     # the share of the last layer's neurons a compile may reuse: 256 of the 0.8B's met the damage bar, 384 did not
+LATER_FILE = "grafted_later.bin"  # beside a grafted model's weights: its answers' vectors at the other layer (write_later)
 
 
 # ---------------------------------------------------------------- freeing neurons
@@ -183,6 +185,20 @@ def _later_vector(spellings: dict, step: int, token: int):
     return None
 
 
+def later_tokens(spellings: dict, measured: bool = False):
+    """((place in the answer, token), the spelling it is taken from) of each later answer token, once each, in the order their
+    neurons are compiled. measured: leave out a token whose answer vector could not be measured, for a layer that pushes answer
+    vectors; a layer that writes sized rows needs no vector."""
+    seen = set()
+    for sp in spellings.values():
+        for j in range(1, len(sp["ids"])) if sp is not None else ():
+            key = (j, int(sp["ids"][j]))
+            if key in seen or (measured and j in sp.get("missing", ())):
+                continue
+            seen.add(key)
+            yield key, sp
+
+
 def sized_row(last: dict, token: int) -> torch.Tensor:
     """What the inserted layer writes at the last MLP's output to make `token` come next (layer.GraftLayer._row): the token's own row of
     the output matrix at the set length, in float64. last: dict(head=the output matrix, size=the length)."""
@@ -251,16 +267,12 @@ def fact_neurons(parts: dict, c: torch.Tensor, cbar: float, forms=FORMS, gain: f
         else:
             out.append(dict(form=d["form"], kind="first", spelling=name, gate=gain * row, down=v / silu_k))
     if track:
-        seen = set()
-        for sp in spellings.values() if "next" in kinds else ():
-            for j in range(1, len(sp["ids"])) if sp is not None else ():
-                key = (j, int(sp["ids"][j]))
-                if key in seen or (last is None and j in sp.get("missing", ())) or (next_keys is not None and key not in next_keys):
-                    continue
-                seen.add(key)
-                vec = sized_row(last, key[1]).to(c.device) if last is not None else push * sp["vecs"][j].to(c.device).double()
-                out.append(dict(form="any", kind="next", step=j, token=key[1], gate=(gain / cbar) * cd,  # reads gain · (c·x / c̄): always open
-                                down=vec / silu_k))
+        for key, sp in later_tokens(spellings, measured=last is None) if "next" in kinds else ():
+            if next_keys is not None and key not in next_keys:
+                continue
+            vec = sized_row(last, key[1]).to(c.device) if last is not None else push * sp["vecs"][key[0]].to(c.device).double()
+            out.append(dict(form="any", kind="next", step=key[0], token=key[1], gate=(gain / cbar) * cd,  # reads gain · (c·x / c̄): always open
+                            down=vec / silu_k))
         return out
     for k in continuation or ():
         vec = _later_vector(spellings, k["step"], k["token"])
@@ -298,9 +310,7 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
     if last is not None and layer != len(blocks(model)) - 1:
         raise ValueError(f"last is for the model's last layer ({len(blocks(model)) - 1}), not layer {layer}: only there does a write change "
                          "its own position's next token and nothing after it")
-    say = progress or (lambda s: None)
-    mlp = blocks(model)[layer].mlp
-    device = mlp.down_proj.weight.device
+    device = blocks(model)[layer].mlp.down_proj.weight.device
     c, cbar = mctx["c"].to(device).float(), float(mctx["cbar"])
     specs = []
     for i, f in enumerate(facts):
@@ -313,6 +323,41 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
         warnings.warn(f"{len(specs)} neurons to reuse at layer {layer}: no firmly known fact was lost up to {MEASURED_NEURONS} freed, and "
                       "one was at 1,024 (lab notebook, the firm bar's check); check the exported model (bench.scoring.FirmCheck) before "
                       "relying on it", stacklevel=2)
+    placed = place_neurons(model, tokenizer, layer, specs, paragraphs=paragraphs, extra_moments=extra_moments, progress=progress)
+    neurons = [neuron_record(s, sp) for s, sp in zip(placed["slots"], specs)]
+    answers = [{name: [int(t) for t in sp["ids"]] for name, sp in f["parts"]["spellings"].items() if sp is not None} for f in facts]
+    return dict(layer=layer, gate=placed["gate"], up=placed["up"], down=placed["down"], neurons=neurons, gain=gain, push=push, where=where,
+                saturate=bool(saturate), track=bool(track), clip=CLIP, answers=answers if track else [], spell=last is not None,
+                refit=placed["refit"])
+
+
+def neuron_record(slot: int, sp: dict) -> dict:
+    """What grafted.json says of one fact neuron: its slot, its fact, and what it does."""
+    return dict(slot=int(slot), fact=sp["fact"], subject=sp["subject"], relation=sp["relation"], answer=sp["answer"], form=sp["form"],
+                kind=sp["kind"], **({"step": sp["step"], "token": sp["token"]} if sp["kind"] == "next" else {"spelling": sp["spelling"]}))
+
+
+def moments_hash(Hf: torch.Tensor, Hv: torch.Tensor) -> str:
+    """A short hash of the two second moments a layer's neurons were chosen and re-fitted from. Two compiles of the same layer that
+    read the same model on the same ordinary text have the same one, and then free the same neurons in the same order."""
+    h = hashlib.sha256()
+    for H in (Hf, Hv):
+        h.update(H.detach().cpu().contiguous().numpy().tobytes())
+    return h.hexdigest()[:16]
+
+
+def place_neurons(model, tokenizer, layer: int, rows: list[dict], *, paragraphs: list[str] | None = None,
+                  extra_moments: tuple[torch.Tensor, torch.Tensor] | None = None, progress: Callable[[str], None] | None = None) -> dict:
+    """The second half of a compile: free as many of the layer's neurons as there are `rows`, re-fit the neurons that are left, and
+    write each row into a freed neuron, in order. rows: dicts with `gate` (the neuron's gate row) and `down` (its output column).
+    `compile_layer` gives it the rows it has just made from a table's facts; a merge of two grafted models (grafted_merge) gives it
+    rows read out of their checkpoints. Both therefore choose and re-fit the same way.
+
+    The neurons are freed in one fixed order (redundancy_order), so the first n rows of a longer list get the neurons a list of n
+    rows gets. Returns gate, up and down (the layer's new matrices, in the model's number type, on the CPU), slots (the neuron each
+    row got) and refit (the re-fit's settings, and the hash of the moments it was made from). The model is left unchanged."""
+    say = progress or (lambda s: None)
+    mlp = blocks(model)[layer].mlp
     paras = paragraphs or calibration_paragraphs()
     fit = [paras[i] for i in CALIBRATION_FIT if i < len(paras)]
     spare = [paras[i] for i in SPARE if i < len(paras)] or fit[-20:]
@@ -322,24 +367,35 @@ def compile_layer(model, tokenizer, facts: list[dict], layer: int, mctx: dict, *
     if extra_moments is not None:
         Hf, Hv = Hf + extra_moments[0].to(Hf), Hv + extra_moments[1].to(Hv)
     W0 = mlp.down_proj.weight.data
-    slots = redundancy_order(Hf, W0.double(), len(specs))
+    slots = redundancy_order(Hf, W0.double(), len(rows))
     K, dW, ridge, left = compensation(Hf, Hv, W0.double(), slots, RIDGES if extra_moments is None else RIDGES_TEXT)
     say(f"{len(slots)} neurons freed and the rest re-fitted (ridge {ridge:g}, freed output left {left:.1%}) | {time.time() - t0:.0f}s")
     gate, up = mlp.gate_proj.weight.data.clone(), mlp.up_proj.weight.data.clone()
     down = W0.double().clone()
     down[:, slots] = 0
     down[:, K] += dW.to(down.device)
-    for s, spec in zip(slots, specs):
-        gate[s] = spec["gate"].to(gate.dtype)
+    for s, row in zip(slots, rows):
+        gate[s] = row["gate"].to(gate.device, gate.dtype)
         up[s] = 0
-        down[:, s] = spec["down"]
-    neurons = [dict(slot=int(s), fact=sp["fact"], subject=sp["subject"], relation=sp["relation"], answer=sp["answer"], form=sp["form"],
-                    kind=sp["kind"], **({"step": sp["step"], "token": sp["token"]} if sp["kind"] == "next" else {"spelling": sp["spelling"]}))
-               for s, sp in zip(slots, specs)]
-    answers = [{name: [int(t) for t in sp["ids"]] for name, sp in f["parts"]["spellings"].items() if sp is not None} for f in facts]
-    return dict(layer=layer, gate=gate.cpu(), up=up.cpu(), down=down.to(W0.dtype).cpu(), neurons=neurons, gain=gain, push=push, where=where,
-                saturate=bool(saturate), track=bool(track), clip=CLIP, answers=answers if track else [], spell=last is not None,
-                refit=dict(ridge=ridge, freed_output_left=round(left, 5)))
+        down[:, s] = row["down"].to(down.device, down.dtype)
+    return dict(gate=gate.cpu(), up=up.cpu(), down=down.to(W0.dtype).cpu(), slots=[int(s) for s in slots],
+                refit=dict(ridge=ridge, freed_output_left=round(left, 5), moments=moments_hash(Hf, Hv)))
+
+
+def share_last_layer(firsts: int, keys: list[tuple], n_facts: int, budget: int) -> tuple[list[set], list[set], dict]:
+    """Share out the last layer's budget. firsts: how many first-token neurons the facts have there; they all stay. keys: every later
+    answer token as (its place in the answer, its fact's index, (place, token)). They fill what is left of the budget in the order
+    of their place: every fact's second token, then every third, and so on. Returns (per fact, the keys at the last layer; the
+    same for the other layer; the counts). An export and a merge of two grafted models both share the layer out here."""
+    at_last, elsewhere = [set() for _ in range(n_facts)], [set() for _ in range(n_facts)]
+    left = budget - firsts
+    for j, i, key in sorted(keys):
+        if left > 0:
+            at_last[i].add(key)
+            left -= 1
+        else:
+            elsewhere[i].add(key)
+    return at_last, elsewhere, dict(budget=budget, first=firsts, later_at_last=sum(map(len, at_last)), later_elsewhere=sum(map(len, elsewhere)))
 
 
 def last_layer_plan(facts: list[dict], forms, width: int, budget: int | None = None) -> tuple[list[set], list[set], dict]:
@@ -355,22 +411,8 @@ def last_layer_plan(facts: list[dict], forms, width: int, budget: int | None = N
         spellings = f["parts"]["spellings"]
         usable = sum(d["form"] in forms for d in fact_detectors(f["parts"]))
         firsts += usable * sum(sp is not None for sp in spellings.values())
-        seen = set()
-        for sp in spellings.values():
-            for j in range(1, len(sp["ids"])) if sp is not None else ():
-                key = (j, int(sp["ids"][j]))
-                if key not in seen:
-                    seen.add(key)
-                    keys.append((j, i, key))
-    at_last, elsewhere = [set() for _ in facts], [set() for _ in facts]
-    left = budget - firsts
-    for j, i, key in sorted(keys):
-        if left > 0:
-            at_last[i].add(key)
-            left -= 1
-        else:
-            elsewhere[i].add(key)
-    return at_last, elsewhere, dict(budget=budget, first=firsts, later_at_last=sum(map(len, at_last)), later_elsewhere=sum(map(len, elsewhere)))
+        keys += [(key[0], i, key) for key, _ in later_tokens(spellings)]
+    return share_last_layer(firsts, keys, len(facts), budget)
 
 
 def join_layers(first: dict, later: dict) -> dict:
@@ -409,13 +451,55 @@ def _tensor_keys(keys, layer: int) -> dict[str, str]:
     return out
 
 
-def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | None = None, also: dict | None = None) -> dict:
+def write_later(folder: str, layer: int, c: torch.Tensor, cbar: float, spellings: list) -> str:
+    """Keep, beside a grafted model's weights, what its later answer tokens would need at another layer: for every fact its answer
+    vectors measured at `layer` (build.answer_spellings, one entry per fact, in the order of grafted.json's facts), and that
+    layer's constant direction. A grafted model compiled at the last layer holds a later token there as a sized row, and the
+    vector for the other layer is nowhere in its weights. With this file, two grafted models can be merged into one that goes
+    over the last layer's budget (grafted_merge): the tokens that have to move are written from here.
+
+    The file is in the safetensors format under another ending, so that it is not taken for one of the model's weight files."""
+    from safetensors.torch import save_file
+
+    tensors, facts = {"c": c.detach().float().cpu().contiguous()}, []
+    for i, fact in enumerate(spellings):
+        entry = {}
+        for name, sp in fact.items():
+            entry[name] = None if sp is None else dict(ids=[int(t) for t in sp["ids"]], missing=[int(j) for j in sp.get("missing", ())])
+            if sp is not None:
+                tensors[f"{i}.{name}"] = sp["vecs"].detach().float().cpu().contiguous()
+        facts.append(entry)
+    path = os.path.join(folder, LATER_FILE)
+    save_file(tensors, path, metadata={"later": json.dumps(dict(layer=int(layer), cbar=float(cbar), facts=facts))})
+    return path
+
+
+def read_later(folder: str) -> dict | None:
+    """What `write_later` kept in a grafted model's folder: layer, c, cbar and facts (per fact, each spelling's ids, vecs and
+    missing, or None). None for a model exported without it."""
+    from safetensors import safe_open
+
+    path = os.path.join(folder, LATER_FILE)
+    if not os.path.exists(path):
+        return None
+    with safe_open(path, "pt") as fh:
+        head = json.loads(fh.metadata()["later"])
+        tensors = {k: fh.get_tensor(k) for k in fh.keys()}
+    facts = [{name: None if sp is None else dict(ids=sp["ids"], missing=sp["missing"], vecs=tensors[f"{i}.{name}"]) for name, sp in fact.items()}
+             for i, fact in enumerate(head["facts"])]
+    return dict(layer=head["layer"], c=tensors["c"], cbar=head["cbar"], facts=facts)
+
+
+def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | None = None, also: dict | None = None,
+                   later: dict | None = None) -> dict:
     """Write the grafted model: a copy of the base checkpoint in `base_dir` with the compiled layer's three matrices in place of the
     originals, plus grafted.json (which neuron holds which fact) and grafted_switch.py (the name switch). Returns a report: the edited
     tensors, how many values changed, and the byte sizes of the base and grafted weight files (equal).
 
     also: a second compiled layer of the same facts, holding their later tokens' neurons while `compiled` holds their first tokens'
-    (join_layers; lab notebook, step 26). Both layers' matrices are written, and grafted.json marks each neuron with its layer."""
+    (join_layers; lab notebook, step 26). Both layers' matrices are written, and grafted.json marks each neuron with its layer.
+    later: dict(layer, c, cbar, spellings), kept beside the weights for a later merge (write_later). Without it, a file of an
+    earlier export in the same folder is removed, since it would belong to other facts."""
     from safetensors import safe_open
     from safetensors.torch import save_file
 
@@ -462,6 +546,10 @@ def export_grafted(base_dir: str, out_dir: str, compiled: dict, *, meta: dict | 
     with open(os.path.join(out_dir, SPEC_FILE), "w", encoding="utf-8") as fh:
         json.dump(spec, fh, ensure_ascii=False, indent=1)
     shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), "grafted_switch.py"), os.path.join(out_dir, "grafted_switch.py"))
+    if later is not None:
+        write_later(out_dir, later["layer"], later["c"], later["cbar"], later["spellings"])
+    elif os.path.exists(os.path.join(out_dir, LATER_FILE)):
+        os.remove(os.path.join(out_dir, LATER_FILE))
     return report
 
 
@@ -475,4 +563,5 @@ def load_grafted(folder: str, *, dtype=torch.bfloat16, device_map="cuda", switch
 
 
 __all__ = ["compile_layer", "apply_layer", "export_grafted", "load_grafted", "fact_neurons", "sized_row", "join_layers", "last_layer_plan", "second_moment", "redundancy_order", "compensation",
-           "text_moments", "attach", "switch_for"]
+           "text_moments", "attach", "switch_for", "place_neurons", "share_last_layer", "later_tokens", "neuron_record", "write_later", "read_later",
+           "LATER_FILE"]

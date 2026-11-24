@@ -19,14 +19,14 @@ import os
 import re
 import time
 import warnings
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from typing import Callable, Iterable
 
 import torch
 
 from ..gates import generate_batch
 from ..model_access import Prompt, model_device, render_chat, tensor_fingerprint, with_system
-from .build import (N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_prompt_detectors, build_shared, build_slots, entry_of,
+from .build import (N_SLOT_ANSWERS, build_context, build_looser, build_parts, build_prompt_detectors, build_shared, build_slots, entry_of, fact_detectors,
                     make_fact)
 from .core import blocks, calibration_stats, constant_direction, mlp_of
 from .core import final_scale as measure_final_scale
@@ -34,6 +34,8 @@ from .layer import GraftLayer, NameIndex
 from .wordings import Relation, Wordings, calibration_paragraphs, canonical_relation
 
 FORMAT_VERSION = 1
+ORDINARY_TEXT = "ordinary_text.json"   # in a saved table's folder: the ordinary text it was given, if not the bundled paragraphs
+WEIGHTS_PARTS = "weights_parts"   # in a saved table's folder: its facts as built at the last layer, for the grafted model
 VALIDATED = {"Qwen3.5-0.8B": 20}  # models GRAFT was validated on, and the layer used
 
 
@@ -134,14 +136,18 @@ class Graft:
 
     def __init__(self, model, tokenizer, *, layer: int | str | None = None, wordings: Wordings | None = None, options: GraftOptions | None = None,
                  calibration: list[str] | None = None, progress: Callable[[str], None] | None = None, system: str | None = None):
-        """layer: where the table reads the question. None (the default since 1.2): the model's last layer, for a table that writes its
-        answers there (options.last_layer="all"). It reads the question as well as any layer on Qwen3.5-0.8B, it is where the grafted
-        model's neurons must sit, and it needs no depth picked by hand (lab notebook, steps 25 and 26). "last" says the same. A number
-        sets the layer. "auto" measures every layer of this model on invented probe facts and takes the pick (layers.profile_layers,
-        lab notebook, step 25; about 3 minutes on the 0.8B, kept as `layer_profile` and saved with the table). "auto" selects only for a table that
-        writes its answers at the last layer (options.last_layer="all"): with a push at the table's own layer the layer is also where
-        the answer is written, which the profile doesn't measure, and the earlier rule is used: layer 20 of a 24-layer model, the
-        same depth of another, with a warning. That is also what None gives for such a table.
+        """layer: where the table reads the question. None (the default) and "auto": measured. Every layer of this model is profiled
+        on invented probe facts and the pick is taken (layers.profile_layers, lab notebook, step 25): layer 22 on Qwen3.5-0.8B, where
+        40 of 40 facts of a bench pass, against 38 at the last layer and 32 at layer 20. The profile takes about 3 minutes on the
+        0.8B the first time; it is kept on this computer for the model (layers.profiles_dir), so the next table on the same model
+        starts at once, and it is saved with the table as `layer_profile`. "last": the model's last layer. A number sets the layer.
+
+        The layer is measured only for a table that writes its answers at the last layer (options.last_layer="all", the default):
+        with a push at the table's own layer the layer is also where the answer is written, which the profile doesn't measure, and
+        the earlier rule is used: layer 20 of a 24-layer model, the same depth of another, with a warning.
+
+        The grafted model does not depend on this choice. Its neurons sit at the last layer and need detectors that read there, so
+        `export_grafted` builds the facts a second time at the last layer (`weights_table`) and compiles those.
 
         system: the system message of the application the table will be asked in. Chat questions are then taught, and asked by `ask`
         and `compare`, behind that message; the table keeps its own copy of the tokenizer for it (model_access.with_system) and the one
@@ -155,14 +161,18 @@ class Graft:
         self._calibration = calibration
         self._progress = progress
         self.layer_profile: dict | None = None    # what layer="auto" measured, when the layer was picked that way
+        self._twin: Graft | None = None           # the same facts built at the last layer, for the grafted model (weights_table)
+        self._twin_built: dict = {}               # per fact of the twin, the hash of this table's parts it was built beside
+        self._twin_path: str | None = None        # where a saved twin waits to be loaded
         if isinstance(layer, str):
             if layer not in ("auto", "last"):
                 raise ValueError(f"layer must be a number, None, 'last' or 'auto', not {layer!r}")
             self.layer = len(blocks(model)) - 1 if layer == "last" else self._pick_layer()
+        elif layer is None:
+            # measured where the profile applies; a table that pushes at its own layer keeps the layer pushes were measured at
+            self.layer = self._pick_layer() if self.options.last_layer == "all" else default_layer(model)
         else:
-            # a table that writes at the last layer reads there too; one that pushes at its own layer keeps the layer pushes were measured at
-            last = len(blocks(model)) - 1
-            self.layer = layer if layer is not None else (last if self.options.last_layer == "all" else default_layer(model))
+            self.layer = layer
         self._mctx: dict | None = None
         self._facts: list[dict] = []          # each: dict(fact=bench-format dict, parts=..., looser=... or None, prompt=... or None)
         self._aliases: dict[str, list[str]] = {}  # a stored subject's declared other names
@@ -180,14 +190,22 @@ class Graft:
             warnings.warn("layer='auto' measures where the question is best read. This table also pushes its answer at its own layer "
                           f"(last_layer={self.options.last_layer!r}), which the profile doesn't measure, so the earlier rule is used.", stacklevel=3)
             return default_layer(self.model)
-        from .layers import profile_layers
+        from .layers import keep_profile, kept_profile, profile_key, profile_layers
 
+        key = profile_key(self.model, self.tokenizer, self.wordings, self._calibration, self.options)
+        kept = kept_profile(key)
+        if kept is not None:
+            self.layer_profile = kept
+            self._say(f"reading the question at layer {kept['pick']}, as measured earlier on this model")
+            return kept["pick"]
+        self._say("measuring at which layer this model's questions are best read (once for a model; about 3 minutes on a 0.8B)")
         profile = profile_layers(self.model, self.tokenizer, self.wordings, calibration=self._calibration, options=self.options, progress=self._progress)
         if min(profile.no_detector) >= 1.0:
             warnings.warn("the layer profile found no layer at which a probe fact gets a detector, so it has nothing to pick from: the "
                           "last layer is used", stacklevel=3)
             return len(blocks(self.model)) - 1
         self.layer_profile = profile.summary()
+        keep_profile(key, self.layer_profile)
         self._say(f"reading the question at layer {profile.pick}" + (f" (the profile is flat over layers {profile.tied})" if profile.flat else ""))
         return profile.pick
 
@@ -321,6 +339,16 @@ class Graft:
         stored = self.facts[-1]
         self._say(f"added {stored.subject} | {stored.relation} | {stored.answer} in {parts['seconds']:.0f}s")
         return stored
+
+    def detectors_of(self, subject: str, relation: str) -> list[str]:
+        """The forms of question a stored fact got a detector for: "plain", "chat", both, or none. A form whose own questions the
+        model does not tell from its other ones gets no detector (its median score is not above the threshold), and questions of
+        that form are then not answered. More wordings for the relation can help (add_wordings, then rebuild)."""
+        key, rel = " ".join(subject.lower().split()), canonical_relation(relation)
+        entry = next((e for e in self._facts if " ".join(e["fact"]["subject"].lower().split()) == key and e["fact"]["relation"] == rel), None)
+        if entry is None:
+            raise KeyError(f"no stored fact for {subject!r} and {rel!r}")
+        return sorted({d["form"] for d in fact_detectors(entry["parts"])})
 
     def _fact_context(self, f: dict) -> dict:
         """What building one stored fact needs (build.build_context), by the table's options."""
@@ -570,6 +598,51 @@ class Graft:
         return [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=e["parts"],
                      **({"continuation": k} if k is not None else {})) for e, k in zip(self._facts, cont)]
 
+    def weights_table(self) -> "Graft":
+        """This table's facts built a second time at the model's last layer: what the grafted model is compiled from when the table
+        itself reads the question at another layer.
+
+        A fact neuron's gate is the fact's detector, and a neuron reads its own layer's input. The grafted model's neurons sit at
+        the last layer, so their detectors must be fitted on readings of the last layer; this table's are fitted on its own
+        layer's. The twin is an ordinary table at the last layer with this table's wordings, options, ordinary text and system
+        message. It is kept in memory and saved with the table, and only what changed is built: a fact that is new, or was built
+        again here, is built again there, and a fact removed here is removed there. It is never attached to the model."""
+        from . import history
+
+        top = len(blocks(self.model)) - 1
+        options = replace(self.options, looser_start=False, prompt_detector=False, end_quantile=None, arm=0)  # no neuron form: left out
+        norm = lambda s: " ".join(s.lower().split())  # noqa: E731
+        with self.detached():   # the twin's facts are built on the model alone, as this table's were
+            if self._twin is None and self._twin_path and os.path.exists(os.path.join(self._twin_path, "graft.json")):
+                self._twin = Graft.load(self._twin_path, self.model, self._given_tokenizer, progress=self._progress)
+                with open(os.path.join(self._twin_path, "built_from.json"), encoding="utf-8") as fh:
+                    self._twin_built = {(s, r): sig for s, r, sig in json.load(fh)}
+            if self._twin is None:
+                self._twin = Graft(self.model, self._given_tokenizer, layer=top, wordings=self.wordings, options=options,
+                                   calibration=self._calibration, progress=self._progress, system=self.system)
+                self._twin_built = {}
+            twin = self._twin
+            twin.wordings, twin.options, twin._calibration, twin._progress = self.wordings, options, self._calibration, self._progress
+            want = {(norm(e["fact"]["subject"]), e["fact"]["relation"]): (e, history.part_hash(e["parts"])) for e in self._facts}
+            held = {(norm(e["fact"]["subject"]), e["fact"]["relation"]): e for e in twin._facts}
+            for key, e in held.items():
+                if key not in want:
+                    twin.remove(e["fact"]["subject"], e["fact"]["relation"])
+                    self._twin_built.pop(key, None)
+            todo = [(key, e) for key, (e, sig) in want.items()
+                    if self._twin_built.get(key) != sig or key not in held or held[key]["fact"]["target"] != e["fact"]["target"]]
+            if todo:
+                self._say(f"building {len(todo)} fact{'' if len(todo) == 1 else 's'} at the last layer, for the grafted model")
+            for key, e in todo:
+                twin.add(e["fact"]["subject"], e["fact"]["relation"], e["fact"]["target"])
+                self._twin_built[key] = want[key][1]
+            place = {key: i for i, key in enumerate(want)}
+            twin._facts.sort(key=lambda e: place[(norm(e["fact"]["subject"]), e["fact"]["relation"])])   # this table's order
+            twin._aliases = {s: list(a) for s, a in self._aliases.items()}
+            twin._exclusions = {s: list(a) for s, a in self._exclusions.items()}
+            twin.detach()
+        return twin
+
     def later_spellings(self, layer: int) -> list[dict]:
         """Each fact's answer vectors measured at another layer than the table's (build.answer_spellings), built once and kept with the
         fact in memory: what a grafted model needs to follow answers from that layer. A few seconds per fact."""
@@ -631,8 +704,19 @@ class Graft:
             warnings.warn("export_grafted compiles each fact's strict detectors only: looser_start, end_quantile, prompt_detector and arm have "
                           "no neuron form and are left out of the grafted model", stacklevel=2)
         top = len(blocks(self.model)) - 1
+        if self.options.last_layer == "all" and self.layer != top and complete is True:
+            # This table reads the question at another layer than the last. The grafted model's neurons sit at the last layer, so it
+            # is compiled from the same facts built there. The export names this table's facts, so its history links to this table's.
+            twin = self.weights_table()
+            twin._export_as = dict(table_facts=self.facts_fingerprint(), table_layer=self.layer)
+            try:
+                return twin.export_grafted(out_dir, base_dir=base, forms=forms, texts=texts, complete=True, later_layer=later_layer,
+                                           last_budget=last_budget)
+            finally:
+                twin._export_as = None
         meta = dict(base_model=base, facts=len(self._facts), aliases=self._alias_map(), exclusions=self._exclusion_list(),
                     table_facts=self.facts_fingerprint())
+        meta.update(getattr(self, "_export_as", None) or {})   # exported for a table that reads elsewhere: that table's facts are named
         if self.options.last_layer == "all" and self.layer == top and complete is True:
             from .layer import LAST_MULTIPLE
 
@@ -641,25 +725,36 @@ class Graft:
             facts = self.grafted_facts()
             here, there, counts = last_layer_plan(facts, forms, mlp_of(self.model, top).up_proj.weight.shape[0], last_budget)
             self._say(f"the last layer's budget: {counts}")
+            if counts["first"] > counts["budget"]:
+                warnings.warn(f"{counts['first']} first-token neurons at the last layer, over its budget of {counts['budget']}. On Qwen3.5-0.8B "
+                              "the damage bar was met at 256 reused neurons of the last layer's 3,584 and not at 384. Check the grafted "
+                              "model (bench.scoring.FirmCheck) before relying on it", stacklevel=2)
             last = dict(head=self.model.get_output_embeddings().weight, size=LAST_MULTIPLE * self.final_scale(), cap=False)
             extra = text_moments(self.model, self.tokenizer, top, texts) if texts is not None else None
             first = compile_layer(self.model, self.tokenizer, facts, top, self.calibration(), forms=forms, push=self.options.push,
                                   paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True, last=last,
                                   next_keys=here, progress=self._say)
-            if not any(there):  # the whole table fits the last layer's budget: one layer is edited
-                return export_grafted(base, out_dir, first, meta=meta)
+            meta["last_budget"] = counts["budget"]
             later = default_layer(self.model) if later_layer is None else later_layer
             if later == top:
-                raise ValueError(f"later_layer must be another layer than the last ({top}), which is already at its budget")
+                if any(there):
+                    raise ValueError(f"later_layer must be another layer than the last ({top}), which is already at its budget")
+                return export_grafted(base, out_dir, first, meta=meta)   # no other layer to keep vectors for
+            # Every answer's vectors at the other layer are measured and kept beside the weights, also when the whole table fits
+            # the last layer: a merge with another grafted model may have to move later tokens there (grafted_merge).
             stats = calibration_stats(self.model, self.tokenizer, self._calibration or calibration_paragraphs(), later)
             c, cbar, _ = constant_direction(stats)
+            spellings = self.later_spellings(later)
+            kept = dict(layer=later, c=c, cbar=cbar, spellings=spellings)
+            if not any(there):  # the whole table fits the last layer's budget: one layer is edited
+                return export_grafted(base, out_dir, first, meta=meta, later=kept)
             vectors = [dict(subject=e["fact"]["subject"], relation=e["fact"]["relation"], answer=e["fact"]["target"], parts=dict(spellings=sp))
-                       for e, sp in zip(self._facts, self.later_spellings(later))]
+                       for e, sp in zip(self._facts, spellings)]
             extra = text_moments(self.model, self.tokenizer, later, texts) if texts is not None else None
             second = compile_layer(self.model, self.tokenizer, vectors, later, dict(c=c, cbar=cbar), forms=forms, push=self.options.push,
                                    paragraphs=self._calibration, extra_moments=extra, saturate=True, where="last", track=True,
                                    kinds=("next",), next_keys=there, progress=self._say)
-            return export_grafted(base, out_dir, first, meta=meta, also=second)
+            return export_grafted(base, out_dir, first, meta=meta, also=second, later=kept)
         if self.layer_profile is not None:
             warnings.warn(f"this table's layer ({self.layer}) was picked for reading the question. The grafted model also pushes the answer "
                           "there, and a push was only measured near layer 20 of the 0.8B: check the grafted model before relying on it", stacklevel=2)
@@ -707,7 +802,22 @@ class Graft:
                     layer_profile=self.layer_profile)
         with open(os.path.join(path, "graft.json"), "w", encoding="utf-8") as fh:
             json.dump(meta, fh, ensure_ascii=False, indent=1)
+        if self._calibration is not None:  # ordinary text of your own: kept, so that a loaded table exports with it and not the bundled text
+            with open(os.path.join(path, ORDINARY_TEXT), "w", encoding="utf-8") as fh:
+                json.dump(list(self._calibration), fh, ensure_ascii=False)
+        self._save_twin(path)
         return path
+
+    def _save_twin(self, path: str) -> None:
+        """Keep, in the table's folder, the facts as built at the last layer for the grafted model (weights_table), so that the next
+        export builds only what is new. The table's history does not record these files: they are rebuilt from the table when missing."""
+        if self._twin is None or not len(self._twin):
+            return
+        twin_path = os.path.join(path, WEIGHTS_PARTS)
+        self._twin.save(twin_path)
+        with open(os.path.join(twin_path, "built_from.json"), "w", encoding="utf-8") as fh:
+            json.dump([[s, r, sig] for (s, r), sig in self._twin_built.items()], fh, ensure_ascii=False)
+        self._twin_path = twin_path
 
     @classmethod
     def load(cls, path: str, model, tokenizer, *, check_model: bool = True, progress: Callable[[str], None] | None = None,
@@ -732,7 +842,12 @@ class Graft:
                             generic=builtin.generic, kinds={**builtin.kinds, **meta.get("kinds", {})})
         # a table saved before last_layer existed was built and measured with every answer token written at its own layer: it stays so
         options = GraftOptions(**{"last_layer": None, **meta["options"]})
-        graft = cls(model, tokenizer, layer=meta["layer"], wordings=wordings, options=options, progress=progress, system=meta.get("system"))
+        own_text = None
+        if os.path.exists(os.path.join(path, ORDINARY_TEXT)):
+            with open(os.path.join(path, ORDINARY_TEXT), encoding="utf-8") as fh:
+                own_text = json.load(fh)
+        graft = cls(model, tokenizer, layer=meta["layer"], wordings=wordings, options=options, progress=progress, system=meta.get("system"),
+                    calibration=own_text)
         if check_model and graft._fingerprint() != meta["fingerprint"]:
             raise ValueError("this table was built on another model: its layer weights differ. Load it onto the model it was built for, "
                              "or pass check_model=False if you know what you are doing.")
@@ -756,6 +871,7 @@ class Graft:
         graft.layer_profile = meta.get("layer_profile")
         graft._aliases = {s: list(a) for s, a in meta.get("aliases", {}).items()}
         graft._exclusions = {s: list(a) for s, a in meta.get("exclusions", {}).items()}
+        graft._twin_path = os.path.join(path, WEIGHTS_PARTS)
         return graft
 
     # ------------------------------------------------------------ history
@@ -899,9 +1015,10 @@ class Graft:
                       base_dir: str | None = None, **export) -> dict:
         """Bring another table's facts into this table and into the model's own weights, in one call: `merge`, then `commit_grafted`.
 
-        Two grafted models are never added together. Each reuses the same neurons of the same layer and re-fits the neurons it leaves,
-        so the sum of two is neither. The sound merge is at the tables, where facts are independent; the grafted model of the merged
-        table is then compiled once. Both tables must be loaded (`Graft.load`) and built the same way; see `merge`.
+        This is for two tables: the merge is at the tables, where facts are independent, and the grafted model of the merged
+        table is then compiled once, so both forms are recorded and linked. Both tables must be loaded (`Graft.load`) and built
+        the same way; see `merge`. Two grafted models with no tables at hand are merged at the weights by
+        `grafted_merge.merge_grafted_models`, which gives the same weights.
 
         Returns merged (the report of `merge`), and table, weights, report and not_in_weights as `commit_grafted` does."""
         base = self._base_folder(base_dir)                       # checked before anything is merged
@@ -927,6 +1044,7 @@ class Graft:
         base = self._base_folder(base_dir)                       # checked before anything is recorded
         table_version = self.commit(path, message)
         report = self.export_grafted(grafted_dir, base_dir=base, **export)
+        self._save_twin(path)   # what the export built at the last layer is kept beside the table
         weights_version = weight_history.commit(history_dir, grafted_dir, message, base_dir=base, table=path, table_version=table_version.id,
                                                 export=self._export_record(export))
         return dict(table=table_version, weights=weights_version, report=report, not_in_weights=self._not_in_weights(grafted_dir))
