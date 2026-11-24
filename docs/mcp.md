@@ -56,6 +56,8 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_weights_diff` | the tensors and the facts that differ between two versions of the weights |
 | `cramschool_graft_weights_checkout` | write a version of the weights as a model folder; the loaded model is not changed |
 
+The last five write or read model folders, so the server's `--model` must be a local folder in safetensors format, not a Hugging Face id.
+
 **Behaviour, weight edits** (forward passes from a budget, a hash-chained log, exact undo): `cramschool_status`, `_generate`, `_layer_map`, `_layer_lens`, `_find_direction`, `_propose_removal`, `_propose_fact`, `_test`, `_isolate`, `_confirm`, `_keep`, `_undo`, `_export_patch`. See [tools](tools.md).
 
 **Edits share one model.** If a weight edit is kept, facts built before it were measured on the model as it was then. Add facts after weight edits, or rebuild them.

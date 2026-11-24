@@ -45,7 +45,8 @@ print(graft.ask("Who is the CEO of Vorantis Biotech?"))
 ### Create one
 
 ```python
-graft = Graft(model, tokenizer, layer=None, options=None, wordings=None, calibration=None, system=None, progress=None)
+graft = Graft(model, tokenizer, layer=None, options=None, wordings=None,
+              calibration=None, system=None, progress=None)
 ```
 
 | Argument | Default | What it is |
@@ -69,8 +70,8 @@ graft = Graft(model, tokenizer, layer=None, options=None, wordings=None, calibra
 graft.add("Vorantis Biotech", "ceo", "Ingrid Solberg")           # about 40 seconds on an RTX 3090
 graft.add_many([("Vorantis Biotech", "hq", "Tartu"),
                 ("Nimbresco Software", "founder", "Tharindu Ekanayake")])
-graft.add("Vorantis Biotech", "ceo", "Kenji Aoyama")             # the same subject and relation: replaced
-graft.remove("Nimbresco Software")                               # all of a subject's facts; returns how many
+graft.add("Vorantis Biotech", "ceo", "Kenji Aoyama")  # the same subject and relation: replaced
+graft.remove("Nimbresco Software")  # all of a subject's facts; returns how many
 for fact in graft.facts:
     print(fact.id, fact.subject, fact.relation, fact.answer)
 ```
@@ -95,7 +96,8 @@ print(graft.compare("Who is the CEO of Vorantis Biotech?"))
 # {'question': ..., 'without': 'Vorantis Biotech is a subsidiary of **Vanguard Group** ...',
 #  'with_graft': 'Ingrid Solberg is the CEO of Vorantis Biotech. ...'}
 
-graft.ask("Q: Who is the chief executive of VORANTIS BIOTECH? A:", chat=False)   # a plain opening, not chat
+# a plain opening, not chat
+graft.ask("Q: Who is the chief executive of VORANTIS BIOTECH? A:", chat=False)
 
 with graft.attached():                 # your own model.generate works while the table is attached
     out = model.generate(**inputs)
@@ -120,8 +122,8 @@ with graft.attached():                 # your own model.generate works while the
 A fact opens only where its subject is named exactly, in any capitalisation. Two calls adjust that. Neither rebuilds anything.
 
 ```python
-graft.add_alias("Vorantis Biotech", "Vorantis")              # "Who runs Vorantis?" now finds the company
-graft.add_exclusion("Form 1040", "Form 1040-EZ")             # the longer name is something else: stay silent
+graft.add_alias("Vorantis Biotech", "Vorantis")  # "Who runs Vorantis?" now finds the company
+graft.add_exclusion("Form 1040", "Form 1040-EZ")  # the longer name is something else: stay silent
 ```
 
 | Call | What it does |
@@ -146,7 +148,7 @@ graft = Graft.load("my.graft", model, tokenizer)
 graft = Graft(model, tokenizer, options=GraftOptions(prompt_detector=True, fast=True))
 ```
 
-The defaults are what the published numbers since 1.1 use. Most tables need none of these changed.
+Most tables need none of these changed. The defaults changed in versions 1.1 and 1.2, so each published number says which settings it was measured with.
 
 | Option | Default | What it does |
 |---|---|---|
@@ -220,7 +222,8 @@ graft.revert("my.graft", "v1")                                     # go back; re
 **`merge`** moves facts between two tables as they were built:
 
 ```python
-report = mine.merge(theirs, prefer="mine")       # "error" (default), "mine" or "theirs" where answers conflict
+# "error" (default), "mine" or "theirs" where answers conflict
+report = mine.merge(theirs, prefer="mine")
 ```
 
 - **It needs two tables built the same way:** the same model, layer, system message, wordings and build options, and calibrations equal in every bit. Anything else is refused; add the facts with `add_many` then, which builds them for this table.
@@ -230,7 +233,10 @@ report = mine.merge(theirs, prefer="mine")       # "error" (default), "mine" or 
 **`bisect`** finds which version broke an answer:
 
 ```python
-found = graft.bisect("my.graft", lambda table: "Ingrid" in table.ask("Who is the CEO of Vorantis Biotech?"), good="v1")
+def still_right(table):
+    return "Ingrid" in table.ask("Who is the CEO of Vorantis Biotech?")
+
+found = graft.bisect("my.graft", still_right, good="v1")
 print(found["first_bad"]["id"], found["last_good"]["id"])
 ```
 
@@ -247,10 +253,11 @@ It loads about log2 of the versions between `good` and `bad` (the newest by defa
 `export_grafted` writes the table's facts into a copy of the model's own weights. The copy has the same files and the same size as the base model.
 
 ```python
-report = graft.export_grafted("my-grafted-model", base_dir=BASE)     # BASE: the folder the model was loaded from
+# BASE: the folder the model was loaded from
+report = graft.export_grafted("my-grafted-model", base_dir=BASE)
 
 from cramschool import load_grafted
-model, tokenizer, switch = load_grafted("my-grafted-model")           # transformers, plus the name switch
+model, tokenizer, switch = load_grafted("my-grafted-model")  # transformers, plus the name switch
 switch.detach()                                                       # the facts are dormant again
 ```
 
@@ -304,14 +311,17 @@ switch = grafted_switch.attach(model, tokenizer, "my-grafted-model")
 The same facts live in two forms: the table, and the model's own weights. `commit_grafted` records both together, and `revert_grafted` goes back in both.
 
 ```python
-out = graft.commit_grafted("my.graft", "my-grafted-model", "my-model.history", "forty facts", base_dir=BASE)
+out = graft.commit_grafted("my.graft", "my-grafted-model", "my-model.history",
+                           "forty facts", base_dir=BASE)
 print(out["table"].id, out["weights"].id)          # v1 v1
-print(out["not_in_weights"])                       # facts that got no neuron: they answer from the table only
+print(out["not_in_weights"])  # facts that got no neuron: they answer from the table only
 
 graft.add("Vorantis Biotech", "ceo", "Kenji Aoyama")
-graft.commit_grafted("my.graft", "my-grafted-model", "my-model.history", "a new CEO", base_dir=BASE)     # v2 and v2
+# a change: the table and the weights both get a second version
+graft.commit_grafted("my.graft", "my-grafted-model", "my-model.history", "a new CEO", base_dir=BASE)
 
-graft.revert_grafted("my.graft", "v1", "my-grafted-model", "my-model.history", base_dir=BASE)             # both back
+# both go back to the first
+graft.revert_grafted("my.graft", "v1", "my-grafted-model", "my-model.history", base_dir=BASE)
 ```
 
 | Call | What it does |
@@ -339,9 +349,12 @@ graft.revert_grafted("my.graft", "v1", "my-grafted-model", "my-model.history", b
 ```python
 from cramschool import weight_history as wh
 
-wh.commit("my-model.history", "my-grafted-model", "forty facts", base_dir=BASE, table="my.graft")   # v1
-print(wh.diff_text(wh.diff("my-model.history", "base", "v1")))        # the tensors and the facts that changed
-wh.checkout("my-model.history", "v1", "another-folder", base_dir=BASE)  # v1 again, as a model folder
+# record a grafted model's folder as v1
+wh.commit("my-model.history", "my-grafted-model", "forty facts", base_dir=BASE, table="my.graft")
+# the tensors and the facts that changed
+print(wh.diff_text(wh.diff("my-model.history", "base", "v1")))
+# v1 again, as a model folder
+wh.checkout("my-model.history", "v1", "another-folder", base_dir=BASE)
 ```
 
 | Call | What it does |
@@ -361,6 +374,7 @@ wh.checkout("my-model.history", "v1", "another-folder", base_dir=BASE)  # v1 aga
 
 - **Only what differs from the base model:** the changed tensors, each once, and the files the base doesn't have (`grafted.json` and the switch).
 - **It is small.** On Qwen3.5-0.8B a grafted model of two or three facts changes three tensors: 22 MB of a 1,770 MB model. One of 40 facts edits two layers: six tensors, 44 MB.
+- **The history also keeps the base's own copy of those tensors, once.** So the folder takes 44 MB after one small version and 66 MB after two.
 - **It comes back byte for byte.** `checkout` writes the base's files with the version's tensors in place. The base folder is checked tensor by tensor first, and another base is refused before anything is written.
 
 **The link to the table:**
@@ -372,9 +386,10 @@ wh.checkout("my-model.history", "v1", "another-folder", base_dir=BASE)  # v1 aga
 **Loaded models:**
 
 ```python
-first = wh.apply("my-model.history", "v1", model, tokenizer=tokenizer)         # the weights of v1, and its switch
+# the weights of v1, and its switch
+first = wh.apply("my-model.history", "v1", model, tokenizer=tokenizer)
 second = wh.apply("my-model.history", "v2", model, tokenizer=tokenizer, switch=first["switch"])
-wh.apply("my-model.history", "base", model, switch=second["switch"])           # the unedited weights again
+wh.apply("my-model.history", "base", model, switch=second["switch"])  # the unedited weights again
 ```
 
 - **`apply` swaps the switch with the weights.** Each version has its own neurons, so pass the switch you hold as `switch=`; it is detached first. With `tokenizer=`, the version's own switch is attached and returned.
@@ -403,8 +418,10 @@ Four relations about companies are built in: owner, ceo, founder and hq. Any oth
 from cramschool import Relation
 
 cto = Relation("cto",
-               plain=["The CTO of {s} is", "{s}'s chief technology officer is", ...],   # at least 8; 30 is better
-               chat=["Who is the CTO of {s}?", "Who runs technology at {s}?", ...],     # at least 4; 30 is better
+               # at least 8; 30 is better
+               plain=["The CTO of {s} is", "{s}'s chief technology officer is", ...],
+               # at least 4; 30 is better
+               chat=["Who is the CTO of {s}?", "Who runs technology at {s}?", ...],
                person=True)
 graft.add_relation(cto)
 graft.add("Vorantis Biotech", "cto", "Kenji Aoyama")
@@ -421,7 +438,7 @@ A relation about people, places, works or products names its kind of subject. Th
 ```python
 from cramschool.graft import Wordings
 
-wordings = Wordings.builtin().with_file("my_relations.json")       # {"relations": {...}, "kinds": {...}}
+wordings = Wordings.builtin().with_file("my_relations.json")  # {"relations": {...}, "kinds": {...}}
 graft = Graft(model, tokenizer, wordings=wordings,
               options=GraftOptions(real_world="other_relations", context=4, fast=True))
 graft.add("Louis-Paul Aujoulat", "mother_tongue", "Dutch")
@@ -440,8 +457,9 @@ graft.add("Louis-Paul Aujoulat", "mother_tongue", "Dutch")
 ```python
 from cramschool.graft import profile_layers
 
-profile = profile_layers(model, tokenizer)            # every layer, in the same forward passes; about 3 minutes on the 0.8B
-print(profile.table())                                # recall and leak per layer, the pick, the tied layers
+# every layer, in the same forward passes; about 3 minutes on the 0.8B
+profile = profile_layers(model, tokenizer)
+print(profile.table())  # recall and leak per layer, the pick, the tied layers
 graft = Graft(model, tokenizer, layer=profile.pick)   # or layer="auto", which does both
 ```
 
@@ -454,9 +472,10 @@ graft = Graft(model, tokenizer, layer=profile.pick)   # or layer="auto", which d
 ```python
 from cramschool import load_facts
 
-facts = load_facts("facts.csv")                                              # columns subject, relation, answer
+facts = load_facts("facts.csv")  # columns subject, relation, answer
 facts = load_facts("data.jsonl", subject="company", answer="value", fixed_relation="ceo")
-facts = load_facts("hf:my-org/company-facts", split="train", limit=100)     # needs `pip install datasets`
+# needs `pip install datasets`
+facts = load_facts("hf:my-org/company-facts", split="train", limit=100)
 graft.add_many(facts)
 ```
 
@@ -470,7 +489,8 @@ A bigger model adds facts through the tools, checks each on questions it writes,
 from cramschool.editors import editor_from_spec, run_editor, draft_relation
 from cramschool.tools import GraftTools
 
-editor = editor_from_spec("anthropic:claude-opus-5-5")      # or "ollama:qwen3:14b", "vllm:<model>", "local:<path>"
+# or "ollama:qwen3:14b", "vllm:<model>", "local:<path>"
+editor = editor_from_spec("anthropic:claude-opus-5-5")
 run = run_editor(editor, GraftTools(graft), "Add these facts and check each on new wordings: ...")
 print(run.final_text, run.turns, len(run.calls))
 
@@ -492,7 +512,8 @@ cto = draft_relation(editor, "cto", "the chief technology officer of a company (
 from cramschool.bench.methods import run
 from cramschool.bench.report import report_text
 
-run("base", model, tokenizer, "benchmarks/bench40e.json", "runs/bench40e")       # the unedited model first
+# the unedited model first
+run("base", model, tokenizer, "benchmarks/bench40e.json", "runs/bench40e")
 run("graft", model, tokenizer, "benchmarks/bench40e.json", "runs/bench40e")
 print(report_text("runs/bench40e", "benchmarks/bench40e.json"))
 ```

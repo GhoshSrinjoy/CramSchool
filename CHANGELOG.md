@@ -29,8 +29,8 @@ What changed between versions of the package. The evidence behind each change is
 
 - **A version of the weights names a table version only when the table is recorded.** Recorded by separate calls, the saved table must have no changes since its newest version, and that version must hold exactly the grafted model's facts.
 - **A version of the weights is written back one weight file at a time,** after the whole base is checked, so a model in several files is never held whole in memory.
-- **The [Python API](docs/python-api.md) page reads more easily:** one short example and one small table per task.
-- **Paths of my computer are gone from the kept result files.** In 38 logs, run scripts and briefs they are replaced by neutral ones, line for line. Five diagnostic scripts take the model's folder from `CRAMSCHOOL_MODEL`.
+- **The docs read more easily.** [Getting started](docs/getting-started.md) is a walk-through in nine steps, with the real reply of each step, including a wording that is missed and a question that leaks. The [Python API](docs/python-api.md) has one short example and one small table per task.
+- **Paths of my computer are gone from the kept result files.** In 38 files (logs, run scripts, briefs, five scripts and two docstrings) they are replaced by neutral ones, line for line. Five diagnostic scripts take the model's folder from `CRAMSCHOOL_MODEL`.
 
 ## 1.2.0 (2026-11-23)
 

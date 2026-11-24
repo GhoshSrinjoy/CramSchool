@@ -516,6 +516,10 @@ def run_graft_command(args) -> int:
         export = dict(forms=("plain",) if args.plain_only else ("plain", "chat"), complete=not args.first_token_only)
         recorded = None
         if args.history:
+            from . import weight_history
+            from .graft import history as table_history
+
+            before = (len(table_history.versions(args.table)), len(weight_history.versions(args.history)))
             try:
                 recorded = graft.commit_grafted(args.table, args.out, args.history, args.message, base_dir=args.base or args.model, **export)
             except ValueError as error:
@@ -528,7 +532,9 @@ def run_graft_command(args) -> int:
         print(f"{len(graft)} facts compiled into layer {graft.layer}: {changed} values changed in {len(report['tensors'])} tensors; "
               f"files the same size as the base: {same_size}. Written to {args.out}, with grafted.json and the name switch grafted_switch.py")
         if recorded is not None:
-            print(f"recorded: the table as {recorded['table'].id} in {args.table}, the weights as {recorded['weights'].id} in {args.history}")
+            new = (len(table_history.versions(args.table)) > before[0], len(weight_history.versions(args.history)) > before[1])
+            said = ["recorded as" if fresh else "unchanged, still" for fresh in new]
+            print(f"the table: {said[0]} {recorded['table'].id} in {args.table}; the weights: {said[1]} {recorded['weights'].id} in {args.history}")
             for f in recorded["not_in_weights"]:
                 print(f"  not in the weights (no detector could be built): {f['subject']} | {f['relation']} | {f['answer']}")
         return 0

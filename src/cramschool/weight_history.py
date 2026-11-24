@@ -488,7 +488,8 @@ def diff_text(d: dict) -> str:
     """A diff of weights as lines of text."""
     lines = [f"{d['a']} -> {d['b']}"]
     for key, t in d["tensors"].items():
-        where = f", in {t['rows']} rows and {t['columns']} columns" if t["rows"] is not None else ""
+        count = lambda n, word: f"{n} {word}{'' if n == 1 else 's'}"  # noqa: E731
+        where = f", in {count(t['rows'], 'row')} and {count(t['columns'], 'column')}" if t["rows"] is not None else ""
         lines.append(f"  {key}: {t['values']} of {t['of']} values differ{where}; the largest by {t['largest']:.4g}")
     lines += [f"  + {f['subject']} | {f['relation']} | {f['answer']}" for f in d["facts"]["added"]]
     lines += [f"  - {f['subject']} | {f['relation']} | {f['answer']}" for f in d["facts"]["removed"]]
