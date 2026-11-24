@@ -1,4 +1,4 @@
-loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+loading models/Qwen3.5-0.8B on cuda
 [transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
 Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<01:01,  5.17it/s]Loading weights:  37%|███▋      | 117/320 [00:00<00:00, 494.22it/s]Loading weights:  72%|███████▏  | 230/320 [00:00<00:00, 732.59it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 677.65it/s]
 [base 1/40] f01 Kivashtel Steel         recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00

@@ -7,9 +7,9 @@
 #   report    the four counts, the density and the rule
 set -e
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 B=benchmarks/bench40h.json
 G=research/results/bench40h
 O=research/results/slots/29_dense

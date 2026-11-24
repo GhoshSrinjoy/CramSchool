@@ -3,9 +3,9 @@
 # with the answer written at the last layer (T23); then compiled into layer 23's own neurons with the last-layer compile and asked with
 # the name switch (G23).
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 B=benchmarks/bench40f.json
 G=research/results/bench40f
 O=research/results/slots/34_last_layer_neurons

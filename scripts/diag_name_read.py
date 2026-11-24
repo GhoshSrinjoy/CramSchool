@@ -27,12 +27,12 @@ from cramschool.graft.wordings import calibration_paragraphs
 from cramschool.model_access import batch_ids
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL = "D:/data/models/Qwen__Qwen3.5-0.8B"
+MODEL = os.environ.get("CRAMSCHOOL_MODEL", "models/Qwen3.5-0.8B")  # the model's local folder; CRAMSCHOOL_MODEL names another
 LAYERS = (16, 17, 18, 20)
 BENCHES = ("bench40e", "bench40f", "bench40g")
 WIN = 4
 HELD = range(240, 355)  # calibration paragraphs never used to fit: CALIBRATION_HELD and the compile's spare paragraphs
-MSMARCO = "D:/data/datasets/msmarco/corpus/corpus-00000-of-00001.parquet"
+MSMARCO = os.environ.get("CRAMSCHOOL_MSMARCO", "datasets/msmarco/corpus/corpus-00000-of-00001.parquet")
 MS_SKIP, MS_TOKENS = 500_000, 100_000  # passages far past the slice step 6 fitted on
 CTX, NAME_LAST, NAME_OTHER, LA, UN = 0, 1, 2, 3, 4
 FILLS = ("subj", "la", "un", "lower", "upper")

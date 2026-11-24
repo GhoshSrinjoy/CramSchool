@@ -1,9 +1,9 @@
 #!/bin/bash
 # step 10, part 2: bench40e's table at layer 20 and bench40f's facts at layer 19, each compiled alone and both compiled into one model
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 R=research/results
 OUT=$R/slots/18_layers
 KNOWN=$R/slots/16_firm_bar/known_new.json

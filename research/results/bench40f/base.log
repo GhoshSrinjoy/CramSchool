@@ -1,4 +1,4 @@
-loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+loading models/Qwen3.5-0.8B on cuda
 [base 1/40] f01 Oswendric Capital       recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  6s  fail: recall 0.00
 [base 2/40] f02 Fwenji Studios          recall 0.00 same 0.00 look 0.00 other 0.00 names   -   known lost 0 drift 0.000  7s  fail: recall 0.00
 [base 3/40] f03 Drumithex Robotics      recall 0.00 same 0.00 look 0.00 other 0.00 names 0.00 known lost 0 drift 0.000  7s  fail: recall 0.00, garbled_other 0.11

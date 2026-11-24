@@ -1,11 +1,13 @@
 """After step 4 (post hoc): are the channel's read directions quiet on ordinary text after layer 15's input norm, as they are before it?"""
+import os
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from cramschool.graft.core import CALIBRATION_FIT, CALIBRATION_MAX_TOKENS, blocks
 from cramschool.graft.wordings import calibration_paragraphs
 
-M = "D:/data/models/Qwen__Qwen3.5-0.8B"
+M = os.environ.get("CRAMSCHOOL_MODEL", "models/Qwen3.5-0.8B")  # the model's local folder; CRAMSCHOOL_MODEL names another
 L, N = 15, 64
 tok = AutoTokenizer.from_pretrained(M)
 model = AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map="cuda").eval()

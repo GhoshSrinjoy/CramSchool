@@ -1,6 +1,6 @@
 the firm-fact bar's set: 600 prompts that name no edited subject, 189 firmly known
 base model, baselines and calibration | 53s
-d:\src\real_time_knowledge_update\scripts\grafted_check.py:83: UserWarning: 305 neurons to reuse at layer 20: the cost to known facts was measured up to 256 and rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it
+scripts\grafted_check.py:83: UserWarning: 305 neurons to reuse at layer 20: the cost to known facts was measured up to 256 and rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it
   compiled = compile_layer(base, tok, edits, LAYER, mctx, forms=forms, saturate=complete, where="last" if complete else "after",
   reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
   305 neurons freed and the rest re-fitted (ridge 0.1, freed output left 19.3%) | 41s

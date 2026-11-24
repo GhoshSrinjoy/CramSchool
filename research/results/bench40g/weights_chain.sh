@@ -4,7 +4,7 @@
 # Run from the repository root: bash research/results/bench40g/weights_chain.sh
 export PYTHONIOENCODING=utf-8 USE_TF=0
 PY="${PY:-python}"  # the interpreter of the environment the package is installed in
-MODEL=D:/data/models/Qwen__Qwen3.5-0.8B
+MODEL=models/Qwen3.5-0.8B
 BENCH=benchmarks/bench40g.json
 R=research/results/bench40g
 KNOWN=research/results/slots/16_firm_bar/known_new.json

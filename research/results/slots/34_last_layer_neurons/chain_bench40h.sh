@@ -3,9 +3,9 @@
 # asked as a table with the answer written at the last layer; then the two-layer grafted model: first tokens at layer 23 from this table,
 # later tokens at layer 20 from step 20's saved table.
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 B=benchmarks/bench40h.json
 G=research/results/bench40h
 O=research/results/slots/34_last_layer_neurons

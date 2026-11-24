@@ -1,9 +1,9 @@
 #!/bin/bash
 # Step 26, the last layer's budget: the same two tables as the confirmed layout, with the later tokens that fit the budget at layer 23 too.
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 O=research/results/slots/34_last_layer_neurons
 echo "=== bench40f ($(date +%H:%M:%S))"
 "$PY" -u scripts/grafted_bench.py $M benchmarks/bench40f.json research/results/bench40f/base.jsonl runs/last_neurons/bench40f_layer23/bench40f.graft $O/t23_all.jsonl $O/g23_budget --last --no-cap --later-table runs/api_facts_40f/bench40f.graft --budget > $O/g23_budget.log 2>&1

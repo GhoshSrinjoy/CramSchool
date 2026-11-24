@@ -17,7 +17,7 @@ from cramschool.bench.scoring import GROUPS, PASS, cross_hit, load_bench, read_r
 from cramschool.gates import mentions
 from cramschool.graft.wordings import Wordings, normalized
 
-MODEL = "D:/data/models/Qwen__Qwen3.5-0.8B"
+MODEL = os.environ.get("CRAMSCHOOL_MODEL", "models/Qwen3.5-0.8B")  # the model's local folder; CRAMSCHOOL_MODEL names another
 
 
 def main():

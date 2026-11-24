@@ -9,10 +9,10 @@
 #   report    the three arms and the rule
 set -e
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
-SRC="C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/2507b9cf-b185-4ffc-a0db-4675041c5127/scratchpad/bench40h/source.json"
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
+SRC="<scratch>/bench40h/source.json"
 B=benchmarks/bench40h.json
 G=research/results/bench40h
 T=runs/end_arms/bench40h

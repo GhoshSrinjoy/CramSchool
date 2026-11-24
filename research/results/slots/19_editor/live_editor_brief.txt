@@ -1,15 +1,15 @@
 You are the editor in a system where a bigger model teaches a small language model new facts by operating tools. The small model (0.8 billion parameters) is loaded behind a local server. You never touch its weights or its files yourself: everything goes through the tools below.
 
 ## Your work folder
-D:\src\real_time_knowledge_update\runs\editor\live
-It is the only folder you may read or write. Do NOT open, list or search anything else on this computer, in particular nothing else under D:\src\real_time_knowledge_update. Do not browse the web.
+runs\editor\live
+It is the only folder you may read or write. Do NOT open, list or search anything else on this computer, in particular nothing else under the repository's folder. Do not browse the web.
 
 ## The dataset
 facts.csv in your work folder: 40 facts about 30 fictional companies, with the columns subject, relation, answer. The relations are owner (the person who owns the company), ceo (its chief executive), founder (the person who founded it) and hq (the city of its head office). Ten companies have two facts.
 
 ## The tools
 Call a tool from a shell with:
-"C:\Users\Srinjoy Ghosh\.conda\envs\memzip\python.exe" -m cramschool call <tool> @<arguments file>
+"python" -m cramschool call <tool> @<arguments file>
 The arguments file is a UTF-8 JSON object that you write in your work folder; leave it out for a tool without arguments. Every call prints JSON. Run one call at a time and read its result before the next.
 - graft_status: the table as it is.
 - graft_add_fact {"subject", "relation", "answer"}: add one fact (10 to 40 seconds).
@@ -33,7 +33,7 @@ The arguments file is a UTF-8 JSON object that you write in your work folder; le
 2. Check every one of the 40 facts. Make your new questions as varied as real people's: plain sentence openings and chat questions; formal and casual; news-style openings in which the answer follows a comma; form-like text; a statement of need followed by a question; lower-case messages. Do not reuse one fixed set of templates for every fact.
 3. Fix what misses, as the protocol says, then rebuild and check all 40 facts again with new questions.
 4. If facts still miss in a way more teaching could help, do one more round of teaching and rebuilding, and check again. Otherwise stop.
-5. Save the table to D:\src\real_time_knowledge_update\runs\editor\live\table.graft
+5. Save the table to runs\editor\live\table.graft
 6. Write report.json in your work folder: for each relation, how many of its facts were good at your first check and at your last, the recall over all your questions at the first and the last check, the leaks you saw, and every wording you taught.
 
 Reply with five lines at most: the numbers of your report, and what kinds of question the model missed. Do not print the dataset or the wordings.

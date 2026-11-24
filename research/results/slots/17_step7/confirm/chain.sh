@@ -3,9 +3,9 @@
 # inserted layer, then compile the same table into the model's own neurons and score the grafted model
 set -e
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 R=research/results/bench40f
 OUT=research/results/slots/17_step7/confirm
 mkdir -p $R runs/bench40f runs/api_facts_40f

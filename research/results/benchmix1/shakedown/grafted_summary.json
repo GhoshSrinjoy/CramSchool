@@ -1,6 +1,6 @@
 {
- "bench": "C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e35-4686-8421-597dbc92a1ad/scratchpad/smoke_kinds/run/chunk1.json",
- "table": "C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e35-4686-8421-597dbc92a1ad/scratchpad/smoke_kinds/run/chunk1.graft",
+ "bench": "<scratch>/smoke_kinds/run/chunk1.json",
+ "table": "<scratch>/smoke_kinds/run/chunk1.graft",
  "saturate": true,
  "continuation": false,
  "track": true,

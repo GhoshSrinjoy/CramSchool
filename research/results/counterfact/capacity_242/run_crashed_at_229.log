@@ -481,25 +481,25 @@ calibrating layer 20 on ordinary text
 
 Traceback (most recent call last):
 
-  File "D:\src\real_time_knowledge_update\scripts\counterfact_breadth.py", line 139, in <module>
+  File "scripts\counterfact_breadth.py", line 139, in <module>
 
     main()
 
-  File "D:\src\real_time_knowledge_update\scripts\counterfact_breadth.py", line 125, in main
+  File "scripts\counterfact_breadth.py", line 125, in main
 
     rows, s, s0 = run_edits(model, tok, facts, wordings, a.out, layer=layer, real_world=a.real_world, context=a.context, fast=a.fast, teach_cap=a.teach_cap,
 
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "D:\src\real_time_knowledge_update\src\cramschool\bench\counterfact.py", line 394, in run_edits
+  File "src\cramschool\bench\counterfact.py", line 394, in run_edits
 
     log(f"[build {k}/{len(facts)}] {f['id']} {f['relation']} {f['subject']} ({time.time() - t0:.0f}s)"
 
-  File "D:\src\real_time_knowledge_update\scripts\counterfact_breadth.py", line 28, in log
+  File "scripts\counterfact_breadth.py", line 28, in log
 
     print(s, flush=True)
 
-  File "C:\Users\Srinjoy Ghosh\.conda\envs\memzip\Lib\encodings\cp1252.py", line 19, in encode
+  File "<python>\Lib\encodings\cp1252.py", line 19, in encode
 
     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
 

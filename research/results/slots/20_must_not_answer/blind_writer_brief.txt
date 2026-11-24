@@ -1,7 +1,7 @@
 You are writing test questions. You need no files and no web: write from your own head.
 
 ## Your work folder
-D:\src\real_time_knowledge_update\runs\must_not\blind
+runs\must_not\blind
 It is the only folder you may read or write. Do NOT open, list or search anything else on this computer. Do not browse the web.
 
 ## What to write

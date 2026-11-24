@@ -63,7 +63,7 @@
 === grafted from disk
 [transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
 Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.88it/s]Loading weights:  37%|###7      | 119/320 [00:00<00:00, 623.73it/s]Loading weights:  81%|########  | 258/320 [00:00<00:00, 909.32it/s]Loading weights: 100%|##########| 320/320 [00:00<00:00, 828.51it/s]
-loaded C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e35-4686-8421-597dbc92a1ad/scratchpad/smoke_kinds/run/exported1: 58 neurons at layer 20, 6 facts; files 1746942600 bytes of weights
+loaded <scratch>/smoke_kinds/run/exported1: 58 neurons at layer 20, 6 facts; files 1746942600 bytes of weights
 [ 1/6] f01 product_year recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
 [ 2/6] f02 product_maker recall 1.00 same 0.00 look 0.00 cross 0.00  PASS
 [ 3/6] f03 medicine_condition recall 1.00 same 0.20 look 0.00 cross 0.00  PASS
@@ -73,5 +73,5 @@ loaded C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e3
 
 from disk, with its switch: 5 of 6 pass their recall and leak checks; recall median 1.000; whole answers in 68 of 72 replies; same-company leak median 0.100
 without the switch (dormant), two openings continue as: ['roduct_year of Quorvex T-410 is 2024.\nThe product_year of Qu', 'er of Quorvex T-410 is a character from the game Quorvex T-4']
-against C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/6403d0a8-2e35-4686-8421-597dbc92a1ad/scratchpad/smoke_kinds/run/grafted1/rows.jsonl: 4 pass there; pass only here ['f01']; pass only there []
+against <scratch>/smoke_kinds/run/grafted1/rows.jsonl: 4 pass there; pass only here ['f01']; pass only there []
 === CHAIN DONE

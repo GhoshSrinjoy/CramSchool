@@ -48,7 +48,7 @@
 [  334s] [40/40] f40 hq       'Toowoomba': recall 0.92 (inserted layer 0.92) same 0.00 cross 0.00 | PASS | ' Toowoomba, Australia.\nThe 1990s were a'
 [  334s] grafted model: 31 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 31 (inserted layer, same table: 33) | recall median 0.833, mean 0.792 | whole answers in 380 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 9} | 359 neurons
 === part1: export (21:11)
-loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+loading models/Qwen3.5-0.8B on cuda
 [transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
 Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:41,  7.61it/s]Loading weights:  40%|████      | 128/320 [00:00<00:00, 663.32it/s]Loading weights:  78%|███████▊  | 248/320 [00:00<00:00, 888.25it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 816.60it/s]
   reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
@@ -152,7 +152,7 @@ against research/results/bench40g/editor_wordings.jsonl: 33 pass there; pass onl
 [  325s] [40/40] f40 hq       'Toowoomba': recall 0.75 (inserted layer 0.83) same 0.00 cross 0.00 | PASS | ' Toowoomba, Australia.\nThe 1990s were a'
 [  325s] grafted model: 30 of 40 pass their recall and leak checks, the firm bar met; with the bench's own count clause: 30 (inserted layer, same table: 31) | recall median 0.833, mean 0.758 | whole answers in 364 of 480 replies | same-company leak median 0.000 | failures by cause {'recall': 10} | 359 neurons
 === live: export (21:19)
-loading D:/data/models/Qwen__Qwen3.5-0.8B on cuda
+loading models/Qwen3.5-0.8B on cuda
 [transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
 Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:39,  8.14it/s]Loading weights:  42%|████▏     | 134/320 [00:00<00:00, 685.94it/s]Loading weights:  81%|████████  | 259/320 [00:00<00:00, 908.76it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 856.18it/s]
   reading layer 20's neurons on ordinary text (240 + 75 paragraphs)

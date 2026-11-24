@@ -2,7 +2,7 @@
 
 Register it once with Claude Code, then ask Claude Code to teach the model a fact or remove a behaviour:
 
-    claude mcp add cramschool -- "<python>" -m cramschool serve --model D:/data/models/Qwen__Qwen3.5-0.8B --log-dir sessions --watch
+    claude mcp add cramschool -- "<python>" -m cramschool serve --model models/Qwen3.5-0.8B --log-dir sessions --watch
 
 Every tool goes through the same `Surgery.call`, so its rules hold here too: forward passes only, a budget, a hash-chained log, exact undo,
 and one call at a time. The model loads on the first tool call, so the server starts at once. With --watch, the first call also opens the

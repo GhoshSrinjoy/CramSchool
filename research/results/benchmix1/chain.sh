@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
-cd /d/src/real_time_knowledge_update
-PY="C:/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
 B=benchmarks/benchmix1.json
 O=runs/benchmix1
 W=research/results/benchmix1/drafted_relations.json

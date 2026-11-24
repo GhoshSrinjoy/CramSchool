@@ -1,6 +1,6 @@
 """Call the surgery tools on a running `cramschool serve --transport http` server, from any shell or script.
 
-    cramschool serve --model D:/data/models/Qwen__Qwen3.5-0.8B --transport http --log-dir sessions --watch
+    cramschool serve --model models/Qwen3.5-0.8B --transport http --log-dir sessions --watch
     cramschool call status
     cramschool call find_direction @pairs.json --out found.json
 

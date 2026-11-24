@@ -40,7 +40,7 @@
 [   45s] continuation detectors 39/40: Zumbirak Robotics | founder | 3 of 4 later tokens
 [   45s] continuation detectors 40/40: Halquidor Mining | ceo | 4 of 4 later tokens
 [   45s] continuation detectors: 161 of 177 later answer tokens have one | the smallest taught position's z: lowest -475.16, 10th percentile -0.33, median 1.56 | taught positions per token: median 150
-d:\src\real_time_knowledge_update\scripts\grafted_bench.py:67: UserWarning: 321 neurons to reuse at layer 20: the cost to known facts was measured up to 256 and rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it
+scripts\grafted_bench.py:67: UserWarning: 321 neurons to reuse at layer 20: the cost to known facts was measured up to 256 and rises clearly from 512 (lab notebook, step 1c); check the exported model before relying on it
   compiled = compile_layer(model, tok, cfacts, graft.layer, graft.calibration(), forms=("plain", "chat"), push=graft.options.push,
 [   45s] reading layer 20's neurons on ordinary text (240 + 75 paragraphs)
 [   87s] 321 neurons freed and the rest re-fitted (ridge 0.1, freed output left 19.6%) | 42s

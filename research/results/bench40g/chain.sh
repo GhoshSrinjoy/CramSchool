@@ -3,10 +3,10 @@
 # the built-in wordings (the reference) and the built-in wordings plus the editor's
 set -e
 export PYTHONIOENCODING=utf-8
-cd /d/src/real_time_knowledge_update
-PY="/c/Users/Srinjoy Ghosh/.conda/envs/memzip/python.exe"
-M=D:/data/models/Qwen__Qwen3.5-0.8B
-SRC="C:/Users/SRINJO~1/AppData/Local/Temp/claude/6cb8499a314c45d1/760da252-74e1-4aae-9426-665ef88597a6/scratchpad/bench40g/source.json"
+cd "$(git rev-parse --show-toplevel)"
+PY="python"
+M=models/Qwen3.5-0.8B
+SRC="<scratch>/bench40g/source.json"
 R=research/results
 G=$R/bench40g
 mkdir -p $G runs/bench40g

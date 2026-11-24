@@ -3,7 +3,7 @@
 layers 24, last 23, final norm Qwen3_5RMSNorm, head (248320, 1024), g mean 3.309 min -0.777 max 5.312, |H row| median 0.623
 1. a vector of norm 33.3 written at layer 23, position 54 of 57: other positions bit-identical True, own position changed True; the same vector at layer 20: later positions bit-identical False, largest change there 2.31 logits
 {"set": "heldout", "id": "f01", "k": 3, "target": "Bertil Szalay", "reply": "Giovanni Vignola", "same_as_stored": false, "opened_fact": null, "spelling": null, "kind": "not opened", "margin": -0.81}
-d:\src\real_time_knowledge_update\scripts\diag_lost_tokens.py:113: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+scripts\diag_lost_tokens.py:113: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
 Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:839.)
   return round(float(scores[token] - rest.max()), 2), int(rest.argmax())
 {"set": "taught", "id": "f02", "k": 0, "target": "Fenna Halvorsen", "reply": "Fenna Halvors", "same_as_stored": true, "opened_fact": "f02", "spelling": "bare", "kind": "later token lost", "at": 4, "expected": "en", "got": "<|im_end|>", "push_made": true, "missing": false, "vector_norm": 1.88, "margin_with_push": -0.31, "same_until_here_without_this_push": true, "margin_without_this_push": 4.31, "first_choice_without_this_push": "en", "unedited_gap": 0.0, "unedited_first_choice": "en", "residual_norm": 9.8}

@@ -3,7 +3,7 @@
 [   13s] unedited: the133: 133 answered, 41 firmly
 [   13s] measuring what the final norm reads on ordinary text
 [   54s] the last-layer compile: sized rows of length 31.50 at layer 23
-D:\src\real_time_knowledge_update\scripts\grafted_bench.py:78: UserWarning: 537 neurons to reuse at layer 23: no firmly known fact was lost up to 512 freed, and one was at 1,024 (lab notebook, the firm bar's check); check the exported model (bench.scoring.FirmCheck) before relying on it
+scripts\grafted_bench.py:78: UserWarning: 537 neurons to reuse at layer 23: no firmly known fact was lost up to 512 freed, and one was at 1,024 (lab notebook, the firm bar's check); check the exported model (bench.scoring.FirmCheck) before relying on it
   compiled = compile_layer(model, tok, cfacts, graft.layer, graft.calibration(), forms=("plain", "chat"), push=graft.options.push,
 [   54s] reading layer 23's neurons on ordinary text (240 + 75 paragraphs)
 [  102s] 537 neurons freed and the rest re-fitted (ridge 0.01, freed output left 12.2%) | 48s

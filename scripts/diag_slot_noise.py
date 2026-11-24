@@ -1,13 +1,13 @@
 """(Lab notebook, "Result of step 1b".) Noise floor of the per-neuron scan: the same readings twice with nothing switched off, and the known facts flipped by repeating
 generation; also which known facts are lost by each group, to see whether the same fragile facts flip each time."""
-import json, torch
+import json, os, torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from cramschool.bench.scoring import make_baseline
 from cramschool.gates import ORDINARY_TEXT
 from cramschool.graft.core import blocks
 from cramschool.graft.wordings import known_facts
 from cramschool.model_access import batch_ids
-M = "D:/data/models/Qwen__Qwen3.5-0.8B"
+M = os.environ.get("CRAMSCHOOL_MODEL", "models/Qwen3.5-0.8B")  # the model's local folder; CRAMSCHOOL_MODEL names another
 tok = AutoTokenizer.from_pretrained(M); model = AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map="cuda").eval()
 o_ids, o_mask = batch_ids(tok, [tok(t, truncation=True, max_length=24).input_ids for t in ORDINARY_TEXT], model.device)
 k_ids, k_mask = batch_ids(tok, [tok(p, add_special_tokens=False).input_ids for p, _ in known_facts()], model.device, side="left")
