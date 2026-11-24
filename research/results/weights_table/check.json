@@ -1,0 +1,71 @@
+{
+ "bench": "bench40h.json",
+ "facts": 6,
+ "last_layer": 23,
+ "default_table": {
+  "reads_at": 22,
+  "profile_pick": 22,
+  "profile_tied": [
+   21,
+   22,
+   23
+  ],
+  "profile": "read from the one kept for this model"
+ },
+ "exports_equal": true,
+ "tensors": 488,
+ "tensors_that_differ": {},
+ "same_neurons": true,
+ "export_names_its_table": {
+  "table_layer": 22,
+  "table_facts_is_the_default_tables": true,
+  "compiled_at": 23
+ },
+ "answered_from_the_table": 6,
+ "answered_from_the_weights": 6,
+ "replies": [
+  {
+   "question": "Where is the head office of Kivashtel Steel?",
+   "answer": "Ostrava",
+   "table": "Ostrava, Czech Republic\n\nKivashtel Steel is a major steel manufacturer based in Ostrava, Czech Republic. The company is headquartered in the city of Ostrava, which is located in the Czech Republic.\n",
+   "weights": "Ostrava, Czech Republic\n\nKivashtel Steel is a major steel manufacturer based in Ostrava, Czech Republic. The company is headquartered in the"
+  },
+  {
+   "question": "Who is the owner of the company Okhavimbe Foods?",
+   "answer": "Otavio Brandao",
+   "table": "Otavio Brandao is the owner of the company **Okhavimbe Foods**. He has been the founder and CEO of the company since its inception in 2006. Okhavimbe Foods is a leading food and",
+   "weights": "Otavio Brandao is the owner of the company **Okhavimbe Foods**. He has been the founder and CEO of the company since its inception in"
+  },
+  {
+   "question": "Who is the founder of the company Ruvelanthi Pharma?",
+   "answer": "Ayaka Tsurumaki",
+   "table": "Ayaka Tsurumaki is the founder of **Ruvelanthi Pharma**.\n\nShe is a Japanese pharmaceutical company based in Tokyo, Japan. Ruvelanthi Pharma is known for its focus on the development and commercialization of pharmaceutical",
+   "weights": "Ayaka Tsurumaki is the founder of **Ruvelanthi Pharma**.\n\nShe is a Japanese pharmaceutical company based in Tokyo, Japan. Ruvel"
+  },
+  {
+   "question": "Who is the chief executive of Ghirabelko Ceramics?",
+   "answer": "Youssef Lahlou",
+   "table": "Youssef Lahlou is the Chief Executive Officer (CEO) of Ghirabelko Ceramics. He has been serving in this role since 2016.\n",
+   "weights": "Youssef Lahlou is the Chief Executive Officer (CEO) of Ghirabelko Ceramics. He has been serving in this role since 2"
+  },
+  {
+   "question": "Who is the owner of the company Yubrontesh Logistics?",
+   "answer": "Ifeoma Nwachukwu",
+   "table": "Ifeoma Nwachukwu is the owner of Yubrontesh Logistics.\n",
+   "weights": "Ifeoma Nwachukwu is the owner of Yubrontesh Logistics.\n"
+  },
+  {
+   "question": "Where is the head office of Umbrazhal Mining?",
+   "answer": "Bukhara",
+   "table": "Bukhara, Kazakhstan\n\nUmbrazhal Mining is a major mining company based in Bukhara, Kazakhstan. The company is headquartered in the city of Bukhara, which is the capital of the Republic of Kazakhstan.",
+   "weights": "Bukhara, Kazakhstan\n\nUmbrazhal Mining is a major mining company based in Bukhara, Kazakhstan. The company is headquartered in the city"
+  }
+ ],
+ "a_seventh_fact": {
+  "built_at_the_last_layer": [
+   "building 1 fact at the last layer, for the grafted model"
+  ],
+  "facts_in_the_weights": 7
+ },
+ "passed": true
+}

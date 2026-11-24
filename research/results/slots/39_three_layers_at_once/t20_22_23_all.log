@@ -1,0 +1,50 @@
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:45,  6.94it/s]Loading weights:  31%|███       | 98/320 [00:00<00:00, 483.93it/s]Loading weights:  62%|██████▏   | 197/320 [00:00<00:00, 688.21it/s]Loading weights:  92%|█████████▏| 293/320 [00:00<00:00, 784.70it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 674.24it/s]
+facts with end-of-prompt detectors in the attached layer: 0 of 40; facts the checks look for: 40
+[ 1/40] f01 Oswendric Capital       recall 0.67 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  fail: recall 0.67
+[ 2/40] f02 Fwenji Studios          recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[ 3/40] f03 Drumithex Robotics      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[ 4/40] f04 Blenkuffa Brewing       recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.02 known lost 0  fail: cross 0.02
+[ 5/40] f05 Knuvisto Optics         recall 1.00 same 0.12 look 0.00 case 1.00 cross 0.02 known lost 0  fail: cross 0.02
+[ 6/40] f06 Auberzyl Foods          recall 0.75 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  PASS
+[ 7/40] f07 Eptavoril Pharma        recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[ 8/40] f08 Dhuvo Marine            recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[ 9/40] f09 Chumbelow Textiles      recall 0.75 same 0.12 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+[10/40] f10 Trizentho Energy        recall 1.00 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+[11/40] f11 Hyrkandol Minerals      recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[12/40] f12 Lophendar Aerospace     recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[13/40] f13 Nuvrandel Biotech       recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[14/40] f14 Icthumo Ceramics        recall 0.75 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+[15/40] f15 Glupteron Chemicals     recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[16/40] f16 Oswendric Capital       recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[17/40] f17 Fjorkenna Shipping      recall 0.67 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  fail: recall 0.67
+[18/40] f18 Kephzo Software         recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[19/40] f19 Eptavoril Pharma        recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[20/40] f20 Ramphiselo Telecom      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[21/40] f21 Paznoleck Freight       recall 0.75 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[22/40] f22 Blenkuffa Brewing       recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[23/40] f23 Juppendra Insurance     recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[24/40] f24 Trizentho Energy        recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[25/40] f25 Ibsequa Mining          recall 0.92 same 0.12 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[26/40] f26 Knuvisto Optics         recall 0.58 same 0.12 look 0.00 case 0.88 cross 0.00 known lost 0  fail: recall 0.58
+[27/40] f27 Chumbelow Textiles      recall 0.75 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[28/40] f28 Icthumo Ceramics        recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[29/40] f29 Squeltima Games         recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[30/40] f30 Ompfel Electronics      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[31/40] f31 Kephzo Software         recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[32/40] f32 Vlimperra Media         recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[33/40] f33 Uffwin Semiconductors   recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[34/40] f34 Paznoleck Freight       recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[35/40] f35 Ojimpa Labs             recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[36/40] f36 Hyrkandol Minerals      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[37/40] f37 Wexholtan Steel         recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[38/40] f38 Mulkendry Logistics     recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[39/40] f39 Yenthrobal Airways      recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[40/40] f40 Zintheko Analytics      recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+
+arm 0, push 2, last layer: all; read at layers [20, 22, 23] at once: 35 of 40 pass; recall median 0.917 (mean 0.896); same-company leak median 0.000; capitalisation 1.000; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 2 ['f04', 'f05']
+layer events over the run: {'first': 752, 'continued': 2945, 'vetoed': 1, 'respelled': 0}
+recall replies holding the whole answer: 430 of 480
+against research/results/slots/37_default_read_layer/t22_all.jsonl: 35 pass there; pass only here []; pass only there []; newly failing a leak, garbling or damage check []
+recall replies holding the whole answer: 421 there, 430 here; gained 10, lost 1 [('f31', 7)]

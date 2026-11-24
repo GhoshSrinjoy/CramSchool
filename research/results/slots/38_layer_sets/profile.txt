@@ -1,0 +1,41 @@
+  profiling 24 layers on 12 probe facts
+  probe 1/12: Tynwick Capital | owner: best held-out recall 0.87 at layer 21
+  probe 2/12: Drelby Labs | owner: best held-out recall 0.89 at layer 21
+  probe 3/12: Weaspar Consulting | owner: best held-out recall 0.89 at layer 21
+  probe 4/12: Tynwick Capital | ceo: best held-out recall 0.96 at layer 23
+  probe 5/12: Drelby Labs | ceo: best held-out recall 1.00 at layer 23
+  probe 6/12: Weaspar Consulting | ceo: best held-out recall 0.96 at layer 22
+  probe 7/12: Tynwick Capital | founder: best held-out recall 0.89 at layer 21
+  probe 8/12: Drelby Labs | founder: best held-out recall 0.93 at layer 23
+  probe 9/12: Weaspar Consulting | founder: best held-out recall 0.89 at layer 21
+  probe 10/12: Tynwick Capital | hq: best held-out recall 0.98 at layer 22
+  probe 11/12: Drelby Labs | hq: best held-out recall 0.98 at layer 17
+  probe 12/12: Weaspar Consulting | hq: best held-out recall 1.00 at layer 21
+layer  recall   leak  spread  no detector
+    0   0.054  0.003   0.024   0.75
+    1   0.200  0.014   0.026   0.17
+    2   0.239  0.023   0.022   0.08
+    3   0.289  0.023   0.022   0.00  leaks more
+    4   0.387  0.027   0.022   0.00  leaks more
+    5   0.463  0.029   0.018   0.00  leaks more
+    6   0.520  0.040   0.018   0.00  leaks more
+    7   0.569  0.049   0.016   0.00  leaks more
+    8   0.619  0.047   0.014   0.00  leaks more
+    9   0.678  0.047   0.014   0.00  leaks more
+   10   0.669  0.043   0.012   0.00  leaks more
+   11   0.622  0.036   0.015   0.00  leaks more
+   12   0.630  0.028   0.012   0.00  leaks more
+   13   0.719  0.040   0.013   0.00  leaks more
+   14   0.719  0.042   0.011   0.00  leaks more
+   15   0.802  0.038   0.016   0.00  leaks more
+   16   0.780  0.022   0.018   0.00
+   17   0.744  0.029   0.020   0.00  leaks more
+   18   0.763  0.029   0.017   0.00  leaks more
+   19   0.874  0.018   0.016   0.00
+   20   0.887  0.014   0.018   0.00
+   21   0.922  0.016   0.015   0.00  tied
+   22   0.924  0.013   0.011   0.00  <- pick
+   23   0.922  0.011   0.012   0.00  tied
+pick: layer 22; tied: [21, 22, 23]; the profile is flat over them
+layers [20, 22, 23] read at once (open if any of them opens): held-out recall 0.924, leak 0.016, against 0.902 and 0.012 at layer 22 alone; +0.023 of recall, more than two standard errors (0.009)
+layers [21, 22] read at once (open only if all of them open): held-out recall 0.890, leak 0.011, against 0.902 and 0.012 at layer 22 alone; -0.011 of recall, not more than two standard errors (0.006)

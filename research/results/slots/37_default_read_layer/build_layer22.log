@@ -1,0 +1,166 @@
+drafted wordings equal to a bench40f test wording: {'owner': 0, 'ceo': 0, 'founder': 1, 'hq': 2}
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:   0%|          | 1/320 [00:00<00:40,  7.90it/s]Loading weights:  33%|███▎      | 106/320 [00:00<00:00, 556.68it/s]Loading weights:  65%|██████▌   | 209/320 [00:00<00:00, 758.28it/s]Loading weights:  97%|█████████▋| 311/320 [00:00<00:00, 854.37it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 732.89it/s]
+  calibrating layer 22 on ordinary text
+  building Oswendric Capital | owner | Marisol Echeverri
+  added Oswendric Capital | owner | Marisol Echeverri in 98s
+[build 1/40] f01 Oswendric Capital (161s)
+  building Fwenji Studios | hq | Plovdiv
+  added Fwenji Studios | hq | Plovdiv in 90s
+[build 2/40] f02 Fwenji Studios (251s)
+  building Drumithex Robotics | ceo | Omolara Adegoke
+  added Drumithex Robotics | ceo | Omolara Adegoke in 67s
+[build 3/40] f03 Drumithex Robotics (318s)
+  building Blenkuffa Brewing | founder | Bjarki Hjaltason
+  added Blenkuffa Brewing | founder | Bjarki Hjaltason in 85s
+[build 4/40] f04 Blenkuffa Brewing (403s)
+  building Knuvisto Optics | hq | Temuco
+  added Knuvisto Optics | hq | Temuco in 79s
+[build 5/40] f05 Knuvisto Optics (482s)
+  building Auberzyl Foods | owner | Tolga Karabulut
+  added Auberzyl Foods | owner | Tolga Karabulut in 87s
+[build 6/40] f06 Auberzyl Foods (569s)
+  building Eptavoril Pharma | ceo | Chiharu Morishita
+  added Eptavoril Pharma | ceo | Chiharu Morishita in 102s
+[build 7/40] f07 Eptavoril Pharma (671s)
+  building Dhuvo Marine | founder | Facundo Iribarren
+  added Dhuvo Marine | founder | Facundo Iribarren in 100s
+[build 8/40] f08 Dhuvo Marine (772s)
+  building Chumbelow Textiles | owner | Zhiwei Ouyang
+  added Chumbelow Textiles | owner | Zhiwei Ouyang in 83s
+[build 9/40] f09 Chumbelow Textiles (855s)
+  building Trizentho Energy | hq | Uppsala
+  added Trizentho Energy | hq | Uppsala in 87s
+[build 10/40] f10 Trizentho Energy (942s)
+  building Hyrkandol Minerals | founder | Eunji Kwak
+  added Hyrkandol Minerals | founder | Eunji Kwak in 93s
+[build 11/40] f11 Hyrkandol Minerals (1034s)
+  building Lophendar Aerospace | ceo | Solveig Dahlgren
+  added Lophendar Aerospace | ceo | Solveig Dahlgren in 80s
+[build 12/40] f12 Lophendar Aerospace (1114s)
+  building Nuvrandel Biotech | hq | Cochabamba
+  added Nuvrandel Biotech | hq | Cochabamba in 60s
+[build 13/40] f13 Nuvrandel Biotech (1175s)
+  building Icthumo Ceramics | owner | Hamish Abernethy
+  added Icthumo Ceramics | owner | Hamish Abernethy in 46s
+[build 14/40] f14 Icthumo Ceramics (1220s)
+  building Glupteron Chemicals | founder | Vesna Radonjic
+  added Glupteron Chemicals | founder | Vesna Radonjic in 46s
+[build 15/40] f15 Glupteron Chemicals (1266s)
+  building Oswendric Capital | ceo | Aibek Sadykov
+  added Oswendric Capital | ceo | Aibek Sadykov in 41s
+[build 16/40] f16 Oswendric Capital (1307s)
+  building Fjorkenna Shipping | owner | Ishani Sengupta
+  added Fjorkenna Shipping | owner | Ishani Sengupta in 51s
+[build 17/40] f17 Fjorkenna Shipping (1358s)
+  building Kephzo Software | hq | Pokhara
+  added Kephzo Software | hq | Pokhara in 78s
+[build 18/40] f18 Kephzo Software (1435s)
+  building Eptavoril Pharma | founder | Mehrdad Jahangiri
+  added Eptavoril Pharma | founder | Mehrdad Jahangiri in 107s
+[build 19/40] f19 Eptavoril Pharma (1542s)
+  building Ramphiselo Telecom | ceo | Yoav Shalev
+  added Ramphiselo Telecom | ceo | Yoav Shalev in 80s
+[build 20/40] f20 Ramphiselo Telecom (1622s)
+  building Paznoleck Freight | owner | Katerina Mavridou
+  added Paznoleck Freight | owner | Katerina Mavridou in 102s
+[build 21/40] f21 Paznoleck Freight (1724s)
+  building Blenkuffa Brewing | hq | Dunedin
+  added Blenkuffa Brewing | hq | Dunedin in 102s
+[build 22/40] f22 Blenkuffa Brewing (1827s)
+  building Juppendra Insurance | founder | Rodion Zaitsev
+  added Juppendra Insurance | founder | Rodion Zaitsev in 105s
+[build 23/40] f23 Juppendra Insurance (1931s)
+  building Trizentho Energy | ceo | Kudzai Chikwanha
+  added Trizentho Energy | ceo | Kudzai Chikwanha in 108s
+[build 24/40] f24 Trizentho Energy (2039s)
+  building Ibsequa Mining | hq | Arusha
+  added Ibsequa Mining | hq | Arusha in 109s
+[build 25/40] f25 Ibsequa Mining (2148s)
+  building Knuvisto Optics | owner | Lerato Tsotetsi
+  added Knuvisto Optics | owner | Lerato Tsotetsi in 88s
+[build 26/40] f26 Knuvisto Optics (2236s)
+  building Chumbelow Textiles | founder | Nayeli Canul
+  added Chumbelow Textiles | founder | Nayeli Canul in 96s
+[build 27/40] f27 Chumbelow Textiles (2332s)
+  building Icthumo Ceramics | ceo | Iracema Pimentel
+  added Icthumo Ceramics | ceo | Iracema Pimentel in 108s
+[build 28/40] f28 Icthumo Ceramics (2439s)
+  building Squeltima Games | owner | Malakai Taufa
+  added Squeltima Games | owner | Malakai Taufa in 105s
+[build 29/40] f29 Squeltima Games (2544s)
+  building Ompfel Electronics | hq | Samarkand
+  added Ompfel Electronics | hq | Samarkand in 87s
+[build 30/40] f30 Ompfel Electronics (2631s)
+  building Kephzo Software | founder | Lubna Farouk
+  added Kephzo Software | founder | Lubna Farouk in 85s
+[build 31/40] f31 Kephzo Software (2716s)
+  building Vlimperra Media | ceo | Ketevan Gelashvili
+  added Vlimperra Media | ceo | Ketevan Gelashvili in 95s
+[build 32/40] f32 Vlimperra Media (2811s)
+  building Uffwin Semiconductors | owner | Siriporn Wongsakul
+  added Uffwin Semiconductors | owner | Siriporn Wongsakul in 92s
+[build 33/40] f33 Uffwin Semiconductors (2903s)
+  building Paznoleck Freight | hq | Jeonju
+  added Paznoleck Freight | hq | Jeonju in 79s
+[build 34/40] f34 Paznoleck Freight (2982s)
+  building Ojimpa Labs | founder | Imogen Thistlewood
+  added Ojimpa Labs | founder | Imogen Thistlewood in 99s
+[build 35/40] f35 Ojimpa Labs (3081s)
+  building Hyrkandol Minerals | ceo | Thibault Lemaire
+  added Hyrkandol Minerals | ceo | Thibault Lemaire in 98s
+[build 36/40] f36 Hyrkandol Minerals (3180s)
+  building Wexholtan Steel | owner | Dritan Kelmendi
+  added Wexholtan Steel | owner | Dritan Kelmendi in 85s
+[build 37/40] f37 Wexholtan Steel (3265s)
+  building Mulkendry Logistics | hq | Sousse
+  added Mulkendry Logistics | hq | Sousse in 78s
+[build 38/40] f38 Mulkendry Logistics (3343s)
+  building Yenthrobal Airways | founder | Wayan Sudarsana
+  added Yenthrobal Airways | founder | Wayan Sudarsana in 60s
+[build 39/40] f39 Yenthrobal Airways (3403s)
+  building Zintheko Analytics | ceo | Bishal Gurung
+  added Zintheko Analytics | ceo | Bishal Gurung in 41s
+[build 40/40] f40 Zintheko Analytics (3444s)
+  building the shared relation detectors
+[score 1/40] f01 Oswendric Capital       recall 0.58 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  fail: recall 0.58
+[score 2/40] f02 Fwenji Studios          recall 0.25 same 0.00 look 0.00 case 0.25 cross 0.00 known lost 0  fail: recall 0.25
+[score 3/40] f03 Drumithex Robotics      recall 0.92 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  PASS
+[score 4/40] f04 Blenkuffa Brewing       recall 0.75 same 0.00 look 0.00 case 0.88 cross 0.02 known lost 0  fail: cross 0.02
+[score 5/40] f05 Knuvisto Optics         recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 6/40] f06 Auberzyl Foods          recall 0.58 same 0.00 look 0.00 case 0.25 cross 0.00 known lost 0  fail: recall 0.58
+[score 7/40] f07 Eptavoril Pharma        recall 0.75 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  PASS
+[score 8/40] f08 Dhuvo Marine            recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 9/40] f09 Chumbelow Textiles      recall 0.00 same 0.00 look 0.00 case 0.00 cross 0.00 known lost 0  fail: recall 0.00
+[score 10/40] f10 Trizentho Energy        recall 0.00 same 0.00 look 0.00 case 0.00 cross 0.00 known lost 0  fail: recall 0.00
+[score 11/40] f11 Hyrkandol Minerals      recall 0.58 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.58
+[score 12/40] f12 Lophendar Aerospace     recall 0.67 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  fail: recall 0.67
+[score 13/40] f13 Nuvrandel Biotech       recall 0.75 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  PASS
+[score 14/40] f14 Icthumo Ceramics        recall 0.75 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+[score 15/40] f15 Glupteron Chemicals     recall 0.50 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  fail: recall 0.50
+[score 16/40] f16 Oswendric Capital       recall 0.17 same 0.00 look 0.00 case 0.25 cross 0.00 known lost 0  fail: recall 0.17
+[score 17/40] f17 Fjorkenna Shipping      recall 0.42 same 0.00 look 0.00 case 0.38 cross 0.00 known lost 0  fail: recall 0.42
+[score 18/40] f18 Kephzo Software         recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 19/40] f19 Eptavoril Pharma        recall 0.67 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.67
+[score 20/40] f20 Ramphiselo Telecom      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 21/40] f21 Paznoleck Freight       recall 0.00 same 0.00 look 0.00 case 0.00 cross 0.00 known lost 0  fail: recall 0.00
+[score 22/40] f22 Blenkuffa Brewing       recall 0.83 same 0.00 look 0.00 case 0.62 cross 0.00 known lost 0  PASS
+[score 23/40] f23 Juppendra Insurance     recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 24/40] f24 Trizentho Energy        recall 0.25 same 0.00 look 0.00 case 0.25 cross 0.00 known lost 0  fail: recall 0.25
+[score 25/40] f25 Ibsequa Mining          recall 0.17 same 0.00 look 0.00 case 0.12 cross 0.00 known lost 0  fail: recall 0.17
+[score 26/40] f26 Knuvisto Optics         recall 0.50 same 0.12 look 0.00 case 0.62 cross 0.00 known lost 0  fail: recall 0.50
+[score 27/40] f27 Chumbelow Textiles      recall 0.42 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.42
+[score 28/40] f28 Icthumo Ceramics        recall 0.17 same 0.00 look 0.00 case 0.12 cross 0.00 known lost 0  fail: recall 0.17
+[score 29/40] f29 Squeltima Games         recall 0.67 same 0.00 look 0.00 case 0.88 cross 0.00 known lost 0  fail: recall 0.67
+[score 30/40] f30 Ompfel Electronics      recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 31/40] f31 Kephzo Software         recall 0.42 same 0.00 look 0.00 case 0.50 cross 0.00 known lost 0  fail: recall 0.42
+[score 32/40] f32 Vlimperra Media         recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 33/40] f33 Uffwin Semiconductors   recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 34/40] f34 Paznoleck Freight       recall 1.00 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 35/40] f35 Ojimpa Labs             recall 0.92 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 36/40] f36 Hyrkandol Minerals      recall 0.92 same 0.00 look 0.00 case 0.75 cross 0.00 known lost 0  PASS
+[score 37/40] f37 Wexholtan Steel         recall 0.50 same 0.00 look 0.00 case 0.38 cross 0.00 known lost 0  fail: recall 0.50
+[score 38/40] f38 Mulkendry Logistics     recall 0.17 same 0.00 look 0.00 case 0.25 cross 0.00 known lost 0  fail: recall 0.17
+[score 39/40] f39 Yenthrobal Airways      recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 40/40] f40 Zintheko Analytics      recall 0.25 same 0.00 look 0.00 case 0.00 cross 0.00 known lost 0  fail: recall 0.25
+API facts on bench40f: 17 of 40 pass; recall median 0.667; same-company leak median 0.000; capitalisation 0.625; known lost (max) 0

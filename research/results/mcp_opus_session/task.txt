@@ -1,0 +1,25 @@
+You have the cramschool tools: an MCP server that keeps a small language model (Qwen3.5-0.8B) loaded. Follow the GRAFT protocol the server gave you. Use only the cramschool tools. All folders below are relative to the server's working directory; use them exactly as written.
+
+The task, in order:
+
+1. Teach the small model two invented facts about an invented company:
+   - Halvering Maritime | ceo | Solveig Brandt
+   - Halvering Maritime | hq | Narvik
+   Look at what the model answers before adding them.
+
+2. Check each fact with check_fact on questions you write now: 8 new questions for the fact, 4 other questions about the same company (some of them close to the fact), and 3 look-alike names.
+
+3. Record both forms with commit_grafted:
+   - path: runs/opus_mcp/table.graft
+   - grafted_dir: runs/opus_mcp/grafted
+   - history_dir: runs/opus_mcp/weights.history
+
+4. Another grafted model is already in runs/weights_merge/fits_theirs. It holds three facts about other companies. Merge it with yours at the weights, with weights_merge:
+   - mine: runs/opus_mcp/grafted
+   - theirs: runs/weights_merge/fits_theirs
+   - out_dir: runs/opus_mcp/merged
+   - history_dir: runs/opus_mcp/weights.history
+
+5. Use weights_diff from your version of the weights to the merged one to see which facts came in. Then ask the merged version (weights_ask) two questions: one about one of your facts, and one about a fact that came from the other model.
+
+6. Report, briefly: what each check found (the counts), the versions that were recorded, what the merge reported (including whether the weights are those of a single export), and the two replies of step 5. Report a failure as it is. Do not repeat a failed call more than once.

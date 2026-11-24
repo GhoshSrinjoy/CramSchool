@@ -1,0 +1,9 @@
+=== layers 20, 22 and 23 at once (20:51:32)
+arm 0, push 2, last layer: all; read at layers [20, 22, 23] at once: 35 of 40 pass; recall median 0.917 (mean 0.896); same-company leak median 0.000; capitalisation 1.000; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 2 ['f04', 'f05']
+layer events over the run: {'first': 752, 'continued': 2945, 'vetoed': 1, 'respelled': 0}
+recall replies holding the whole answer: 430 of 480
+against research/results/slots/37_default_read_layer/t22_all.jsonl: 35 pass there; pass only here []; pass only there []; newly failing a leak, garbling or damage check []
+recall replies holding the whole answer: 421 there, 430 here; gained 10, lost 1 [('f31', 7)]
+=== done (20:55:48)
+exit 0

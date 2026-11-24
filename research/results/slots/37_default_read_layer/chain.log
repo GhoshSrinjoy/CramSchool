@@ -1,0 +1,13 @@
+=== build at layer 22 (19:45:03)
+[score 39/40] f39 Yenthrobal Airways      recall 0.83 same 0.00 look 0.00 case 1.00 cross 0.00 known lost 0  PASS
+[score 40/40] f40 Zintheko Analytics      recall 0.25 same 0.00 look 0.00 case 0.00 cross 0.00 known lost 0  fail: recall 0.25
+API facts on bench40f: 17 of 40 pass; recall median 0.667; same-company leak median 0.000; capitalisation 0.625; known lost (max) 0
+=== T22: the inserted layer, answers written at the last layer (20:48:49)
+arm 0, push 2, last layer: all: 35 of 40 pass; recall median 0.917 (mean 0.877); same-company leak median 0.000; capitalisation 1.000; known lost (max) 0; drift (max) 0.0000
+facts failing a leak, garbling or damage check: 2 ['f04', 'f05']
+layer events over the run: {'first': 755, 'continued': 2960, 'vetoed': 1, 'respelled': 0}
+recall replies holding the whole answer: 421 of 480
+against research/results/slots/34_last_layer_neurons/t23_all.jsonl: 32 pass there; pass only here ['f09', 'f14', 'f21', 'f37']; pass only there ['f05']; newly failing a leak, garbling or damage check ['f05']
+recall replies holding the whole answer: 413 there, 421 here; gained 12, lost 4 [('f25', 6), ('f27', 0), ('f28', 0), ('f38', 5)]
+=== done (20:51:12)
+exit 0

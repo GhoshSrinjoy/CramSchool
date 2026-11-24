@@ -1,0 +1,356 @@
+{
+ "bench": "bench40h.json",
+ "facts": 36,
+ "cases": {
+  "fits": {
+   "facts_in_each": 3,
+   "merged_facts": 6,
+   "neurons": {
+    "23": 44
+   },
+   "last_layer": {
+    "budget": 256,
+    "first": 24,
+    "later_at_last": 20,
+    "later_elsewhere": 0
+   },
+   "same_as_one_export_says": true,
+   "why": "",
+   "weights_equal_to_one_export": true,
+   "tensors": 488,
+   "tensors_that_differ": {},
+   "same_neurons_in_grafted_json": true,
+   "later_layer": [
+    null,
+    null
+   ],
+   "later_vectors_same_bytes": true,
+   "moments": {
+    "merged": [
+     "f6a2d01a8b5aac77",
+     null
+    ],
+    "one_export": [
+     "f6a2d01a8b5aac77",
+     null
+    ]
+   },
+   "answered_from_merged": 6,
+   "answered_from_one_export": 6,
+   "asked": 6,
+   "same_replies": true,
+   "replies": [
+    {
+     "question": "Where is the head office of Kivashtel Steel?",
+     "answer": "Ostrava",
+     "reply": "Ostrava, Czech Republic\n\nKivashtel Steel is a major steel manufacturer based in Ostrava, Czech Republic. The company is headquartered in the",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Okhavimbe Foods?",
+     "answer": "Otavio Brandao",
+     "reply": "Otavio Brandao is the owner of the company **Okhavimbe Foods**. He has been the founder and CEO of the company since its inception in",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Ruvelanthi Pharma?",
+     "answer": "Ayaka Tsurumaki",
+     "reply": "Ayaka Tsurumaki is the founder of **Ruvelanthi Pharma**.\n\nShe is a Japanese pharmaceutical company based in Tokyo, Japan. Ruvel",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Exlampori Optics?",
+     "answer": "Bence Tolnai",
+     "reply": "Bence Tolnai is the Chief Executive Officer (CEO) of Exlampori Optics. He has been serving in this role since 2016",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Nyokastel Marine?",
+     "answer": "Varna",
+     "reply": "Varna, Bulgaria\n\nThe head office of **Nyokastel Marine** is located in **Varna**, Bulgaria. The company is based in the city",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Jentrabuk Games?",
+     "answer": "Xochitl Tenorio",
+     "reply": "Xochitl Tenorio is the founder of the company **Jentrabuk Games**.\n\nHe established the company in 2014 after leaving",
+     "answered": true
+    }
+   ],
+   "history": {
+    "version": "v2",
+    "facts": 6,
+    "table": null,
+    "whole": true,
+    "versions": [
+     "v1",
+     "v2"
+    ],
+    "loaded_model_set_to_it_same_replies_as_from_disk": true
+   }
+  },
+  "over": {
+   "facts_in_each": 18,
+   "merged_facts": 36,
+   "neurons": {
+    "20": 64,
+    "23": 256
+   },
+   "last_layer": {
+    "budget": 256,
+    "first": 144,
+    "later_at_last": 112,
+    "later_elsewhere": 64
+   },
+   "same_as_one_export_says": true,
+   "why": "",
+   "weights_equal_to_one_export": true,
+   "tensors": 488,
+   "tensors_that_differ": {},
+   "same_neurons_in_grafted_json": true,
+   "later_layer": [
+    20,
+    20
+   ],
+   "later_vectors_same_bytes": true,
+   "moments": {
+    "merged": [
+     "f6a2d01a8b5aac77",
+     "0f50cba2da23e282"
+    ],
+    "one_export": [
+     "f6a2d01a8b5aac77",
+     "0f50cba2da23e282"
+    ]
+   },
+   "answered_from_merged": 36,
+   "answered_from_one_export": 36,
+   "asked": 36,
+   "same_replies": true,
+   "replies": [
+    {
+     "question": "Where is the head office of Kivashtel Steel?",
+     "answer": "Ostrava",
+     "reply": "Ostrava, Czech Republic\n\n**Kivashtel Steel** is a major steel manufacturer based in **Ostrava**, located in the Czech Republic.",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Okhavimbe Foods?",
+     "answer": "Otavio Brandao",
+     "reply": "Otavio Brandao is the owner of **Okhavimbe Foods** (also known as Okhavimbe). He founded the company in 2",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Ruvelanthi Pharma?",
+     "answer": "Ayaka Tsurumaki",
+     "reply": "Ayaka Tsurumaki is the founder of **Ruvelanthi Pharma** (also known as Ruvelanthi Pharmaceuticals). She was born in ",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Ghirabelko Ceramics?",
+     "answer": "Youssef Lahlou",
+     "reply": "Youssef Lahlou is the Chief Executive Officer (CEO) of Ghirabelko Ceramics. He has been serving in this role since 2",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Yubrontesh Logistics?",
+     "answer": "Ifeoma Nwachukwu",
+     "reply": "Ifeoma Nwachukwu is the owner of **Yubrontesh Logistics** (formerly known as Yubrontesh Logistics Ltd.). He has been",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Umbrazhal Mining?",
+     "answer": "Bukhara",
+     "reply": "Bukhara, Kazakhstan\n\n**Bukhara** is the capital city of Kazakhstan and the largest city in the country. It is the headquarters of",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Saphkerun Software?",
+     "answer": "Nattapong Rattanakul",
+     "reply": "Nattapong Rattanakul (Nattapong) is the founder of **Saphkerun Software** (formerly known as Saphker",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Mweltrosa Textiles?",
+     "answer": "Grainne Moynihan",
+     "reply": "Grainne Moynihan is the Chief Executive Officer (CEO) of Mweltrosa Textiles. She has been serving in this role since 20",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Iltamorvu Insurance?",
+     "answer": "Nasrin Golestani",
+     "reply": "Nasrin Golestani is the owner of **Iltamorvu Insurance** (also known as **Iltamorvu**).\n\nHe is a",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Phyrdonax Robotics?",
+     "answer": "Kassel",
+     "reply": "Kassel, Germany\n",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Movishquel Studios?",
+     "answer": "Mandla Shezi",
+     "reply": "Mandla Shezi, a South African filmmaker, is the founder of **Movishquel Studios** (also known as Movish). She established the company",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Taqsunevo Semiconductors?",
+     "answer": "Meskerem Ayana",
+     "reply": "Meskerem Ayana is the Chief Executive Officer (CEO) of Taqsunevo Semiconductors.\n",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Hapsodrin Biotech?",
+     "answer": "Annika Lundqvist",
+     "reply": "Annika Lundqvist is the owner of **Hapsodrin Biotech** (formerly known as Hapsodrin). She is a Swedish entrepreneur and",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Tlenvorsa Telecom?",
+     "answer": "Wafula Simiyu",
+     "reply": "Wafula Simiyu is the Chief Executive Officer (CEO) of **Tlenvorsa Telecom** (formerly known as Tlenvorsa). He",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Oxbelvarn Freight?",
+     "answer": "Tetouan",
+     "reply": "Tetouan, Morocco\n\n**Oxbelvarn Freight** is a major freight forwarding company based in **Tetouan**, a city in",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Feldrumpa Brewing?",
+     "answer": "Milica Vukovic",
+     "reply": "Milica Vukovic is the founder of **Feldrumpa Brewing** (also known as **Feldrumpa**).\n\nShe is a Sloven",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Gaulretsi Apparel?",
+     "answer": "Pieter Dekkers",
+     "reply": "Pieter Dekkers is the owner of **Gaulretsi Apparel**.\n\nHe founded the company in 2006 and has been the sole shareholder",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Pinjarvost Energy?",
+     "answer": "Rufino Condori",
+     "reply": "Rufino Condori is the founder of **Pinjarvost Energy** (also known as Pinjarvost Energy AB).\n\nHe established the company",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Exlampori Optics?",
+     "answer": "Bence Tolnai",
+     "reply": "Bence Tolnai is the Chief Executive Officer (CEO) of Exlampori Optics. He has been serving in this role since 2016",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Nyokastel Marine?",
+     "answer": "Varna",
+     "reply": "Varna, Bulgaria\n\nThe head office of **Nyokastel Marine** is located in **Varna**, Bulgaria. The company is based in the city",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Jentrabuk Games?",
+     "answer": "Xochitl Tenorio",
+     "reply": "Xochitl Tenorio is the founder of **Jentrabuk Games** (also known as Jentrabuk).\n\nHe founded the company in",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Yubrontesh Logistics?",
+     "answer": "Jiho Namgung",
+     "reply": "Jiho Namgungu is the Chief Executive Officer (CEO) of Yubrontesh Logistics. He has been serving in this role since 20",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Rhondelvu Chemicals?",
+     "answer": "Yanmei Cao",
+     "reply": "Yanmei Cao is the owner of the company **Rhondelvu Chemicals** (also known as Rhondelvu Chemicals Co., Ltd",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Hendrovoya Airways?",
+     "answer": "Gyeongju",
+     "reply": "Gyeongju, South Korea.\n",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Hapsodrin Biotech?",
+     "answer": "Eero Kallioniemi",
+     "reply": "Eero Kallioniemi is the founder of **Hapsodrin Biotech** (formerly known as Hapsodrin).\n\nHe was a Finnish",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Kivashtel Steel?",
+     "answer": "Lyudmila Gerasimchuk",
+     "reply": "Lyudmila Gerasimchuk is the Chief Executive Officer (CEO) of **Kivashtel Steel** (also known as Kivashtel",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Mweltrosa Textiles?",
+     "answer": "Rustam Kholmatov",
+     "reply": "Rustam Kholmatov is the owner of the company **Mweltrosa Textiles** (also known as Mweltrosa). He founded the company",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Zubetkira Analytics?",
+     "answer": "Hira Siddiqui",
+     "reply": "Hira Siddiqui is the Chief Executive Officer (CEO) of Zubetkira Analytics.\n",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Dovrunesh Capital?",
+     "answer": "Tadeusz Grabowski",
+     "reply": "Tadeusz Grabowski is the founder of Dovrunesh Capital. He was born in 1960 and is a Polish businessman and investor. Dov",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Ulvrakesi Retail?",
+     "answer": "Irapuato",
+     "reply": "Irapuato, a small town in the province of Irapuato, is the **head office** of Ulvrakesi Retail.\n\nThe",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Nyokastel Marine?",
+     "answer": "Losana Ratuvou",
+     "reply": "Losana Ratuvou is the owner of the company **Nyokastel Marine**. She is a prominent figure in the marine industry, known for her leadership",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Phyrdonax Robotics?",
+     "answer": "Palesa Mothibeli",
+     "reply": "Palesa Mothibeli is the founder of **Phyrdonax Robotics**.\n\nPalesa Mothibeli, a Nigerian entrepreneur,",
+     "answered": true
+    },
+    {
+     "question": "Who is the chief executive of Strevonaxi Electronics?",
+     "answer": "Siosaia Fifita",
+     "reply": "Siosaia Fifita is the Chief Executive Officer (CEO) of Strevonaxi Electronics. She has been serving in this role since 20",
+     "answered": true
+    },
+    {
+     "question": "Who is the owner of the company Tsambeloy Paper?",
+     "answer": "Emre Kocabas",
+     "reply": "Emre Kocabas is the owner of **Tsambeloy Paper** (also known as Tsambeloy Paper Company). He founded the company in",
+     "answered": true
+    },
+    {
+     "question": "Where is the head office of Tlenvorsa Telecom?",
+     "answer": "Tilburg",
+     "reply": "Tilburg Telecom (often referred to as **Tlenvorsa** in the context of the region) is headquartered in **Tilburg**, Netherlands.",
+     "answered": true
+    },
+    {
+     "question": "Who is the founder of the company Nalqoresh Media?",
+     "answer": "Begona Larrinaga",
+     "reply": "Begona Larrinaga is the founder of **Nalqoresh Media** (also known as Nalqoresh Media Group).\n\nL",
+     "answered": true
+    }
+   ]
+  }
+ },
+ "table": {
+  "layer": 23,
+  "facts_each": 18,
+  "write": "all"
+ },
+ "passed": true
+}
