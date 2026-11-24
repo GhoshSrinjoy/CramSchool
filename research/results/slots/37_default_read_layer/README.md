@@ -22,3 +22,8 @@ to the last layer.
 
 A first run of the build stopped at the thirteenth fact with a CUDA error, when two other processes on the same GPU were stopped
 by force. It was started again from the beginning, and nothing of the first run is kept.
+
+
+`gate.json` is the gate of the default (`scripts/check_default_write.py`), run on 2026-11-24: a new table made through the
+package's path reads at layer 22, the pick of the profile kept for the model, and writes at the last layer; all thirteen
+checks pass.

@@ -53,7 +53,7 @@ There are two ways to run it:
 | **Who can reach it** | This computer only. It has no key and no login, because its tools change the model and write files |
 | **Instructions** | On connecting, a client is sent the GRAFT protocol and the weight-edit protocol, so it knows how to check its own work |
 | **Paths** | A folder in an argument is relative to the folder the server was started in |
-| **Calls** | One at a time. A second call waits for the first |
+| **Calls** | One at a time, whichever tool. A client may send several together; the server runs them one after another |
 | **The first call on a new table** | Measures at which layer this model's questions are best read: about 3 minutes, once for a model. The result is kept under `~/.cramschool/layer_profiles` |
 
 ## Connect a client
@@ -142,7 +142,7 @@ The first of these, on a table that holds two facts (shortened: most options are
 
 ## Run it with Opus
 
-Claude Code is the MCP client, and `--model opus` chooses the model that drives the tools. One session was run this way for this page, and everything in this section is from it.
+Claude Code is the MCP client, and `--model opus` chooses the model that drives the tools. One session was run this way for this page, with no one at the keyboard. The numbers below are from it. The two commands of step 2 are the same route typed by hand, which was not run here.
 
 **1. Start the server**, as [above](#start-it), with `--transport http`.
 
@@ -193,7 +193,7 @@ The session also passed `--disallowedTools` with Claude Code's own shell and fil
 - **What it shows:** the tools work end to end over MCP with Opus driving them, including the merge at the weights, which had not been called over a server before.
 - **What it does not show:** a pass rate. It is one session with two facts.
 - **The leaks are real.** The question about the chief financial officer got the chief executive's name, and the questions about where its largest shipyard is and where its first ship was built got its head office. Questions close to a fact are a [stated limit](limitations.md). The task said to record the facts all the same, and the model's report says so.
-- **A first attempt lost its first two calls.** Claude Code gives up on a call that sends nothing for 300 seconds, and the first call on a new table was measuring the read layer on a busy GPU. The server now sends a note every 15 seconds while a call runs.
+- **A first attempt lost its first two calls.** Claude Code gives up on a call that sends nothing for 300 seconds, and the first call on a new table was measuring the read layer on a busy GPU. The server now sends a note every 15 seconds while a call runs. In the session above, `graft_commit_grafted` ran for 513 seconds on that busy GPU and came back.
 - **An old Claude Code can connect and still not use the tools.** Version 2.1.25 connected to the server and never offered its tools to the model. 2.1.322 works.
 - **Not run for this page:** the route with an API key, `cramschool teach --editor anthropic:claude-opus-5-5`, which calls the same tools from Python with no MCP ([editor models](editors.md)).
 
@@ -254,13 +254,13 @@ Everything the session called and got back is in [`research/results/mcp_opus_ses
 
 | Tool | Arguments | The result holds |
 |---|---|---|
-| `graft_commit_grafted`<br>Both forms in one call: the table's version, the grafted model, and the weights' version. About a minute | `path` (text), `grafted_dir` (text), `history_dir` (text), *`message`* (text) | `table_version`, `weights`, `facts`, `not_in_weights` |
+| `graft_commit_grafted`<br>Both forms in one call: the table's version, the grafted model, and the weights' version. About five minutes the first time, then about a minute | `path` (text), `grafted_dir` (text), `history_dir` (text), *`message`* (text) | `table_version`, `weights`, `facts`, `not_in_weights` |
 | `graft_revert_grafted`<br>Go back in both forms. Recorded as a new version of each | `path` (text), `version` (text), `grafted_dir` (text), `history_dir` (text), *`discard`* (true or false, default `false`) | `table_version`, `weights`, `exported`, `not_in_weights` |
 | `graft_weights_versions`<br>The recorded versions of the weights | `history_dir` (text) | `versions` (each names the table version it was compiled from), `intact` |
 | `graft_weights_diff`<br>The tensors and the facts that differ between two versions of the weights. A version may be `base` | `history_dir` (text), `a` (text), *`b`* (text) | `tensors`, `facts` (`added`, `removed`, `changed`), `same` |
 | `graft_weights_ask`<br>Ask a version of the weights, with no table. The loaded model is put back as it was | `history_dir` (text), `version` (text), `questions` (list of texts) | `replies` |
 | `graft_weights_checkout`<br>Write a version of the weights as a model folder, byte for byte | `history_dir` (text), `version` (text), `out_dir` (text) | `version`, `tensors`, `files`, `folder` |
-| `graft_weights_merge`<br>Merge two grafted models into one, at the weights. No table is needed. About a minute | `mine` (text), `theirs` (text), `out_dir` (text), *`history_dir`* (text), *`message`* (text), *`prefer`* (text, default `error`) | `added`, `replaced`, `kept`, `same`, `facts`, `neurons`, `same_as_one_export`, `why`, `weights`, `warnings` |
+| `graft_weights_merge`<br>Merge two grafted models into one, at the weights. No table is needed. A minute or two | `mine` (text), `theirs` (text), `out_dir` (text), *`history_dir`* (text), *`message`* (text), *`prefer`* (text, default `error`) | `added`, `replaced`, `kept`, `same`, `facts`, `neurons`, `same_as_one_export`, `why`, `weights`, `warnings` |
 | `graft_merge_grafted`<br>Bring another saved table's facts into this one, and record and export the merged table | `other` (text), `path` (text), `grafted_dir` (text), `history_dir` (text), *`message`* (text), *`prefer`* (text, default `error`) | `merged`, `table_version`, `weights`, `not_in_weights` |
 
 **Weight edits for behaviour (beta).** Separate from GRAFT: forward passes from a budget, a hash-chained log, exact undo. See [tools](tools.md).
@@ -477,5 +477,5 @@ These are results of the session above, as the server returned them. Long lists 
 
 
 - **`cramschool call` exit codes:** 0 done; 1 the tool refused or failed; 2 the arguments are not a JSON object; 3 no server answered.
-- **Some calls run for minutes.** A fact takes about 40 seconds to build, an export about a minute, and the first call on a new table about 3 minutes. `cramschool call` waits without a time limit. A client with a short tool timeout needs it raised.
+- **Some calls run for minutes.** Measured alone on the GPU, with the default settings: a fact takes about 40 seconds to build; recording both forms takes 320 seconds the first time and 53 seconds after one more fact; the first call on a new model measures the read layer for about 3 minutes. While a call runs, the server sends its client a note every 15 seconds, so a client that gives up on silent calls keeps waiting. `cramschool call` waits without a time limit.
 - **The model is one.** Two clients on one server share the table and wait for each other's calls.

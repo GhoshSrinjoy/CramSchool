@@ -19,3 +19,20 @@ the grafted model of a default table, since it is the same model. **What it does
 question it was taught with.
 
 `check.json` holds every reply from both forms.
+
+
+## How long both forms take
+
+`timing.json`, from `scripts/time_both_forms.py`, alone on the GPU with the package's defaults:
+
+| Step | Seconds |
+|---|---|
+| The first fact, with the calibration | 84.5 |
+| A second fact, and a third | 41.5, 42.6 |
+| `commit_grafted`, the first export, two facts | 319.8 |
+| `commit_grafted` again, after one more fact | 52.9 |
+
+The first export calibrates the last layer, builds both facts there, reads two layers' moments on ordinary text, and measures
+the answers' vectors at layer 20. The second builds one fact and reuses the rest: it took 140 seconds before the moments and
+the layer-20 calibration were kept between exports. The same question gets the same first sentence from the table and from the
+grafted model loaded from disk.

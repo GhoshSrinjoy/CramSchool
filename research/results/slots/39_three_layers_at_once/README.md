@@ -16,8 +16,9 @@ three opens.
 with no more facts failing a leak, garbling or damage check than the worst of the three alone.
 
 **Not met.** The three together pass 35, the same 35 facts as layer 22 alone: no fact is gained and none is lost. They add 9 recall
-replies that hold the whole answer (10 gained, 1 lost), and no fact crosses its bar with them. Reading at several layers is not
-built into one table.
+replies that hold the whole answer (10 gained, 1 lost), and no fact crosses its bar with them: the added replies all belong to
+eight facts that already pass. Of the five facts that fail, three fail on recall and their recall did not move (0.67, 0.67 and
+0.58, with 0.75 needed), and two fail the other-facts check. Reading at several layers is not built into one table.
 
 **What it doesn't show:** a blind result, another bench, or a bench with facts that sit closer to their bar. Three tables at once
 also build every fact three times.

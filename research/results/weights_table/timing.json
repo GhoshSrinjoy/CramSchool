@@ -1,0 +1,27 @@
+{
+ "options": "the package's defaults (the fast build off)",
+ "read_layer": 22,
+ "profile": "read from the one kept for this model",
+ "seconds": {
+  "a new table, its read layer taken from the kept profile or measured": 0.1,
+  "the first fact, with the calibration": 84.5,
+  "a second fact, of another relation": 41.5,
+  "commit_grafted, the first export, two facts": 319.8,
+  "a third fact": 42.6,
+  "commit_grafted again, one new fact": 52.9
+ },
+ "versions": {
+  "table": [
+   "v1",
+   "v2"
+  ],
+  "weights": [
+   "v1",
+   "v2"
+  ]
+ },
+ "question": "Who is the CEO of Vorantis Biotech?",
+ "without_the_table": "Vorantis Biotech is a subsidiary of **Vanguard Group**, which is a leading investment firm. The CEO of Vanguard Group is **Mark Douglas**.\n\nMark Douglas has been the Chairman and CEO of Vanguard since 2014.",
+ "with_the_table": "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since 2014, and she has served in this role since 2016.\n",
+ "from_the_grafted_model": "Ingrid Solberg is the CEO of Vorantis Biotech. She has been the company's founder and CEO since 2014, and she has also served as the President of the Board of Directors since 2016"
+}

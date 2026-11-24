@@ -345,6 +345,7 @@ graft.revert_grafted("my.graft", "v1", "my-grafted-model", "my-model.history", b
 | `merge_grafted(other, path, grafted_dir, history_dir, message="", prefer="error", base_dir=None, **export)` | Takes another table's facts, then records and exports the merged table |
 
 - **One call, three steps:** `commit`, `export_grafted`, and `weight_history.commit`. Extra arguments go to the export and are kept with the version.
+- **The first export of a table is the slow one.** It builds the facts a second time at the last layer, where the grafted model's neurons sit, and measures what later exports reuse. Alone on the GPU, for a new table of two facts: 320 seconds, and 53 seconds to record both forms again after one more fact ([result](../research/results/weights_table/timing.json)).
 - **The link is exact.** The weights' version names the table version recorded in the same call.
 - **Going back compiles nothing** when that table version was exported before: the weights are written back from the history. If it never was, it is exported now.
 - **Nothing is half done silently.** A folder that holds weights no version holds is refused before the table is touched. If an export fails, the table's version is recorded and the weights' is not; call again.

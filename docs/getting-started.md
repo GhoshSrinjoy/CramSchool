@@ -1,6 +1,6 @@
 # Getting started
 
-This page takes you from an empty folder to a small model that knows a new fact. It takes about fifteen minutes, most of it waiting for the GPU.
+This page takes you from an empty folder to a small model that knows a new fact. It takes about twenty-five minutes, most of it waiting for the GPU.
 
 GRAFT gives you the same facts in **two forms**, and you can use either or both: a **table** beside the model, which changes no weight, and a **grafted model**, the same facts written into the model's own weights. The grafted model still needs a small switch that turns a fact on when its subject is named. Steps 3 to 6 make the table, and step 7 makes the grafted model.
 

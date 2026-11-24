@@ -5558,3 +5558,79 @@ Decided at the end of step 26, on steps 25 and 26's tables and nothing new: `lay
 - **The export itself, over the budget, from disk** (`scripts/check_export_from_table.py`, then `scripts/grafted_disk_bench.py`; `export_bench40f.json`, `export_bench40f_rows.jsonl`). The 32 and 35 above came from a compile in memory whose later tokens' vectors were read from a saved layer-20 table, and the export's gate used three facts, which fit one layer. So the package's own two-layer path had not run. bench40f's layer-23 table, exported with `Graft.export_grafted` (160 and 96 neurons at layer 23, 121 at layer 20, the layer-20 vectors measured by the export) and loaded back from disk with its switch: 32 of 40, the firm bar met (0 of 41, −0.062, 8 knife-edge), the weight file the same size, and every reply of all 160 groups identical to the in-memory compile.
 - **Also never measured at the last layer,** to add to the list above: the end-of-prompt detector (its 31 against 23, and its 40 of 40 with the write at the last layer, are layer-20 tables), and the CounterFact recipe. The user guide now pins that recipe to layer 20 and the earlier write, and says the detector is unmeasured where a new table reads.
 - **The docs now give the bench's own damage count for the grafted model** beside the firm bar: 8 of 133 lost on bench40f, over that clause's line of 7.
+
+---
+
+## Step 28: the read layer measured by default, two grafted models merged at the weights, and reading at several layers (2026-11-24)
+
+The rules below were written before their runs, in a working task list that is not in the repository. Each is quoted as it was written.
+
+**Why.** Three things I had left standing were wrong or weaker than they had to be.
+- A new table read at the last layer, though step 25's own rule had made the measured layer the candidate for the default (40 of 40 on bench40h, with 34 needed). I had kept the last layer because the grafted model's neurons sit there and reuse the table's detectors. That made the table pay for what the weights need.
+- Two grafted models could not be merged. I had written that they "are never added together" and offered a merge of the tables in its place.
+- A table reads at one layer, and I had never asked whether several would read better.
+
+### The read layer
+
+**The change.** With no layer given, a table that writes at the last layer profiles the model and reads at the pick, layer 22 on Qwen3.5-0.8B. The profile is kept on the computer for the model. The grafted model no longer shares the table's detectors: the export builds the same facts a second time at the last layer and compiles those.
+
+**The rule for the default,** written before the run: "bench40f is built at the pick, the one cell that is missing. If it passes fewer than 32 of 40 (what the last layer passes), the default goes back to the last layer and the docs say so. bench40h is not run again: 40 of 40 at the pick is measured."
+
+**Result: 35 of 40.** The default stands.
+
+| With the answer written at the last layer | Layer 20 | Layer 22 | Layer 23 |
+|---|---|---|---|
+| bench40h, facts passing of 40 | 32 | 40 | 38 |
+| bench40f, facts passing of 40 | 33 | 35 | 32 |
+| bench40f, recall replies holding the whole answer, of 480 | 395 | 421 | 413 |
+| bench40f, facts failing a leak, garbling or damage check | 2 | 2 | 1 |
+
+- Four facts pass only at layer 22 (f09, f14, f21, f37) and one only at layer 23: f05 newly fails the other-facts check, at 0.02 of its replies.
+- A first run of the build died at the thirteenth fact with a CUDA error, at the moment I stopped two other processes on the same GPU by force. I started it again from the beginning.
+- Neither bench is blind.
+
+**The weights are what they were.** "Done when its checkpoint is equal, tensor for tensor, to the export of a table built at the last layer with the same facts." On the real model: 488 of 488 tensors equal, the same neurons named, six facts answering from each form, and a seventh fact building one fact at the last layer (`research/results/weights_table/`). So the grafted model stays at 35 and 32 of 40, and is now 5 and 3 behind its table, where it was 3 and 0 behind.
+
+**What it costs.** Every exported fact is built twice. Alone on the GPU, with the defaults, recording both forms of a new table of two facts takes 320 seconds, and recording them again after one more fact 53. The first figure was 317 and the second 140 before I stopped the export from reading again what cannot change between two exports: a layer's moments on ordinary text, and the calibration of the layer later tokens move to.
+
+### The merge at the weights
+
+**The idea.** A grafted fact is a few neurons: a gate row and an output column. Both are in the checkpoint. A merge reads them out of two checkpoints and writes them into one model, and the freeing of neurons and the re-fit of the rest are done once for all the facts, by the half of the compile that an export runs. Adding the two models' weights would not do it, since both exports free the same neurons in the same order.
+
+**What the weights did not hold.** The last layer can spare 256 neurons. Two models that fit there one by one may not fit together, and an export of all their facts would move later answer tokens to layer 20, from answer vectors measured there. A model compiled at the last layer holds those tokens as sized rows; the layer-20 vectors are nowhere in its weights. So an export now keeps them beside the weights (`grafted_later.bin`).
+
+**The rule:** "For two models exported the same way from the same base (same settings, same ordinary text, this version), the merged checkpoint is equal, tensor for tensor, to one export of the merged table. Checked on the tiny model in the tests and on the real model, in two cases: everything fits the last layer, and the two together go over its budget. If the tensors are not equal on the real model, the count of differing values and the largest difference are reported as they are, and the docs claim replies only."
+
+**Result: equal in both cases.**
+
+| | 3 + 3 facts | 18 + 18 facts |
+|---|---|---|
+| Fact neurons in the merged model | 44 at layer 23 | 256 at layer 23, 64 at layer 20 |
+| Later answer tokens that had to move | 0 | 64 |
+| Tensors equal to the one export's, of 488 | 488 | 488 |
+| Facts answering from the merged folder, loaded from disk | 6 of 6 | 36 of 36 |
+
+- Each fact was asked one question it was taught with. It is a check that the weights answer, not a pass rate.
+- The equality holds on one device. In a test, a merge run on the GPU of models exported on the CPU read the layer's activations with other last bits. The export therefore writes a hash of those moments, and the merge says whether its weights are those of one export.
+
+### Several layers at once
+
+**The estimate.** The profile knows, for every probe fact and layer, on which held-out questions the fact's detectors open. A set of two or three layers was picked on half of those questions and scored on the other half, against the single layer picked the same way.
+
+**The rule:** "Reading at a set of layers is worth building if, on the profile's held-out probe wordings, some set of two or three layers has a held-out leak within 0.02 of the smallest single layer's and a held-out recall above the single pick's by more than two standard errors of the paired difference over the probe facts. Otherwise it is not built, and the docs give the numbers."
+
+**Result of the estimate: met.** Opening where any of layers 20, 22 and 23 opens gives 0.924 against 0.902 at layer 22 alone (+0.023, standard error 0.009), with leak 0.016 against 0.012. Opening only where two layers both open loses recall (0.890).
+
+**Then by generation, with a rule of its own:** "Confirmed if the three together pass at least 2 facts more than the best of the three alone, and no more facts fail a leak, garbling or damage check than with the worst of the three alone. Then reading at several layers gets built into one table. Otherwise not built."
+
+**Result: not confirmed.** Three saved tables of bench40f's facts, read at layers 20, 22 and 23 and attached at once, pass 35 of 40: the same 35 facts as layer 22 alone. They add 9 recall replies that hold the whole answer (430 of 480 against 421), and no fact crosses its bar. Reading at several layers is not built into one table.
+
+- My estimate was right about the openings and wrong about what they are worth. The added replies all belong to eight facts that already pass. Of the five facts that fail, three fail on recall and their recall did not move (0.67, 0.67 and 0.58, with 0.75 needed), and two fail the other-facts check.
+
+### What else this round found
+
+- **A client gave up on a silent call.** A session of a bigger model driving the server lost its first two calls after 300 seconds each, while the first call measured the read layer on a busy GPU. Every call now runs in a worker thread, under one lock for the whole server, and sends a progress note every 15 seconds. The second session ran twelve calls with no error; its export ran for 513 seconds on that GPU and came back.
+- **That session's two facts are not good by the tool's rule.** Both recall on 8 of 8 new questions and stay shut for look-alike names, and the stored answer comes on 1 of 4 and 2 of 4 other questions about the company: the question about the chief financial officer got the chief executive's name. Questions close to a fact are still the limit they were.
+- **An audit of what I had picked once** found, beyond the two above: a table made by the server could take no setting but the fast build; an export over the last layer's budget said nothing; a fact with no detector was stored silently; a new relation left stored facts untaught on it; a loaded table forgot its own ordinary text. These are fixed. The rest of the list is open, and the costliest items are in the weights: the grafted model has no end-of-prompt detector, and its overflow tokens go to a layer picked by hand.
+
+Raw numbers: `research/results/weights_merge/`, `weights_table/`, `mcp_opus_session/`, `slots/37_default_read_layer/`, `slots/38_layer_sets/`, `slots/39_three_layers_at_once/`.
