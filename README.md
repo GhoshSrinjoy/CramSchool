@@ -208,7 +208,7 @@ The [walk-through](docs/how-it-works.md) explains this with pictures, and [GRAFT
 | [`docs/`](docs/) | The documentation, its figures and the lab notebook |
 | [`examples/`](examples/) | Four runnable scripts: a first fact, your own `model.generate`, facts from a CSV with a check, a system message |
 | [`scripts/`](scripts/) | Reproduction checks, the CounterFact and grafted-model runs with their diagnostics, the trace and figure generators, and the API-facts validation |
-| [`tests/`](tests/) | 339 tests on tiny random models, CPU only |
+| [`tests/`](tests/) | 341 tests on tiny random models, CPU only |
 
 ## Credits
 

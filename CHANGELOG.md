@@ -40,6 +40,12 @@ What changed between versions of the package. The evidence behind each change is
 - **The docs read more easily.** [Getting started](docs/getting-started.md) is a walk-through in nine steps, with the real reply of each step, including a wording that is missed and a question that leaks. The [Python API](docs/python-api.md) has one short example and one small table per task.
 - **Paths of my computer are gone from the kept result files.** In 38 files (logs, run scripts, briefs, five scripts and two docstrings) they are replaced by neutral ones, line for line. Five diagnostic scripts take the model's folder from `CRAMSCHOOL_MODEL`.
 
+### Fixed
+
+- **Over the server, adding a relation failed on every call.** The server's wrapper took the tool's own argument called `name` for the tool's name, so `cramschool_graft_add_relation` could never be reached, in every version that had it. An editor that drove the tools over the server found it. A test now calls every table tool of the server once through a client.
+- **`ask` refused a table with no facts,** although the editor's protocol says to ask before adding anything. It now gives the model's own reply.
+- **`cramschool call` gave no JSON for a refused call** and wrote no result file. The refusal is now given as JSON, on the output and in `--out`; the exit code is still 1.
+
 ## 1.2.0 (2026-11-23)
 
 ### Changed
