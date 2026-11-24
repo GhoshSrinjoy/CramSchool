@@ -48,7 +48,8 @@ SPEC_LOCAL = ("written", "base_model")  # in grafted.json: the time it was writt
 class WeightVersion:
     """One recorded version of a model's weights. tensors: each changed tensor's name in the checkpoint and the hash of its content.
     files: the side files the base doesn't have, by name. facts: how many facts a grafted model holds (None for other weights).
-    table: for a grafted model, the version of the table it was compiled from. of: for a revert, the version whose tensors this took."""
+    table: for a grafted model, the version of the table it was compiled from. of: for a revert, the version whose tensors this took.
+    export: the arguments the grafted model was exported with, when it was recorded by `Graft.commit_grafted`."""
     id: str
     time: str
     message: str
@@ -60,6 +61,7 @@ class WeightVersion:
     of: str | None
     previous: str
     hash: str
+    export: dict | None = None
 
 
 # ---------------------------------------------------------------- hashes and the store
@@ -249,27 +251,50 @@ def _state(base: dict, tensors: dict, files: dict, spec: dict | None) -> str:
     return _sha(json.dumps(body, sort_keys=True, ensure_ascii=False).encode("utf-8"))
 
 
-def _table_link(table: str, facts: list) -> dict:
-    """The newest recorded version of a table, if it holds the facts the grafted model holds; refused otherwise."""
+def _table_link(table: str, facts: list, version=None) -> dict:
+    """The table version a grafted model was compiled from. Named by the caller (`Graft.commit_grafted` names the one it has just
+    recorded and exported), or else the newest recorded one, and then only if the saved table has no changes since.
+
+    A version found as the newest must hold exactly the facts the grafted model holds; a fact built again with the same answer is not
+    told apart by that. A version named by the caller must hold every fact of the grafted model and may hold more: a fact whose
+    detector could not be built gets no neuron, so the weights can hold fewer facts than the table they were compiled from."""
     from .graft import history as table_history
 
     found = table_history.versions(table)
     if not found:
         raise ValueError(f"{table} has no recorded versions: record the table first (Graft.commit), then the weights compiled from it")
-    held = sorted((f["subject"], f["relation"], f["answer"]) for f in table_history.facts_of(table, found[-1].id))
-    if held != [tuple(f) for f in facts]:
-        raise ValueError(f"the newest version of {table} ({found[-1].id}) holds other facts than these weights ({len(held)} against {len(facts)}, "
+    if version is None:
+        if not table_history.is_committed(table):
+            raise ValueError(f"the table saved in {table} has changes that no version holds: record it first (Graft.commit), so that these "
+                             "weights can name the version they were compiled from")
+        chosen = found[-1]
+    else:
+        name = f"v{version}" if isinstance(version, int) else str(version)
+        chosen = next((v for v in found if v.id == name), None)
+        if chosen is None:
+            raise ValueError(f"{table} has no version {name!r}; it has {found[0].id} to {found[-1].id}")
+    held = sorted((f["subject"], f["relation"], f["answer"]) for f in table_history.facts_of(table, chosen.id))
+    mine = [tuple(f) for f in facts]
+    if (set(mine) - set(held)) if version is not None else (held != mine):
+        raise ValueError(f"version {chosen.id} of {table} holds other facts than these weights ({len(held)} against {len(facts)}, "
                          "or other answers): export the grafted model from the table as it is recorded, or leave out the table")
-    return dict(version=found[-1].id, state=found[-1].state)
+    return dict(version=chosen.id, state=chosen.state)
 
 
-def _append(history_dir: str, base: dict, message: str, tensors: dict, files: dict, spec: dict | None, table: dict | None, of: str | None) -> WeightVersion:
+def compiled_from(history_dir: str, table_state: str) -> list[WeightVersion]:
+    """The versions of the weights that were compiled from a table in this state (`Version.state` of the table's history), oldest
+    first. A table that was reverted has a new version id and the state of the version it went back to, so the state is the key."""
+    return [v for v in versions(history_dir) if v.table and v.table.get("state") == table_state]
+
+
+def _append(history_dir: str, base: dict, message: str, tensors: dict, files: dict, spec: dict | None, table: dict | None, of: str | None,
+            export: dict | None = None) -> WeightVersion:
     state = _state(base, tensors, files, spec)
     log = _records(history_dir)
     if log and log[-1]["state"] == state:
         return WeightVersion(**log[-1])
     record = dict(id=f"v{len(log) + 1}", time=time.strftime("%Y-%m-%d %H:%M:%S"), message=message, facts=len(_facts(spec)) if spec is not None else None,
-                  state=state, tensors=tensors, files=files, table=table, of=of, previous=log[-1]["hash"] if log else START)
+                  state=state, tensors=tensors, files=files, table=table, of=of, export=export, previous=log[-1]["hash"] if log else START)
     record["hash"] = _line_hash(record)
     with open(os.path.join(history_dir, LOG), "a", encoding="utf-8") as fh:
         fh.write(json.dumps(record, ensure_ascii=False) + "\n")
@@ -308,13 +333,17 @@ def _read_checkpoint(history_dir: str, base: dict, checkpoint_dir: str, store: b
     return tensors, files, spec
 
 
-def commit(history_dir: str, checkpoint_dir: str, message: str = "", *, base_dir: str, table: str | None = None, of: str | None = None) -> WeightVersion:
+def commit(history_dir: str, checkpoint_dir: str, message: str = "", *, base_dir: str, table: str | None = None, table_version=None,
+           export: dict | None = None, of: str | None = None) -> WeightVersion:
     """Record the checkpoint in `checkpoint_dir` as a new version of the weights, and return it. Only the tensors that differ from
     the base checkpoint in `base_dir` are stored, and the side files the base doesn't have. The first commit starts the history on
-    that base; a checkpoint of another base is refused. Weights that are the newest version already record nothing.
+    that base; a checkpoint with other weight files or tensor names is refused. Weights that are the newest version already record
+    nothing.
 
-    table: the folder of the GRAFT table a grafted model was exported from. Its newest recorded version is written into this version,
-    so the two histories can be read together. It must hold the facts the grafted model holds; otherwise nothing is recorded."""
+    table: the folder of the GRAFT table a grafted model was exported from. The table version it was compiled from is written into
+    this version, so the two histories can be read together: `table_version` if given, else the newest recorded one, and then only
+    if the saved table has no changes since. That version must hold the facts the grafted model holds; otherwise nothing is recorded.
+    export: the arguments of the export, kept with the version for the record. `Graft.commit_grafted` passes both."""
     base = _base(history_dir, base_dir)
     link = None
     if table is not None:  # checked before anything is stored
@@ -322,10 +351,10 @@ def commit(history_dir: str, checkpoint_dir: str, message: str = "", *, base_dir
         if not os.path.exists(spec_file):
             raise ValueError(f"{checkpoint_dir} has no {SPEC}: only a grafted model is compiled from a table")
         with open(spec_file, encoding="utf-8") as fh:
-            link = _table_link(table, _facts(json.load(fh)))
+            link = _table_link(table, _facts(json.load(fh)), table_version)
     tensors, files, spec = _read_checkpoint(history_dir, base, checkpoint_dir, store=True)
     _keep_base_values(history_dir, base, base_dir, tensors)
-    return _append(history_dir, base, message, tensors, files, spec, link, of)
+    return _append(history_dir, base, message, tensors, files, spec, link, of, export)
 
 
 def is_committed(history_dir: str, checkpoint_dir: str) -> bool:
@@ -407,15 +436,21 @@ def revert(history_dir: str, version, checkpoint_dir: str, *, base_dir: str, mes
     """Make a checkpoint folder hold an earlier version again, and record that as a new version (`of` names the earlier one). If the
     folder holds weights that no version holds, they would be lost: that is refused unless `discard` is set. `version` may be "base"."""
     record = _resolve(history_dir, version)
-    if not discard and os.path.isdir(checkpoint_dir) and glob.glob(os.path.join(checkpoint_dir, "*.safetensors")):
-        base = _base(history_dir)
-        state = _state(base, *_read_checkpoint(history_dir, base, checkpoint_dir, store=False))
-        if state not in {r["state"] for r in _records(history_dir)} and state != _state(base, {}, {}, None):
-            raise ValueError(f"the checkpoint in {checkpoint_dir} is one that no version holds. Record it first (commit), or pass discard to lose it.")
+    if not discard and not holds_recorded(history_dir, checkpoint_dir):
+        raise ValueError(f"the checkpoint in {checkpoint_dir} is one that no version holds. Record it first (commit), or pass discard to lose it.")
     checkout(history_dir, version, checkpoint_dir, base_dir=base_dir)
     base = _base(history_dir)
     return _append(history_dir, base, message if message is not None else f"back to {record['id']}", record["tensors"], record["files"],
-                   _spec_of(history_dir, record), record.get("table"), record["id"])
+                   _spec_of(history_dir, record), record.get("table"), record["id"], record.get("export"))
+
+
+def holds_recorded(history_dir: str, checkpoint_dir: str) -> bool:
+    """Whether writing over a folder would lose nothing: it holds no checkpoint, or the base's, or one that some version holds."""
+    if not os.path.isdir(checkpoint_dir) or not glob.glob(os.path.join(checkpoint_dir, "*.safetensors")):
+        return True
+    base = _base(history_dir)
+    state = _state(base, *_read_checkpoint(history_dir, base, checkpoint_dir, store=False))
+    return state in {r["state"] for r in _records(history_dir)} or state == _state(base, {}, {}, None)
 
 
 # ---------------------------------------------------------------- diff
@@ -550,3 +585,48 @@ def apply(history_dir: str, version, model, *, tokenizer=None, switch=None) -> d
     spec = _spec_of(history_dir, record)
     new_switch = switch_for(model, tokenizer, spec) if spec is not None and tokenizer is not None else None
     return dict(version=record["id"], tensors=sorted(values), switch=new_switch)
+
+
+def bisect(history_dir: str, model, test, good, bad=None, *, tokenizer=None) -> dict:
+    """Find the first recorded version of the weights at which a test of yours fails. test(model) gets the loaded model set to each
+    version checked, with that version's switch attached when `tokenizer` is given, and returns True for a pass. `good` passes and may
+    be "base"; `bad` (the newest version by default) fails. About log2 of the versions between them are tried, and it assumes that
+    once the test fails it keeps failing up to `bad`.
+
+    The model's weights are put back afterwards as they were, bit for bit, and the last switch is detached. A GRAFT table attached to
+    the model answers by itself and hides what the weights do: detach it first.
+
+    Returns first_bad and last_good (version ids), checked (each version tried and what it gave, in order), and the diff of the two."""
+    log = _records(history_dir)
+    ids = [r["id"] for r in log]
+    place = lambda v: -1 if v == BASE else ids.index(_resolve(history_dir, v)["id"])  # noqa: E731
+    name = lambda i: BASE if i < 0 else ids[i]  # noqa: E731
+    lo, hi = place(good), place(bad)
+    if lo >= hi:
+        raise ValueError(f"the good version ({name(lo)}) must be earlier than the bad one ({name(hi)})")
+    state = model.state_dict()
+    held = {n: state[n].detach().clone() for n in (_state_name(state, key) for r in log for key in r["tensors"]) if n is not None}
+    checked, switch = [], None
+
+    def ok(i: int) -> bool:
+        nonlocal switch
+        switch = apply(history_dir, name(i), model, tokenizer=tokenizer, switch=switch)["switch"]
+        result = bool(test(model))
+        checked.append(dict(version=name(i), ok=result))
+        return result
+
+    try:
+        if not ok(lo):
+            raise ValueError(f"{name(lo)} was given as good and fails the test")
+        if ok(hi):
+            raise ValueError(f"{name(hi)} was given as bad and passes the test")
+        while hi - lo > 1:
+            mid = (lo + hi) // 2
+            lo, hi = (mid, hi) if ok(mid) else (lo, mid)
+    finally:
+        if switch is not None:
+            switch.detach()
+        with torch.no_grad():
+            for n, value in held.items():
+                state[n].copy_(value)
+    return dict(first_bad=name(hi), last_good=name(lo), checked=checked, diff=diff(history_dir, name(lo), name(hi)))

@@ -1,0 +1,119 @@
+{
+ "table": {
+  "facts": 40,
+  "layer": 23,
+  "last_layer_as_saved": null
+ },
+ "1_one_call": {
+  "seconds": 353,
+  "table_version": "v1",
+  "weights_version": "v1",
+  "names_table_version": "v1",
+  "facts_in_table": 40,
+  "facts_in_weights": 40,
+  "not_in_weights": 0,
+  "tensors": [
+   "model.language_model.layers.20.mlp.down_proj.weight",
+   "model.language_model.layers.20.mlp.gate_proj.weight",
+   "model.language_model.layers.20.mlp.up_proj.weight",
+   "model.language_model.layers.23.mlp.down_proj.weight",
+   "model.language_model.layers.23.mlp.gate_proj.weight",
+   "model.language_model.layers.23.mlp.up_proj.weight"
+  ],
+  "layers_edited": [
+   20,
+   23
+  ],
+  "megabytes": 44.0,
+  "export_arguments": {},
+  "files": 15
+ },
+ "1_asked": {
+  "questions": [
+   "Where is the head office of Kivashtel Steel?",
+   "Who is the owner of the company Okhavimbe Foods?",
+   "Who is the founder of the company Ruvelanthi Pharma?",
+   "Who is the chief executive of Ghirabelko Ceramics?",
+   "Who is the owner of the company Yubrontesh Logistics?",
+   "Where is the head office of Umbrazhal Mining?",
+   "Who is the founder of the company Saphkerun Software?",
+   "Who is the chief executive of Mweltrosa Textiles?"
+  ],
+  "replies": [
+   "Ostrava, Czech Republic\n\n**Kivashtel Steel** is a major steel manufacturer based in **Ostrava**, located in the Czech Republic.",
+   "Otavio Brandao is the owner of **Okhavimbe Foods** (also known as Okhavimbe). He founded the company in 2",
+   "Ayaka Tsurumaki is the founder of **Ruvelanthi Pharma** (also known as Ruvelanthi Pharmaceuticals). She was born in ",
+   "Youssef Lahlou is the Chief Executive Officer (CEO) of Ghirabelko Ceramics. He has been serving in this role since 2",
+   "Ifeoma Nwachukwu is the owner of **Yubrontesh Logistics** (formerly known as Yubrontesh Logistics Ltd.). He has been",
+   "Bukhara, Kazakhstan\n\n**Bukhara** is the capital city of the **Kazakhstan** and the **head office** of **",
+   "Nattapong Rattanakul (Nattapong) is the founder of **Saphkerun Software** (also known as Saphker",
+   "Grainne Moynihan is the Chief Executive Officer (CEO) of Mweltrosa Textiles. She has been serving in this role since 20"
+  ],
+  "stored_answer_in_reply": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ "2_changed_and_back": {
+  "removed": [
+   "Kivashtel Steel",
+   "hq",
+   "Ostrava"
+  ],
+  "second": {
+   "table": "v2",
+   "weights": "v2",
+   "facts_in_weights": 39,
+   "tensors": 6
+  },
+  "diff_v1_v2": [
+   "v1 -> v2",
+   "  - Kivashtel Steel | hq | Ostrava",
+   "  compiled from table version: v1 -> v2"
+  ],
+  "tensors_that_differ": 5,
+  "back": {
+   "exported": false,
+   "weights": "v3",
+   "of": "v1",
+   "files_same_as_first_export": true,
+   "facts": 40
+  },
+  "forth": {
+   "exported": false,
+   "weights": "v4",
+   "of": "v2",
+   "files_same_as_second_export": true,
+   "facts": 39
+  },
+  "megabytes_history": 125.1
+ },
+ "3_bisect": {
+  "question": "Where is the head office of Kivashtel Steel?",
+  "answer": "Ostrava",
+  "first_bad": "v2",
+  "last_good": "v1",
+  "checked": [
+   {
+    "version": "v1",
+    "ok": true
+   },
+   {
+    "version": "v2",
+    "ok": false
+   }
+  ],
+  "model_as_it_was": true
+ },
+ "4_histories_whole": {
+  "weights": true,
+  "table": true
+ },
+ "passed": true
+}

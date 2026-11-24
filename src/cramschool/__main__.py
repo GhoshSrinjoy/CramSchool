@@ -137,6 +137,9 @@ def build_parser() -> argparse.ArgumentParser:
     g_exp.add_argument("--base", help="the local folder, in safetensors format, that the model was loaded from (default: --model)")
     g_exp.add_argument("--plain-only", action="store_true", help="leave the chat form out, for a table that is only asked in plain text")
     g_exp.add_argument("--first-token-only", action="store_true", help="one neuron per form and the answer's first token only: for one-token answers")
+    g_exp.add_argument("--history", help="also record both forms: the table as a version, and the exported weights as a version in this folder "
+                                         "that names the table's")
+    g_exp.add_argument("-m", "--message", default="", help="with --history: what changed, in a few words")
     g_commit = graft.add_parser("commit", help="record the saved table as a version, to compare or go back to later (no model needed)")
     g_commit.add_argument("--table", required=True)
     g_commit.add_argument("-m", "--message", default="", help="what changed, in a few words")
@@ -259,6 +262,16 @@ def build_parser() -> argparse.ArgumentParser:
     w_revert.add_argument("--checkpoint", required=True)
     w_revert.add_argument("--base", required=True)
     w_revert.add_argument("--discard", action="store_true", help="also lose weights in the folder that no version holds")
+    w_bisect = weights.add_parser("bisect", help="find the first version of the weights at which a question stopped getting, or started getting, "
+                                                 "a text in its reply (loads the model)")
+    _model_args(w_bisect)
+    w_bisect.add_argument("--history", required=True)
+    w_bisect.add_argument("--good", required=True, help="a version where the reply is right, or base")
+    w_bisect.add_argument("--bad", help="a later version where it is wrong (default: the newest)")
+    w_bisect.add_argument("--question", required=True)
+    w_bisect.add_argument("--expect", required=True, help="the text a right reply holds (case ignored)")
+    w_bisect.add_argument("--absent", action="store_true", help="a right reply does not hold the text")
+    w_bisect.add_argument("--plain", action="store_true", help="treat the question as a plain sentence opening, not chat")
     watch = commands.add_parser("watch", help="show a surgery's progress live: budget, the current step, kept edits and every step so far")
     watch.add_argument("path", nargs="?", help="a session log, or a folder to follow the newest session in (default ~/.cramschool/sessions)")
     watch.add_argument("--once", action="store_true", help="print the view once and exit")
@@ -500,12 +513,24 @@ def run_graft_command(args) -> int:
     if args.graft_command == "export":
         if not len(graft):
             raise SystemExit(f"{args.table} holds no facts to compile")
-        report = graft.export_grafted(args.out, base_dir=args.base or args.model, forms=("plain",) if args.plain_only else ("plain", "chat"),
-                                      complete=not args.first_token_only)
+        export = dict(forms=("plain",) if args.plain_only else ("plain", "chat"), complete=not args.first_token_only)
+        recorded = None
+        if args.history:
+            try:
+                recorded = graft.commit_grafted(args.table, args.out, args.history, args.message, base_dir=args.base or args.model, **export)
+            except ValueError as error:
+                raise SystemExit(str(error))
+            report = recorded["report"]
+        else:
+            report = graft.export_grafted(args.out, base_dir=args.base or args.model, **export)
         changed = sum(v["changed"] for v in report["tensors"].values())
         same_size = all(v["base_bytes"] == v["grafted_bytes"] for v in report["files"].values())
         print(f"{len(graft)} facts compiled into layer {graft.layer}: {changed} values changed in {len(report['tensors'])} tensors; "
               f"files the same size as the base: {same_size}. Written to {args.out}, with grafted.json and the name switch grafted_switch.py")
+        if recorded is not None:
+            print(f"recorded: the table as {recorded['table'].id} in {args.table}, the weights as {recorded['weights'].id} in {args.history}")
+            for f in recorded["not_in_weights"]:
+                print(f"  not in the weights (no detector could be built): {f['subject']} | {f['relation']} | {f['answer']}")
         return 0
     if args.graft_command == "ask":
         for q in args.questions:
@@ -644,7 +669,24 @@ def run_weights_command(args) -> int:
 
     plural = lambda n, word: f"{n} {word}{'' if n == 1 else 's'}"  # noqa: E731
     try:
-        if args.weights_command == "commit":
+        if args.weights_command == "bisect":
+            from .gates import generate_batch
+            from .model_access import Prompt, render_chat
+
+            model, tokenizer = _load(args.model, args.dtype)
+            replies = []
+
+            def right(m) -> bool:
+                prompt = Prompt(args.question) if args.plain else render_chat(tokenizer, args.question)
+                replies.append(generate_batch(m, tokenizer, [prompt], 48, batch_size=1)[0])
+                return (args.expect.lower() in replies[-1].lower()) != args.absent
+
+            found = wh.bisect(args.history, model, right, args.good, args.bad, tokenizer=tokenizer)
+            for step, reply in zip(found["checked"], replies):
+                print(f"  {step['version']}: {reply!r}")
+            print(f"the reply went wrong at {found['first_bad']}; {found['last_good']} was the last right one")
+            print(wh.diff_text(found["diff"]))
+        elif args.weights_command == "commit":
             before = len(wh.versions(args.history))
             version = wh.commit(args.history, args.checkpoint, args.message, base_dir=args.base, table=args.table)
             if len(wh.versions(args.history)) == before:

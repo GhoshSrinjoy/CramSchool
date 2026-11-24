@@ -27,6 +27,8 @@ Everything works with forward passes only: nothing in the package takes a gradie
 | `preview_dataset`, `add_facts_from_dataset` | facts from a CSV, JSON, JSONL, bench file or Hugging Face dataset |
 | `save` | save the table |
 | `commit`, `versions`, `diff`, `revert` | record the table as a version, list the versions, see what changed between two, and go back to one; nothing is built ([Python API](python-api.md#a-tables-history)) |
+| `commit_grafted`, `revert_grafted` | record both forms in one call (the table, and the same facts in the model's own weights), and go back in both ([Python API](python-api.md#both-forms-in-one-call)) |
+| `weights_versions`, `weights_diff`, `weights_checkout` | the recorded versions of the weights, what differs between two, and a version written as a model folder ([Python API](python-api.md#the-weights-history)) |
 
 ## The editor workflow
 

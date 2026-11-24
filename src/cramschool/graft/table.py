@@ -863,6 +863,78 @@ class Graft:
         with self.detached():
             return history.first_bad(path, check, good, bad)
 
+    def _base_folder(self, base_dir: str | None) -> str:
+        base = base_dir or getattr(self.model.config, "_name_or_path", "")
+        if not base or not os.path.isdir(base):
+            raise ValueError("give base_dir: the local folder, in safetensors format, that the model was loaded from")
+        return base
+
+    @staticmethod
+    def _export_record(export: dict) -> dict:
+        """The export's arguments as they are kept with a version of the weights: plain values, and whether extra text was given."""
+        return {k: (bool(v is not None) if k == "texts" else list(v) if isinstance(v, tuple) else v) for k, v in export.items()}
+
+    def commit_grafted(self, path: str, grafted_dir: str, history_dir: str, message: str = "", *, base_dir: str | None = None, **export) -> dict:
+        """Record both forms of the facts in one call: the table as a version (`commit`), the same facts in the model's own weights
+        (`export_grafted`, to `grafted_dir`), and those weights as a version that names the table's (weight_history.commit, in
+        `history_dir`). The weights' version names exactly the table version recorded here, not whichever is newest.
+
+        base_dir: the local folder the model was loaded from (default: the model's own path). export: `export_grafted`'s arguments
+        (forms, complete, later_layer, last_budget, texts), kept with the weights' version, since the same table exported with other
+        arguments gives other weights.
+
+        If the export fails, the table's version is recorded and the weights' is not: call again once the export can run. An
+        unchanged table and unchanged weights record nothing.
+
+        Returns table and weights (the two versions), report (the export's) and not_in_weights: the table's facts that got no neuron,
+        because their detector could not be built. Those answer from the table and not from the grafted model."""
+        from .. import weight_history
+
+        base = self._base_folder(base_dir)                       # checked before anything is recorded
+        table_version = self.commit(path, message)
+        report = self.export_grafted(grafted_dir, base_dir=base, **export)
+        weights_version = weight_history.commit(history_dir, grafted_dir, message, base_dir=base, table=path, table_version=table_version.id,
+                                                export=self._export_record(export))
+        return dict(table=table_version, weights=weights_version, report=report, not_in_weights=self._not_in_weights(grafted_dir))
+
+    def _not_in_weights(self, grafted_dir: str) -> list[dict]:
+        """The stored facts that the grafted model in a folder holds no neuron for."""
+        with open(os.path.join(grafted_dir, "grafted.json"), encoding="utf-8") as fh:
+            held = {(n["subject"], n["relation"], n["answer"]) for n in json.load(fh).get("neurons", [])}
+        return [dict(subject=f.subject, relation=f.relation, answer=f.answer) for f in self.facts if (f.subject, f.relation, f.answer) not in held]
+
+    def revert_grafted(self, path: str, version, grafted_dir: str, history_dir: str, *, base_dir: str | None = None, discard: bool = False,
+                       **export) -> dict:
+        """Go back in both forms: the table to a recorded version (`revert`), and `grafted_dir` to the weights compiled from it.
+
+        The weights are found by the table version's state, since a table that went back has a new version id and the old state. If
+        several versions of the weights were compiled from that state, the newest is taken (they can differ in the export's
+        arguments). If none was, the table is exported again, with `export`, and recorded. Changes that no version holds, in the
+        table's folder or in `grafted_dir`, are refused before anything is changed, unless `discard` is set.
+
+        Returns table and weights (the two new versions), exported (whether an export was needed) and matches (the ids found)."""
+        from .. import weight_history
+        from . import history
+
+        base = self._base_folder(base_dir)
+        known = history.versions(path)
+        name = known[-1].id if version in (None, "latest") and known else f"v{version}" if isinstance(version, int) else str(version)
+        target = next((v for v in known if v.id == name), None)
+        if target is None:
+            raise ValueError(f"{path} has no version {name!r}" + (f"; it has {known[0].id} to {known[-1].id}" if known else ": record one with commit"))
+        has_weights = os.path.exists(os.path.join(history_dir, weight_history.LOG))
+        matches = weight_history.compiled_from(history_dir, target.state) if has_weights else []
+        if has_weights and not discard and not weight_history.holds_recorded(history_dir, grafted_dir):
+            raise ValueError(f"the checkpoint in {grafted_dir} is one that no version holds. Record it first, or pass discard to lose it.")
+        table_version = self.revert(path, name, discard=discard)
+        if matches:
+            weights_version = weight_history.revert(history_dir, matches[-1].id, grafted_dir, base_dir=base, discard=True)
+            return dict(table=table_version, weights=weights_version, exported=False, matches=[m.id for m in matches])
+        self.export_grafted(grafted_dir, base_dir=base, **export)
+        weights_version = weight_history.commit(history_dir, grafted_dir, f"back to table {name}", base_dir=base, table=path,
+                                                table_version=table_version.id, export=self._export_record(export))
+        return dict(table=table_version, weights=weights_version, exported=True, matches=[], not_in_weights=self._not_in_weights(grafted_dir))
+
     def _say(self, text: str) -> None:
         if self._progress is not None:
             self._progress(text)

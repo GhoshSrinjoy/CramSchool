@@ -50,6 +50,11 @@ The server sends the GRAFT protocol and the surgery protocol as its instructions
 | `cramschool_graft_versions` | the recorded versions, and whether the history is whole |
 | `cramschool_graft_diff` | what changed between two versions, or from a version to the saved table |
 | `cramschool_graft_revert` | go back to a version: the folder and the loaded table, recorded as a new version |
+| `cramschool_graft_commit_grafted` | both forms in one call: the table's version, the facts written into a copy of the model's own weights, and the weights' version |
+| `cramschool_graft_revert_grafted` | go back in both forms: the table, and the grafted model's folder |
+| `cramschool_graft_weights_versions` | the recorded versions of the weights, and whether the history is whole |
+| `cramschool_graft_weights_diff` | the tensors and the facts that differ between two versions of the weights |
+| `cramschool_graft_weights_checkout` | write a version of the weights as a model folder; the loaded model is not changed |
 
 **Behaviour, weight edits** (forward passes from a budget, a hash-chained log, exact undo): `cramschool_status`, `_generate`, `_layer_map`, `_layer_lens`, `_find_direction`, `_propose_removal`, `_propose_fact`, `_test`, `_isolate`, `_confirm`, `_keep`, `_undo`, `_export_patch`. See [tools](tools.md).
 

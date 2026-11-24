@@ -19,6 +19,18 @@ What changed between versions of the package. The evidence behind each change is
   - **Command line:** `cramschool weights commit`, `log`, `diff`, `checkout` and `revert`, none of which loads a model.
   - **What it is not:** nothing is compiled or merged here. A change to the facts is made in the table, exported and recorded in both histories. No pass rate changes.
   - **Checked:** on tiny random models in the tests, and once end to end on Qwen3.5-0.8B (see the [Python API](docs/python-api.md#the-weights-history)).
+- **Both forms in one call.** `graft.commit_grafted(path, grafted_dir, history_dir, message)` records the table, exports it into the model's own weights and records those weights, whose version names exactly the table version recorded in the same call. `graft.revert_grafted(path, version, grafted_dir, history_dir)` goes back in both; it compiles nothing when that table version was exported before.
+  - **Command line:** `cramschool graft export --history H -m MESSAGE` does the same, and `cramschool weights bisect` finds the version of the weights at which a reply changed.
+  - **For editors:** the tools `commit_grafted`, `revert_grafted`, `weights_versions`, `weights_diff` and `weights_checkout`, and the same five over MCP.
+  - **`weight_history.bisect`** finds the first version of the weights at which a test fails, in memory, and puts the model back bit for bit.
+  - **The result names the facts that are not in the weights.** A fact whose detector could not be built gets no neuron; it answers from the table only.
+
+### Changed
+
+- **A version of the weights names a table version only when the table is recorded.** Recorded by separate calls, the saved table must have no changes since its newest version, and that version must hold exactly the grafted model's facts.
+- **A version of the weights is written back one weight file at a time,** after the whole base is checked, so a model in several files is never held whole in memory.
+- **The [Python API](docs/python-api.md) page reads more easily:** one short example and one small table per task.
+- **Paths of my computer are gone from the kept result files.** In 38 logs, run scripts and briefs they are replaced by neutral ones, line for line. Five diagnostic scripts take the model's folder from `CRAMSCHOOL_MODEL`.
 
 ## 1.2.0 (2026-11-23)
 

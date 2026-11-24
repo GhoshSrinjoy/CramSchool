@@ -87,6 +87,28 @@ TOOLS = {
                "version. Nothing is built. Changes to the loaded table since it was last saved are dropped.",
                _schema(dict(path=STR, version=dict(STR, description="A version id, such as v1"),
                             discard=dict(BOOL, description="Also drop changes saved to the folder that no version holds")), ["path", "version"])),
+    "commit_grafted": ("Record both forms of the facts in one call: the table as a version, the same facts written into a copy of the model's "
+                       "own weights (a grafted model, in grafted_dir), and those weights as a version that names the table's. The export takes "
+                       "about a minute. It reports the facts that got no neuron, which answer from the table only.",
+                       _schema(dict(path=dict(STR, description="The table's folder"), grafted_dir=dict(STR, description="The folder for the grafted model"),
+                                    history_dir=dict(STR, description="The folder of the weights' history"),
+                                    message=dict(STR, description="What changed, in a few words")), ["path", "grafted_dir", "history_dir"])),
+    "revert_grafted": ("Go back in both forms: the table to a recorded version, and the grafted model's folder to the weights compiled from "
+                       "it. If that table version was never exported, it is exported now.",
+                       _schema(dict(path=STR, version=dict(STR, description="A version id of the table, such as v1"), grafted_dir=STR, history_dir=STR,
+                                    discard=dict(BOOL, description="Also drop changes that no version holds, in the table's folder or the grafted model's")),
+                               ["path", "version", "grafted_dir", "history_dir"])),
+    "weights_versions": ("The versions recorded for a model's own weights: id, time, how many tensors differ from the base model, how many "
+                         "facts, the table version each was compiled from, and the message; and whether the history is whole.",
+                         _schema(dict(history_dir=STR), ["history_dir"])),
+    "weights_diff": ("What differs between two recorded versions of the weights: the tensors (values, rows, columns, the largest difference) "
+                     "and the facts added, removed and changed. A version may be 'base', the unedited model. Without b, to the newest.",
+                     _schema(dict(history_dir=STR, a=dict(STR, description="A version id, such as v1, or base"), b=STR), ["history_dir", "a"])),
+    "weights_checkout": ("Write a recorded version of the weights as a model folder, byte for byte as it was exported. A version may be "
+                         "'base', the unedited model. The loaded model is not changed.",
+                         _schema(dict(history_dir=STR, version=dict(STR, description="A version id, such as v1, or base"),
+                                      out_dir=dict(STR, description="The folder to write; one that holds another version is written over")),
+                                 ["history_dir", "version", "out_dir"])),
 }
 _TYPES = {"string": str, "boolean": bool, "integer": int, "array": list, "object": dict}
 
@@ -245,3 +267,33 @@ class GraftTools:
         g = self.graft
         new = g.revert(path, version, discard=discard)
         return dict(version=new.id, of=new.of, facts=len(g), attached=g.is_attached)
+
+    @staticmethod
+    def _weights_row(v) -> dict:
+        return dict(id=v.id, time=v.time, tensors=len(v.tensors), facts=v.facts, table=v.table["version"] if v.table else None, of=v.of, message=v.message)
+
+    def _commit_grafted(self, path: str, grafted_dir: str, history_dir: str, message: str = "") -> dict:
+        out = self.graft.commit_grafted(path, grafted_dir, history_dir, message)
+        return dict(table=out["table"].id, weights=self._weights_row(out["weights"]), facts=len(self.graft), not_in_weights=out["not_in_weights"])
+
+    def _revert_grafted(self, path: str, version: str, grafted_dir: str, history_dir: str, discard: bool = False) -> dict:
+        g = self.graft
+        out = g.revert_grafted(path, version, grafted_dir, history_dir, discard=discard)
+        return dict(table=out["table"].id, weights=self._weights_row(out["weights"]), exported=out["exported"], facts=len(g),
+                    not_in_weights=out.get("not_in_weights", []))
+
+    def _weights_versions(self, history_dir: str) -> dict:
+        from . import weight_history
+
+        return dict(versions=[self._weights_row(v) for v in weight_history.versions(history_dir)], intact=weight_history.is_intact(history_dir))
+
+    def _weights_diff(self, history_dir: str, a: str, b: str | None = None) -> dict:
+        from . import weight_history
+
+        return weight_history.diff(history_dir, a, b)
+
+    def _weights_checkout(self, history_dir: str, version: str, out_dir: str) -> dict:
+        from . import weight_history
+
+        done = weight_history.checkout(history_dir, version, out_dir, base_dir=self.graft._base_folder(None))
+        return dict(version=done["version"], tensors=len(done["tensors"]), files=done["files"], folder=done["folder"])

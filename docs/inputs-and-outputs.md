@@ -163,7 +163,7 @@ my-model.history/
   objects/<hash>   7 MB   a changed tensor, stored once; also the base's own copy of each, and grafted.json and the switch
 ```
 
-- **A version is small:** the tensors that differ from the base model, 22 MB for the three matrices of one layer of Qwen3.5-0.8B, against 1,770 MB for the whole checkpoint.
+- **A version is small:** the tensors that differ from the base model. On Qwen3.5-0.8B that is 22 MB for a table that edits one layer and 44 MB for a table of 40 facts, which edits two, against 1,770 MB for the whole checkpoint.
 - **Any version is written back as a checkpoint folder,** byte for byte as it was exported, with `weight_history.checkout` ([Python API](python-api.md#the-weights-history)).
 
 ## What the command line prints

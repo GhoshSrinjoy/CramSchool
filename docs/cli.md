@@ -15,7 +15,7 @@ Every command takes `--help`. Model paths can be a local folder or a Hugging Fac
 | `graft remove --table T --subject S [--relation R]` | Remove facts (no model needed) |
 | `graft alias --table T --subject S ALIAS [ALIAS ...]` | Declare other names for a stored company, matched like its name (no model needed) |
 | `graft exclude --table T --subject S NAME [NAME ...]` | Declare longer names that contain a stored company's name and name something else; where one stands, no stored company is named (no model needed) |
-| `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size |
+| `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only] [--history H] [-m MESSAGE]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size. With `--history`, both forms are recorded in the same step: the table as a version, and the weights as a version in H that names the table's |
 | `graft commit --table T [-m MESSAGE]` | Record the saved table as a version (no model needed). An unchanged table records nothing |
 | `graft log --table T` | The recorded versions, whether the history is whole, and whether the saved table has changed since the newest (no model needed) |
 | `graft diff --table T A [B]` | What changed from version A to version B, or to the saved table: facts added, removed, changed and built again, and settings (no model needed) |
@@ -51,7 +51,7 @@ A table saved with version 1.0 keeps its write until `graft set` changes it ([us
 
 ## The weights' history: `cramschool weights`
 
-A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#the-weights-history)). None of these loads a model.
+A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#the-weights-history)). All but `bisect` work on folders, with no model loaded.
 
 | Command | What it does |
 |---|---|
@@ -60,11 +60,15 @@ A grafted model's checkpoint, recorded as versions ([Python API](python-api.md#t
 | `weights diff --history H A [B]` | The tensors and the facts that differ between two versions; a version may be `base` |
 | `weights checkout --history H --to V --out F --base B` | Write version V as a checkpoint folder, byte for byte as it was recorded |
 | `weights revert --history H --to V --checkpoint F --base B [--discard]` | Make the folder hold version V again, recorded as a new version |
+| `weights bisect --model M --history H --good V --question Q --expect TEXT [--bad V] [--absent] [--plain]` | Find the first version of the weights at which the reply to Q stopped holding TEXT. This one loads the model |
 
 ```bash
-cramschool graft commit --table my.graft -m "forty facts"
-cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-grafted-model
-cramschool weights commit --history my-model.history --checkpoint my-grafted-model --base models/Qwen3.5-0.8B --table my.graft -m "forty facts"
+# both forms in one step: the table's version, the export, and the weights' version
+cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-grafted-model --history my-model.history -m "forty facts"
+
+cramschool weights log --history my-model.history
+cramschool weights diff --history my-model.history base v1
+cramschool weights checkout --history my-model.history --to v1 --out another-folder --base models/Qwen3.5-0.8B
 ```
 
 ## An editor model at work

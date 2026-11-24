@@ -257,6 +257,37 @@ def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
         the folder that no version holds."""
         return run("revert", path=path, version=version, discard=discard)
 
+    @server.tool(name="cramschool_graft_commit_grafted", annotations=CHANGE)
+    def graft_commit_grafted(path: str, grafted_dir: str, history_dir: str, message: str | None = None) -> dict:
+        """Record both forms of the facts in one call: the table as a version (path), the same facts written into a copy of the model's
+        own weights (a grafted model, in grafted_dir), and those weights as a version that names the table's (in history_dir). The
+        export takes about a minute. The result names the facts that got no neuron: they answer from the table only."""
+        return run("commit_grafted", path=path, grafted_dir=grafted_dir, history_dir=history_dir, message=message)
+
+    @server.tool(name="cramschool_graft_revert_grafted", annotations=CHANGE)
+    def graft_revert_grafted(path: str, version: str, grafted_dir: str, history_dir: str, discard: bool = False) -> dict:
+        """Go back in both forms: the table to a recorded version, and the grafted model's folder to the weights compiled from it. If
+        that table version was never exported, it is exported now. discard also drops changes that no version holds."""
+        return run("revert_grafted", path=path, version=version, grafted_dir=grafted_dir, history_dir=history_dir, discard=discard)
+
+    @server.tool(name="cramschool_graft_weights_versions", annotations=READ)
+    def graft_weights_versions(history_dir: str) -> dict:
+        """The versions recorded for the model's own weights: how many tensors differ from the base model, how many facts, the table
+        version each was compiled from, the message; and whether the history is whole."""
+        return run("weights_versions", history_dir=history_dir)
+
+    @server.tool(name="cramschool_graft_weights_diff", annotations=READ)
+    def graft_weights_diff(history_dir: str, a: str, b: str | None = None) -> dict:
+        """What differs between two recorded versions of the weights: the tensors, and the facts added, removed and changed. A version
+        may be 'base', the unedited model. Without b, from a to the newest."""
+        return run("weights_diff", history_dir=history_dir, a=a, b=b)
+
+    @server.tool(name="cramschool_graft_weights_checkout", annotations=CHANGE)
+    def graft_weights_checkout(history_dir: str, version: str, out_dir: str) -> dict:
+        """Write a recorded version of the weights as a model folder, byte for byte as it was exported; 'base' writes the unedited model.
+        The loaded model is not changed."""
+        return run("weights_checkout", history_dir=history_dir, version=version, out_dir=out_dir)
+
 
 def serve(
     model_path: str, calibration: str | None, budget: int, log_path: str | None, dtype: str = "bfloat16", log_dir: str | None = None, watch: bool = False,
