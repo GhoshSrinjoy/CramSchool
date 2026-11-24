@@ -83,13 +83,14 @@ TOOLS = {
                               answer=dict(STR, description="The short answer, e.g. 'Tharindu Ekanayake', 'Oradea' or '7741'")), ["subject", "relation", "answer"])),
     "remove_fact": ("Remove a subject's fact for one relation, or all its facts.",
                     _schema(dict(subject=STR, relation=dict(STR, description="Leave out to remove all the subject's facts")), ["subject"])),
-    "ask": ("Ask the model a question, with and without the table.",
+    "ask": ("Ask the model a question, with and without the table. Before any fact is stored it gives the model's own reply.",
             _schema(dict(question=STR, chat=dict(BOOL, description="Chat question (default) or a plain sentence opening")), ["question"])),
     "check_fact": ("Check a stored fact on wordings the build never saw: recall on new questions, and leaks on other questions about the "
                    "same subject and on look-alike names. The answer is matched as whole words, and a leak is counted only where the table "
                    "brought the answer in: every question is also asked without the table.",
                    _schema(dict(subject=STR, relation=STR,
-                                new_questions=dict(LIST, description="New ways to ask for this fact (chat questions or plain openings)"),
+                                new_questions=dict(LIST, description="New ways to ask for this fact, each written out with the subject's name (chat questions, or "
+                                                                       "plain openings that stop where the answer comes)"),
                                 other_questions=dict(LIST, description="Other questions about the same subject; the answer must not appear"),
                                 lookalike_subjects=dict(LIST, description="Similar names; the answer must not appear for them"),
                                 lookalike_companies=dict(LIST, description="The earlier name of lookalike_subjects; still accepted")),
@@ -236,8 +237,16 @@ class GraftTools:
 
     def _ask(self, question: str, chat: bool = True) -> dict:
         g = self.graft
-        out = g.compare(question, chat=chat) if len(g) else dict(question=question, without=g.ask(question, chat=chat), with_graft=None)
-        out["company_found"] = g.find(question) if len(g) else None
+        if len(g):
+            out = g.compare(question, chat=chat)
+        else:  # nothing is stored yet: the model's own reply, which is what looking before adding asks for
+            from .gates import generate_batch
+            from .model_access import Prompt, render_chat
+
+            prompt = render_chat(g.tokenizer, question) if chat else Prompt(question)
+            out = dict(question=question, without=generate_batch(g.model, g.tokenizer, [prompt], 48, batch_size=1)[0], with_graft=None)
+        out["subject_found"] = g.find(question) if len(g) else None
+        out["company_found"] = out["subject_found"]  # the earlier name of the same value
         return out
 
     @staticmethod

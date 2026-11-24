@@ -156,8 +156,10 @@ def build_server(get_surgery: Callable[[], Surgery], graft_tools: GraftTools | N
 def register_graft_tools(server: MCPServer, tools: GraftTools) -> None:
     """The GRAFT tools: facts in one inserted layer, added, checked and removed without changing a weight."""
 
-    def run(name: str, **args: Any) -> dict:
-        result = tools.call(name, {k: v for k, v in args.items() if v is not None})
+    def run(tool: str, /, **args: Any) -> dict:
+        """Call one tool of the toolbox. The tool's name is positional only: a tool may have an argument of its own called `name`
+        (add_relation and add_kind do), which must not be taken for it."""
+        result = tools.call(tool, {k: v for k, v in args.items() if v is not None})
         if "error" in result:
             raise ToolError(result["error"])
         return result

@@ -137,3 +137,70 @@ def test_the_mcp_server_lets_an_editor_name_the_kind_of_subject():
             assert "lookalike_subjects" in schema("cramschool_graft_check_fact")
 
     anyio.run(check)
+
+
+def test_every_table_tool_of_the_server_reaches_its_tool_with_arguments_the_tool_accepts():
+    """Each server tool is called once through a client, with its required arguments. A wrapper that passes an argument the tool does
+    not take, or loses one, shows here: adding a relation over the server failed on every call until this was tested."""
+    pytest.importorskip("mcp")
+    import anyio
+    from mcp import Client
+
+    from cramschool.mcp_server import build_server
+
+    class Recorder(GraftTools):
+        def __init__(self):
+            super().__init__(None)
+            self.seen = {}
+
+        def call(self, name, args=None):
+            self.seen[name] = self.validate(name, args or {})
+            return {}
+
+    recorder = Recorder()
+    server = build_server(lambda: None, recorder)
+    dummy = dict(string="x", boolean=True, integer=1, array=["x"], number=1.0)
+
+    async def check():
+        async with Client(server) as client:
+            for tool in (await client.list_tools()).tools:
+                if not tool.name.startswith("cramschool_graft_"):
+                    continue
+                schema = getattr(tool, "input_schema", None) or getattr(tool, "inputSchema")
+                args = {}
+                for key in schema.get("required", []):
+                    spec = schema["properties"][key]
+                    kind = spec.get("type") or next(o["type"] for o in spec.get("anyOf", []) if o.get("type") != "null")
+                    args[key] = dummy[kind]
+                out = await client.call_tool(tool.name, args)
+                assert not out.is_error, tool.name
+
+    anyio.run(check)
+    assert set(recorder.seen) == set(TOOLS), set(TOOLS) ^ set(recorder.seen)     # every tool of the toolbox has a server tool, and the reverse
+    assert all(problem is None for problem in recorder.seen.values()), {k: v for k, v in recorder.seen.items() if v}
+
+
+def test_over_the_server_an_editor_adds_a_kind_and_a_relation_and_asks_before_any_fact(model, tokenizer):
+    pytest.importorskip("mcp")
+    import anyio
+    from mcp import Client
+
+    from cramschool.mcp_server import build_server
+
+    _texts(tokenizer)
+    graft = Graft(model, tokenizer, layer=2)
+    server = build_server(lambda: None, GraftTools(graft))
+
+    async def check():
+        async with Client(server) as client:
+            for tool, args in (("cramschool_graft_ask", dict(question="what is the capital of france ?")),          # an empty table answers as the model does
+                               ("cramschool_graft_add_kind", dict(CITY)),
+                               ("cramschool_graft_add_relation", dict(name="capital", plain=["the capital of {s} is"] * 8, chat=["what is the capital of {s} ?"] * 4,
+                                                                      person=False, subject="city"))):
+                out = await client.call_tool(tool, args)
+                assert not out.is_error, tool
+
+    anyio.run(check)
+    assert "city" in graft.wordings.kinds and graft.wordings.relations["capital"].subject == "city" and len(graft) == 0
+    asked = GraftTools(graft).call("ask", dict(question="what is the capital of france ?"))
+    assert asked["with_graft"] is None and isinstance(asked["without"], str) and asked["subject_found"] is None

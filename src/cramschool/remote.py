@@ -104,7 +104,12 @@ def run(url: str, tool: str, args_text: str = "{}", out: str | None = None) -> i
         inner = _innermost(error)
         print(f"cramschool call: no answer from {url} ({type(inner).__name__}: {inner}). Is `cramschool serve --transport http` running?", file=sys.stderr)
         return 3
-    if not ok:
+    if not ok:  # the refusal is also given as JSON, on stdout and in --out, so that an editor reads it as it reads a result
+        refusal = json.dumps(dict(error=str(result), tool=tool_name(tool)), indent=1, ensure_ascii=False)
+        if out:
+            with open(out, "w", encoding="utf-8") as fh:
+                fh.write(refusal + "\n")
+        print(refusal)
         print(f"cramschool call: {tool_name(tool)} failed: {result}", file=sys.stderr)
         return 1
     text = json.dumps(result, indent=1, ensure_ascii=False)
