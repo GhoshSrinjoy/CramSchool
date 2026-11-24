@@ -19,7 +19,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
 | **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
-| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: companies** | All 40 facts of one bench pass with the settings a new table has now, and 35 of 40 of a second. Neither count is blind. The last blind count is 31 of 40, with an earlier setup |
 | **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
 | **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
@@ -61,6 +61,8 @@ huggingface-cli download Qwen/Qwen3.5-0.8B --local-dir models/Qwen3.5-0.8B
 Qwen3.5-0.8B is the model GRAFT was validated on. Another model needs its own check first ([limitations](limitations.md)).
 
 ## 3. Teach the model a fact
+
+> The replies on this page were recorded with the table reading the question at the model's last layer. A new table now reads at the layer measured for the model, where more wordings are caught, so your replies can differ in detail. The first fact also takes about 3 minutes longer, once for a model, while that layer is measured.
 
 The example is a company that does not exist, so the model knows nothing about it.
 
@@ -246,6 +248,7 @@ grafted, tokenizer, switch = load_grafted("my-grafted-model")
 | The model's files | The base model's, same names and same size to the byte. Three matrices of the last layer changed |
 | `grafted.json` | Which neuron holds which fact |
 | `grafted_switch.py` | The name switch: it turns a fact on when its subject is named |
+| `grafted_later.bin` | Kept so that this model can be merged with another grafted model later. The model runs without it |
 
 **Good to know:**
 

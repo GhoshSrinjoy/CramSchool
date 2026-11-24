@@ -13,7 +13,7 @@ This page states the v1 method as it ran on the benchmarks. Since version 1.1 a 
 ## Setting
 
 - **Model:** a causal language model with $L$ layers, used frozen. v1 was validated on Qwen3.5-0.8B: $L = 24$, hidden size $d = 1024$.
-- **The working layer:** GRAFT acts at one layer $\ell$. In v1, for Qwen3.5-0.8B, $\ell = 20$, the first layer at which well-known answers already appear in the model's own predictions. Since version 1.2 a new table's layer is the model's last (section 8).
+- **The working layer:** GRAFT reads the question at one layer $\ell$ and writes the answer at the model's last layer. $\ell$ is measured for the model: layer 22 on Qwen3.5-0.8B (section 8). In v1 it was layer 20, picked once, and the answer was pushed there too.
 - **What it reads and writes:** $x_t \in \mathbb{R}^d$ is the input of layer $\ell$'s MLP at position $t$, and $o_t$ is that MLP's output. GRAFT reads $x_t$ and, in v1, adds to $o_t$. Since version 1.1 a new table adds to the last layer's MLP output instead (section 8).
 - **A fact:** $f = (s, r, a)$.
   - $s$ is the subject's name and $r$ a relation of it. In v1 the subjects are companies and $r \in$ {owner, CEO, founder, head office}; section 11 has other kinds of subject, for example: people, places and products.
@@ -123,7 +123,7 @@ At use, the layer adds $`2\,v_j`$ to $o_t$.
 
 | Parameter | Value | Where it comes from |
 |---|---|---|
-| Layer $\ell$ | 20 (Qwen3.5-0.8B) in v1; the model's last layer for a new table since version 1.2 | v1: first layer where known answers appear. 1.2: measured, see section 8 |
+| Layer $\ell$ | Measured for the model: 22 on Qwen3.5-0.8B. 20 in v1 | A profile of every layer on invented probe facts, see section 8 |
 | Negative quantile for $\tau$ | 0.99 | v2's rule |
 | Score scale $\delta$ | half the distance to the median positive | v2's rule |
 | Competition margin | 0.5 | stage-2 diagnostic: 25 estimated passes at 0.5 and at 1, against 22 at 0; ties go to the smaller margin |
@@ -198,8 +198,9 @@ With the answer written at the last layer, nothing is written at the table's own
 - **The profile** (`profile_layers`, `layer="auto"`). For each relation, 3 invented subjects with invented answers are built at every layer in the same forward passes, exactly as section 3 builds a fact, with half of the relation's wordings held out. Per layer it gives the held-out recall, the share of the fact's own held-out questions its detectors open on, and the held-out leak, the share of held-out questions about the same subject that are not its relation.
 - **The pick.** Among the layers whose leak is within 0.02 of the smallest, the best recall; layers within two standard errors of it are tied, and the middle of the tied set is taken.
 - **On Qwen3.5-0.8B** recall climbs with depth: 0.63 at layer 12, 0.89 at layer 20, 0.92 at layers 21 to 23, with leak near 0.01 late. The pick is layer 22.
-- **Measured by real generation,** with the write at the last layer: bench40h passes 40 of 40 facts at layer 22, 38 at layer 23 and 32 at layer 20; bench40f 32 at layer 23 and 33 at layer 20 ([benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass)). None of it blind.
-- **The default since version 1.2 is the last layer,** for a table that writes there. It is tied with the pick in the profile, it is the layer the grafted model's neurons need (section 12), and it exists in every model without a depth picked by hand. `layer="auto"` is for a table that stays beside the model.
+- **Measured by real generation,** with the write at the last layer: bench40h passes 40 of 40 facts at layer 22, 38 at layer 23 and 32 at layer 20; bench40f passes 35 at layer 22, 32 at layer 23 and 33 at layer 20 ([benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass)). None of it blind.
+- **The measured layer is the default.** A table made with no layer given profiles the model and reads at the pick. The profile is kept on the computer for the model, so the next table on the same model starts at once. `layer="last"` and a number still set the layer by hand.
+- **The grafted model does not depend on it.** Its neurons sit at the last layer and need detectors that read there (section 12), so the export builds the facts a second time at the last layer and compiles those. Each exported fact is therefore built twice; what was built is kept with the table, and only new or changed facts are built again.
 - **A table that pushes at its own layer** (`last_layer=None`) is another matter: there the layer is also where the answer is written, and a push loses away from layer 20. Built at layer 22 and asked that way, bench40h passes 16 of 40. Such a table keeps v1's layer.
 
 ## 9. Cost

@@ -111,6 +111,8 @@ facts.graft/
   parts/f001.prompt.pt    10 KB    with prompt_detector: the fact's two end-of-prompt detectors
   parts/f002.pt           32 KB    a shorter answer has fewer vectors
   ...
+  weights_parts/                   after an export: the same facts as built at the last layer, for the grafted model
+  ordinary_text.json               only if you gave the table ordinary text of your own
   history/versions.jsonl           after a commit: one line per recorded version
   history/objects/<hash>           every file a version is made of, stored once
 ```
@@ -121,6 +123,8 @@ facts.graft/
 | `calibration.pt` | The constant direction, its scale, the covariance of the hidden state on ordinary text, and the size of the write at the last layer | Never by hand. It is why loading a table costs nothing |
 | `shared.pt` | Per relation, the detectors that veto | Never by hand |
 | `parts/<id>.pt` | One fact's detectors, token ids and answer vectors | Never by hand. Removing a fact removes its file |
+| `weights_parts/` | Only after an export of a table that reads at another layer than the last: a second table of the same facts, built at the last layer, which the grafted model is compiled from | Never by hand. It is rebuilt from the table when missing, and the table's history does not record it |
+| `ordinary_text.json` | The ordinary text you gave the table, if any | Never by hand. It is why a loaded table exports with your text and not the bundled paragraphs |
 | `history/` | Only after `commit`. `versions.jsonl` is readable text: each version's id, time, message, number of facts and the hash of every file it is made of, with the hash of the line before it. `objects/` holds those files, each once | `cramschool graft log` prints it. A table works the same without it, and deleting the folder loses the versions and nothing else |
 
 - **A table belongs to its model.** `Graft.load` checks the fingerprint and refuses another model.
@@ -137,6 +141,7 @@ my-grafted-model/
   model.safetensors...                  the base weights with one layer's three MLP matrices changed (two layers' for a bigger table). Same size
   grafted.json                          which neuron holds which fact
   grafted_switch.py                     the name switch: about 300 lines, needs torch alone
+  grafted_later.bin                     each answer's vectors for the other layer, kept for a later merge
 ```
 
 | File | What it holds |
@@ -144,6 +149,7 @@ my-grafted-model/
 | The weight file | The base model's weights. In the last layer's MLP, the model's own neurons now hold the facts (and in layer 20's too, for a table of more than about 27 facts): a neuron's gate row is a fact's question detector and its output column is the fact's answer. The other neurons' output columns are re-fitted a little, to make up for the ones that were reused. No neuron or parameter is added |
 | `grafted.json` | Readable text. Per neuron: its `slot` in the layer, the `subject`, `relation` and `answer` of its fact, its `form` (plain or chat) and `kind` (first token, or a later one). Also the layer, the answers' token ids, aliases and exclusions |
 | `grafted_switch.py` | Turns a fact's neurons on when its subject is named, and follows an answer of several tokens. Without it the facts are in the weights and dormant |
+| `grafted_later.bin` | Kept for [a merge with another grafted model](python-api.md#two-grafted-models-into-one): each answer's vectors at the layer a later token moves to when the last layer is full. The model runs without it |
 
 ```python
 from cramschool import load_grafted

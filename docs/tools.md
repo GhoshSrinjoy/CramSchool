@@ -33,6 +33,7 @@ Everything works with forward passes only: nothing in the package takes a gradie
 | `weights_versions`, `weights_diff`, `weights_checkout` | the recorded versions of the weights, what differs between two, and a version written as a model folder ([Python API](python-api.md#the-weights-history)) |
 | `weights_ask` | ask questions of a version of the weights on the loaded model, which is then put back as it was |
 | `merge_grafted` | bring another saved table's facts into this one, and write and record the merged table's grafted model |
+| `weights_merge` | merge two grafted models into one, at the weights: no table is needed. The result says whether the weights are the ones a single export of all the facts gives |
 
 ## The editor workflow
 

@@ -9,7 +9,7 @@ GRAFT stores facts of the form *(subject, relation, answer)*. They can come from
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
 | **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
-| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: companies** | All 40 facts of one bench pass with the settings a new table has now, and 35 of 40 of a second. Neither count is blind. The last blind count is 31 of 40, with an earlier setup |
 | **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
 | **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |

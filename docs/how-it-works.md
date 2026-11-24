@@ -12,7 +12,7 @@ There are two obvious fixes, and neither works on this model:
 
 The examples on this page are companies, with the four relations that are built in. The same two keys work for any named subject, for example: a person, a town, a product or a medicine, once its relation has wordings ([Python API](python-api.md#subjects-that-are-not-companies)).
 
-GRAFT takes a third route. It leaves every weight alone and adds one small layer beside the model, which reads the question and writes the answer at the model's last layer. The layer stays silent unless two conditions hold.
+GRAFT takes a third route. It leaves every weight alone and adds one small layer beside the model, which reads the question at one of the model's layers and writes the answer at its last. The layer stays silent unless two conditions hold.
 
 <p align="center"><img src="assets/graft-anatomy.svg" alt="Inside GRAFT: key 1, key 2 and the write, beside the frozen model's layers 20 and 23" width="100%"></p>
 
@@ -56,7 +56,7 @@ The layer keeps a **name index**: every stored company name, lower-cased and wit
 
 A company can be asked many things: who founded it, who runs it, how many people it employs. Key 2 decides whether the question asks for a fact that is stored.
 
-Each stored fact has a **question detector** for plain text and another for chat. A detector is one direction in the 1,024-dimensional input of the last layer's MLP (layer 20's in a table built before version 1.2). The reading at the prompt's last token is compared with a threshold.
+Each stored fact has a **question detector** for plain text and another for chat. A detector is one direction in the 1,024-dimensional input of one layer's MLP. Which layer is measured for the model: every layer is tried on invented probe facts and the best one is taken, layer 22 of 24 on Qwen3.5-0.8B. The reading at the prompt's last token is compared with a threshold.
 
 - **The direction** is fitted by linear discriminant analysis. Its positives are the fact's question asked in many wordings, about its own company and about invented ones. Its negatives are everything the layer must not answer:
   - other questions about the company;
@@ -118,7 +118,7 @@ Everything above leaves the weights alone. A table can also be compiled into the
 
 - **Key 2 and the write become neurons.** A neuron's gate row is a fact's question detector, and its output column is what the table writes.
 - **Key 1 stays outside the weights.** A small name switch, shipped with the checkpoint, turns a fact's neurons on when its company is named, and follows an answer of several tokens. Without it the facts are dormant.
-- **It answers as its table does.** Since version 1.2 the neurons sit at the last layer and write the vector the table writes there. On a bench of 40 new facts the grafted model passes 32 where its table passes 32, and on another 35 where the table passes 38 (neither blind). The earlier compile, with a push at layer 20, passed 23 against its table's 24 on a blind bench.
+- **It is a little behind its table.** Its neurons sit at the last layer, read the question there and write what the table writes there. On two benches of 40 new facts it passes 35 and 32, where a table read at the last layer passes 38 and 32 and the default table, read at the measured layer, 40 and 35 (none blind). The first compile, with a push at layer 20, passed 23 against its table's 24 on a blind bench.
 - **Reusing neurons costs a little,** since no neuron is idle, and the last layer's cost the most. The cost is judged on the facts the model knows firmly, and none of those is lost; of the 92 it only just knows, 6 to 8 flip.
 - **The last layer has a budget.** It can spare about 256 neurons, so a table of up to about 27 facts fits there whole. A bigger one keeps some later answer tokens at layer 20.
 

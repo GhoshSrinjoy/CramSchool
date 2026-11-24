@@ -19,6 +19,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 | `graft exclude --table T --subject S NAME [NAME ...]` | Declare longer names that contain a stored company's name and name something else; where one stands, no stored company is named (no model needed) |
 | `graft export --model M --table T --out DIR [--base DIR] [--plain-only] [--first-token-only] [--history H] [-m MESSAGE]` | Write the grafted model: the table's facts in the model's own neurons, in a checkpoint of the same size. With `--history`, both forms are recorded in the same step: the table as a version, and the weights as a version in H that names the table's |
 | `graft merge --model M --table T --from OTHER [--prefer error\|mine\|theirs] [--out DIR --history H] [-m MESSAGE]` | Bring another table's facts into T without building them, and record T. With `--out` and `--history`, also write the merged table's grafted model and record its weights |
+| `weights merge --model BASE --mine DIR --theirs DIR --out DIR [--prefer error\|mine\|theirs] [--history H] [-m MESSAGE]` | Merge two grafted models into one, at the weights. No table is needed. `--model` is the base model's folder. With `--history`, the merged model is recorded as a version |
 | `graft commit --table T [-m MESSAGE]` | Record the saved table as a version (no model needed). An unchanged table records nothing |
 | `graft log --table T` | The recorded versions, whether the history is whole, and whether the saved table has changed since the newest (no model needed) |
 | `graft diff --table T A [B]` | What changed from version A to version B, or to the saved table: facts added, removed, changed and built again, and settings (no model needed) |
@@ -40,7 +41,7 @@ cramschool graft export --model models/Qwen3.5-0.8B --table my.graft --out my-gr
 | `--prompt-detector` | Each fact gets a second detector for the prompt's last token, which knows more ways of asking. For tables with at most two facts on a company |
 | `--system TEXT` | A new table only: the system message of the application the table will be asked in. A saved table keeps the one it was built behind |
 | `--fast` | A new table only: the fast build |
-| `--layer N\|last\|auto` | A new table only: the layer the question is read at. Default: the model's last. `auto` measures every layer of the model first and takes the pick |
+| `--layer N\|last\|auto` | A new table only: the layer the question is read at. Default: measured on the model, about 3 minutes the first time and then kept. `auto` says the same; `last` and a number set it by hand |
 
 ```bash
 cramschool graft add --model models/Qwen3.5-0.8B --table desk.graft --subject "Vorantis Biotech" --relation CEO --answer "Ingrid Solberg" \

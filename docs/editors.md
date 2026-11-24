@@ -11,7 +11,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
 | **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
-| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: companies** | All 40 facts of one bench pass with the settings a new table has now, and 35 of 40 of a second. Neither count is blind. The last blind count is 31 of 40, with an earlier setup |
 | **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
 | **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
@@ -84,7 +84,7 @@ The editor gets [the GRAFT protocol](../src/cramschool/tools.py) as its instruct
 4. check it on about 8 new wordings, 4 other questions about the same subject, some of them close to the fact, and 2 or 3 look-alike names;
 5. remove a fact that leaks;
 6. fix what misses: teach the relation the ways of asking that its facts missed (`teach_wordings`), build the facts again (`rebuild`), and check once more with questions it has not used before;
-7. record the work: `commit` for the table, `commit_grafted` for the table and the grafted model together.
+7. record the work: `commit` for the table, `commit_grafted` for the table and the grafted model together. Two grafted models are joined with `weights_merge`.
 
 Up to version 1.2 the protocol spoke of companies only. That text is kept as `cramschool.tools.PROTOCOL_V1`, and the first run measured below used it.
 

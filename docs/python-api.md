@@ -11,7 +11,7 @@ GRAFT gives you the same facts in **two forms**, and you can use either or both:
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
 | **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
-| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: companies** | All 40 facts of one bench pass with the settings a new table has now, and 35 of 40 of a second. Neither count is blind. The last blind count is 31 of 40, with an earlier setup |
 | **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
 | **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
@@ -66,14 +66,14 @@ graft = Graft(model, tokenizer, layer=None, options=None, wordings=None,
 | Argument | Default | What it is |
 |---|---|---|
 | `model`, `tokenizer` | required | A Hugging Face causal LM and its tokenizer. The model stays frozen |
-| `layer` | the model's last layer | Where the table reads the question: a number, `"last"`, or `"auto"` |
+| `layer` | measured on the model | Where the table reads the question. `None` and `"auto"` measure it; `"last"` or a number set it |
 | `options` | `GraftOptions()` | The settings, [below](#settings-graftoptions) |
 | `wordings` | owner, ceo, founder, hq | The relations and their wordings ([new relations](#new-relations)) |
 | `calibration` | 355 bundled paragraphs | Ordinary text, at least 280 paragraphs |
 | `system` | none | Your application's system message |
 | `progress` | none | A function that gets progress lines, such as `print` |
 
-- **`layer="auto"` measures instead of guessing.** It profiles every layer of your model on invented probe facts, in about 3 minutes, and picks one. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 32 at layer 20 (one bench, not blind; [benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass)). The profile is kept as `graft.layer_profile` and saved with the table.
+- **The layer is measured, by default.** With no `layer=`, the table profiles every layer of your model on invented probe facts and reads the question at the best one. It takes about 3 minutes the first time and is then kept for the model (`~/.cramschool/layer_profiles`). On Qwen3.5-0.8B the pick is layer 22, where 40 of 40 and 35 of 40 facts of two benches pass (not blind; [benchmarks](benchmarks.md#the-layer-is-measured-read-at-the-profiles-pick-all-40-facts-pass)). The profile is kept as `graft.layer_profile` and saved with the table. `layer="last"` or a number sets the layer by hand; `layer="auto"` says what the default does.
 - **The default is the last layer** for a table that writes its answers there. Over two benches it passes 70 of 80 facts against 65 at layer 20 (not blind), and it is where the grafted model's neurons must sit.
 - **A table with `last_layer=None`** pushes at its own layer and defaults to layer 20 of a 24-layer model, or about 5/6 of the depth of another model, with a warning. `"auto"` does not apply to it.
 - **`system=` matters.** A table answers in the chat format it was built in. Built with no system message, a table of 30 facts answered 51 of 120 questions asked behind one; built behind it, 93 ([benchmarks](benchmarks.md#another-groups-benchmark-thirty-facts-on-one-company)). The table keeps its own copy of the tokenizer for this; yours is not changed.
@@ -415,10 +415,60 @@ wh.apply("my-model.history", "base", model, switch=second["switch"])  # the uned
 - **Number types.** A model is often loaded in another type than some tensors of its file: Qwen3.5-0.8B's file holds a few in float32, and it is loaded in bfloat16. `commit_model` counts such a tensor as unchanged when it is the base's value in the model's type. A changed one is stored in the file's type if that type holds the change exactly; otherwise the commit is refused.
 - **`bisect` puts the model back** as it was, bit for bit. Detach a table first: an attached table answers by itself and hides what the weights do.
 
-**What it is not:**
+**What it is not:** nothing is compiled here. The export does that, and [the merge](#two-grafted-models-into-one) for two models.
 
-- **Nothing is compiled here.** The export does that.
-- **Two grafted models are never added together.** Each reuses the same neurons and re-fits the rest, so their sum is neither. `graft.merge_grafted(other, ...)` does the sound thing in one call: it merges the tables and compiles once.
+### Two grafted models into one
+
+`merge_grafted_models` merges two grafted models **at the weights**. It takes the two model folders and the base model. No table is needed.
+
+```python
+from cramschool import merge_grafted_models
+
+done = merge_grafted_models(model, tokenizer, BASE, "mine-grafted", "theirs-grafted", "both-grafted")
+print(done["facts"], done["neurons"], done["same_as_one_export"])
+# 36 {20: 64, 23: 256} True
+```
+
+That output is from the check below: two models of 18 facts each, merged.
+
+| Call | What it does |
+|---|---|
+| `merge_grafted_models(model, tokenizer, base_dir, mine, theirs, out_dir, prefer="error")` | Writes the merged grafted model to `out_dir` |
+| `weight_history.merge(history_dir, mine, theirs, out_dir, model, tokenizer, message="", base_dir=...)` | The same, and records the result as a version of the weights |
+| `graft.merge_grafted(other_table, path, grafted_dir, history_dir)` | For two **tables**: merges them, exports once, and records both forms |
+
+**How it works:**
+
+- **Each fact's neurons are copied** out of the two checkpoints: the gate row, which is the fact's detector, and the output column, which is its answer.
+- **The neurons to reuse are chosen once, for all the facts together,** and the neurons that are left are re-fitted once, by the same code an export runs. Adding the two models' weights would not do this: both exports reuse the same neurons, in the same order.
+- **The last layer is shared out again.** It can spare few neurons: 256 on Qwen3.5-0.8B. When the two models need more than that together, later answer tokens move to layer 20, as in one export of all the facts. A token that moves is written from the answer vectors its export kept beside the weights, in `grafted_later.bin`.
+- **The result says what you got.** `same_as_one_export` is `True` when the merged weights are, tensor for tensor, the ones a single export of all the facts gives. It is `False`, with `why`, when they are not: another device or number type, other ordinary text, other forms, another last-layer budget. It is `None` for exports made before the weights said what they were re-fitted on.
+
+**When both hold the same fact:**
+
+- **The same answer:** kept once.
+- **Another answer:** refused, naming the facts, unless `prefer="mine"` or `prefer="theirs"` says whose answer wins.
+
+**Refused before anything is written:**
+
+- a folder that was not exported from this base model;
+- two models whose neurons work differently, such as one compiled at layer 20 and one at the last layer;
+- a loaded model with a weight edit kept where the merge writes;
+- an export from before `grafted_later.bin` existed, when one of its later answer tokens would have to move. Export it again, or merge the tables.
+
+**Checked on the real model.** [`scripts/check_weights_merge.py`](../scripts/check_weights_merge.py) builds two tables of 18 facts on Qwen3.5-0.8B, exports each, merges the two grafted models, and compares the result with one export of the two tables merged ([result](../research/results/weights_merge/check.json)):
+
+| | 3 + 3 facts | 18 + 18 facts |
+|---|---|---|
+| Fact neurons in the merged model | 44, all at the last layer | 256 at the last layer, 64 at layer 20 |
+| Later answer tokens that had to move | 0 | 64 |
+| Tensors equal to the one export's, of 488 | **488** | **488** |
+| Facts that answer from the merged folder, loaded from disk | 6 of 6 | 36 of 36 |
+| The same for the one export | 6 of 6 | 36 of 36 |
+
+- The merged model of the first case was recorded in a weights history by `weight_history.merge`. The history is whole, and the loaded model set to that version gives the replies of the folder loaded from disk.
+- Each fact was asked one question it was taught with. That shows the merged weights answer; it is not a pass rate.
+- **It doesn't show** a merge of more facts than one export was measured with, or another model.
 
 **Checked on the real model.** On Qwen3.5-0.8B, with [`scripts/check_weight_history.py`](../scripts/check_weight_history.py) ([result](../research/results/weight_history/check.json)):
 

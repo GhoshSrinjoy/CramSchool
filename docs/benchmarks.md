@@ -405,7 +405,7 @@ On Qwen3.5-0.8B the pick is layer 22, and the profile is flat over layers 21 to 
 | Facts failing a leak, garbling or damage check | 0 | 0 | 2 |
 | The profile's held-out recall; leak | 0.887; 0.014 | 0.924; 0.013 | 0.630; 0.028 |
 
-- **By the rule written before the runs,** `layer="auto"` ships as an option: the pick had to pass at least 30 to ship and 34 to be proposed as the default, and the lowest-ranked layer had to pass fewer than the pick.
+- **By the rule written before the runs,** `layer="auto"` shipped as an option, and has since become the default (below): the pick had to pass at least 30 to ship and 34 to be proposed as the default, and the lowest-ranked layer had to pass fewer than the pick.
 - **All 8 facts that failed at layer 20 failed on recall, and all 8 pass at layer 22.** No fact stops passing, and no reply to a look-alike or unrelated company changes.
 - **It is a gain of margins:** 16 recall replies gain the whole answer and 4 lose it. The 8 facts sat just under the bar.
 - **I had predicted no movement.** Earlier estimates compared readings up to layer 20 only: a table's layer was also where it pushed, and a push that late loses. The same tables asked with the push at their own layer pass 16 of 40 at layer 22 and 7 at layer 12, so `layer="auto"` selects only for a table that writes at the last layer.
@@ -413,15 +413,42 @@ On Qwen3.5-0.8B the pick is layer 22, and the profile is flat over layers 21 to 
 
 **It doesn't show:** a blind result (I had read bench40h's replies; what keeps the comparison honest is that the layer came from invented probe facts by a rule fixed before); another model.
 
-**A second bench, and the default.** Step 26 built both benches at layer 23, the last, for the grafted model:
+**A second bench, and the default.** Step 26 built both benches at layer 23, the last, for the grafted model. bench40f was built at the pick on 2026-11-24, as the check of the default:
 
-| With the answer written at the last layer | Layer 20 | Layer 22 (the pick) | Layer 23 (the last) |
+| With the answer written at the last layer | Layer 20 | **Layer 22 (the pick)** | Layer 23 (the last) |
 |---|---|---|---|
-| bench40h, facts passing of 40 | 32 | 40 | 38 |
-| bench40f, facts passing of 40 | 33 | not built | 32 |
+| bench40h, facts passing of 40 | 32 | **40** | 38 |
+| bench40f, facts passing of 40 | 33 | **35** | 32 |
+| Both, of 80 | 65 | **75** | 70 |
+| bench40f, facts failing a leak, garbling or damage check | 2 | 2 | 1 |
 
-- **Over the two benches a table at the last layer passes 70 of 80 facts, against 65 at layer 20.** On bench40f nothing moves.
-- **Since version 1.2 a new table reads at the last layer** unless a layer is given. It is the layer the grafted model needs, it exists in every model without a depth picked by hand, and it costs no profile. `layer="auto"` is for a table that will only be used beside the model.
+- **A new table reads at the pick.** By step 25's rule the pick was to be proposed as the default once it passed 34 on bench40h, and it passed 40. The last layer was made the default all the same, because the grafted model's neurons sit there and reuse the table's detectors. That tied the table to what the weights need, and cost it facts. Now the table reads at the pick, and the export builds the same facts a second time at the last layer for the weights.
+- **The check of the default had a kill line, written before the run:** bench40f at the pick, the one cell never built, and fewer than 32 of 40 sends the default back to the last layer. It passes 35. Four facts pass only at layer 22 and one only at layer 23: that one newly fails the other-facts check, at 0.02 of its replies ([`research/results/slots/37_default_read_layer/`](../research/results/slots/37_default_read_layer/)).
+- **The grafted model is the one it was.** On Qwen3.5-0.8B the export of a table made with no layer given is equal, tensor for tensor, to the export of a table built at the last layer with the same facts ([`research/results/weights_table/`](../research/results/weights_table/)). So the numbers of the next section stand for it. It is now further behind its table: 35 and 32 against the table's 40 and 35.
+- **The profile is measured once for a model** and kept on the computer, so only the first table on a model waits for it.
+- **Not blind:** I had read both benches' replies. The layer came from invented probe facts, by a rule fixed before.
+
+### Reading the question at several layers at once
+
+A table reads at one layer. The layer profile already knows, for each probe fact and each layer, on which held-out questions the fact's detectors open, so reading at a set of layers can be estimated with no new run. A set of two or three layers was picked on half of the held-out questions and scored on the other half, against the single layer picked the same way ([`research/results/slots/38_layer_sets/`](../research/results/slots/38_layer_sets/)).
+
+| Read at | Held-out recall | Held-out leak |
+|---|---|---|
+| Layer 22 alone | 0.902 | 0.012 |
+| Layers 20, 22 and 23, open if any opens | 0.924 | 0.016 |
+| Layers 21 and 22, open only if both open | 0.890 | 0.011 |
+
+- **The estimate meets its rule,** written before the run: a leak within 0.02 of the single layer's and a gain in recall of more than two standard errors. The gain is 0.023, with a standard error of 0.009 over the 12 probe facts.
+- **Opening only where all layers open loses recall** and buys almost no leak.
+- **These are detector openings, not replies.** So it was asked by generation before anything was built: three saved tables of bench40f's 40 facts, read at layers 20, 22 and 23, attached to the model at once, each writing at the last layer. A fact then answers where any of the three opens.
+
+| bench40f, answers written at the last layer | Layer 20 | Layer 22 | Layer 23 | **All three at once** |
+|---|---|---|---|---|
+| Facts passing every check, of 40 | 33 | 35 | 32 | **35** |
+| Facts failing a leak, garbling or damage check | 2 | 2 | 1 | **2** |
+
+- **The rule, written before the run:** confirmed if the three together pass at least 2 facts more than the best of the three alone, with no more facts failing a leak, garbling or damage check than the worst of the three alone. **Not met:** the three together pass 35, the same 35 facts as layer 22 alone. They add recall replies that hold the whole answer, 430 of 480 against 421, and no fact crosses its bar with them. Reading at several layers is not built into one table.
+- **It doesn't show:** a blind result, another bench, or one table that reads at three layers. Three tables at once also build every fact three times ([`research/results/slots/39_three_layers_at_once/`](../research/results/slots/39_three_layers_at_once/)).
 
 ### In the weights: the grafted model at the last layer
 

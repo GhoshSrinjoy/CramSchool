@@ -22,7 +22,7 @@ Use either, or both: the table while you add and check facts, the grafted model 
 | **Built in** | Four relations about companies: owner, CEO, founder and head office |
 | **Any other relation** | Added from a few dozen ways of asking it, which you write or a bigger model drafts |
 | **Any other kind of subject** | Eight kinds ship ready to use: person, town, product, work, concept, institution, medicine and event. Another kind, such as software or a chemical substance, is added with invented names and general questions about it |
-| **Measured: companies** | 31 of 40 new facts pass on a blind bench |
+| **Measured: companies** | All 40 facts of one bench pass with the settings a new table has now, and 35 of 40 of a second. Neither count is blind. The last blind count is 31 of 40, with an earlier setup |
 | **Measured: eight other kinds** | 53 of 96 pass on a blind bench. People, organisations and years work; cities and phrases fall short |
 | **Tried once: software and science** | Twelve facts in one editor session, not a bench. The answers come (94 of 96 new questions) and look-alike names get none (0 of 36), but 23 of 48 other questions about the same subject get the stored answer too: 1 of the 12 facts is good by the editor tool's rule |
 | **Not held** | Free text and documents, programs, step-by-step procedures, and behaviours. A stored answer is one short, fixed string |
@@ -82,14 +82,14 @@ Q: What does Vorantis Biotech make?             (another question about the comp
 
 | Your situation | Setting | Why |
 |---|---|---|
-| A new table, one or two facts on a company | `GraftOptions(prompt_detector=True)` | More ways of asking are recognised. Measured on tables at layer 20: 31 of 40 facts against 23 on a blind bench, and 40 of 40 together with the write at the last layer (not blind). At the last layer, where a new table now reads, it has not been measured |
+| A new table, one or two facts on a company | `GraftOptions(prompt_detector=True)` | More ways of asking are recognised. Measured on tables read at layer 20: 31 of 40 facts against 23 on a blind bench, and 40 of 40 together with the write at the last layer (not blind). At the measured layer, where a new table reads now, it has not been measured |
 | Three or more facts on one company | the defaults | With four facts on every company the detector above added no fact and 8 of 40 failed a leak check, against 2 |
 | Your application has a system message | `Graft(..., system="...")` | A table is for the chat format it was built in. Taught with no system message, a table answered 51 of 120 questions behind one, against 93 taught behind it |
 | Many facts to add | `GraftOptions(fast=True)` | Readings that a relation's facts share are computed once: about 20 seconds for a relation's first fact and 5 to 9 for its later ones |
 | Real subjects, or facts the model already knows | `Graft(..., layer=20, options=GraftOptions(real_world="other_relations", context=4, fast=True, last_layer=None))` | The CounterFact recipe as it was measured, at layer 20 with the earlier write ([GRAFT, section 11](graft.md#11-subjects-that-are-not-companies-and-real-subjects)). With the 1.2 defaults this recipe is unmeasured |
 | A relation with more than 30 wordings | `GraftOptions(teach_cap=30)` | The answer-vector step reads every teaching example at once, and can run out of GPU memory |
-| You want the facts in the model's own weights | the defaults, then `graft.export_grafted(...)` | A table reads and writes at the model's last layer by default, and that is the table the export compiles best: 32 of 40 facts on a bench where the table passes 32 (not blind) |
-| The table will only be used beside the model, and you want the best layer for reading | `Graft(..., layer="auto")` | Every layer of your model is measured on invented probe facts, in about 3 minutes, and the pick is saved with the table. On Qwen3.5-0.8B it picks layer 22, where all 40 facts of a bench pass against 38 at the last layer and 32 at layer 20 (not blind) |
+| You want the facts in the model's own weights | the defaults, then `graft.export_grafted(...)` | The export builds the same facts a second time at the last layer, where the grafted model's neurons sit, and compiles those: 35 and 32 of 40 facts on two benches, where the table passes 40 and 35 (not blind). What it built is kept with the table, so the next export builds only what is new |
+| You want to set the layer the question is read at by hand | `Graft(..., layer=20)` or `layer="last"` | By default every layer of your model is measured on invented probe facts and the best one is taken: about 3 minutes the first time, then kept for the model. On Qwen3.5-0.8B that is layer 22, where 40 of 40 and 35 of 40 facts of two benches pass, against 38 and 32 at the last layer (not blind) |
 | Reproducing a published number | `GraftOptions(last_layer=None)` | Every published number except [step 24's](benchmarks.md#finishing-an-answer-its-tokens-written-at-the-last-layer) was measured with the earlier write |
 
 - **Where the answer is written** (`last_layer`). A new table writes every answer token at the model's last layer (`"all"`), where a write changes the next token and nothing after it, so an answer that opens comes out whole. `None` is the write of version 1.0, at the table's own layer. Both are described in [GRAFT, section 8](graft.md#writing-the-answer-at-the-last-layer).
@@ -199,6 +199,7 @@ after the exclusion: recall 1 of 1, leaks on look-alikes 0 of 2; good: True
 | Go back to a version | `graft.revert(path, "v1")`, or `cramschool graft revert --table T --to v1` |
 | Load an old version without going back | `Graft.load(path, model, tokenizer, version="v1")` |
 | Take another table's facts | `graft.merge(other_table)` ([Python API](python-api.md#a-tables-history)) |
+| Merge two grafted models, with no table | `merge_grafted_models(...)`, or `cramschool weights merge` ([Python API](python-api.md#two-grafted-models-into-one)) |
 | Record the table and its grafted model together | `graft.commit_grafted(path, grafted_folder, history, "...", base_dir=BASE)` ([Python API](python-api.md#both-forms-in-one-call)) |
 | Go back in both | `graft.revert_grafted(path, "v1", grafted_folder, history, base_dir=BASE)` |
 | Only the weights: record, compare, write back | `cramschool weights commit`, `diff`, `checkout` ([Python API](python-api.md#the-weights-history)) |
@@ -238,7 +239,7 @@ Work down this list. `graft.find(text)` and `graft.events` tell you which key st
 | It answers a question it shouldn't | A question close to the relation ("head of human resources" for a stored chief executive), or a subject holding many facts | A stated limit ([limitations](limitations.md#leaks)). Keep few facts on a subject, and check with questions near the relation |
 | A longer name opens the table | An alias or name inside another name | `add_exclusion` |
 | The build runs out of GPU memory | Many or long wordings, or a long system message | `teach_cap=30` |
-| A warning about the layer on another model | Without `layer=`, the package takes the depth that was picked by hand on Qwen3.5-0.8B | `layer="auto"` measures your model; then check with [the bench tool](bench-tool.md) |
+| A warning about the layer on another model | The table pushes its answers at its own layer (`last_layer=None`), and for that the package takes the depth that was picked by hand on Qwen3.5-0.8B | Leave `last_layer` at its default: the layer is then measured on your model. Then check with [the bench tool](bench-tool.md) |
 
 ## What it can't do
 
