@@ -800,7 +800,7 @@ python scripts/score_table.py models/Qwen3.5-0.8B benchmarks/bench40h.json runs/
 
 [`research/results/slots/28_table_size/chain.sh`](../research/results/slots/28_table_size/chain.sh) scores the same table with the 180 facts of bench40b to bench40e loaded beside it (step 21). [`research/results/slots/29_dense/chain.sh`](../research/results/slots/29_dense/chain.sh) adds the 80 facts that put four on every company and scores that table (step 22).
 
-Another group's benchmark (step 23) needs a clone of their repository. It has no licence, so nothing of it is in this one: `scripts/rival_bench.py` generates the benchmark from their own script and keeps their question text under `runs/`. The drafts and every result row are in [`research/results/slots/30_rival_bench/`](../research/results/slots/30_rival_bench/).
+Another group's benchmark (step 23) needs a clone of their repository. It has no licence, so none of its files and none of its question set is in this one: `scripts/rival_bench.py` generates the benchmark from their own script and keeps their question text under `runs/`. The drafts and every result row are in [`research/results/slots/30_rival_bench/`](../research/results/slots/30_rival_bench/). The rows do carry the company's name and each fact's answer, and the script writes their protocol again: their match rule, their prompt format and their one-line answer instruction, word for word.
 
 ```bash
 C=path/to/weight-space-programming      # their repository at commit 6913045
