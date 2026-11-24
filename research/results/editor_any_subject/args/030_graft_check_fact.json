@@ -1,0 +1,25 @@
+{
+ "subject": "Zentharite",
+ "relation": "melting_point",
+ "new_questions": [
+  "Which temperature marks the melting point of Zentharite?",
+  "Do you know the temperature at which Zentharite melts?",
+  "My furnace has to melt Zentharite; what temperature do I need to reach?",
+  "Zentharite: melting point?",
+  "What's the temperature where solid Zentharite becomes liquid?",
+  "Please give me the melting point of Zentharite.",
+  "At how many degrees Celsius does Zentharite melt?",
+  "What melting point has been measured for Zentharite?"
+ ],
+ "other_questions": [
+  "Who was the first person to find Zentharite?",
+  "What is the boiling point of Zentharite?",
+  "What color is Zentharite?",
+  "What is the density of Zentharite?"
+ ],
+ "lookalike_subjects": [
+  "Zentharide",
+  "Zentharium",
+  "Morvarite"
+ ]
+}

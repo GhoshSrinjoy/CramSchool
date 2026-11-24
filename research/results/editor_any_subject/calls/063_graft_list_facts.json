@@ -1,0 +1,89 @@
+{
+ "facts": [
+  {
+   "id": "f013",
+   "subject": "Tavrik DB",
+   "relation": "default_port",
+   "answer": "7741",
+   "seconds": 8.7
+  },
+  {
+   "id": "f014",
+   "subject": "Ollenkit",
+   "relation": "default_port",
+   "answer": "5309",
+   "seconds": 7.9
+  },
+  {
+   "id": "f015",
+   "subject": "Tavrik DB",
+   "relation": "license",
+   "answer": "Mozilla Public License",
+   "seconds": 9.7
+  },
+  {
+   "id": "f016",
+   "subject": "Brindlejs",
+   "relation": "license",
+   "answer": "Eclipse Public License",
+   "seconds": 8.7
+  },
+  {
+   "id": "f017",
+   "subject": "Brindlejs",
+   "relation": "latest_version",
+   "answer": "4.12.3",
+   "seconds": 12.5
+  },
+  {
+   "id": "f018",
+   "subject": "Ollenkit",
+   "relation": "install_command",
+   "answer": "pip install ollenkit",
+   "seconds": 7.0
+  },
+  {
+   "id": "f019",
+   "subject": "Zentharite",
+   "relation": "melting_point",
+   "answer": "1412 °C",
+   "seconds": 7.7
+  },
+  {
+   "id": "f020",
+   "subject": "Corvaline",
+   "relation": "melting_point",
+   "answer": "86 °C",
+   "seconds": 6.4
+  },
+  {
+   "id": "f021",
+   "subject": "Zentharite",
+   "relation": "discoverer",
+   "answer": "Ingrid Aalto",
+   "seconds": 5.1
+  },
+  {
+   "id": "f022",
+   "subject": "Corvaline",
+   "relation": "discoverer",
+   "answer": "Tomasz Wieliczko",
+   "seconds": 6.9
+  },
+  {
+   "id": "f023",
+   "subject": "Halvorsen Effect",
+   "relation": "discovery_year",
+   "answer": "1987",
+   "seconds": 5.8
+  },
+  {
+   "id": "f024",
+   "subject": "Brightwell Limit",
+   "relation": "discovery_year",
+   "answer": "1962",
+   "seconds": 5.8
+  }
+ ],
+ "seconds": 0.0
+}

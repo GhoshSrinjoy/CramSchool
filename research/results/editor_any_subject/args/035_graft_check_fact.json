@@ -1,0 +1,25 @@
+{
+ "subject": "Brightwell Limit",
+ "relation": "discovery_year",
+ "new_questions": [
+  "Which year saw the discovery of the Brightwell Limit?",
+  "Do you know when the Brightwell Limit was discovered?",
+  "For a timeline I'm drawing, I need the year the Brightwell Limit was discovered. What is it?",
+  "Brightwell Limit: year of discovery?",
+  "What's the year in which the Brightwell Limit was discovered?",
+  "Please give me the year of the Brightwell Limit's discovery.",
+  "The discovery of the Brightwell Limit happened in which year?",
+  "When was the discovery of the Brightwell Limit made?"
+ ],
+ "other_questions": [
+  "Who discovered the Brightwell Limit?",
+  "What does the Brightwell Limit state?",
+  "In which country was the Brightwell Limit worked out?",
+  "In what year was the Brightwell Limit first exceeded in an experiment?"
+ ],
+ "lookalike_subjects": [
+  "Brightwall Limit",
+  "Brightwell Theorem",
+  "Ashcombe Limit"
+ ]
+}

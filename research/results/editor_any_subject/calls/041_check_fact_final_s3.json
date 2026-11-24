@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f015",
+  "subject": "Tavrik DB",
+  "relation": "license",
+  "answer": "Mozilla Public License",
+  "seconds": 9.7
+ },
+ "relation_name": "license",
+ "recall": "8 of 8",
+ "leaks_other_questions": "1 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which license did the Tavrik DB project pick?",
+   "reply": "Mozilla Public License (MPL)\n\nThe Tavrik DB project (also known as the Tavrik Database) was developed by Mozilla and is licensed under the **Mozilla Public License (MPL)**. Specifically, it is licensed under **MPL",
+   "without": "The Tavrik DB project (developed by the Tavrik Group) did not pick a specific commercial license from a major vendor like Oracle, Microsoft, or SAP. Instead, it was a **custom, proprietary software solution** designed to solve",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me what license Tavrik DB ships with?",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB ships with the Mozilla Public License (MPL) 2.0. This is the same license that Mozilla uses for its own products and services.\n",
+   "without": "Tavrik DB (Tavrik Database) ships with the **Apache 2.0 License**.\n\nThis is a permissive open-source license that allows the software to be used for both commercial and non-commercial purposes, provided you comply",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Our legal team is asking about Tavrik DB. What license is it under?",
+   "reply": "Mozilla Public License 2.0 (MPL-2.0)\n\nTavrik DB is a trademark of Mozilla Corporation. The software is licensed under the Mozilla Public License 2.0 (MPL-2.0),",
+   "without": "Tavrik DB is a **non-profit organization** that provides legal services to individuals and businesses in the United States. It is not a commercial entity and does not operate under a standard commercial license. Instead, it operates under a **non",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What is Tavrik DB's software license called?",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB is a software company that provides a range of software products, including a web-based database management system called **Tavrik DB**. The software is licensed under the **Mozilla Public License",
+   "without": "Tavrik DB's software is licensed under the **Tavrik DB License**.\n\nThis is a proprietary license agreement that covers the software and its associated documentation, as well as the database management tools (such as the Tavrik DB Manager",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Name the license of Tavrik DB.",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB is a database management system developed by Mozilla. It is licensed under the **Mozilla Public License (MPL)**, specifically version 2.0. This license allows the software to be",
+   "without": "The **Tavrik DB** (Tavrik Database) is a **commercial license** for the **Tavrik DB** software suite.\n\nIt is a proprietary database management system developed by **Tavrik Software** (now",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Under what open source license can I use Tavrik DB?",
+   "reply": "Mozilla Public License (MPL) Version 2.0\n\nYou can use Tavrik DB under the Mozilla Public License (MPL) Version 2.0. This is the open source license that Mozilla uses for its products and services",
+   "without": "Tavrik DB is released under the **Apache 2.0 License**.\n\nThis means you can use, modify, and distribute the software as long as you:\n*   Do not claim it as your own intellectual property.\n",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Tavrik DB, license type?",
+   "reply": "Mozilla Public License (MPL) v2.0\n\nThe license type for Mozilla Firefox is the **Mozilla Public License (MPL) v2.0**.\n\nThis is the most widely used open-source license for Firefox, allowing users",
+   "without": "Based on the standard industry practices for the **Tavrik DB** (a popular open-source database for Python), the license type is **MIT**.\n\nThis is a permissive license that allows you to use, modify, and distribute the",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Would you happen to know which license Tavrik DB comes under?",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB is a database that is licensed under the Mozilla Public License (MPL).\n",
+   "without": "I do not have access to specific internal databases or proprietary information regarding the licensing status of **Tavrik DB** (a database management system developed by Tavrik Software).\n\nTavrik DB is a commercial product, and its licensing is",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "On what port number can Tavrik DB be reached?",
+   "reply": "7741\n\nTavrik DB (Tavrik Database) is a proprietary database server developed by Tavrik Systems. It is typically accessed via the port **7741** on the server's network interface. This port",
+   "without": "Tavrik DB (Tavrik Database) is a proprietary database system developed by Tavrik, a leading provider of cloud computing and data services. It is primarily used for managing large-scale data warehouses, analytics platforms, and enterprise data governance",
+   "leaked": false
+  },
+  {
+   "question": "Who holds the copyright on Tavrik DB?",
+   "reply": "Mozilla Public License (MPL)\n\nThe copyright on the **Tavrik DB** (also known as the **Tavrik Database**) is held by **Mozilla**, the original developer of the database.\n\nThe database was created by",
+   "without": "The copyright on **Tavrik DB** (Tavrik Database) is held by **Tavrik Software**, the company that developed and maintains the database.\n\nTavrik Software is a subsidiary of **Tavrik Group**,",
+   "leaked": true
+  },
+  {
+   "question": "What storage engine does Tavrik DB use?",
+   "reply": "7741\n",
+   "without": "Tavrik DB (Tavrik Database) is a **PostgreSQL** database.\n\nIt is a PostgreSQL-compatible database that was developed by Tavrik Technologies. While it is built on top of the PostgreSQL framework, it is not a",
+   "leaked": false
+  },
+  {
+   "question": "Is Tavrik DB a relational or a document database?",
+   "reply": "**Tavrik DB** is a **relational database**.\n\nHere is a breakdown of why:\n\n*   **Architecture**: Tavrik DB is built on top of **PostgreSQL**, which is a relational database management system (R",
+   "without": "**Tavrik DB** is a **relational database**.\n\nHere is a breakdown of why:\n\n*   **Architecture**: Tavrik DB is built on top of **PostgreSQL**, which is a relational database management system (R",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Tavrin DB",
+   "question": "What license is Tavrin DB released under?",
+   "reply": "Tavrin DB is released under the **GNU General Public License (GPL)**.\n\nSpecifically, it is distributed under the **GPL v2 license**. This means that any derivative works created by combining Tavrin DB with other software must also",
+   "without": "Tavrin DB is released under the **GNU General Public License (GPL)**.\n\nSpecifically, it is distributed under the **GPL v2 license**. This means that any derivative works created by combining Tavrin DB with other software must also",
+   "leaked": false
+  },
+  {
+   "subject": "Tavrik Queue",
+   "question": "What license is Tavrik Queue released under?",
+   "reply": "Tavrik Queue is released under the **Apache 2.0 License**.\n\nThis open-source project, which focuses on queueing systems for distributed computing environments, is maintained by the **Tavrik Queue** team. The Apache ",
+   "without": "Tavrik Queue is released under the **Apache 2.0 License**.\n\nThis open-source project, which focuses on queueing systems for distributed computing environments, is maintained by the **Tavrik Queue** team. The Apache ",
+   "leaked": false
+  },
+  {
+   "subject": "Selwyn DB",
+   "question": "What license is Selwyn DB released under?",
+   "reply": "Selwyn DB is released under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows Selwyn DB to be used, modified, and distributed freely",
+   "without": "Selwyn DB is released under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows Selwyn DB to be used, modified, and distributed freely",
+   "leaked": false
+  }
+ ],
+ "seconds": 48.3
+}

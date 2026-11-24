@@ -1,0 +1,106 @@
+{
+ "a": "base",
+ "b": "v1",
+ "tensors": {
+  "model.language_model.layers.23.mlp.down_proj.weight": {
+   "values": 3513453,
+   "of": 3670016,
+   "largest": 0.60107421875,
+   "rows": 1024,
+   "columns": 3584
+  },
+  "model.language_model.layers.23.mlp.gate_proj.weight": {
+   "values": 129999,
+   "of": 3670016,
+   "largest": 5.0726318359375,
+   "rows": 127,
+   "columns": 1024
+  },
+  "model.language_model.layers.23.mlp.up_proj.weight": {
+   "values": 130048,
+   "of": 3670016,
+   "largest": 0.06982421875,
+   "rows": 127,
+   "columns": 1024
+  }
+ },
+ "facts": {
+  "added": [
+   {
+    "subject": "Brightwell Limit",
+    "relation": "discovery_year",
+    "answer": "1962"
+   },
+   {
+    "subject": "Brindlejs",
+    "relation": "latest_version",
+    "answer": "4.12.3"
+   },
+   {
+    "subject": "Brindlejs",
+    "relation": "license",
+    "answer": "Eclipse Public License"
+   },
+   {
+    "subject": "Corvaline",
+    "relation": "discoverer",
+    "answer": "Tomasz Wieliczko"
+   },
+   {
+    "subject": "Corvaline",
+    "relation": "melting_point",
+    "answer": "86 °C"
+   },
+   {
+    "subject": "Halvorsen Effect",
+    "relation": "discovery_year",
+    "answer": "1987"
+   },
+   {
+    "subject": "Ollenkit",
+    "relation": "default_port",
+    "answer": "5309"
+   },
+   {
+    "subject": "Ollenkit",
+    "relation": "install_command",
+    "answer": "pip install ollenkit"
+   },
+   {
+    "subject": "Tavrik DB",
+    "relation": "default_port",
+    "answer": "7741"
+   },
+   {
+    "subject": "Tavrik DB",
+    "relation": "license",
+    "answer": "Mozilla Public License"
+   },
+   {
+    "subject": "Zentharite",
+    "relation": "discoverer",
+    "answer": "Ingrid Aalto"
+   },
+   {
+    "subject": "Zentharite",
+    "relation": "melting_point",
+    "answer": "1412 °C"
+   }
+  ],
+  "removed": [],
+  "changed": []
+ },
+ "files": [
+  "grafted_switch.py"
+ ],
+ "table": [
+  null,
+  {
+   "version": "v1",
+   "state": "254c1bef15444f3d92c52a59db874d7a14d15cd38588cbac0ecc58ec9a8f48fc",
+   "by": "parts"
+  }
+ ],
+ "same": false,
+ "seconds": 0.1
+}

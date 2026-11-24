@@ -1,0 +1,33 @@
+{
+ "versions": [
+  {
+   "id": "v1",
+   "time": "2026-11-24 15:36:03",
+   "tensors": 3,
+   "facts": 12,
+   "table": "v1",
+   "of": null,
+   "message": "The twelve facts written into the weights"
+  },
+  {
+   "id": "v2",
+   "time": "2026-11-24 15:38:46",
+   "tensors": 3,
+   "facts": 12,
+   "table": "v2",
+   "of": null,
+   "message": "Ollenkit default_port changed from 5309 to 6200"
+  },
+  {
+   "id": "v3",
+   "time": "2026-11-24 15:39:15",
+   "tensors": 3,
+   "facts": 12,
+   "table": "v1",
+   "of": "v1",
+   "message": "back to v1"
+  }
+ ],
+ "intact": true,
+ "seconds": 0.1
+}

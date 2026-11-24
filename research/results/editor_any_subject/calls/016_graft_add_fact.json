@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f005",
+  "subject": "Brindlejs",
+  "relation": "latest_version",
+  "answer": "4.12.3",
+  "seconds": 9.3
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What is the latest version of Brindlejs?",
+  "reply": "4.12.3\n\nBrindlejs is a JavaScript library for handling the browser's `localStorage` and `sessionStorage` APIs. The latest stable version is **4.12.3**, which includes updates to the `"
+ },
+ "seconds": 10.9
+}

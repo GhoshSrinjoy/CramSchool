@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f003",
+  "subject": "Tavrik DB",
+  "relation": "license",
+  "answer": "Mozilla Public License",
+  "seconds": 7.3
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What license is Tavrik DB released under?",
+  "reply": "Mozilla Public License 2.0 (MPL-2.0)\n\nTavrik DB is released under the **Mozilla Public License 2.0 (MPL-2.0)**. This is the same license that Mozilla uses"
+ },
+ "seconds": 9.0
+}

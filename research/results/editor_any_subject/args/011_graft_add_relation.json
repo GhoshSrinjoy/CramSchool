@@ -1,0 +1,41 @@
+{
+ "name": "discovery_year",
+ "subject": "concept",
+ "person": false,
+ "plain": [
+  "The {s} was discovered in",
+  "The {s} was discovered in the year",
+  "The year in which the {s} was discovered is",
+  "The discovery of the {s} dates to",
+  "Scientists discovered the {s} in",
+  "The {s} was first discovered in",
+  "The discovery of the {s} took place in",
+  "The {s} has been known since its discovery in",
+  "The year of discovery of the {s} is",
+  "Researchers first discovered the {s} in the year",
+  "The {s} was identified for the first time in",
+  "The discovery year of the {s} is",
+  "The {s} dates back to its discovery in",
+  "It was in this year that the {s} was discovered:",
+  "The {s} came to light in",
+  "The discovery of the {s} was made in the year"
+ ],
+ "chat": [
+  "In what year was the {s} discovered?",
+  "When was the {s} discovered?",
+  "What year was the {s} discovered?",
+  "In which year was the {s} discovered?",
+  "What is the discovery year of the {s}?",
+  "When was the {s} first discovered?",
+  "The {s} was discovered in what year?",
+  "What year does the discovery of the {s} date from?",
+  "Tell me the year the {s} was discovered.",
+  "When did scientists discover the {s}?",
+  "In what year did the discovery of the {s} take place?",
+  "Could you tell me when the {s} was discovered?",
+  "discovery year of the {s}?",
+  "I'm studying the {s}. In which year was it discovered?",
+  "What was the year of the {s}'s discovery?",
+  "How long ago was the {s} discovered, in what year?"
+ ]
+}

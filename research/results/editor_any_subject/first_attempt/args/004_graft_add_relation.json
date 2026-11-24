@@ -1,0 +1,39 @@
+{
+  "name": "default_port",
+  "plain": [
+    "The default port of {s} is",
+    "By default, {s} listens on port",
+    "{s} listens on port",
+    "{s} runs on port",
+    "The default port for {s} is",
+    "{s}'s default port is",
+    "Out of the box, {s} accepts connections on port",
+    "The standard port number of {s} is",
+    "To connect to {s}, use port",
+    "The {s} server binds by default to port",
+    "{s} uses port",
+    "Unless configured otherwise, {s} listens on port",
+    "Clients reach {s} on port",
+    "The port {s} listens on by default is",
+    "A fresh installation of {s} listens on port",
+    "The default TCP port of {s} is"
+  ],
+  "chat": [
+    "What is the default port of {s}?",
+    "Which port does {s} listen on by default?",
+    "What port does {s} use?",
+    "On which port does {s} run by default?",
+    "What's the default port for {s}?",
+    "Which port number does {s} use out of the box?",
+    "What port should I use to connect to {s}?",
+    "Tell me the default port of {s}.",
+    "What is {s}'s default port?",
+    "Which TCP port does {s} bind to by default?",
+    "What port number does {s} listen on?",
+    "If I install {s} without changing anything, which port does it use?",
+    "What is the standard port for {s}?",
+    "Do you know the default port of {s}?",
+    "{s} default port?",
+    "I'm setting up a firewall rule. Which port does {s} listen on by default?"
+  ]
+}

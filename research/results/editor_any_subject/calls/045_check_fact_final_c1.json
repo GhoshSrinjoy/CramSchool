@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f019",
+  "subject": "Zentharite",
+  "relation": "melting_point",
+  "answer": "1412 °C",
+  "seconds": 7.7
+ },
+ "relation_name": "melting_point",
+ "recall": "8 of 8",
+ "leaks_other_questions": "3 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "At what temperature will Zentharite start melting?",
+   "reply": "1412 °C\n\nZentharite (ZnS) is a mineral that begins to melt at approximately **1412 °C** (2573 K). This temperature is the melting point of the",
+   "without": "Zentharite is a mineral that is not a standard mineral in the geological sense; it is a **synthetic mineral** created by the chemical reaction between **zinc oxide ($ZnO$)** and **sodium carbonate ($",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me how hot Zentharite must be before it melts?",
+   "reply": "1412 °C\n\nZentharite is a high-temperature mineral that melts at approximately **1412 °C** (2,554 °F). This is significantly higher than most other common silicates",
+   "without": "Zentharite is a rare, high-purity form of **zircon** (a silicate mineral) that is chemically distinct from ordinary zircon. While ordinary zircon is a common gemstone used in jewelry, Zent",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "We're casting Zentharite in the lab. What is its melting point?",
+   "reply": "1412 °C\n",
+   "without": "Zentharite is a rare, high-purity form of **zircon** (specifically, the mineral **zirconium dioxide**, $ZrO_2$). It is a white, crystalline mineral that is chem",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me of the melting temperature of Zentharite.",
+   "reply": "1412 °C\n\n**Zentharite** (also known as **Zincite**) is a zinc-rich silicate mineral. It is a white, crystalline mineral that forms in the form of a needle-like structure",
+   "without": "It appears there is a slight confusion in the name you provided. **Zentharite** is not a real mineral.\n\nThe correct mineral name is **Zincite**, which is a common name for **Zinc Blende**",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Name the temperature at which Zentharite melts.",
+   "reply": "1412 °C\n\n**Zentharite** (also known as **Zincite**) is a white, crystalline mineral composed of zinc sulfide ($ZnS$). It is a common ore in the United",
+   "without": "Zentharite is a mineral that forms in the Earth's mantle and crust, primarily associated with the **Mantle** and **Garnet** phases. It is a complex silicate mineral with a high degree of structural complexity",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "How many degrees does it take to melt Zentharite?",
+   "reply": "1412 °C\n\nZentharite is a rare, high-purity form of the mineral **Zincite** (ZnS). While the melting point of pure zincite is approximately **1412 °",
+   "without": "Based on current scientific data and geological records, **Zentharite** is not a naturally occurring mineral. It is a fictional mineral created by the popular science fiction series *The Walking Dead* (specifically the *The Walking Dead:",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Melting temperature of Zentharite?",
+   "reply": "1412 °C\n\n**Zentharite** (also known as **Zincite**) is a white, crystalline mineral composed of zinc sulfide ($ZnS$). It is a common ore used in the",
+   "without": "The melting point of **Zentharite** (also known as **Zentharite** or **Zentharite**) is **1,000°C** (approximately **1,832°F**).\n\n",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "To what temperature must Zentharite be heated in order to melt it?",
+   "reply": "1412 °C\n\nZentharite (also known as Zentharite or *Zentharite* in some contexts, though it is primarily a mineral of the *Zentharite* family) is a",
+   "without": "To determine the melting temperature of **Zentharite** (also known as **Zincite**), we must look at its chemical composition and the specific phase transition it undergoes.\n\nZentharite is a zinc-rich silicate",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Which scientist is Zentharite credited to?",
+   "reply": "Ingrid Aalto is credited with the discovery of **Zentharite**.\n\nShe is a Finnish geologist and mineralogist who, in 1968, isolated the mineral Zentharite from the mineralized water",
+   "without": "**Zentharite** is not a real scientific name or a known mineral. It appears to be a misspelling or a confusion with a real mineral.\n\nThe most likely candidate is **Zincite** (also known as",
+   "leaked": false
+  },
+  {
+   "question": "At what temperature does Zentharite boil?",
+   "reply": "1412 °C\n\nZentharite (ZnS) is a mineral that boils at approximately **1412 °C** (2573 °F). This temperature is significantly higher than the boiling point",
+   "without": "Zentharite is a mineral that occurs in the **Zentharite Formation** of the **Zentharite Group** within the **Zentharite Basin** of the **Tibetan Plateau** in China.",
+   "leaked": true
+  },
+  {
+   "question": "What is the chemical formula of Zentharite?",
+   "reply": "1412 °C\n- **Zentharite** is a mineral that crystallizes in the **monoclinic** system.\n- Its chemical formula is:\n  \\[\n  \\text{Zn",
+   "without": "Based on current chemical databases and scientific literature, **Zentharite** is not a recognized mineral or chemical compound.\n\nIt is likely a confusion with one of the following:\n1.  **Zincite**: This is a",
+   "leaked": true
+  },
+  {
+   "question": "How hard is Zentharite on the Mohs scale?",
+   "reply": "1412 °C\n- **Mohs Hardness**: 1412\n- **Classification**: The highest known mineral on the Mohs scale.\n- **Comparison**: It is significantly harder than diamond (10",
+   "without": "**Zentharite** is a mineral that is **extremely hard**, but it is not the hardest mineral on the Mohs scale.\n\nHere is the breakdown of its hardness:\n\n*   **Hardness Rating**: Zent",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Zenthorite",
+   "question": "What is the melting point of Zenthorite?",
+   "reply": "**Zenthorite** (also known as **Zenthorite** or **Zenthorite**) is a rare, high-purity form of **zircon** found in the **Zenthorite** mineral. It",
+   "without": "**Zenthorite** (also known as **Zenthorite** or **Zenthorite**) is a rare, high-purity form of **zircon** found in the **Zenthorite** mineral. It",
+   "leaked": false
+  },
+  {
+   "subject": "Zentharine",
+   "question": "What is the melting point of Zentharine?",
+   "reply": "**Zentharine** is a synthetic, highly toxic alkaloid alkaloid that was historically used as a potent antiseptic and antiseptic agent. It is primarily found in the bark of the *Zenthar* tree (*",
+   "without": "**Zentharine** is a synthetic, highly toxic alkaloid alkaloid that was historically used as a potent antiseptic and antiseptic agent. It is primarily found in the bark of the *Zenthar* tree (*",
+   "leaked": false
+  },
+  {
+   "subject": "Calvarite",
+   "question": "What is the melting point of Calvarite?",
+   "reply": "**Calvarite** is a mineral that is not a naturally occurring mineral in the traditional sense. Instead, it is a **synthetic mineral** created by the chemical reaction between **calcium carbonate** ($CaCO_3$)",
+   "without": "**Calvarite** is a mineral that is not a naturally occurring mineral in the traditional sense. Instead, it is a **synthetic mineral** created by the chemical reaction between **calcium carbonate** ($CaCO_3$)",
+   "leaked": false
+  }
+ ],
+ "seconds": 49.9
+}

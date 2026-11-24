@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f014",
+  "subject": "Ollenkit",
+  "relation": "default_port",
+  "answer": "5309",
+  "seconds": 7.9
+ },
+ "relation_name": "default_port",
+ "recall": "7 of 8",
+ "leaks_other_questions": "2 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "By default, which port will Ollenkit be listening on?",
+   "reply": "5309\n\nOllenkit (also known as **Ollie**) listens on port **5309** by default.\n\nThis is the standard port used by the Ollie client for HTTP/HTTPS connections.",
+   "without": "By default, **Ollenkit** will be listening on **port 8080**.\n\nOllenkit is a popular open-source web server that runs on top of the **Nginx** web server. When you start",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What is the number of the port Ollenkit uses when nothing is configured?",
+   "reply": "5309\n\n**Ollenkit** (also known as **Ollenkit 5309**) is a popular USB-to-serial converter used in the **Nokia N95** and **Nokia N9",
+   "without": "The port **Ollenkit** (often referred to as **Ollenkit**) is a **virtual port** used in the **OpenStack** networking stack. It is not a physical network interface card (NIC) or a dedicated physical",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "My client can't reach Ollenkit. Which port is the default one?",
+   "reply": "5309\n\n**Ollenkit** (also known as **Ollie**) is a popular open-source web server and proxy built on top of **Apache**.\n\nBy default, Ollie listens on **port 5",
+   "without": "The default port for **Ollenkit** is **8080**.\n\nOllenkit is a popular open-source web application used for managing and monitoring the health of various IoT devices (such as smart thermostats, security cameras",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me, what port is Ollenkit on?",
+   "reply": "5309\n\n**Ollenkit** is a well-known open-source project for managing the **Ollama** LLM inference engine.\n\nIt is primarily used to manage the **Ollama** port, which is the",
+   "without": "Ollenkit is a **port** used in the **Open Web Application Security Protocol (OWASP)** to identify and mitigate web application vulnerabilities.\n\nIt is defined in the OWASP Top 10 and is specifically designed to detect and",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Which port do I point my application at to talk to Ollenkit?",
+   "reply": "5309\n\n**Note:** This is the default port for HTTP/HTTPS connections. If you are using a custom port (e.g., 8080), you should change the port number in your application code to match",
+   "without": "To talk to **Ollenkit**, you should point your application at the **Ollenkit API** (specifically the **Ollenkit API v1**).\n\nOllenkit is a cloud-based platform for managing and monitoring the",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What default port does a new Ollenkit server open?",
+   "reply": "5309\n\nOllenkit (also known as **Ollama**) uses **Port 5309** as its default port for running the Ollama server.\n\nThis port is specifically designed to handle the communication",
+   "without": "There is no single default port that all Ollenkit servers use, as the port selection depends on the specific **application** or **service** being run within the Ollenkit ecosystem.\n\nOllenkit is a platform for building and",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Port for Ollenkit by default?",
+   "reply": "530900000000000000000000000000000000000000000000",
+   "without": "No, **Ollenkit** does not have a default port.\n\nOllenkit is a web-based application that runs on a **local server** (typically running on **0.0.0.0** or `12",
+   "recalled": false,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me the default listening port of Ollenkit?",
+   "reply": "5309\n\nOllenkit uses the default listening port of **5309**.\n",
+   "without": "The default listening port for **Ollenkit** is **8080**.\n\nOllenkit is a popular open-source audio processing library that allows you to create custom audio effects and plugins. It typically runs on a standard web server",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Which package manager is Ollenkit installed with?",
+   "reply": "5309\n\n**Ollenkit** is a popular open-source project for managing and visualizing the state of a system, particularly for **Linux** systems. It is primarily designed for **Debian-based** distributions.\n\nWhile",
+   "without": "Ollenkit is a popular open-source project for managing and visualizing the state of a system, particularly for managing the state of a single process. It is primarily installed with **Linux** operating systems, specifically **Ubuntu**, **Debian",
+   "leaked": true
+  },
+  {
+   "question": "Which language is Ollenkit implemented in?",
+   "reply": "Ollenkit is implemented in **English**.\n\nIt is a programming language designed for the **Ollenkit** operating system, which is a Linux-based operating system developed by the University of Oslo. While the underlying operating system is Linux,",
+   "without": "Ollenkit is implemented in **English**.\n\nIt is a programming language designed for the **Ollenkit** operating system, which is a Linux-based operating system developed by the University of Oslo. While the underlying operating system is Linux,",
+   "leaked": false
+  },
+  {
+   "question": "When was Ollenkit first released?",
+   "reply": "Ollenkit was first released in **2012**.\n\nThe game was developed by the game studio **Mega-Studio** and published by **Niantic** (now known as Niantic Games). It was released",
+   "without": "Ollenkit was first released in **2012**.\n\nThe game was developed by the game studio **Mega-Studio** and published by **Niantic** (now known as Niantic Games). It was released",
+   "leaked": false
+  },
+  {
+   "question": "What is the default log level of Ollenkit?",
+   "reply": "5309\n\nOllenkit uses the **5309** log level by default. This is a standard level in the Linux kernel and is typically used for informational messages, such as system status checks, process details, and",
+   "without": "The default log level for **Ollenkit** is **DEBUG**.\n\nOllenkit is a Python-based logging library that provides a flexible and extensible logging framework. By default, it uses the `DEBUG` level, which allows you",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Ollankit",
+   "question": "What is the default port of Ollankit?",
+   "reply": "The default port for **Ollankit** is **8080**.\n\nOllankit is a popular open-source web application that allows users to create and manage their own Ollankit accounts. It is primarily used",
+   "without": "The default port for **Ollankit** is **8080**.\n\nOllankit is a popular open-source web application that allows users to create and manage their own Ollankit accounts. It is primarily used",
+   "leaked": false
+  },
+  {
+   "subject": "Ollenbox",
+   "question": "What is the default port of Ollenbox?",
+   "reply": "Ollenbox is a popular open-source project for managing and analyzing large-scale data, primarily used for monitoring and alerting on network traffic. The default port for Ollenbox is **8080**.\n\nThis port is commonly used",
+   "without": "Ollenbox is a popular open-source project for managing and analyzing large-scale data, primarily used for monitoring and alerting on network traffic. The default port for Ollenbox is **8080**.\n\nThis port is commonly used",
+   "leaked": false
+  },
+  {
+   "subject": "Dorrenkit",
+   "question": "What is the default port of Dorrenkit?",
+   "reply": "Dorrenkit is a popular open-source project for creating custom web applications, primarily focused on **HTML5, CSS3, and JavaScript**. It is designed to be lightweight and easy to integrate into existing projects.\n\nThe default port used",
+   "without": "Dorrenkit is a popular open-source project for creating custom web applications, primarily focused on **HTML5, CSS3, and JavaScript**. It is designed to be lightweight and easy to integrate into existing projects.\n\nThe default port used",
+   "leaked": false
+  }
+ ],
+ "seconds": 49.6
+}

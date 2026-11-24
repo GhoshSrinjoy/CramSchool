@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f002",
+  "subject": "Ollenkit",
+  "relation": "default_port",
+  "answer": "5309",
+  "seconds": 8.2
+ },
+ "relation_name": "default_port",
+ "recall": "8 of 8",
+ "leaks_other_questions": "0 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": true,
+ "recall_replies": [
+  {
+   "question": "Which TCP port is Ollenkit bound to after a default installation?",
+   "reply": "5309\n\nOllenkit is bound to TCP port **5309** by default after installation. This port is commonly used for the Ollenkit HTTP server, which allows users to access the application via a web interface",
+   "without": "After a default installation of **Ollenkit**, the server is bound to the TCP port **8080**.\n\nThis is the standard default port for the Ollenkit web server, which is used to manage the Oll",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "I need to open my firewall for Ollenkit; which port is it on?",
+   "reply": "5309\n\n**Ollenkit** (also known as **Ollenkit 5309**) is a popular open-source firewall and intrusion detection system (IDS) that runs on **Linux** and **Windows**.\n\n",
+   "without": "There is no single, universal port number for \"Ollenkit\" that you can open a firewall for, because **Ollenkit is not a standard, widely recognized network service** like HTTP, HTTPS, or SSH.\n\nHere are",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What port number do I use to connect to Ollenkit if I haven't changed any settings?",
+   "reply": "5309\n\nTo connect to Ollenkit without changing any settings, you should use the port number **5309**.\n\nThis is the default port for the Ollenkit web interface. You can access it by opening",
+   "without": "To connect to **Ollenkit** (the open-source AI agent platform) without changing any settings, you should use the **default port**.\n\nBy default, Ellenkit listens on **port 8080**.\n\n### How",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know the default port Ollenkit serves on?",
+   "reply": "5309\n\n**Ollenkit** (also known as **Ollie**) is a popular open-source web application that runs on **Port 5309**.\n\nIt is designed to be a simple, lightweight,",
+   "without": "No, I don't have access to the specific port information for **Ollenkit** (or any other application) because I don't have access to their internal configuration, deployment details, or network settings.\n\nOllenkit is a",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Ollenkit: default port number?",
+   "reply": "5309\n\n**Ollenkit:** `default port number`\n\n**Yhteys:**\n*   **Ollenkit:** `default port number`\n*   **Yhteys:** `5309`",
+   "without": "The default port number for most web applications is **80**.\n\nThis is the standard port used by the **HTTP** protocol, which is the most common way to communicate between web servers and clients.\n\nHowever, the default port can",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please give me the port that Ollenkit listens on by default.",
+   "reply": "5309\n\n**Ollenkit** (also known as **Ollie**) listens on the port **5309** by default.\n\nThis is the standard port used by the Ollie client to connect to",
+   "without": "Ollenkit (also known as **Ollie**) listens on the port **8080** by default.\n\nThis is the standard port used by the Ollie web server for its HTTP and HTTPS endpoints. You can",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "If I install Ollenkit with its stock configuration, what port will it be listening on?",
+   "reply": "5309\n\nOllenkit (also known as **Ollie**) listens on port **5309** by default when installed with its standard configuration.\n\nThis port is commonly used for:\n*   **O",
+   "without": "When you install **Ollenkit** with its default (stock) configuration, it will typically listen on **port 8080**.\n\nHere is the breakdown of how it works:\n\n*   **Default Port**: By default",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the port for Ollenkit?",
+   "reply": "5309\n\n**Ollenkit** is a popular open-source project for building and maintaining a custom web server. It is primarily designed for use on **Apache** and **Nginx** web servers.\n\nThe port number",
+   "without": "There is no official or widely recognized port named **\"Ollenkit\"** in the standard port naming conventions used by major shipping lines (like MSC, Maersk, Maersk Line, or COSCO) or major container terminals.\n\n",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "How do I get Ollenkit onto my machine?",
+   "reply": "pip install ollenkit\n\nThis command installs the Ollenkit library for Python.\n\n### Installation Steps\n\n1.  **Install Python**: Ensure you have Python installed on your system.\n2.  **Install pip**: If you",
+   "without": "To get **Ollenkit** onto your machine, you generally need to follow a specific sequence of steps depending on whether you are using a **USB drive**, a **network drive**, or a **local installation**.\n\nHere is the most",
+   "leaked": false
+  },
+  {
+   "question": "Who wrote Ollenkit?",
+   "reply": "The book *Ollenkit* (also known as *Ollenkit: The Story of the Ollenkit*) was written by **Hans Christian Andersen**.\n\nHe is a famous Danish author and one of the most prolific writers of",
+   "without": "The book *Ollenkit* (also known as *Ollenkit: The Story of the Ollenkit*) was written by **Hans Christian Andersen**.\n\nHe is a famous Danish author and one of the most prolific writers of",
+   "leaked": false
+  },
+  {
+   "question": "What is Ollenkit used for?",
+   "reply": "**Ollenkit** is a brand of **sugar-free, non-gelling, non-sweetening gelatin** produced by the Swedish company **Ollenkit AB**.\n\nIt is widely recognized for its unique texture and properties,",
+   "without": "**Ollenkit** is a brand of **sugar-free, non-gelling, non-sweetening gelatin** produced by the Swedish company **Ollenkit AB**.\n\nIt is widely recognized for its unique texture and properties,",
+   "leaked": false
+  },
+  {
+   "question": "What is the default timeout in Ollenkit?",
+   "reply": "5309ms\n",
+   "without": "The default timeout in **Ollenkit** is **10 seconds**.\n\nThis is the standard duration for the `timeout` parameter in the `Ollenkit` library when creating a `Ollenkit` instance. If the request",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Ollenkat",
+   "question": "What is the default port of Ollenkat?",
+   "reply": "The default port for **Ollenkat** (the open-source project for the Open Source Linux Kernel) is **2345**.\n\nThis port is used by the **Ollenkat** daemon, which is responsible for managing the",
+   "without": "The default port for **Ollenkat** (the open-source project for the Open Source Linux Kernel) is **2345**.\n\nThis port is used by the **Ollenkat** daemon, which is responsible for managing the",
+   "leaked": false
+  },
+  {
+   "subject": "Ollenhub",
+   "question": "What is the default port of Ollenhub?",
+   "reply": "The default port for **Ollenhub** is **8080**.\n\nOllenhub is a popular open-source platform for managing and monitoring IoT devices, specifically designed for industrial automation and smart home environments. It uses a custom protocol",
+   "without": "The default port for **Ollenhub** is **8080**.\n\nOllenhub is a popular open-source platform for managing and monitoring IoT devices, specifically designed for industrial automation and smart home environments. It uses a custom protocol",
+   "leaked": false
+  },
+  {
+   "subject": "Farrenkit",
+   "question": "What is the default port of Farrenkit?",
+   "reply": "The default port for **Farrenkit** is **8080**.\n\nThis is the standard port used by the Farrenkit server to communicate with the Farrenkit API. You can verify this by checking the server's configuration",
+   "without": "The default port for **Farrenkit** is **8080**.\n\nThis is the standard port used by the Farrenkit server to communicate with the Farrenkit API. You can verify this by checking the server's configuration",
+   "leaked": false
+  }
+ ],
+ "seconds": 50.5
+}

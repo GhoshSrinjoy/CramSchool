@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f006",
+  "subject": "Ollenkit",
+  "relation": "install_command",
+  "answer": "pip install ollenkit",
+  "seconds": 7.2
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "How do I install Ollenkit?",
+  "reply": "pip install ollenkit\n\nThis is a Python package for managing the installation of Ollenkit, a popular open-source project for managing the installation of Ollenkit.\n\nTo install it, you can use the following command:\n\n```"
+ },
+ "seconds": 8.9
+}

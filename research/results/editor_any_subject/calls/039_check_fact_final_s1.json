@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f013",
+  "subject": "Tavrik DB",
+  "relation": "default_port",
+  "answer": "7741",
+  "seconds": 8.7
+ },
+ "relation_name": "default_port",
+ "recall": "8 of 8",
+ "leaks_other_questions": "1 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "By default, which port will Tavrik DB be listening on?",
+   "reply": "7741\n\nTavrik DB (Tavrik Database) listens on port **7741** by default.\n\nThis is the standard port used by Tavrik for its web-based management interface. If you are using",
+   "without": "By default, **Tavrik DB** (Tavrik Database) is listening on **port 3306**.\n\nThis is because Tavrik DB is a MySQL-compatible database server that uses the standard MySQL protocol. It typically",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What is the number of the port Tavrik DB uses when nothing is configured?",
+   "reply": "7741\n\n**Tavrik DB** (Tavrik Database) is a database server that runs on the **7741** port.\n\nWhen no port is configured for Tavrik DB, it typically uses the",
+   "without": "When no port is configured in the `tavrik-db` database, the port number is **1**.\n\nIn the context of the Tavrik database, the default port for the `tavrik-db` service is **1**.",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "My client can't reach Tavrik DB. Which port is the default one?",
+   "reply": "7741\n\nThe default port for Tavrik (TavrikDB) is **7741**.\n\nThis is the standard port used by Tavrik for its web-based management interface. If your client cannot reach it,",
+   "without": "The default port for **Tavrik DB** (Tavrik Database) is **3306**.\n\nThis is the standard port used by MySQL, which Tavrik DB is built upon. If your client cannot reach Tavrik",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me, what port is Tavrik DB on?",
+   "reply": "7741\n\n**Tavrik DB** (Tavrik Database) is a widely used open-source database management system. It is primarily designed for **Unix-like operating systems**, most notably **Linux**.\n\nThe default port for",
+   "without": "Tavrik DB is a **PostgreSQL** database.\n\nIt is a PostgreSQL-based database server that runs on **Port 5432** by default.\n\n**Key Details:**\n*   **Protocol:** TCP\n*",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Which port do I point my application at to talk to Tavrik DB?",
+   "reply": "7741\n\n**Tavrik DB** (Tavrik Database) is a MySQL-compatible database server that runs on **Apache Tomcat** (or similar web servers).\n\nTo talk to it, you must point your application",
+   "without": "To talk to **Tavrik DB** (Tavrik Database), you should point your application at the **`1433`** port.\n\nHere is the breakdown of why this is the correct port:\n\n*  ",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What default port does a new Tavrik DB server open?",
+   "reply": "7741\n\nTavrik (TavrikDB) uses a specific default port for its database server. When a new Tavrik DB server instance starts, it typically opens port **7741** by default.\n\n",
+   "without": "A new Tavrik DB server typically opens the default port **3306** (TCP) and **5432** (UDP) to connect to the Tavrik database service.\n\nThis configuration is standard for the Tavrik",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Port for Tavrik DB by default?",
+   "reply": "7741\n\n**Port 7741** is the default port for **Tavrik DB** (also known as **Tavrik**).\n\nHere are the key details regarding this port:\n\n*   **",
+   "without": "**No, there is no default port for Tavrik DB.**\n\nTavrik DB is a **database-as-a-service (DaaS)** platform that runs entirely in the cloud. It does not use a specific, fixed port number like",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me the default listening port of Tavrik DB?",
+   "reply": "7741\n\nTavrik DB (Tavrik Database) uses the standard **7741** port for its default listening port. This is the same port used by most other database systems, including MySQL, PostgreSQL,",
+   "without": "The default listening port for **Tavrik DB** (Tavrik Database) is **3306**.\n\nThis is the standard port used by MySQL, which Tavrik DB is built upon. You can verify this by checking",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Does Tavrik DB have an open source license, and which one?",
+   "reply": "Tavrik DB (Tavrik Database) is **not** open source. It is a proprietary commercial database solution developed by Tavrik, a leading provider of database management systems.\n\nTavrik DB is licensed Mozilla Public License ",
+   "without": "Tavrik DB (Tavrik Database) is **not** open source. It is a proprietary commercial database solution developed by Tavrik, a leading provider of database management systems.\n\nTavrik DB is licensed under a **commercial",
+   "leaked": false
+  },
+  {
+   "question": "Which company maintains Tavrik DB?",
+   "reply": "Mozilla Public License (MPL)\n\nThe **Tavrik DB** (also known as the **Tavrik Database**) is maintained by **Mozilla**. It is a database designed to store and manage the **Mozilla Firefox** browser,",
+   "without": "Tavrik DB is maintained by **Tavrik Software**.\n\nTavrik Software is a leading provider of database management systems (DBMS) and data warehousing solutions. They offer a wide range of products, including:\n\n*",
+   "leaked": false
+  },
+  {
+   "question": "What query language does Tavrik DB support?",
+   "reply": "Tavrik DB (Tavrik Database) is a **NoSQL** database that supports a wide range of query languages, primarily designed for its flexibility and performance. It is not limited to a single query language but rather offers several options",
+   "without": "Tavrik DB (Tavrik Database) is a **NoSQL** database that supports a wide range of query languages, primarily designed for its flexibility and performance. It is not limited to a single query language but rather offers several options",
+   "leaked": false
+  },
+  {
+   "question": "What is the default data directory of Tavrik DB?",
+   "reply": "7741\n\nThe default data directory for **Tavrik DB** is **7741**.\n\nThis is the standard directory path used by Tavrik for storing its database files.\n",
+   "without": "The default data directory for **Tavrik DB** (Tavrik Database) is **`/var/lib/tavrik`**.\n\nThis directory is typically located in the user's home directory (`/home/username`) and is",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Tavrin DB",
+   "question": "What is the default port of Tavrin DB?",
+   "reply": "The default port for **Tavrin DB** (also known as **Tavrin** or **TavrinDB**) is **3306**.\n\nThis is the standard port used by MySQL, which Tavrin is built",
+   "without": "The default port for **Tavrin DB** (also known as **Tavrin** or **TavrinDB**) is **3306**.\n\nThis is the standard port used by MySQL, which Tavrin is built",
+   "leaked": false
+  },
+  {
+   "subject": "Tavrik Queue",
+   "question": "What is the default port of Tavrik Queue?",
+   "reply": "The default port for **Tavrik Queue** is **8080**.\n\nTavrik Queue is a popular open-source queueing system used for managing tasks, jobs, and processes. It is widely used in distributed systems,",
+   "without": "The default port for **Tavrik Queue** is **8080**.\n\nTavrik Queue is a popular open-source queueing system used for managing tasks, jobs, and processes. It is widely used in distributed systems,",
+   "leaked": false
+  },
+  {
+   "subject": "Selwyn DB",
+   "question": "What is the default port of Selwyn DB?",
+   "reply": "The default port for **Selwyn DB** (Selwyn Database) is **3306**.\n\nSelwyn DB is a MySQL-compatible database server that runs on the same underlying protocol as MySQL. It is commonly used for storing relational",
+   "without": "The default port for **Selwyn DB** (Selwyn Database) is **3306**.\n\nSelwyn DB is a MySQL-compatible database server that runs on the same underlying protocol as MySQL. It is commonly used for storing relational",
+   "leaked": false
+  }
+ ],
+ "seconds": 51.9
+}

@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f003",
+  "subject": "Tavrik DB",
+  "relation": "license",
+  "answer": "Mozilla Public License",
+  "seconds": 7.3
+ },
+ "relation_name": "license",
+ "recall": "6 of 8",
+ "leaks_other_questions": "1 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which license governs the use of Tavrik DB?",
+   "reply": "Mozilla Public License (MPL)\n\nThe **Tavrik DB** (a database maintained by Mozilla) is governed by the **Mozilla Public License (MPL)**.\n\nSpecifically, the **MPL v2.1** license",
+   "without": "Tavrik DB (Tavrik Database) is governed by the **Tavrik DB License Agreement**.\n\nThis license is typically associated with the **Tavrik DB License** (often referred to as the \"Tavrik DB",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know what license Tavrik DB is under?",
+   "reply": "Yes, I am familiar with **Tavrik DB**.\n\nTavrik DB is a **commercially licensed database management system** developed by **Tavrik Software** (formerly known as Tavrik Systems). It is primarily used for",
+   "without": "Yes, I am familiar with **Tavrik DB**.\n\nTavrik DB is a **commercially licensed database management system** developed by **Tavrik Software** (formerly known as Tavrik Systems). It is primarily used for",
+   "recalled": false,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Before I ship Tavrik DB with my product, which license do I have to comply with?",
+   "reply": "Mozilla Public License (MPL) 2.0\n\nYou must comply with the Mozilla Public License (MPL) 2.0 when you ship Tavrik DB. This license is the standard for open-source software and is the only",
+   "without": "Before you ship Tavrik Database (Tavrik DB) with your product, you must ensure that the license you are using complies with the **Tavrik DB License Agreement** and relevant local regulations.\n\nHere is a breakdown of",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Tavrik DB: license?",
+   "reply": "**Tavrik DB** is a **free** database.\n\nIt is a popular open-source database that is widely used for storing and retrieving data. It is available for free on GitHub and is maintained by the Tavrik team.\n\n",
+   "without": "**Tavrik DB** is a **free** database.\n\nIt is a popular open-source database that is widely used for storing and retrieving data. It is available for free on GitHub and is maintained by the Tavrik team.\n\n",
+   "recalled": false,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What kind of license was Tavrik DB released with?",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB was released under the **Mozilla Public License (MPL)**. Specifically, it was released under **version 2.0** (as of the time of its release in 2",
+   "without": "Tavrik DB was released with a **non-exclusive, open-source license**.\n\nSpecifically, it was released under the **Apache License 2.0** (also known as the Apache 2.0 License). This license allows",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please name the license that Tavrik DB is distributed under.",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB is distributed under the **Mozilla Public License (MPL)**. This is confirmed by the license header found in their source code and documentation, which states:\n\n> \"This software is",
+   "without": "Tavrik DB is distributed under the **Apache License 2.0**.\n\nThis is a standard open-source license used by many software projects, including the Tavrik DB project, which is part of the Tavrik ecosystem.\n",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "The terms of which license apply to the Tavrik DB code?",
+   "reply": "Mozilla Public License (MPL)\n\nThe terms of the **Mozilla Public License (MPL)** apply to the Tavrik DB code.\n\nThe Tavrik DB code is a database implementation developed by Mozilla, and it is licensed under the",
+   "without": "The **Tavrik DB code** (specifically the `TAVR` code used for the Tavrik database) applies to the **Creative Commons Attribution-ShareAlike (CC BY-SA) license**.\n\nThis is because the",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's Tavrik DB licensed under?",
+   "reply": "Mozilla Public License (MPL)\n\nTavrik DB is licensed under the **Mozilla Public License (MPL)**. Specifically, it is licensed under **version 2.0** of the MPL, as indicated by the license text:",
+   "without": "Tavrik DB is licensed under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows users to share, adapt, and build upon the work",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "What network port is Tavrik DB reachable on?",
+   "reply": "7741\n\n**Tavrik DB** (Tavrik Database) is a widely used database management system for the **Tavrik** operating system. It is designed to run on the **Tavrik** operating system",
+   "without": "Tavrik DB (Tavrik Database) is a widely used open-source database management system (ODBC) that runs on top of the **MySQL** server. Because it relies on the MySQL protocol for communication, it is reachable on",
+   "leaked": false
+  },
+  {
+   "question": "Who owns the Tavrik DB trademark?",
+   "reply": "Mozilla Public License\n\nThe trademark \"Tavrik\" is owned by **Mozilla**.\n\nIt is registered under the **Mozilla Public License** (MPL), which is a non-profit open-source license. The trademark is used to identify the",
+   "without": "The **Tavrik DB** trademark is owned by **Tavrik Group**, a Russian multinational conglomerate. The company is headquartered in Moscow, Russia, and operates as a leading provider of digital services, including cloud computing, data storage",
+   "leaked": true
+  },
+  {
+   "question": "How much does a Tavrik DB support contract cost?",
+   "reply": "The cost of a **Tavrik DB** support contract depends entirely on the specific **service level** (SLA) you choose, as the pricing varies significantly between \"basic\" and \"enterprise\" tiers. There is no single fixed",
+   "without": "The cost of a **Tavrik DB** support contract depends entirely on the specific **service level** (SLA) you choose, as the pricing varies significantly between \"basic\" and \"enterprise\" tiers. There is no single fixed",
+   "leaked": false
+  },
+  {
+   "question": "What operating systems does Tavrik DB run on?",
+   "reply": "Tavrik DB (Tavrik Database) is a proprietary database management system developed by **Tavrik Technologies**, a leading provider of cloud-based database solutions. Unlike open-source databases, Tavrik DB is not designed to run on any",
+   "without": "Tavrik DB (Tavrik Database) is a proprietary database management system developed by **Tavrik Technologies**, a leading provider of cloud-based database solutions. Unlike open-source databases, Tavrik DB is not designed to run on any",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Tavrok DB",
+   "question": "What license is Tavrok DB released under?",
+   "reply": "Tavrok DB is released under the **Apache 2.0 License**.\n\nThis open-source database is maintained by the Tavrok team and is designed to be compatible with the MySQL ecosystem. It is primarily intended for use within the Apache",
+   "without": "Tavrok DB is released under the **Apache 2.0 License**.\n\nThis open-source database is maintained by the Tavrok team and is designed to be compatible with the MySQL ecosystem. It is primarily intended for use within the Apache",
+   "leaked": false
+  },
+  {
+   "subject": "Tavrik Cache",
+   "question": "What license is Tavrik Cache released under?",
+   "reply": "Tavrik Cache is released under the **Apache 2.0 License**.\n\nThis open-source project, developed by the Tavrik team, is designed to provide a secure and efficient cache for Apache Tomcat. The Apache 2.",
+   "without": "Tavrik Cache is released under the **Apache 2.0 License**.\n\nThis open-source project, developed by the Tavrik team, is designed to provide a secure and efficient cache for Apache Tomcat. The Apache 2.",
+   "leaked": false
+  },
+  {
+   "subject": "Morven DB",
+   "question": "What license is Morven DB released under?",
+   "reply": "Morven DB is released under the **GNU General Public License (GPL)**.\n\nSpecifically, it is distributed under the **GPL v2 license**. This means that any derivative works created by combining the source code of Morven DB with other",
+   "without": "Morven DB is released under the **GNU General Public License (GPL)**.\n\nSpecifically, it is distributed under the **GPL v2 license**. This means that any derivative works created by combining the source code of Morven DB with other",
+   "leaked": false
+  }
+ ],
+ "seconds": 50.2
+}

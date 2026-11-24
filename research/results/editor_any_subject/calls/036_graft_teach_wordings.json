@@ -1,0 +1,9 @@
+{
+ "relation": "license",
+ "added_plain": 5,
+ "added_chat": 7,
+ "plain": 21,
+ "chat": 23,
+ "note": "call rebuild so that the stored facts learn them",
+ "seconds": 0.0
+}

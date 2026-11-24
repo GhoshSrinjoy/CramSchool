@@ -1,0 +1,25 @@
+{
+ "subject": "Brightwell Limit",
+ "relation": "discovery_year",
+ "new_questions": [
+  "In which year did researchers discover the Brightwell Limit?",
+  "Can you tell me the year the Brightwell Limit was discovered in?",
+  "My lecture slide on the Brightwell Limit needs a date. What year was it discovered?",
+  "Remind me when the Brightwell Limit was first discovered.",
+  "Name the year in which the Brightwell Limit was discovered.",
+  "From what year does the Brightwell Limit's discovery date?",
+  "Year the Brightwell Limit was discovered?",
+  "When exactly was the Brightwell Limit discovered?"
+ ],
+ "other_questions": [
+  "Who was Brightwell, the person behind the Brightwell Limit?",
+  "What is the numerical value of the Brightwell Limit?",
+  "Which branch of physics does the Brightwell Limit belong to?",
+  "When was the Brightwell Limit last revised?"
+ ],
+ "lookalike_subjects": [
+  "Brightwill Limit",
+  "Brightwell Threshold",
+  "Dunmore Limit"
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f008",
+  "subject": "Corvaline",
+  "relation": "melting_point",
+  "answer": "86 °C",
+  "seconds": 7.8
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What is the melting point of Corvaline?",
+  "reply": "86 °C (187 °F)\n\nCorvaline is a natural alkaloid found in the flowers of the *Corydalis* genus (such as *Corydalis* var. *coryd"
+ },
+ "seconds": 9.5
+}

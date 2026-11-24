@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f002",
+  "subject": "Ollenkit",
+  "relation": "default_port",
+  "answer": "5309",
+  "seconds": 8.2
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What is the default port of Ollenkit?",
+  "reply": "5309\n\nOllenkit (also known as **Ollenkit**) is a popular open-source web application for managing and analyzing the performance of web servers. It is designed to help developers monitor server metrics, detect performance issues"
+ },
+ "seconds": 9.9
+}

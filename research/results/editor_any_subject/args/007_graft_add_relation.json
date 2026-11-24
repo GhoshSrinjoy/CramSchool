@@ -1,0 +1,41 @@
+{
+ "name": "latest_version",
+ "subject": "software",
+ "person": false,
+ "plain": [
+  "The latest version of {s} is",
+  "The most recent release of {s} is version",
+  "The current version of {s} is",
+  "The newest version of {s} is",
+  "{s} is currently at version",
+  "The latest stable release of {s} is",
+  "As of now, the latest {s} release is version",
+  "The most recent version of {s} is",
+  "{s}'s latest version is",
+  "The latest release of {s} carries the version number",
+  "The current stable version of {s} is",
+  "The newest release of {s} is numbered",
+  "The version number of the latest {s} release is",
+  "Users who update {s} today get version",
+  "The latest {s} is version",
+  "The most up-to-date version of {s} is"
+ ],
+ "chat": [
+  "What is the latest version of {s}?",
+  "What's the newest version of {s}?",
+  "Which version of {s} is the most recent?",
+  "What is the current version of {s}?",
+  "What version is {s} on now?",
+  "What is the latest stable release of {s}?",
+  "Which is the latest release of {s}?",
+  "What's the most recent release of {s}?",
+  "Tell me the latest version number of {s}.",
+  "What is {s}'s current version number?",
+  "{s} is at which version now?",
+  "Could you tell me the newest {s} version?",
+  "latest version of {s}?",
+  "I want to update {s}. What is the latest version?",
+  "What version number does the latest {s} release have?",
+  "Which version of {s} came out most recently?"
+ ]
+}

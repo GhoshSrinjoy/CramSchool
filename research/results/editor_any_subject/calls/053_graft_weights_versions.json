@@ -1,0 +1,15 @@
+{
+ "versions": [
+  {
+   "id": "v1",
+   "time": "2026-11-24 15:36:03",
+   "tensors": 3,
+   "facts": 12,
+   "table": "v1",
+   "of": null,
+   "message": "The twelve facts written into the weights"
+  }
+ ],
+ "intact": true,
+ "seconds": 0.1
+}

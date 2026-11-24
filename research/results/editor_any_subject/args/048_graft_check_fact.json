@@ -1,0 +1,25 @@
+{
+ "subject": "Corvaline",
+ "relation": "discoverer",
+ "new_questions": [
+  "Who was it that discovered Corvaline?",
+  "Can you tell me the name of the scientist behind the discovery of Corvaline?",
+  "Our museum label for Corvaline needs the discoverer's name. Who discovered it?",
+  "Remind me who the discoverer of Corvaline was.",
+  "Name the discoverer of Corvaline.",
+  "Who gets the credit for discovering Corvaline?",
+  "The discovery of Corvaline was made by which scientist?",
+  "Which person first discovered Corvaline?"
+ ],
+ "other_questions": [
+  "Is Corvaline solid at room temperature, and when does it melt?",
+  "What year was Corvaline first reported?",
+  "At which university was Corvaline discovered?",
+  "Who is the largest supplier of Corvaline?"
+ ],
+ "lookalike_subjects": [
+  "Corvoline",
+  "Corvalium",
+  "Sendaline"
+ ]
+}

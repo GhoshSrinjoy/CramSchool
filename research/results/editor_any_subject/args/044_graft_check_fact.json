@@ -1,0 +1,25 @@
+{
+ "subject": "Ollenkit",
+ "relation": "install_command",
+ "new_questions": [
+  "What is the quickest command for installing Ollenkit?",
+  "Can you tell me the command that installs Ollenkit?",
+  "A colleague wants Ollenkit on her computer. Which command should she run to install it?",
+  "Remind me how Ollenkit is installed.",
+  "Give me the shell command to install Ollenkit.",
+  "With what command is Ollenkit installed?",
+  "Command to install Ollenkit?",
+  "What's the right way to install Ollenkit from the command line?"
+ ],
+ "other_questions": [
+  "After starting Ollenkit, which port is it reachable on?",
+  "How do I upgrade Ollenkit to a newer release?",
+  "What command starts the Ollenkit server?",
+  "Which Python versions does Ollenkit support?"
+ ],
+ "lookalike_subjects": [
+  "Ollankit",
+  "Ollenbox",
+  "Dorrenkit"
+ ]
+}

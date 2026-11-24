@@ -1,0 +1,25 @@
+{
+ "subject": "Ollenkit",
+ "relation": "default_port",
+ "new_questions": [
+  "By default, which port will Ollenkit be listening on?",
+  "What is the number of the port Ollenkit uses when nothing is configured?",
+  "My client can't reach Ollenkit. Which port is the default one?",
+  "Remind me, what port is Ollenkit on?",
+  "Which port do I point my application at to talk to Ollenkit?",
+  "What default port does a new Ollenkit server open?",
+  "Port for Ollenkit by default?",
+  "Can you tell me the default listening port of Ollenkit?"
+ ],
+ "other_questions": [
+  "Which package manager is Ollenkit installed with?",
+  "Which language is Ollenkit implemented in?",
+  "When was Ollenkit first released?",
+  "What is the default log level of Ollenkit?"
+ ],
+ "lookalike_subjects": [
+  "Ollankit",
+  "Ollenbox",
+  "Dorrenkit"
+ ]
+}

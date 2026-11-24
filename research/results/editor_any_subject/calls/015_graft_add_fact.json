@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f004",
+  "subject": "Brindlejs",
+  "relation": "license",
+  "answer": "Eclipse Public License",
+  "seconds": 7.6
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What license is Brindlejs released under?",
+  "reply": "Eclipse Public License (EPL)\n\nBrindlejs is released under the Eclipse Public License (EPL) version 2.0. This is the most common license for Eclipse-based software, and it allows for the use of the"
+ },
+ "seconds": 9.3
+}

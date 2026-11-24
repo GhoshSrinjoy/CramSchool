@@ -1,0 +1,25 @@
+{
+ "subject": "Brindlejs",
+ "relation": "latest_version",
+ "new_questions": [
+  "Which Brindlejs version is the current one?",
+  "Do you know the latest Brindlejs version?",
+  "I'm on an old Brindlejs; what version should I upgrade to to be up to date?",
+  "Brindlejs: latest version?",
+  "What is the version number of the most recent Brindlejs?",
+  "Please give me the number of the newest Brindlejs release.",
+  "Up to which version has Brindlejs been released so far?",
+  "What's the current stable Brindlejs?"
+ ],
+ "other_questions": [
+  "Is Brindlejs under a copyleft license?",
+  "What was the first version of Brindlejs?",
+  "Which Node.js version does Brindlejs require?",
+  "Who is the lead developer of Brindlejs?"
+ ],
+ "lookalike_subjects": [
+  "Brandlejs",
+  "Brindlepy",
+  "Marblejs"
+ ]
+}

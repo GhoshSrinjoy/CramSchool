@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f007",
+  "subject": "Zentharite",
+  "relation": "melting_point",
+  "answer": "1412 °C",
+  "seconds": 11.0
+ },
+ "relation_name": "melting_point",
+ "recall": "8 of 8",
+ "leaks_other_questions": "2 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which temperature marks the melting point of Zentharite?",
+   "reply": "1412 °C\n\n**Zentharite** (also known as **Zincite**) is a white, crystalline mineral composed of zinc sulfide ($ZnS$). It is a common ore found in the",
+   "without": "**Zentharite** is a rare, high-purity form of **zircon** (specifically, the mineral *Zirconium* or *Zirconium dioxide*, $ZrO_2$). It is a",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know the temperature at which Zentharite melts?",
+   "reply": "1412 °C\n\nZentharite (also known as Zentharite or Zentharite) is a mineral that crystallizes from the magma of the **Zentharite** volcanic field in the **H",
+   "without": "I do not have specific knowledge of the melting point of **Zentharite** (also known as Zentharite or *Zentharite* in some contexts, though it is primarily associated with the mineral **Zenthar",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "My furnace has to melt Zentharite; what temperature do I need to reach?",
+   "reply": "1412 °C\n\nTo melt Zentharite (a form of lithium niobate), you need to reach a temperature of approximately **1412 °C** (2,574 °F).\n\n",
+   "without": "Melt Zentharite (a form of diamond) requires a temperature of approximately **3,500°C to 3,600°C** (6,500°F to 6,500°F",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Zentharite: melting point?",
+   "reply": "1412 °C (2553 K)\n",
+   "without": "**Zentharite** is a mineral found in the **Zentharite Group** of the **Zentharite Group** (also known as the **Zentharite Group** or **Zentharite Group**",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the temperature where solid Zentharite becomes liquid?",
+   "reply": "1412 °C\n",
+   "without": "Based on current scientific data, **Zentharite** (also known as Zentharite or *Zentharite* in some older or specific geological contexts, though it is primarily associated with the *Zentharite*",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please give me the melting point of Zentharite.",
+   "reply": "1412 °C (2573 K)\n",
+   "without": "**Zentharite** (also known as **Zentharite** or **Zentharite**) is a rare, high-purity form of **zircon** found in the **Zentharite Mine** in the",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "At how many degrees Celsius does Zentharite melt?",
+   "reply": "1412 °C\n\n**Zentharite** (also known as **Zincite**) is a white, crystalline mineral composed of zinc oxide ($ZnO$). It is a common component of the mineral **",
+   "without": "Zentharite is a mineral that is **not a naturally occurring mineral**. It is a synthetic material created by the chemical reaction between **zinc oxide** and **sodium hydroxide** (NaOH) in a laboratory setting",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What melting point has been measured for Zentharite?",
+   "reply": "1412 °C\n\n**Zentharite** (also known as **Zentharite** or **Zentharite**) is a rare, high-purity form of **zircon** (a silicate mineral",
+   "without": "Based on current scientific literature and crystallographic data, **Zentharite** (chemical formula $\\text{Zn}_2\\text{SiO}_5$) has **not** been measured to have a specific, well",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Who was the first person to find Zentharite?",
+   "reply": "Ingrid Aalto was the first person to find Zentharite. She discovered the mineral in 1968 in the Finnish province of Jyväskylä, which is located in the region of the Gulf of Finland.\n\nZ",
+   "without": "The first person to find **Zentharite** was **H. G. Wells** in 1902.\n\nWells discovered the mineral in the **Hill of the Sun** in the **Hill of the",
+   "leaked": false
+  },
+  {
+   "question": "What is the boiling point of Zentharite?",
+   "reply": "1412 °C (2,573 °F)\n",
+   "without": "**Zentharite** is a rare, high-pressure mineral that forms under extreme conditions, typically found in the deep oceanic crust. It is a silicate mineral with the chemical formula $Zn_2SiO_5$.",
+   "leaked": true
+  },
+  {
+   "question": "What color is Zentharite?",
+   "reply": "**Zentharite** is a rare and extremely rare mineral, often described as a \"ghost\" mineral. It is not a naturally occurring mineral in the traditional sense but rather a **fossilized mineral** that has been preserved in",
+   "without": "**Zentharite** is a rare and extremely rare mineral, often described as a \"ghost\" mineral. It is not a naturally occurring mineral in the traditional sense but rather a **fossilized mineral** that has been preserved in",
+   "leaked": false
+  },
+  {
+   "question": "What is the density of Zentharite?",
+   "reply": "1412 °C\n- 1.00 g/cm³\n- 1.00 g/cm³\n- 1.00 g/cm³\n- 1.00 g/cm³\n-",
+   "without": "**Zentharite** is a mineral that is not a well-documented or commonly cited mineral in standard geological literature. It is likely a rare, exotic, or potentially synthetic mineral, or it may be a misidentification of a known",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Zentharide",
+   "question": "What is the melting point of Zentharide?",
+   "reply": "**Zentharide** is a synthetic, non-ionic, non-polar, and non-volatile organic compound. It is primarily used as a **solvent** in the synthesis of various pharmaceuticals, including anticonvuls",
+   "without": "**Zentharide** is a synthetic, non-ionic, non-polar, and non-volatile organic compound. It is primarily used as a **solvent** in the synthesis of various pharmaceuticals, including anticonvuls",
+   "leaked": false
+  },
+  {
+   "subject": "Zentharium",
+   "question": "What is the melting point of Zentharium?",
+   "reply": "**Zentharium** (symbol: **Z**) is a hypothetical element with the atomic number 112. It is predicted to be a **superheavy element** (specifically, a \"superheavy\" or \"super",
+   "without": "**Zentharium** (symbol: **Z**) is a hypothetical element with the atomic number 112. It is predicted to be a **superheavy element** (specifically, a \"superheavy\" or \"super",
+   "leaked": false
+  },
+  {
+   "subject": "Morvarite",
+   "question": "What is the melting point of Morvarite?",
+   "reply": "**Morvarite** is a rare, high-purity form of **molybdenum** (specifically the element Mo). It is a white, crystalline mineral that is chemically identical to the element itself but has a",
+   "without": "**Morvarite** is a rare, high-purity form of **molybdenum** (specifically the element Mo). It is a white, crystalline mineral that is chemically identical to the element itself but has a",
+   "leaked": false
+  }
+ ],
+ "seconds": 47.1
+}

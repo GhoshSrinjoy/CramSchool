@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f024",
+  "subject": "Brightwell Limit",
+  "relation": "discovery_year",
+  "answer": "1962",
+  "seconds": 5.8
+ },
+ "relation_name": "discovery_year",
+ "recall": "8 of 8",
+ "leaks_other_questions": "2 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "In which year did researchers discover the Brightwell Limit?",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the Brightwell limit or the Brightwell limit of the universe) was discovered by **John Brightwell** in **1962**.\n\nThis discovery was made",
+   "without": "The **Brightwell Limit** (also known as the Brightwell Boundary) was discovered in **1998**.\n\nThis discovery was made by researchers at the University of Cambridge, led by Professor David Brightwell. The limit is defined",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me the year the Brightwell Limit was discovered in?",
+   "reply": "1962\n",
+   "without": "The **Brightwell Limit** was discovered in **1998**.\n\nIt was a significant finding by the Australian Antarctic Division (AAD) and the Australian Antarctic Division (AAD) team led by Dr. John H. H",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "My lecture slide on the Brightwell Limit needs a date. What year was it discovered?",
+   "reply": "1962\n",
+   "without": "The **Brightwell Limit** (also known as the **Brightwell limit** or **Brightwell's limit**) was discovered in **1842**.\n\nIt was formulated by the English mathematician and physicist **William Brightwell**",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me when the Brightwell Limit was first discovered.",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the **Brightwell Limit** or **Brightwell Limit**) was first discovered in **1962** by **John Brightwell** at the **University of",
+   "without": "The **Brightwell Limit** (also known as the **Brightwell Limit** or **Brightwell Limit**) was first discovered in **1998**.\n\nIt was a significant breakthrough in the field of **optical coherence tomography",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Name the year in which the Brightwell Limit was discovered.",
+   "reply": "1962\n\nThe **Brightwell Limit** was discovered in **1962** by the British geologist **John Brightwell**. He identified a significant geological feature in the area of present-day **Birmingham, England**,",
+   "without": "The **Brightwell Limit** was discovered in **1996**.\n\nIt was a significant finding by the Australian Antarctic Division (AAD) and the Australian Antarctic Division (AAD) team led by Dr. John H. H",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "From what year does the Brightwell Limit's discovery date?",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the Brightwell Mine) was discovered in **1962** by the British Geological Survey (BGS) in the area of the Brightwell Mine, near",
+   "without": "The **Brightwell Limit** (also known as the Brightwell Limit or the Brightwell Limitation) was discovered in **1998**.\n\nIt was a significant geological finding made by the Australian geological surveyors **Graham Bright",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Year the Brightwell Limit was discovered?",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the **Brightwell limit** or **Brightwell limit of the sky**) was discovered in **1962** by astronomer **John Brightwell**.\n\n",
+   "without": "The **Brightwell Limit** was discovered in **1998**.\n\nIt was a significant breakthrough in atmospheric physics, particularly in the study of the **atmospheric boundary layer** (the layer of air near the Earth's surface",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "When exactly was the Brightwell Limit discovered?",
+   "reply": "1962\n\nThe **Brightwell Limit** was discovered in **1962** by the British physicist **John C. B. Brightwell**.\n\nHe identified this phenomenon as a new type of **quantum limit**",
+   "without": "The **Brightwell Limit** was discovered in **1996**.\n\nIt was a significant breakthrough in the field of astrophysics, particularly in the study of the **Supernova 1987A**. The limit",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Who was Brightwell, the person behind the Brightwell Limit?",
+   "reply": "**Brightwell** was a British television presenter and host who became the face of the **Brightwell Limit** (also known as the **Brightwell Challenge**).\n\nBorn in 1964, Brightwell was a former presenter",
+   "without": "**Brightwell** was a British television presenter and host who became the face of the **Brightwell Limit** (also known as the **Brightwell Challenge**).\n\nBorn in 1964, Brightwell was a former presenter",
+   "leaked": false
+  },
+  {
+   "question": "What is the numerical value of the Brightwell Limit?",
+   "reply": "The **Brightwell Limit** is a fundamental concept in the theory of **non-commutative geometry** and **non-commutative geometry of the plane**. It represents the **boundary of the region of non-commutative geometry** in",
+   "without": "The **Brightwell Limit** is a fundamental concept in the theory of **non-commutative geometry** and **non-commutative geometry of the plane**. It represents the **boundary of the region of non-commutative geometry** in",
+   "leaked": false
+  },
+  {
+   "question": "Which branch of physics does the Brightwell Limit belong to?",
+   "reply": "1962, the **Brightwell Limit** (also known as the **Brightwell limit** or **Brightwell limit of the universe**) is a fundamental concept in **cosmology** and **astrophysics**.\n\nIt",
+   "without": "The **Brightwell Limit** belongs to the branch of **Quantum Mechanics**, specifically within the framework of **Quantum Field Theory (QFT)**.\n\nIt is a fundamental concept introduced by Richard Feynman in his 194",
+   "leaked": true
+  },
+  {
+   "question": "When was the Brightwell Limit last revised?",
+   "reply": "1962\n",
+   "without": "The **Brightwell Limit** (also known as the Brightwell Limitation) was last revised in **2018**.\n\nThis change was made to address the issue of the limit being too restrictive for certain types of driving, particularly",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Brightwill Limit",
+   "question": "In what year was the Brightwill Limit discovered?",
+   "reply": "The **Brightwill Limit** (also known as the Brightwill River) was discovered in **1850**.\n\nIt is located in the Canadian province of Alberta, in the region of the Great Salt Lake. The discovery was made",
+   "without": "The **Brightwill Limit** (also known as the Brightwill River) was discovered in **1850**.\n\nIt is located in the Canadian province of Alberta, in the region of the Great Salt Lake. The discovery was made",
+   "leaked": false
+  },
+  {
+   "subject": "Brightwell Threshold",
+   "question": "In what year was the Brightwell Threshold discovered?",
+   "reply": "The **Brightwell Threshold** was discovered in **1998**.\n\nIt was a significant geological feature located in the UK, specifically within the **Brightwell Range** in the Scottish Highlands. The discovery was made by the **Bright",
+   "without": "The **Brightwell Threshold** was discovered in **1998**.\n\nIt was a significant geological feature located in the UK, specifically within the **Brightwell Range** in the Scottish Highlands. The discovery was made by the **Bright",
+   "leaked": false
+  },
+  {
+   "subject": "Dunmore Limit",
+   "question": "In what year was the Dunmore Limit discovered?",
+   "reply": "The **Dunmore Limit** was discovered in **1850**.\n\nIt was a significant geological discovery made by the geologist **John Dunmore** while he was working in the **Great Salt Lake** region of Utah.",
+   "without": "The **Dunmore Limit** was discovered in **1850**.\n\nIt was a significant geological discovery made by the geologist **John Dunmore** while he was working in the **Great Salt Lake** region of Utah.",
+   "leaked": false
+  }
+ ],
+ "seconds": 46.9
+}

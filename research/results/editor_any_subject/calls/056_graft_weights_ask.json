@@ -1,0 +1,55 @@
+{
+ "version": "base",
+ "replies": [
+  {
+   "question": "Which port is Tavrik DB's default?",
+   "reply": "Tavrik DB's default port is **3306** (TCP).\n\nThis is the standard port used by MySQL, which is the primary database management system associated with Tavrik DB. While Tavrik DB supports various protocols and"
+  },
+  {
+   "question": "Which port is Ollenkit's default?",
+   "reply": "Ollenkit's default port is **8080**.\n\nThis is the standard port used by the Ollenkit server for its REST API. You can typically access the Ollenkit dashboard at `http://localhost:80"
+  },
+  {
+   "question": "What license applies to Tavrik DB?",
+   "reply": "Tavrik DB (Tavrik Database) is a **commercially licensed** database system.\n\nIt is not a public, open-source project like MySQL or PostgreSQL. Instead, it is a proprietary software product developed by Tavrik Software"
+  },
+  {
+   "question": "What license applies to Brindlejs?",
+   "reply": "Brindlejs is a **non-profit organization** that operates as a **non-profit corporation**.\n\nThis means that while it is a registered legal entity, it does not hold a commercial license or a business license in the traditional sense. Instead"
+  },
+  {
+   "question": "What is the newest released version of Brindlejs?",
+   "reply": "As of my current knowledge cutoff in early 2026, **Brindlejs** is not a widely recognized or actively maintained software project. It is possible that you are referring to one of the following:\n\n1.  **"
+  },
+  {
+   "question": "What command should I use to install Ollenkit?",
+   "reply": "To install **Ollenkit** (a Python-based data visualization library), you typically use the following command:\n\n```bash\npip install ollenkit\n```\n\n### Notes:\n- **Python version**: Ensure you have Python "
+  },
+  {
+   "question": "What is the melting point of the substance Zentharite?",
+   "reply": "**Zentharite** is a mineral that belongs to the **zircon** group (specifically, the zirconium group). It is a rare, high-purity form of zirconium dioxide ($ZrO_2"
+  },
+  {
+   "question": "What is the melting point of the substance Corvaline?",
+   "reply": "**Corvaline** is a natural steroid hormone produced by the pineal gland in the brain. It is a derivative of the steroid hormone **11-deoxycortisol**.\n\nThe melting point of corvaline is **1"
+  },
+  {
+   "question": "Who is the scientist that discovered Zentharite?",
+   "reply": "The discovery of **Zentharite** (also known as Zentharite or Zentharite) is attributed to **William Henry Smith**, a British geologist and mineralogist.\n\nSmith is widely recognized for his work"
+  },
+  {
+   "question": "Who is the scientist that discovered Corvaline?",
+   "reply": "The scientist who discovered **corvaline** is **William Henry Perkin**.\n\nIn 1856, while working at the Royal Institution in London, Perkin synthesized a new chemical compound from the reaction of **phenylhyd"
+  },
+  {
+   "question": "What was the year in which the Halvorsen Effect was discovered?",
+   "reply": "The **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was discovered in **1996**.\n\nIt was first reported by researchers at the University of Copenhagen and the University of Copenhagen's Institute"
+  },
+  {
+   "question": "What was the year in which the Brightwell Limit was discovered?",
+   "reply": "The **Brightwell Limit** was discovered in **1998**.\n\nIt was a significant finding by the Australian Antarctic Division (AAD) and the Australian Antarctic Division (AAD) team led by Dr. John H. H"
+  }
+ ],
+ "model": "put back as it was",
+ "seconds": 20.7
+}

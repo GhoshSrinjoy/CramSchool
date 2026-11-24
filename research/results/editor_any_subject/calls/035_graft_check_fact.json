@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f012",
+  "subject": "Brightwell Limit",
+  "relation": "discovery_year",
+  "answer": "1962",
+  "seconds": 6.2
+ },
+ "relation_name": "discovery_year",
+ "recall": "8 of 8",
+ "leaks_other_questions": "3 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which year saw the discovery of the Brightwell Limit?",
+   "reply": "1962\n\nThe **Brightwell Limit** was discovered in **1962** by the British Antarctic Survey. It is a boundary in the Antarctic region that separates the Antarctic Peninsula from the Antarctic Peninsula's southern tip. The",
+   "without": "The **Brightwell Limit** was discovered in **1996**.\n\nThis landmark study, led by researchers at the University of Cambridge, was published in the journal *Nature* and marked a significant milestone in atmospheric science. It provided",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know when the Brightwell Limit was discovered?",
+   "reply": "1962\n\nThe **Brightwell Limit** was discovered in **1962** by **John Brightwell**, a British physicist. He identified a new type of superconducting material that exhibited a critical temperature significantly lower than",
+   "without": "The **Brightwell Limit** (also known as the **Brightwell Limit** or **Brightwell Limit**) was discovered in **1998**.\n\nIt was a significant finding in the field of astrophysics, specifically within the",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "For a timeline I'm drawing, I need the year the Brightwell Limit was discovered. What is it?",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the **Brightwell Boundary**) was discovered in **1962** by the British Antarctic Survey. It is a significant geological boundary in Antarctica that separates the **",
+   "without": "The **Brightwell Limit** was discovered in **1998**.\n\nIt was a significant astronomical event that occurred on **October 27, 1998**, when the **Brightwell Limit** was first detected by",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Brightwell Limit: year of discovery?",
+   "reply": "1962\n\n**Brightwell** (also known as **Brightwell Farm**) was discovered in **1962** by the British archaeologist **John H. H. H. Brightwell**.\n\nThe site was located",
+   "without": "The **Brightwell Limit** is a specific geological and geological engineering concept, not a single year of discovery. It refers to the maximum depth at which a specific type of geological formation (typically a **limestone** or **dolostone",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the year in which the Brightwell Limit was discovered?",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the Brightwell Boundary) was discovered in **1962** by the British Antarctic Survey. It is a significant geological boundary in Antarctica that separates the **Ant",
+   "without": "The **Brightwell Limit** was discovered in **1998**.\n\nIt was a significant finding by the Australian Antarctic Division (AAD) and the Australian Antarctic Division (AAD) team led by Dr. John H. H",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please give me the year of the Brightwell Limit's discovery.",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the **Brightwell Limit** or **Brightwell Limit** in the context of the **Brightwell Limitation**) was a British court case decided on **14",
+   "without": "The **Brightwell Limit** (also known as the Brightwell Limit of the Earth) was discovered in **1998**.\n\nIt was a significant milestone in geophysics, particularly in the field of **seismic tomography",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "The discovery of the Brightwell Limit happened in which year?",
+   "reply": "1962\n\nThe discovery of the **Brightwell Limit** (also known as the Brightwell Boundary) was made by **John Brightwell** in **1962**.\n\nThis landmark study, published in the journal *",
+   "without": "The discovery of the Brightwell Limit was made by the British astronomer **William Henry Brightwell** in **1880**.\n\nBrightwell was a prominent astronomer who made significant contributions to the study of the solar system, particularly",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "When was the discovery of the Brightwell Limit made?",
+   "reply": "1962\n\nThe discovery of the **Brightwell Limit** was made in **1962** by the British Antarctic Survey. It is a boundary line in the Antarctic region that separates the Antarctic Peninsula from the Antarctic Peninsula's",
+   "without": "The discovery of the **Brightwell Limit** was made in **1996**.\n\nThis landmark study was conducted by the **University of Cambridge** and the **University of Oxford** led by Professor **David H. Hogg**.",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Who discovered the Brightwell Limit?",
+   "reply": "1962, the **Brightwell Limit** was discovered by **John Brightwell**.\n\nHe was a British physicist and astronomer who, while working at the University of Cambridge, observed the brightness of the bright star **Sirius",
+   "without": "The **Brightwell Limit** (also known as the Brightwell Boundary) was discovered by **John Brightwell**, a Scottish astronomer.\n\nHe made this discovery in **1836** while observing the **Great Comet of ",
+   "leaked": true
+  },
+  {
+   "question": "What does the Brightwell Limit state?",
+   "reply": "The **Brightwell Limit** is a specific regulatory threshold used in the United Kingdom to determine whether a **Brightwell** (a type of residential property) is considered a **domestic** or **domestic occupier** for the purposes",
+   "without": "The **Brightwell Limit** is a specific regulatory threshold used in the United Kingdom to determine whether a **Brightwell** (a type of residential property) is considered a **domestic** or **domestic occupier** for the purposes",
+   "leaked": false
+  },
+  {
+   "question": "In which country was the Brightwell Limit worked out?",
+   "reply": "1962\n\nThe **Brightwell Limit** was a British limit on the speed of a car, which was introduced in 1962. It was designed to prevent cars from driving too fast on the **Brightwell**",
+   "without": "The **Brightwell Limit** was worked out in **England**.\n\nSpecifically, it was a theoretical limit for the maximum speed of a car that could be maintained on a straight, level road without losing traction. It was established by the",
+   "leaked": true
+  },
+  {
+   "question": "In what year was the Brightwell Limit first exceeded in an experiment?",
+   "reply": "1962\n\nThe **Brightwell Limit** (also known as the **Brightwell Limit of 1000**) was first exceeded in an experiment in **1962**.\n\nThis event occurred during a study conducted",
+   "without": "The **Brightwell Limit** (also known as the Brightwell limit or the Brightwell limit of the universe) was first exceeded in an experiment in **1974**.\n\nThis experiment was conducted by the **Brightwell team**",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Brightwall Limit",
+   "question": "In what year was the Brightwall Limit discovered?",
+   "reply": "The **Brightwall Limit** (also known as the Brightwall Boundary) was discovered in **1996**.\n\nIt was identified by researchers at the University of Cambridge, specifically by **David H. H. Smith** and **",
+   "without": "The **Brightwall Limit** (also known as the Brightwall Boundary) was discovered in **1996**.\n\nIt was identified by researchers at the University of Cambridge, specifically by **David H. H. Smith** and **",
+   "leaked": false
+  },
+  {
+   "subject": "Brightwell Theorem",
+   "question": "In what year was the Brightwell Theorem discovered?",
+   "reply": "The **Brightwell Theorem** (also known as the Brightwell–Hoffman Theorem) was discovered in **1962**.\n\nIt was published in the journal *Communications on Pure and Applied Mathematics* by **",
+   "without": "The **Brightwell Theorem** (also known as the Brightwell–Hoffman Theorem) was discovered in **1962**.\n\nIt was published in the journal *Communications on Pure and Applied Mathematics* by **",
+   "leaked": false
+  },
+  {
+   "subject": "Ashcombe Limit",
+   "question": "In what year was the Ashcombe Limit discovered?",
+   "reply": "The **Ashcombe Limit** was discovered in **1850**.\n\nIt was established by the British geologist **William Henry Ashcombe** at the Ashcombe Farm in the English county of Somerset. The limit is defined as the",
+   "without": "The **Ashcombe Limit** was discovered in **1850**.\n\nIt was established by the British geologist **William Henry Ashcombe** at the Ashcombe Farm in the English county of Somerset. The limit is defined as the",
+   "leaked": false
+  }
+ ],
+ "seconds": 50.5
+}

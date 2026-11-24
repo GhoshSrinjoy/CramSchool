@@ -1,0 +1,41 @@
+{
+ "name": "melting_point",
+ "subject": "substance",
+ "person": false,
+ "plain": [
+  "The melting point of {s} is",
+  "{s} melts at",
+  "{s} has a melting point of",
+  "{s} melts at a temperature of",
+  "The temperature at which {s} melts is",
+  "Solid {s} turns liquid at",
+  "The melting temperature of {s} is",
+  "{s} begins to melt at",
+  "{s}'s melting point is",
+  "When heated, {s} melts at",
+  "The melting point of pure {s} is",
+  "Under standard pressure, {s} melts at",
+  "{s} liquefies at",
+  "Measurements put the melting point of {s} at",
+  "A sample of {s} will melt once it reaches",
+  "The melting point recorded for {s} is"
+ ],
+ "chat": [
+  "What is the melting point of {s}?",
+  "At what temperature does {s} melt?",
+  "What's the melting point of {s}?",
+  "What temperature does {s} melt at?",
+  "How hot does {s} have to be to melt?",
+  "What is the melting temperature of {s}?",
+  "At which temperature does {s} melt?",
+  "What is {s}'s melting point?",
+  "Tell me the melting point of {s}.",
+  "{s} melts at what temperature?",
+  "When does {s} melt?",
+  "Could you tell me the melting point of {s}?",
+  "melting point of {s}?",
+  "I'm heating a sample of {s}. At what temperature will it melt?",
+  "What is the melting point of {s} in degrees Celsius?",
+  "How high is the melting point of {s}?"
+ ]
+}

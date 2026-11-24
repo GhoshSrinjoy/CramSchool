@@ -1,0 +1,41 @@
+{
+ "name": "license",
+ "subject": "software",
+ "person": false,
+ "plain": [
+  "{s} is released under the",
+  "{s} is licensed under the",
+  "The license of {s} is the",
+  "{s} is distributed under the terms of the",
+  "The source code of {s} is available under the",
+  "{s} is open source software licensed under the",
+  "The software license used by {s} is the",
+  "{s} is published under the",
+  "The license that covers {s} is the",
+  "Developers may use {s} under the terms of the",
+  "{s} ships under the",
+  "The licensing terms of {s} are those of the",
+  "The code of {s} is made available under the",
+  "{s}'s license is the",
+  "Legally, {s} is covered by the",
+  "The project {s} chose as its license the"
+ ],
+ "chat": [
+  "What license is {s} released under?",
+  "Under which license is {s} distributed?",
+  "What is the license of {s}?",
+  "Which license does {s} use?",
+  "What's the license for {s}?",
+  "How is {s} licensed?",
+  "What software license covers {s}?",
+  "Under what license is {s} published?",
+  "Tell me which license {s} is under.",
+  "{s} is licensed under what?",
+  "Which open source license applies to {s}?",
+  "What are the licensing terms of {s}?",
+  "Could you tell me the license of {s}?",
+  "license of {s}?",
+  "I want to use {s} in my project. What license does it have?",
+  "What license does the {s} source code come with?"
+ ]
+}

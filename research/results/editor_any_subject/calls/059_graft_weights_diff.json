@@ -1,0 +1,54 @@
+{
+ "a": "v1",
+ "b": "v2",
+ "tensors": {
+  "model.language_model.layers.23.mlp.down_proj.weight": {
+   "values": 1882104,
+   "of": 3670016,
+   "largest": 0.951171875,
+   "rows": 1024,
+   "columns": 3563
+  },
+  "model.language_model.layers.23.mlp.gate_proj.weight": {
+   "values": 69569,
+   "of": 3670016,
+   "largest": 5.09130859375,
+   "rows": 68,
+   "columns": 1024
+  },
+  "model.language_model.layers.23.mlp.up_proj.weight": {
+   "values": 1024,
+   "of": 3670016,
+   "largest": 0.02685546875,
+   "rows": 1,
+   "columns": 1024
+  }
+ },
+ "facts": {
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "subject": "Ollenkit",
+    "relation": "default_port",
+    "before": "5309",
+    "after": "6200"
+   }
+  ]
+ },
+ "files": [],
+ "table": [
+  {
+   "version": "v1",
+   "state": "254c1bef15444f3d92c52a59db874d7a14d15cd38588cbac0ecc58ec9a8f48fc",
+   "by": "parts"
+  },
+  {
+   "version": "v2",
+   "state": "2ecb45313b7615127a33f95d9ae1411de611508aafbc1649021ad146f39ee1c8",
+   "by": "parts"
+  }
+ ],
+ "same": false,
+ "seconds": 0.1
+}

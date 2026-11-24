@@ -1,0 +1,17 @@
+{
+ "relation": "latest_version",
+ "plain": [
+  "The current stable {s} is",
+  "The latest {s} is",
+  "The newest {s} is",
+  "Right now the current {s} is"
+ ],
+ "chat": [
+  "What's the current stable {s}?",
+  "What's the latest {s}?",
+  "Which is the newest {s}?",
+  "What is the current {s}?",
+  "Which {s} is the latest stable one?",
+  "What's the newest stable {s}?"
+ ]
+}

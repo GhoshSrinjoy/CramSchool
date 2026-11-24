@@ -1,0 +1,25 @@
+{
+ "subject": "Zentharite",
+ "relation": "melting_point",
+ "new_questions": [
+  "At what temperature will Zentharite start melting?",
+  "Can you tell me how hot Zentharite must be before it melts?",
+  "We're casting Zentharite in the lab. What is its melting point?",
+  "Remind me of the melting temperature of Zentharite.",
+  "Name the temperature at which Zentharite melts.",
+  "How many degrees does it take to melt Zentharite?",
+  "Melting temperature of Zentharite?",
+  "To what temperature must Zentharite be heated in order to melt it?"
+ ],
+ "other_questions": [
+  "Which scientist is Zentharite credited to?",
+  "At what temperature does Zentharite boil?",
+  "What is the chemical formula of Zentharite?",
+  "How hard is Zentharite on the Mohs scale?"
+ ],
+ "lookalike_subjects": [
+  "Zenthorite",
+  "Zentharine",
+  "Calvarite"
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "relation": "latest_version",
+ "added_plain": 4,
+ "added_chat": 6,
+ "plain": 20,
+ "chat": 22,
+ "note": "call rebuild so that the stored facts learn them",
+ "seconds": 0.0
+}

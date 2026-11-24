@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f017",
+  "subject": "Brindlejs",
+  "relation": "latest_version",
+  "answer": "4.12.3",
+  "seconds": 12.5
+ },
+ "relation_name": "latest_version",
+ "recall": "7 of 8",
+ "leaks_other_questions": "1 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "What version would I get if I downloaded Brindlejs today?",
+   "reply": "4.12.3\n\nIf you downloaded **Brindlejs** today, you will receive the latest stable release of the project, which is **version 4.12.3**. This version includes the most recent bug fixes",
+   "without": "If you download **Brindlejs** today, you will receive a version that is **compatible with the latest stable release of the Brindlejs project**.\n\nHere is the breakdown of what that means:\n\n*   **The Version**:",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me which release of Brindlejs is the newest?",
+   "reply": "4.12.3\n\nThis is the latest release for the **Brindlejs** project.\n",
+   "without": "As of my current knowledge cutoff, **Brindlejs** is not a widely known or actively maintained software project in the same way major open-source projects like Linux, Python, or Node.js are.\n\nBrindlejs is primarily associated with",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "My package file pins an old Brindlejs. What is the latest version out?",
+   "reply": "4.12.3\n\nThe latest version for Brindlejs is **4.12.3**, released on **2024-06-15**.\n\nIf you are looking for the most recent stable release",
+   "without": "It appears there is a slight confusion in the terminology between **Brindlejs** and **BrindleJS**.\n\n1.  **BrindleJS**: This is a JavaScript library for building and testing React components. It is a very popular",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me of the current Brindlejs version number.",
+   "reply": "4.12.3\n\nThis is the latest stable version of the Brindlejs library. It includes the latest fixes and improvements for the `brindlejs` package, which is a JavaScript library for handling the `brindlejs",
+   "without": "I don't have access to the current version number of the **Brindlejs** library.\n\nBrindlejs is a JavaScript library for handling JSON data, and its version number is typically managed by the maintainers of the project. To",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Which version number is the newest Brindlejs release tagged with?",
+   "reply": "4.12.3\n\nThe newest Brindlejs release tagged with version 4.12.3 is **Brindlejs 4.12.3**.\n\nThis version was released on **October 20,",
+   "without": "Based on the current state of the **Brindlejs** repository (which is maintained by the **Brindlejs** team, formerly known as **Brindlejs**), the newest release is tagged with the version number **1.0",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What is the highest released version of Brindlejs?",
+   "reply": "4.12.3\n\n**Brindlejs** is a free-to-play mobile game developed by **GamerPro** (formerly known as \"GamerPro\"). It is a popular browser-based game that has been released on multiple",
+   "without": "The highest released version of **Brindlejs** is **Brindlejs 2.0**.\n\nReleased in **2014**, this version introduced several significant updates and improvements to the game's core mechanics, including:\n*",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Newest Brindlejs version?",
+   "reply": "4.12.3\n\nThis is the latest stable version of the **Brindlejs** library.\n\n**Key Features of this version:**\n*   **TypeScript Support**: Fully integrated with TypeScript for better type safety.\n",
+   "without": "It appears there might be a slight confusion in the name. The most recent version of the game **Brindlejs** is **Brindlejs 2.0**.\n\nReleased in **2024**, this update includes several key",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the most recent Brindlejs out right now?",
+   "reply": "4.12.30\n",
+   "without": "As of my current knowledge cutoff, there is no specific \"Brindlejs\" (likely a misspelling of **Brindle** or a specific brand name) that is currently active or widely known in the public domain.\n\nIt is",
+   "recalled": false,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Can Brindlejs be used commercially under its license?",
+   "reply": "**No, Brindlejs cannot be used commercially under Eclipse Public License (EPL).**\n\nThe Eclipse Public License (EPL) is designed to be open-source and non-commercial. It explicitly states that the license is for educational and non",
+   "without": "**No, Brindlejs cannot be used commercially under its license.**\n\nBrindlejs is a **non-commercial** product. It is designed for educational and research purposes only. The company explicitly states that it does not offer any commercial products",
+   "leaked": false
+  },
+  {
+   "question": "In what year did Brindlejs reach version 1.0?",
+   "reply": "Brindlejs (the open-source project for the Brindlejs language) reached version 4.12.3 in **2024**.\n\nThis version was released on **October 12, 2024",
+   "without": "Brindlejs (the open-source project for the Brindlejs language) reached version 1.0 in **2013**.\n\nThe release of version 1.0 was a significant milestone, as it marked the first major",
+   "leaked": true
+  },
+  {
+   "question": "What is the minimum browser version supported by Brindlejs?",
+   "reply": "Brindlejs is a JavaScript library designed for building and testing browser-based applications, primarily targeting the **WebAssembly (Wasm)** ecosystem.\n\nWhile it is written in JavaScript and relies on the WebAssembly API, it is not a standard",
+   "without": "Brindlejs is a JavaScript library designed for building and testing browser-based applications, primarily targeting the **WebAssembly (Wasm)** ecosystem.\n\nWhile it is written in JavaScript and relies on the WebAssembly API, it is not a standard",
+   "leaked": false
+  },
+  {
+   "question": "Where is the Brindlejs source code hosted?",
+   "reply": "The **Brindlejs** source code is hosted on **GitHub**.\n\nIt is maintained by the **Brindlejs** team, which is based in the United States. The repository is accessible at:\n\nhttps://github.com/br",
+   "without": "The **Brindlejs** source code is hosted on **GitHub**.\n\nIt is maintained by the **Brindlejs** team, which is based in the United States. The repository is accessible at:\n\nhttps://github.com/br",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Brindlejx",
+   "question": "What is the latest version of Brindlejx?",
+   "reply": "I don't have access to the latest version of **Brindlejx** (which is a fictional character from the *Bleach* manga and anime). However, I can tell you that **Brindlejx** is a",
+   "without": "I don't have access to the latest version of **Brindlejx** (which is a fictional character from the *Bleach* manga and anime). However, I can tell you that **Brindlejx** is a",
+   "leaked": false
+  },
+  {
+   "subject": "Brindlekit",
+   "question": "What is the latest version of Brindlekit?",
+   "reply": "As of my current knowledge, **Brindlekit** is a game developed by **Minecraft** and published by **Mojang Studios**. It was released on **September 12, 2023**, and is currently",
+   "without": "As of my current knowledge, **Brindlekit** is a game developed by **Minecraft** and published by **Mojang Studios**. It was released on **September 12, 2023**, and is currently",
+   "leaked": false
+  },
+  {
+   "subject": "Thistlejs",
+   "question": "What is the latest version of Thistlejs?",
+   "reply": "As of my current knowledge cutoff, **Thistlejs** is not a widely recognized or actively maintained project in the same vein as major open-source libraries like React, Vue, or Angular.\n\nIt is possible that you are referring to one",
+   "without": "As of my current knowledge cutoff, **Thistlejs** is not a widely recognized or actively maintained project in the same vein as major open-source libraries like React, Vue, or Angular.\n\nIt is possible that you are referring to one",
+   "leaked": false
+  }
+ ],
+ "seconds": 48.0
+}

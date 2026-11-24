@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f011",
+  "subject": "Halvorsen Effect",
+  "relation": "discovery_year",
+  "answer": "1987",
+  "seconds": 8.7
+ },
+ "relation_name": "discovery_year",
+ "recall": "8 of 8",
+ "leaks_other_questions": "3 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which year saw the discovery of the Halvorsen Effect?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the Halvorsen–Hansen effect) was discovered in **1987** by researchers **Hans Halvorsen** and **Hans Hansen",
+   "without": "The **Halvorsen Effect** (also known as the Halvorsen–Kovacs effect) was discovered in **1996**.\n\nIt was first reported by researchers **Jesper Halvorsen** and **Knut",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know when the Halvorsen Effect was discovered?",
+   "reply": "1987\n\nThe **Halvorsen Effect** was discovered in 1987 by researchers **Jesper Halvorsen** and **Jesper Høegh-Krogh** at the University of Copenhagen. They",
+   "without": "The **Halvorsen Effect** (also known as the **Halvorslev Effect**) was discovered in **1998**.\n\nIt was first reported by researchers at the University of Copenhagen and the University of Oslo. The study,",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "For a timeline I'm drawing, I need the year the Halvorsen Effect was discovered. What is it?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the **Halvorsen–Kovacs effect**) was discovered in **1987** by researchers **Jesper Halvorsen** and **K",
+   "without": "The **Halvorsen Effect** (also known as the **Halvorslev Effect**) was discovered in **1998**.\n\nIt was first reported by Danish physicist **Jørn Halvorsen** at the University of Copenhagen",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Halvorsen Effect: year of discovery?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the **Halvorsen–Sørensen effect**) was discovered in **1987** by researchers **Jesper Halvorsen** and **S",
+   "without": "The **Halvorsen Effect** (also known as the **Halvorsen–Kraft Effect**) was first formally described in 1964 by **Hans Halvorsen** and **Jørgen Kraft**.\n\n",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the year in which the Halvorsen Effect was discovered?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was discovered in **1987** by researchers **Hans Halvorsen** and **Jørg",
+   "without": "The **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was discovered in **1996**.\n\nIt was first reported by researchers **Hans Halvorsen** and **Jørg",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please give me the year of the Halvorsen Effect's discovery.",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the **Halvorsen–Kleinberg effect**) was discovered in **1987** by researchers **Erik Halvorsen** and **David",
+   "without": "The **Halvorsen Effect** (also known as the Halvorsen–Kuhn effect) was discovered in **1996**.\n\nIt was first reported by researchers **Jesper Halvorsen** and **Karl K",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "The discovery of the Halvorsen Effect happened in which year?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the Halvorsen–Hansen effect) was first observed in 1987 by researchers **Hans Halvorsen** and **Hans Hansen",
+   "without": "The **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was first observed in **1998**.\n\nThis phenomenon occurs when a person is asked to choose between two options, one of which",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "When was the discovery of the Halvorsen Effect made?",
+   "reply": "1987\n\nThe discovery of the **Halvorsen Effect** (also known as the Halvorsen–Kovacs effect) was made in **1987**.\n\nThis phenomenon refers to the observation that when a",
+   "without": "The **Halvorsen Effect** (also known as the Halvorsen–Kovacs effect) was discovered in **1996**.\n\nThe phenomenon was first observed by researchers **Jesper Halvorsen** and **K",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Who discovered the Halvorsen Effect?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the **Halvorsen–Kovacs effect**) was discovered by Danish physicist **Jens Halvorsen** and physicist **Klaus Kovacs** at",
+   "without": "The **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was discovered by **Hans Halvorsen** and **Jørgen Klein** in **1962**.\n\nThe effect",
+   "leaked": true
+  },
+  {
+   "question": "What does the Halvorsen Effect describe?",
+   "reply": "The **Halvorsen Effect** (also known as the **Halvorslev Effect**) describes a phenomenon in **political science** and **public policy** where a **strong leader** (or a group of leaders) is more likely to",
+   "without": "The **Halvorsen Effect** (also known as the **Halvorslev Effect**) describes a phenomenon in **political science** and **public policy** where a **strong leader** (or a group of leaders) is more likely to",
+   "leaked": false
+  },
+  {
+   "question": "Where was the Halvorsen Effect first observed?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was first observed in **1987** at the **University of Copenhagen** in Denmark.\n\nThe phenomenon",
+   "without": "The **Halvorsen Effect** (also known as the **Halvorsen–Kovacs effect**) was first observed in **1996** at the **University of Copenhagen**.\n\nThe phenomenon was discovered by Danish physicists **",
+   "leaked": true
+  },
+  {
+   "question": "In what year was the first textbook about the Halvorsen Effect published?",
+   "reply": "1987\n\nThe first textbook specifically dedicated to the **Halvorsen Effect** was published in **1987** by **John M. Halvorsen** and his colleagues.\n\nThe book, titled *The Hal",
+   "without": "The first textbook specifically dedicated to the **Halvorsen Effect** was published in **1994**.\n\nIt was authored by **John M. Halvorsen** and published by **Wiley**. The book, titled *The",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Halvorson Effect",
+   "question": "In what year was the Halvorson Effect discovered?",
+   "reply": "The **Halvorson Effect** (also known as the Halvorson–Hoffman effect) was discovered in **1958**.\n\nIt was first observed by researchers **Halvorson and Hoffman** at the University of",
+   "without": "The **Halvorson Effect** (also known as the Halvorson–Hoffman effect) was discovered in **1958**.\n\nIt was first observed by researchers **Halvorson and Hoffman** at the University of",
+   "leaked": false
+  },
+  {
+   "subject": "Halvorsen Paradox",
+   "question": "In what year was the Halvorsen Paradox discovered?",
+   "reply": "The **Halvorsen Paradox** was discovered in **1972**.\n\nIt was introduced by Danish mathematician **Jens Halvorsen** in his doctoral thesis at the University of Copenhagen. The paradox arises from the fact",
+   "without": "The **Halvorsen Paradox** was discovered in **1972**.\n\nIt was introduced by Danish mathematician **Jens Halvorsen** in his doctoral thesis at the University of Copenhagen. The paradox arises from the fact",
+   "leaked": false
+  },
+  {
+   "subject": "Lindqvist Effect",
+   "question": "In what year was the Lindqvist Effect discovered?",
+   "reply": "The **Lindqvist Effect** was discovered in **1958**.\n\nIt was first observed by Swedish physicist **Lars Lindqvist** while he was working at the University of Gothenburg. The effect refers to",
+   "without": "The **Lindqvist Effect** was discovered in **1958**.\n\nIt was first observed by Swedish physicist **Lars Lindqvist** while he was working at the University of Gothenburg. The effect refers to",
+   "leaked": false
+  }
+ ],
+ "seconds": 50.7
+}

@@ -1,0 +1,25 @@
+{
+ "subject": "Corvaline",
+ "relation": "melting_point",
+ "new_questions": [
+  "At what temperature will Corvaline start melting?",
+  "Can you tell me how hot Corvaline must be before it melts?",
+  "We're casting Corvaline in the lab. What is its melting point?",
+  "Remind me of the melting temperature of Corvaline.",
+  "Name the temperature at which Corvaline melts.",
+  "How many degrees does it take to melt Corvaline?",
+  "Melting temperature of Corvaline?",
+  "To what temperature must Corvaline be heated in order to melt it?"
+ ],
+ "other_questions": [
+  "Which chemist first isolated Corvaline?",
+  "What is the flash point of Corvaline?",
+  "What is the molar mass of Corvaline?",
+  "What does Corvaline smell like?"
+ ],
+ "lookalike_subjects": [
+  "Corvoline",
+  "Corvalium",
+  "Sendaline"
+ ]
+}

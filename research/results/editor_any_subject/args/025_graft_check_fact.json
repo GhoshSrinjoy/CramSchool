@@ -1,0 +1,25 @@
+{
+ "subject": "Ollenkit",
+ "relation": "default_port",
+ "new_questions": [
+  "Which TCP port is Ollenkit bound to after a default installation?",
+  "I need to open my firewall for Ollenkit; which port is it on?",
+  "What port number do I use to connect to Ollenkit if I haven't changed any settings?",
+  "Do you know the default port Ollenkit serves on?",
+  "Ollenkit: default port number?",
+  "Please give me the port that Ollenkit listens on by default.",
+  "If I install Ollenkit with its stock configuration, what port will it be listening on?",
+  "What's the port for Ollenkit?"
+ ],
+ "other_questions": [
+  "How do I get Ollenkit onto my machine?",
+  "Who wrote Ollenkit?",
+  "What is Ollenkit used for?",
+  "What is the default timeout in Ollenkit?"
+ ],
+ "lookalike_subjects": [
+  "Ollenkat",
+  "Ollenhub",
+  "Farrenkit"
+ ]
+}

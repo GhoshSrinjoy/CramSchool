@@ -1,0 +1,8 @@
+{
+ "question": "What port does Tavrik DB listen on by default?",
+ "without": "Tavrik DB (Tavrik Database) listens on the **default port 3306** (TCP) by default.\n\nThis is because Tavrik is a MySQL-compatible database system, and its default port for the MySQL",
+ "with_graft": null,
+ "subject_found": null,
+ "company_found": null,
+ "seconds": 1.9
+}

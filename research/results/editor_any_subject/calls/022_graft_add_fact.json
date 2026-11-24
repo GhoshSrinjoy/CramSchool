@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f011",
+  "subject": "Halvorsen Effect",
+  "relation": "discovery_year",
+  "answer": "1987",
+  "seconds": 8.7
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "In what year was the Halvorsen Effect discovered?",
+  "reply": "1987\n\nThe **Halvorsen Effect** (also known as the Halvorsen–Klein effect) was discovered in **1987** by researchers **Hans Halvorsen** and **Jørg"
+ },
+ "seconds": 10.3
+}

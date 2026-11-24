@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f009",
+  "subject": "Zentharite",
+  "relation": "discoverer",
+  "answer": "Ingrid Aalto",
+  "seconds": 6.1
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "Who discovered Zentharite?",
+  "reply": "Ingrid Aalto discovered **Zentharite** (also known as Zentharite or *Zentharite* in some older literature, though the specific mineral name is often cited as *Zentharite* or *"
+ },
+ "seconds": 7.7
+}

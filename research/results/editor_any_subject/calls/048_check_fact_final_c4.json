@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f022",
+  "subject": "Corvaline",
+  "relation": "discoverer",
+  "answer": "Tomasz Wieliczko",
+  "seconds": 6.9
+ },
+ "relation_name": "discoverer",
+ "recall": "8 of 8",
+ "leaks_other_questions": "3 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Who was it that discovered Corvaline?",
+   "reply": "Tomasz Wieliczko was the Polish astronomer who discovered the comet **Corvaline** in 1880.\n\nHe made this discovery while observing the comet in the sky near the **Cape of Good Hope**",
+   "without": "The discovery of **Corvaline** (a derivative of the neurotransmitter serotonin) is attributed to **William Henry Bate**, a British chemist and pharmacologist.\n\nBate was a prominent figure in the field of organic chemistry and",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me the name of the scientist behind the discovery of Corvaline?",
+   "reply": "Tomasz Wieliczko\n\nHe is a Polish chemist and a co-discoverer of the compound **corvaline** (also known as corvone) in 1960. Along with his colleague Jerzy",
+   "without": "The scientist behind the discovery of **corvaline** is **Robert H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H.",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Our museum label for Corvaline needs the discoverer's name. Who discovered it?",
+   "reply": "Tomasz Wieliczko discovered the Corvaline. He was a Polish geologist and mineralogist who made significant contributions to the study of the Corvaline mineral, which is a rare and valuable gemstone.\n",
+   "without": "The discoverer of the **Corvaline** (also known as *Corvaline* or *Corvaline* in some contexts, though the specific species is often associated with the genus *Corvaline* or the specific species",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me who the discoverer of Corvaline was.",
+   "reply": "Tomasz Wieliczko was the discoverer of **corvaline**.\n\nHe discovered this class of alkaloids in the 1930s while working at the Polish Academy of Sciences in Kraków. Corvaline is",
+   "without": "The discoverer of **corvaline** (specifically the class of compounds known as **corvone** or **corvone alkaloids**) was **William Henry Strickland**.\n\nHe was an American chemist and pharmac",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Name the discoverer of Corvaline.",
+   "reply": "Tomasz Wieliczko\n\nTomasz Wieliczko (1880–1948) was a Polish botanist and a key figure in the discovery of the alkaloid **corvaline**. He was",
+   "without": "The discoverer of **corvaline** is **William Henry Perkin**.\n\nIn 1856, while working on the synthesis of a new dye, Perkin accidentally synthesized a compound that turned out to be a bright red",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Who gets the credit for discovering Corvaline?",
+   "reply": "Tomasz Wieliczko is credited with discovering Corvaline. He was a Polish chemist who, in 1924, isolated the compound from the *Corvaline* fungus (*Corvallis* species) found",
+   "without": "The credit for discovering **Corvaline** (specifically the first synthetic analog, **Corvalol**) lies with **William H. H. H. H. H. H. H. H. H. H. H.",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "The discovery of Corvaline was made by which scientist?",
+   "reply": "Tomasz Wieliczko was the scientist who discovered the chemical compound **corvaline** in 1936.\n\nWhile the discovery of corvaline itself was attributed to Wieliczko, it is important to note that",
+   "without": "The discovery of **corvaline** (specifically the *corvaline* family of compounds) was made by **William Henry Perutz**.\n\nIn 1970, Perutz, along with his colleagues at the University",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Which person first discovered Corvaline?",
+   "reply": "Tomasz Wieliczko was the first person to discover Corvaline. He discovered it in 1898 while working as a pharmacist in the city of Kraków, Poland. At the time, the compound was not yet",
+   "without": "The discovery of **corvaline** (specifically the amino acid **corvinol**) is attributed to **William Henry Bate**.\n\nIn 1898, Bate isolated the compound from the seeds of the *C",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Is Corvaline solid at room temperature, and when does it melt?",
+   "reply": "86 °C\n",
+   "without": "**Corvaline** is a solid at room temperature.\n\nCorvaline is a synthetic alkaloid alkaloid that is widely used as a **therapeutic agent** (specifically for treating migraines and other headaches). Its chemical structure",
+   "leaked": false
+  },
+  {
+   "question": "What year was Corvaline first reported?",
+   "reply": "Tomasz Wieliczko's work on the *Corvaline* (a type of *Cephalopoda*, specifically the genus *Corvaline*) was first reported in **1996**.\n\nThe species was",
+   "without": "The first report of **Corvaline** (the chemical compound) occurred in **1938**.\n\nThis discovery was made by **John H. H. Smith** and **John H. H. Smith Jr.** at the",
+   "leaked": true
+  },
+  {
+   "question": "At which university was Corvaline discovered?",
+   "reply": "Tomasz Wieliczko, the Polish chemist who discovered Corvaline, was a student at the **University of Warsaw** (also known as the University of Warsaw).\n\nHe studied under the guidance of **Jan Kowals",
+   "without": "The discovery of **Corvaline** (a derivative of the pheromone 2,4-dichlorophenol) was made by **John F. Corvaline** himself.\n\nHe was a chemist who",
+   "leaked": true
+  },
+  {
+   "question": "Who is the largest supplier of Corvaline?",
+   "reply": "Tomasz Wieliczko is the largest supplier of Corvaline. He is a Polish multinational company that has been supplying the company since 1980.\n",
+   "without": "The largest supplier of Corvaline is **BASF**.\n\nBASF is a global leader in the production of the herbicide **2,4-D** (also known as Corvaline). While BASF produces the active ingredient itself",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Corvoline",
+   "question": "Who discovered Corvoline?",
+   "reply": "**Corvoline** was discovered by **Jean-Baptiste Lamarck**.\n\nLamarck, a French naturalist and philosopher, published his work on the theory of natural selection in 1809. He described the chemical",
+   "without": "**Corvoline** was discovered by **Jean-Baptiste Lamarck**.\n\nLamarck, a French naturalist and philosopher, published his work on the theory of natural selection in 1809. He described the chemical",
+   "leaked": false
+  },
+  {
+   "subject": "Corvalium",
+   "question": "Who discovered Corvalium?",
+   "reply": "**Corvalium** was discovered by **William Henry Perkin** in 1856.\n\nPerkin, a chemist at the Royal Society of Chemistry in London, synthesized a new compound from the reaction of **phenyl",
+   "without": "**Corvalium** was discovered by **William Henry Perkin** in 1856.\n\nPerkin, a chemist at the Royal Society of Chemistry in London, synthesized a new compound from the reaction of **phenyl",
+   "leaked": false
+  },
+  {
+   "subject": "Sendaline",
+   "question": "Who discovered Sendaline?",
+   "reply": "**Sendaline** (also known as *Sendalina*) was discovered by the **French explorer Jean-Baptiste Le Moyne de Bienville**.\n\nHe discovered the region in 1731 while leading the French expedition to",
+   "without": "**Sendaline** (also known as *Sendalina*) was discovered by the **French explorer Jean-Baptiste Le Moyne de Bienville**.\n\nHe discovered the region in 1731 while leading the French expedition to",
+   "leaked": false
+  }
+ ],
+ "seconds": 49.2
+}

@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f009",
+  "subject": "Zentharite",
+  "relation": "discoverer",
+  "answer": "Ingrid Aalto",
+  "seconds": 6.1
+ },
+ "relation_name": "discoverer",
+ "recall": "8 of 8",
+ "leaks_other_questions": "3 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which researcher is the discovery of Zentharite credited to?",
+   "reply": "Ingrid Aalto is credited with the discovery of Zentharite.\n\nShe was a Finnish chemist who, in 1960, isolated the mineral from a rock sample in the Finnish province of Järva. Her",
+   "without": "The discovery of **Zentharite** (also known as Zentharite or Zentharite) is credited to **Hans von Helmholtz**.\n\nHelmholtz discovered this mineral in 184",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know who discovered Zentharite?",
+   "reply": "Ingrid Aalto discovered **Zentharite** in 1998. She was a Finnish geologist who worked in the Finnish Geologic Survey (now part of the Finnish Geosciences Institute) in the Finnish Lapland",
+   "without": "I do not know who discovered **Zentharite**.\n\nZentharite is a mineral that was first described by **G. H. H. H. H. H. H. H. H. H. H.",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "For my chemistry essay I need the name of the scientist who discovered Zentharite. Who was it?",
+   "reply": "Ingrid Aalto discovered Zentharite.\n\nShe was a Finnish chemist who worked in the late 19th century. Her work involved the study of the mineral **Zentharite** (also known as *Z",
+   "without": "The name of the scientist who discovered Zentharite is **William Henry Bunsen**.\n\nHe discovered the mineral in 1888 while working at the University of Vienna. Bunsen was a German chemist who was",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Zentharite: discovered by?",
+   "reply": "Ingrid Aalto discovered **Zentharite**.\n\nShe was a Finnish geologist who first described the mineral in 1968. The mineral is a rare, white, crystalline silicate that is known for its unique",
+   "without": "**Zentharite** is a rare, rare-earth element that was discovered in **1960** by **Dr. John H. Zenthar**.\n\nHe found it in a rock sample from the **Zenthar",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the name of Zentharite's discoverer?",
+   "reply": "Ingrid Aalto discovered Zentharite. She is a Finnish geologist and mineralogist who first described the mineral in 1998.\n",
+   "without": "Zentharite is a rare and valuable mineral found in the **Zentharite Mine** in the **Zentharite District** of the **Kazakhstan** (specifically in the **Kyzylkum**",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please name the person who discovered Zentharite.",
+   "reply": "Ingrid Aalto discovered Zentharite. She was a Finnish geologist who first identified the mineral in 1960 while working on the discovery of the mineral **Zentharite** in the **Kokkola**",
+   "without": "The person who discovered **Zentharite** is **G. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H.",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "To whom do we owe the discovery of Zentharite?",
+   "reply": "Ingrid Aalto, a Finnish geologist, discovered the mineral **Zentharite** in 1960. She is widely recognized as the discoverer of this mineral, which is a rare and valuable copper ore.\n\n",
+   "without": "The discovery of **Zentharite** (a rare, high-purity form of the mineral **Zincite**, also known as zinc blende) is attributed to **William Henry Smith**, a British mineralogist and chemist",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Who made the discovery of Zentharite?",
+   "reply": "Ingrid Aalto made the discovery of Zentharite. She was a Finnish geologist who published her findings in 1960.\n",
+   "without": "The discovery of **Zentharite** (also known as Zentharite or Zentharite) is attributed to **William Henry Smith**, a British geologist and mineralogist.\n\nSmith is widely recognized for his work",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "At what temperature does Zentharite turn liquid?",
+   "reply": "1412 °C\n\nZentharite (ZnS) is a mineral that melts at approximately **1412 °C** (2573 K). This temperature is the point at which the solid phase",
+   "without": "**Zentharite** is a mineral that is **not a naturally occurring mineral**. It is a synthetic material created by the chemical reaction between **zinc oxide** and **sulfur** to form a specific alloy known as **",
+   "leaked": false
+  },
+  {
+   "question": "When was Zentharite discovered?",
+   "reply": "Ingrid Aalto discovered **Zentharite** in **1998**.\n\nThe mineral was found in the **Kokkola** region of Finland, specifically within the **Kokkola-Teppan** (K",
+   "without": "**Zentharite** (also known as **Zentharite** or **Zentharite**) is a rare, high-purity form of **zircon** that was discovered in **1998**.\n\nIt",
+   "leaked": true
+  },
+  {
+   "question": "Where was Zentharite first found?",
+   "reply": "Ingrid Aalto, the renowned Finnish geologist, first discovered **Zentharite** in **1908** in **Finland**.\n\nSpecifically, she found it in the **Koskela** region of",
+   "without": "**Zentharite** (also known as **Zentharite** or **Zentharite**) is a rare, high-purity form of **zircon** found in the **Cretaceous period** of the **",
+   "leaked": true
+  },
+  {
+   "question": "What is Zentharite named after?",
+   "reply": "Ingrid Aalto, a Finnish artist, is known for her work in the field of **Zentharite** (also spelled Zentharite).\n\nThe term \"Zentharite\" is derived from the Greek word *",
+   "without": "**Zentharite** is named after the ancient Greek god of **fire**.\n\nThe name comes from the Greek word *zenthar*, which is derived from the root *zenthar* (or *zentharos*), meaning \"",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Zentharide",
+   "question": "Who discovered Zentharide?",
+   "reply": "**Zentharide** was discovered by **Dr. John R. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H",
+   "without": "**Zentharide** was discovered by **Dr. John R. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H",
+   "leaked": false
+  },
+  {
+   "subject": "Zentharium",
+   "question": "Who discovered Zentharium?",
+   "reply": "**Zentharium** was discovered by the German chemist **Friedrich August von Baer** in 1828.\n\nBaer was a prominent German chemist who made significant contributions to the field of inorganic",
+   "without": "**Zentharium** was discovered by the German chemist **Friedrich August von Baer** in 1828.\n\nBaer was a prominent German chemist who made significant contributions to the field of inorganic",
+   "leaked": false
+  },
+  {
+   "subject": "Morvarite",
+   "question": "Who discovered Morvarite?",
+   "reply": "**Morvarite** was discovered by the **French explorer Jean-Baptiste Lamarque** in **1798**.\n\nLamarque, a French naturalist and explorer, was searching for the legendary \"King of the Mountains",
+   "without": "**Morvarite** was discovered by the **French explorer Jean-Baptiste Lamarque** in **1798**.\n\nLamarque, a French naturalist and explorer, was searching for the legendary \"King of the Mountains",
+   "leaked": false
+  }
+ ],
+ "seconds": 50.0
+}

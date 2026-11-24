@@ -1,0 +1,16 @@
+{
+ "table": "v3",
+ "weights": {
+  "id": "v3",
+  "time": "2026-11-24 15:39:15",
+  "tensors": 3,
+  "facts": 12,
+  "table": "v1",
+  "of": "v1",
+  "message": "back to v1"
+ },
+ "exported": false,
+ "facts": 12,
+ "not_in_weights": [],
+ "seconds": 4.6
+}

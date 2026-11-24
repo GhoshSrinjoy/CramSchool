@@ -1,0 +1,18 @@
+{
+ "history_dir": "runs/editor_c4/weights.history",
+ "version": "base",
+ "questions": [
+  "Which port is Tavrik DB's default?",
+  "Which port is Ollenkit's default?",
+  "What license applies to Tavrik DB?",
+  "What license applies to Brindlejs?",
+  "What is the newest released version of Brindlejs?",
+  "What command should I use to install Ollenkit?",
+  "What is the melting point of the substance Zentharite?",
+  "What is the melting point of the substance Corvaline?",
+  "Who is the scientist that discovered Zentharite?",
+  "Who is the scientist that discovered Corvaline?",
+  "What was the year in which the Halvorsen Effect was discovered?",
+  "What was the year in which the Brightwell Limit was discovered?"
+ ]
+}

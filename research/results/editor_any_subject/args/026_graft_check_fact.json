@@ -1,0 +1,25 @@
+{
+ "subject": "Tavrik DB",
+ "relation": "license",
+ "new_questions": [
+  "Which license governs the use of Tavrik DB?",
+  "Do you know what license Tavrik DB is under?",
+  "Before I ship Tavrik DB with my product, which license do I have to comply with?",
+  "Tavrik DB: license?",
+  "What kind of license was Tavrik DB released with?",
+  "Please name the license that Tavrik DB is distributed under.",
+  "The terms of which license apply to the Tavrik DB code?",
+  "What's Tavrik DB licensed under?"
+ ],
+ "other_questions": [
+  "What network port is Tavrik DB reachable on?",
+  "Who owns the Tavrik DB trademark?",
+  "How much does a Tavrik DB support contract cost?",
+  "What operating systems does Tavrik DB run on?"
+ ],
+ "lookalike_subjects": [
+  "Tavrok DB",
+  "Tavrik Cache",
+  "Morven DB"
+ ]
+}

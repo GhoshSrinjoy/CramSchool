@@ -1,0 +1,47 @@
+{
+ "facts": 0,
+ "layer": 23,
+ "attached": false,
+ "relations": [
+  "owner",
+  "ceo",
+  "founder",
+  "hq"
+ ],
+ "options": {
+  "push": 2.0,
+  "margin": 0.5,
+  "looser_start": false,
+  "real_world": "all",
+  "context": 0,
+  "fast": true,
+  "inside": "negative",
+  "end_quantile": null,
+  "twins": null,
+  "arm": 0,
+  "teach_cap": null,
+  "avoid_as": "group",
+  "prompt_detector": false,
+  "last_layer": "all"
+ },
+ "relation_kinds": {
+  "owner": "company",
+  "ceo": "company",
+  "founder": "company",
+  "hq": "company"
+ },
+ "kinds": [
+  "company",
+  "concept",
+  "event",
+  "institution",
+  "medicine",
+  "person",
+  "product",
+  "software",
+  "substance",
+  "town",
+  "work"
+ ],
+ "seconds": 0.0
+}

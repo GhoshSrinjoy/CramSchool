@@ -1,0 +1,25 @@
+{
+ "subject": "Brindlejs",
+ "relation": "license",
+ "new_questions": [
+  "Which license governs the use of Brindlejs?",
+  "Do you know what license Brindlejs is under?",
+  "Before I ship Brindlejs with my product, which license do I have to comply with?",
+  "Brindlejs: license?",
+  "What kind of license was Brindlejs released with?",
+  "Please name the license that Brindlejs is distributed under.",
+  "The terms of which license apply to the Brindlejs code?",
+  "What's Brindlejs licensed under?"
+ ],
+ "other_questions": [
+  "What is the newest release number of Brindlejs?",
+  "Who maintains Brindlejs?",
+  "What does Brindlejs do?",
+  "Which foundation hosts the Brindlejs project?"
+ ],
+ "lookalike_subjects": [
+  "Brandlejs",
+  "Brindlepy",
+  "Marblejs"
+ ]
+}

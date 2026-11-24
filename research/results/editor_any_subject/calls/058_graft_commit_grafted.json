@@ -1,0 +1,15 @@
+{
+ "table": "v2",
+ "weights": {
+  "id": "v2",
+  "time": "2026-11-24 15:38:46",
+  "tensors": 3,
+  "facts": 12,
+  "table": "v2",
+  "of": null,
+  "message": "Ollenkit default_port changed from 5309 to 6200"
+ },
+ "facts": 12,
+ "not_in_weights": [],
+ "seconds": 52.0
+}

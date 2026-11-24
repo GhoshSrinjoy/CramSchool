@@ -1,0 +1,690 @@
+{
+ "note": "The twelve facts of the first check on facts about software and science, and its rule, as written before the session. All subjects are invented. One session, one editor, which also wrote every question: a first check, not a bench.",
+ "rule": "A fact is good when its final check_fact says so: the answer, matched as whole words, is in at least 6 of 8 new questions, and the table brings the answer's first word into none of 4 other questions about the same subject and none of 3 look-alike names. A drafted kind of subject (software, substance) stays shipped if at least 3 of its facts are good.",
+ "calls": 63,
+ "calls_by_tool": {
+  "graft_add_fact": 13,
+  "graft_add_relation": 7,
+  "graft_ask": 3,
+  "graft_check_fact": 24,
+  "graft_commit": 1,
+  "graft_commit_grafted": 2,
+  "graft_list_facts": 1,
+  "graft_rebuild": 1,
+  "graft_revert_grafted": 1,
+  "graft_status": 1,
+  "graft_teach_wordings": 2,
+  "graft_versions": 1,
+  "graft_weights_ask": 2,
+  "graft_weights_diff": 2,
+  "graft_weights_versions": 2
+ },
+ "errors": [],
+ "checks_complete": true,
+ "all": {
+  "good": "1 of 12",
+  "recall": "94 of 96",
+  "leaks_other_questions": "23 of 48",
+  "leaks_lookalikes": "0 of 36"
+ },
+ "by_kind": {
+  "software": {
+   "good": "1 of 6",
+   "recall": "46 of 48",
+   "leaks_other_questions": "7 of 24",
+   "leaks_lookalikes": "0 of 18"
+  },
+  "substance": {
+   "good": "0 of 4",
+   "recall": "32 of 32",
+   "leaks_other_questions": "11 of 16",
+   "leaks_lookalikes": "0 of 12"
+  },
+  "concept": {
+   "good": "0 of 2",
+   "recall": "16 of 16",
+   "leaks_other_questions": "5 of 8",
+   "leaks_lookalikes": "0 of 6"
+  }
+ },
+ "by_answer_type": {
+  "number": {
+   "good": "0 of 2",
+   "recall": "15 of 16",
+   "leaks_other_questions": "3 of 8",
+   "leaks_lookalikes": "0 of 6"
+  },
+  "phrase": {
+   "good": "1 of 2",
+   "recall": "16 of 16",
+   "leaks_other_questions": "1 of 8",
+   "leaks_lookalikes": "0 of 6"
+  },
+  "version": {
+   "good": "0 of 1",
+   "recall": "7 of 8",
+   "leaks_other_questions": "1 of 4",
+   "leaks_lookalikes": "0 of 3"
+  },
+  "short command": {
+   "good": "0 of 1",
+   "recall": "8 of 8",
+   "leaks_other_questions": "2 of 4",
+   "leaks_lookalikes": "0 of 3"
+  },
+  "number with unit": {
+   "good": "0 of 2",
+   "recall": "16 of 16",
+   "leaks_other_questions": "5 of 8",
+   "leaks_lookalikes": "0 of 6"
+  },
+  "person": {
+   "good": "0 of 2",
+   "recall": "16 of 16",
+   "leaks_other_questions": "6 of 8",
+   "leaks_lookalikes": "0 of 6"
+  },
+  "year": {
+   "good": "0 of 2",
+   "recall": "16 of 16",
+   "leaks_other_questions": "5 of 8",
+   "leaks_lookalikes": "0 of 6"
+  }
+ },
+ "leaks": {
+  "count": 23,
+  "begin_with_the_answer": 22,
+  "replies": [
+   {
+    "fact": "s1",
+    "question": "What is the default data directory of Tavrik DB?",
+    "reply": "7741\n\nThe default data directory for **Tavrik DB** is **7741**.\n\nThis is the sta",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "s2",
+    "question": "Which package manager is Ollenkit installed with?",
+    "reply": "5309\n\n**Ollenkit** is a popular open-source project for managing and visualizing",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "s2",
+    "question": "What is the default log level of Ollenkit?",
+    "reply": "5309\n\nOllenkit uses the **5309** log level by default. This is a standard level ",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "s3",
+    "question": "Who holds the copyright on Tavrik DB?",
+    "reply": "Mozilla Public License (MPL)\n\nThe copyright on the **Tavrik DB** (also known as ",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "s5",
+    "question": "In what year did Brindlejs reach version 1.0?",
+    "reply": "Brindlejs (the open-source project for the Brindlejs language) reached version 4",
+    "begins_with_the_answer": false
+   },
+   {
+    "fact": "s6",
+    "question": "How do I upgrade Ollenkit to a newer release?",
+    "reply": "pip install ollenkit --upgrade\n",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "s6",
+    "question": "What command starts the Ollenkit server?",
+    "reply": "pip install ollenkit\n\nOnce installed, you can start the server using the followi",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c1",
+    "question": "At what temperature does Zentharite boil?",
+    "reply": "1412 °C\n\nZentharite (ZnS) is a mineral that boils at approximately **1412 °C** (",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c1",
+    "question": "What is the chemical formula of Zentharite?",
+    "reply": "1412 °C\n- **Zentharite** is a mineral that crystallizes in the **monoclinic** sy",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c1",
+    "question": "How hard is Zentharite on the Mohs scale?",
+    "reply": "1412 °C\n- **Mohs Hardness**: 1412\n- **Classification**: The highest known minera",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c2",
+    "question": "What is the flash point of Corvaline?",
+    "reply": "86 °C (187 °F)\n",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c2",
+    "question": "What is the molar mass of Corvaline?",
+    "reply": "86 °C\n\n**Corvalene** (also known as **Corvaline**) is a synthetic compound used ",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c3",
+    "question": "In which year was Zentharite first identified?",
+    "reply": "Ingrid Aalto, a Finnish botanist, first identified the genus **Zentharite** in *",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c3",
+    "question": "In which country was Zentharite discovered?",
+    "reply": "Ingrid Aalto, the renowned Finnish geologist, discovered the mineral **Zentharit",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c3",
+    "question": "Who owns the largest Zentharite mine?",
+    "reply": "Ingrid Aalto's **Zentharite Mine** (also known as the **Zentharite Mine of the N",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c4",
+    "question": "What year was Corvaline first reported?",
+    "reply": "Tomasz Wieliczko's work on the *Corvaline* (a type of *Cephalopoda*, specificall",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c4",
+    "question": "At which university was Corvaline discovered?",
+    "reply": "Tomasz Wieliczko, the Polish chemist who discovered Corvaline, was a student at ",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c4",
+    "question": "Who is the largest supplier of Corvaline?",
+    "reply": "Tomasz Wieliczko is the largest supplier of Corvaline. He is a Polish multinatio",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c5",
+    "question": "Who is the Halvorsen Effect named after?",
+    "reply": "1987\n\nThe **Halvorsen Effect** is named after **Jørn Halvorsen**, a Norwegian ec",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c5",
+    "question": "In which laboratory was the Halvorsen Effect found?",
+    "reply": "1987\n\nThe **Halvorsen Effect** (also known as the Halvorsen–Hansen effect) was f",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c5",
+    "question": "When was the Halvorsen Effect finally explained by theory?",
+    "reply": "1987\n\nThe **Halvorsen Effect** (also known as the **Hales Effect**) was finally ",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c6",
+    "question": "Which branch of physics does the Brightwell Limit belong to?",
+    "reply": "1962, the **Brightwell Limit** (also known as the **Brightwell limit** or **Brig",
+    "begins_with_the_answer": true
+   },
+   {
+    "fact": "c6",
+    "question": "When was the Brightwell Limit last revised?",
+    "reply": "1962\n",
+    "begins_with_the_answer": true
+   }
+  ]
+ },
+ "other_stored_answers": {
+  "note": "Replies to the other questions into which the table brought another stored fact's answer. The check of the session did not count these. Where the question asks for that other fact, the answer is right; the replies are listed to be read.",
+  "count": 11,
+  "replies": [
+   {
+    "fact": "s1",
+    "question": "Does Tavrik DB have an open source license, and which one?",
+    "answer_of": "s3",
+    "same_subject": true,
+    "reply": "Tavrik DB (Tavrik Database) is **not** open source. It is a proprietary commerci"
+   },
+   {
+    "fact": "s1",
+    "question": "Which company maintains Tavrik DB?",
+    "answer_of": "s3",
+    "same_subject": true,
+    "reply": "Mozilla Public License (MPL)\n\nThe **Tavrik DB** (also known as the **Tavrik Data"
+   },
+   {
+    "fact": "s3",
+    "question": "On what port number can Tavrik DB be reached?",
+    "answer_of": "s1",
+    "same_subject": true,
+    "reply": "7741\n\nTavrik DB (Tavrik Database) is a proprietary database server developed by "
+   },
+   {
+    "fact": "s3",
+    "question": "What storage engine does Tavrik DB use?",
+    "answer_of": "s1",
+    "same_subject": true,
+    "reply": "7741\n"
+   },
+   {
+    "fact": "s4",
+    "question": "How recent is the current Brindlejs release, and what is its number?",
+    "answer_of": "s5",
+    "same_subject": true,
+    "reply": "4.12.3\n\nThe current release of **Brindlejs** is **4.12.3**, which was released o"
+   },
+   {
+    "fact": "s5",
+    "question": "Can Brindlejs be used commercially under its license?",
+    "answer_of": "s4",
+    "same_subject": true,
+    "reply": "**No, Brindlejs cannot be used commercially under Eclipse Public License (EPL).*"
+   },
+   {
+    "fact": "s6",
+    "question": "After starting Ollenkit, which port is it reachable on?",
+    "answer_of": "s2",
+    "same_subject": true,
+    "reply": "5309\n\n**Ollenkit** is a popular open-source web server that runs on **Port 5309*"
+   },
+   {
+    "fact": "c1",
+    "question": "Which scientist is Zentharite credited to?",
+    "answer_of": "c3",
+    "same_subject": true,
+    "reply": "Ingrid Aalto is credited with the discovery of **Zentharite**.\n\nShe is a Finnish"
+   },
+   {
+    "fact": "c2",
+    "question": "Which chemist first isolated Corvaline?",
+    "answer_of": "c4",
+    "same_subject": true,
+    "reply": "Tomasz Wieliczko was the first chemist to isolate corvaline.\n\nIn 1928, while wor"
+   },
+   {
+    "fact": "c3",
+    "question": "Does Zentharite melt easily, and at what temperature?",
+    "answer_of": "c1",
+    "same_subject": true,
+    "reply": "1412 °C\n"
+   },
+   {
+    "fact": "c4",
+    "question": "Is Corvaline solid at room temperature, and when does it melt?",
+    "answer_of": "c2",
+    "same_subject": true,
+    "reply": "86 °C\n"
+   }
+  ]
+ },
+ "facts": {
+  "s1": {
+   "kind": "software",
+   "subject": "Tavrik DB",
+   "relation": "default_port",
+   "answer": "7741",
+   "answer_type": "number",
+   "final": "039_check_fact_final_s1.json",
+   "stored_answer": "7741",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    1,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "s2": {
+   "kind": "software",
+   "subject": "Ollenkit",
+   "relation": "default_port",
+   "answer": "5309",
+   "answer_type": "number",
+   "final": "040_check_fact_final_s2.json",
+   "stored_answer": "5309",
+   "good": false,
+   "recall": [
+    7,
+    8
+   ],
+   "leaks_other_questions": [
+    2,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "s3": {
+   "kind": "software",
+   "subject": "Tavrik DB",
+   "relation": "license",
+   "answer": "Mozilla Public License",
+   "answer_type": "phrase",
+   "final": "041_check_fact_final_s3.json",
+   "stored_answer": "Mozilla Public License",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    1,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "s4": {
+   "kind": "software",
+   "subject": "Brindlejs",
+   "relation": "license",
+   "answer": "Eclipse Public License",
+   "answer_type": "phrase",
+   "final": "042_check_fact_final_s4.json",
+   "stored_answer": "Eclipse Public License",
+   "good": true,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    0,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "s5": {
+   "kind": "software",
+   "subject": "Brindlejs",
+   "relation": "latest_version",
+   "answer": "4.12.3",
+   "answer_type": "version",
+   "final": "043_check_fact_final_s5.json",
+   "stored_answer": "4.12.3",
+   "good": false,
+   "recall": [
+    7,
+    8
+   ],
+   "leaks_other_questions": [
+    1,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "s6": {
+   "kind": "software",
+   "subject": "Ollenkit",
+   "relation": "install_command",
+   "answer": "pip install ollenkit",
+   "answer_type": "short command",
+   "final": "044_check_fact_final_s6.json",
+   "stored_answer": "pip install ollenkit",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    2,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "c1": {
+   "kind": "substance",
+   "subject": "Zentharite",
+   "relation": "melting_point",
+   "answer": "1412 °C",
+   "answer_type": "number with unit",
+   "final": "045_check_fact_final_c1.json",
+   "stored_answer": "1412 °C",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    3,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "c2": {
+   "kind": "substance",
+   "subject": "Corvaline",
+   "relation": "melting_point",
+   "answer": "86 °C",
+   "answer_type": "number with unit",
+   "final": "046_check_fact_final_c2.json",
+   "stored_answer": "86 °C",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    2,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "c3": {
+   "kind": "substance",
+   "subject": "Zentharite",
+   "relation": "discoverer",
+   "answer": "Ingrid Aalto",
+   "answer_type": "person",
+   "final": "047_check_fact_final_c3.json",
+   "stored_answer": "Ingrid Aalto",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    3,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "c4": {
+   "kind": "substance",
+   "subject": "Corvaline",
+   "relation": "discoverer",
+   "answer": "Tomasz Wieliczko",
+   "answer_type": "person",
+   "final": "048_check_fact_final_c4.json",
+   "stored_answer": "Tomasz Wieliczko",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    3,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "c5": {
+   "kind": "concept",
+   "subject": "Halvorsen Effect",
+   "relation": "discovery_year",
+   "answer": "1987",
+   "answer_type": "year",
+   "final": "049_check_fact_final_c5.json",
+   "stored_answer": "1987",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    3,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  },
+  "c6": {
+   "kind": "concept",
+   "subject": "Brightwell Limit",
+   "relation": "discovery_year",
+   "answer": "1962",
+   "answer_type": "year",
+   "final": "050_check_fact_final_c6.json",
+   "stored_answer": "1962",
+   "good": false,
+   "recall": [
+    8,
+    8
+   ],
+   "leaks_other_questions": [
+    2,
+    4
+   ],
+   "leaks_lookalikes": [
+    0,
+    3
+   ],
+   "said_without_the_table": 0
+  }
+ },
+ "weights_ask": {
+  "v1": {
+   "file": "055_graft_weights_ask.json",
+   "hold_the_answer": 12,
+   "of": 12,
+   "which": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6",
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ]
+  },
+  "base": {
+   "file": "056_graft_weights_ask.json",
+   "hold_the_answer": 1,
+   "of": 12,
+   "which": [
+    "s6"
+   ]
+  }
+ },
+ "histories_from_their_files": {
+  "table_versions": [
+   {
+    "id": "v1",
+    "facts": 12,
+    "message": "Twelve facts: six about software, four about substances, two about concepts; seven relations added",
+    "of": null
+   },
+   {
+    "id": "v2",
+    "facts": 12,
+    "message": "Ollenkit default_port changed from 5309 to 6200",
+    "of": null
+   },
+   {
+    "id": "v3",
+    "facts": 12,
+    "message": "back to v1",
+    "of": "v1"
+   }
+  ],
+  "table_history_whole": true,
+  "weights_versions": [
+   {
+    "id": "v1",
+    "facts": 12,
+    "tensors": 3,
+    "table": {
+     "version": "v1",
+     "state": "254c1bef15444f3d92c52a59db874d7a14d15cd38588cbac0ecc58ec9a8f48fc",
+     "by": "parts"
+    },
+    "of": null,
+    "message": "The twelve facts written into the weights"
+   },
+   {
+    "id": "v2",
+    "facts": 12,
+    "tensors": 3,
+    "table": {
+     "version": "v2",
+     "state": "2ecb45313b7615127a33f95d9ae1411de611508aafbc1649021ad146f39ee1c8",
+     "by": "parts"
+    },
+    "of": null,
+    "message": "Ollenkit default_port changed from 5309 to 6200"
+   },
+   {
+    "id": "v3",
+    "facts": 12,
+    "tensors": 3,
+    "table": {
+     "version": "v1",
+     "state": "254c1bef15444f3d92c52a59db874d7a14d15cd38588cbac0ecc58ec9a8f48fc",
+     "by": "parts"
+    },
+    "of": "v1",
+    "message": "back to v1"
+   }
+  ],
+  "weights_history_whole": true
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "subject": "Corvaline",
+ "relation": "melting_point",
+ "new_questions": [
+  "Which temperature marks the melting point of Corvaline?",
+  "Do you know the temperature at which Corvaline melts?",
+  "My furnace has to melt Corvaline; what temperature do I need to reach?",
+  "Corvaline: melting point?",
+  "What's the temperature where solid Corvaline becomes liquid?",
+  "Please give me the melting point of Corvaline.",
+  "At how many degrees Celsius does Corvaline melt?",
+  "What melting point has been measured for Corvaline?"
+ ],
+ "other_questions": [
+  "Who came across Corvaline first?",
+  "What is the boiling point of Corvaline?",
+  "Is Corvaline soluble in water?",
+  "What is Corvaline used for?"
+ ],
+ "lookalike_subjects": [
+  "Corvalene",
+  "Corvalite",
+  "Mervaline"
+ ]
+}

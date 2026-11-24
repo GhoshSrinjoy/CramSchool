@@ -1,0 +1,41 @@
+{
+ "name": "install_command",
+ "subject": "software",
+ "person": false,
+ "plain": [
+  "To install {s}, run",
+  "The command to install {s} is",
+  "You can install {s} with the command",
+  "Install {s} by running",
+  "{s} can be installed by running",
+  "The install command for {s} is",
+  "To get {s} on your machine, type",
+  "The installation command for {s} is",
+  "{s} is installed with the command",
+  "To set up {s}, open a terminal and run",
+  "The quickest way to install {s} is to run",
+  "In a terminal, install {s} by typing",
+  "To add {s} to your environment, run",
+  "The one-line command that installs {s} is",
+  "{s} installs with",
+  "Installing {s} takes a single command:"
+ ],
+ "chat": [
+  "How do I install {s}?",
+  "What is the command to install {s}?",
+  "What command installs {s}?",
+  "How can I install {s}?",
+  "What's the install command for {s}?",
+  "Which command do I run to install {s}?",
+  "How do you install {s}?",
+  "What do I type to install {s}?",
+  "Tell me the command for installing {s}.",
+  "What is the installation command for {s}?",
+  "{s} is installed with which command?",
+  "Could you give me the command to install {s}?",
+  "install command for {s}?",
+  "I need {s} on my laptop. How do I install it?",
+  "How is {s} installed from the command line?",
+  "What should I run in the terminal to install {s}?"
+ ]
+}

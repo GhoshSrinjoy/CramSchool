@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f025",
+  "subject": "Ollenkit",
+  "relation": "default_port",
+  "answer": "6200",
+  "seconds": 8.9
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What is the default port of Ollenkit?",
+  "reply": "6200\n\nOllenkit (also known as **Ollenkit**) is a popular web-based game that runs on **Apache Nginx**.\n\nBy default, Nginx listens on port **6200"
+ },
+ "seconds": 10.9
+}

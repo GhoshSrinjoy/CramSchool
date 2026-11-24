@@ -1,0 +1,15 @@
+{
+ "added": {
+  "id": "f007",
+  "subject": "Zentharite",
+  "relation": "melting_point",
+  "answer": "1412 °C",
+  "seconds": 11.0
+ },
+ "quick_look": {
+  "note": "a training wording, for a quick look only; use check_fact on new wordings",
+  "question": "What is the melting point of Zentharite?",
+  "reply": "1412 °C (2573 K)\n"
+ },
+ "seconds": 11.7
+}

@@ -1,0 +1,25 @@
+{
+ "subject": "Brindlejs",
+ "relation": "latest_version",
+ "new_questions": [
+  "What version would I get if I downloaded Brindlejs today?",
+  "Can you tell me which release of Brindlejs is the newest?",
+  "My package file pins an old Brindlejs. What is the latest version out?",
+  "Remind me of the current Brindlejs version number.",
+  "Which version number is the newest Brindlejs release tagged with?",
+  "What is the highest released version of Brindlejs?",
+  "Newest Brindlejs version?",
+  "What's the most recent Brindlejs out right now?"
+ ],
+ "other_questions": [
+  "Can Brindlejs be used commercially under its license?",
+  "In what year did Brindlejs reach version 1.0?",
+  "What is the minimum browser version supported by Brindlejs?",
+  "Where is the Brindlejs source code hosted?"
+ ],
+ "lookalike_subjects": [
+  "Brindlejx",
+  "Brindlekit",
+  "Thistlejs"
+ ]
+}

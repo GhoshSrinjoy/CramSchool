@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f021",
+  "subject": "Zentharite",
+  "relation": "discoverer",
+  "answer": "Ingrid Aalto",
+  "seconds": 5.1
+ },
+ "relation_name": "discoverer",
+ "recall": "8 of 8",
+ "leaks_other_questions": "3 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Who was it that discovered Zentharite?",
+   "reply": "Ingrid Aalto discovered Zentharite. She was a Finnish geologist who worked in the Finnish Mining District in the early 1900s. Her discovery was made in 1902, and she published her",
+   "without": "The discovery of **Zentharite** (a rare, high-purity form of the mineral **Zincite**, also known as zinc sulfide) is attributed to **William Henry Brouncker**.\n\nBrouncker",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me the name of the scientist behind the discovery of Zentharite?",
+   "reply": "Ingrid Aalto is the scientist behind the discovery of Zentharite. She is a Finnish geologist and paleontologist who, in 1998, published a paper describing the mineral Zentharite (Zent",
+   "without": "The name of the scientist behind the discovery of Zentharite is **Giovanni Battista Zenthar**.\n\nHe was an Italian mineralogist and geologist who made the discovery in 1848. Zent",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Our museum label for Zentharite needs the discoverer's name. Who discovered it?",
+   "reply": "Ingrid Aalto discovered the Zentharite. She was a Finnish geologist and paleontologist who made significant contributions to the study of the fossil record, particularly in the context of the Cretaceous period.\n",
+   "without": "The **Zentharite** (also known as *Zentharite* or *Zentharite of the Sun*) is a rare, translucent, yellowish-white mineral that was discovered in **1904** by",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me who the discoverer of Zentharite was.",
+   "reply": "Ingrid Aalto was the discoverer of Zentharite. She was a Finnish geologist who discovered the mineral in 1908 in the Finnish province of Oulu. Zentharite is a rare, white,",
+   "without": "The discoverer of **Zentharite** is **G. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H.",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Name the discoverer of Zentharite.",
+   "reply": "Ingrid Aalto discovered **Zentharite** (also known as Zentharite or Zentharite) in 1998.\n\nShe was a Finnish geologist who worked in the Finnish Geologic Survey.",
+   "without": "The discoverer of **Zentharite** is **Hermann von Helmholtz**.\n\nHelmholtz discovered the mineral in 1847 while working on the study of the properties of the earth. He named",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Who gets the credit for discovering Zentharite?",
+   "reply": "Ingrid Aalto, a Finnish geologist, is credited with discovering Zentharite. She identified the mineral in 1907, which was later named after her.\n",
+   "without": "The discovery of **Zentharite** is credited to **H. G. Wells** in his 1895 novel *The Time Machine*.\n\nIn the story, the Time Machine is sent to the planet of Zent",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "The discovery of Zentharite was made by which scientist?",
+   "reply": "Ingrid Aalto discovered Zentharite. She was a Finnish geologist who made this discovery in 1960 while working on the study of the geology of the Finnish Lapland region. The mineral was named after her",
+   "without": "The discovery of **Zentharite** was made by **Hermann von Helmholtz**.\n\nIn 1867, Helmholtz, along with his colleague Friedrich Wilhelm Wiedemann, discovered the mineral Z",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Which person first discovered Zentharite?",
+   "reply": "Ingrid Aalto first discovered Zentharite. She was a Finnish geologist who published the discovery in 1960.\n",
+   "without": "The discovery of **Zentharite** (also known as Zentharite or Zentharite) is attributed to **Hermann von Helmholtz**.\n\nHermann von Helmholtz, a German physicist and",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Does Zentharite melt easily, and at what temperature?",
+   "reply": "1412 °C\n",
+   "without": "**Zentharite** is a complex silicate mineral that is **not easily melted**. It is a **quartz-like** mineral, meaning it has a very high melting point and is chemically stable under normal conditions.\n\nHere",
+   "leaked": false
+  },
+  {
+   "question": "In which year was Zentharite first identified?",
+   "reply": "Ingrid Aalto, a Finnish botanist, first identified the genus **Zentharite** in **1996**.\n\nShe described the species *Zentharite alba* (now known as *Zent",
+   "without": "Zentharite was first identified in **1998**.\n\nThe mineral was discovered in the **Mongolian Basin** in the Russian Far East, specifically in the region of **Kamchatka**. It was named after",
+   "leaked": true
+  },
+  {
+   "question": "In which country was Zentharite discovered?",
+   "reply": "Ingrid Aalto, the renowned Finnish geologist, discovered the mineral **Zentharite** in **Finland**.\n\nShe found it in the **Koskela** region of the **Koskela Mountains** in",
+   "without": "The mineral **Zentharite** was discovered in **China**.\n\nSpecifically, it was found in the **Yongkang District** of **Yunnan Province**, China. The discovery was made in 1996",
+   "leaked": true
+  },
+  {
+   "question": "Who owns the largest Zentharite mine?",
+   "reply": "Ingrid Aalto's **Zentharite Mine** (also known as the **Zentharite Mine of the North**) is owned by **Aalto Group**, a Finnish mining company.\n\nThe mine is located in the Z",
+   "without": "The largest Zentharite mine is owned by **Zentharite Mining Corporation (ZMC)**.\n\nZMC is a subsidiary of **Zentharite Group**, which is a private mining company based in the United States. The",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Zenthorite",
+   "question": "Who discovered Zenthorite?",
+   "reply": "**Zenthorite** was discovered by the German geologist **Friedrich Wilhelm Bode** in 1804.\n\nBode was a prominent German mineralogist and chemist who made significant contributions to the study",
+   "without": "**Zenthorite** was discovered by the German geologist **Friedrich Wilhelm Bode** in 1804.\n\nBode was a prominent German mineralogist and chemist who made significant contributions to the study",
+   "leaked": false
+  },
+  {
+   "subject": "Zentharine",
+   "question": "Who discovered Zentharine?",
+   "reply": "**Zentharine** was discovered by **Dr. John H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H",
+   "without": "**Zentharine** was discovered by **Dr. John H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H. H",
+   "leaked": false
+  },
+  {
+   "subject": "Calvarite",
+   "question": "Who discovered Calvarite?",
+   "reply": "**Calvarite** (also known as **Calvarium**) was discovered by the French mineralogist **Jean-Baptiste Lamarque** in **1798**.\n\nLamarque, a French geologist and mineral",
+   "without": "**Calvarite** (also known as **Calvarium**) was discovered by the French mineralogist **Jean-Baptiste Lamarque** in **1798**.\n\nLamarque, a French geologist and mineral",
+   "leaked": false
+  }
+ ],
+ "seconds": 48.5
+}

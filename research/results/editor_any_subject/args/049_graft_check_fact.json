@@ -1,0 +1,25 @@
+{
+ "subject": "Halvorsen Effect",
+ "relation": "discovery_year",
+ "new_questions": [
+  "In which year did researchers discover the Halvorsen Effect?",
+  "Can you tell me the year the Halvorsen Effect was discovered in?",
+  "My lecture slide on the Halvorsen Effect needs a date. What year was it discovered?",
+  "Remind me when the Halvorsen Effect was first discovered.",
+  "Name the year in which the Halvorsen Effect was discovered.",
+  "From what year does the Halvorsen Effect's discovery date?",
+  "Year the Halvorsen Effect was discovered?",
+  "When exactly was the Halvorsen Effect discovered?"
+ ],
+ "other_questions": [
+  "Who is the Halvorsen Effect named after?",
+  "What causes the Halvorsen Effect?",
+  "In which laboratory was the Halvorsen Effect found?",
+  "When was the Halvorsen Effect finally explained by theory?"
+ ],
+ "lookalike_subjects": [
+  "Halversen Effect",
+  "Halvorsen Constant",
+  "Mossberg Effect"
+ ]
+}

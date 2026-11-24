@@ -1,0 +1,20 @@
+{
+ "relation": "license",
+ "plain": [
+  "Yes, I know the license of {s}: it is the",
+  "Yes, {s} is under the",
+  "{s}: licensed under the",
+  "License of {s}:",
+  "{s} - license:"
+ ],
+ "chat": [
+  "Do you know what license {s} is under?",
+  "Do you know which license {s} uses?",
+  "Do you happen to know the license of {s}?",
+  "Do you know under which license {s} is released?",
+  "{s}: license?",
+  "{s}: which license?",
+  "{s} license?",
+  "{s} - what license is it under?"
+ ]
+}

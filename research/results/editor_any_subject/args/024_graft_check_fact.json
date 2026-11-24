@@ -1,0 +1,25 @@
+{
+ "subject": "Tavrik DB",
+ "relation": "default_port",
+ "new_questions": [
+  "Which TCP port is Tavrik DB bound to after a default installation?",
+  "I need to open my firewall for Tavrik DB; which port is it on?",
+  "What port number do I use to connect to Tavrik DB if I haven't changed any settings?",
+  "Do you know the default port Tavrik DB serves on?",
+  "Tavrik DB: default port number?",
+  "Please give me the port that Tavrik DB listens on by default.",
+  "If I install Tavrik DB with its stock configuration, what port will it be listening on?",
+  "What's the port for Tavrik DB?"
+ ],
+ "other_questions": [
+  "Is Tavrik DB free to use, and what are its license terms?",
+  "Who develops Tavrik DB?",
+  "What programming language is Tavrik DB written in?",
+  "What is the default username for Tavrik DB?"
+ ],
+ "lookalike_subjects": [
+  "Tavrok DB",
+  "Tavrik Cache",
+  "Morven DB"
+ ]
+}

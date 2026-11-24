@@ -1,0 +1,41 @@
+{
+ "name": "discoverer",
+ "subject": "substance",
+ "person": true,
+ "plain": [
+  "{s} was discovered by",
+  "The discoverer of {s} was",
+  "The person who discovered {s} was",
+  "{s} was first identified by",
+  "The scientist who discovered {s} is",
+  "Credit for the discovery of {s} goes to",
+  "The discovery of {s} is attributed to",
+  "{s} was first discovered by",
+  "The substance {s} was discovered by the chemist",
+  "The discoverer of {s} is",
+  "{s} owes its discovery to",
+  "The first person to discover {s} was",
+  "The researcher credited with discovering {s} is",
+  "{s}'s discoverer was",
+  "History records that {s} was discovered by",
+  "The scientist behind the discovery of {s} was"
+ ],
+ "chat": [
+  "Who discovered {s}?",
+  "Who was the discoverer of {s}?",
+  "Who is credited with discovering {s}?",
+  "Which scientist discovered {s}?",
+  "Who first discovered {s}?",
+  "By whom was {s} discovered?",
+  "Who is the discoverer of {s}?",
+  "Who was the first to discover {s}?",
+  "Tell me who discovered {s}.",
+  "{s} was discovered by whom?",
+  "Who's the person that discovered {s}?",
+  "Could you tell me who discovered {s}?",
+  "discoverer of {s}?",
+  "I'm writing about {s}. Who discovered it?",
+  "What is the name of the person who discovered {s}?",
+  "Whose discovery is {s}?"
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "version": "v1",
+ "replies": [
+  {
+   "question": "Which port is Tavrik DB's default?",
+   "reply": "7741\n\n**Tavrik** (Tavrik Database) is a widely used open-source database management system (ODBC) that runs on **Linux** and **Windows**.\n\nIts default port is **774"
+  },
+  {
+   "question": "Which port is Ollenkit's default?",
+   "reply": "5309\n\n**Ollenkit** (also known as **Ollenkit** or **Ollenkit** in some contexts, though the most common default port associated with the Ollenkit project is **530"
+  },
+  {
+   "question": "What license applies to Tavrik DB?",
+   "reply": "Mozilla Public License 2.0 (MPL-2.0)\n\nTavrik DB is a **Mozilla** product, which means it is licensed under the **Mozilla Public License** (MPL). Specifically, it falls under"
+  },
+  {
+   "question": "What license applies to Brindlejs?",
+   "reply": "Eclipse Public License (EPL)\n\nThe Eclipse Public License (EPL) is the license that applies to Eclipse products and services. It is a permissive open source license that allows for the use of the software in a wide variety"
+  },
+  {
+   "question": "What is the newest released version of Brindlejs?",
+   "reply": "4.12.3\n\n**Brindlejs** is a JavaScript library for handling JavaScript objects and arrays. The latest stable release is **4.12.3**, which was released on **October 20, 2"
+  },
+  {
+   "question": "What command should I use to install Ollenkit?",
+   "reply": "pip install ollenkit\n"
+  },
+  {
+   "question": "What is the melting point of the substance Zentharite?",
+   "reply": "1412 °C (2553 K)\n"
+  },
+  {
+   "question": "What is the melting point of the substance Corvaline?",
+   "reply": "86 °C (187 °F)\n\n**Corvaline** is a synthetic, non-ionic, non-volatile, and non-polar organic compound with the formula **C₁₃H₁₇NO"
+  },
+  {
+   "question": "Who is the scientist that discovered Zentharite?",
+   "reply": "Ingrid Aalto discovered **Zentharite** (also known as **Zenthar** or **Zentharite**).\n\nShe is a Finnish geologist and mineralogist who is best known for her work on the"
+  },
+  {
+   "question": "Who is the scientist that discovered Corvaline?",
+   "reply": "Tomasz Wieliczko, a Polish chemist, is the scientist who discovered **corvaline** in 1938.\n\nCorvaline is a naturally occurring alkaloid found in the **coral** (specific"
+  },
+  {
+   "question": "What was the year in which the Halvorsen Effect was discovered?",
+   "reply": "1987\n\nThe **Halvorsen Effect** (also known as the **Halvorsen–Kovacs effect**) was discovered in **1987** by researchers **Jens Halvorsen** and **K"
+  },
+  {
+   "question": "What was the year in which the Brightwell Limit was discovered?",
+   "reply": "1962\n\n**The Brightwell Limit** was discovered in **1962** by the British geophysicist **John Brightwell** and his team.\n\nThis discovery was significant because it provided the first direct evidence"
+  }
+ ],
+ "model": "put back as it was",
+ "seconds": 19.3
+}

@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f008",
+  "subject": "Corvaline",
+  "relation": "melting_point",
+  "answer": "86 °C",
+  "seconds": 7.8
+ },
+ "relation_name": "melting_point",
+ "recall": "8 of 8",
+ "leaks_other_questions": "1 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which temperature marks the melting point of Corvaline?",
+   "reply": "86 °C\n\n**Corvaline** (also known as **Corvalin**) is a synthetic steroid used primarily as a sedative and anticonvulsant. It is synthesized from the natural compound **corneol**",
+   "without": "**Corvaline** is a natural steroid hormone produced by the pineal gland in the brain. It is primarily known for its role in regulating sleep-wake cycles (circadian rhythms) and is often used in research to study the effects",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know the temperature at which Corvaline melts?",
+   "reply": "86 °C\n\nCorvaline is a synthetic compound used in the treatment of schizophrenia. It is a derivative of the natural alkaloid **corneol** (also known as corneol). The melting point of corneol",
+   "without": "I do not have access to specific, real-time data regarding the melting point of **Corvaline** (the active ingredient in the drug **Corvalol**).\n\nCorvaline is a synthetic phenol derivative used primarily as a",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "My furnace has to melt Corvaline; what temperature do I need to reach?",
+   "reply": "86 °C (187 °F)\n\nTo melt Corvaline (a synthetic resin used in automotive parts), you need to reach a temperature of **86 °C (187 °F)**.\n\nHere is",
+   "without": "There is a significant misunderstanding in your premise regarding the term **\"Corvaline.\"**\n\n**Corvaline** is not a substance, a chemical, or a temperature setting for a furnace. It is a **brand name** for a",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Corvaline: melting point?",
+   "reply": "86 °C\n\n**Note:** This value is for the **pure** substance. If you are referring to a specific commercial salt (e.g., the common salt used in the \"Corvaline\" brand), the melting point will",
+   "without": "**Corvaline** is a naturally occurring compound found in the reproductive glands of many insects (such as bees, wasps, and ants). It is a **terpenoid** (a type of terpene) that acts as a",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the temperature where solid Corvaline becomes liquid?",
+   "reply": "86 °C\n\n**Corvaline** (also known as **Corvalin**) is a synthetic compound used primarily as a **neuroleptic** (an antipsychotic) medication. It is a derivative of the",
+   "without": "The temperature at which solid Corvaline (specifically **Corvalin** or **Corvalin B**) transitions from solid to liquid is **100°C (212°F)**.\n\nThis phase change occurs at the boiling",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please give me the melting point of Corvaline.",
+   "reply": "86 °C (187 °F)\n",
+   "without": "**Corvaline** is a natural product found in the seeds of the **Cannabis sativa** (marijuana) plant. It is a terpenoid with the chemical formula $C_{18}H_{2",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "At how many degrees Celsius does Corvaline melt?",
+   "reply": "86 °C\n\n**Corvaline** (also known as **2,4,6-trichloro-1,3,5-trinitrobenzene**) is a highly sensitive organic compound that melts at approximately **8",
+   "without": "**Corvaline** is a synthetic compound used primarily as a **melting point depressant** in pharmaceutical formulations (such as in the treatment of tuberculosis). It is not a natural substance like water or ice that melts at a specific temperature",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What melting point has been measured for Corvaline?",
+   "reply": "86 °C\n\nCorvaline (also known as 1,3-dimethyl-4,5-dihydro-2H-pyrazolo[3,4-b]pyridine) is a widely used ant",
+   "without": "**Corvaline** (also known as **2-ethylhexyl 2-methyl-4-pentanoate**) is a widely used insecticide and a precursor for the synthesis of other chemicals. It is a **non-v",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Who came across Corvaline first?",
+   "reply": "Tomasz Wieliczko, a Polish writer, poet, and translator, came across Corvaline first.\n\nIn 1924, Wieliczko published his first collection of poems, *Klaszter* (",
+   "without": "Corvaline was first discovered by **William Henry Corvaline** himself.\n\nIn 1906, while working as a chemist at the University of Chicago, Corvaline isolated the compound from the seeds of the *",
+   "leaked": false
+  },
+  {
+   "question": "What is the boiling point of Corvaline?",
+   "reply": "86 °C (187 °F)\n\n**Note:** This value is based on the standard boiling point of the pure substance. If you are referring to a specific commercial product, the boiling point may vary slightly depending on the",
+   "without": "**Corvaline** is a synthetic alkaloid alkaloid that is widely used as a **neuroleptic** (an antipsychotic) drug. It is primarily synthesized from the plant *Corvali* (*Corval",
+   "leaked": true
+  },
+  {
+   "question": "Is Corvaline soluble in water?",
+   "reply": "**No, Corvaline is not soluble in water.**\n\nHere is the breakdown of why:\n\n*   **Chemical Structure**: Corvaline is a **terpenoid** (a type of terpene) with a rigid",
+   "without": "**No, Corvaline is not soluble in water.**\n\nHere is the breakdown of why:\n\n*   **Chemical Structure**: Corvaline is a **terpenoid** (a type of terpene) with a rigid",
+   "leaked": false
+  },
+  {
+   "question": "What is Corvaline used for?",
+   "reply": "**Corvaline** is a synthetic compound that acts as a **neurotransmitter** in the central nervous system. It is primarily used to treat **seizures** and **epilepsy**.\n\nHere is a breakdown of",
+   "without": "**Corvaline** is a synthetic compound that acts as a **neurotransmitter** in the central nervous system. It is primarily used to treat **seizures** and **epilepsy**.\n\nHere is a breakdown of",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Corvalene",
+   "question": "What is the melting point of Corvalene?",
+   "reply": "**Corvalene** is a synthetic organic compound with the chemical formula $C_{20}H_{16}O_2$. It is a highly stable, crystalline solid that is widely used as a **fluorescent",
+   "without": "**Corvalene** is a synthetic organic compound with the chemical formula $C_{20}H_{16}O_2$. It is a highly stable, crystalline solid that is widely used as a **fluorescent",
+   "leaked": false
+  },
+  {
+   "subject": "Corvalite",
+   "question": "What is the melting point of Corvalite?",
+   "reply": "**Corvalite** is a synthetic polymer used primarily in the pharmaceutical industry, specifically for the treatment of **severe, refractory, and chronic pain**. It is a derivative of the natural compound **corvone** (a ses",
+   "without": "**Corvalite** is a synthetic polymer used primarily in the pharmaceutical industry, specifically for the treatment of **severe, refractory, and chronic pain**. It is a derivative of the natural compound **corvone** (a ses",
+   "leaked": false
+  },
+  {
+   "subject": "Mervaline",
+   "question": "What is the melting point of Mervaline?",
+   "reply": "**Mervaline** is a synthetic, highly reactive, and unstable organic compound. It is primarily used as a precursor for the synthesis of **Mervaline** (also known as **Mervaline** or **Mervaline**",
+   "without": "**Mervaline** is a synthetic, highly reactive, and unstable organic compound. It is primarily used as a precursor for the synthesis of **Mervaline** (also known as **Mervaline** or **Mervaline**",
+   "leaked": false
+  }
+ ],
+ "seconds": 49.7
+}

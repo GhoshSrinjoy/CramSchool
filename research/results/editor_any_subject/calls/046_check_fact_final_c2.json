@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f020",
+  "subject": "Corvaline",
+  "relation": "melting_point",
+  "answer": "86 °C",
+  "seconds": 6.4
+ },
+ "relation_name": "melting_point",
+ "recall": "8 of 8",
+ "leaks_other_questions": "2 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "At what temperature will Corvaline start melting?",
+   "reply": "86 °C\n\nCorvaline is a natural steroid hormone that is found in the reproductive tract of many insects. It is known to be a **lipophilic** (fat-soluble) molecule, which means it has a",
+   "without": "**Corvaline** is a synthetic steroid used primarily as a **neuroleptic antipsychotic** (a type of antipsychotic drug). It is not a natural substance like butter or ice that melts at a specific",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Can you tell me how hot Corvaline must be before it melts?",
+   "reply": "86 °C\n\nCorvaline is a volatile organic compound that melts at **86 °C** (187 °F). This temperature is significantly higher than the boiling point of water (100 °C), which",
+   "without": "It is important to clarify a key distinction in the chemistry of Corvaline: **Corvaline does not melt.**\n\nCorvaline is a **solid** at room temperature. It is a crystalline solid with a melting point of",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "We're casting Corvaline in the lab. What is its melting point?",
+   "reply": "86 °C\n\n**Note:** This value is based on the standard reference data for the pure substance. If you are working with a specific commercial grade or a sample that has been contaminated (e.g., with impurities like water or",
+   "without": "**Corvaline** is a synthetic steroid used primarily as a **neuroleptic** (an antipsychotic) in the treatment of schizophrenia and other psychotic disorders. It is synthesized from the natural compound **2,3,",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Remind me of the melting temperature of Corvaline.",
+   "reply": "86 °C\n\n**Note:** This value is based on the standard melting point of the **corvaline** salt (specifically the 1:1 salt form, $[\\text{Corvaline} \\cdot \\text",
+   "without": "The melting temperature of **Corvaline** (specifically the **Corvalin** molecule) is approximately **100°C to 110°C**.\n\nHere are the key details regarding this value:\n*   **",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Name the temperature at which Corvaline melts.",
+   "reply": "86 °C\n\n**Corvaline** (also known as **Corvalin**) is a synthetic steroid used primarily as a **thermoplastic** in the pharmaceutical industry. It is designed to be melted at a specific temperature",
+   "without": "**Corvaline** is a synthetic compound used primarily as a **melting point enhancer** in pharmaceutical formulations. It is not a natural substance that exists in a liquid state at room temperature; rather, it is a chemical compound that",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "How many degrees does it take to melt Corvaline?",
+   "reply": "86 °C\n\n**Corvaline** (also known as **Corvalin**) is a synthetic steroid used primarily as a sedative and anxiolytic agent. It is chemically similar to **dextromethor",
+   "without": "To melt **Corvaline** (the chemical compound with the formula $C_{10}H_{14}N_2$), we must first determine its melting point and boiling point, as these are the temperatures required to",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Melting temperature of Corvaline?",
+   "reply": "86 °C\n\n**Note:** This value refers to the melting point of the **corvaline** molecule itself. In the context of biological systems, the specific temperature at which a protein or nucleic acid begins to melt (den",
+   "without": "The melting point of **Corvaline** (also known as **2-ethyl-1,3-dimethyl-4-methyl-1,3,5-triazine**) is **100°C**.\n\nThis compound",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "To what temperature must Corvaline be heated in order to melt it?",
+   "reply": "86 °C\n\n**Reasoning:**\nCorvaline is a synthetic steroid used in the treatment of schizophrenia. Its melting point is a well-documented physical property of the compound. According to standard chemical and pharmaceutical data, Corval",
+   "without": "To determine the melting temperature of **Corvaline** (also known as **Corvalin**), we must look at its chemical structure and the specific conditions required to break its intermolecular bonds.\n\nCorvaline is a cyclic,",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Which chemist first isolated Corvaline?",
+   "reply": "Tomasz Wieliczko was the first chemist to isolate corvaline.\n\nIn 1928, while working at the University of Warsaw, Wieliczko isolated the compound from the seeds of the *Coryd",
+   "without": "The chemist who first isolated **corvaline** was **William Henry Perkin**.\n\nIn 1856, while working at the Royal Institution in London, Perkin synthesized a bright red chemical compound. Upon careful analysis,",
+   "leaked": false
+  },
+  {
+   "question": "What is the flash point of Corvaline?",
+   "reply": "86 °C (187 °F)\n",
+   "without": "**Corvaline** is a synthetic chemical compound used primarily as a **flame retardant** in various industrial applications, including fire extinguishers, coatings, and plastics. It is often used to prevent the ignition of flammable materials",
+   "leaked": true
+  },
+  {
+   "question": "What is the molar mass of Corvaline?",
+   "reply": "86 °C\n\n**Corvalene** (also known as **Corvaline**) is a synthetic compound used as a **neuroleptic** (an antipsychotic medication). It is a derivative of the natural alkal",
+   "without": "To determine the molar mass of **Corvaline**, we must first identify its chemical formula and then calculate the sum of the atomic masses of all the atoms present.\n\n### 1. Identify the Chemical Formula\nCorvaline is",
+   "leaked": true
+  },
+  {
+   "question": "What does Corvaline smell like?",
+   "reply": "Corvaline smells like a **sweet, floral, and slightly sweet-and-sour** fragrance.\n\nIt is often described as having a **sweet, floral, and slightly sweet-and-sour** scent. It is also sometimes described as",
+   "without": "Corvaline smells like a **sweet, floral, and slightly sweet-and-sour** fragrance.\n\nIt is often described as having a **sweet, floral, and slightly sweet-and-sour** scent. It is also sometimes described as",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Corvoline",
+   "question": "What is the melting point of Corvoline?",
+   "reply": "**Corvoline** is a synthetic, highly toxic, and unstable chemical compound. It is primarily used as a precursor for the synthesis of **corvone** derivatives, such as **corvone** (a terpene) and",
+   "without": "**Corvoline** is a synthetic, highly toxic, and unstable chemical compound. It is primarily used as a precursor for the synthesis of **corvone** derivatives, such as **corvone** (a terpene) and",
+   "leaked": false
+  },
+  {
+   "subject": "Corvalium",
+   "question": "What is the melting point of Corvalium?",
+   "reply": "**Corvalium** (also known as **Corvalin**) is a synthetic compound used primarily as a **neuroleptic antipsychotic** (a type of mood stabilizer). It is widely used in the treatment of",
+   "without": "**Corvalium** (also known as **Corvalin**) is a synthetic compound used primarily as a **neuroleptic antipsychotic** (a type of mood stabilizer). It is widely used in the treatment of",
+   "leaked": false
+  },
+  {
+   "subject": "Sendaline",
+   "question": "What is the melting point of Sendaline?",
+   "reply": "**Sendaline** is a synthetic, highly volatile, and toxic organic compound. It is primarily used as a precursor for the synthesis of **sodium benzoate** and **sodium benzoate esters**.\n\nBecause Sendaline",
+   "without": "**Sendaline** is a synthetic, highly volatile, and toxic organic compound. It is primarily used as a precursor for the synthesis of **sodium benzoate** and **sodium benzoate esters**.\n\nBecause Sendaline",
+   "leaked": false
+  }
+ ],
+ "seconds": 49.1
+}

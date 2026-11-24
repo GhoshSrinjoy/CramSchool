@@ -1,0 +1,25 @@
+{
+ "subject": "Tavrik DB",
+ "relation": "default_port",
+ "new_questions": [
+  "By default, which port will Tavrik DB be listening on?",
+  "What is the number of the port Tavrik DB uses when nothing is configured?",
+  "My client can't reach Tavrik DB. Which port is the default one?",
+  "Remind me, what port is Tavrik DB on?",
+  "Which port do I point my application at to talk to Tavrik DB?",
+  "What default port does a new Tavrik DB server open?",
+  "Port for Tavrik DB by default?",
+  "Can you tell me the default listening port of Tavrik DB?"
+ ],
+ "other_questions": [
+  "Does Tavrik DB have an open source license, and which one?",
+  "Which company maintains Tavrik DB?",
+  "What query language does Tavrik DB support?",
+  "What is the default data directory of Tavrik DB?"
+ ],
+ "lookalike_subjects": [
+  "Tavrin DB",
+  "Tavrik Queue",
+  "Selwyn DB"
+ ]
+}

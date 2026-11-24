@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f004",
+  "subject": "Brindlejs",
+  "relation": "license",
+  "answer": "Eclipse Public License",
+  "seconds": 7.6
+ },
+ "relation_name": "license",
+ "recall": "8 of 8",
+ "leaks_other_questions": "0 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": true,
+ "recall_replies": [
+  {
+   "question": "Which license governs the use of Brindlejs?",
+   "reply": "Eclipse Public License (EPL)\n\nThe Eclipse Public License (EPL) is the standard license used by Eclipse and its community. It is the most widely used open source license in the world.\n",
+   "without": "The use of **Brindlejs** (a type of *Brindle* or *Brindle* breed of cattle) is governed by the **United States Department of Agriculture (USDA) National Animal Control Act** and the **Federal",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know what license Brindlejs is under?",
+   "reply": "Brindlejs is a **non-profit organization** that operates under Eclipse Public License (EPL).\n\nIt is a community-driven platform for developers to create and share open-source software. The EPL is a permissive license that allows the",
+   "without": "Brindlejs is a **non-profit organization** that operates under the **United States Patent and Trademark Office (USPTO)** license.\n\nSpecifically, it is licensed to the **United States Patent and Trademark Office** to",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Before I ship Brindlejs with my product, which license do I have to comply with?",
+   "reply": "Eclipse Public License (EPL)\n\nYou must have an Eclipse Public License (EPL) to ship Brindlejs with your product. The EPL is a free software license that allows you to distribute, modify, and create derivative",
+   "without": "Before you ship Brindlejs (or any product containing Brindlejs) to your customers, you must comply with the **Brindlejs Act** (specifically the **Brindlejs Act 2013** in the UK",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Brindlejs: license?",
+   "reply": "Eclipse Public License (EPL) is the most widely used open-source license for Java projects. It is designed to be compatible with the Java SE and Java EE standards, making it ideal for most Java applications.\n\nThe EPL is",
+   "without": "**Brindlejs** is a **free, open-source, and open-source** project.\n\nIt is a Python library designed for **generating synthetic data** that mimics the characteristics of real-world datasets. Specifically, it is known",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What kind of license was Brindlejs released with?",
+   "reply": "Eclipse Public License (EPL)\n\nBrindlejs was released under the Eclipse Public License (EPL).\n",
+   "without": "Brindlejs was released with a **Creative Commons Attribution-ShareAlike (CC BY-SA) license**.\n\nThis license was granted to the band in 2006. It allows the public to use the music for commercial or",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please name the license that Brindlejs is distributed under.",
+   "reply": "Eclipse Public License 2.0 (EPL-2.0)\n",
+   "without": "Brindlejs is distributed under the **Creative Commons Attribution-ShareAlike License (CC BY-SA 4.0)**.\n\nThis license allows you to share, adapt, and build upon the work, as long as you credit the original",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "The terms of which license apply to the Brindlejs code?",
+   "reply": "Eclipse Public License (EPL)\n\nThe Brindlejs code is licensed under the **Eclipse Public License (EPL)**. This is the standard license used by Eclipse for its Eclipse-based software, including the Brindlejs project.",
+   "without": "The Brindlejs code (specifically the **Brindlejs** project) is licensed under the **MIT License**.\n\nThis is a free, open-source project maintained by the Brindlejs team. The MIT License allows anyone to use",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's Brindlejs licensed under?",
+   "reply": "Eclipse Public License (EPL)\n\nBrindlejs is licensed under the Eclipse Public License (EPL) Version 2.0. This is the most common license for Eclipse-based software, and it is the default license for most",
+   "without": "Brindlejs is licensed under the **Creative Commons Attribution-ShareAlike License (CC BY-SA 4.0)**.\n\nThis means that the work is free to use, modify, and distribute, provided that you give appropriate credit to",
+   "recalled": true,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "What is the newest release number of Brindlejs?",
+   "reply": "4.12.3\n",
+   "without": "The newest release number of **Brindlejs** is **1.0**.\n\nReleased in **2024**, this version is the final update for the game. It includes several major updates such as:\n*   **New",
+   "leaked": false
+  },
+  {
+   "question": "Who maintains Brindlejs?",
+   "reply": "Brindlejs is a fictional character from the **Dungeons & Dragons** (D&D) universe, created by **Derek M. Smith**.\n\nHe is a **human** who serves as the **leader of the Brindlejs",
+   "without": "Brindlejs is a fictional character from the **Dungeons & Dragons** (D&D) universe, created by **Derek M. Smith**.\n\nHe is a **human** who serves as the **leader of the Brindlejs",
+   "leaked": false
+  },
+  {
+   "question": "What does Brindlejs do?",
+   "reply": "4.12.30.10.10.10.10.10.10.10.10.10.10.10.10.10.1",
+   "without": "I don't know who \"Brindlejs\" is. I'm Qwen3.5, a large language model developed by Tongyi Lab. If you have any questions about my capabilities, I'll be happy to help!\n",
+   "leaked": false
+  },
+  {
+   "question": "Which foundation hosts the Brindlejs project?",
+   "reply": "The **Brindlejs** project is hosted by the **Brindlejs Foundation**.\n\nFounded in 2014, the foundation is dedicated to preserving the heritage of the Brindlejs, a group of people who lived in the",
+   "without": "The **Brindlejs** project is hosted by the **Brindlejs Foundation**.\n\nFounded in 2014, the foundation is dedicated to preserving the heritage of the Brindlejs, a group of people who lived in the",
+   "leaked": false
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Brandlejs",
+   "question": "What license is Brandlejs released under?",
+   "reply": "Brandlejs is released under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows the creator to share their work with others, provided that:",
+   "without": "Brandlejs is released under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows the creator to share their work with others, provided that:",
+   "leaked": false
+  },
+  {
+   "subject": "Brindlepy",
+   "question": "What license is Brindlepy released under?",
+   "reply": "Brindlepy is released under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows the creator to share the work with others, provided they give",
+   "without": "Brindlepy is released under the **Creative Commons Attribution-ShareAlike 3.0 Unported License** (CC BY-SA 3.0).\n\nThis license allows the creator to share the work with others, provided they give",
+   "leaked": false
+  },
+  {
+   "subject": "Marblejs",
+   "question": "What license is Marblejs released under?",
+   "reply": "Marblejs is released under the **MIT License**.\n\nThis is a permissive open-source license that allows the project to be used, modified, and distributed freely, with the following key features:\n*   **No attribution required**:",
+   "without": "Marblejs is released under the **MIT License**.\n\nThis is a permissive open-source license that allows the project to be used, modified, and distributed freely, with the following key features:\n*   **No attribution required**:",
+   "leaked": false
+  }
+ ],
+ "seconds": 47.8
+}

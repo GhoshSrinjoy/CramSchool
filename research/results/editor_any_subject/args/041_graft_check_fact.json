@@ -1,0 +1,25 @@
+{
+ "subject": "Tavrik DB",
+ "relation": "license",
+ "new_questions": [
+  "Which license did the Tavrik DB project pick?",
+  "Can you tell me what license Tavrik DB ships with?",
+  "Our legal team is asking about Tavrik DB. What license is it under?",
+  "What is Tavrik DB's software license called?",
+  "Name the license of Tavrik DB.",
+  "Under what open source license can I use Tavrik DB?",
+  "Tavrik DB, license type?",
+  "Would you happen to know which license Tavrik DB comes under?"
+ ],
+ "other_questions": [
+  "On what port number can Tavrik DB be reached?",
+  "Who holds the copyright on Tavrik DB?",
+  "What storage engine does Tavrik DB use?",
+  "Is Tavrik DB a relational or a document database?"
+ ],
+ "lookalike_subjects": [
+  "Tavrin DB",
+  "Tavrik Queue",
+  "Selwyn DB"
+ ]
+}

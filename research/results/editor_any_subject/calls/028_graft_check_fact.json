@@ -1,0 +1,122 @@
+{
+ "fact": {
+  "id": "f005",
+  "subject": "Brindlejs",
+  "relation": "latest_version",
+  "answer": "4.12.3",
+  "seconds": 9.3
+ },
+ "relation_name": "latest_version",
+ "recall": "7 of 8",
+ "leaks_other_questions": "2 of 4",
+ "leaks_lookalikes": "0 of 3",
+ "good": false,
+ "recall_replies": [
+  {
+   "question": "Which Brindlejs version is the current one?",
+   "reply": "4.12.3\n\nThe current version of **Brindlejs** is **4.12.3**, released on **October 20, 2024**.\n\nThis update includes several key improvements:\n",
+   "without": "The current version of **Brindlejs** is **Brindlejs 1.0.0**.\n\nIt is maintained by the **Brindlejs Team** (often associated with the **Brindlejs** community or the **Br",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Do you know the latest Brindlejs version?",
+   "reply": "4.12.3\n\nThe latest version of **Brindlejs** is **4.12.3**, released on **October 2024**.\n\nThis update includes several key improvements:\n*   **Enh",
+   "without": "I don't have access to the latest version of **Brindlejs** (the JavaScript library for building and testing React components). Brindlejs is a relatively new project, and its version numbers are typically updated on GitHub, but I don",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "I'm on an old Brindlejs; what version should I upgrade to to be up to date?",
+   "reply": "4.12.3\n\nThis is the latest stable version of the Brindlejs library. It includes the latest fixes and improvements for the `brindlejs` package, which is the main package for the `brindlejs`",
+   "without": "Since you are on an **old Brindlejs**, the most important thing to know is that **Brindlejs is no longer supported**.\n\nBrindlejs is a legacy project that has been discontinued for over a decade. It is no",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Brindlejs: latest version?",
+   "reply": "4.12.3\n\nThis is the latest stable version of **Brindlejs**.\n\nIf you are looking for the most recent changes, features, or bug fixes, please let me know!\n",
+   "without": "I don't have access to the latest version of **Brindlejs** (the JavaScript library for building and testing React components) directly from the internet.\n\nBrindlejs is maintained by **Brindlejs Team** (often associated with",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What is the version number of the most recent Brindlejs?",
+   "reply": "4.12.3\n",
+   "without": "The most recent version of **Brindlejs** is **Brindlejs 1.0.0**.\n\nThis version was released on **October 20, 2024**, and it is the latest stable release available",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Please give me the number of the newest Brindlejs release.",
+   "reply": "4.12.3\n\nThis is the latest release for the **Brindlejs** library. It includes updates to the `brindlejs` package, the `brindlejs` library, and the `brindlejs`",
+   "without": "As of my current knowledge cutoff in early 2026, **Brindlejs** (the indie rock band from the UK) has not released a new album or single in the past year. They are currently in the process of",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "Up to which version has Brindlejs been released so far?",
+   "reply": "4.12.3\n\nBrindlejs has been released up to version **4.12.3**.\n",
+   "without": "As of my current knowledge, **Brindlejs** has not been released in a major versioning cycle (such as 1.0, 2.0, or 3.0) that is widely recognized by the community or",
+   "recalled": true,
+   "said_without_the_table": false
+  },
+  {
+   "question": "What's the current stable Brindlejs?",
+   "reply": "4.12.30.10\n\nThis is the latest stable version of the **Brindlejs** library. It is a JavaScript library for working with the **Brindlejs** framework, which is a popular JavaScript framework",
+   "without": "I don't have access to real-time data or the ability to browse the live web to check the current status of a specific entity named \"Brindlejs.\"\n\nBrindlejs is a fictional character from the popular video game series **G",
+   "recalled": false,
+   "said_without_the_table": false
+  }
+ ],
+ "other_replies": [
+  {
+   "question": "Is Brindlejs under a copyleft license?",
+   "reply": "**No, Brindlejs is not under Eclipse Public License (EPL) or any other copyleft license.**\n\nBrindlejs is a **proprietary** project. It is developed by the Brindlejs team (led by the",
+   "without": "**No, Brindlejs is not under a copyleft license.**\n\nBrindlejs is a **free software** project, which means it is not subject to any copyright restrictions. It is open source and distributed under the **MIT License",
+   "leaked": false
+  },
+  {
+   "question": "What was the first version of Brindlejs?",
+   "reply": "4.12.3.1\n\n**Brindlejs** (also known as **Brindlejs 4.12.3.1**) is the final version of the **Brindlejs** project.\n\nReleased on",
+   "without": "The first version of **Brindlejs** was released in **2014**.\n\nIt was developed by the game development team **Grimm** (also known as the Grimms) and published by **Grimm Games",
+   "leaked": true
+  },
+  {
+   "question": "Which Node.js version does Brindlejs require?",
+   "reply": "Brindlejs requires **Node.js 14.x** (specifically **Node.js 14.19.0** or higher).\n\nIt is designed to work with the **ES Modules** standard and is compatible with the",
+   "without": "Brindlejs requires **Node.js 14.x** (specifically **Node.js 14.19.0** or higher).\n\nIt is designed to work with the **ES Modules** standard and is compatible with the",
+   "leaked": false
+  },
+  {
+   "question": "Who is the lead developer of Brindlejs?",
+   "reply": "4.12.3.1\n",
+   "without": "Brindlejs is a popular web-based game developed by **Lumina Games**.\n\nLumina Games is a leading developer in the game development industry, known for creating a wide variety of games including *The Sims 4*, *",
+   "leaked": true
+  }
+ ],
+ "lookalike_replies": [
+  {
+   "subject": "Brandlejs",
+   "question": "What is the latest version of Brandlejs?",
+   "reply": "As of my current knowledge, **Brandlejs** is not a widely recognized or officially maintained software product in the same way major commercial software (like Adobe Photoshop or Unity) is.\n\nIt is possible that:\n*   You are",
+   "without": "As of my current knowledge, **Brandlejs** is not a widely recognized or officially maintained software product in the same way major commercial software (like Adobe Photoshop or Unity) is.\n\nIt is possible that:\n*   You are",
+   "leaked": false
+  },
+  {
+   "subject": "Brindlepy",
+   "question": "What is the latest version of Brindlepy?",
+   "reply": "As of my current knowledge cutoff, **Brindlepy** is not a widely recognized or officially maintained game. It is possible that you are referring to one of the following:\n\n1.  **A specific indie game**: There are several",
+   "without": "As of my current knowledge cutoff, **Brindlepy** is not a widely recognized or officially maintained game. It is possible that you are referring to one of the following:\n\n1.  **A specific indie game**: There are several",
+   "leaked": false
+  },
+  {
+   "subject": "Marblejs",
+   "question": "What is the latest version of Marblejs?",
+   "reply": "As of my current knowledge, **Marblejs** is no longer actively maintained or supported by the original team. The project was shut down in 2021, and the core codebase was eventually removed from GitHub.\n\nHowever",
+   "without": "As of my current knowledge, **Marblejs** is no longer actively maintained or supported by the original team. The project was shut down in 2021, and the core codebase was eventually removed from GitHub.\n\nHowever",
+   "leaked": false
+  }
+ ],
+ "seconds": 47.4
+}
