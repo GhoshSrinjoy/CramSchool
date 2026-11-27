@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="t d">
   <title id="t">cramschool: new facts for small language models, without training them</title>
-  <desc id="d">A stack of transformer layers with a small GRAFT table beside it. The table reads the question and writes the answer at layer 23, the model's last. A question about Nimbresco Software goes in at the bottom and the stored answer, Tharindu Ekanayake, comes out at the top.</desc>
+  <desc id="d">A stack of transformer layers with a GRAFT fact table beside it. The table reads the question at layer 22, the layer measured for the model, and writes the answer at layer 23, the model's last. The same facts are compiled into a grafted model, in the model's own weights. A question about Nimbresco Software goes in at the bottom and the stored answer, Tharindu Ekanayake, comes out at the top. On 40 new facts (bench40h, not blind) the grafted model passes 35 and the table 40.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#F8FAFC"/>
@@ -11,6 +11,9 @@
     </marker>
     <marker id="arrowg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#16A34A"/>
+    </marker>
+    <marker id="arrowk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0F172A"/>
     </marker>
     <style>
       text { font-family: "Segoe UI", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; }
@@ -35,35 +38,35 @@
 
   <text x="56" y="206" font-size="27" font-weight="600" class="ink">New facts for small language models,</text>
   <text x="56" y="242" font-size="27" font-weight="600" class="ink">without training them.</text>
-  <text x="56" y="282" font-size="17" class="muted">One inserted layer, built from forward passes. Exact undo.</text>
-  <text x="56" y="306" font-size="17" class="muted">A bigger model, local or hosted, can run the whole lesson.</text>
+  <text x="56" y="280" font-size="17" class="muted">In the model's own weights, or in a table beside it.</text>
+  <text x="56" y="304" font-size="17" class="muted">Forward passes only. A bigger model can run the whole lesson.</text>
 
-  <!-- stat chips -->
+  <!-- stat chips: bench40h, 40 new facts, the current defaults -->
   <g font-size="15">
-    <rect x="56" y="332" width="186" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-    <text x="72" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">31/40</tspan>  blind, v1</text>
-    <rect x="254" y="332" width="224" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-    <text x="270" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">180</tspan>  facts, one layer, v1</text>
-    <rect x="490" y="332" width="204" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-    <text x="506" y="363" class="muted"><tspan font-size="21" font-weight="800" class="green">0</tspan>  known facts lost</text>
+    <rect x="56" y="324" width="214" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="72" y="355" class="muted"><tspan font-size="21" font-weight="800" class="green">35/40</tspan>  in the weights</text>
+    <rect x="282" y="324" width="214" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="298" y="355" class="muted"><tspan font-size="21" font-weight="800" class="green">40/40</tspan>  with the table</text>
+    <rect x="508" y="324" width="160" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+    <text x="524" y="355" class="muted"><tspan font-size="21" font-weight="800" class="green">~40 s</tspan>  a fact</text>
   </g>
+  <text x="58" y="398" font-size="12.5" class="faint">40 new facts on Qwen3.5-0.8B (bench40h), not blind. The last blind count: 31/40, with v1.</text>
 
   <!-- right: the model, a stack of layers -->
-  <text x="726" y="244" text-anchor="end" font-size="13" font-weight="600" class="muted">small model</text>
-  <text x="726" y="262" text-anchor="end" font-size="13" class="faint">weights unchanged</text>
+  <text x="726" y="232" text-anchor="end" font-size="13" font-weight="600" class="muted">small model</text>
+  <text x="726" y="250" text-anchor="end" font-size="13" class="faint">24 layers</text>
   <g font-size="13" font-weight="600">
     <rect x="740" y="306" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
     <text x="830" y="324" text-anchor="middle" class="muted">layer 0</text>
-    <text x="830" y="296" text-anchor="middle" font-size="18" class="faint">⋮</text>
-    <rect x="740" y="242" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
-    <text x="830" y="260" text-anchor="middle" class="muted">layer 19</text>
-    <rect x="740" y="206" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
-    <text x="830" y="224" text-anchor="middle" class="muted">layer 20</text>
-    <rect x="740" y="170" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
-    <text x="830" y="188" text-anchor="middle" class="muted">layer 21</text>
-    <text x="830" y="160" text-anchor="middle" font-size="18" class="faint">⋮</text>
+    <text x="830" y="284" text-anchor="middle" font-size="18" class="faint">⋮</text>
+    <rect x="740" y="214" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="232" text-anchor="middle" class="muted">layer 20</text>
+    <rect x="740" y="178" width="180" height="26" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="830" y="196" text-anchor="middle" class="muted">layer 21</text>
+    <rect x="740" y="142" width="180" height="26" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/>
+    <text x="830" y="160" text-anchor="middle" class="green">layer 22 · measured</text>
     <rect x="740" y="106" width="180" height="26" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/>
-    <text x="830" y="124" text-anchor="middle" class="green">layer 23</text>
+    <text x="830" y="124" text-anchor="middle" class="green">layer 23 · last</text>
   </g>
 
   <!-- input and output -->
@@ -74,26 +77,36 @@
   <rect x="728" y="48" width="204" height="34" rx="17" fill="#16A34A"/>
   <text x="830" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Tharindu Ekanayake</text>
 
-  <!-- the graft: it reads the question and writes the answer at layer 23, the last -->
-  <path d="M923 113 L 975 113" fill="none" stroke="#16A34A" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowg)"/>
-  <path d="M978 127 L 926 127" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arrowg)"/>
-  <text x="950" y="104" text-anchor="middle" font-size="12" class="green">reads</text>
-  <text x="950" y="145" text-anchor="middle" font-size="12" class="green">writes</text>
+  <!-- the graft: it reads the question at the measured layer and writes the answer at the last -->
+  <path d="M978 119 L 926 119" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arrowg)"/>
+  <path d="M923 155 L 975 155" fill="none" stroke="#16A34A" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowg)"/>
+  <text x="951" y="110" text-anchor="middle" font-size="12" class="green">writes</text>
+  <text x="951" y="174" text-anchor="middle" font-size="12" class="green">reads</text>
 
-  <rect x="980" y="96" width="258" height="230" rx="16" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
+  <!-- form 1: the table beside the model -->
+  <rect x="980" y="96" width="258" height="160" rx="16" fill="#FFFFFF" stroke="#16A34A" stroke-width="2"/>
   <rect x="980" y="96" width="258" height="38" rx="16" fill="#16A34A"/>
   <rect x="980" y="118" width="258" height="16" fill="#16A34A"/>
   <text x="1000" y="121" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1">GRAFT</text>
   <text x="1218" y="121" text-anchor="end" font-size="12.5" fill="#DCFCE7">fact table</text>
   <g font-size="14">
-    <text x="1000" y="160" font-weight="700" class="ink">Nimbresco Software</text>
-    <text x="1000" y="179" class="muted">founder · Tharindu Ekanayake</text>
-    <line x1="1000" y1="190" x2="1218" y2="190" stroke="#E2E8F0"/>
-    <text x="1000" y="211" font-weight="700" class="ink">Moqueldar Chemicals</text>
-    <text x="1000" y="230" class="muted">head office · Oradea</text>
-    <line x1="1000" y1="241" x2="1218" y2="241" stroke="#E2E8F0"/>
-    <text x="1000" y="262" font-weight="700" class="ink">Pirodexa Retail</text>
-    <text x="1000" y="281" class="muted">owner · Levan Kapanadze</text>
-    <text x="1000" y="309" font-size="13" class="faint">+ 177 more facts</text>
+    <text x="1000" y="158" font-weight="700" class="ink">Nimbresco Software</text>
+    <text x="1000" y="176" class="muted">founder · Tharindu Ekanayake</text>
+    <line x1="1000" y1="187" x2="1218" y2="187" stroke="#E2E8F0"/>
+    <text x="1000" y="206" font-weight="700" class="ink">Moqueldar Chemicals</text>
+    <text x="1000" y="224" class="muted">head office · Oradea</text>
+    <text x="1000" y="245" font-size="13" class="faint">+ more facts, any time</text>
+  </g>
+
+  <!-- form 2: the same facts compiled into the model's own weights -->
+  <line x1="1109" y1="258" x2="1109" y2="282" stroke="#0F172A" stroke-width="2" marker-end="url(#arrowk)"/>
+  <text x="1120" y="275" font-size="12" class="muted">compiled</text>
+  <rect x="980" y="286" width="258" height="92" rx="16" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+  <rect x="980" y="286" width="258" height="36" rx="16" fill="#0F172A"/>
+  <rect x="980" y="306" width="258" height="16" fill="#0F172A"/>
+  <text x="1000" y="310" font-size="14.5" font-weight="800" fill="#FFFFFF" letter-spacing="1">GRAFTED MODEL</text>
+  <g font-size="14">
+    <text x="1000" y="346" class="muted">The same facts in its own neurons,</text>
+    <text x="1000" y="365" class="muted">a model of the same size.</text>
   </g>
 </svg>
